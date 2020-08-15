@@ -372,6 +372,7 @@ const listCurrentByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedByDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -397,6 +398,7 @@ const listRecommendedByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const enableRecommendationOperationSpec: coreHttp.OperationSpec = {
@@ -459,6 +461,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.columnName,
     Parameters.sensitivityLabelSource1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -487,7 +490,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.columnName,
     Parameters.sensitivityLabelSource2
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -528,6 +531,7 @@ const listCurrentByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -553,5 +557,6 @@ const listRecommendedByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

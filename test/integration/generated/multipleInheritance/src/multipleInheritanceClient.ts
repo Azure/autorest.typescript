@@ -226,6 +226,7 @@ const getHorseOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putHorseOperationSpec: coreHttp.OperationSpec = {
@@ -238,7 +239,7 @@ const putHorseOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.horse,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -254,6 +255,7 @@ const getPetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putPetOperationSpec: coreHttp.OperationSpec = {
@@ -266,7 +268,7 @@ const putPetOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.pet,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -282,6 +284,7 @@ const getFelineOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putFelineOperationSpec: coreHttp.OperationSpec = {
@@ -294,7 +297,7 @@ const putFelineOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.feline,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -310,6 +313,7 @@ const getCatOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putCatOperationSpec: coreHttp.OperationSpec = {
@@ -322,7 +326,7 @@ const putCatOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.cat,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -338,6 +342,7 @@ const getKittenOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putKittenOperationSpec: coreHttp.OperationSpec = {
@@ -350,7 +355,7 @@ const putKittenOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.kitten,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

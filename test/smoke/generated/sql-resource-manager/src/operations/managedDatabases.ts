@@ -383,6 +383,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -403,6 +404,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -433,7 +435,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.managedInstanceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -480,7 +482,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.managedInstanceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -501,6 +503,7 @@ const listInaccessibleByInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const completeRestoreOperationSpec: coreHttp.OperationSpec = {
@@ -538,6 +541,7 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInaccessibleByInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -557,5 +561,6 @@ const listInaccessibleByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

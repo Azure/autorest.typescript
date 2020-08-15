@@ -274,6 +274,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -300,7 +301,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -325,7 +326,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -349,6 +350,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -370,6 +372,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restoreOperationSpec: coreHttp.OperationSpec = {
@@ -391,7 +394,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -419,5 +422,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

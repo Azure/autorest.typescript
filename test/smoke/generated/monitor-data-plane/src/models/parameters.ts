@@ -26,6 +26,18 @@ export const body: OperationParameter = {
   mapper: AzureMetricsDocumentMapper
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {

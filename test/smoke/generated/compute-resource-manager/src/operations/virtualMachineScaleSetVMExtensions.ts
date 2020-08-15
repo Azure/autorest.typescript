@@ -286,7 +286,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -321,7 +321,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -347,6 +347,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -370,6 +371,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -392,5 +394,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

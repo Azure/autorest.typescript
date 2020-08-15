@@ -173,6 +173,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.blobAuditingPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -198,7 +199,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.blobAuditingPolicyName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -220,6 +221,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -240,5 +242,6 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

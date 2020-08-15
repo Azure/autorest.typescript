@@ -440,6 +440,7 @@ const getIntOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putIntOperationSpec: coreHttp.OperationSpec = {
@@ -453,7 +454,7 @@ const putIntOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -469,6 +470,7 @@ const getLongOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putLongOperationSpec: coreHttp.OperationSpec = {
@@ -482,7 +484,7 @@ const putLongOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -498,6 +500,7 @@ const getFloatOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putFloatOperationSpec: coreHttp.OperationSpec = {
@@ -511,7 +514,7 @@ const putFloatOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody3,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -527,6 +530,7 @@ const getDoubleOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -540,7 +544,7 @@ const putDoubleOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -556,6 +560,7 @@ const getBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putBoolOperationSpec: coreHttp.OperationSpec = {
@@ -569,7 +574,7 @@ const putBoolOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody5,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -585,6 +590,7 @@ const getStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putStringOperationSpec: coreHttp.OperationSpec = {
@@ -598,7 +604,7 @@ const putStringOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody6,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -614,6 +620,7 @@ const getDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDateOperationSpec: coreHttp.OperationSpec = {
@@ -627,7 +634,7 @@ const putDateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody7,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -643,6 +650,7 @@ const getDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -656,7 +664,7 @@ const putDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody8,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -672,6 +680,7 @@ const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -685,7 +694,7 @@ const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody9,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -701,6 +710,7 @@ const getDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDurationOperationSpec: coreHttp.OperationSpec = {
@@ -714,7 +724,7 @@ const putDurationOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody10,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -730,6 +740,7 @@ const getByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putByteOperationSpec: coreHttp.OperationSpec = {
@@ -743,7 +754,7 @@ const putByteOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody11,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

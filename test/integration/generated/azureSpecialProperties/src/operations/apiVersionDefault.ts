@@ -105,6 +105,7 @@ const getMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
@@ -119,6 +120,7 @@ const getMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
@@ -133,6 +135,7 @@ const getPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
@@ -147,5 +150,6 @@ const getSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

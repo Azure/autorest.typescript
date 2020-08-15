@@ -171,6 +171,7 @@ const listByManagedInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -191,6 +192,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByManagedInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -210,5 +212,6 @@ const listByManagedInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

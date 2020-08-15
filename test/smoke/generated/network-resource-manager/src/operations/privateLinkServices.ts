@@ -554,6 +554,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.serviceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -575,6 +576,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.serviceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -606,7 +608,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.serviceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -628,6 +630,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
@@ -644,6 +647,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -666,6 +670,7 @@ const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.peConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updatePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -689,7 +694,7 @@ const updatePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.peConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -714,6 +719,7 @@ const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.peConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPrivateEndpointConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -735,6 +741,7 @@ const listPrivateEndpointConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.serviceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkPrivateLinkServiceVisibilityOperationSpec: coreHttp.OperationSpec = {
@@ -756,7 +763,7 @@ const checkPrivateLinkServiceVisibilityOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -780,7 +787,7 @@ const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreHttp.Op
     Parameters.subscriptionId,
     Parameters.location
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -802,6 +809,7 @@ const listAutoApprovedPrivateLinkServicesOperationSpec: coreHttp.OperationSpec =
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAutoApprovedPrivateLinkServicesByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -823,6 +831,7 @@ const listAutoApprovedPrivateLinkServicesByResourceGroupOperationSpec: coreHttp.
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -843,6 +852,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
@@ -862,6 +872,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPrivateEndpointConnectionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -883,6 +894,7 @@ const listPrivateEndpointConnectionsNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.nextLink,
     Parameters.serviceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAutoApprovedPrivateLinkServicesNextOperationSpec: coreHttp.OperationSpec = {
@@ -903,6 +915,7 @@ const listAutoApprovedPrivateLinkServicesNextOperationSpec: coreHttp.OperationSp
     Parameters.nextLink,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -924,5 +937,6 @@ const listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec: coreH
     Parameters.nextLink,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

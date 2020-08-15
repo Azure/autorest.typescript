@@ -123,6 +123,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.vpnSiteName,
     Parameters.vpnSiteLinkName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByVpnSiteOperationSpec: coreHttp.OperationSpec = {
@@ -144,6 +145,7 @@ const listByVpnSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vpnSiteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByVpnSiteNextOperationSpec: coreHttp.OperationSpec = {
@@ -165,5 +167,6 @@ const listByVpnSiteNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.vpnSiteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

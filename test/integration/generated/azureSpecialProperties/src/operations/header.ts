@@ -105,7 +105,7 @@ const customNamedRequestIdOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.fooClientRequestId],
+  headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };
 const customNamedRequestIdParamGroupingOperationSpec: coreHttp.OperationSpec = {
@@ -120,7 +120,7 @@ const customNamedRequestIdParamGroupingOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.fooClientRequestId1],
+  headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
   serializer
 };
 const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
@@ -136,6 +136,6 @@ const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.fooClientRequestId],
+  headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };

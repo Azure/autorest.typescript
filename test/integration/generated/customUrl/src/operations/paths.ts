@@ -57,5 +57,6 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.accountName, Parameters.host],
+  headerParameters: [Parameters.accept],
   serializer
 };

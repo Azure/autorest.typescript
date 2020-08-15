@@ -217,6 +217,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.policyName3
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -248,7 +249,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.policyName3
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -270,6 +271,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -290,5 +292,6 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

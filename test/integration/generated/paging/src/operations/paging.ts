@@ -667,6 +667,7 @@ const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
@@ -679,6 +680,7 @@ const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
@@ -691,6 +693,7 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
@@ -704,6 +707,7 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
     Parameters.timeout
@@ -724,6 +728,7 @@ const getWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
     Parameters.queryConstant
   ],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
@@ -737,6 +742,7 @@ const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.queryConstant],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
@@ -750,6 +756,7 @@ const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
     Parameters.timeout1
@@ -767,6 +774,7 @@ const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.offset],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
     Parameters.timeout2
@@ -783,6 +791,7 @@ const getMultiplePagesRetryFirstOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
@@ -795,6 +804,7 @@ const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
@@ -807,6 +817,7 @@ const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
@@ -819,6 +830,7 @@ const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
@@ -831,6 +843,7 @@ const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
@@ -844,6 +857,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenant],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.OperationSpec = {
@@ -857,6 +871,7 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.Operat
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.tenant1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
@@ -879,6 +894,7 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
     Parameters.timeout3
@@ -896,6 +912,7 @@ const nextFragmentOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
@@ -909,6 +926,7 @@ const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.OperationSpec = {
@@ -921,6 +939,7 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.Operati
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -933,6 +952,7 @@ const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -945,6 +965,7 @@ const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -958,6 +979,7 @@ const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
     Parameters.timeout
@@ -975,6 +997,7 @@ const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
     Parameters.timeout1
@@ -992,6 +1015,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
     Parameters.timeout2
@@ -1008,6 +1032,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
@@ -1020,6 +1045,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
@@ -1032,6 +1058,7 @@ const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
@@ -1044,6 +1071,7 @@ const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
@@ -1056,6 +1084,7 @@ const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
@@ -1072,6 +1101,7 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
+    Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
     Parameters.timeout3
@@ -1088,5 +1118,6 @@ const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreHttp.Ope
     default: {}
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };

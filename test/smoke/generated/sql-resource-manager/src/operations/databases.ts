@@ -769,7 +769,7 @@ const importOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -801,7 +801,7 @@ const createImportOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.extensionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -832,7 +832,7 @@ const exportOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -853,6 +853,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -872,6 +873,7 @@ const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {
@@ -891,6 +893,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -911,6 +914,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -941,7 +945,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -988,7 +992,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1010,6 +1014,7 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.elasticPoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const pauseOperationSpec: coreHttp.OperationSpec = {
@@ -1039,6 +1044,7 @@ const pauseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resumeOperationSpec: coreHttp.OperationSpec = {
@@ -1068,6 +1074,7 @@ const resumeOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const upgradeDataWarehouseOperationSpec: coreHttp.OperationSpec = {
@@ -1135,6 +1142,7 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
@@ -1155,5 +1163,6 @@ const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.elasticPoolName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

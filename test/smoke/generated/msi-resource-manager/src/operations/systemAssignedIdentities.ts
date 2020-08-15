@@ -62,5 +62,6 @@ const getByScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.scope],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -1024,6 +1024,7 @@ const listSqlDatabasesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -1043,6 +1044,7 @@ const getSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -1072,7 +1074,7 @@ const createUpdateSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1108,6 +1110,7 @@ const getSqlDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSqlDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -1137,7 +1140,7 @@ const updateSqlDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1158,6 +1161,7 @@ const listSqlContainersOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSqlContainerOperationSpec: coreHttp.OperationSpec = {
@@ -1178,6 +1182,7 @@ const getSqlContainerOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateSqlContainerOperationSpec: coreHttp.OperationSpec = {
@@ -1208,7 +1213,7 @@ const createUpdateSqlContainerOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1246,6 +1251,7 @@ const getSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -1276,7 +1282,7 @@ const updateSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1298,6 +1304,7 @@ const listSqlStoredProceduresOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
@@ -1319,6 +1326,7 @@ const getSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.storedProcedureName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
@@ -1350,7 +1358,7 @@ const createUpdateSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.storedProcedureName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1389,6 +1397,7 @@ const listSqlUserDefinedFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -1410,6 +1419,7 @@ const getSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.userDefinedFunctionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -1441,7 +1451,7 @@ const createUpdateSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = 
     Parameters.containerName,
     Parameters.userDefinedFunctionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1480,6 +1490,7 @@ const listSqlTriggersOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSqlTriggerOperationSpec: coreHttp.OperationSpec = {
@@ -1501,6 +1512,7 @@ const getSqlTriggerOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.triggerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateSqlTriggerOperationSpec: coreHttp.OperationSpec = {
@@ -1532,7 +1544,7 @@ const createUpdateSqlTriggerOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.triggerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

@@ -170,6 +170,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -192,6 +193,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putOperationSpec: coreHttp.OperationSpec = {
@@ -215,7 +217,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -238,5 +240,6 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

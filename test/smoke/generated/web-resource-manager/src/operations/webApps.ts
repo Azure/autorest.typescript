@@ -11754,6 +11754,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -11774,6 +11775,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -11796,6 +11798,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -11827,7 +11830,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -11854,6 +11857,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -11879,7 +11883,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -11902,6 +11906,7 @@ const analyzeCustomHostnameOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
@@ -11922,7 +11927,7 @@ const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -11946,7 +11951,7 @@ const backupOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -11969,6 +11974,7 @@ const listBackupsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBackupStatusOperationSpec: coreHttp.OperationSpec = {
@@ -11991,6 +11997,7 @@ const getBackupStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.backupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteBackupOperationSpec: coreHttp.OperationSpec = {
@@ -12012,6 +12019,7 @@ const deleteBackupOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.backupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
@@ -12035,7 +12043,7 @@ const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.backupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12061,7 +12069,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.backupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12084,6 +12092,7 @@ const listConfigurationsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12106,7 +12115,7 @@ const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12129,6 +12138,7 @@ const listApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12151,7 +12161,7 @@ const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12174,6 +12184,7 @@ const getAuthSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
@@ -12196,7 +12207,7 @@ const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12219,6 +12230,7 @@ const listAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12241,7 +12253,7 @@ const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12262,6 +12274,7 @@ const deleteBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12283,6 +12296,7 @@ const getBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAppSettingsKeyVaultReferencesOperationSpec: coreHttp.OperationSpec = {
@@ -12304,6 +12318,7 @@ const getAppSettingsKeyVaultReferencesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAppSettingKeyVaultReferenceOperationSpec: coreHttp.OperationSpec = {
@@ -12326,6 +12341,7 @@ const getAppSettingKeyVaultReferenceOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.appSettingKey
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
@@ -12348,7 +12364,7 @@ const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12371,6 +12387,7 @@ const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDiagnosticLogsConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12392,6 +12409,7 @@ const getDiagnosticLogsConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
@@ -12414,7 +12432,7 @@ const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12438,7 +12456,7 @@ const updateMetadataOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12461,6 +12479,7 @@ const listMetadataOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublishingCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -12491,6 +12510,7 @@ const listPublishingCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12513,7 +12533,7 @@ const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12536,6 +12556,7 @@ const listSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
@@ -12557,6 +12578,7 @@ const listSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
@@ -12579,7 +12601,7 @@ const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12602,6 +12624,7 @@ const getConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12624,7 +12647,7 @@ const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12648,7 +12671,7 @@ const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12671,6 +12694,7 @@ const listConfigurationSnapshotInfoOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
@@ -12693,6 +12717,7 @@ const getConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.snapshotId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const recoverSiteConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
@@ -12713,6 +12738,7 @@ const recoverSiteConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.snapshotId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
@@ -12733,6 +12759,7 @@ const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept2],
   serializer
 };
 const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
@@ -12753,6 +12780,7 @@ const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept3],
   serializer
 };
 const listContinuousWebJobsOperationSpec: coreHttp.OperationSpec = {
@@ -12774,6 +12802,7 @@ const listContinuousWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -12797,6 +12826,7 @@ const getContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -12818,6 +12848,7 @@ const deleteContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -12839,6 +12870,7 @@ const startContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -12860,6 +12892,7 @@ const stopContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentsOperationSpec: coreHttp.OperationSpec = {
@@ -12881,6 +12914,7 @@ const listDeploymentsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDeploymentOperationSpec: coreHttp.OperationSpec = {
@@ -12903,6 +12937,7 @@ const getDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createDeploymentOperationSpec: coreHttp.OperationSpec = {
@@ -12926,7 +12961,7 @@ const createDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.id
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -12949,6 +12984,7 @@ const deleteDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentLogOperationSpec: coreHttp.OperationSpec = {
@@ -12971,6 +13007,7 @@ const listDeploymentLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const discoverBackupOperationSpec: coreHttp.OperationSpec = {
@@ -12993,7 +13030,7 @@ const discoverBackupOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13016,6 +13053,7 @@ const listDomainOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -13038,6 +13076,7 @@ const getDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -13061,7 +13100,7 @@ const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSp
     Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13084,6 +13123,7 @@ const deleteDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -13107,7 +13147,7 @@ const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13130,6 +13170,7 @@ const getMSDeployStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
@@ -13161,7 +13202,7 @@ const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13185,6 +13226,7 @@ const getMSDeployLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionsOperationSpec: coreHttp.OperationSpec = {
@@ -13207,6 +13249,7 @@ const listFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getFunctionsAdminTokenOperationSpec: coreHttp.OperationSpec = {
@@ -13228,6 +13271,7 @@ const getFunctionsAdminTokenOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -13251,6 +13295,7 @@ const getFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -13283,7 +13328,7 @@ const createFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.functionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13306,6 +13351,7 @@ const deleteFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
@@ -13333,7 +13379,7 @@ const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.functionName,
     Parameters.keyName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13357,6 +13403,7 @@ const deleteFunctionSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.functionName,
     Parameters.keyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionKeysOperationSpec: coreHttp.OperationSpec = {
@@ -13379,6 +13426,7 @@ const listFunctionKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionSecretsOperationSpec: coreHttp.OperationSpec = {
@@ -13401,6 +13449,7 @@ const listFunctionSecretsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostKeysOperationSpec: coreHttp.OperationSpec = {
@@ -13422,6 +13471,7 @@ const listHostKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSyncStatusOperationSpec: coreHttp.OperationSpec = {
@@ -13441,6 +13491,7 @@ const listSyncStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncFunctionsOperationSpec: coreHttp.OperationSpec = {
@@ -13460,6 +13511,7 @@ const syncFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
@@ -13487,7 +13539,7 @@ const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.keyType
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13511,6 +13563,7 @@ const deleteHostSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.keyType
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostNameBindingsOperationSpec: coreHttp.OperationSpec = {
@@ -13532,6 +13585,7 @@ const listHostNameBindingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHostNameBindingOperationSpec: coreHttp.OperationSpec = {
@@ -13554,6 +13608,7 @@ const getHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.hostName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
@@ -13577,7 +13632,7 @@ const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.hostName1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13600,6 +13655,7 @@ const deleteHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.hostName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13623,6 +13679,7 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13647,7 +13704,7 @@ const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13671,6 +13728,7 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13695,7 +13753,7 @@ const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13718,6 +13776,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRelayServiceConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -13739,6 +13798,7 @@ const listRelayServiceConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13761,6 +13821,7 @@ const getRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.entityName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13784,7 +13845,7 @@ const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec 
     Parameters.name,
     Parameters.entityName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13807,6 +13868,7 @@ const deleteRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.entityName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13830,7 +13892,7 @@ const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.entityName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13853,6 +13915,7 @@ const listInstanceIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceInfoOperationSpec: coreHttp.OperationSpec = {
@@ -13875,6 +13938,7 @@ const getInstanceInfoOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceMsDeployStatusOperationSpec: coreHttp.OperationSpec = {
@@ -13897,6 +13961,7 @@ const getInstanceMsDeployStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
@@ -13929,7 +13994,7 @@ const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.instanceId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -13954,6 +14019,7 @@ const getInstanceMSDeployLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessesOperationSpec: coreHttp.OperationSpec = {
@@ -13977,6 +14043,7 @@ const listInstanceProcessesOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessOperationSpec: coreHttp.OperationSpec = {
@@ -14001,6 +14068,7 @@ const getInstanceProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteInstanceProcessOperationSpec: coreHttp.OperationSpec = {
@@ -14023,6 +14091,7 @@ const deleteInstanceProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
@@ -14047,6 +14116,7 @@ const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessModulesOperationSpec: coreHttp.OperationSpec = {
@@ -14071,6 +14141,7 @@ const listInstanceProcessModulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessModuleOperationSpec: coreHttp.OperationSpec = {
@@ -14096,6 +14167,7 @@ const getInstanceProcessModuleOperationSpec: coreHttp.OperationSpec = {
     Parameters.processId,
     Parameters.baseAddress
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessThreadsOperationSpec: coreHttp.OperationSpec = {
@@ -14120,6 +14192,7 @@ const listInstanceProcessThreadsOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const isCloneableOperationSpec: coreHttp.OperationSpec = {
@@ -14141,6 +14214,7 @@ const isCloneableOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteBackupsOperationSpec: coreHttp.OperationSpec = {
@@ -14162,6 +14236,7 @@ const listSiteBackupsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSyncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
@@ -14183,6 +14258,7 @@ const listSyncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const migrateStorageOperationSpec: coreHttp.OperationSpec = {
@@ -14214,7 +14290,7 @@ const migrateStorageOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14247,7 +14323,7 @@ const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14270,6 +14346,7 @@ const getMigrateMySqlStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -14291,6 +14368,7 @@ const getSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -14313,7 +14391,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.Operati
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14335,6 +14413,7 @@ const deleteSwiftVirtualNetworkOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -14357,7 +14436,7 @@ const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec =
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14382,6 +14461,7 @@ const listNetworkFeaturesOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.view
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
@@ -14417,6 +14497,7 @@ const getNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
@@ -14443,6 +14524,7 @@ const startWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
@@ -14498,6 +14580,7 @@ const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
@@ -14518,6 +14601,7 @@ const stopWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTracesOperationSpec: coreHttp.OperationSpec = {
@@ -14545,6 +14629,7 @@ const getNetworkTracesOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTraceOperationV2OperationSpec: coreHttp.OperationSpec = {
@@ -14580,6 +14665,7 @@ const getNetworkTraceOperationV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTracesV2OperationSpec: coreHttp.OperationSpec = {
@@ -14607,6 +14693,7 @@ const getNetworkTracesV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const generateNewSitePublishingPasswordOperationSpec: coreHttp.OperationSpec = {
@@ -14627,6 +14714,7 @@ const generateNewSitePublishingPasswordOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPerfMonCountersOperationSpec: coreHttp.OperationSpec = {
@@ -14648,6 +14736,7 @@ const listPerfMonCountersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSitePhpErrorLogFlagOperationSpec: coreHttp.OperationSpec = {
@@ -14669,6 +14758,7 @@ const getSitePhpErrorLogFlagOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPremierAddOnsOperationSpec: coreHttp.OperationSpec = {
@@ -14690,6 +14780,7 @@ const listPremierAddOnsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPremierAddOnOperationSpec: coreHttp.OperationSpec = {
@@ -14712,6 +14803,7 @@ const getPremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.premierAddOnName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
@@ -14735,7 +14827,7 @@ const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.premierAddOnName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14757,6 +14849,7 @@ const deletePremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.premierAddOnName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
@@ -14780,7 +14873,7 @@ const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.premierAddOnName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14803,6 +14896,7 @@ const getPrivateAccessOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
@@ -14825,7 +14919,7 @@ const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -14849,6 +14943,7 @@ const listProcessesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessOperationSpec: coreHttp.OperationSpec = {
@@ -14872,6 +14967,7 @@ const getProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteProcessOperationSpec: coreHttp.OperationSpec = {
@@ -14893,6 +14989,7 @@ const deleteProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
@@ -14916,6 +15013,7 @@ const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessModulesOperationSpec: coreHttp.OperationSpec = {
@@ -14939,6 +15037,7 @@ const listProcessModulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessModuleOperationSpec: coreHttp.OperationSpec = {
@@ -14963,6 +15062,7 @@ const getProcessModuleOperationSpec: coreHttp.OperationSpec = {
     Parameters.processId,
     Parameters.baseAddress
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessThreadsOperationSpec: coreHttp.OperationSpec = {
@@ -14986,6 +15086,7 @@ const listProcessThreadsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublicCertificatesOperationSpec: coreHttp.OperationSpec = {
@@ -15007,6 +15108,7 @@ const listPublicCertificatesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPublicCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -15029,6 +15131,7 @@ const getPublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.publicCertificateName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -15052,7 +15155,7 @@ const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.publicCertificateName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15075,6 +15178,7 @@ const deletePublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.publicCertificateName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec = {
@@ -15097,7 +15201,7 @@ const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec =
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept4],
   mediaType: "json",
   serializer
 };
@@ -15118,6 +15222,7 @@ const resetProductionSlotConfigOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restartOperationSpec: coreHttp.OperationSpec = {
@@ -15141,6 +15246,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
@@ -15164,7 +15270,7 @@ const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15189,7 +15295,7 @@ const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15214,7 +15320,7 @@ const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15238,6 +15344,7 @@ const listSiteExtensionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteExtensionOperationSpec: coreHttp.OperationSpec = {
@@ -15261,6 +15368,7 @@ const getSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
@@ -15292,6 +15400,7 @@ const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteSiteExtensionOperationSpec: coreHttp.OperationSpec = {
@@ -15313,6 +15422,7 @@ const deleteSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15336,7 +15446,7 @@ const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15359,6 +15469,7 @@ const listSlotsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15382,6 +15493,7 @@ const getSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15414,7 +15526,7 @@ const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15442,6 +15554,7 @@ const deleteSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15468,7 +15581,7 @@ const updateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15492,6 +15605,7 @@ const analyzeCustomHostnameSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15513,7 +15627,7 @@ const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15538,7 +15652,7 @@ const backupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15562,6 +15676,7 @@ const listBackupsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBackupStatusSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15585,6 +15700,7 @@ const getBackupStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.backupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteBackupSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15607,6 +15723,7 @@ const deleteBackupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.backupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15631,7 +15748,7 @@ const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.backupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15658,7 +15775,7 @@ const restoreSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.backupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15682,6 +15799,7 @@ const listConfigurationsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15705,7 +15823,7 @@ const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15729,6 +15847,7 @@ const listApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15752,7 +15871,7 @@ const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15776,6 +15895,7 @@ const getAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15799,7 +15919,7 @@ const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15823,6 +15943,7 @@ const listAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15846,7 +15967,7 @@ const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15868,6 +15989,7 @@ const deleteBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15890,6 +16012,7 @@ const getBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15913,7 +16036,7 @@ const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -15937,6 +16060,7 @@ const listConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDiagnosticLogsConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15959,6 +16083,7 @@ const getDiagnosticLogsConfigurationSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15982,7 +16107,7 @@ const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16007,7 +16132,7 @@ const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16031,6 +16156,7 @@ const listMetadataSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublishingCredentialsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16062,6 +16188,7 @@ const listPublishingCredentialsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16085,7 +16212,7 @@ const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16109,6 +16236,7 @@ const listSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16131,6 +16259,7 @@ const getConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16154,7 +16283,7 @@ const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16179,7 +16308,7 @@ const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16203,6 +16332,7 @@ const listConfigurationSnapshotInfoSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16226,6 +16356,7 @@ const getConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.snapshotId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const recoverSiteConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16247,6 +16378,7 @@ const recoverSiteConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec 
     Parameters.slot,
     Parameters.snapshotId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16268,6 +16400,7 @@ const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept2],
   serializer
 };
 const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16289,6 +16422,7 @@ const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept3],
   serializer
 };
 const listContinuousWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16311,6 +16445,7 @@ const listContinuousWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16335,6 +16470,7 @@ const getContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16357,6 +16493,7 @@ const deleteContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16379,6 +16516,7 @@ const startContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16401,6 +16539,7 @@ const stopContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16423,6 +16562,7 @@ const listDeploymentsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16446,6 +16586,7 @@ const getDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16470,7 +16611,7 @@ const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.id
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16494,6 +16635,7 @@ const deleteDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentLogSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16517,6 +16659,7 @@ const listDeploymentLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16540,7 +16683,7 @@ const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16564,6 +16707,7 @@ const listDomainOwnershipIdentifiersSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16587,6 +16731,7 @@ const getDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.domainOwnershipIdentifierName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16611,7 +16756,7 @@ const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.Operati
     Parameters.slot,
     Parameters.domainOwnershipIdentifierName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16635,6 +16780,7 @@ const deleteDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot,
     Parameters.domainOwnershipIdentifierName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16659,7 +16805,7 @@ const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot,
     Parameters.domainOwnershipIdentifierName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16683,6 +16829,7 @@ const getMSDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16715,7 +16862,7 @@ const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16740,6 +16887,7 @@ const getMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16763,6 +16911,7 @@ const listInstanceFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getFunctionsAdminTokenSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16785,6 +16934,7 @@ const getFunctionsAdminTokenSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16809,6 +16959,7 @@ const getInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16842,7 +16993,7 @@ const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.functionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16866,6 +17017,7 @@ const deleteInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16894,7 +17046,7 @@ const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.functionName,
     Parameters.keyName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -16919,6 +17071,7 @@ const deleteFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.functionName,
     Parameters.keyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionKeysSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16942,6 +17095,7 @@ const listFunctionKeysSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionSecretsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16965,6 +17119,7 @@ const listFunctionSecretsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.functionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostKeysSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16987,6 +17142,7 @@ const listHostKeysSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSyncStatusSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17007,6 +17163,7 @@ const listSyncStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17027,6 +17184,7 @@ const syncFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17055,7 +17213,7 @@ const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.keyType
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17080,6 +17238,7 @@ const deleteHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.keyType
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostNameBindingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17102,6 +17261,7 @@ const listHostNameBindingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17125,6 +17285,7 @@ const getHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.hostName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17149,7 +17310,7 @@ const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.hostName1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17173,6 +17334,7 @@ const deleteHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.hostName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17197,6 +17359,7 @@ const getHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17222,7 +17385,7 @@ const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.namespaceName,
     Parameters.relayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17247,6 +17410,7 @@ const deleteHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17272,7 +17436,7 @@ const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17296,6 +17460,7 @@ const listHybridConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRelayServiceConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17318,6 +17483,7 @@ const listRelayServiceConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17341,6 +17507,7 @@ const getRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.entityName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17365,7 +17532,7 @@ const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationS
     Parameters.slot,
     Parameters.entityName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17389,6 +17556,7 @@ const deleteRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.entityName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17413,7 +17581,7 @@ const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.entityName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17437,6 +17605,7 @@ const listInstanceIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceInfoSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17460,6 +17629,7 @@ const getInstanceInfoSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceMsDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17483,6 +17653,7 @@ const getInstanceMsDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17516,7 +17687,7 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot,
     Parameters.instanceId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17542,6 +17713,7 @@ const getInstanceMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17566,6 +17738,7 @@ const listInstanceProcessesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17591,6 +17764,7 @@ const getInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17614,6 +17788,7 @@ const deleteInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17639,6 +17814,7 @@ const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17664,6 +17840,7 @@ const listInstanceProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInstanceProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17690,6 +17867,7 @@ const getInstanceProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.processId,
     Parameters.baseAddress
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17715,6 +17893,7 @@ const listInstanceProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const isCloneableSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17737,6 +17916,7 @@ const isCloneableSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteBackupsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17759,6 +17939,7 @@ const listSiteBackupsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSyncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17781,6 +17962,7 @@ const listSyncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMigrateMySqlStatusSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17803,6 +17985,7 @@ const getMigrateMySqlStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17825,6 +18008,7 @@ const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec 
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17848,7 +18032,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.Ope
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17871,6 +18055,7 @@ const deleteSwiftVirtualNetworkSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17894,7 +18079,7 @@ const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSp
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -17920,6 +18105,7 @@ const listNetworkFeaturesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.view
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17956,6 +18142,7 @@ const getNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17983,6 +18170,7 @@ const startWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18039,6 +18227,7 @@ const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18060,6 +18249,7 @@ const stopWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTracesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18088,6 +18278,7 @@ const getNetworkTracesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTraceOperationSlotV2OperationSpec: coreHttp.OperationSpec = {
@@ -18124,6 +18315,7 @@ const getNetworkTraceOperationSlotV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNetworkTracesSlotV2OperationSpec: coreHttp.OperationSpec = {
@@ -18152,6 +18344,7 @@ const getNetworkTracesSlotV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const generateNewSitePublishingPasswordSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18173,6 +18366,7 @@ const generateNewSitePublishingPasswordSlotOperationSpec: coreHttp.OperationSpec
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPerfMonCountersSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18195,6 +18389,7 @@ const listPerfMonCountersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSitePhpErrorLogFlagSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18217,6 +18412,7 @@ const getSitePhpErrorLogFlagSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPremierAddOnsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18239,6 +18435,7 @@ const listPremierAddOnsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18262,6 +18459,7 @@ const getPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.premierAddOnName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18286,7 +18484,7 @@ const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.premierAddOnName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18309,6 +18507,7 @@ const deletePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.premierAddOnName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18333,7 +18532,7 @@ const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.premierAddOnName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18357,6 +18556,7 @@ const getPrivateAccessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18380,7 +18580,7 @@ const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18404,6 +18604,7 @@ const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -18436,7 +18637,7 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationS
     Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18469,6 +18670,7 @@ const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPrivateLinkResourcesOperationSpec: coreHttp.OperationSpec = {
@@ -18490,6 +18692,7 @@ const getPrivateLinkResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18513,6 +18716,7 @@ const listProcessesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18537,6 +18741,7 @@ const getProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteProcessSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18559,6 +18764,7 @@ const deleteProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18583,6 +18789,7 @@ const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18607,6 +18814,7 @@ const listProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18632,6 +18840,7 @@ const getProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.processId,
     Parameters.baseAddress
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18656,6 +18865,7 @@ const listProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublicCertificatesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18678,6 +18888,7 @@ const listPublicCertificatesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18701,6 +18912,7 @@ const getPublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.publicCertificateName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18725,7 +18937,7 @@ const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot,
     Parameters.publicCertificateName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18749,6 +18961,7 @@ const deletePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.publicCertificateName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18772,7 +18985,7 @@ const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSp
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept4],
   mediaType: "json",
   serializer
 };
@@ -18794,6 +19007,7 @@ const resetSlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restartSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18818,6 +19032,7 @@ const restartSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18842,7 +19057,7 @@ const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18868,7 +19083,7 @@ const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18894,7 +19109,7 @@ const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -18919,6 +19134,7 @@ const listSiteExtensionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18943,6 +19159,7 @@ const getSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18975,6 +19192,7 @@ const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18997,6 +19215,7 @@ const deleteSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.siteExtensionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const copySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19021,7 +19240,7 @@ const copySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19046,7 +19265,7 @@ const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19072,7 +19291,7 @@ const swapSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19096,6 +19315,7 @@ const listSnapshotsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSnapshotsFromDRSecondarySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19118,6 +19338,7 @@ const listSnapshotsFromDRSecondarySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19146,6 +19367,7 @@ const getSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19178,7 +19400,7 @@ const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19202,6 +19424,7 @@ const deleteSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19231,7 +19454,7 @@ const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19253,6 +19476,7 @@ const startSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19309,6 +19533,7 @@ const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19329,6 +19554,7 @@ const stopSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19350,6 +19576,7 @@ const stopNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncRepositorySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19370,6 +19597,7 @@ const syncRepositorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19390,6 +19618,7 @@ const syncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19412,6 +19641,7 @@ const listTriggeredWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19436,6 +19666,7 @@ const getTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19458,6 +19689,7 @@ const deleteTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19482,6 +19714,7 @@ const listTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19507,6 +19740,7 @@ const getTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.webJobName,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const runTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19529,6 +19763,7 @@ const runTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19551,6 +19786,7 @@ const listUsagesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVnetConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19578,6 +19814,7 @@ const listVnetConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19601,6 +19838,7 @@ const getVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19625,7 +19863,7 @@ const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.vnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19649,6 +19887,7 @@ const deleteVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19673,7 +19912,7 @@ const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.vnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19700,6 +19939,7 @@ const getVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19725,7 +19965,7 @@ const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSp
     Parameters.vnetName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19752,7 +19992,7 @@ const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19776,6 +20016,7 @@ const listWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getWebJobSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19799,6 +20040,7 @@ const getWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
@@ -19821,7 +20063,7 @@ const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19846,7 +20088,7 @@ const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19869,6 +20111,7 @@ const listSnapshotsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSnapshotsFromDRSecondaryOperationSpec: coreHttp.OperationSpec = {
@@ -19890,6 +20133,7 @@ const listSnapshotsFromDRSecondaryOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSourceControlOperationSpec: coreHttp.OperationSpec = {
@@ -19917,6 +20161,7 @@ const getSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
@@ -19948,7 +20193,7 @@ const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -19971,6 +20216,7 @@ const deleteSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
@@ -19999,7 +20245,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -20020,6 +20266,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
@@ -20075,6 +20322,7 @@ const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopOperationSpec: coreHttp.OperationSpec = {
@@ -20094,6 +20342,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopNetworkTraceOperationSpec: coreHttp.OperationSpec = {
@@ -20114,6 +20363,7 @@ const stopNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncRepositoryOperationSpec: coreHttp.OperationSpec = {
@@ -20133,6 +20383,7 @@ const syncRepositoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const syncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
@@ -20152,6 +20403,7 @@ const syncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobsOperationSpec: coreHttp.OperationSpec = {
@@ -20173,6 +20425,7 @@ const listTriggeredWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -20196,6 +20449,7 @@ const getTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -20217,6 +20471,7 @@ const deleteTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
@@ -20240,6 +20495,7 @@ const listTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
@@ -20264,6 +20520,7 @@ const getTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.webJobName,
     Parameters.id
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const runTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -20285,6 +20542,7 @@ const runTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesOperationSpec: coreHttp.OperationSpec = {
@@ -20306,6 +20564,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVnetConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -20332,6 +20591,7 @@ const listVnetConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getVnetConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -20354,6 +20614,7 @@ const getVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -20377,7 +20638,7 @@ const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -20400,6 +20661,7 @@ const deleteVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -20423,7 +20685,7 @@ const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -20449,6 +20711,7 @@ const getVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -20473,7 +20736,7 @@ const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec =
     Parameters.vnetName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -20499,7 +20762,7 @@ const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -20522,6 +20785,7 @@ const listWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getWebJobOperationSpec: coreHttp.OperationSpec = {
@@ -20544,6 +20808,7 @@ const getWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -20563,6 +20828,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -20583,6 +20849,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBackupsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20604,6 +20871,7 @@ const listBackupsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20625,6 +20893,7 @@ const listConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConfigurationSnapshotInfoNextOperationSpec: coreHttp.OperationSpec = {
@@ -20646,6 +20915,7 @@ const listConfigurationSnapshotInfoNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listContinuousWebJobsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20667,6 +20937,7 @@ const listContinuousWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20688,6 +20959,7 @@ const listDeploymentsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDomainOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
@@ -20709,6 +20981,7 @@ const listDomainOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listFunctionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20731,6 +21004,7 @@ const listFunctionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostNameBindingsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20752,6 +21026,7 @@ const listHostNameBindingsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
@@ -20773,6 +21048,7 @@ const listInstanceIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessesNextOperationSpec: coreHttp.OperationSpec = {
@@ -20796,6 +21072,7 @@ const listInstanceProcessesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
@@ -20820,6 +21097,7 @@ const listInstanceProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20844,6 +21122,7 @@ const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20865,6 +21144,7 @@ const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPerfMonCountersNextOperationSpec: coreHttp.OperationSpec = {
@@ -20886,6 +21166,7 @@ const listPerfMonCountersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessesNextOperationSpec: coreHttp.OperationSpec = {
@@ -20908,6 +21189,7 @@ const listProcessesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
@@ -20931,6 +21213,7 @@ const listProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20954,6 +21237,7 @@ const listProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublicCertificatesNextOperationSpec: coreHttp.OperationSpec = {
@@ -20975,6 +21259,7 @@ const listPublicCertificatesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteExtensionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -20997,6 +21282,7 @@ const listSiteExtensionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSlotsNextOperationSpec: coreHttp.OperationSpec = {
@@ -21018,6 +21304,7 @@ const listSlotsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21040,6 +21327,7 @@ const listBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConfigurationsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21062,6 +21350,7 @@ const listConfigurationsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConfigurationSnapshotInfoSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21084,6 +21373,7 @@ const listConfigurationSnapshotInfoSlotNextOperationSpec: coreHttp.OperationSpec
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listContinuousWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21106,6 +21396,7 @@ const listContinuousWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeploymentsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21128,6 +21419,7 @@ const listDeploymentsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21150,6 +21442,7 @@ const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreHttp.OperationSpe
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceFunctionsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21173,6 +21466,7 @@ const listInstanceFunctionsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostNameBindingsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21195,6 +21489,7 @@ const listHostNameBindingsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21217,6 +21512,7 @@ const listInstanceIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21241,6 +21537,7 @@ const listInstanceProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.instanceId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21266,6 +21563,7 @@ const listInstanceProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21291,6 +21589,7 @@ const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.instanceId,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21313,6 +21612,7 @@ const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPerfMonCountersSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21335,6 +21635,7 @@ const listPerfMonCountersSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21358,6 +21659,7 @@ const listProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21382,6 +21684,7 @@ const listProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21406,6 +21709,7 @@ const listProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot,
     Parameters.processId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublicCertificatesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21428,6 +21732,7 @@ const listPublicCertificatesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21451,6 +21756,7 @@ const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21473,7 +21779,7 @@ const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink1,
     Parameters.slot
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -21497,6 +21803,7 @@ const listSnapshotsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21519,6 +21826,7 @@ const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreHttp.OperationSpec 
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21541,6 +21849,7 @@ const listTriggeredWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobHistorySlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21565,6 +21874,7 @@ const listTriggeredWebJobHistorySlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.slot,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21587,6 +21897,7 @@ const listUsagesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21609,6 +21920,7 @@ const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec = {
@@ -21630,7 +21942,7 @@ const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec
     Parameters.name,
     Parameters.nextLink1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -21653,6 +21965,7 @@ const listSnapshotsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSnapshotsFromDRSecondaryNextOperationSpec: coreHttp.OperationSpec = {
@@ -21674,6 +21987,7 @@ const listSnapshotsFromDRSecondaryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobsNextOperationSpec: coreHttp.OperationSpec = {
@@ -21695,6 +22009,7 @@ const listTriggeredWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTriggeredWebJobHistoryNextOperationSpec: coreHttp.OperationSpec = {
@@ -21718,6 +22033,7 @@ const listTriggeredWebJobHistoryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.webJobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -21739,6 +22055,7 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebJobsNextOperationSpec: coreHttp.OperationSpec = {
@@ -21760,5 +22077,6 @@ const listWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

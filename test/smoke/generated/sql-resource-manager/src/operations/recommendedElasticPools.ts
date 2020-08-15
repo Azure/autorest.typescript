@@ -128,6 +128,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.recommendedElasticPoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {
@@ -146,6 +147,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMetricsOperationSpec: coreHttp.OperationSpec = {
@@ -165,5 +167,6 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.recommendedElasticPoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

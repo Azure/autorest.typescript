@@ -948,6 +948,7 @@ const listHostingEnvironmentDetectorResponsesOperationSpec: coreHttp.OperationSp
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHostingEnvironmentDetectorResponseOperationSpec: coreHttp.OperationSpec = {
@@ -975,6 +976,7 @@ const getHostingEnvironmentDetectorResponseOperationSpec: coreHttp.OperationSpec
     Parameters.name,
     Parameters.detectorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorResponsesOperationSpec: coreHttp.OperationSpec = {
@@ -996,6 +998,7 @@ const listSiteDetectorResponsesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDetectorResponseOperationSpec: coreHttp.OperationSpec = {
@@ -1023,6 +1026,7 @@ const getSiteDetectorResponseOperationSpec: coreHttp.OperationSpec = {
     Parameters.detectorName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDiagnosticCategoriesOperationSpec: coreHttp.OperationSpec = {
@@ -1044,6 +1048,7 @@ const listSiteDiagnosticCategoriesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDiagnosticCategoryOperationSpec: coreHttp.OperationSpec = {
@@ -1066,6 +1071,7 @@ const getSiteDiagnosticCategoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteAnalysesOperationSpec: coreHttp.OperationSpec = {
@@ -1088,6 +1094,7 @@ const listSiteAnalysesOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
@@ -1111,6 +1118,7 @@ const getSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.analysisName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const executeSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
@@ -1139,6 +1147,7 @@ const executeSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.analysisName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorsOperationSpec: coreHttp.OperationSpec = {
@@ -1161,6 +1170,7 @@ const listSiteDetectorsOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDetectorOperationSpec: coreHttp.OperationSpec = {
@@ -1184,6 +1194,7 @@ const getSiteDetectorOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const executeSiteDetectorOperationSpec: coreHttp.OperationSpec = {
@@ -1212,6 +1223,7 @@ const executeSiteDetectorOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorResponsesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1234,6 +1246,7 @@ const listSiteDetectorResponsesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDetectorResponseSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1262,6 +1275,7 @@ const getSiteDetectorResponseSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDiagnosticCategoriesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1284,6 +1298,7 @@ const listSiteDiagnosticCategoriesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDiagnosticCategorySlotOperationSpec: coreHttp.OperationSpec = {
@@ -1307,6 +1322,7 @@ const getSiteDiagnosticCategorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteAnalysesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1330,6 +1346,7 @@ const listSiteAnalysesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1354,6 +1371,7 @@ const getSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.analysisName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const executeSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1383,6 +1401,7 @@ const executeSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.analysisName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1406,6 +1425,7 @@ const listSiteDetectorsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1430,6 +1450,7 @@ const getSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const executeSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
@@ -1459,6 +1480,7 @@ const executeSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1480,6 +1502,7 @@ const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreHttp.Operati
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1501,6 +1524,7 @@ const listSiteDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDiagnosticCategoriesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1522,6 +1546,7 @@ const listSiteDiagnosticCategoriesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteAnalysesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1544,6 +1569,7 @@ const listSiteAnalysesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1566,6 +1592,7 @@ const listSiteDetectorsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorResponsesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -1588,6 +1615,7 @@ const listSiteDetectorResponsesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -1610,6 +1638,7 @@ const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreHttp.OperationSpec 
     Parameters.siteName,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteAnalysesSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -1633,6 +1662,7 @@ const listSiteAnalysesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSiteDetectorsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -1656,5 +1686,6 @@ const listSiteDetectorsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.diagnosticCategory,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -111,6 +111,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -132,7 +133,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

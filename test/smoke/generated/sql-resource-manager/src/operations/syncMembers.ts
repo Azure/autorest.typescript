@@ -448,6 +448,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -480,7 +481,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -531,7 +532,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -554,6 +555,7 @@ const listBySyncGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMemberSchemasOperationSpec: coreHttp.OperationSpec = {
@@ -576,6 +578,7 @@ const listMemberSchemasOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const refreshMemberSchemaOperationSpec: coreHttp.OperationSpec = {
@@ -614,6 +617,7 @@ const listBySyncGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMemberSchemasNextOperationSpec: coreHttp.OperationSpec = {
@@ -636,5 +640,6 @@ const listMemberSchemasNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -908,6 +908,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.detailed],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -928,6 +929,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -950,6 +952,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -981,7 +984,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1003,6 +1006,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -1028,7 +1032,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1056,6 +1060,7 @@ const listCapabilitiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -1079,6 +1084,7 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -1101,6 +1107,7 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHybridConnectionKeysOperationSpec: coreHttp.OperationSpec = {
@@ -1124,6 +1131,7 @@ const listHybridConnectionKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebAppsByHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -1147,6 +1155,7 @@ const listWebAppsByHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getHybridConnectionPlanLimitOperationSpec: coreHttp.OperationSpec = {
@@ -1168,6 +1177,7 @@ const getHybridConnectionPlanLimitOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -1189,6 +1199,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restartWebAppsOperationSpec: coreHttp.OperationSpec = {
@@ -1208,6 +1219,7 @@ const restartWebAppsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebAppsOperationSpec: coreHttp.OperationSpec = {
@@ -1234,6 +1246,7 @@ const listWebAppsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getServerFarmSkusOperationSpec: coreHttp.OperationSpec = {
@@ -1255,6 +1268,7 @@ const getServerFarmSkusOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesOperationSpec: coreHttp.OperationSpec = {
@@ -1276,6 +1290,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVnetsOperationSpec: coreHttp.OperationSpec = {
@@ -1302,6 +1317,7 @@ const listVnetsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getVnetFromServerFarmOperationSpec: coreHttp.OperationSpec = {
@@ -1325,6 +1341,7 @@ const getVnetFromServerFarmOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getVnetGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -1348,6 +1365,7 @@ const getVnetGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -1372,7 +1390,7 @@ const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1401,6 +1419,7 @@ const listRoutesForVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.vnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getRouteForVnetOperationSpec: coreHttp.OperationSpec = {
@@ -1430,6 +1449,7 @@ const getRouteForVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.routeName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
@@ -1456,7 +1476,7 @@ const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.routeName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1480,6 +1500,7 @@ const deleteVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.routeName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
@@ -1506,7 +1527,7 @@ const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName,
     Parameters.routeName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1528,6 +1549,7 @@ const rebootWorkerOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.workerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -1547,6 +1569,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -1567,6 +1590,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebAppsByHybridConnectionNextOperationSpec: coreHttp.OperationSpec = {
@@ -1590,6 +1614,7 @@ const listWebAppsByHybridConnectionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.namespaceName,
     Parameters.relayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHybridConnectionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1611,6 +1636,7 @@ const listHybridConnectionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1637,6 +1663,7 @@ const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1658,5 +1685,6 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

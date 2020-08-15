@@ -75,5 +75,6 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

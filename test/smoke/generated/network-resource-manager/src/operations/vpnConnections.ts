@@ -232,6 +232,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -264,7 +265,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.gatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -289,6 +290,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByVpnGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -310,6 +312,7 @@ const listByVpnGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByVpnGatewayNextOperationSpec: coreHttp.OperationSpec = {
@@ -331,5 +334,6 @@ const listByVpnGatewayNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

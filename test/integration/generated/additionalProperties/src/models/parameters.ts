@@ -33,6 +33,18 @@ export const createParameters: OperationParameter = {
   mapper: PetAPTrueMapper
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {

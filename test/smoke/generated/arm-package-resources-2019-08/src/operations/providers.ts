@@ -201,6 +201,7 @@ const unregisterOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceProviderNamespace
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const registerOperationSpec: coreHttp.OperationSpec = {
@@ -221,6 +222,7 @@ const registerOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceProviderNamespace
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -236,6 +238,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -251,6 +254,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -270,6 +274,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceProviderNamespace
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -285,6 +290,7 @@ const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [Parameters.$host, Parameters.resourceProviderNamespace],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -304,6 +310,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -319,5 +326,6 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -271,6 +271,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.workloadGroupName,
     Parameters.workloadClassifierName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -303,7 +304,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.workloadGroupName,
     Parameters.workloadClassifierName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -343,6 +344,7 @@ const listByWorkloadGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.workloadGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByWorkloadGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -364,5 +366,6 @@ const listByWorkloadGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.workloadGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

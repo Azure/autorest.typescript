@@ -144,6 +144,7 @@ const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {
     Parameters.globalStringPath,
     Parameters.localStringPath
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -167,6 +168,7 @@ const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
     Parameters.globalStringPath,
     Parameters.localStringPath
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -190,6 +192,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
     Parameters.globalStringPath,
     Parameters.localStringPath
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -213,5 +216,6 @@ const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
     Parameters.globalStringPath,
     Parameters.localStringPath
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

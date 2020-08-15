@@ -242,6 +242,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkSecurityGroupName,
     Parameters.securityRuleName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -264,6 +265,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkSecurityGroupName,
     Parameters.securityRuleName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -296,7 +298,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkSecurityGroupName,
     Parameters.securityRuleName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -319,6 +321,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkSecurityGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -340,5 +343,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.networkSecurityGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

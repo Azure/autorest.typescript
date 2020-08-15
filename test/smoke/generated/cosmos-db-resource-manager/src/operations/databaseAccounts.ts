@@ -598,6 +598,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -626,7 +627,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -656,7 +657,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -702,6 +703,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -719,6 +721,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listKeysOperationSpec: coreHttp.OperationSpec = {
@@ -737,6 +740,7 @@ const listKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
@@ -755,6 +759,7 @@ const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const offlineRegionOperationSpec: coreHttp.OperationSpec = {
@@ -778,7 +783,7 @@ const offlineRegionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -803,7 +808,7 @@ const onlineRegionOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -823,6 +828,7 @@ const getReadOnlyKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listReadOnlyKeysOperationSpec: coreHttp.OperationSpec = {
@@ -841,6 +847,7 @@ const listReadOnlyKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
@@ -884,6 +891,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesOperationSpec: coreHttp.OperationSpec = {
@@ -902,6 +910,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -920,5 +929,6 @@ const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -7,8 +7,8 @@
  */
 
 import {
-  OperationURLParameter,
   OperationParameter,
+  OperationURLParameter,
   OperationQueryParameter
 } from "@azure/core-http";
 import {
@@ -20,6 +20,18 @@ import {
   StorageServiceProperties as StorageServicePropertiesMapper,
   JsonInput as JsonInputMapper
 } from "../models/mappers";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/xml",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
@@ -59,6 +71,18 @@ export const model1: OperationParameter = {
 export const slideshow: OperationParameter = {
   parameterPath: "slideshow",
   mapper: SlideshowMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/xml",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const wrappedLists: OperationParameter = {
@@ -186,4 +210,16 @@ export const contentType1: OperationParameter = {
 export const properties2: OperationParameter = {
   parameterPath: "properties",
   mapper: JsonInputMapper
+};
+
+export const accept2: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };

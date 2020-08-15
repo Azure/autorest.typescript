@@ -6,7 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationURLParameter, OperationParameter } from "@azure/core-http";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
@@ -39,6 +51,18 @@ export const dateBody: OperationParameter = {
     required: true,
     type: {
       name: "Date"
+    }
+  }
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
     }
   }
 };

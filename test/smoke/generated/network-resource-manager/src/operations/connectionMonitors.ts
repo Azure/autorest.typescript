@@ -383,7 +383,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -407,6 +407,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -430,6 +431,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -453,7 +455,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -478,6 +480,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startOperationSpec: coreHttp.OperationSpec = {
@@ -501,6 +504,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const queryOperationSpec: coreHttp.OperationSpec = {
@@ -532,6 +536,7 @@ const queryOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -553,5 +558,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

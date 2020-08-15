@@ -320,6 +320,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.syncAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -350,7 +351,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.syncAgentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -386,6 +387,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const generateKeyOperationSpec: coreHttp.OperationSpec = {
@@ -406,6 +408,7 @@ const generateKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.syncAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listLinkedDatabasesOperationSpec: coreHttp.OperationSpec = {
@@ -426,6 +429,7 @@ const listLinkedDatabasesOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.syncAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {
@@ -445,6 +449,7 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listLinkedDatabasesNextOperationSpec: coreHttp.OperationSpec = {
@@ -465,5 +470,6 @@ const listLinkedDatabasesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.syncAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

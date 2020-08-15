@@ -7,9 +7,9 @@
  */
 
 import {
+  OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter,
-  OperationParameter
+  OperationQueryParameter
 } from "@azure/core-http";
 import {
   StorageAccountCheckNameAvailabilityParameters as StorageAccountCheckNameAvailabilityParametersMapper,
@@ -32,6 +32,18 @@ import {
   FileShare as FileShareMapper,
   DeletedShare as DeletedShareMapper
 } from "../models/mappers";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
@@ -86,6 +98,18 @@ export const contentType: OperationParameter = {
 export const accountName: OperationParameter = {
   parameterPath: "accountName",
   mapper: StorageAccountCheckNameAvailabilityParametersMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const parameters: OperationParameter = {

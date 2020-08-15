@@ -118,6 +118,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -133,6 +134,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const hardDeleteOperationSpec: coreHttp.OperationSpec = {
@@ -150,6 +152,7 @@ const hardDeleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -165,5 +168,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };

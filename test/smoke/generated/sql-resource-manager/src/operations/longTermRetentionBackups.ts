@@ -567,6 +567,7 @@ const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionDatabaseName,
     Parameters.backupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -609,6 +610,7 @@ const listByResourceGroupDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionServerName,
     Parameters.longTermRetentionDatabaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
@@ -632,6 +634,7 @@ const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupServerOperationSpec: coreHttp.OperationSpec = {
@@ -656,6 +659,7 @@ const listByResourceGroupServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.longTermRetentionServerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -677,6 +681,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionDatabaseName,
     Parameters.backupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -717,6 +722,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionServerName,
     Parameters.longTermRetentionDatabaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationOperationSpec: coreHttp.OperationSpec = {
@@ -739,6 +745,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {
@@ -762,6 +769,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.longTermRetentionServerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -787,6 +795,7 @@ const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionServerName,
     Parameters.longTermRetentionDatabaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -810,6 +819,7 @@ const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupServerNextOperationSpec: coreHttp.OperationSpec = {
@@ -834,6 +844,7 @@ const listByResourceGroupServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.longTermRetentionServerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -858,6 +869,7 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.longTermRetentionServerName,
     Parameters.longTermRetentionDatabaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -880,6 +892,7 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {
@@ -903,5 +916,6 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.longTermRetentionServerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

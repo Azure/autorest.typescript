@@ -24,6 +24,18 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const xMsClientRequestId: OperationParameter = {
   parameterPath: "xMsClientRequestId",
   mapper: {

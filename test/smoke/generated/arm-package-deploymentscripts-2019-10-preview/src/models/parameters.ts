@@ -33,6 +33,18 @@ export const deploymentScript: OperationParameter = {
   mapper: DeploymentScriptMapper
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
@@ -102,6 +114,18 @@ export const apiVersion: OperationQueryParameter = {
 export const deploymentScript1: OperationParameter = {
   parameterPath: ["options", "deploymentScript"],
   mapper: DeploymentScriptUpdateParameterMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const tail: OperationQueryParameter = {

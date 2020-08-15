@@ -260,6 +260,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -280,6 +281,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySiteOperationSpec: coreHttp.OperationSpec = {
@@ -301,6 +303,7 @@ const listBySiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBySiteOperationSpec: coreHttp.OperationSpec = {
@@ -322,6 +325,7 @@ const getBySiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySiteSlotOperationSpec: coreHttp.OperationSpec = {
@@ -344,6 +348,7 @@ const listBySiteSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBySiteSlotOperationSpec: coreHttp.OperationSpec = {
@@ -366,6 +371,7 @@ const getBySiteSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -385,6 +391,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -405,6 +412,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySiteNextOperationSpec: coreHttp.OperationSpec = {
@@ -426,6 +434,7 @@ const listBySiteNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySiteSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -448,5 +457,6 @@ const listBySiteSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.slot
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

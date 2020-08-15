@@ -57,5 +57,6 @@ const getWithFilterOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.filter, Parameters.top, Parameters.orderby],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -232,7 +232,7 @@ const putArrayOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.resourceArray,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -255,6 +255,7 @@ const getArrayOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
@@ -268,7 +269,7 @@ const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.resourceArray1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -289,6 +290,7 @@ const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const putDictionaryOperationSpec: coreHttp.OperationSpec = {
@@ -302,7 +304,7 @@ const putDictionaryOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.resourceDictionary,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -323,6 +325,7 @@ const getDictionaryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -336,7 +339,7 @@ const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.resourceComplexObject,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -352,6 +355,7 @@ const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
@@ -367,7 +371,7 @@ const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -384,7 +388,7 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -401,7 +405,7 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.simpleBodyProduct1,
   urlParameters: [Parameters.$host, Parameters.name],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };

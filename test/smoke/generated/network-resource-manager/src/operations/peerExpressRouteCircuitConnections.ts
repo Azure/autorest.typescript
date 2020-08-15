@@ -143,6 +143,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.peeringName,
     Parameters.connectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -165,6 +166,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.circuitName,
     Parameters.peeringName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -187,5 +189,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.circuitName,
     Parameters.peeringName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

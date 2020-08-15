@@ -65,5 +65,6 @@ const getSampleResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

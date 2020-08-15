@@ -337,6 +337,7 @@ const listByVersionOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.jobVersion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getByVersionOperationSpec: coreHttp.OperationSpec = {
@@ -360,6 +361,7 @@ const getByVersionOperationSpec: coreHttp.OperationSpec = {
     Parameters.stepName,
     Parameters.jobVersion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByJobOperationSpec: coreHttp.OperationSpec = {
@@ -381,6 +383,7 @@ const listByJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -403,6 +406,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.stepName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -429,7 +433,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.stepName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -470,6 +474,7 @@ const listByVersionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.jobVersion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByJobNextOperationSpec: coreHttp.OperationSpec = {
@@ -491,5 +496,6 @@ const listByJobNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

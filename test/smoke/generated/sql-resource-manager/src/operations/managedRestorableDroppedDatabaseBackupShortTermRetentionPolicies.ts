@@ -281,6 +281,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -312,7 +313,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -345,7 +346,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -367,6 +368,7 @@ const listByRestorableDroppedDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.restorableDroppedDatabaseId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByRestorableDroppedDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -387,5 +389,6 @@ const listByRestorableDroppedDatabaseNextOperationSpec: coreHttp.OperationSpec =
     Parameters.managedInstanceName,
     Parameters.restorableDroppedDatabaseId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

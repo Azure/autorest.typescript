@@ -179,6 +179,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInvalidDateOperationSpec: coreHttp.OperationSpec = {
@@ -193,6 +194,7 @@ const getInvalidDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOverflowDateOperationSpec: coreHttp.OperationSpec = {
@@ -207,6 +209,7 @@ const getOverflowDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUnderflowDateOperationSpec: coreHttp.OperationSpec = {
@@ -221,6 +224,7 @@ const getUnderflowDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putMaxDateOperationSpec: coreHttp.OperationSpec = {
@@ -234,7 +238,7 @@ const putMaxDateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -250,6 +254,7 @@ const getMaxDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putMinDateOperationSpec: coreHttp.OperationSpec = {
@@ -263,7 +268,7 @@ const putMinDateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -279,5 +284,6 @@ const getMinDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

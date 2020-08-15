@@ -316,6 +316,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.linkId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {
@@ -386,5 +387,6 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

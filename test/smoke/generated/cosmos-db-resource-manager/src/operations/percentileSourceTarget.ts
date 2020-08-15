@@ -86,5 +86,6 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.sourceRegion,
     Parameters.targetRegion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

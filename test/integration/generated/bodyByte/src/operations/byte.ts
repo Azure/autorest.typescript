@@ -125,6 +125,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -139,6 +140,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
@@ -153,6 +155,7 @@ const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
@@ -166,7 +169,7 @@ const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.byteBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -182,5 +185,6 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

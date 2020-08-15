@@ -35,6 +35,18 @@ export const body: OperationParameter = {
   }
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
@@ -81,6 +93,18 @@ export const path: OperationURLParameter = {
   mapper: {
     serializedName: "path",
     required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
     type: {
       name: "String"
     }

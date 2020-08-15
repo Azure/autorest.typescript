@@ -81,6 +81,6 @@ const paramGetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };

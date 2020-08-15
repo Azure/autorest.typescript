@@ -157,6 +157,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -177,5 +178,6 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

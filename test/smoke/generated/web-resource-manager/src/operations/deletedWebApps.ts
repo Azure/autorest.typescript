@@ -141,6 +141,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationOperationSpec: coreHttp.OperationSpec = {
@@ -161,6 +162,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDeletedWebAppByLocationOperationSpec: coreHttp.OperationSpec = {
@@ -182,6 +184,7 @@ const getDeletedWebAppByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.location,
     Parameters.deletedSiteId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -201,6 +204,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -221,5 +225,6 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -119,7 +119,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.dataMaskingPolicyName,
     Parameters.dataMaskingRuleName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -141,5 +141,6 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.dataMaskingPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

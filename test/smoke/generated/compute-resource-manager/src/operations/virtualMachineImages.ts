@@ -174,6 +174,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.offer,
     Parameters.skus
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -209,6 +210,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.offer,
     Parameters.skus
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOffersOperationSpec: coreHttp.OperationSpec = {
@@ -237,6 +239,7 @@ const listOffersOperationSpec: coreHttp.OperationSpec = {
     Parameters.location,
     Parameters.publisherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listPublishersOperationSpec: coreHttp.OperationSpec = {
@@ -264,6 +267,7 @@ const listPublishersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSkusOperationSpec: coreHttp.OperationSpec = {
@@ -293,5 +297,6 @@ const listSkusOperationSpec: coreHttp.OperationSpec = {
     Parameters.publisherName,
     Parameters.offer
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

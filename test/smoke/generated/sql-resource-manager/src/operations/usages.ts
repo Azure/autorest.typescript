@@ -101,6 +101,7 @@ const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.instancePoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByInstancePoolNextOperationSpec: coreHttp.OperationSpec = {
@@ -120,5 +121,6 @@ const listByInstancePoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.instancePoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -91,6 +91,7 @@ const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -110,5 +111,6 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.groupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

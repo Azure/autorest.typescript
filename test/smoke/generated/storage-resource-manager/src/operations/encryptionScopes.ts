@@ -217,7 +217,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.encryptionScopeName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -242,7 +242,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.encryptionScopeName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -266,6 +266,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.encryptionScopeName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -284,6 +285,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -302,5 +304,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -278,6 +278,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -298,6 +299,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.jobAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -328,7 +330,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.jobAgentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -375,7 +377,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.jobAgentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -396,5 +398,6 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

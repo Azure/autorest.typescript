@@ -157,6 +157,7 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.elasticPoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
@@ -177,5 +178,6 @@ const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.elasticPoolName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

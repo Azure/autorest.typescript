@@ -152,6 +152,7 @@ const listByJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -174,6 +175,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.jobVersion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByJobNextOperationSpec: coreHttp.OperationSpec = {
@@ -195,5 +197,6 @@ const listByJobNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

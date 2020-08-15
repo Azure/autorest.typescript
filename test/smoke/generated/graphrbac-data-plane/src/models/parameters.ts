@@ -7,9 +7,9 @@
  */
 
 import {
+  OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter,
-  OperationParameter
+  OperationQueryParameter
 } from "@azure/core-http";
 import {
   ApplicationCreateParameters as ApplicationCreateParametersMapper,
@@ -29,6 +29,18 @@ import {
   GetObjectsParameters as GetObjectsParametersMapper,
   OAuth2PermissionGrant as OAuth2PermissionGrantMapper
 } from "../models/mappers";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json, text/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
@@ -92,6 +104,18 @@ export const contentType: OperationParameter = {
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
   mapper: ApplicationCreateParametersMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json, text/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const filter: OperationQueryParameter = {
@@ -272,7 +296,31 @@ export const domainName: OperationURLParameter = {
   }
 };
 
+export const accept2: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: OAuth2PermissionGrantMapper
+};
+
+export const accept3: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };

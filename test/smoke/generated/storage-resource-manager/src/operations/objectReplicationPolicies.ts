@@ -174,6 +174,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -196,6 +197,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.objectReplicationPolicyId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -219,7 +221,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.objectReplicationPolicyId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -242,5 +244,6 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.objectReplicationPolicyId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

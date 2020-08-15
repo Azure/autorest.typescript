@@ -314,7 +314,7 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -344,7 +344,7 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -369,6 +369,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -392,6 +393,7 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -415,6 +417,7 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const post202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -439,7 +442,7 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -465,7 +468,7 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };

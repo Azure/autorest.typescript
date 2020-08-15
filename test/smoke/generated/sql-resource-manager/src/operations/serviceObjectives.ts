@@ -99,6 +99,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.serviceObjectiveName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {
@@ -117,5 +118,6 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

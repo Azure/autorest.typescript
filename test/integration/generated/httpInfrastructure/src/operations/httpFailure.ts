@@ -94,6 +94,7 @@ const getEmptyErrorOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNoModelErrorOperationSpec: coreHttp.OperationSpec = {
@@ -105,6 +106,7 @@ const getNoModelErrorOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNoModelEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -116,5 +118,6 @@ const getNoModelEmptyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

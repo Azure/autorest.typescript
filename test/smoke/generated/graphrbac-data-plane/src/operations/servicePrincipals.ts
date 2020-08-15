@@ -281,7 +281,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters9,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -298,6 +298,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -312,7 +313,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters10,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -327,6 +328,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -342,6 +344,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOwnersOperationSpec: coreHttp.OperationSpec = {
@@ -357,6 +360,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -372,6 +376,7 @@ const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -386,7 +391,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -403,6 +408,7 @@ const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -417,7 +423,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -434,6 +440,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
@@ -454,5 +461,6 @@ const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.objectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

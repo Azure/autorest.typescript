@@ -656,6 +656,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const moveResourcesOperationSpec: coreHttp.OperationSpec = {
@@ -678,7 +679,7 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.sourceResourceGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -702,7 +703,7 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.sourceResourceGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -724,6 +725,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.expand
   ],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceOperationSpec: coreHttp.OperationSpec = {
@@ -747,6 +749,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -772,6 +775,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -806,7 +810,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -842,7 +846,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -868,6 +872,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceByIdOperationSpec: coreHttp.OperationSpec = {
@@ -882,6 +887,7 @@ const checkExistenceByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByIdOperationSpec: coreHttp.OperationSpec = {
@@ -898,6 +904,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
@@ -923,7 +930,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -950,7 +957,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -967,6 +974,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -992,6 +1000,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -1016,5 +1025,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

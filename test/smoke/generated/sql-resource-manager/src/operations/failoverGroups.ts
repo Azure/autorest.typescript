@@ -369,6 +369,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.failoverGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -399,7 +400,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.failoverGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -446,7 +447,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.failoverGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -467,6 +468,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {
@@ -496,6 +498,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.failoverGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
@@ -525,6 +528,7 @@ const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.failoverGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {
@@ -544,5 +548,6 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

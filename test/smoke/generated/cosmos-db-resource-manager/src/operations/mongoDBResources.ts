@@ -524,6 +524,7 @@ const listMongoDBDatabasesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -543,6 +544,7 @@ const getMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -572,7 +574,7 @@ const createUpdateMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -608,6 +610,7 @@ const getMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -637,7 +640,7 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -658,6 +661,7 @@ const listMongoDBCollectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -678,6 +682,7 @@ const getMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.collectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -708,7 +713,7 @@ const createUpdateMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.collectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -746,6 +751,7 @@ const getMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.collectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -776,7 +782,7 @@ const updateMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.collectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

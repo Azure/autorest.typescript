@@ -55,6 +55,6 @@ const uuidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.testUuid],
+  headerParameters: [Parameters.accept, Parameters.testUuid],
   serializer
 };

@@ -1,4 +1,16 @@
-import { OperationURLParameter, OperationParameter } from "@azure/core-http";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

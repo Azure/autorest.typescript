@@ -128,6 +128,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.expressRoutePortName,
     Parameters.linkName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -149,6 +150,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.expressRoutePortName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -170,5 +172,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.expressRoutePortName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

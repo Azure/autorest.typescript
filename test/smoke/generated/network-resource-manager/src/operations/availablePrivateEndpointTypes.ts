@@ -135,6 +135,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -156,6 +157,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -176,6 +178,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -197,5 +200,6 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -320,6 +320,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.applicationDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -342,6 +343,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.applicationDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -373,7 +375,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.applicationDefinitionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -395,6 +397,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getByIdOperationSpec: coreHttp.OperationSpec = {
@@ -411,6 +414,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByIdOperationSpec: coreHttp.OperationSpec = {
@@ -427,6 +431,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
@@ -452,7 +457,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -474,5 +479,6 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

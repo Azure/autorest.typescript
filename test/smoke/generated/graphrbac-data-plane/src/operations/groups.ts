@@ -342,7 +342,7 @@ const isMemberOfOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters5,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -362,6 +362,7 @@ const removeMemberOperationSpec: coreHttp.OperationSpec = {
     Parameters.groupObjectId,
     Parameters.memberObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const addMemberOperationSpec: coreHttp.OperationSpec = {
@@ -380,7 +381,7 @@ const addMemberOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.groupObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -398,7 +399,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -415,6 +416,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGroupMembersOperationSpec: coreHttp.OperationSpec = {
@@ -430,6 +432,7 @@ const getGroupMembersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -445,6 +448,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -458,6 +462,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
@@ -474,7 +479,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters8,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -491,6 +496,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const addOwnerOperationSpec: coreHttp.OperationSpec = {
@@ -505,7 +511,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -525,6 +531,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
     Parameters.ownerObjectId,
     Parameters.objectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -540,6 +547,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGroupMembersNextOperationSpec: coreHttp.OperationSpec = {
@@ -555,6 +563,7 @@ const getGroupMembersNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
@@ -575,5 +584,6 @@ const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.objectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

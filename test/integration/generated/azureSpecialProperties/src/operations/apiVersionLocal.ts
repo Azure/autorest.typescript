@@ -105,6 +105,7 @@ const getMethodLocalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
@@ -118,6 +119,7 @@ const getMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPathLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -131,6 +133,7 @@ const getPathLocalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -144,5 +147,6 @@ const getSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

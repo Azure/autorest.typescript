@@ -879,6 +879,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const captureOperationSpec: coreHttp.OperationSpec = {
@@ -907,7 +908,7 @@ const captureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -937,7 +938,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -967,7 +968,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1001,6 +1002,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const instanceViewOperationSpec: coreHttp.OperationSpec = {
@@ -1019,6 +1021,7 @@ const instanceViewOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const convertToManagedDisksOperationSpec: coreHttp.OperationSpec = {
@@ -1078,6 +1081,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {
@@ -1091,6 +1095,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.statusOnly],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableSizesOperationSpec: coreHttp.OperationSpec = {
@@ -1109,6 +1114,7 @@ const listAvailableSizesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const powerOffOperationSpec: coreHttp.OperationSpec = {
@@ -1145,6 +1151,7 @@ const reapplyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const restartOperationSpec: coreHttp.OperationSpec = {
@@ -1260,7 +1267,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept2],
   mediaType: "json",
   serializer
 };
@@ -1279,6 +1286,7 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.location1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -1296,6 +1304,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllNextOperationSpec: coreHttp.OperationSpec = {
@@ -1312,5 +1321,6 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

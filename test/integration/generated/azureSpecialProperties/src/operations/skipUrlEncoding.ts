@@ -160,6 +160,7 @@ const getMethodPathValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPathValidOperationSpec: coreHttp.OperationSpec = {
@@ -172,6 +173,7 @@ const getPathValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwaggerPathValidOperationSpec: coreHttp.OperationSpec = {
@@ -185,6 +187,7 @@ const getSwaggerPathValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.unencodedPathParam1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMethodQueryValidOperationSpec: coreHttp.OperationSpec = {
@@ -198,6 +201,7 @@ const getMethodQueryValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.q1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMethodQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -211,6 +215,7 @@ const getMethodQueryNullOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.q11],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPathQueryValidOperationSpec: coreHttp.OperationSpec = {
@@ -224,6 +229,7 @@ const getPathQueryValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.q1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSwaggerQueryValidOperationSpec: coreHttp.OperationSpec = {
@@ -237,5 +243,6 @@ const getSwaggerQueryValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.q12],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

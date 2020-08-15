@@ -81,5 +81,6 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.targetRegion
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

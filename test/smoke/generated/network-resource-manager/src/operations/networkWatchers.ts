@@ -780,7 +780,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -803,6 +803,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -825,6 +826,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -847,7 +849,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -869,6 +871,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {
@@ -885,6 +888,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTopologyOperationSpec: coreHttp.OperationSpec = {
@@ -907,7 +911,7 @@ const getTopologyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -940,7 +944,7 @@ const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -973,7 +977,7 @@ const getNextHopOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1006,7 +1010,7 @@ const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1039,7 +1043,7 @@ const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1072,7 +1076,7 @@ const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1105,7 +1109,7 @@ const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1138,7 +1142,7 @@ const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1171,7 +1175,7 @@ const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1204,7 +1208,7 @@ const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1237,7 +1241,7 @@ const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1270,7 +1274,7 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

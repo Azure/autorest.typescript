@@ -219,7 +219,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.expressRouteGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -243,6 +243,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.expressRouteGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -266,6 +267,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.expressRouteGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -287,5 +289,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.expressRouteGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

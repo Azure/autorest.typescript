@@ -461,6 +461,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.policyAssignmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -482,7 +483,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.policyAssignmentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -504,6 +505,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.policyAssignmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -524,6 +526,7 @@ const listForResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForResourceOperationSpec: coreHttp.OperationSpec = {
@@ -548,6 +551,7 @@ const listForResourceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForManagementGroupOperationSpec: coreHttp.OperationSpec = {
@@ -564,6 +568,7 @@ const listForManagementGroupOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter2],
   urlParameters: [Parameters.$host, Parameters.managementGroupId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -580,6 +585,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByIdOperationSpec: coreHttp.OperationSpec = {
@@ -596,6 +602,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createByIdOperationSpec: coreHttp.OperationSpec = {
@@ -612,7 +619,7 @@ const createByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -629,6 +636,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -649,6 +657,7 @@ const listForResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForResourceNextOperationSpec: coreHttp.OperationSpec = {
@@ -673,6 +682,7 @@ const listForResourceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listForManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -692,6 +702,7 @@ const listForManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -711,5 +722,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

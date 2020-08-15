@@ -83,5 +83,6 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.restoreDetailsName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

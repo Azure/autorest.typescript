@@ -37,6 +37,18 @@ export const input: OperationParameter = {
   }
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const contentType1: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
@@ -52,6 +64,18 @@ export const contentType1: OperationParameter = {
 export const input1: OperationParameter = {
   parameterPath: ["options", "input"],
   mapper: SourcePathMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const $host: OperationURLParameter = {
@@ -83,6 +107,18 @@ export const input2: OperationParameter = {
   mapper: {
     serializedName: "input",
     required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept2: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
     type: {
       name: "String"
     }

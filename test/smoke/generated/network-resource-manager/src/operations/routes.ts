@@ -237,6 +237,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.routeName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -259,6 +260,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.routeName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -291,7 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.routeName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -314,6 +316,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.routeTableName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -335,5 +338,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.routeTableName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

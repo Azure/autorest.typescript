@@ -92,6 +92,7 @@ const getFileOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getFileLargeOperationSpec: coreHttp.OperationSpec = {
@@ -106,6 +107,7 @@ const getFileLargeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getEmptyFileOperationSpec: coreHttp.OperationSpec = {
@@ -120,5 +122,6 @@ const getEmptyFileOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
