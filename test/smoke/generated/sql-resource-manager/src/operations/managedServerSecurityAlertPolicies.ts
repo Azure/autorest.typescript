@@ -194,6 +194,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.securityAlertPolicyName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -224,7 +225,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.securityAlertPolicyName1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -245,6 +246,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -264,5 +266,6 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -1,20 +1,17 @@
-import {
-  HttpHeader,
-  ObjectSchema,
-  Property
-} from "@azure-tools/codemodel";
+import { HttpHeader, ObjectSchema, Property } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function headersToSchema(
   headers: HttpHeader[] | undefined,
-  operationFullName: string
+  operationFullName: string,
+  isError: boolean
 ): ObjectSchema | undefined {
   if (!headers || !headers.length) {
     return undefined;
   }
 
   const headersSchema = new ObjectSchema(
-    `${operationFullName}Headers`,
+    `${operationFullName}${isError ? "Exception" : ""}Headers`,
     `Defines headers for ${operationFullName} operation.`
   );
 

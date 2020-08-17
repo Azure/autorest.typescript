@@ -58,6 +58,6 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.apiVersion],
+  headerParameters: [Parameters.accept, Parameters.apiVersion],
   serializer
 };

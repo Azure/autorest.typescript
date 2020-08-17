@@ -125,6 +125,7 @@ const postMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postMethodGlobalNullOperationSpec: coreHttp.OperationSpec = {
@@ -138,6 +139,7 @@ const postMethodGlobalNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
@@ -152,6 +154,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
@@ -165,6 +168,7 @@ const postPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
@@ -178,5 +182,6 @@ const postSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };

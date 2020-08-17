@@ -341,7 +341,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -358,6 +358,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -375,6 +376,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -394,6 +396,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const patchOperationSpec: coreHttp.OperationSpec = {
@@ -412,7 +415,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -433,6 +436,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const addOwnerOperationSpec: coreHttp.OperationSpec = {
@@ -451,7 +455,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -472,6 +476,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationObjectId,
     Parameters.ownerObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -491,6 +496,7 @@ const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -509,7 +515,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -530,6 +536,7 @@ const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -548,7 +555,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -569,6 +576,7 @@ const getServicePrincipalsIdByAppIdOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.applicationID
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -584,6 +592,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
@@ -604,5 +613,6 @@ const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.applicationObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

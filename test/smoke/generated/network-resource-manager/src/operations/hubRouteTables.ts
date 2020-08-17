@@ -246,7 +246,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.virtualHubName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -270,6 +270,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.virtualHubName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -293,6 +294,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.virtualHubName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -314,6 +316,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualHubName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -335,5 +338,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.virtualHubName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -198,6 +198,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {
@@ -212,6 +213,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOverflowOperationSpec: coreHttp.OperationSpec = {
@@ -226,6 +228,7 @@ const getOverflowOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUnderflowOperationSpec: coreHttp.OperationSpec = {
@@ -240,6 +243,7 @@ const getUnderflowOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -253,7 +257,7 @@ const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -269,6 +273,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -283,6 +288,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -296,7 +302,7 @@ const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -312,5 +318,6 @@ const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

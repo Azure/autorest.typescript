@@ -395,6 +395,7 @@ const getAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -415,6 +416,7 @@ const listAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -435,6 +437,7 @@ const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -451,6 +454,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -472,6 +476,7 @@ const getAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.groupId,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -492,6 +497,7 @@ const listAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -513,6 +519,7 @@ const getAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -533,6 +540,7 @@ const listAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -555,6 +563,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.operationId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -576,6 +585,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -596,6 +606,7 @@ const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -615,6 +626,7 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -635,6 +647,7 @@ const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -655,6 +668,7 @@ const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -676,5 +690,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

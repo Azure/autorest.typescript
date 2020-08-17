@@ -200,6 +200,7 @@ const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -219,6 +220,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -251,7 +253,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -276,5 +278,6 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.privateEndpointConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

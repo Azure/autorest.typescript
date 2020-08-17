@@ -6,7 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationURLParameter } from "@azure/core-http";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
 
 export const accountName: OperationURLParameter = {
   parameterPath: "accountName",

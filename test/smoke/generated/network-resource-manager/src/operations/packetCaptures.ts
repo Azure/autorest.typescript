@@ -306,7 +306,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -330,6 +330,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -353,6 +354,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopOperationSpec: coreHttp.OperationSpec = {
@@ -376,6 +378,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStatusOperationSpec: coreHttp.OperationSpec = {
@@ -407,6 +410,7 @@ const getStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -428,5 +432,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkWatcherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

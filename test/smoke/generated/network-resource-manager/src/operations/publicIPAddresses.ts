@@ -465,6 +465,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.publicIpAddressName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -486,6 +487,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.publicIpAddressName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -517,7 +519,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.publicIpAddressName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -541,7 +543,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.publicIpAddressName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -559,6 +561,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -579,6 +582,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: coreHttp.OperationSpec = {
@@ -600,6 +604,7 @@ const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: coreHttp.Operati
     Parameters.subscriptionId,
     Parameters.virtualMachineScaleSetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreHttp.OperationSpec = {
@@ -624,6 +629,7 @@ const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreHttp.Opera
     Parameters.virtualmachineIndex,
     Parameters.ipConfigurationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationSpec = {
@@ -649,6 +655,7 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationS
     Parameters.ipConfigurationName,
     Parameters.publicIpAddressName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllNextOperationSpec: coreHttp.OperationSpec = {
@@ -668,6 +675,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -688,6 +696,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreHttp.OperationSpec = {
@@ -709,6 +718,7 @@ const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreHttp.Ope
     Parameters.nextLink,
     Parameters.virtualMachineScaleSetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: coreHttp.OperationSpec = {
@@ -733,5 +743,6 @@ const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: coreHttp.O
     Parameters.virtualmachineIndex,
     Parameters.ipConfigurationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

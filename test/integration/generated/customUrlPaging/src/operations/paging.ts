@@ -121,6 +121,7 @@ const getPagesPartialUrlOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.accountName, Parameters.host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPagesPartialUrlOperationOperationSpec: coreHttp.OperationSpec = {
@@ -133,6 +134,7 @@ const getPagesPartialUrlOperationOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.accountName, Parameters.host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPagesPartialUrlOperationNextOperationSpec: coreHttp.OperationSpec = {
@@ -145,6 +147,7 @@ const getPagesPartialUrlOperationNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.accountName, Parameters.host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPagesPartialUrlNextOperationSpec: coreHttp.OperationSpec = {
@@ -157,5 +160,6 @@ const getPagesPartialUrlNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   urlParameters: [Parameters.accountName, Parameters.host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };

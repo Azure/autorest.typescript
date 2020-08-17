@@ -557,6 +557,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -580,7 +581,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -602,7 +603,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -623,6 +624,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -658,7 +660,7 @@ const setLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -680,7 +682,7 @@ const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -705,7 +707,11 @@ const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.immutabilityPolicyName
   ],
-  headerParameters: [Parameters.contentType, Parameters.ifMatch],
+  headerParameters: [
+    Parameters.contentType,
+    Parameters.accept1,
+    Parameters.ifMatch
+  ],
   mediaType: "json",
   serializer
 };
@@ -728,7 +734,7 @@ const getImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.immutabilityPolicyName
   ],
-  headerParameters: [Parameters.ifMatch],
+  headerParameters: [Parameters.accept, Parameters.ifMatch],
   serializer
 };
 const deleteImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -750,7 +756,7 @@ const deleteImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.immutabilityPolicyName
   ],
-  headerParameters: [Parameters.ifMatch1],
+  headerParameters: [Parameters.accept, Parameters.ifMatch1],
   serializer
 };
 const lockImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -771,7 +777,7 @@ const lockImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.ifMatch1],
+  headerParameters: [Parameters.accept, Parameters.ifMatch1],
   serializer
 };
 const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -793,7 +799,11 @@ const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.ifMatch1],
+  headerParameters: [
+    Parameters.contentType,
+    Parameters.accept1,
+    Parameters.ifMatch1
+  ],
   mediaType: "json",
   serializer
 };
@@ -815,7 +825,7 @@ const leaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -839,5 +849,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

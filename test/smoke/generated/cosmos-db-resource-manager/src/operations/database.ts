@@ -138,6 +138,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesOperationSpec: coreHttp.OperationSpec = {
@@ -157,6 +158,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -176,5 +178,6 @@ const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

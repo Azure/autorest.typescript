@@ -92,5 +92,6 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.region,
     Parameters.partitionKeyRangeId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

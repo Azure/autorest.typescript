@@ -521,6 +521,7 @@ const listGremlinDatabasesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -540,6 +541,7 @@ const getGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -569,7 +571,7 @@ const createUpdateGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -605,6 +607,7 @@ const getGremlinDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateGremlinDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -634,7 +637,7 @@ const updateGremlinDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -655,6 +658,7 @@ const listGremlinGraphsOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getGremlinGraphOperationSpec: coreHttp.OperationSpec = {
@@ -675,6 +679,7 @@ const getGremlinGraphOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.graphName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateGremlinGraphOperationSpec: coreHttp.OperationSpec = {
@@ -705,7 +710,7 @@ const createUpdateGremlinGraphOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.graphName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -743,6 +748,7 @@ const getGremlinGraphThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.graphName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateGremlinGraphThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -773,7 +779,7 @@ const updateGremlinGraphThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.graphName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

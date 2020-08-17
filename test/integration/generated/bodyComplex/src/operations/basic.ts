@@ -145,6 +145,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putValidOperationSpec: coreHttp.OperationSpec = {
@@ -159,7 +160,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -175,6 +176,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -189,6 +191,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNullOperationSpec: coreHttp.OperationSpec = {
@@ -203,6 +206,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
@@ -217,5 +221,6 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

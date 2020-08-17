@@ -323,7 +323,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -358,7 +358,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -383,6 +383,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -407,6 +408,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByGalleryImageOperationSpec: coreHttp.OperationSpec = {
@@ -429,6 +431,7 @@ const listByGalleryImageOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryName,
     Parameters.galleryImageName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByGalleryImageNextOperationSpec: coreHttp.OperationSpec = {
@@ -451,5 +454,6 @@ const listByGalleryImageNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryName,
     Parameters.galleryImageName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

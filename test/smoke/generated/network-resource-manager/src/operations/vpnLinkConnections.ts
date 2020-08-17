@@ -110,6 +110,7 @@ const listByVpnConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByVpnConnectionNextOperationSpec: coreHttp.OperationSpec = {
@@ -132,5 +133,6 @@ const listByVpnConnectionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName,
     Parameters.gatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

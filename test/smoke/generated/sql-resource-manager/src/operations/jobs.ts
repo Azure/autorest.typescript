@@ -209,6 +209,7 @@ const listByAgentOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.jobAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -230,6 +231,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -255,7 +257,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName,
     Parameters.jobName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -293,5 +295,6 @@ const listByAgentNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.jobAgentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

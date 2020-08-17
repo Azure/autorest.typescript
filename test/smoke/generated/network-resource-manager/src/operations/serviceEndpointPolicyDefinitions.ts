@@ -246,6 +246,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceEndpointPolicyName,
     Parameters.serviceEndpointPolicyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -268,6 +269,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceEndpointPolicyName,
     Parameters.serviceEndpointPolicyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -300,7 +302,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceEndpointPolicyName,
     Parameters.serviceEndpointPolicyDefinitionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -323,6 +325,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.serviceEndpointPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -344,5 +347,6 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.serviceEndpointPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

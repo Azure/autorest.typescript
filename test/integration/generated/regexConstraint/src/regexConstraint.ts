@@ -55,5 +55,6 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.serverName],
+  headerParameters: [Parameters.accept],
   serializer
 };

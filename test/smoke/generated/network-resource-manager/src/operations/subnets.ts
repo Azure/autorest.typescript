@@ -338,6 +338,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -360,6 +361,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -392,7 +394,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -418,7 +420,7 @@ const prepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -444,7 +446,7 @@ const unprepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -467,6 +469,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -488,5 +491,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.virtualNetworkName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

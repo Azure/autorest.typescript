@@ -148,6 +148,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.managementPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -168,7 +169,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.managementPolicyName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

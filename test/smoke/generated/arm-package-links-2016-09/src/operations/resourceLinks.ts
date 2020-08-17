@@ -201,7 +201,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -215,6 +215,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionOperationSpec: coreHttp.OperationSpec = {
@@ -227,6 +228,7 @@ const listAtSubscriptionOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSourceScopeOperationSpec: coreHttp.OperationSpec = {
@@ -239,6 +241,7 @@ const listAtSourceScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [Parameters.$host, Parameters.scope],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionNextOperationSpec: coreHttp.OperationSpec = {
@@ -255,6 +258,7 @@ const listAtSubscriptionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSourceScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -267,5 +271,6 @@ const listAtSourceScopeNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
+  headerParameters: [Parameters.accept],
   serializer
 };

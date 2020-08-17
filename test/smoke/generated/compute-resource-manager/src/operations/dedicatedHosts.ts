@@ -278,7 +278,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostGroupName,
     Parameters.hostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -309,7 +309,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostGroupName,
     Parameters.hostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -345,6 +345,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostGroupName,
     Parameters.hostName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByHostGroupOperationSpec: coreHttp.OperationSpec = {
@@ -363,6 +364,7 @@ const listByHostGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.hostGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByHostGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -381,5 +383,6 @@ const listByHostGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.hostGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

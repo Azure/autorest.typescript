@@ -180,7 +180,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -201,6 +201,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.expand
   ],
   urlParameters: [Parameters.$host, Parameters.tenantID],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -220,6 +221,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.upnOrObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -238,7 +240,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.upnOrObjectId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -257,6 +259,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.upnOrObjectId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
@@ -273,7 +276,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters13,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -290,5 +293,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };

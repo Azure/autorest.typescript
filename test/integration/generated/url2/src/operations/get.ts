@@ -55,6 +55,6 @@ const urlOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.testUrl],
+  headerParameters: [Parameters.accept, Parameters.testUrl],
   serializer
 };

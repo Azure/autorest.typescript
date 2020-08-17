@@ -148,6 +148,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseRid,
     Parameters.collectionRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listUsagesOperationSpec: coreHttp.OperationSpec = {
@@ -168,6 +169,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseRid,
     Parameters.collectionRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -188,5 +190,6 @@ const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseRid,
     Parameters.collectionRid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

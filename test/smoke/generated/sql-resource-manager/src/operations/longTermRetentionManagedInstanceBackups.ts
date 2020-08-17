@@ -602,6 +602,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.backupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -642,6 +643,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByInstanceOperationSpec: coreHttp.OperationSpec = {
@@ -665,6 +667,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationOperationSpec: coreHttp.OperationSpec = {
@@ -687,6 +690,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -709,6 +713,7 @@ const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.backupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -751,6 +756,7 @@ const listByResourceGroupDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupInstanceOperationSpec: coreHttp.OperationSpec = {
@@ -775,6 +781,7 @@ const listByResourceGroupInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
@@ -798,6 +805,7 @@ const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -822,6 +830,7 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -845,6 +854,7 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -867,6 +877,7 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -892,6 +903,7 @@ const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -916,6 +928,7 @@ const listByResourceGroupInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -939,5 +952,6 @@ const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

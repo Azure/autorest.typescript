@@ -81,5 +81,6 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName,
     Parameters.linkConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -262,15 +262,22 @@ export function transformOperationResponse(
   operationFullName: string
 ): OperationResponseDetails {
   const httpInfo = response.protocol.http;
-  const isError =
-    !!response.extensions && !!response.extensions["x-ms-error-response"];
 
   if (!httpInfo) {
     throw new Error("Operation does not specify HTTP response details.");
   }
 
+  const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
+  const isError =
+    isDefault ||
+    (!!response.extensions && !!response.extensions["x-ms-error-response"]);
+
   // Transform Headers to am ObjectSchema to represent headers as an object
-  const headersSchema = headersToSchema(httpInfo.headers, operationFullName);
+  const headersSchema = headersToSchema(
+    httpInfo.headers,
+    operationFullName,
+    isError
+  );
   const mediaType = httpInfo.knownMediaType;
 
   const mappers: OperationResponseMappers = {
@@ -298,14 +305,12 @@ export function transformOperationResponse(
     headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined
   };
 
-  const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
-
   return {
     statusCodes: httpInfo.statusCodes,
     mediaType: httpInfo.knownMediaType,
     mappers,
     types,
-    isError: isDefault || isError
+    isError: isError
   };
 }
 

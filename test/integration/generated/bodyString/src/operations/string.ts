@@ -258,6 +258,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putNullOperationSpec: coreHttp.OperationSpec = {
@@ -271,7 +272,7 @@ const putNullOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -287,6 +288,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -300,7 +302,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -316,6 +318,7 @@ const getMbcsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putMbcsOperationSpec: coreHttp.OperationSpec = {
@@ -329,7 +332,7 @@ const putMbcsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -345,6 +348,7 @@ const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
@@ -358,7 +362,7 @@ const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody3,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -374,6 +378,7 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
@@ -388,6 +393,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
@@ -402,6 +408,7 @@ const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
@@ -415,7 +422,7 @@ const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -431,5 +438,6 @@ const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

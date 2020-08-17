@@ -268,6 +268,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putValidOperationSpec: coreHttp.OperationSpec = {
@@ -281,7 +282,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -297,6 +298,7 @@ const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getComposedWithDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -311,6 +313,7 @@ const getComposedWithDiscriminatorOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getComposedWithoutDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -325,6 +328,7 @@ const getComposedWithoutDiscriminatorOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getComplicatedOperationSpec: coreHttp.OperationSpec = {
@@ -339,6 +343,7 @@ const getComplicatedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putComplicatedOperationSpec: coreHttp.OperationSpec = {
@@ -352,7 +357,7 @@ const putComplicatedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -369,7 +374,7 @@ const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -384,7 +389,7 @@ const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

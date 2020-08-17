@@ -598,6 +598,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -619,6 +620,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -650,7 +652,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -674,7 +676,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -696,6 +698,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {
@@ -712,6 +715,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startOperationSpec: coreHttp.OperationSpec = {
@@ -734,6 +738,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const stopOperationSpec: coreHttp.OperationSpec = {
@@ -756,6 +761,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const backendHealthOperationSpec: coreHttp.OperationSpec = {
@@ -786,6 +792,7 @@ const backendHealthOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const backendHealthOnDemandOperationSpec: coreHttp.OperationSpec = {
@@ -817,7 +824,7 @@ const backendHealthOnDemandOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -837,6 +844,7 @@ const listAvailableServerVariablesOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableRequestHeadersOperationSpec: coreHttp.OperationSpec = {
@@ -855,6 +863,7 @@ const listAvailableRequestHeadersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableResponseHeadersOperationSpec: coreHttp.OperationSpec = {
@@ -873,6 +882,7 @@ const listAvailableResponseHeadersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableWafRuleSetsOperationSpec: coreHttp.OperationSpec = {
@@ -889,6 +899,7 @@ const listAvailableWafRuleSetsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableSslOptionsOperationSpec: coreHttp.OperationSpec = {
@@ -905,6 +916,7 @@ const listAvailableSslOptionsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableSslPredefinedPoliciesOperationSpec: coreHttp.OperationSpec = {
@@ -921,6 +933,7 @@ const listAvailableSslPredefinedPoliciesOperationSpec: coreHttp.OperationSpec = 
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getSslPredefinedPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -941,6 +954,7 @@ const getSslPredefinedPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.predefinedPolicyName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -961,6 +975,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAllNextOperationSpec: coreHttp.OperationSpec = {
@@ -980,6 +995,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAvailableSslPredefinedPoliciesNextOperationSpec: coreHttp.OperationSpec = {
@@ -999,5 +1015,6 @@ const listAvailableSslPredefinedPoliciesNextOperationSpec: coreHttp.OperationSpe
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -1028,7 +1028,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1051,6 +1051,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -1073,6 +1074,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -1104,7 +1106,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1126,6 +1128,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -1147,6 +1150,7 @@ const listConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetOperationSpec: coreHttp.OperationSpec = {
@@ -1177,6 +1181,7 @@ const resetOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetVpnClientSharedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -1199,6 +1204,7 @@ const resetVpnClientSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
@@ -1230,7 +1236,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1263,7 +1269,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1295,6 +1301,7 @@ const getVpnProfilePackageUrlOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBgpPeerStatusOperationSpec: coreHttp.OperationSpec = {
@@ -1325,6 +1332,7 @@ const getBgpPeerStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const supportedVpnDevicesOperationSpec: coreHttp.OperationSpec = {
@@ -1346,6 +1354,7 @@ const supportedVpnDevicesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getLearnedRoutesOperationSpec: coreHttp.OperationSpec = {
@@ -1376,6 +1385,7 @@ const getLearnedRoutesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAdvertisedRoutesOperationSpec: coreHttp.OperationSpec = {
@@ -1406,6 +1416,7 @@ const getAdvertisedRoutesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
@@ -1437,7 +1448,7 @@ const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1469,6 +1480,7 @@ const getVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
@@ -1491,7 +1503,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1524,7 +1536,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1557,7 +1569,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1589,6 +1601,7 @@ const getVpnclientConnectionHealthOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -1612,7 +1625,7 @@ const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.Opera
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1634,6 +1647,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConnectionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1655,5 +1669,6 @@ const listConnectionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.virtualNetworkGatewayName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

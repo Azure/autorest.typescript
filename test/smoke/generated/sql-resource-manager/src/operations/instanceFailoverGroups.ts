@@ -323,6 +323,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -353,7 +354,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName,
     Parameters.locationName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -389,6 +390,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {
@@ -418,6 +420,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
@@ -447,6 +450,7 @@ const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -466,5 +470,6 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

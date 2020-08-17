@@ -310,7 +310,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.policyDefinitionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -331,6 +331,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.policyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -351,6 +352,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.policyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getBuiltInOperationSpec: coreHttp.OperationSpec = {
@@ -367,6 +369,7 @@ const getBuiltInOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyDefinitionName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
@@ -388,7 +391,7 @@ const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.policyDefinitionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -409,6 +412,7 @@ const deleteAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.policyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
@@ -429,6 +433,7 @@ const getAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.policyDefinitionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -445,6 +450,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBuiltInOperationSpec: coreHttp.OperationSpec = {
@@ -460,6 +466,7 @@ const listBuiltInOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByManagementGroupOperationSpec: coreHttp.OperationSpec = {
@@ -476,6 +483,7 @@ const listByManagementGroupOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.managementGroupId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -495,6 +503,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBuiltInNextOperationSpec: coreHttp.OperationSpec = {
@@ -510,6 +519,7 @@ const listBuiltInNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -529,5 +539,6 @@ const listByManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

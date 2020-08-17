@@ -163,6 +163,7 @@ const deleteValueOperationSpec: coreHttp.OperationSpec = {
     Parameters.tagName,
     Parameters.tagValue
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateValueOperationSpec: coreHttp.OperationSpec = {
@@ -187,6 +188,7 @@ const createOrUpdateValueOperationSpec: coreHttp.OperationSpec = {
     Parameters.tagName,
     Parameters.tagValue
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -209,6 +211,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.tagName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -227,6 +230,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.tagName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -242,6 +246,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -261,5 +266,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

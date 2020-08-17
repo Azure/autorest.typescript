@@ -602,7 +602,7 @@ const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.userAgent],
+  headerParameters: [Parameters.accept, Parameters.userAgent],
   serializer
 };
 const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
@@ -617,6 +617,7 @@ const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -629,7 +630,7 @@ const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   serializer
 };
 const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -644,6 +645,7 @@ const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const paramIntegerOperationSpec: coreHttp.OperationSpec = {
@@ -656,7 +658,7 @@ const paramIntegerOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value],
   serializer
 };
 const responseIntegerOperationSpec: coreHttp.OperationSpec = {
@@ -671,7 +673,7 @@ const responseIntegerOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramLongOperationSpec: coreHttp.OperationSpec = {
@@ -684,7 +686,7 @@ const paramLongOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value],
   serializer
 };
 const responseLongOperationSpec: coreHttp.OperationSpec = {
@@ -699,7 +701,7 @@ const responseLongOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramFloatOperationSpec: coreHttp.OperationSpec = {
@@ -712,7 +714,7 @@ const paramFloatOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value1],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value1],
   serializer
 };
 const responseFloatOperationSpec: coreHttp.OperationSpec = {
@@ -727,7 +729,7 @@ const responseFloatOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -740,7 +742,7 @@ const paramDoubleOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value1],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value1],
   serializer
 };
 const responseDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -755,7 +757,7 @@ const responseDoubleOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramBoolOperationSpec: coreHttp.OperationSpec = {
@@ -768,7 +770,7 @@ const paramBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value2],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value2],
   serializer
 };
 const responseBoolOperationSpec: coreHttp.OperationSpec = {
@@ -783,7 +785,7 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramStringOperationSpec: coreHttp.OperationSpec = {
@@ -796,7 +798,7 @@ const paramStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value3],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value3],
   serializer
 };
 const responseStringOperationSpec: coreHttp.OperationSpec = {
@@ -811,7 +813,7 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramDateOperationSpec: coreHttp.OperationSpec = {
@@ -824,7 +826,7 @@ const paramDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value4],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value4],
   serializer
 };
 const responseDateOperationSpec: coreHttp.OperationSpec = {
@@ -839,7 +841,7 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -852,7 +854,7 @@ const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value5],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value5],
   serializer
 };
 const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -867,7 +869,7 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -880,7 +882,7 @@ const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value6],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value6],
   serializer
 };
 const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -895,7 +897,7 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramDurationOperationSpec: coreHttp.OperationSpec = {
@@ -908,7 +910,7 @@ const paramDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value7],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value7],
   serializer
 };
 const responseDurationOperationSpec: coreHttp.OperationSpec = {
@@ -923,7 +925,7 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramByteOperationSpec: coreHttp.OperationSpec = {
@@ -936,7 +938,7 @@ const paramByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value8],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value8],
   serializer
 };
 const responseByteOperationSpec: coreHttp.OperationSpec = {
@@ -951,7 +953,7 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const paramEnumOperationSpec: coreHttp.OperationSpec = {
@@ -964,7 +966,7 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value9],
+  headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value9],
   serializer
 };
 const responseEnumOperationSpec: coreHttp.OperationSpec = {
@@ -979,7 +981,7 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
 const customRequestIdOperationSpec: coreHttp.OperationSpec = {
@@ -993,5 +995,6 @@ const customRequestIdOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

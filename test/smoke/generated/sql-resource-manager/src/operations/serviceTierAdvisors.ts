@@ -110,6 +110,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.serviceTierAdvisorName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -129,5 +130,6 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

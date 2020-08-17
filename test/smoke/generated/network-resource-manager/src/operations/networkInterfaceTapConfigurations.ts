@@ -240,6 +240,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkInterfaceName,
     Parameters.tapConfigurationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -262,6 +263,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkInterfaceName,
     Parameters.tapConfigurationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -294,7 +296,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkInterfaceName,
     Parameters.tapConfigurationName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -317,6 +319,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.networkInterfaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -338,5 +341,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.networkInterfaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

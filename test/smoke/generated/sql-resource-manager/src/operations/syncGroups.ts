@@ -607,6 +607,7 @@ const listSyncDatabaseIdsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const refreshHubSchemaOperationSpec: coreHttp.OperationSpec = {
@@ -644,6 +645,7 @@ const listHubSchemasOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listLogsOperationSpec: coreHttp.OperationSpec = {
@@ -671,6 +673,7 @@ const listLogsOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelSyncOperationSpec: coreHttp.OperationSpec = {
@@ -724,6 +727,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -755,7 +759,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -804,7 +808,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.syncGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -826,6 +830,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSyncDatabaseIdsNextOperationSpec: coreHttp.OperationSpec = {
@@ -844,6 +849,7 @@ const listSyncDatabaseIdsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHubSchemasNextOperationSpec: coreHttp.OperationSpec = {
@@ -865,6 +871,7 @@ const listHubSchemasNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listLogsNextOperationSpec: coreHttp.OperationSpec = {
@@ -892,6 +899,7 @@ const listLogsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.syncGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
@@ -912,5 +920,6 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

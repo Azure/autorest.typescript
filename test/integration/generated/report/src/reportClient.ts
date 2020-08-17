@@ -78,6 +78,7 @@ const getReportOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.qualifier],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOptionalReportOperationSpec: coreHttp.OperationSpec = {
@@ -95,5 +96,6 @@ const getOptionalReportOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.qualifier],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

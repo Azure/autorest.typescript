@@ -84,5 +84,6 @@ const listByConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.transparentDataEncryptionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

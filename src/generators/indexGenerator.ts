@@ -5,9 +5,13 @@ export function generateIndexFile(
   clientDetails: ClientDetails,
   project: Project
 ) {
-  const indexFile = project.createSourceFile(`./src/index.ts`, undefined, {
-    overwrite: true
-  });
+  const indexFile = project.createSourceFile(
+    `${clientDetails.srcPath}/index.ts`,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
 
   const hasOperationsFile = clientDetails.operationGroups.some(
     og => !og.isTopLevel
@@ -26,10 +30,4 @@ export function generateIndexFile(
       namedExports: [`${clientDetails.className}Context`]
     }
   ]);
-
-  // if (hasOperationsFile) {
-  //   indexFile.addExportDeclaration({
-  //     moduleSpecifier: "./operations"
-  //   });
-  // }
 }

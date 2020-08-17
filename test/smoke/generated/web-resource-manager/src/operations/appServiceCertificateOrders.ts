@@ -652,6 +652,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validatePurchaseInformationOperationSpec: coreHttp.OperationSpec = {
@@ -667,7 +668,7 @@ const validatePurchaseInformationOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.appServiceCertificateOrder,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -689,6 +690,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -710,6 +712,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -741,7 +744,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -763,6 +766,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -788,7 +792,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -811,6 +815,7 @@ const listCertificatesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -833,6 +838,7 @@ const getCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -865,7 +871,7 @@ const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -888,6 +894,7 @@ const deleteCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -914,7 +921,7 @@ const updateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -936,7 +943,7 @@ const reissueOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -958,7 +965,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -979,6 +986,7 @@ const resendEmailOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resendRequestEmailsOperationSpec: coreHttp.OperationSpec = {
@@ -999,7 +1007,7 @@ const resendRequestEmailsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1023,7 +1031,7 @@ const retrieveSiteSealOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1044,6 +1052,7 @@ const verifyDomainOwnershipOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const retrieveCertificateActionsOperationSpec: coreHttp.OperationSpec = {
@@ -1072,6 +1081,7 @@ const retrieveCertificateActionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const retrieveCertificateEmailHistoryOperationSpec: coreHttp.OperationSpec = {
@@ -1100,6 +1110,7 @@ const retrieveCertificateEmailHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -1119,6 +1130,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -1139,6 +1151,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listCertificatesNextOperationSpec: coreHttp.OperationSpec = {
@@ -1160,5 +1173,6 @@ const listCertificatesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

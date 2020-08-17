@@ -1350,6 +1350,7 @@ const deleteAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1368,6 +1369,7 @@ const checkExistenceAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1397,7 +1399,7 @@ const createOrUpdateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1418,6 +1420,7 @@ const getAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1436,6 +1439,7 @@ const cancelAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1460,7 +1464,7 @@ const validateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1482,6 +1486,7 @@ const exportTemplateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1497,6 +1502,7 @@ const listAtScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.scope],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1513,6 +1519,7 @@ const deleteAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1527,6 +1534,7 @@ const checkExistenceAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1552,7 +1560,7 @@ const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1569,6 +1577,7 @@ const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1582,6 +1591,7 @@ const cancelAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1601,7 +1611,7 @@ const validateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1619,6 +1629,7 @@ const exportTemplateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1634,6 +1645,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1655,6 +1667,7 @@ const deleteAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1674,6 +1687,7 @@ const checkExistenceAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1704,7 +1718,7 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     Parameters.deploymentName,
     Parameters.groupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1726,6 +1740,7 @@ const getAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1744,6 +1759,7 @@ const cancelAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1768,7 +1784,7 @@ const validateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1790,6 +1806,7 @@ const exportTemplateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     Parameters.deploymentName,
     Parameters.groupId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1806,6 +1823,7 @@ const listAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.groupId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1827,6 +1845,7 @@ const deleteAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1846,6 +1865,7 @@ const checkExistenceAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1876,7 +1896,7 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1898,6 +1918,7 @@ const getAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1916,6 +1937,7 @@ const cancelAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1940,7 +1962,7 @@ const validateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1972,7 +1994,7 @@ const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1994,6 +2016,7 @@ const exportTemplateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -2010,6 +2033,7 @@ const listAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -2032,6 +2056,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkExistenceOperationSpec: coreHttp.OperationSpec = {
@@ -2052,6 +2077,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -2083,7 +2109,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -2106,6 +2132,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const cancelOperationSpec: coreHttp.OperationSpec = {
@@ -2125,6 +2152,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateOperationSpec: coreHttp.OperationSpec = {
@@ -2150,7 +2178,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -2183,7 +2211,7 @@ const whatIfOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -2206,6 +2234,7 @@ const exportTemplateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -2226,6 +2255,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const calculateTemplateHashOperationSpec: coreHttp.OperationSpec = {
@@ -2242,7 +2272,7 @@ const calculateTemplateHashOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.template,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -2259,6 +2289,7 @@ const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2274,6 +2305,7 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2289,6 +2321,7 @@ const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.groupId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2308,6 +2341,7 @@ const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -2328,5 +2362,6 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

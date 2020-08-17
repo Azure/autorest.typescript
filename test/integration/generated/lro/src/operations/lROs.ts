@@ -1501,7 +1501,7 @@ const put200SucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1527,7 +1527,7 @@ const put201SucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1572,6 +1572,7 @@ const post202ListOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
@@ -1596,7 +1597,7 @@ const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1622,7 +1623,7 @@ const put202Retry200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1648,7 +1649,7 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1674,7 +1675,7 @@ const put200UpdatingSucceeded204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1700,7 +1701,7 @@ const put201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1726,7 +1727,7 @@ const put200Acceptedcanceled200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1756,7 +1757,7 @@ const putNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1786,7 +1787,7 @@ const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1816,7 +1817,7 @@ const putAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1846,7 +1847,7 @@ const putAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1876,7 +1877,7 @@ const putAsyncNoRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1906,7 +1907,7 @@ const putAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1932,7 +1933,7 @@ const putNonResourceOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.sku,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1958,7 +1959,7 @@ const putAsyncNonResourceOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.sku,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1984,7 +1985,7 @@ const putSubResourceOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2010,7 +2011,7 @@ const putAsyncSubResourceOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2035,6 +2036,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpec = {
@@ -2058,6 +2060,7 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpe
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationSpec = {
@@ -2081,6 +2084,7 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationS
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2096,6 +2100,7 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -2119,6 +2124,7 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
@@ -2142,6 +2148,7 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
@@ -2165,6 +2172,7 @@ const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
@@ -2188,6 +2196,7 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2211,6 +2220,7 @@ const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2234,6 +2244,7 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
@@ -2257,6 +2268,7 @@ const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
@@ -2280,6 +2292,7 @@ const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
@@ -2303,6 +2316,7 @@ const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const post202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -2327,7 +2341,7 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2357,7 +2371,7 @@ const post202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2382,6 +2396,7 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec = {
@@ -2405,6 +2420,7 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec 
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.OperationSpec = {
@@ -2428,6 +2444,7 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.Operati
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2452,7 +2469,7 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2478,7 +2495,7 @@ const postAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2504,7 +2521,7 @@ const postAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -2530,7 +2547,7 @@ const postAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };

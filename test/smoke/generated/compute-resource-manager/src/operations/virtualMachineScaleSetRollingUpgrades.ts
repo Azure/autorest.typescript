@@ -245,5 +245,6 @@ const getLatestOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmScaleSetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -257,6 +257,7 @@ const listByJobExecutionOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.jobExecutionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByStepOperationSpec: coreHttp.OperationSpec = {
@@ -289,6 +290,7 @@ const listByStepOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobExecutionId,
     Parameters.stepName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -313,6 +315,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.stepName,
     Parameters.targetId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByJobExecutionNextOperationSpec: coreHttp.OperationSpec = {
@@ -344,6 +347,7 @@ const listByJobExecutionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobName,
     Parameters.jobExecutionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByStepNextOperationSpec: coreHttp.OperationSpec = {
@@ -376,5 +380,6 @@ const listByStepNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobExecutionId,
     Parameters.stepName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

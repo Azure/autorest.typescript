@@ -118,6 +118,7 @@ const postMethodLocalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
@@ -131,6 +132,7 @@ const postMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postPathLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -144,6 +146,7 @@ const postPathLocalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -157,5 +160,6 @@ const postSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  headerParameters: [Parameters.accept],
   serializer
 };

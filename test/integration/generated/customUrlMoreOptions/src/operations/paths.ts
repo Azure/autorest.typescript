@@ -69,5 +69,6 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

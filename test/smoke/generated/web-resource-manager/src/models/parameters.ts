@@ -7,9 +7,9 @@
  */
 
 import {
+  OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter,
-  OperationParameter
+  OperationQueryParameter
 } from "@azure/core-http";
 import {
   AppServiceCertificateOrder as AppServiceCertificateOrderMapper,
@@ -83,6 +83,18 @@ import {
   VnetRoute as VnetRouteMapper
 } from "../models/mappers";
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
@@ -135,6 +147,18 @@ export const contentType: OperationParameter = {
 export const appServiceCertificateOrder: OperationParameter = {
   parameterPath: "appServiceCertificateOrder",
   mapper: AppServiceCertificateOrderMapper
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -802,6 +826,30 @@ export const snapshotId: OperationURLParameter = {
   }
 };
 
+export const accept2: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/octet-stream",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept3: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/zip",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const webJobName: OperationURLParameter = {
   parameterPath: "webJobName",
   mapper: {
@@ -1129,6 +1177,18 @@ export const publicCertificate: OperationParameter = {
 export const publishingProfileOptions: OperationParameter = {
   parameterPath: "publishingProfileOptions",
   mapper: CsmPublishingProfileOptionsMapper
+};
+
+export const accept4: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "application/xml",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const softRestart: OperationQueryParameter = {

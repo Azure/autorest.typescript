@@ -75,5 +75,6 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.elasticPoolName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

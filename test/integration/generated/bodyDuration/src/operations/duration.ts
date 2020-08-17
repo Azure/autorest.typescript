@@ -112,6 +112,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putPositiveDurationOperationSpec: coreHttp.OperationSpec = {
@@ -125,7 +126,7 @@ const putPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.durationBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -141,6 +142,7 @@ const getPositiveDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {
@@ -155,5 +157,6 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

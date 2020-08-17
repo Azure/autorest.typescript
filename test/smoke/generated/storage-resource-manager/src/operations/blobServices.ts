@@ -125,6 +125,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
@@ -145,7 +146,7 @@ const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.blobServicesName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -166,5 +167,6 @@ const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.blobServicesName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -497,7 +497,7 @@ const checkAvailabilityOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.identifier,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -515,6 +515,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getControlCenterSsoRequestOperationSpec: coreHttp.OperationSpec = {
@@ -531,6 +532,7 @@ const getControlCenterSsoRequestOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendationsOperationSpec: coreHttp.OperationSpec = {
@@ -548,7 +550,7 @@ const listRecommendationsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -570,6 +572,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -591,6 +594,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -622,7 +626,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -644,6 +648,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -669,7 +674,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -692,6 +697,7 @@ const listOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -714,6 +720,7 @@ const getOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -737,7 +744,7 @@ const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -760,6 +767,7 @@ const deleteOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -783,7 +791,7 @@ const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -806,6 +814,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -825,6 +834,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
@@ -844,7 +854,7 @@ const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -866,6 +876,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
@@ -887,5 +898,6 @@ const listOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

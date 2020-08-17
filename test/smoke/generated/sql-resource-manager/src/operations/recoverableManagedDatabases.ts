@@ -128,6 +128,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -148,6 +149,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName,
     Parameters.recoverableDatabaseName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
@@ -167,5 +169,6 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.managedInstanceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

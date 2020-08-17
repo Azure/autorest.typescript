@@ -63,5 +63,6 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

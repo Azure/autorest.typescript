@@ -426,6 +426,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {
@@ -440,6 +441,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOverflowOperationSpec: coreHttp.OperationSpec = {
@@ -454,6 +456,7 @@ const getOverflowOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUnderflowOperationSpec: coreHttp.OperationSpec = {
@@ -468,6 +471,7 @@ const getUnderflowOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -481,7 +485,7 @@ const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -496,7 +500,7 @@ const putUtcMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -512,6 +516,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -526,6 +531,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getUtcUppercaseMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
@@ -540,6 +546,7 @@ const getUtcUppercaseMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putLocalPositiveOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -553,7 +560,7 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -569,6 +576,7 @@ const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -583,6 +591,7 @@ const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putLocalNegativeOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -596,7 +605,7 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -612,6 +621,7 @@ const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -626,6 +636,7 @@ const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -639,7 +650,7 @@ const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -655,6 +666,7 @@ const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -668,7 +680,7 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -684,6 +696,7 @@ const getLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -697,7 +710,7 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -713,6 +726,7 @@ const getLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getLocalNoOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -727,5 +741,6 @@ const getLocalNoOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

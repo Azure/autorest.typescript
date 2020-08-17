@@ -652,6 +652,7 @@ const get200Model204NoModelDefaultError200ValidOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model204NoModelDefaultError204ValidOperationSpec: coreHttp.OperationSpec = {
@@ -667,6 +668,7 @@ const get200Model204NoModelDefaultError204ValidOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model204NoModelDefaultError201InvalidOperationSpec: coreHttp.OperationSpec = {
@@ -682,6 +684,7 @@ const get200Model204NoModelDefaultError201InvalidOperationSpec: coreHttp.Operati
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model204NoModelDefaultError202NoneOperationSpec: coreHttp.OperationSpec = {
@@ -697,6 +700,7 @@ const get200Model204NoModelDefaultError202NoneOperationSpec: coreHttp.OperationS
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model204NoModelDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -712,6 +716,7 @@ const get200Model204NoModelDefaultError400ValidOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model201ModelDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {
@@ -729,6 +734,7 @@ const get200Model201ModelDefaultError200ValidOperationSpec: coreHttp.OperationSp
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model201ModelDefaultError201ValidOperationSpec: coreHttp.OperationSpec = {
@@ -746,6 +752,7 @@ const get200Model201ModelDefaultError201ValidOperationSpec: coreHttp.OperationSp
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200Model201ModelDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -763,6 +770,7 @@ const get200Model201ModelDefaultError400ValidOperationSpec: coreHttp.OperationSp
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {
@@ -783,6 +791,7 @@ const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: coreHttp.
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: coreHttp.OperationSpec = {
@@ -803,6 +812,7 @@ const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: coreHttp.
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: coreHttp.OperationSpec = {
@@ -823,6 +833,7 @@ const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: coreHttp.
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -843,6 +854,7 @@ const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: coreHttp.
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get202None204NoneDefaultError202NoneOperationSpec: coreHttp.OperationSpec = {
@@ -856,6 +868,7 @@ const get202None204NoneDefaultError202NoneOperationSpec: coreHttp.OperationSpec 
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get202None204NoneDefaultError204NoneOperationSpec: coreHttp.OperationSpec = {
@@ -869,6 +882,7 @@ const get202None204NoneDefaultError204NoneOperationSpec: coreHttp.OperationSpec 
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get202None204NoneDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -882,6 +896,7 @@ const get202None204NoneDefaultError400ValidOperationSpec: coreHttp.OperationSpec
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get202None204NoneDefaultNone202InvalidOperationSpec: coreHttp.OperationSpec = {
@@ -921,6 +936,7 @@ const getDefaultModelA200ValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDefaultModelA200NoneOperationSpec: coreHttp.OperationSpec = {
@@ -932,6 +948,7 @@ const getDefaultModelA200NoneOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDefaultModelA400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -944,6 +961,7 @@ const getDefaultModelA400ValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDefaultModelA400NoneOperationSpec: coreHttp.OperationSpec = {
@@ -956,6 +974,7 @@ const getDefaultModelA400NoneOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDefaultNone200InvalidOperationSpec: coreHttp.OperationSpec = {
@@ -995,6 +1014,7 @@ const get200ModelA200NoneOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA200ValidOperationSpec: coreHttp.OperationSpec = {
@@ -1006,6 +1026,7 @@ const get200ModelA200ValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA200InvalidOperationSpec: coreHttp.OperationSpec = {
@@ -1017,6 +1038,7 @@ const get200ModelA200InvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA400NoneOperationSpec: coreHttp.OperationSpec = {
@@ -1028,6 +1050,7 @@ const get200ModelA400NoneOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA400ValidOperationSpec: coreHttp.OperationSpec = {
@@ -1039,6 +1062,7 @@ const get200ModelA400ValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA400InvalidOperationSpec: coreHttp.OperationSpec = {
@@ -1050,6 +1074,7 @@ const get200ModelA400InvalidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const get200ModelA202ValidOperationSpec: coreHttp.OperationSpec = {
@@ -1061,5 +1086,6 @@ const get200ModelA202ValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };

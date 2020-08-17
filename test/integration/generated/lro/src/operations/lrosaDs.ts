@@ -971,7 +971,7 @@ const putNonRetry400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -997,7 +997,7 @@ const putNonRetry201Creating400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1023,7 +1023,7 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreHttp.OperationSpec 
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1053,7 +1053,7 @@ const putAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1078,6 +1078,7 @@ const deleteNonRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1101,6 +1102,7 @@ const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1124,6 +1126,7 @@ const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const postNonRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1148,7 +1151,7 @@ const postNonRetry400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1174,7 +1177,7 @@ const post202NonRetry400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1200,7 +1203,7 @@ const postAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1226,7 +1229,7 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreHttp.OperationSpec
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1256,7 +1259,7 @@ const putAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1286,7 +1289,7 @@ const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreHttp.OperationSpec 
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1303,6 +1306,7 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
@@ -1326,6 +1330,7 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const post202NoLocationOperationSpec: coreHttp.OperationSpec = {
@@ -1350,7 +1355,7 @@ const post202NoLocationOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1376,7 +1381,7 @@ const postAsyncRelativeRetryNoPayloadOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1402,7 +1407,7 @@ const put200InvalidJsonOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1432,7 +1437,7 @@ const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = 
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1466,7 +1471,7 @@ const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSp
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1491,6 +1496,7 @@ const delete202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
@@ -1514,6 +1520,7 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSpec = {
@@ -1541,6 +1548,7 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const post202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
@@ -1565,7 +1573,7 @@ const post202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1591,7 +1599,7 @@ const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec =
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };
@@ -1621,7 +1629,7 @@ const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationS
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
 };

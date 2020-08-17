@@ -503,7 +503,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -526,6 +526,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -548,6 +549,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -579,7 +581,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -612,7 +614,7 @@ const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -635,6 +637,7 @@ const getSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -655,6 +658,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -686,7 +690,7 @@ const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -719,7 +723,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -752,7 +756,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -774,5 +778,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -268,6 +268,7 @@ const listTablesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getTableOperationSpec: coreHttp.OperationSpec = {
@@ -287,6 +288,7 @@ const getTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createUpdateTableOperationSpec: coreHttp.OperationSpec = {
@@ -316,7 +318,7 @@ const createUpdateTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -352,6 +354,7 @@ const getTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateTableThroughputOperationSpec: coreHttp.OperationSpec = {
@@ -381,7 +384,7 @@ const updateTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

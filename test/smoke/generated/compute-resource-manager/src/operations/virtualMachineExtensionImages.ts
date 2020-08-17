@@ -125,6 +125,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.typeParam,
     Parameters.version
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listTypesOperationSpec: coreHttp.OperationSpec = {
@@ -153,6 +154,7 @@ const listTypesOperationSpec: coreHttp.OperationSpec = {
     Parameters.location,
     Parameters.publisherName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listVersionsOperationSpec: coreHttp.OperationSpec = {
@@ -187,5 +189,6 @@ const listVersionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.publisherName,
     Parameters.typeParam
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

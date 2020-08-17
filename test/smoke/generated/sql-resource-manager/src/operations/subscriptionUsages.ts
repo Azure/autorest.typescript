@@ -108,6 +108,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -127,6 +128,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName,
     Parameters.usageName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
@@ -145,5 +147,6 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.locationName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

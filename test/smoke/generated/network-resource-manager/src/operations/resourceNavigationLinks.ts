@@ -77,5 +77,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName,
     Parameters.subnetName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -123,7 +123,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.transparentDataEncryptionName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -145,5 +145,6 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.transparentDataEncryptionName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

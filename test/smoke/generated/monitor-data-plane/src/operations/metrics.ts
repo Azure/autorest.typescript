@@ -99,6 +99,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   ],
   headerParameters: [
     Parameters.contentType,
+    Parameters.accept,
     Parameters.contentType1,
     Parameters.contentLength,
     Parameters.authorization

@@ -523,6 +523,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.filter
   ],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetAllFiltersOperationSpec: coreHttp.OperationSpec = {
@@ -537,6 +538,7 @@ const resetAllFiltersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disableRecommendationForSubscriptionOperationSpec: coreHttp.OperationSpec = {
@@ -551,6 +553,7 @@ const disableRecommendationForSubscriptionOperationSpec: coreHttp.OperationSpec 
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId, Parameters.name],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHistoryForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -576,6 +579,7 @@ const listHistoryForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedRulesForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -601,6 +605,7 @@ const listRecommendedRulesForHostingEnvironmentOperationSpec: coreHttp.Operation
     Parameters.resourceGroupName,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disableAllForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -620,6 +625,7 @@ const disableAllForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetAllFiltersForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -639,6 +645,7 @@ const resetAllFiltersForHostingEnvironmentOperationSpec: coreHttp.OperationSpec 
     Parameters.resourceGroupName,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getRuleDetailsByHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -665,6 +672,7 @@ const getRuleDetailsByHostingEnvironmentOperationSpec: coreHttp.OperationSpec = 
     Parameters.name,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disableRecommendationForHostingEnvironmentOperationSpec: coreHttp.OperationSpec = {
@@ -685,6 +693,7 @@ const disableRecommendationForHostingEnvironmentOperationSpec: coreHttp.Operatio
     Parameters.name,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHistoryForWebAppOperationSpec: coreHttp.OperationSpec = {
@@ -710,6 +719,7 @@ const listHistoryForWebAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedRulesForWebAppOperationSpec: coreHttp.OperationSpec = {
@@ -735,6 +745,7 @@ const listRecommendedRulesForWebAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disableAllForWebAppOperationSpec: coreHttp.OperationSpec = {
@@ -754,6 +765,7 @@ const disableAllForWebAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetAllFiltersForWebAppOperationSpec: coreHttp.OperationSpec = {
@@ -773,6 +785,7 @@ const resetAllFiltersForWebAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getRuleDetailsByWebAppOperationSpec: coreHttp.OperationSpec = {
@@ -799,6 +812,7 @@ const getRuleDetailsByWebAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disableRecommendationForSiteOperationSpec: coreHttp.OperationSpec = {
@@ -819,6 +833,7 @@ const disableRecommendationForSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -842,6 +857,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHistoryForHostingEnvironmentNextOperationSpec: coreHttp.OperationSpec = {
@@ -867,6 +883,7 @@ const listHistoryForHostingEnvironmentNextOperationSpec: coreHttp.OperationSpec 
     Parameters.nextLink,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedRulesForHostingEnvironmentNextOperationSpec: coreHttp.OperationSpec = {
@@ -892,6 +909,7 @@ const listRecommendedRulesForHostingEnvironmentNextOperationSpec: coreHttp.Opera
     Parameters.nextLink,
     Parameters.hostingEnvironmentName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listHistoryForWebAppNextOperationSpec: coreHttp.OperationSpec = {
@@ -917,6 +935,7 @@ const listHistoryForWebAppNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listRecommendedRulesForWebAppNextOperationSpec: coreHttp.OperationSpec = {
@@ -942,5 +961,6 @@ const listRecommendedRulesForWebAppNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.siteName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

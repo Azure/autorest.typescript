@@ -237,6 +237,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.loadBalancerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -260,6 +261,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.loadBalancerName,
     Parameters.inboundNatRuleName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -282,6 +284,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.loadBalancerName,
     Parameters.inboundNatRuleName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -314,7 +317,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.loadBalancerName,
     Parameters.inboundNatRuleName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -337,5 +340,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.loadBalancerName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

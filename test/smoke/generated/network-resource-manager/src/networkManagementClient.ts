@@ -807,7 +807,7 @@ const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.bastionHostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -832,7 +832,7 @@ const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.bastionHostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -856,7 +856,7 @@ const getBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.bastionHostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -888,6 +888,7 @@ const getActiveSessionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.bastionHostName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disconnectActiveSessionsOperationSpec: coreHttp.OperationSpec = {
@@ -910,7 +911,7 @@ const disconnectActiveSessionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.bastionHostName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -932,6 +933,7 @@ const checkDnsNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const supportedSecurityProvidersOperationSpec: coreHttp.OperationSpec = {
@@ -953,6 +955,7 @@ const supportedSecurityProvidersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualWANName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.OperationSpec = {
@@ -984,7 +987,7 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
     Parameters.subscriptionId,
     Parameters.virtualWANName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1008,7 +1011,7 @@ const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName,
     Parameters.nextLink1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1031,7 +1034,7 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName,
     Parameters.nextLink1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1055,6 +1058,7 @@ const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.bastionHostName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1076,7 +1080,7 @@ const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName,
     Parameters.nextLink1
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

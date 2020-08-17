@@ -832,6 +832,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStaticSitesByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -852,6 +853,7 @@ const getStaticSitesByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -873,6 +875,7 @@ const getStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -898,7 +901,7 @@ const createOrUpdateStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -920,6 +923,7 @@ const deleteStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -945,7 +949,7 @@ const updateStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -969,6 +973,7 @@ const listStaticSiteUsersOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.authprovider
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
@@ -990,6 +995,7 @@ const deleteStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
     Parameters.authprovider,
     Parameters.userid
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
@@ -1014,7 +1020,7 @@ const updateStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
     Parameters.authprovider,
     Parameters.userid
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1037,6 +1043,7 @@ const getStaticSiteBuildsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
@@ -1059,6 +1066,7 @@ const getStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.prId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
@@ -1080,6 +1088,7 @@ const deleteStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.prId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -1106,7 +1115,7 @@ const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.Op
     Parameters.name,
     Parameters.prId
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1130,6 +1139,7 @@ const listStaticSiteBuildFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.prId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -1155,6 +1165,7 @@ const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpe
     Parameters.name,
     Parameters.prId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -1180,7 +1191,7 @@ const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreHttp.Operati
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1204,7 +1215,7 @@ const createUserRolesInvitationLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1227,6 +1238,7 @@ const listStaticSiteCustomDomainsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
@@ -1252,6 +1264,7 @@ const createOrUpdateStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec 
     Parameters.name,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
@@ -1273,6 +1286,7 @@ const deleteStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -1294,6 +1308,7 @@ const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreHttp.Operatio
     Parameters.name,
     Parameters.domainName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const detachStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -1314,6 +1329,7 @@ const detachStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteFunctionsOperationSpec: coreHttp.OperationSpec = {
@@ -1335,6 +1351,7 @@ const listStaticSiteFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -1359,6 +1376,7 @@ const listStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteSecretsOperationSpec: coreHttp.OperationSpec = {
@@ -1380,6 +1398,7 @@ const listStaticSiteSecretsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const resetStaticSiteApiKeyOperationSpec: coreHttp.OperationSpec = {
@@ -1400,7 +1419,7 @@ const resetStaticSiteApiKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -1421,6 +1440,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStaticSitesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -1441,6 +1461,7 @@ const getStaticSitesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteUsersNextOperationSpec: coreHttp.OperationSpec = {
@@ -1463,6 +1484,7 @@ const listStaticSiteUsersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.authprovider
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getStaticSiteBuildsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1484,6 +1506,7 @@ const getStaticSiteBuildsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteBuildFunctionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1506,6 +1529,7 @@ const listStaticSiteBuildFunctionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink,
     Parameters.prId
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteCustomDomainsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1527,6 +1551,7 @@ const listStaticSiteCustomDomainsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listStaticSiteFunctionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1548,5 +1573,6 @@ const listStaticSiteFunctionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.name,
     Parameters.nextLink
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

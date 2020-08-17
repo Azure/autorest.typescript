@@ -319,6 +319,7 @@ const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -341,6 +342,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -373,7 +375,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -398,6 +400,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listConnectionInfoOperationSpec: coreHttp.OperationSpec = {
@@ -420,6 +423,7 @@ const listConnectionInfoOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const regenerateAuthTokenOperationSpec: coreHttp.OperationSpec = {
@@ -443,6 +447,7 @@ const regenerateAuthTokenOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const startOperationSpec: coreHttp.OperationSpec = {
@@ -466,5 +471,6 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.notebookWorkspaceName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

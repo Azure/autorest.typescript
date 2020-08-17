@@ -555,6 +555,7 @@ const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -579,6 +580,7 @@ const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -606,6 +608,7 @@ const getSimpleOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -620,7 +623,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
@@ -635,6 +638,7 @@ const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -649,7 +653,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.wrappedLists,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
@@ -675,6 +679,7 @@ const getEmptyListOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -699,6 +704,7 @@ const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -731,6 +737,7 @@ const getRootListOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -763,6 +770,7 @@ const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -795,6 +803,7 @@ const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -819,6 +828,7 @@ const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -844,6 +854,7 @@ const listContainersOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.comp],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -857,6 +868,7 @@ const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.comp1, Parameters.restype],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -894,6 +906,7 @@ const getAclsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.comp2, Parameters.restype1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -920,6 +933,7 @@ const listBlobsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.comp, Parameters.restype1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
 };
@@ -942,5 +956,6 @@ const jsonOutputOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept2],
   serializer
 };

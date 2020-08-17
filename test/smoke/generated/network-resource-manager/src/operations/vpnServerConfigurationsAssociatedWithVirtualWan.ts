@@ -112,5 +112,6 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualWANName
   ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -124,7 +124,7 @@ const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.input,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "binary",
   serializer
 };
@@ -138,7 +138,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.input1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -152,7 +152,7 @@ const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.input2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType2],
+  headerParameters: [Parameters.contentType2, Parameters.accept2],
   mediaType: "text",
   serializer
 };
