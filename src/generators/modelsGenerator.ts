@@ -385,7 +385,7 @@ const writeChoices = (
   modelsIndexFile: SourceFile
 ) =>
   clientDetails.unions.forEach(choice => {
-    const values = [...choice.values];
+    const values = choice.properties.map(p => p.value);
     if (choice.schemaType === SchemaType.Choice) {
       values.push("string");
     }
