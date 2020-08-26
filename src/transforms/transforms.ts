@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ClientDetails } from "../models/clientDetails";
-import { UnionDetails } from "../models/unionDetails";
+import { UnionDetails, NameValuePair } from "../models/unionDetails";
 
 import {
   CodeModel,
@@ -10,11 +10,7 @@ import {
   SealedChoiceSchema,
   SchemaType
 } from "@azure-tools/codemodel";
-import {
-  normalizeName,
-  NameType,
-  guardReservedNames
-} from "../utils/nameUtils";
+import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { transformMappers } from "./mapperTransforms";
@@ -39,6 +35,21 @@ export async function transformChoices(codeModel: CodeModel) {
   return choices.map(transformChoice);
 }
 
+function extractProperties(
+  choice: ChoiceSchema | SealedChoiceSchema
+): NameValuePair[] {
+  return choice.choices.map(c => {
+    const metadata = getLanguageMetadata(c.language);
+    return {
+      name: metadata.name,
+      value: getStringForValue(
+        c.value,
+        choice?.choiceType?.type ?? SchemaType.String
+      )
+    };
+  });
+}
+
 export function transformChoice(
   choice: ChoiceSchema | SealedChoiceSchema
 ): UnionDetails {
@@ -51,14 +62,7 @@ export function transformChoice(
     schemaType,
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
-    names: choice.choices.map(c =>
-      c.language.javascript
-        ? c.language.javascript.name
-        : c.language.default.name
-    ),
-    values: choice.choices.map(c =>
-      getStringForValue(c.value, choice?.choiceType?.type ?? SchemaType.String)
-    )
+    properties: extractProperties(choice)
   };
 }
 
