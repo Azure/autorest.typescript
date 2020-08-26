@@ -10,6 +10,7 @@ export interface UnionDetails {
   name: string;
   description: string;
   serializedName: string;
+  names: string[];
   values: string[];
   schemaType: SchemaType;
 }

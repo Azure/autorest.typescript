@@ -51,6 +51,11 @@ export function transformChoice(
     schemaType,
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
+    names: choice.choices.map(c =>
+      c.language.javascript
+        ? c.language.javascript.name
+        : c.language.default.name
+    ),
     values: choice.choices.map(c =>
       getStringForValue(c.value, choice?.choiceType?.type ?? SchemaType.String)
     )
