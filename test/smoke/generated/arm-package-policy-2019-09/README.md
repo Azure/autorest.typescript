@@ -14,10 +14,12 @@ npm install arm-package-policy-2019-09
 ```
 
 ### How to use
+#### Authentication
+One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.
 
 #### Sample code
 
-Refer the sample code in the [azure-sdk-for-js-samples](https://github.com/Azure/azure-sdk-for-js-samples) repository.
+Refer the sample code in the [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) repository.
 
 ## Related projects
 
