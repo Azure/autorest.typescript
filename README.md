@@ -183,17 +183,17 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 
 # Development
 
-### Building the project
-After cloning the repo, execute:
-- `npm install -g gulp` (gulp should be installed globally too)
-- `npm install`
-- `npm run build`
-
 ### IMPORTANT NOTES
 
 This project uses a git submodule for dependent code. When cloning this repository use `git clone --recursive ...` or perform a `git submodule update --init --recursive` after the project is cloned.
 
 This project also uses dotnet 2.0 and gulp v3. gulp v3 is not compatible with Node v12, so use Node v10 (lts/dubnium) until gulp is updated to v4.
+
+### Building the project
+After cloning the repo, execute:
+- `npm install -g gulp` (gulp should be installed globally too)
+- `npm install`
+- `npm run build`
 
 
 ### Testing the developed changes
