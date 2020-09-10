@@ -22,7 +22,11 @@ npm install @azure/multiapi-test
 
 ### How to use
 
-#### nodejs - Authentication, client creation and getEmpty paths as an example written in TypeScript.
+#### Authentication
+
+One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.
+
+#### nodejs - client creation and getEmpty paths as an example written in TypeScript.
 
 ##### Install @azure/ms-rest-nodeauth
 
