@@ -1067,7 +1067,8 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section($"Authentication", () => 
             {
-                builder.Section("One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.");
+                builder.Line("One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.");
+                builder.Line("");
                 
             });
             builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
