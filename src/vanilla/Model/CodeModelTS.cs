@@ -1075,7 +1075,7 @@ namespace AutoRest.TypeScript.Model
                 builder.Line();
                 builder.Section("Sample code", () =>
                 {
-                    builder.Line("While the below sample uses the interactive login, other authentication options can be found in [the README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package");
+                    builder.Line("While the below sample uses the interactive login, other authentication options can be found in the [README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package");
                     builder.TypeScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
                 });
             });
