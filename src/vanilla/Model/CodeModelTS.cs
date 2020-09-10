@@ -1065,14 +1065,13 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToUseInNodeJs(MarkdownBuilder builder)
         {
-            builder.Section($"Authentication", () => 
-            {
-                builder.Line("One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.");
-                builder.Line("");
-                
-            });
             builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
             {
+                builder.Section($"Authentication", () =>
+                {
+                    builder.Line("There are several methods to authenticate the client, please refer to [the README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) to learn more about supported authentication options.");
+                    builder.Line("");
+                });
                 builder.Section("Install @azure/ms-rest-nodeauth", () =>
                 {
                     builder.Line($"- Please install minimum version of `\"@azure/ms-rest-nodeauth\": \"{msRestNodeAuthVersion}\"`.");
