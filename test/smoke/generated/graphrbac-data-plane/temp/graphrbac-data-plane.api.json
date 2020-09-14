@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -2278,7 +2278,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "graphrbac-data-plane!DirectoryObject#deletionTimestamp:member",
-              "docComment": "/**\n * The time at which the directory object was deleted.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2304,7 +2304,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "graphrbac-data-plane!DirectoryObject#objectId:member",
-              "docComment": "/**\n * The object ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2536,7 +2536,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "graphrbac-data-plane!Domain#authenticationType:member",
-              "docComment": "/**\n * the type of the authentication into the domain.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2561,7 +2561,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "graphrbac-data-plane!Domain#isDefault:member",
-              "docComment": "/**\n * if this is the default domain in the tenant.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2586,7 +2586,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "graphrbac-data-plane!Domain#isVerified:member",
-              "docComment": "/**\n * if this domain's ownership is verified.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

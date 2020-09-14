@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -1142,7 +1142,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ApplicationStackCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1311,7 +1311,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceCertificate#provisioningState:member",
-              "docComment": "/**\n * Status of the Key Vault secret.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1353,7 +1353,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceCertificateCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1553,7 +1553,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceCertificateOrderCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2601,7 +2601,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#allowedMultiSizes:member",
-              "docComment": "/**\n * List of comma separated strings describing which VM sizes are allowed for front-ends.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2626,7 +2626,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#allowedWorkerSizes:member",
-              "docComment": "/**\n * List of comma separated strings describing which VM sizes are allowed for workers.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2706,7 +2706,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#databaseEdition:member",
-              "docComment": "/**\n * Edition of the metadata database for the App Service Environment, e.g. \"Standard\".\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2731,7 +2731,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#databaseServiceObjective:member",
-              "docComment": "/**\n * Service objective of the metadata database for the App Service Environment, e.g. \"S0\".\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2756,7 +2756,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#defaultFrontEndScaleFactor:member",
-              "docComment": "/**\n * Default Scale Factor for FrontEnds.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2831,7 +2831,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#environmentCapacities:member",
-              "docComment": "/**\n * Current total, used, and available worker capacities.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2861,7 +2861,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#environmentIsHealthy:member",
-              "docComment": "/**\n * True/false indicating whether the App Service Environment is healthy.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2886,7 +2886,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#environmentStatus:member",
-              "docComment": "/**\n * Detailed message about with results of the last check of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3012,7 +3012,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#lastAction:member",
-              "docComment": "/**\n * Last deployment action on the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3037,7 +3037,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#lastActionResult:member",
-              "docComment": "/**\n * Result of the last deployment action on the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3087,7 +3087,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#maximumNumberOfMachines:member",
-              "docComment": "/**\n * Maximum number of VMs in the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3217,7 +3217,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#provisioningState:member",
-              "docComment": "/**\n * Provisioning state of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3243,7 +3243,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#resourceGroup:member",
-              "docComment": "/**\n * Resource group of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3318,7 +3318,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#status:member",
-              "docComment": "/**\n * Current status of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3344,7 +3344,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#subscriptionId:member",
-              "docComment": "/**\n * Subscription of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3394,7 +3394,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#upgradeDomains:member",
-              "docComment": "/**\n * Number of upgrade domains of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3444,7 +3444,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironment#vipMappings:member",
-              "docComment": "/**\n * Description of IP SSL mapping for the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3621,7 +3621,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServiceEnvironmentCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6933,7 +6933,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AppServicePlanCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8947,7 +8947,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ArmIdWrapper#id:member",
-              "docComment": "",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9671,7 +9671,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!AzureStorageInfoValue#state:member",
-              "docComment": "/**\n * State of the storage account.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9970,7 +9970,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!BackupItemCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10215,7 +10215,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!BackupSchedule#lastExecutionTime:member",
-              "docComment": "/**\n * Last time when this schedule was triggered.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10338,7 +10338,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!BillingMeterCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10634,7 +10634,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10705,7 +10705,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#issuer:member",
-              "docComment": "/**\n * Certificate Issuer.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10730,7 +10730,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#notAfter:member",
-              "docComment": "/**\n * Date Certificate is valid to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10756,7 +10756,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#notBefore:member",
-              "docComment": "/**\n * Date Certificate is valid from.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10782,7 +10782,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#rawData:member",
-              "docComment": "/**\n * Raw certificate data.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10807,7 +10807,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#serialNumber:member",
-              "docComment": "/**\n * Certificate Serial Number.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10832,7 +10832,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#signatureAlgorithm:member",
-              "docComment": "/**\n * Certificate Signature algorithm.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10857,7 +10857,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#subject:member",
-              "docComment": "/**\n * Certificate Subject.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10882,7 +10882,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#thumbprint:member",
-              "docComment": "/**\n * Certificate Thumbprint.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10907,7 +10907,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CertificateDetails#version:member",
-              "docComment": "/**\n * Certificate Version.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11992,7 +11992,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties#clientId:member",
-              "docComment": "/**\n * Client Id of user assigned identity\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12017,7 +12017,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties#principalId:member",
-              "docComment": "/**\n * Principal Id of user assigned identity\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13450,7 +13450,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ContinuousWebJobCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13745,7 +13745,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CsmOperationCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14368,7 +14368,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!CsmUsageQuotaCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14912,7 +14912,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponse#error:member",
-              "docComment": "/**\n * Error model.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14954,7 +14954,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseError#code:member",
-              "docComment": "/**\n * Standardized string to programmatically identify the error.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15009,7 +15009,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseError#innererror:member",
-              "docComment": "/**\n * More information to debug error.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15034,7 +15034,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseError#message:member",
-              "docComment": "/**\n * Detailed error description and debugging information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15059,7 +15059,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseError#target:member",
-              "docComment": "/**\n * Detailed error description and debugging information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15100,7 +15100,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseErrorDetailsItem#code:member",
-              "docComment": "/**\n * Standardized string to programmatically identify the error.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15125,7 +15125,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseErrorDetailsItem#message:member",
-              "docComment": "/**\n * Detailed error description and debugging information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15150,7 +15150,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DefaultErrorResponseErrorDetailsItem#target:member",
-              "docComment": "/**\n * Detailed error description and debugging information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15251,7 +15251,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DeletedWebAppCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15610,7 +15610,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DeploymentCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16046,7 +16046,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DetectorInfo#category:member",
-              "docComment": "/**\n * Support Category\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16071,7 +16071,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DetectorInfo#description:member",
-              "docComment": "/**\n * Short description of the detector and its purpose\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16096,7 +16096,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DetectorInfo#subCategory:member",
-              "docComment": "/**\n * Support Sub Category\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16121,7 +16121,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DetectorInfo#supportTopicId:member",
-              "docComment": "/**\n * Support Topic Id\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16210,7 +16210,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DetectorResponseCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16356,7 +16356,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DiagnosticAnalysisCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16457,7 +16457,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DiagnosticCategoryCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16596,7 +16596,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DiagnosticDetectorCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19779,7 +19779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DomainCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19850,7 +19850,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DomainControlCenterSsoRequest#postParameterKey:member",
-              "docComment": "/**\n * Post parameter key.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19875,7 +19875,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DomainControlCenterSsoRequest#postParameterValue:member",
-              "docComment": "/**\n * Post parameter value. Client should use 'application/x-www-form-urlencoded' encoding for this value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19900,7 +19900,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DomainControlCenterSsoRequest#url:member",
-              "docComment": "/**\n * URL where the single sign-on request is to be made.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19971,7 +19971,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!DomainOwnershipIdentifierCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22087,7 +22087,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!FunctionEnvelopeCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22218,7 +22218,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!GeoRegionCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22734,7 +22734,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!HostingEnvironmentProfile#name:member",
-              "docComment": "/**\n * Name of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22759,7 +22759,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!HostingEnvironmentProfile#type:member",
-              "docComment": "/**\n * Resource type of the App Service Environment.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23151,7 +23151,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!HostNameBindingCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23538,7 +23538,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!HybridConnectionCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23699,7 +23699,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!IdentifierCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23886,7 +23886,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!InboundEnvironmentEndpointCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24684,7 +24684,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ManagedServiceIdentity#principalId:member",
-              "docComment": "/**\n * Principal Id of managed service identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24709,7 +24709,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ManagedServiceIdentity#tenantId:member",
-              "docComment": "/**\n * Tenant of managed service identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25474,7 +25474,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!MSDeployLogEntry#message:member",
-              "docComment": "/**\n * Log entry message\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25499,7 +25499,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!MSDeployLogEntry#time:member",
-              "docComment": "/**\n * Timestamp of log entry\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25525,7 +25525,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!MSDeployLogEntry#type:member",
-              "docComment": "/**\n * Log entry type\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25740,7 +25740,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!NameIdentifierCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26488,7 +26488,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!OutboundEnvironmentEndpointCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26559,7 +26559,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PerfMonCounterCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27031,7 +27031,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PremierAddOnOfferCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27653,7 +27653,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PrivateLinkResourceProperties#groupId:member",
-              "docComment": "/**\n * GroupId of a private link resource\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27678,7 +27678,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PrivateLinkResourceProperties#requiredMembers:member",
-              "docComment": "/**\n * RequiredMembers of a private link resource\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27703,7 +27703,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PrivateLinkResourceProperties#requiredZoneNames:member",
-              "docComment": "/**\n * RequiredZoneNames of a private link resource\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27856,7 +27856,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProcessInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27957,7 +27957,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProcessModuleInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28067,7 +28067,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProcessThreadInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28691,7 +28691,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProxyOnlyResource#id:member",
-              "docComment": "/**\n * Resource Id.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28741,7 +28741,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProxyOnlyResource#name:member",
-              "docComment": "/**\n * Resource Name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28766,7 +28766,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ProxyOnlyResource#type:member",
-              "docComment": "/**\n * Resource type.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28855,7 +28855,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!PublicCertificateCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29333,7 +29333,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!RecommendationCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31359,7 +31359,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Resource Id.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31434,7 +31434,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!Resource#name:member",
-              "docComment": "/**\n * Resource Name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31484,7 +31484,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!Resource#type:member",
-              "docComment": "/**\n * Resource type.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31525,7 +31525,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ResourceCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31621,7 +31621,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ResourceHealthMetadataCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32172,7 +32172,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ResourceMetricAvailability#retention:member",
-              "docComment": "/**\n * Retention period for the current time grain.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32197,7 +32197,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ResourceMetricAvailability#timeGrain:member",
-              "docComment": "/**\n * Time grain .\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32277,7 +32277,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!ResourceMetricDefinitionCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -33901,7 +33901,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SiteConfig#machineKey:member",
-              "docComment": "/**\n * Site MachineKey.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34818,7 +34818,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SiteConfigResourceCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34928,7 +34928,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SiteConfigurationSnapshotInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35056,7 +35056,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SiteExtensionInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36232,7 +36232,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SkuInfoCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36459,7 +36459,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SlotDifferenceCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36530,7 +36530,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SlotSwapStatus#destinationSlotName:member",
-              "docComment": "/**\n * The destination slot of the last swap operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36555,7 +36555,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SlotSwapStatus#sourceSlotName:member",
-              "docComment": "/**\n * The source slot of the last swap operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36580,7 +36580,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SlotSwapStatus#timestampUtc:member",
-              "docComment": "/**\n * The time the last successful slot swap completed.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36743,7 +36743,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SnapshotCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37185,7 +37185,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!SourceControlCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37911,7 +37911,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StampCapacityCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38087,7 +38087,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StaticSiteBuildCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38249,7 +38249,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StaticSiteCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38359,7 +38359,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StaticSiteCustomDomainOverviewCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38469,7 +38469,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StaticSiteFunctionOverviewCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39887,7 +39887,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!StaticSiteUserCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40454,7 +40454,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!TldLegalAgreementCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40621,7 +40621,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!TopLevelDomainCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40971,7 +40971,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!TriggeredJobHistoryCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -41147,7 +41147,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!TriggeredWebJobCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -41341,7 +41341,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!UsageCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -42395,7 +42395,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!VirtualNetworkProfile#name:member",
-              "docComment": "/**\n * Name of the Virtual Network (read-only).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -42445,7 +42445,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!VirtualNetworkProfile#type:member",
-              "docComment": "/**\n * Resource type of the Virtual Network (read-only).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -42693,7 +42693,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!WebAppCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -42764,7 +42764,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!WebAppInstanceCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -60760,7 +60760,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!WebJobCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64685,7 +64685,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!WorkerPool#instanceNames:member",
-              "docComment": "/**\n * Names of all instances in the worker pool (read only).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64801,7 +64801,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "web-resource-manager!WorkerPoolCollection#nextLink:member",
-              "docComment": "/**\n * Link to next page of resources.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

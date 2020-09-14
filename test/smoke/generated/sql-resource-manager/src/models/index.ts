@@ -15,13 +15,22 @@ export interface Resource {
   /**
    * Resource ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Resource name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * Resource type.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
 }
@@ -165,25 +174,43 @@ export interface Metric {
   /**
    * The start time for the metric (ISO-8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The end time for the metric (ISO-8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * The time step to be used to summarize the metric values.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly timeGrain?: string;
   /**
    * The unit of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UnitType;
   /**
    * The name information for the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: MetricName;
   /**
    * The metric values for the specified time window and timestep.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricValues?: MetricValue[];
 }
@@ -195,9 +222,15 @@ export interface MetricName {
   /**
    * The name of the database metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: string;
   /**
    * The friendly name of the database metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localizedValue?: string;
 }
@@ -209,25 +242,43 @@ export interface MetricValue {
   /**
    * The number of values for the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly count?: number;
   /**
    * The average value of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly average?: number;
   /**
    * The max value of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maximum?: number;
   /**
    * The min value of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minimum?: number;
   /**
    * The metric timestamp (ISO-8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly timestamp?: Date;
   /**
    * The total value of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly total?: number;
 }
@@ -249,21 +300,36 @@ export interface MetricDefinition {
   /**
    * The name information for the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: MetricName;
   /**
    * The primary aggregation type defining how metric values are displayed.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryAggregationType?: PrimaryAggregationType;
   /**
    * The resource uri of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly resourceUri?: string;
   /**
    * The unit of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly unit?: UnitDefinitionType;
   /**
    * The list of database metric availabilities for the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricAvailabilities?: MetricAvailability[];
 }
@@ -275,9 +341,15 @@ export interface MetricAvailability {
   /**
    * The length of retention for the database metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly retention?: string;
   /**
    * The granularity of the database metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeGrain?: string;
 }
@@ -387,13 +459,22 @@ export interface SloUsageMetric {
   /**
    * The serviceLevelObjective for SLO usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serviceLevelObjective?: ServiceObjectiveName;
   /**
    * The serviceLevelObjectiveId for SLO usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serviceLevelObjectiveId?: string;
   /**
    * Gets or sets inRangeTimeRatio for SLO usage metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inRangeTimeRatio?: number;
 }
@@ -435,29 +516,50 @@ export interface ServerUsage {
   /**
    * Name of the server usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The name of the resource.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceName?: string;
   /**
    * The metric display name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly displayName?: string;
   /**
    * The current value of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * The current limit of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * The units of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly unit?: string;
   /**
    * The next reset time for the metric (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextResetTime?: Date;
 }
@@ -479,29 +581,50 @@ export interface DatabaseUsage {
   /**
    * The name of the usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The name of the resource.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceName?: string;
   /**
    * The usage metric display name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly displayName?: string;
   /**
    * The current value of the usage metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * The current limit of the usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * The units of the usage metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly unit?: string;
   /**
    * The next reset time for the usage metric (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextResetTime?: Date;
 }
@@ -517,13 +640,22 @@ export interface AutomaticTuningOptions {
   /**
    * Automatic tuning option actual state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly actualState?: AutomaticTuningOptionModeActual;
   /**
    * Reason code if desired and actual state are different.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly reasonCode?: number;
   /**
    * Reason description if desired and actual state are different.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reasonDesc?: AutomaticTuningDisabledReason;
 }
@@ -535,9 +667,15 @@ export interface EncryptionProtectorListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: EncryptionProtector[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -577,9 +715,15 @@ export interface PartnerInfo {
   /**
    * Geo location of the partner server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * Replication role of the partner server.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationRole?: FailoverGroupReplicationRole;
 }
@@ -613,9 +757,15 @@ export interface FailoverGroupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: FailoverGroup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -627,9 +777,15 @@ export interface OperationListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Operation[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -641,17 +797,29 @@ export interface Operation {
   /**
    * The name of the operation being performed on this particular object.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The localized display information for this particular operation / action.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly display?: OperationDisplay;
   /**
    * The intended executor of the operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly origin?: OperationOrigin;
   /**
    * Additional descriptions for the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: { [propertyName: string]: any };
 }
@@ -663,17 +831,29 @@ export interface OperationDisplay {
   /**
    * The localized friendly form of the resource provider name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provider?: string;
   /**
    * The localized friendly form of the resource type related to this action/operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resource?: string;
   /**
    * The localized friendly name for the operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operation?: string;
   /**
    * The localized friendly description for the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
 }
@@ -685,9 +865,15 @@ export interface ServerKeyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerKey[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -699,9 +885,15 @@ export interface SyncAgentListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncAgent[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -713,6 +905,9 @@ export interface SyncAgentKeyProperties {
   /**
    * Key of sync agent.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly syncAgentKey?: string;
 }
 
@@ -723,9 +918,15 @@ export interface SyncAgentLinkedDatabaseListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncAgentLinkedDatabase[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -737,9 +938,15 @@ export interface SyncDatabaseIdListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncDatabaseIdProperties[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -751,6 +958,9 @@ export interface SyncDatabaseIdProperties {
   /**
    * ARM resource id of sync database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
 }
 
@@ -761,9 +971,15 @@ export interface SyncFullSchemaPropertiesListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncFullSchemaProperties[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -775,9 +991,15 @@ export interface SyncFullSchemaProperties {
   /**
    * List of tables in the database full schema.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly tables?: SyncFullSchemaTable[];
   /**
    * Last update time of the database schema.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastUpdateTime?: Date;
 }
@@ -789,21 +1011,36 @@ export interface SyncFullSchemaTable {
   /**
    * List of columns in the table of database full schema.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly columns?: SyncFullSchemaTableColumn[];
   /**
    * Error id of the table.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorId?: string;
   /**
    * If there is error in the table.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly hasError?: boolean;
   /**
    * Name of the table.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * Quoted name of the table.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly quotedName?: string;
 }
@@ -815,29 +1052,50 @@ export interface SyncFullSchemaTableColumn {
   /**
    * Data size of the column.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly dataSize?: string;
   /**
    * Data type of the column.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dataType?: string;
   /**
    * Error id of the column.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorId?: string;
   /**
    * If there is error in the table.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasError?: boolean;
   /**
    * If it is the primary key of the table.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isPrimaryKey?: boolean;
   /**
    * Name of the column.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * Quoted name of the column.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly quotedName?: string;
 }
@@ -849,9 +1107,15 @@ export interface SyncGroupLogListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncGroupLogProperties[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -863,25 +1127,43 @@ export interface SyncGroupLogProperties {
   /**
    * Timestamp of the sync group log.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly timestamp?: Date;
   /**
    * Type of the sync group log.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: SyncGroupLogType;
   /**
    * Source of the sync group log.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly source?: string;
   /**
    * Details of the sync group log.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: string;
   /**
    * TracingId of the sync group log.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly tracingId?: string;
   /**
    * OperationStatus of the sync group log.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationStatus?: string;
 }
@@ -939,9 +1221,15 @@ export interface SyncGroupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncGroup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -953,9 +1241,15 @@ export interface SyncMemberListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SyncMember[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -967,9 +1261,15 @@ export interface SubscriptionUsageListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SubscriptionUsage[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -981,9 +1281,15 @@ export interface VirtualClusterListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: VirtualCluster[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -999,6 +1305,9 @@ export interface VirtualClusterUpdate {
   /**
    * Subnet resource ID for the virtual cluster.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly subnetId?: string;
   /**
    * If the service has different generations of hardware, for the same SKU, then that can be captured here.
@@ -1006,6 +1315,9 @@ export interface VirtualClusterUpdate {
   family?: string;
   /**
    * List of resources in this virtual cluster.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly childResources?: string[];
 }
@@ -1017,9 +1329,15 @@ export interface VirtualNetworkRuleListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: VirtualNetworkRule[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1031,9 +1349,15 @@ export interface ExtendedDatabaseBlobAuditingPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ExtendedDatabaseBlobAuditingPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1045,9 +1369,15 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ExtendedServerBlobAuditingPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1059,9 +1389,15 @@ export interface ServerBlobAuditingPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerBlobAuditingPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1073,9 +1409,15 @@ export interface DatabaseBlobAuditingPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: DatabaseBlobAuditingPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1115,9 +1457,15 @@ export interface DatabaseVulnerabilityAssessmentListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: DatabaseVulnerabilityAssessment[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1129,9 +1477,15 @@ export interface JobAgentListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: JobAgent[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1179,9 +1533,15 @@ export interface JobCredentialListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: JobCredential[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1193,9 +1553,15 @@ export interface JobExecutionListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: JobExecution[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1207,13 +1573,22 @@ export interface JobExecutionTarget {
   /**
    * The type of the target.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly type?: JobTargetType;
   /**
    * The server name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The database name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseName?: string;
 }
@@ -1225,9 +1600,15 @@ export interface JobListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Job[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1265,9 +1646,15 @@ export interface JobStepListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: JobStep[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1361,9 +1748,15 @@ export interface JobTargetGroupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: JobTargetGroup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1409,9 +1802,15 @@ export interface JobVersionListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Resource[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1423,9 +1822,15 @@ export interface LongTermRetentionBackupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: LongTermRetentionBackup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1437,9 +1842,15 @@ export interface ManagedBackupShortTermRetentionPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedBackupShortTermRetentionPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1455,13 +1866,22 @@ export interface AutomaticTuningServerOptions {
   /**
    * Automatic tuning option actual state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly actualState?: AutomaticTuningOptionModeActual;
   /**
    * Reason code if desired and actual state are different.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly reasonCode?: number;
   /**
    * Reason description if desired and actual state are different.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reasonDesc?: AutomaticTuningServerReason;
 }
@@ -1473,9 +1893,15 @@ export interface ServerDnsAliasListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerDnsAlias[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1497,9 +1923,15 @@ export interface LogicalServerSecurityAlertPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerSecurityAlertPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1511,9 +1943,15 @@ export interface RestorableDroppedManagedDatabaseListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: RestorableDroppedManagedDatabase[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1525,9 +1963,15 @@ export interface RestorePointListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: RestorePoint[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1549,9 +1993,15 @@ export interface ManagedDatabaseSecurityAlertPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedDatabaseSecurityAlertPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1563,9 +2013,15 @@ export interface ManagedServerSecurityAlertPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedServerSecurityAlertPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1577,9 +2033,15 @@ export interface SensitivityLabelListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: SensitivityLabel[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1591,9 +2053,15 @@ export interface ManagedInstanceAdministratorListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceAdministrator[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1605,9 +2073,15 @@ export interface DatabaseOperationListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: DatabaseOperation[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1619,9 +2093,15 @@ export interface ElasticPoolOperationListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ElasticPoolOperation[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1633,9 +2113,15 @@ export interface DatabaseListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Database[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1695,29 +2181,50 @@ export interface DatabaseUpdate {
   /**
    * The status of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: DatabaseStatus;
   /**
    * The ID of the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseId?: string;
   /**
    * The creation date of the database (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationDate?: Date;
   /**
    * The current service level objective name of the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentServiceObjectiveName?: string;
   /**
    * The requested service level objective name of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedServiceObjectiveName?: string;
   /**
    * The default secondary region for this database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly defaultSecondaryLocation?: string;
   /**
    * Failover Group resource identifier that this database belongs to.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
   /**
@@ -1759,9 +2266,15 @@ export interface DatabaseUpdate {
   /**
    * The max log size for this database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maxLogSizeBytes?: number;
   /**
    * This records the earliest start date and time that restore is available for this database (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
   /**
@@ -1775,6 +2288,9 @@ export interface DatabaseUpdate {
   /**
    * The name and tier of the SKU.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentSku?: Sku;
   /**
    * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
@@ -1787,9 +2303,15 @@ export interface DatabaseUpdate {
   /**
    * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly pausedDate?: Date;
   /**
    * The date when database was resumed by user action or database login (ISO8601 format). Null if the database is paused.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resumedDate?: Date;
 }
@@ -1811,9 +2333,15 @@ export interface ElasticPoolListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ElasticPool[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1869,9 +2397,15 @@ export interface VulnerabilityAssessmentScanRecordListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: VulnerabilityAssessmentScanRecord[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1883,9 +2417,15 @@ export interface VulnerabilityAssessmentScanError {
   /**
    * The error code.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly code?: string;
   /**
    * The error message.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
 }
@@ -1925,6 +2465,9 @@ export interface PartnerRegionInfo {
   /**
    * Replication role of the partner managed instances.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly replicationRole?: InstanceFailoverGroupReplicationRole;
 }
 
@@ -1949,9 +2492,15 @@ export interface InstanceFailoverGroupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: InstanceFailoverGroup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1963,9 +2512,15 @@ export interface BackupShortTermRetentionPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: BackupShortTermRetentionPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1977,9 +2532,15 @@ export interface ManagedInstanceKeyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceKey[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1991,9 +2552,15 @@ export interface ManagedInstanceEncryptionProtectorListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceEncryptionProtector[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2005,9 +2572,15 @@ export interface RecoverableManagedDatabaseListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: RecoverableManagedDatabase[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2019,9 +2592,15 @@ export interface ManagedInstanceVulnerabilityAssessmentListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceVulnerabilityAssessment[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2033,9 +2612,15 @@ export interface ServerVulnerabilityAssessmentListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerVulnerabilityAssessment[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2057,9 +2642,15 @@ export interface InstancePoolListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: InstancePool[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2071,9 +2662,15 @@ export interface UsageListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Usage[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2085,29 +2682,50 @@ export interface Usage {
   /**
    * Resource ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Resource name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: Name;
   /**
    * Resource type.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly type?: string;
   /**
    * Usage unit.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
   /**
    * Usage current value.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentValue?: number;
   /**
    * Usage limit.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * Usage requested limit.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedLimit?: number;
 }
@@ -2133,9 +2751,15 @@ export interface ManagedInstanceListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstance[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2147,6 +2771,9 @@ export interface ResourceIdentity {
   /**
    * The Azure Active Directory principal id.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly principalId?: string;
   /**
    * The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource.
@@ -2154,6 +2781,9 @@ export interface ResourceIdentity {
   type?: IdentityType;
   /**
    * The Azure Active Directory tenant id.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
 }
@@ -2181,6 +2811,9 @@ export interface ManagedInstanceUpdate {
   /**
    * The fully qualified domain name of the managed instance.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly fullyQualifiedDomainName?: string;
   /**
    * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
@@ -2196,6 +2829,9 @@ export interface ManagedInstanceUpdate {
   subnetId?: string;
   /**
    * The state of the managed instance.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
@@ -2216,6 +2852,9 @@ export interface ManagedInstanceUpdate {
   collation?: string;
   /**
    * The Dns Zone that the managed instance is in.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dnsZone?: string;
   /**
@@ -2276,6 +2915,9 @@ export interface PrivateLinkServiceConnectionStateProperty {
   /**
    * The actions required for private link service connection.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly actionsRequired?: string;
 }
 
@@ -2286,9 +2928,15 @@ export interface PrivateEndpointConnectionListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: PrivateEndpointConnection[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2300,9 +2948,15 @@ export interface PrivateLinkResourceListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: PrivateLinkResource[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2314,9 +2968,15 @@ export interface PrivateLinkResourceProperties {
   /**
    * The private link resource group id.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly groupId?: string;
   /**
    * The private link resource required member names.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMembers?: string[];
 }
@@ -2328,9 +2988,15 @@ export interface ServerListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: Server[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2342,9 +3008,15 @@ export interface ServerPrivateEndpointConnection {
   /**
    * Resource ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Private endpoint connection properties
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: PrivateEndpointConnectionProperties;
 }
@@ -2364,6 +3036,9 @@ export interface PrivateEndpointConnectionProperties {
   /**
    * State of the private endpoint connection.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningState?: PrivateEndpointProvisioningState;
 }
 
@@ -2378,6 +3053,9 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
   description: string;
   /**
    * The actions required for private link service connection.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actionsRequired?: PrivateLinkServiceConnectionStateActionsRequire;
 }
@@ -2405,13 +3083,22 @@ export interface ServerUpdate {
   /**
    * The state of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: string;
   /**
    * The fully qualified domain name of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly fullyQualifiedDomainName?: string;
   /**
    * List of private endpoint connections on a server
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
   /**
@@ -2439,17 +3126,29 @@ export interface CheckNameAvailabilityResponse {
   /**
    * The name whose availability was checked.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * True if the name is available, otherwise false.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly available?: boolean;
   /**
    * The reason code explaining why the name is unavailable. Will be undefined if the name is available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly reason?: CheckNameAvailabilityReason;
   /**
    * A message explaining why the name is unavailable. Will be undefined if the name is available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
 }
@@ -2461,17 +3160,29 @@ export interface LocationCapabilities {
   /**
    * The location name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The list of supported server versions.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedServerVersions?: ServerVersionCapability[];
   /**
    * The list of supported managed instance versions.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedManagedInstanceVersions?: ManagedInstanceVersionCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2487,17 +3198,29 @@ export interface ServerVersionCapability {
   /**
    * The server version name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The list of supported database editions.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedEditions?: EditionCapability[];
   /**
    * The list of supported elastic pool editions.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedElasticPoolEditions?: ElasticPoolEditionCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2513,25 +3236,43 @@ export interface EditionCapability {
   /**
    * The database edition name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The list of supported service objectives for the edition.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedServiceLevelObjectives?: ServiceObjectiveCapability[];
   /**
    * Whether or not zone redundancy is supported for the edition.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly zoneRedundant?: boolean;
   /**
    * The read scale capability for the edition.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly readScale?: ReadScaleCapability;
   /**
    * The list of supported storage capabilities for this edition
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedStorageCapabilities?: StorageCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2547,49 +3288,85 @@ export interface ServiceObjectiveCapability {
   /**
    * The unique ID of the service objective.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * The service objective name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The list of supported maximum database sizes.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedMaxSizes?: MaxSizeRangeCapability[];
   /**
    * The performance level.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly performanceLevel?: PerformanceLevelCapability;
   /**
    * The sku.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly sku?: Sku;
   /**
    * List of supported license types.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedLicenseTypes?: LicenseTypeCapability[];
   /**
    * The included (free) max size.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly includedMaxSize?: MaxSizeCapability;
   /**
    * Whether or not zone redundancy is supported for the service objective.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly zoneRedundant?: boolean;
   /**
    * Supported time range for auto pause delay
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedAutoPauseDelay?: AutoPauseDelayTimeRange;
   /**
    * List of supported min capacities
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedMinCapacities?: MinCapacityCapability[];
   /**
    * The compute model
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly computeModel?: string;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2605,21 +3382,36 @@ export interface MaxSizeRangeCapability {
   /**
    * Minimum value.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly minValue?: MaxSizeCapability;
   /**
    * Maximum value.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxValue?: MaxSizeCapability;
   /**
    * Scale/step size for discrete values between the minimum value and the maximum value.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly scaleSize?: MaxSizeCapability;
   /**
    * Size of transaction log.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly logSize?: LogSizeCapability;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2635,9 +3427,15 @@ export interface MaxSizeCapability {
   /**
    * The maximum size limit (see 'unit' for the units).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * The units that the limit is expressed in.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: MaxSizeUnit;
 }
@@ -2649,9 +3447,15 @@ export interface LogSizeCapability {
   /**
    * The log size limit (see 'unit' for the units).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * The units that the limit is expressed in.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: LogSizeUnit;
 }
@@ -2663,9 +3467,15 @@ export interface PerformanceLevelCapability {
   /**
    * Performance level value.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: number;
   /**
    * Unit type used to measure performance level.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: PerformanceLevelUnit;
 }
@@ -2677,9 +3487,15 @@ export interface LicenseTypeCapability {
   /**
    * License type identifier.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2695,25 +3511,43 @@ export interface AutoPauseDelayTimeRange {
   /**
    * Minimum value
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly minValue?: number;
   /**
    * Maximum value
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxValue?: number;
   /**
    * Step value for discrete values between the minimum value and the maximum value.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly stepSize?: number;
   /**
    * Default value is no value is provided
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly default?: number;
   /**
    * Unit of time that delay is expressed in
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly unit?: PauseDelayTimeUnit;
   /**
    * Value that is used to not pause (infinite delay before pause)
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly doNotPauseValue?: number;
 }
@@ -2725,9 +3559,15 @@ export interface MinCapacityCapability {
   /**
    * Min capacity value
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: number;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2743,9 +3583,15 @@ export interface ReadScaleCapability {
   /**
    * The maximum number of read scale replicas.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maxNumberOfReplicas?: number;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2761,9 +3607,15 @@ export interface StorageCapability {
   /**
    * The storage account type for the database's backups.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly storageAccountType?: StorageCapabilityStorageAccountType;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2779,17 +3631,29 @@ export interface ElasticPoolEditionCapability {
   /**
    * The elastic pool edition name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The list of supported elastic pool DTU levels for the edition.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedElasticPoolPerformanceLevels?: ElasticPoolPerformanceLevelCapability[];
   /**
    * Whether or not zone redundancy is supported for the edition.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly zoneRedundant?: boolean;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2805,41 +3669,71 @@ export interface ElasticPoolPerformanceLevelCapability {
   /**
    * The performance level for the pool.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly performanceLevel?: PerformanceLevelCapability;
   /**
    * The sku.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
   /**
    * List of supported license types.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedLicenseTypes?: LicenseTypeCapability[];
   /**
    * The maximum number of databases supported.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxDatabaseCount?: number;
   /**
    * The included (free) max size for this performance level.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly includedMaxSize?: MaxSizeCapability;
   /**
    * The list of supported max sizes.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedMaxSizes?: MaxSizeRangeCapability[];
   /**
    * The list of supported per database max sizes.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedPerDatabaseMaxSizes?: MaxSizeRangeCapability[];
   /**
    * The list of supported per database max performance levels.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedPerDatabaseMaxPerformanceLevels?: ElasticPoolPerDatabaseMaxPerformanceLevelCapability[];
   /**
    * Whether or not zone redundancy is supported for the performance level.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly zoneRedundant?: boolean;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2855,17 +3749,29 @@ export interface ElasticPoolPerDatabaseMaxPerformanceLevelCapability {
   /**
    * The maximum performance level per database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * Unit type used to measure performance level.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: PerformanceLevelUnit;
   /**
    * The list of supported min database performance levels.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedPerDatabaseMinPerformanceLevels?: ElasticPoolPerDatabaseMinPerformanceLevelCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2881,13 +3787,22 @@ export interface ElasticPoolPerDatabaseMinPerformanceLevelCapability {
   /**
    * The minimum performance level per database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * Unit type used to measure performance level.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly unit?: PerformanceLevelUnit;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2903,17 +3818,29 @@ export interface ManagedInstanceVersionCapability {
   /**
    * The server version name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The list of supported managed instance editions.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedEditions?: ManagedInstanceEditionCapability[];
   /**
    * The list of supported instance pool editions.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedInstancePoolEditions?: InstancePoolEditionCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2929,13 +3856,22 @@ export interface ManagedInstanceEditionCapability {
   /**
    * The managed server version name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The supported families.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedFamilies?: ManagedInstanceFamilyCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2951,21 +3887,36 @@ export interface ManagedInstanceFamilyCapability {
   /**
    * Family name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * SKU name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: string;
   /**
    * List of supported license types.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedLicenseTypes?: LicenseTypeCapability[];
   /**
    * List of supported virtual cores values.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedVcoresValues?: ManagedInstanceVcoresCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -2981,29 +3932,50 @@ export interface ManagedInstanceVcoresCapability {
   /**
    * The virtual cores identifier.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The virtual cores value.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: number;
   /**
    * Included size.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly includedMaxSize?: MaxSizeCapability;
   /**
    * Storage size ranges.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedStorageSizes?: MaxSizeRangeCapability[];
   /**
    * True if this service objective is supported for managed instances in an instance pool.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly instancePoolSupported?: boolean;
   /**
    * True if this service objective is supported for standalone managed instances.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly standaloneSupported?: boolean;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -3019,13 +3991,22 @@ export interface InstancePoolEditionCapability {
   /**
    * The instance pool version name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The supported families.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedFamilies?: InstancePoolFamilyCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -3041,17 +4022,29 @@ export interface InstancePoolFamilyCapability {
   /**
    * Family name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * List of supported license types.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportedLicenseTypes?: LicenseTypeCapability[];
   /**
    * List of supported virtual cores values.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly supportedVcoresValues?: InstancePoolVcoresCapability[];
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -3067,17 +4060,29 @@ export interface InstancePoolVcoresCapability {
   /**
    * The virtual cores identifier.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The virtual cores value.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: number;
   /**
    * Storage limit.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly storageLimit?: MaxSizeCapability;
   /**
    * The status of the capability.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
   /**
@@ -3093,9 +4098,15 @@ export interface ManagedInstanceLongTermRetentionBackupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceLongTermRetentionBackup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3107,9 +4118,15 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceLongTermRetentionPolicy[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3121,9 +4138,15 @@ export interface WorkloadGroupListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: WorkloadGroup[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3135,9 +4158,15 @@ export interface WorkloadClassifierListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: WorkloadClassifier[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3149,9 +4178,15 @@ export interface ManagedDatabaseListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedDatabase[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3171,13 +4206,22 @@ export interface ManagedDatabaseUpdate {
   /**
    * Status of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: ManagedDatabaseStatus;
   /**
    * Creation date of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationDate?: Date;
   /**
    * Earliest restore point in time for point in time restore.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestorePoint?: Date;
   /**
@@ -3186,6 +4230,9 @@ export interface ManagedDatabaseUpdate {
   restorePointInTime?: Date;
   /**
    * Geo paired region.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultSecondaryLocation?: string;
   /**
@@ -3215,6 +4262,9 @@ export interface ManagedDatabaseUpdate {
   /**
    * Instance Failover Group resource identifier that this managed database belongs to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly failoverGroupId?: string;
   /**
    * The resource identifier of the recoverable database associated with create operation of this database.
@@ -3243,9 +4293,15 @@ export interface AdministratorListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ServerAzureADAdministrator[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3257,9 +4313,15 @@ export interface ManagedInstanceOperationListResult {
   /**
    * Array of results.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly value?: ManagedInstanceOperation[];
   /**
    * Link to retrieve next page of results.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3271,17 +4333,29 @@ export interface OperationImpact {
   /**
    * The name of the impact dimension.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The unit in which estimated impact to dimension is measured.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
   /**
    * The absolute impact to dimension.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly changeValueAbsolute?: number;
   /**
    * The relative impact to dimension (null if not applicable)
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly changeValueRelative?: number;
 }
@@ -3293,17 +4367,29 @@ export type RecoverableDatabase = Resource & {
   /**
    * The edition of the database
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly edition?: string;
   /**
    * The service level objective name of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceLevelObjective?: string;
   /**
    * The elastic pool name of the database
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly elasticPoolName?: string;
   /**
    * The last available backup date of the database (ISO8601 format)
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAvailableBackupDate?: Date;
 };
@@ -3315,37 +4401,64 @@ export type RestorableDroppedDatabase = Resource & {
   /**
    * The geo-location where the resource lives
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * The name of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseName?: string;
   /**
    * The edition of the database
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly edition?: string;
   /**
    * The max size in bytes of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxSizeBytes?: string;
   /**
    * The service level objective name of the database
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serviceLevelObjective?: string;
   /**
    * The elastic pool name of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly elasticPoolName?: string;
   /**
    * The creation date of the database (ISO8601 format)
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationDate?: Date;
   /**
    * The deletion date of the database (ISO8601 format)
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly deletionDate?: Date;
   /**
    * The earliest restore date of the database (ISO8601 format)
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
 };
@@ -3357,9 +4470,15 @@ export type ServerConnectionPolicy = Resource & {
   /**
    * Metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Resource location.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -3378,6 +4497,9 @@ export type DatabaseSecurityAlertPolicy = Resource & {
   location?: string;
   /**
    * Resource kind.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
   /**
@@ -3421,9 +4543,15 @@ export type DataMaskingPolicy = Resource & {
   /**
    * The location of the data masking policy.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * The kind of data masking policy. Metadata, used for Azure portal.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
   /**
@@ -3437,9 +4565,15 @@ export type DataMaskingPolicy = Resource & {
   /**
    * The list of the application principals. This is a legacy parameter and is no longer used.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly applicationPrincipals?: string;
   /**
    * The masking level. This is a legacy parameter and is no longer used.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maskingLevel?: string;
 };
@@ -3451,13 +4585,22 @@ export type DataMaskingRule = Resource & {
   /**
    * The location of the data masking rule.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * The kind of Data Masking Rule. Metadata, used for Azure portal.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * The rule Id.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly idPropertiesId?: string;
   /**
@@ -3513,9 +4656,15 @@ export type FirewallRule = Resource & {
   /**
    * Kind of server that contains this firewall rule.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Location of the server that contains this firewall rule.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -3535,9 +4684,15 @@ export type GeoBackupPolicy = Resource & {
   /**
    * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Backup policy location.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -3546,6 +4701,9 @@ export type GeoBackupPolicy = Resource & {
   state: GeoBackupPolicyState;
   /**
    * The storage type of the geo backup policy.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly storageType?: string;
 };
@@ -3557,37 +4715,64 @@ export type ImportExportResponse = Resource & {
   /**
    * The request type of the operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestType?: string;
   /**
    * The request type of the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestId?: string;
   /**
    * The name of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The name of the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseName?: string;
   /**
    * The status message returned from the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: string;
   /**
    * The operation status last modified time.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: string;
   /**
    * The operation queued time.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly queuedTime?: string;
   /**
    * The blob uri.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly blobUri?: string;
   /**
    * The error message returned from the server.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorMessage?: string;
 };
@@ -3613,6 +4798,9 @@ export type RecommendedElasticPool = Resource & {
   /**
    * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseEdition?: ElasticPoolEdition;
   /**
    * The DTU for the recommended elastic pool.
@@ -3633,25 +4821,43 @@ export type RecommendedElasticPool = Resource & {
   /**
    * The observation period start (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly observationPeriodStart?: Date;
   /**
    * The observation period start (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly observationPeriodEnd?: Date;
   /**
    * Gets maximum observed DTU.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maxObservedDtu?: number;
   /**
    * Gets maximum observed storage in megabytes.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxObservedStorageMB?: number;
   /**
    * The list of databases in this pool. Expanded property
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databases?: TrackedResource[];
   /**
    * The list of databases housed in the server. Expanded property
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metrics?: RecommendedElasticPoolMetric[];
 };
@@ -3663,45 +4869,78 @@ export type ReplicationLink = Resource & {
   /**
    * Location of the server that contains this firewall rule.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * Legacy value indicating whether termination is allowed.  Currently always returns true.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isTerminationAllowed?: boolean;
   /**
    * Replication mode of this replication link.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly replicationMode?: string;
   /**
    * The name of the server hosting the partner database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partnerServer?: string;
   /**
    * The name of the partner database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly partnerDatabase?: string;
   /**
    * The Azure Region of the partner database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partnerLocation?: string;
   /**
    * The role of the database in the replication link.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly role?: ReplicationRole;
   /**
    * The role of the partner database in the replication link.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partnerRole?: ReplicationRole;
   /**
    * The start time for the replication link.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The percentage of seeding complete for the replication link.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly percentComplete?: number;
   /**
    * The replication state for the replication link.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationState?: ReplicationState;
 };
@@ -3713,13 +4952,22 @@ export type ServerCommunicationLink = Resource & {
   /**
    * Communication link location.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * Communication link kind.  This property is used for Azure Portal metadata.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * The state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
@@ -3735,21 +4983,36 @@ export type ServiceObjective = Resource & {
   /**
    * The name for the service objective.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serviceObjectiveName?: string;
   /**
    * Gets whether the service level objective is the default service objective.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isDefault?: boolean;
   /**
    * Gets whether the service level objective is a system service objective.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isSystem?: boolean;
   /**
    * The description for the service level objective.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly description?: string;
   /**
    * Gets whether the service level objective is enabled.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly enabled?: boolean;
 };
@@ -3765,81 +5028,141 @@ export type ElasticPoolActivity = Resource & {
   /**
    * The time the operation finished (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly endTime?: Date;
   /**
    * The error code if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorCode?: number;
   /**
    * The error message if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorMessage?: string;
   /**
    * The error severity if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorSeverity?: number;
   /**
    * The operation name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operation?: string;
   /**
    * The unique operation ID.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationId?: string;
   /**
    * The percentage complete if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly percentComplete?: number;
   /**
    * The requested max DTU per database if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedDatabaseDtuMax?: number;
   /**
    * The requested min DTU per database if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedDatabaseDtuMin?: number;
   /**
    * The requested DTU for the pool if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedDtu?: number;
   /**
    * The requested name for the elastic pool if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedElasticPoolName?: string;
   /**
    * The requested storage limit for the pool in GB if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedStorageLimitInGB?: number;
   /**
    * The name of the elastic pool.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly elasticPoolName?: string;
   /**
    * The name of the server the elastic pool is in.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serverName?: string;
   /**
    * The time the operation started (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The current state of the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
    * The requested storage limit in MB.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedStorageLimitInMB?: number;
   /**
    * The requested per database DTU guarantee.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedDatabaseDtuGuarantee?: number;
   /**
    * The requested per database DTU cap.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedDatabaseDtuCap?: number;
   /**
    * The requested DTU guarantee.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedDtuGuarantee?: number;
 };
@@ -3855,61 +5178,106 @@ export type ElasticPoolDatabaseActivity = Resource & {
   /**
    * The database name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * The time the operation finished (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * The error code if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorCode?: number;
   /**
    * The error message if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorMessage?: string;
   /**
    * The error severity if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorSeverity?: number;
   /**
    * The operation name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operation?: string;
   /**
    * The unique operation ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operationId?: string;
   /**
    * The percentage complete if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly percentComplete?: number;
   /**
    * The name for the elastic pool the database is moving into if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedElasticPoolName?: string;
   /**
    * The name of the current elastic pool the database is in if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentElasticPoolName?: string;
   /**
    * The name of the current service objective if available.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentServiceObjective?: string;
   /**
    * The name of the requested service objective if available.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedServiceObjective?: string;
   /**
    * The name of the server the elastic pool is in.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The time the operation started (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The current state of the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
 };
@@ -3921,77 +5289,134 @@ export type ServiceTierAdvisor = Resource & {
   /**
    * The observation period start (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly observationPeriodStart?: Date;
   /**
    * The observation period start (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly observationPeriodEnd?: Date;
   /**
    * The activeTimeRatio for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly activeTimeRatio?: number;
   /**
    * Gets or sets minDtu for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minDtu?: number;
   /**
    * Gets or sets avgDtu for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly avgDtu?: number;
   /**
    * Gets or sets maxDtu for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxDtu?: number;
   /**
    * Gets or sets maxSizeInGB for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maxSizeInGB?: number;
   /**
    * Gets or sets serviceLevelObjectiveUsageMetrics for the service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceLevelObjectiveUsageMetrics?: SloUsageMetric[];
   /**
    * Gets or sets currentServiceLevelObjective for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentServiceLevelObjective?: string;
   /**
    * Gets or sets currentServiceLevelObjectiveId for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentServiceLevelObjectiveId?: string;
   /**
    * Gets or sets usageBasedRecommendationServiceLevelObjective for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly usageBasedRecommendationServiceLevelObjective?: string;
   /**
    * Gets or sets usageBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly usageBasedRecommendationServiceLevelObjectiveId?: string;
   /**
    * Gets or sets databaseSizeBasedRecommendationServiceLevelObjective for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseSizeBasedRecommendationServiceLevelObjective?: string;
   /**
    * Gets or sets databaseSizeBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseSizeBasedRecommendationServiceLevelObjectiveId?: string;
   /**
    * Gets or sets disasterPlanBasedRecommendationServiceLevelObjective for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly disasterPlanBasedRecommendationServiceLevelObjective?: string;
   /**
    * Gets or sets disasterPlanBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly disasterPlanBasedRecommendationServiceLevelObjectiveId?: string;
   /**
    * Gets or sets overallRecommendationServiceLevelObjective for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly overallRecommendationServiceLevelObjective?: string;
   /**
    * Gets or sets overallRecommendationServiceLevelObjectiveId for service tier advisor.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly overallRecommendationServiceLevelObjectiveId?: string;
   /**
    * Gets or sets confidence for service tier advisor.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly confidence?: number;
 };
@@ -4002,6 +5427,9 @@ export type ServiceTierAdvisor = Resource & {
 export type TransparentDataEncryption = Resource & {
   /**
    * Resource location.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -4017,13 +5445,22 @@ export type TransparentDataEncryptionActivity = Resource & {
   /**
    * Resource location.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * The status of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: TransparentDataEncryptionActivityStatus;
   /**
    * The percent complete of the transparent data encryption scan for a database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly percentComplete?: number;
 };
@@ -4039,6 +5476,9 @@ export type DatabaseAutomaticTuning = Resource & {
   /**
    * Automatic tuning actual state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly actualState?: AutomaticTuningMode;
   /**
    * Automatic tuning options definition.
@@ -4053,13 +5493,22 @@ export type EncryptionProtector = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Resource location.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * Subregion of the encryption protector.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subregion?: string;
   /**
@@ -4073,9 +5522,15 @@ export type EncryptionProtector = Resource & {
   /**
    * The URI of the server key.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly uri?: string;
   /**
    * Thumbprint of the server key.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
 };
@@ -4086,6 +5541,9 @@ export type EncryptionProtector = Resource & {
 export type FailoverGroup = Resource & {
   /**
    * Resource location.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -4103,9 +5561,15 @@ export type FailoverGroup = Resource & {
   /**
    * Local replication role of the failover group instance.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly replicationRole?: FailoverGroupReplicationRole;
   /**
    * Replication state of the failover group instance.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationState?: string;
   /**
@@ -4129,9 +5593,15 @@ export type ServerKey = Resource & {
   /**
    * Resource location.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * Subregion of the server key.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subregion?: string;
   /**
@@ -4159,6 +5629,9 @@ export type SyncAgent = Resource & {
   /**
    * Name of the sync agent.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly namePropertiesName?: string;
   /**
    * ARM resource id of the sync database in the sync agent.
@@ -4167,21 +5640,36 @@ export type SyncAgent = Resource & {
   /**
    * Last alive time of the sync agent.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly lastAliveTime?: Date;
   /**
    * State of the sync agent.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: SyncAgentState;
   /**
    * If the sync agent version is up to date.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isUpToDate?: boolean;
   /**
    * Expiration time of the sync agent version.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly expiryTime?: Date;
   /**
    * Version of the sync agent.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: string;
 };
@@ -4193,25 +5681,43 @@ export type SyncAgentLinkedDatabase = Resource & {
   /**
    * Type of the sync agent linked database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseType?: SyncMemberDbType;
   /**
    * Id of the sync agent linked database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseId?: string;
   /**
    * Description of the sync agent linked database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly description?: string;
   /**
    * Server name of the sync agent linked database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serverName?: string;
   /**
    * Database name of the sync agent linked database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * User name of the sync agent linked database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly userName?: string;
 };
@@ -4226,6 +5732,9 @@ export type SyncGroup = Resource & {
   interval?: number;
   /**
    * Last sync time of the sync group.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastSyncTime?: Date;
   /**
@@ -4246,6 +5755,9 @@ export type SyncGroup = Resource & {
   hubDatabasePassword?: string;
   /**
    * Sync state of the sync group.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly syncState?: SyncGroupState;
   /**
@@ -4293,6 +5805,9 @@ export type SyncMember = Resource & {
   /**
    * Sync state of the sync member.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly syncState?: SyncMemberState;
 };
 
@@ -4303,17 +5818,29 @@ export type SubscriptionUsage = Resource & {
   /**
    * User-readable name of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly displayName?: string;
   /**
    * Current value of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * Boundary value of the metric.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly limit?: number;
   /**
    * Unit of the metric.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
 };
@@ -4332,6 +5859,9 @@ export type VirtualNetworkRule = Resource & {
   ignoreMissingVnetServiceEndpoint?: boolean;
   /**
    * Virtual Network Rule State
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: VirtualNetworkRuleState;
 };
@@ -4696,6 +6226,9 @@ export type DatabaseBlobAuditingPolicy = Resource & {
   /**
    * Resource kind.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
@@ -4861,37 +6394,64 @@ export type JobExecution = Resource & {
   /**
    * The job version number.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly jobVersion?: number;
   /**
    * The job step name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly stepName?: string;
   /**
    * The job step id.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly stepId?: number;
   /**
    * The unique identifier of the job execution.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly jobExecutionId?: string;
   /**
    * The detailed state of the job execution.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly lifecycle?: JobExecutionLifecycle;
   /**
    * The ARM provisioning state of the job execution.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The time that the job execution was created.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly createTime?: Date;
   /**
    * The time that the job execution started.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The time that the job execution completed.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
@@ -4901,13 +6461,22 @@ export type JobExecution = Resource & {
   /**
    * Start time of the current attempt.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentAttemptStartTime?: Date;
   /**
    * The last status or error message.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly lastMessage?: string;
   /**
    * The target that this execution is executed on.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: JobExecutionTarget;
 };
@@ -4922,6 +6491,9 @@ export type Job = Resource & {
   description?: string;
   /**
    * The job version number.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: number;
   /**
@@ -4977,25 +6549,43 @@ export type LongTermRetentionBackup = Resource & {
   /**
    * The server name that the backup database belong to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The create time of the server.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serverCreateTime?: Date;
   /**
    * The name of the database the backup belong to
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * The delete time of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseDeletionTime?: Date;
   /**
    * The time the backup was taken
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly backupTime?: Date;
   /**
    * The time the long term retention backup will expire.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backupExpirationTime?: Date;
 };
@@ -5043,6 +6633,9 @@ export type ServerAutomaticTuning = Resource & {
   /**
    * Automatic tuning actual state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly actualState?: AutomaticTuningServerMode;
   /**
    * Automatic tuning options definition.
@@ -5056,6 +6649,9 @@ export type ServerAutomaticTuning = Resource & {
 export type ServerDnsAlias = Resource & {
   /**
    * The fully qualified DNS record for alias
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly azureDnsRecord?: string;
 };
@@ -5095,6 +6691,9 @@ export type ServerSecurityAlertPolicy = Resource & {
   /**
    * Specifies the UTC creation time of the policy.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationTime?: Date;
 };
 
@@ -5105,21 +6704,36 @@ export type RestorePoint = Resource & {
   /**
    * Resource location.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly location?: string;
   /**
    * The type of restore point
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restorePointType?: RestorePointType;
   /**
    * The earliest time to which this database can be restored
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly earliestRestoreDate?: Date;
   /**
    * The time the backup was taken
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly restorePointCreationDate?: Date;
   /**
    * The label of restore point for backup request by user
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restorePointLabel?: string;
 };
@@ -5159,6 +6773,9 @@ export type ManagedDatabaseSecurityAlertPolicy = Resource & {
   /**
    * Specifies the UTC creation time of the policy.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationTime?: Date;
 };
 
@@ -5197,6 +6814,9 @@ export type ManagedServerSecurityAlertPolicy = Resource & {
   /**
    * Specifies the UTC creation time of the policy.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationTime?: Date;
 };
 
@@ -5222,6 +6842,9 @@ export type SensitivityLabel = Resource & {
   informationTypeId?: string;
   /**
    * Is sensitivity recommendation disabled. Applicable for recommended sensitivity label only. Specifies whether the sensitivity recommendation on this column is disabled (dismissed) or not.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isDisabled?: boolean;
   rank?: SensitivityLabelRank;
@@ -5256,57 +6879,99 @@ export type DatabaseOperation = Resource & {
   /**
    * The name of the database the operation is being performed on.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * The name of operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operation?: string;
   /**
    * The friendly name of operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operationFriendlyName?: string;
   /**
    * The percentage of the operation completed.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly percentComplete?: number;
   /**
    * The name of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The operation start time.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The operation state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: ManagementOperationState;
   /**
    * The operation error code.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorCode?: number;
   /**
    * The operation error description.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorDescription?: string;
   /**
    * The operation error severity.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorSeverity?: number;
   /**
    * Whether or not the error is a user error.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isUserError?: boolean;
   /**
    * The estimated completion time of the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly estimatedCompletionTime?: Date;
   /**
    * The operation description.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly description?: string;
   /**
    * Whether the operation can be cancelled.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
 };
@@ -5318,57 +6983,99 @@ export type ElasticPoolOperation = Resource & {
   /**
    * The name of the elastic pool the operation is being performed on.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly elasticPoolName?: string;
   /**
    * The name of operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operation?: string;
   /**
    * The friendly name of operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operationFriendlyName?: string;
   /**
    * The percentage of the operation completed.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly percentComplete?: number;
   /**
    * The name of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly serverName?: string;
   /**
    * The operation start time.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The operation state.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: string;
   /**
    * The operation error code.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorCode?: number;
   /**
    * The operation error description.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorDescription?: string;
   /**
    * The operation error severity.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorSeverity?: number;
   /**
    * Whether or not the error is a user error.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isUserError?: boolean;
   /**
    * The estimated completion time of the operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly estimatedCompletionTime?: Date;
   /**
    * The operation description.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly description?: string;
   /**
    * Whether the operation can be cancelled.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
 };
@@ -5380,33 +7087,57 @@ export type VulnerabilityAssessmentScanRecord = Resource & {
   /**
    * The scan ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly scanId?: string;
   /**
    * The scan trigger type.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly triggerType?: VulnerabilityAssessmentScanTriggerType;
   /**
    * The scan status.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: VulnerabilityAssessmentScanState;
   /**
    * The scan start time (UTC).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The scan end time (UTC).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly endTime?: Date;
   /**
    * The scan errors.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errors?: VulnerabilityAssessmentScanError[];
   /**
    * The scan results storage container path.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly storageContainerPath?: string;
   /**
    * The number of failed security checks.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly numberOfFailedSecurityChecks?: number;
 };
@@ -5417,6 +7148,9 @@ export type VulnerabilityAssessmentScanRecord = Resource & {
 export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly exportedReportLocation?: string;
 };
@@ -5436,9 +7170,15 @@ export type InstanceFailoverGroup = Resource & {
   /**
    * Local replication role of the failover group instance.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly replicationRole?: InstanceFailoverGroupReplicationRole;
   /**
    * Replication state of the failover group instance.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationState?: string;
   /**
@@ -5482,6 +7222,9 @@ export type ManagedInstanceKey = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * The key type like 'ServiceManaged', 'AzureKeyVault'.
@@ -5494,9 +7237,15 @@ export type ManagedInstanceKey = Resource & {
   /**
    * Thumbprint of the key.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly thumbprint?: string;
   /**
    * The key creation date.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationDate?: Date;
 };
@@ -5507,6 +7256,9 @@ export type ManagedInstanceKey = Resource & {
 export type ManagedInstanceEncryptionProtector = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
   /**
@@ -5520,9 +7272,15 @@ export type ManagedInstanceEncryptionProtector = Resource & {
   /**
    * The URI of the server key.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly uri?: string;
   /**
    * Thumbprint of the server key.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
 };
@@ -5533,6 +7291,9 @@ export type ManagedInstanceEncryptionProtector = Resource & {
 export type RecoverableManagedDatabase = Resource & {
   /**
    * The last available backup date.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAvailableBackupDate?: string;
 };
@@ -5596,6 +7357,9 @@ export type PrivateEndpointConnection = Resource & {
   /**
    * State of the private endpoint connection.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningState?: string;
 };
 
@@ -5605,6 +7369,9 @@ export type PrivateEndpointConnection = Resource & {
 export type PrivateLinkResource = Resource & {
   /**
    * The private link resource group id.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: PrivateLinkResourceProperties;
 };
@@ -5616,25 +7383,43 @@ export type ManagedInstanceLongTermRetentionBackup = Resource & {
   /**
    * The managed instance that the backup database belongs to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly managedInstanceName?: string;
   /**
    * The create time of the instance.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedInstanceCreateTime?: Date;
   /**
    * The name of the database the backup belong to
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * The delete time of the database
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseDeletionTime?: Date;
   /**
    * The time the backup was taken
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly backupTime?: Date;
   /**
    * The time the long term retention backup will expire.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backupExpirationTime?: Date;
 };
@@ -5728,41 +7513,71 @@ export type ManagedDatabaseRestoreDetailsResult = Resource & {
   /**
    * Restore status.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: string;
   /**
    * Current restoring file name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentRestoringFileName?: string;
   /**
    * Last restored file name.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly lastRestoredFileName?: string;
   /**
    * Last restored file time.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastRestoredFileTime?: Date;
   /**
    * Percent completed.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly percentCompleted?: number;
   /**
    * List of unrestorable files.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unrestorableFiles?: string[];
   /**
    * Number of files detected.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly numberOfFilesDetected?: number;
   /**
    * Last uploaded file name.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastUploadedFileName?: string;
   /**
    * Last uploaded file time.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly lastUploadedFileTime?: Date;
   /**
    * The reason why restore is in Blocked state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blockReason?: string;
 };
@@ -5800,53 +7615,92 @@ export type ManagedInstanceOperation = Resource & {
   /**
    * The name of the managed instance the operation is being performed on.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly managedInstanceName?: string;
   /**
    * The name of operation.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operation?: string;
   /**
    * The friendly name of operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly operationFriendlyName?: string;
   /**
    * The percentage of the operation completed.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly percentComplete?: number;
   /**
    * The operation start time.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly startTime?: Date;
   /**
    * The operation state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: ManagementOperationState;
   /**
    * The operation error code.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorCode?: number;
   /**
    * The operation error description.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorDescription?: string;
   /**
    * The operation error severity.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly errorSeverity?: number;
   /**
    * Whether or not the error is a user error.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isUserError?: boolean;
   /**
    * The estimated completion time of the operation.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly estimatedCompletionTime?: Date;
   /**
    * The operation description.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly description?: string;
   /**
    * Whether the operation can be cancelled.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
 };
@@ -5858,49 +7712,85 @@ export type RecommendedIndex = Resource & {
   /**
    * The proposed index action. You can create a missing index, drop an unused index, or rebuild an existing index to improve its performance.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly action?: RecommendedIndexAction;
   /**
    * The current recommendation state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: RecommendedIndexState;
   /**
    * The UTC datetime showing when this resource was created (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly created?: Date;
   /**
    * The UTC datetime of when was this resource last changed (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModified?: Date;
   /**
    * The type of index (CLUSTERED, NONCLUSTERED, COLUMNSTORE, CLUSTERED COLUMNSTORE)
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly indexType?: RecommendedIndexType;
   /**
    * The schema where table to build index over resides
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly schema?: string;
   /**
    * The table on which to build index.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly table?: string;
   /**
    * Columns over which to build index
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly columns?: string[];
   /**
    * The list of column names to be included in the index
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly includedColumns?: string[];
   /**
    * The full build index script
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly indexScript?: string;
   /**
    * The estimated impact of doing recommended index action.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly estimatedImpact?: OperationImpact[];
   /**
    * The values reported after index action is complete.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reportedImpact?: OperationImpact[];
 };
@@ -5965,6 +7855,9 @@ export type VirtualCluster = TrackedResource & {
   /**
    * Subnet resource ID for the virtual cluster.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly subnetId?: string;
   /**
    * If the service has different generations of hardware, for the same SKU, then that can be captured here.
@@ -5972,6 +7865,9 @@ export type VirtualCluster = TrackedResource & {
   family?: string;
   /**
    * List of resources in this virtual cluster.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly childResources?: string[];
 };
@@ -5991,6 +7887,9 @@ export type JobAgent = TrackedResource & {
   /**
    * The state of the job agent.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: JobAgentState;
 };
 
@@ -6001,17 +7900,29 @@ export type RestorableDroppedManagedDatabase = TrackedResource & {
   /**
    * The name of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly databaseName?: string;
   /**
    * The creation date of the database (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationDate?: Date;
   /**
    * The deletion date of the database (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly deletionDate?: Date;
   /**
    * The earliest restore date of the database (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
 };
@@ -6038,9 +7949,15 @@ export type Database = TrackedResource & {
   /**
    * Kind of database. This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Resource that manages the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedBy?: string;
   /**
@@ -6086,29 +8003,50 @@ export type Database = TrackedResource & {
   /**
    * The status of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: DatabaseStatus;
   /**
    * The ID of the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseId?: string;
   /**
    * The creation date of the database (ISO8601 format).
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationDate?: Date;
   /**
    * The current service level objective name of the database.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentServiceObjectiveName?: string;
   /**
    * The requested service level objective name of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly requestedServiceObjectiveName?: string;
   /**
    * The default secondary region for this database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly defaultSecondaryLocation?: string;
   /**
    * Failover Group resource identifier that this database belongs to.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
   /**
@@ -6150,9 +8088,15 @@ export type Database = TrackedResource & {
   /**
    * The max log size for this database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly maxLogSizeBytes?: number;
   /**
    * This records the earliest start date and time that restore is available for this database (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
   /**
@@ -6166,6 +8110,9 @@ export type Database = TrackedResource & {
   /**
    * The name and tier of the SKU.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly currentSku?: Sku;
   /**
    * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
@@ -6178,9 +8125,15 @@ export type Database = TrackedResource & {
   /**
    * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly pausedDate?: Date;
   /**
    * The date when database was resumed by user action or database login (ISO8601 format). Null if the database is paused.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resumedDate?: Date;
 };
@@ -6203,13 +8156,22 @@ export type ElasticPool = TrackedResource & {
   /**
    * Kind of elastic pool. This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * The state of the elastic pool.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: ElasticPoolState;
   /**
    * The creation date of the elastic pool (ISO8601 format).
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationDate?: Date;
   /**
@@ -6275,6 +8237,9 @@ export type ManagedInstance = TrackedResource & {
   /**
    * The fully qualified domain name of the managed instance.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly fullyQualifiedDomainName?: string;
   /**
    * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
@@ -6290,6 +8255,9 @@ export type ManagedInstance = TrackedResource & {
   subnetId?: string;
   /**
    * The state of the managed instance.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
@@ -6310,6 +8278,9 @@ export type ManagedInstance = TrackedResource & {
   collation?: string;
   /**
    * The Dns Zone that the managed instance is in.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dnsZone?: string;
   /**
@@ -6362,6 +8333,9 @@ export type Server = TrackedResource & {
   /**
    * Kind of sql server. This is metadata used for the Azure portal experience.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly kind?: string;
   /**
    * Administrator username for the server. Once created it cannot be changed.
@@ -6378,13 +8352,22 @@ export type Server = TrackedResource & {
   /**
    * The state of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly state?: string;
   /**
    * The fully qualified domain name of the server.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly fullyQualifiedDomainName?: string;
   /**
    * List of private endpoint connections on a server
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
   /**
@@ -6408,13 +8391,22 @@ export type ManagedDatabase = TrackedResource & {
   /**
    * Status of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: ManagedDatabaseStatus;
   /**
    * Creation date of the database.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly creationDate?: Date;
   /**
    * Earliest restore point in time for point in time restore.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestorePoint?: Date;
   /**
@@ -6423,6 +8415,9 @@ export type ManagedDatabase = TrackedResource & {
   restorePointInTime?: Date;
   /**
    * Geo paired region.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultSecondaryLocation?: string;
   /**
@@ -6451,6 +8446,9 @@ export type ManagedDatabase = TrackedResource & {
   storageContainerSasToken?: string;
   /**
    * Instance Failover Group resource identifier that this managed database belongs to.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
   /**

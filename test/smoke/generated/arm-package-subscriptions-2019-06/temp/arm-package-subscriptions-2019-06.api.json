@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -31,7 +31,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#displayName:member",
-              "docComment": "/**\n * The display name of the location.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -56,7 +56,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#id:member",
-              "docComment": "/**\n * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -81,7 +81,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#latitude:member",
-              "docComment": "/**\n * The latitude of the location.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -106,7 +106,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#longitude:member",
-              "docComment": "/**\n * The longitude of the location.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -131,7 +131,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#name:member",
-              "docComment": "/**\n * The location name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -156,7 +156,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#subscriptionId:member",
-              "docComment": "/**\n * The subscription ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -243,7 +243,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant#tenantId:member",
-              "docComment": "/**\n * The tenant ID of the managing tenant. This is a GUID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -684,7 +684,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#displayName:member",
-              "docComment": "/**\n * The subscription display name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -709,7 +709,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#id:member",
-              "docComment": "/**\n * The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -764,7 +764,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#state:member",
-              "docComment": "/**\n * The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -790,7 +790,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#subscriptionId:member",
-              "docComment": "/**\n * The subscription ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -841,7 +841,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#tenantId:member",
-              "docComment": "/**\n * The subscription tenant ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1377,7 +1377,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#locationPlacementId:member",
-              "docComment": "/**\n * The subscription location placement ID. The ID indicates which regions are visible for a subscription. For example, a subscription with a location placement Id of Public_2014-09-01 has access to Azure public regions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1402,7 +1402,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#quotaId:member",
-              "docComment": "/**\n * The subscription quota ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1427,7 +1427,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#spendingLimit:member",
-              "docComment": "/**\n * The subscription spending limit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1711,7 +1711,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#country:member",
-              "docComment": "/**\n * Country/region name of the address for the tenant.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1736,7 +1736,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#countryCode:member",
-              "docComment": "/**\n * Country/region abbreviation for the tenant.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1761,7 +1761,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#displayName:member",
-              "docComment": "/**\n * The display name of the tenant.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1786,7 +1786,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#domains:member",
-              "docComment": "/**\n * The list of domains for the tenant.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1811,7 +1811,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#id:member",
-              "docComment": "/**\n * The fully qualified ID of the tenant. For example, /tenants/00000000-0000-0000-0000-000000000000.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1836,7 +1836,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantCategory:member",
-              "docComment": "/**\n * The tenant category.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1862,7 +1862,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantId:member",
-              "docComment": "/**\n * The tenant ID. For example, 00000000-0000-0000-0000-000000000000.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

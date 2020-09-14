@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -676,7 +676,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#id:member",
-              "docComment": "/**\n * The resource ID of the lock.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -727,7 +727,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#name:member",
-              "docComment": "/**\n * The name of the lock.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -807,7 +807,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#type:member",
-              "docComment": "/**\n * The resource type of the lock - Microsoft.Authorization/locks.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

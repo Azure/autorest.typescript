@@ -12,9 +12,15 @@ export interface Resource {
   /**
    * Resource Id
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Resource Type
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -27,6 +33,9 @@ export interface Resource {
   location?: string;
   /**
    * Resource Name
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
 }
@@ -44,6 +53,9 @@ export interface Sku {
 export interface SubResource {
   /**
    * Sub Resource Id
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
 }
@@ -69,11 +81,17 @@ export interface OperationResultError {
 
 export type Product = Resource & {
   provisioningState?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
 };
 
 export type SubProduct = SubResource & {
   provisioningState?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
 };
 

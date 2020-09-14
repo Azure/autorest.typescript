@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -56,7 +56,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!AccessUri#accessSAS:member",
-              "docComment": "/**\n * A SAS uri for accessing a disk.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1569,7 +1569,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!BootDiagnosticsInstanceView#consoleScreenshotBlobUri:member",
-              "docComment": "/**\n * The console screenshot blob URI.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1594,7 +1594,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!BootDiagnosticsInstanceView#serialConsoleLogBlobUri:member",
-              "docComment": "/**\n * The Linux serial console log blob Uri.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1619,7 +1619,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!BootDiagnosticsInstanceView#status:member",
-              "docComment": "/**\n * The boot diagnostics status information for the VM. <br><br> NOTE: It will be set only if there are errors encountered in enabling boot diagnostics.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1728,7 +1728,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassignedidentitiesAdditionalproperties#clientId:member",
-              "docComment": "/**\n * The client id of user assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1753,7 +1753,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassignedidentitiesAdditionalproperties#principalId:member",
-              "docComment": "/**\n * The principal id of user assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1794,7 +1794,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUserassignedidentitiesAdditionalproperties#clientId:member",
-              "docComment": "/**\n * The client id of user assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1819,7 +1819,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUserassignedidentitiesAdditionalproperties#principalId:member",
-              "docComment": "/**\n * The principal id of user assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3018,7 +3018,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationListResult#value:member",
-              "docComment": "/**\n * The list of compute operations\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3064,7 +3064,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#description:member",
-              "docComment": "/**\n * The description of the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3089,7 +3089,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#name:member",
-              "docComment": "/**\n * The name of the compute operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3114,7 +3114,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#operation:member",
-              "docComment": "/**\n * The display name of the compute operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3139,7 +3139,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#origin:member",
-              "docComment": "/**\n * The origin of the compute operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3164,7 +3164,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#provider:member",
-              "docComment": "/**\n * The resource provider for the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3189,7 +3189,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ComputeOperationValue#resource:member",
-              "docComment": "/**\n * The display name of the resource the operation applies to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3382,7 +3382,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ContainerServiceAgentPoolProfile#fqdn:member",
-              "docComment": "/**\n * FQDN for the agent pool.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3746,7 +3746,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ContainerServiceMasterProfile#fqdn:member",
-              "docComment": "/**\n * FQDN for the master.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4320,7 +4320,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ContainerServiceVMDiagnostics#storageUri:member",
-              "docComment": "/**\n * The URI of the storage account where diagnostics are stored.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4555,7 +4555,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!CreationData#sourceUniqueId:member",
-              "docComment": "/**\n * If this field is set, this is the unique id identifying the source of this resource.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4723,7 +4723,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!DataDisk#diskIopsReadWrite:member",
-              "docComment": "/**\n * Specifies the Read-Write IOPS for the managed disk when StorageAccountType is UltraSSD_LRS. Returned only for VirtualMachine ScaleSet VM disks. Can be updated only via updates to the VirtualMachine Scale Set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4748,7 +4748,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!DataDisk#diskMBpsReadWrite:member",
-              "docComment": "/**\n * Specifies the bandwidth in MB per second for the managed disk when StorageAccountType is UltraSSD_LRS. Returned only for VirtualMachine ScaleSet VM disks. Can be updated only via updates to the VirtualMachine Scale Set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4992,7 +4992,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!DataDiskImage#lun:member",
-              "docComment": "/**\n * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5735,7 +5735,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!DedicatedHostInstanceView#assetId:member",
-              "docComment": "/**\n * Specifies the unique id of the dedicated physical machine on which the dedicated host resides.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7658,7 +7658,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!DiskSku#tier:member",
-              "docComment": "/**\n * The sku tier.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8423,7 +8423,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!EncryptionSetIdentity#principalId:member",
-              "docComment": "/**\n * The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8448,7 +8448,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!EncryptionSetIdentity#tenantId:member",
-              "docComment": "/**\n * The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10120,7 +10120,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!GalleryArtifactPublishingProfileBase#publishedDate:member",
-              "docComment": "/**\n * The timestamp for when the gallery Image Version is published.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10382,7 +10382,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!GalleryDiskImage#sizeInGB:member",
-              "docComment": "/**\n * This property indicates the size of the VHD to be created.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10449,7 +10449,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!GalleryIdentifier#uniqueName:member",
-              "docComment": "/**\n * The unique name of the Shared Image Gallery. This name is generated automatically by Azure.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14270,7 +14270,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!LogAnalyticsOperationResult#properties:member",
-              "docComment": "/**\n * LogAnalyticsOutput\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14312,7 +14312,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!LogAnalyticsOutput#output:member",
-              "docComment": "/**\n * Output file Uri path to blob container.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14980,7 +14980,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!OrchestrationServiceSummary#serviceName:member",
-              "docComment": "/**\n * The name of the service.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15006,7 +15006,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!OrchestrationServiceSummary#serviceState:member",
-              "docComment": "/**\n * The current state of the service.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16563,7 +16563,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RecoveryWalkResponse#nextPlatformUpdateDomain:member",
-              "docComment": "/**\n * The next update domain that needs to be walked. Null means walk spanning all update domains has been completed\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16588,7 +16588,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RecoveryWalkResponse#walkPerformed:member",
-              "docComment": "/**\n * Whether the recovery walk was performed\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16629,7 +16629,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RegionalReplicationStatus#details:member",
-              "docComment": "/**\n * The details of the replication status.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16654,7 +16654,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RegionalReplicationStatus#progress:member",
-              "docComment": "/**\n * It indicates progress of the replication job.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16679,7 +16679,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RegionalReplicationStatus#region:member",
-              "docComment": "/**\n * The region to which the gallery Image Version is being replicated to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16704,7 +16704,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RegionalReplicationStatus#state:member",
-              "docComment": "/**\n * This is the regional replication state.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16771,7 +16771,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ReplicationStatus#aggregatedState:member",
-              "docComment": "/**\n * This is the aggregated replication status based on all the regional replication status flags.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16797,7 +16797,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ReplicationStatus#summary:member",
-              "docComment": "/**\n * This is a summary of replication status for each region.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16907,7 +16907,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Resource Id\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16957,7 +16957,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!Resource#name:member",
-              "docComment": "/**\n * Resource name\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17007,7 +17007,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!Resource#type:member",
-              "docComment": "/**\n * Resource type\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17139,7 +17139,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#apiVersions:member",
-              "docComment": "/**\n * The api versions that support this SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17164,7 +17164,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#capabilities:member",
-              "docComment": "/**\n * A name value pair to describe the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17194,7 +17194,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#capacity:member",
-              "docComment": "/**\n * Specifies the number of virtual machines in the scale set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17220,7 +17220,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#costs:member",
-              "docComment": "/**\n * Metadata for retrieving price info.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17250,7 +17250,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#family:member",
-              "docComment": "/**\n * The Family of this particular SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17275,7 +17275,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#kind:member",
-              "docComment": "/**\n * The Kind of resources that are supported in this SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17300,7 +17300,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#locationInfo:member",
-              "docComment": "/**\n * A list of locations and availability zones in those locations where the SKU is available.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17330,7 +17330,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#locations:member",
-              "docComment": "/**\n * The set of locations that the SKU is available.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17355,7 +17355,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#name:member",
-              "docComment": "/**\n * The name of SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17380,7 +17380,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#resourceType:member",
-              "docComment": "/**\n * The type of resource the SKU applies to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17405,7 +17405,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#restrictions:member",
-              "docComment": "/**\n * The restrictions because of which SKU cannot be used. This is empty if there are no restrictions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17435,7 +17435,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#size:member",
-              "docComment": "/**\n * The Size of the SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17460,7 +17460,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSku#tier:member",
-              "docComment": "/**\n * Specifies the tier of virtual machines in a scale set.<br /><br /> Possible Values:<br /><br /> **Standard**<br /><br /> **Basic**\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17501,7 +17501,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapabilities#name:member",
-              "docComment": "/**\n * An invariant to describe the feature.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17526,7 +17526,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapabilities#value:member",
-              "docComment": "/**\n * An invariant if the feature is measured by quantity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17567,7 +17567,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapacity#default:member",
-              "docComment": "/**\n * The default capacity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17592,7 +17592,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapacity#maximum:member",
-              "docComment": "/**\n * The maximum capacity that can be set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17617,7 +17617,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapacity#minimum:member",
-              "docComment": "/**\n * The minimum capacity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17642,7 +17642,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCapacity#scaleType:member",
-              "docComment": "/**\n * The scale type applicable to the sku.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17709,7 +17709,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCosts#extendedUnit:member",
-              "docComment": "/**\n * An invariant to show the extended unit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17734,7 +17734,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCosts#meterID:member",
-              "docComment": "/**\n * Used for querying price from commerce.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17759,7 +17759,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuCosts#quantity:member",
-              "docComment": "/**\n * The multiplier is needed to extend the base metered cost.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17800,7 +17800,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuLocationInfo#location:member",
-              "docComment": "/**\n * Location of the SKU\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17825,7 +17825,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuLocationInfo#zoneDetails:member",
-              "docComment": "/**\n * Details of capabilities available to a SKU in specific zones.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17855,7 +17855,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuLocationInfo#zones:member",
-              "docComment": "/**\n * List of availability zones where the SKU is supported.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17896,7 +17896,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictionInfo#locations:member",
-              "docComment": "/**\n * Locations where the SKU is restricted\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17921,7 +17921,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictionInfo#zones:member",
-              "docComment": "/**\n * List of availability zones where the SKU is restricted.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17962,7 +17962,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictions#reasonCode:member",
-              "docComment": "/**\n * The reason for restriction.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17988,7 +17988,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictions#restrictionInfo:member",
-              "docComment": "/**\n * The information about the restriction where the SKU cannot be used.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18014,7 +18014,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictions#type:member",
-              "docComment": "/**\n * The type of restrictions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18040,7 +18040,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuRestrictions#values:member",
-              "docComment": "/**\n * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18416,7 +18416,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuZoneDetails#capabilities:member",
-              "docComment": "/**\n * A list of capabilities that are available for the SKU in the specified list of zones.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18446,7 +18446,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ResourceSkuZoneDetails#name:member",
-              "docComment": "/**\n * The set of zones that the SKU is available in with the specified capabilities.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18487,7 +18487,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollbackStatusInfo#failedRolledbackInstanceCount:member",
-              "docComment": "/**\n * The number of instances which failed to rollback.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18512,7 +18512,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollbackStatusInfo#rollbackError:member",
-              "docComment": "/**\n * Error details if OS rollback failed.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18538,7 +18538,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollbackStatusInfo#successfullyRolledbackInstanceCount:member",
-              "docComment": "/**\n * The number of instances which have been successfully rolled back.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18720,7 +18720,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeProgressInfo#failedInstanceCount:member",
-              "docComment": "/**\n * The number of instances that have failed to be upgraded successfully.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18745,7 +18745,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeProgressInfo#inProgressInstanceCount:member",
-              "docComment": "/**\n * The number of instances that are currently being upgraded.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18770,7 +18770,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeProgressInfo#pendingInstanceCount:member",
-              "docComment": "/**\n * The number of instances that have not yet begun to be upgraded.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18795,7 +18795,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeProgressInfo#successfulInstanceCount:member",
-              "docComment": "/**\n * The number of instances that have been successfully upgraded.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18836,7 +18836,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeRunningStatus#code:member",
-              "docComment": "/**\n * Code indicating the current status of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18862,7 +18862,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeRunningStatus#lastAction:member",
-              "docComment": "/**\n * The last action performed on the rolling upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18888,7 +18888,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeRunningStatus#lastActionTime:member",
-              "docComment": "/**\n * Last action time of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18914,7 +18914,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!RollingUpgradeRunningStatus#startTime:member",
-              "docComment": "/**\n * Start time of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19736,7 +19736,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!ShareInfoElement#vmUri:member",
-              "docComment": "/**\n * A relative URI containing the ID of the VM that has the disk attached.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -20202,7 +20202,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!SnapshotSku#tier:member",
-              "docComment": "/**\n * The sku tier.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -21651,7 +21651,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!SubResourceReadOnly#id:member",
-              "docComment": "/**\n * Resource Id\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -21986,7 +21986,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpdateResourceDefinition#id:member",
-              "docComment": "/**\n * Resource Id\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22011,7 +22011,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpdateResourceDefinition#name:member",
-              "docComment": "/**\n * Resource name\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22061,7 +22061,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpdateResourceDefinition#type:member",
-              "docComment": "/**\n * Resource type\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22127,7 +22127,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfo#location:member",
-              "docComment": "/**\n * Resource location\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22152,7 +22152,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfo#properties:member",
-              "docComment": "/**\n * Information about the properties of the upgrade operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22178,7 +22178,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfo#type:member",
-              "docComment": "/**\n * Resource type\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22219,7 +22219,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#error:member",
-              "docComment": "/**\n * Error Details for this upgrade if there are any.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22245,7 +22245,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#progress:member",
-              "docComment": "/**\n * Counts of the VMs in each state.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22271,7 +22271,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#rollbackInfo:member",
-              "docComment": "/**\n * Information about OS rollback if performed\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22297,7 +22297,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#runningStatus:member",
-              "docComment": "/**\n * Information about the overall status of the upgrade operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22323,7 +22323,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#startedBy:member",
-              "docComment": "/**\n * Invoker of the Upgrade Operation\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22349,7 +22349,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoricalStatusInfoProperties#targetImageReference:member",
-              "docComment": "/**\n * Image Reference details\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22391,7 +22391,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoryStatus#code:member",
-              "docComment": "/**\n * Code indicating the current status of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22417,7 +22417,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoryStatus#endTime:member",
-              "docComment": "/**\n * End time of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22443,7 +22443,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!UpgradeOperationHistoryStatus#startTime:member",
-              "docComment": "/**\n * Start time of the upgrade.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24534,7 +24534,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineHealthStatus#status:member",
-              "docComment": "/**\n * The health status information for the VM.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24576,7 +24576,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineIdentity#principalId:member",
-              "docComment": "/**\n * The principal id of virtual machine identity. This property will only be provided for a system assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24601,7 +24601,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineIdentity#tenantId:member",
-              "docComment": "/**\n * The tenant id associated with the virtual machine. This property will only be provided for a system assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26628,7 +26628,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetIdentity#principalId:member",
-              "docComment": "/**\n * The principal id of virtual machine scale set identity. This property will only be provided for a system assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26653,7 +26653,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetIdentity#tenantId:member",
-              "docComment": "/**\n * The tenant id associated with the virtual machine scale set. This property will only be provided for a system assigned identity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26754,7 +26754,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetInstanceView#extensions:member",
-              "docComment": "/**\n * The extensions information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26784,7 +26784,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetInstanceView#orchestrationServices:member",
-              "docComment": "/**\n * The orchestration services information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26844,7 +26844,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetInstanceView#virtualMachine:member",
-              "docComment": "/**\n * The instance view status summary for the virtual machine scale set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26886,7 +26886,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetInstanceViewStatusesSummary#statusesSummary:member",
-              "docComment": "/**\n * The extensions information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28749,7 +28749,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSku#capacity:member",
-              "docComment": "/**\n * Specifies the number of virtual machines in the scale set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28775,7 +28775,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSku#resourceType:member",
-              "docComment": "/**\n * The type of resource the sku applies to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28800,7 +28800,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSku#sku:member",
-              "docComment": "/**\n * The Sku.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28842,7 +28842,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSkuCapacity#defaultCapacity:member",
-              "docComment": "/**\n * The default capacity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28867,7 +28867,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSkuCapacity#maximum:member",
-              "docComment": "/**\n * The maximum capacity that can be set.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28892,7 +28892,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSkuCapacity#minimum:member",
-              "docComment": "/**\n * The minimum capacity.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28917,7 +28917,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetSkuCapacity#scaleType:member",
-              "docComment": "/**\n * The scale type applicable to the sku.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31310,7 +31310,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetVMExtensionsSummary#name:member",
-              "docComment": "/**\n * The extension name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31335,7 +31335,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetVMExtensionsSummary#statusesSummary:member",
-              "docComment": "/**\n * The extensions information.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31779,7 +31779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetVMInstanceView#vmHealth:member",
-              "docComment": "/**\n * The health status for the VM.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34032,7 +34032,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineStatusCodeCount#code:member",
-              "docComment": "/**\n * The instance view status code.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34057,7 +34057,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!VirtualMachineStatusCodeCount#count:member",
-              "docComment": "/**\n * The number of instances having a particular status code.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

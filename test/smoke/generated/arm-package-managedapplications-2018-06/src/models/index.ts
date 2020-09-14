@@ -71,9 +71,15 @@ export interface Identity {
   /**
    * The principal ID of resource identity.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly principalId?: string;
   /**
    * The tenant ID of resource.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
@@ -89,13 +95,22 @@ export interface Resource {
   /**
    * Resource ID
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Resource name
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * Resource type
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -257,9 +272,15 @@ export type Application = GenericResource & {
   /**
    * Name and value pairs that define the managed application outputs.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly outputs?: any;
   /**
    * The managed application provisioning state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
 };
@@ -333,9 +354,15 @@ export type ApplicationPatchable = GenericResource & {
   /**
    * Name and value pairs that define the managed application outputs.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly outputs?: any;
   /**
    * The managed application provisioning state.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
 };

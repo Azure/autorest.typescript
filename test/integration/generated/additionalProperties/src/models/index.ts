@@ -15,6 +15,9 @@ export interface PetAPTrue {
   [property: string]: any;
   id: number;
   name?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: boolean;
 }
 
@@ -30,6 +33,9 @@ export interface PetAPObject {
   [property: string]: any;
   id: number;
   name?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: boolean;
 }
 
@@ -40,12 +46,18 @@ export interface PetAPString {
   [property: string]: any;
   id: number;
   name?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: boolean;
 }
 
 export interface PetAPInProperties {
   id: number;
   name?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: boolean;
   /**
    * Dictionary of <number>
@@ -60,6 +72,9 @@ export interface PetAPInPropertiesWithAPString {
   [property: string]: any;
   id: number;
   name?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly status?: boolean;
   odataLocation: string;
   /**

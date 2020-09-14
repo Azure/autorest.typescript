@@ -12,13 +12,22 @@ export interface Resource {
   /**
    * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * The name of the resource
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly name?: string;
   /**
    * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
 }
@@ -134,17 +143,29 @@ export type SystemAssignedIdentity = Resource & {
   /**
    * The id of the tenant which the identity belongs to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly tenantId?: string;
   /**
    * The id of the service principal object associated with the created identity.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The id of the app associated with the identity. This is a random generated UUID by MSI.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly clientId?: string;
   /**
    *  The ManagedServiceIdentity DataPlane URL that can be queried to obtain the identity credentials.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientSecretUrl?: string;
 };
@@ -178,13 +199,22 @@ export type IdentityUpdate = Resource & {
   /**
    * The id of the tenant which the identity belongs to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly tenantId?: string;
   /**
    * The id of the service principal object associated with the created identity.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly principalId?: string;
   /**
    * The id of the app associated with the identity. This is a random generated UUID by MSI.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
 };
@@ -201,13 +231,22 @@ export type Identity = TrackedResource & {
   /**
    * The id of the tenant which the identity belongs to.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly tenantId?: string;
   /**
    * The id of the service principal object associated with the created identity.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly principalId?: string;
   /**
    * The id of the app associated with the identity. This is a random generated UUID by MSI.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
 };

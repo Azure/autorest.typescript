@@ -12,9 +12,15 @@ export interface Resource {
   /**
    * Resource Id
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
   /**
    * Resource Type
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -27,6 +33,9 @@ export interface Resource {
   location?: string;
   /**
    * Resource Name
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
 }
@@ -99,6 +108,9 @@ export interface BaseProduct {
 export type FlattenedProduct = Resource & {
   pName?: string;
   typePropertiesType?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningStateValues?: FlattenedProductPropertiesProvisioningStateValues;
   provisioningState?: string;
 };

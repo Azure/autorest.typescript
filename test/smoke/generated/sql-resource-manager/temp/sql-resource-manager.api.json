@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.9.14",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -31,7 +31,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AdministratorListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -56,7 +56,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AdministratorListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -277,7 +277,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningOptions#actualState:member",
-              "docComment": "/**\n * Automatic tuning option actual state.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -329,7 +329,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningOptions#reasonCode:member",
-              "docComment": "/**\n * Reason code if desired and actual state are different.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -354,7 +354,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningOptions#reasonDesc:member",
-              "docComment": "/**\n * Reason description if desired and actual state are different.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -421,7 +421,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningServerOptions#actualState:member",
-              "docComment": "/**\n * Automatic tuning option actual state.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -473,7 +473,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningServerOptions#reasonCode:member",
-              "docComment": "/**\n * Reason code if desired and actual state are different.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -498,7 +498,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutomaticTuningServerOptions#reasonDesc:member",
-              "docComment": "/**\n * Reason description if desired and actual state are different.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -565,7 +565,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#default:member",
-              "docComment": "/**\n * Default value is no value is provided\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -590,7 +590,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#doNotPauseValue:member",
-              "docComment": "/**\n * Value that is used to not pause (infinite delay before pause)\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -615,7 +615,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#maxValue:member",
-              "docComment": "/**\n * Maximum value\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -640,7 +640,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#minValue:member",
-              "docComment": "/**\n * Minimum value\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -665,7 +665,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#stepSize:member",
-              "docComment": "/**\n * Step value for discrete values between the minimum value and the maximum value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -690,7 +690,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!AutoPauseDelayTimeRange#unit:member",
-              "docComment": "/**\n * Unit of time that delay is expressed in\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1176,7 +1176,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!BackupShortTermRetentionPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1201,7 +1201,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!BackupShortTermRetentionPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1546,7 +1546,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!CheckNameAvailabilityResponse#available:member",
-              "docComment": "/**\n * True if the name is available, otherwise false.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1571,7 +1571,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!CheckNameAvailabilityResponse#message:member",
-              "docComment": "/**\n * A message explaining why the name is unavailable. Will be undefined if the name is available.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1596,7 +1596,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!CheckNameAvailabilityResponse#name:member",
-              "docComment": "/**\n * The name whose availability was checked.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1621,7 +1621,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!CheckNameAvailabilityResponse#reason:member",
-              "docComment": "/**\n * The reason code explaining why the name is unavailable. Will be undefined if the name is available.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2335,7 +2335,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseBlobAuditingPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2360,7 +2360,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseBlobAuditingPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2456,7 +2456,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2481,7 +2481,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2584,7 +2584,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseOperationListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2609,7 +2609,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseOperationListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3813,7 +3813,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#creationDate:member",
-              "docComment": "/**\n * The creation date of the database (ISO8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3839,7 +3839,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#currentServiceObjectiveName:member",
-              "docComment": "/**\n * The current service level objective name of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3864,7 +3864,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#currentSku:member",
-              "docComment": "/**\n * The name and tier of the SKU.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3890,7 +3890,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#databaseId:member",
-              "docComment": "/**\n * The ID of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3915,7 +3915,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#defaultSecondaryLocation:member",
-              "docComment": "/**\n * The default secondary region for this database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3940,7 +3940,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#earliestRestoreDate:member",
-              "docComment": "/**\n * This records the earliest start date and time that restore is available for this database (ISO8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3991,7 +3991,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#failoverGroupId:member",
-              "docComment": "/**\n * Failover Group resource identifier that this database belongs to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4067,7 +4067,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#maxLogSizeBytes:member",
-              "docComment": "/**\n * The max log size for this database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4142,7 +4142,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#pausedDate:member",
-              "docComment": "/**\n * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4269,7 +4269,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#requestedServiceObjectiveName:member",
-              "docComment": "/**\n * The requested service level objective name of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4345,7 +4345,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#resumedDate:member",
-              "docComment": "/**\n * The date when database was resumed by user action or database login (ISO8601 format). Null if the database is paused.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4474,7 +4474,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUpdate#status:member",
-              "docComment": "/**\n * The status of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4566,7 +4566,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#currentValue:member",
-              "docComment": "/**\n * The current value of the usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4591,7 +4591,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#displayName:member",
-              "docComment": "/**\n * The usage metric display name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4616,7 +4616,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#limit:member",
-              "docComment": "/**\n * The current limit of the usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4641,7 +4641,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#name:member",
-              "docComment": "/**\n * The name of the usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4666,7 +4666,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#nextResetTime:member",
-              "docComment": "/**\n * The next reset time for the usage metric (ISO8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4692,7 +4692,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#resourceName:member",
-              "docComment": "/**\n * The name of the resource.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4717,7 +4717,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseUsage#unit:member",
-              "docComment": "/**\n * The units of the usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4891,7 +4891,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseVulnerabilityAssessmentListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4916,7 +4916,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!DatabaseVulnerabilityAssessmentListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5952,7 +5952,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#name:member",
-              "docComment": "/**\n * The database edition name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5977,7 +5977,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#readScale:member",
-              "docComment": "/**\n * The read scale capability for the edition.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6028,7 +6028,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6054,7 +6054,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#supportedServiceLevelObjectives:member",
-              "docComment": "/**\n * The list of supported service objectives for the edition.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6084,7 +6084,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#supportedStorageCapabilities:member",
-              "docComment": "/**\n * The list of supported storage capabilities for this edition\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6114,7 +6114,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EditionCapability#zoneRedundant:member",
-              "docComment": "/**\n * Whether or not zone redundancy is supported for the edition.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6539,7 +6539,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolEditionCapability#name:member",
-              "docComment": "/**\n * The elastic pool edition name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6589,7 +6589,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolEditionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6615,7 +6615,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolEditionCapability#supportedElasticPoolPerformanceLevels:member",
-              "docComment": "/**\n * The list of supported elastic pool DTU levels for the edition.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6645,7 +6645,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolEditionCapability#zoneRedundant:member",
-              "docComment": "/**\n * Whether or not zone redundancy is supported for the edition.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6711,7 +6711,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6736,7 +6736,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6830,7 +6830,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolOperationListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6855,7 +6855,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolOperationListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6997,7 +6997,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMaxPerformanceLevelCapability#limit:member",
-              "docComment": "/**\n * The maximum performance level per database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7047,7 +7047,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMaxPerformanceLevelCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7073,7 +7073,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMaxPerformanceLevelCapability#supportedPerDatabaseMinPerformanceLevels:member",
-              "docComment": "/**\n * The list of supported min database performance levels.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7103,7 +7103,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMaxPerformanceLevelCapability#unit:member",
-              "docComment": "/**\n * Unit type used to measure performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7145,7 +7145,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMinPerformanceLevelCapability#limit:member",
-              "docComment": "/**\n * The minimum performance level per database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7195,7 +7195,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMinPerformanceLevelCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7221,7 +7221,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerDatabaseMinPerformanceLevelCapability#unit:member",
-              "docComment": "/**\n * Unit type used to measure performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7329,7 +7329,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#includedMaxSize:member",
-              "docComment": "/**\n * The included (free) max size for this performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7355,7 +7355,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#maxDatabaseCount:member",
-              "docComment": "/**\n * The maximum number of databases supported.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7380,7 +7380,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#performanceLevel:member",
-              "docComment": "/**\n * The performance level for the pool.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7431,7 +7431,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#sku:member",
-              "docComment": "/**\n * The sku.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7457,7 +7457,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7483,7 +7483,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#supportedLicenseTypes:member",
-              "docComment": "/**\n * List of supported license types.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7513,7 +7513,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#supportedMaxSizes:member",
-              "docComment": "/**\n * The list of supported max sizes.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7543,7 +7543,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#supportedPerDatabaseMaxPerformanceLevels:member",
-              "docComment": "/**\n * The list of supported per database max performance levels.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7573,7 +7573,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#supportedPerDatabaseMaxSizes:member",
-              "docComment": "/**\n * The list of supported per database max sizes.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7603,7 +7603,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ElasticPoolPerformanceLevelCapability#zoneRedundant:member",
-              "docComment": "/**\n * Whether or not zone redundancy is supported for the performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8331,7 +8331,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EncryptionProtectorListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8356,7 +8356,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!EncryptionProtectorListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9043,7 +9043,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ExtendedDatabaseBlobAuditingPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9068,7 +9068,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ExtendedDatabaseBlobAuditingPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9345,7 +9345,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ExtendedServerBlobAuditingPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9370,7 +9370,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ExtendedServerBlobAuditingPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9507,7 +9507,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!FailoverGroupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9532,7 +9532,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!FailoverGroupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11116,7 +11116,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstanceFailoverGroupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11141,7 +11141,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstanceFailoverGroupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11657,7 +11657,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolEditionCapability#name:member",
-              "docComment": "/**\n * The instance pool version name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11707,7 +11707,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolEditionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11733,7 +11733,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolEditionCapability#supportedFamilies:member",
-              "docComment": "/**\n * The supported families.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11779,7 +11779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolFamilyCapability#name:member",
-              "docComment": "/**\n * Family name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11829,7 +11829,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolFamilyCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11855,7 +11855,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolFamilyCapability#supportedLicenseTypes:member",
-              "docComment": "/**\n * List of supported license types.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11885,7 +11885,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolFamilyCapability#supportedVcoresValues:member",
-              "docComment": "/**\n * List of supported virtual cores values.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11956,7 +11956,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11981,7 +11981,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12404,7 +12404,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolVcoresCapability#name:member",
-              "docComment": "/**\n * The virtual cores identifier.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12454,7 +12454,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolVcoresCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12480,7 +12480,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolVcoresCapability#storageLimit:member",
-              "docComment": "/**\n * Storage limit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12506,7 +12506,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!InstancePoolVcoresCapability#value:member",
-              "docComment": "/**\n * The virtual cores value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12634,7 +12634,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobAgentListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12659,7 +12659,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobAgentListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13041,7 +13041,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobCredentialListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13066,7 +13066,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobCredentialListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13422,7 +13422,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobExecutionListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13447,7 +13447,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobExecutionListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14681,7 +14681,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobExecutionTarget#databaseName:member",
-              "docComment": "/**\n * The database name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14706,7 +14706,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobExecutionTarget#serverName:member",
-              "docComment": "/**\n * The server name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14731,7 +14731,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobExecutionTarget#type:member",
-              "docComment": "/**\n * The type of the target.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14773,7 +14773,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14798,7 +14798,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16116,7 +16116,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobStepListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16141,7 +16141,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobStepListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18089,7 +18089,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobTargetGroupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18114,7 +18114,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobTargetGroupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18432,7 +18432,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobVersionListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18457,7 +18457,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!JobVersionListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18647,7 +18647,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LicenseTypeCapability#name:member",
-              "docComment": "/**\n * License type identifier.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18697,7 +18697,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LicenseTypeCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18739,7 +18739,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LocationCapabilities#name:member",
-              "docComment": "/**\n * The location name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18789,7 +18789,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LocationCapabilities#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18815,7 +18815,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LocationCapabilities#supportedManagedInstanceVersions:member",
-              "docComment": "/**\n * The list of supported managed instance versions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18845,7 +18845,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LocationCapabilities#supportedServerVersions:member",
-              "docComment": "/**\n * The list of supported server versions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18891,7 +18891,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LogicalServerSecurityAlertPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18916,7 +18916,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LogicalServerSecurityAlertPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18962,7 +18962,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LogSizeCapability#limit:member",
-              "docComment": "/**\n * The log size limit (see 'unit' for the units).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -18987,7 +18987,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LogSizeCapability#unit:member",
-              "docComment": "/**\n * The units that the limit is expressed in.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19120,7 +19120,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LongTermRetentionBackupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19145,7 +19145,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!LongTermRetentionBackupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22895,7 +22895,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedBackupShortTermRetentionPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -22920,7 +22920,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedBackupShortTermRetentionPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23075,7 +23075,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23100,7 +23100,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23530,7 +23530,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseSecurityAlertPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23555,7 +23555,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseSecurityAlertPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24615,7 +24615,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseUpdate#creationDate:member",
-              "docComment": "/**\n * Creation date of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24641,7 +24641,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseUpdate#defaultSecondaryLocation:member",
-              "docComment": "/**\n * Geo paired region.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24666,7 +24666,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseUpdate#earliestRestorePoint:member",
-              "docComment": "/**\n * Earliest restore point in time for point in time restore.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24692,7 +24692,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseUpdate#failoverGroupId:member",
-              "docComment": "/**\n * Instance Failover Group resource identifier that this managed database belongs to.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24843,7 +24843,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedDatabaseUpdate#status:member",
-              "docComment": "/**\n * Status of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25563,7 +25563,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceAdministratorListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25588,7 +25588,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceAdministratorListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25851,7 +25851,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceEditionCapability#name:member",
-              "docComment": "/**\n * The managed server version name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25901,7 +25901,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceEditionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -25927,7 +25927,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceEditionCapability#supportedFamilies:member",
-              "docComment": "/**\n * The supported families.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26012,7 +26012,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceEncryptionProtectorListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26037,7 +26037,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceEncryptionProtectorListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26275,7 +26275,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceFamilyCapability#name:member",
-              "docComment": "/**\n * Family name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26325,7 +26325,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceFamilyCapability#sku:member",
-              "docComment": "/**\n * SKU name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26350,7 +26350,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceFamilyCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26376,7 +26376,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceFamilyCapability#supportedLicenseTypes:member",
-              "docComment": "/**\n * List of supported license types.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26406,7 +26406,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceFamilyCapability#supportedVcoresValues:member",
-              "docComment": "/**\n * List of supported virtual cores values.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26500,7 +26500,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceKeyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26525,7 +26525,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceKeyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26906,7 +26906,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26931,7 +26931,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27043,7 +27043,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceLongTermRetentionBackupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27068,7 +27068,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceLongTermRetentionBackupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27336,7 +27336,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceLongTermRetentionPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27361,7 +27361,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceLongTermRetentionPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27489,7 +27489,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceOperationListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -27514,7 +27514,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceOperationListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28302,7 +28302,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceUpdate#dnsZone:member",
-              "docComment": "/**\n * The Dns Zone that the managed instance is in.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28352,7 +28352,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceUpdate#fullyQualifiedDomainName:member",
-              "docComment": "/**\n * The fully qualified domain name of the managed instance.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28607,7 +28607,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceUpdate#state:member",
-              "docComment": "/**\n * The state of the managed instance.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28773,7 +28773,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#includedMaxSize:member",
-              "docComment": "/**\n * Included size.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28799,7 +28799,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#instancePoolSupported:member",
-              "docComment": "/**\n * True if this service objective is supported for managed instances in an instance pool.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28824,7 +28824,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#name:member",
-              "docComment": "/**\n * The virtual cores identifier.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28874,7 +28874,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#standaloneSupported:member",
-              "docComment": "/**\n * True if this service objective is supported for standalone managed instances.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28899,7 +28899,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28925,7 +28925,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#supportedStorageSizes:member",
-              "docComment": "/**\n * Storage size ranges.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28955,7 +28955,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVcoresCapability#value:member",
-              "docComment": "/**\n * The virtual cores value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28996,7 +28996,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVersionCapability#name:member",
-              "docComment": "/**\n * The server version name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29046,7 +29046,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVersionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29072,7 +29072,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVersionCapability#supportedEditions:member",
-              "docComment": "/**\n * The list of supported managed instance editions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29102,7 +29102,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVersionCapability#supportedInstancePoolEditions:member",
-              "docComment": "/**\n * The list of supported instance pool editions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29187,7 +29187,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVulnerabilityAssessmentListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29212,7 +29212,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedInstanceVulnerabilityAssessmentListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29955,7 +29955,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedServerSecurityAlertPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29980,7 +29980,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ManagedServerSecurityAlertPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30076,7 +30076,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeCapability#limit:member",
-              "docComment": "/**\n * The maximum size limit (see 'unit' for the units).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30101,7 +30101,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeCapability#unit:member",
-              "docComment": "/**\n * The units that the limit is expressed in.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30143,7 +30143,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeRangeCapability#logSize:member",
-              "docComment": "/**\n * Size of transaction log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30169,7 +30169,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeRangeCapability#maxValue:member",
-              "docComment": "/**\n * Maximum value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30195,7 +30195,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeRangeCapability#minValue:member",
-              "docComment": "/**\n * Minimum value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30246,7 +30246,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeRangeCapability#scaleSize:member",
-              "docComment": "/**\n * Scale/step size for discrete values between the minimum value and the maximum value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30272,7 +30272,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MaxSizeRangeCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30339,7 +30339,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#endTime:member",
-              "docComment": "/**\n * The end time for the metric (ISO-8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30365,7 +30365,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#metricValues:member",
-              "docComment": "/**\n * The metric values for the specified time window and timestep.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30395,7 +30395,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#name:member",
-              "docComment": "/**\n * The name information for the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30421,7 +30421,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#startTime:member",
-              "docComment": "/**\n * The start time for the metric (ISO-8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30447,7 +30447,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#timeGrain:member",
-              "docComment": "/**\n * The time step to be used to summarize the metric values.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30472,7 +30472,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Metric#unit:member",
-              "docComment": "/**\n * The unit of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30514,7 +30514,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricAvailability#retention:member",
-              "docComment": "/**\n * The length of retention for the database metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30539,7 +30539,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricAvailability#timeGrain:member",
-              "docComment": "/**\n * The granularity of the database metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30580,7 +30580,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricDefinition#metricAvailabilities:member",
-              "docComment": "/**\n * The list of database metric availabilities for the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30610,7 +30610,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricDefinition#name:member",
-              "docComment": "/**\n * The name information for the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30636,7 +30636,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricDefinition#primaryAggregationType:member",
-              "docComment": "/**\n * The primary aggregation type defining how metric values are displayed.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30662,7 +30662,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricDefinition#resourceUri:member",
-              "docComment": "/**\n * The resource uri of the database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30687,7 +30687,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricDefinition#unit:member",
-              "docComment": "/**\n * The unit of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30821,7 +30821,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricName#localizedValue:member",
-              "docComment": "/**\n * The friendly name of the database metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30846,7 +30846,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricName#value:member",
-              "docComment": "/**\n * The name of the database metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30887,7 +30887,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#average:member",
-              "docComment": "/**\n * The average value of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30912,7 +30912,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#count:member",
-              "docComment": "/**\n * The number of values for the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30937,7 +30937,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#maximum:member",
-              "docComment": "/**\n * The max value of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30962,7 +30962,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#minimum:member",
-              "docComment": "/**\n * The min value of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30987,7 +30987,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#timestamp:member",
-              "docComment": "/**\n * The metric timestamp (ISO-8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31013,7 +31013,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MetricValue#total:member",
-              "docComment": "/**\n * The total value of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31079,7 +31079,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MinCapacityCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31105,7 +31105,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!MinCapacityCapability#value:member",
-              "docComment": "/**\n * Min capacity value\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31212,7 +31212,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Operation#display:member",
-              "docComment": "/**\n * The localized display information for this particular operation / action.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31238,7 +31238,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Operation#name:member",
-              "docComment": "/**\n * The name of the operation being performed on this particular object.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31263,7 +31263,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Operation#origin:member",
-              "docComment": "/**\n * The intended executor of the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31289,7 +31289,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Operation#properties:member",
-              "docComment": "/**\n * Additional descriptions for the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31330,7 +31330,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationDisplay#description:member",
-              "docComment": "/**\n * The localized friendly description for the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31355,7 +31355,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationDisplay#operation:member",
-              "docComment": "/**\n * The localized friendly name for the operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31380,7 +31380,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationDisplay#provider:member",
-              "docComment": "/**\n * The localized friendly form of the resource provider name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31405,7 +31405,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationDisplay#resource:member",
-              "docComment": "/**\n * The localized friendly form of the resource type related to this action/operation.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31446,7 +31446,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationImpact#changeValueAbsolute:member",
-              "docComment": "/**\n * The absolute impact to dimension.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31471,7 +31471,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationImpact#changeValueRelative:member",
-              "docComment": "/**\n * The relative impact to dimension (null if not applicable)\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31496,7 +31496,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationImpact#name:member",
-              "docComment": "/**\n * The name of the impact dimension.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31521,7 +31521,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationImpact#unit:member",
-              "docComment": "/**\n * The unit in which estimated impact to dimension is measured.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31562,7 +31562,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31587,7 +31587,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!OperationListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31779,7 +31779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PartnerInfo#location:member",
-              "docComment": "/**\n * Geo location of the partner server.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31804,7 +31804,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PartnerInfo#replicationRole:member",
-              "docComment": "/**\n * Replication role of the partner server.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31871,7 +31871,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PartnerRegionInfo#replicationRole:member",
-              "docComment": "/**\n * Replication role of the partner managed instances.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31938,7 +31938,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PerformanceLevelCapability#unit:member",
-              "docComment": "/**\n * Unit type used to measure performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31964,7 +31964,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PerformanceLevelCapability#value:member",
-              "docComment": "/**\n * Performance level value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32103,7 +32103,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateEndpointConnectionListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32128,7 +32128,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateEndpointConnectionListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32226,7 +32226,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateEndpointConnectionProperties#provisioningState:member",
-              "docComment": "/**\n * State of the private endpoint connection.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32565,7 +32565,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkResourceListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32590,7 +32590,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkResourceListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32636,7 +32636,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkResourceProperties#groupId:member",
-              "docComment": "/**\n * The private link resource group id.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32661,7 +32661,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkResourceProperties#requiredMembers:member",
-              "docComment": "/**\n * The private link resource required member names.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32871,7 +32871,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkServiceConnectionStateProperty#actionsRequired:member",
-              "docComment": "/**\n * The actions required for private link service connection.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32962,7 +32962,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!PrivateLinkServiceConnectionStatePropertyAutoGenerated#actionsRequired:member",
-              "docComment": "/**\n * The actions required for private link service connection.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -33160,7 +33160,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ReadScaleCapability#maxNumberOfReplicas:member",
-              "docComment": "/**\n * The maximum number of read scale replicas.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -33210,7 +33210,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ReadScaleCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34059,7 +34059,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RecoverableManagedDatabaseListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34084,7 +34084,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RecoverableManagedDatabaseListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34557,7 +34557,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Resource ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34582,7 +34582,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Resource#name:member",
-              "docComment": "/**\n * Resource name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34607,7 +34607,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Resource#type:member",
-              "docComment": "/**\n * Resource type.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34648,7 +34648,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ResourceIdentity#principalId:member",
-              "docComment": "/**\n * The Azure Active Directory principal id.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34673,7 +34673,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ResourceIdentity#tenantId:member",
-              "docComment": "/**\n * The Azure Active Directory tenant id.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35037,7 +35037,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RestorableDroppedManagedDatabaseListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35062,7 +35062,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RestorableDroppedManagedDatabaseListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35334,7 +35334,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RestorePointListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35359,7 +35359,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!RestorePointListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35763,7 +35763,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SensitivityLabelListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35788,7 +35788,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SensitivityLabelListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37228,7 +37228,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerBlobAuditingPolicyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37253,7 +37253,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerBlobAuditingPolicyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37942,7 +37942,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerDnsAliasListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -37967,7 +37967,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerDnsAliasListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38061,7 +38061,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerKeyListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38086,7 +38086,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerKeyListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38349,7 +38349,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38374,7 +38374,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38420,7 +38420,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerPrivateEndpointConnection#id:member",
-              "docComment": "/**\n * Resource ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38445,7 +38445,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerPrivateEndpointConnection#properties:member",
-              "docComment": "/**\n * Private endpoint connection properties\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39186,7 +39186,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUpdate#fullyQualifiedDomainName:member",
-              "docComment": "/**\n * The fully qualified domain name of the server.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39236,7 +39236,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUpdate#privateEndpointConnections:member",
-              "docComment": "/**\n * List of private endpoint connections on a server\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39292,7 +39292,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUpdate#state:member",
-              "docComment": "/**\n * The state of the server.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39383,7 +39383,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#currentValue:member",
-              "docComment": "/**\n * The current value of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39408,7 +39408,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#displayName:member",
-              "docComment": "/**\n * The metric display name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39433,7 +39433,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#limit:member",
-              "docComment": "/**\n * The current limit of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39458,7 +39458,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#name:member",
-              "docComment": "/**\n * Name of the server usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39483,7 +39483,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#nextResetTime:member",
-              "docComment": "/**\n * The next reset time for the metric (ISO8601 format).\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39509,7 +39509,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#resourceName:member",
-              "docComment": "/**\n * The name of the resource.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39534,7 +39534,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerUsage#unit:member",
-              "docComment": "/**\n * The units of the metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39669,7 +39669,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVersionCapability#name:member",
-              "docComment": "/**\n * The server version name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39719,7 +39719,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVersionCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39745,7 +39745,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVersionCapability#supportedEditions:member",
-              "docComment": "/**\n * The list of supported database editions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39775,7 +39775,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVersionCapability#supportedElasticPoolEditions:member",
-              "docComment": "/**\n * The list of supported elastic pool editions.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39860,7 +39860,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVulnerabilityAssessmentListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39885,7 +39885,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServerVulnerabilityAssessmentListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40153,7 +40153,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#computeModel:member",
-              "docComment": "/**\n * The compute model\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40178,7 +40178,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#id:member",
-              "docComment": "/**\n * The unique ID of the service objective.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40203,7 +40203,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#includedMaxSize:member",
-              "docComment": "/**\n * The included (free) max size.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40229,7 +40229,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#name:member",
-              "docComment": "/**\n * The service objective name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40254,7 +40254,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#performanceLevel:member",
-              "docComment": "/**\n * The performance level.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40305,7 +40305,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#sku:member",
-              "docComment": "/**\n * The sku.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40331,7 +40331,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40357,7 +40357,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#supportedAutoPauseDelay:member",
-              "docComment": "/**\n * Supported time range for auto pause delay\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40383,7 +40383,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#supportedLicenseTypes:member",
-              "docComment": "/**\n * List of supported license types.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40413,7 +40413,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#supportedMaxSizes:member",
-              "docComment": "/**\n * The list of supported maximum database sizes.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40443,7 +40443,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#supportedMinCapacities:member",
-              "docComment": "/**\n * List of supported min capacities\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40473,7 +40473,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!ServiceObjectiveCapability#zoneRedundant:member",
-              "docComment": "/**\n * Whether or not zone redundancy is supported for the service objective.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -41046,7 +41046,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SloUsageMetric#inRangeTimeRatio:member",
-              "docComment": "/**\n * Gets or sets inRangeTimeRatio for SLO usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -41071,7 +41071,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SloUsageMetric#serviceLevelObjective:member",
-              "docComment": "/**\n * The serviceLevelObjective for SLO usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -41097,7 +41097,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SloUsageMetric#serviceLevelObjectiveId:member",
-              "docComment": "/**\n * The serviceLevelObjectiveId for SLO usage metric.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -43968,7 +43968,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!StorageCapability#status:member",
-              "docComment": "/**\n * The status of the capability.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -43994,7 +43994,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!StorageCapability#storageAccountType:member",
-              "docComment": "/**\n * The storage account type for the database's backups.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44116,7 +44116,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SubscriptionUsageListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44141,7 +44141,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SubscriptionUsageListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44388,7 +44388,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncAgentKeyProperties#syncAgentKey:member",
-              "docComment": "/**\n * Key of sync agent.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44468,7 +44468,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncAgentLinkedDatabaseListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44493,7 +44493,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncAgentLinkedDatabaseListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44539,7 +44539,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncAgentListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44564,7 +44564,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncAgentListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -44996,7 +44996,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncDatabaseIdListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45021,7 +45021,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncDatabaseIdListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45067,7 +45067,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncDatabaseIdProperties#id:member",
-              "docComment": "/**\n * ARM resource id of sync database.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45133,7 +45133,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaProperties#lastUpdateTime:member",
-              "docComment": "/**\n * Last update time of the database schema.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45159,7 +45159,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaProperties#tables:member",
-              "docComment": "/**\n * List of tables in the database full schema.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45205,7 +45205,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaPropertiesListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45230,7 +45230,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaPropertiesListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45276,7 +45276,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTable#columns:member",
-              "docComment": "/**\n * List of columns in the table of database full schema.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45306,7 +45306,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTable#errorId:member",
-              "docComment": "/**\n * Error id of the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45331,7 +45331,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTable#hasError:member",
-              "docComment": "/**\n * If there is error in the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45356,7 +45356,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTable#name:member",
-              "docComment": "/**\n * Name of the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45381,7 +45381,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTable#quotedName:member",
-              "docComment": "/**\n * Quoted name of the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45422,7 +45422,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#dataSize:member",
-              "docComment": "/**\n * Data size of the column.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45447,7 +45447,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#dataType:member",
-              "docComment": "/**\n * Data type of the column.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45472,7 +45472,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#errorId:member",
-              "docComment": "/**\n * Error id of the column.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45497,7 +45497,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#hasError:member",
-              "docComment": "/**\n * If there is error in the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45522,7 +45522,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#isPrimaryKey:member",
-              "docComment": "/**\n * If it is the primary key of the table.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45547,7 +45547,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#name:member",
-              "docComment": "/**\n * Name of the column.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45572,7 +45572,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncFullSchemaTableColumn#quotedName:member",
-              "docComment": "/**\n * Quoted name of the column.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45679,7 +45679,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45704,7 +45704,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45750,7 +45750,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45775,7 +45775,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45821,7 +45821,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#details:member",
-              "docComment": "/**\n * Details of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45846,7 +45846,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#operationStatus:member",
-              "docComment": "/**\n * OperationStatus of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45871,7 +45871,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#source:member",
-              "docComment": "/**\n * Source of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45896,7 +45896,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#timestamp:member",
-              "docComment": "/**\n * Timestamp of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45922,7 +45922,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#tracingId:member",
-              "docComment": "/**\n * TracingId of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -45947,7 +45947,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncGroupLogProperties#type:member",
-              "docComment": "/**\n * Type of the sync group log.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -47000,7 +47000,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncMemberListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -47025,7 +47025,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!SyncMemberListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -47926,7 +47926,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#currentValue:member",
-              "docComment": "/**\n * Usage current value.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -47951,7 +47951,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#id:member",
-              "docComment": "/**\n * Resource ID.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -47976,7 +47976,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#limit:member",
-              "docComment": "/**\n * Usage limit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48001,7 +48001,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#name:member",
-              "docComment": "/**\n * Resource name.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48027,7 +48027,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#requestedLimit:member",
-              "docComment": "/**\n * Usage requested limit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48052,7 +48052,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#type:member",
-              "docComment": "/**\n * Resource type.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48077,7 +48077,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!Usage#unit:member",
-              "docComment": "/**\n * Usage unit.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48118,7 +48118,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!UsageListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48143,7 +48143,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!UsageListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48433,7 +48433,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualClusterListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48458,7 +48458,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualClusterListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48792,7 +48792,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualClusterUpdate#childResources:member",
-              "docComment": "/**\n * List of resources in this virtual cluster.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48842,7 +48842,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualClusterUpdate#subnetId:member",
-              "docComment": "/**\n * Subnet resource ID for the virtual cluster.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48947,7 +48947,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualNetworkRuleListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -48972,7 +48972,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VirtualNetworkRuleListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49376,7 +49376,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VulnerabilityAssessmentScanError#code:member",
-              "docComment": "/**\n * The error code.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49401,7 +49401,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VulnerabilityAssessmentScanError#message:member",
-              "docComment": "/**\n * The error message.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49517,7 +49517,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VulnerabilityAssessmentScanRecordListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49542,7 +49542,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!VulnerabilityAssessmentScanRecordListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49668,7 +49668,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!WorkloadClassifierListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49693,7 +49693,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!WorkloadClassifierListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49961,7 +49961,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!WorkloadGroupListResult#nextLink:member",
-              "docComment": "/**\n * Link to retrieve next page of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -49986,7 +49986,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "sql-resource-manager!WorkloadGroupListResult#value:member",
-              "docComment": "/**\n * Array of results.\n */\n",
+              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

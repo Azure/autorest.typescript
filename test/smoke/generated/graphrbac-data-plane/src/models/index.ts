@@ -47,9 +47,15 @@ export interface DirectoryObject {
   /**
    * The object ID.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly objectId?: string;
   /**
    * The time at which the directory object was deleted.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletionTimestamp?: Date;
 }
@@ -839,13 +845,22 @@ export interface Domain {
   /**
    * the type of the authentication into the domain.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly authenticationType?: string;
   /**
    * if this is the default domain in the tenant.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly isDefault?: boolean;
   /**
    * if this domain's ownership is verified.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isVerified?: boolean;
   /**
@@ -1132,11 +1147,17 @@ export type ServicePrincipal = DirectoryObject & {
   /**
    * The display name exposed by the associated application.
    */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly appDisplayName?: string;
   /**
    * The application ID.
    */
   appId?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly appOwnerTenantId?: string;
   /**
    * Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application.
@@ -1168,6 +1189,9 @@ export type ServicePrincipal = DirectoryObject & {
   logoutUrl?: string;
   /**
    * The OAuth 2.0 permissions exposed by the associated application.
+   */
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly oauth2Permissions?: OAuth2Permission[];
   /**
