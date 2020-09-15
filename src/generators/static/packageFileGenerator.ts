@@ -36,7 +36,7 @@ export function generatePackageJson(
       "rollup-plugin-node-resolve": "^3.4.0",
       "rollup-plugin-sourcemaps": "^0.4.2",
       "uglify-js": "^3.4.9",
-      "@microsoft/api-extractor": "^7.9.3"
+      "@microsoft/api-extractor": "7.9.10"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js`,
