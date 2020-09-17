@@ -977,15 +977,7 @@ export function addOperationSpecs(
     hasMediaType(operation, KnownMediaType.Json)
   );
 
-  const hasMultiPart = operationGroupDetails.operations.some(operation =>
-    hasMediaType(operation, KnownMediaType.Multipart)
-  );
-
-  const hasForm = operationGroupDetails.operations.some(operation =>
-    hasMediaType(operation, KnownMediaType.Form)
-  );
-
-  const needsDefault = !hasXml && !hasJson && !hasMultiPart;
+  const needsDefault = !hasXml && !hasJson;
 
   file.addStatements("// Operation Specifications");
 
@@ -993,7 +985,7 @@ export function addOperationSpecs(
     writeSerializer(hasMappers, file, SerializerKind.Xml);
   }
 
-  if (hasJson || needsDefault || hasMultiPart || hasForm) {
+  if (hasJson || needsDefault) {
     writeSerializer(hasMappers, file, SerializerKind.Json);
   }
 
