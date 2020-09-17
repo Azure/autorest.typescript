@@ -480,42 +480,25 @@ function getGroupedParameters(
       !mediaType || !p.targetMediaType || p.targetMediaType === mediaType;
     return Boolean(matchesOperation && matchesMediaType);
   });
-  if (mediaType && (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form)) {
-    return {
-      formDataParameters: operationParams.filter(
-        p => p.location === ParameterLocation.Body
-      ),
-      queryParameters: operationParams.filter(
-        p => p.location === ParameterLocation.Query
-      ),
-      urlParameters: operationParams.filter(
-        p =>
-          p.location === ParameterLocation.Path ||
-          p.location === ParameterLocation.Uri
-      ),
-      headerParameters: operationParams.filter(
-        p => p.location === ParameterLocation.Header
-      ),
-      cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
-    };
-  } else {
-    return {
-      requestBody: operationParams.find(
-        p => p.location === ParameterLocation.Body
-      ),
-      queryParameters: operationParams.filter(
-        p => p.location === ParameterLocation.Query
-      ),
-      urlParameters: operationParams.filter(
-        p =>
-          p.location === ParameterLocation.Path ||
-          p.location === ParameterLocation.Uri
-      ),
-      headerParameters: operationParams.filter(
-        p => p.location === ParameterLocation.Header
-      ),
-      cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
-    };
+
+  const hasFormDataParameters = mediaType && (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form);
+
+  return {
+    ...(hasFormDataParameters
+      ? { formDataParameters: operationParams.filter(p => p.location === ParameterLocation.Body) }
+      : { requestBody: operationParams.find(p => p.location === ParameterLocation.Body) }),
+    queryParameters: operationParams.filter(
+      p => p.location === ParameterLocation.Query
+    ),
+    urlParameters: operationParams.filter(
+      p =>
+        p.location === ParameterLocation.Path ||
+        p.location === ParameterLocation.Uri
+    ),
+    headerParameters: operationParams.filter(
+      p => p.location === ParameterLocation.Header
+    ),
+    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
   }
 }
 
