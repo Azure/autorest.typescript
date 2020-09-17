@@ -15,8 +15,14 @@
     "stripInternal": true,
     "noEmitHelpers": false,
     "target": "es2018",
-    "types": ["node", "mocha"],
-    "lib": ["es2018", "DOM"],
+    "types": [
+      "node",
+      "mocha"
+    ],
+    "lib": [
+      "es2018",
+      "DOM"
+    ],
     "experimentalDecorators": true,
     "newLine": "LF",
     "outDir": "./test-browser",
@@ -30,6 +36,8 @@
   "exclude": [
     "test/integration/generated/noLicenseHeader/*.ts",
     "test/integration/generated/licenseHeader/*.ts",
-    "test/integration/licenseHeader.spec.ts"
+    "test/integration/generated/bodyFormData/*.ts",
+    "test/integration/licenseHeader.spec.ts",
+    "test/integration/bodyFormData.spec.ts"
   ]
 }

@@ -257,6 +257,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "SubscriptionIdApiVersionClient",
     packageName: "subscriptionid-apiversion",
     licenseHeader: true
+  },
+  bodyFormData: {
+    swagger: "body-formdata.json",
+    clientName: "BodyFormDataClient",
+    packageName: "body-formdata",
+    licenseHeader: true
   }
 };
 
