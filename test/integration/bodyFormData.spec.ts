@@ -36,6 +36,38 @@ describe("Integration tests for BodyFormData", () => {
             assert.fail("ReadableStreamBody must not be null!!!");
         }
     });
+
+    it('should report upload/download progress', async function () {
+        const content = new Uint8Array(1024 * 1024 * 1);
+        let uploadNotified = false;
+        let downloadNotified = false;
+        const response = await client.formdata.uploadFileViaBody(content, {
+            requestOptions: {
+                onUploadProgress: ev => {
+                    uploadNotified = true;
+                    ev.loadedBytes.should.be.a("Number");
+                },
+                onDownloadProgress: ev => {
+                    downloadNotified = true;
+                    ev.loadedBytes.should.be.a("Number");
+                }
+            }
+        });
+
+        const streamBody = response.readableStreamBody;
+        if (response.blobBody) {
+            await response.blobBody;
+        } else if (streamBody) {
+            streamBody.on('data', () => { });
+            await new Promise((resolve, reject) => {
+                streamBody.on('end', resolve);
+                streamBody.on('error', reject);
+            });
+        }
+
+        assert(uploadNotified);
+        assert(downloadNotified);
+    });
 });
 
 

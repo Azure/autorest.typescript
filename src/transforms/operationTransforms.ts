@@ -469,7 +469,7 @@ function getGroupedParameters(
   parameters: ParameterDetails[],
   operationFullname: string,
   mediaType?: KnownMediaType
-) {
+): { formDataParameters?: any, requestBody?: any, queryParameters: any, urlParameters: any, headerParameters: any, cookie: any } {
   const operationParams = parameters.filter(p => {
     // Ensure parameters are specific to the operation.
     const matchesOperation =
