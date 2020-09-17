@@ -108,6 +108,7 @@ export function transformOperationSpec(
     const httpInfo = extractHttpDetails(request);
     const {
       requestBody,
+      formDataParameters,
       queryParameters,
       urlParameters,
       headerParameters
@@ -120,6 +121,7 @@ export function transformOperationSpec(
       ...httpInfo,
       responses: extractSpecResponses(operationDetails),
       requestBody,
+      formDataParameters,
       ...(queryParameters && queryParameters.length && { queryParameters }),
       ...(urlParameters && urlParameters.length && { urlParameters }),
       ...(headerParameters && headerParameters.length && { headerParameters }),
@@ -182,9 +184,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-            isConstant: true,
-            defaultValue: constantSchema.value.value
-          }
+          isConstant: true,
+          defaultValue: constantSchema.value.value
+        }
         : undefined;
       break;
     case SchemaType.String:
@@ -478,23 +480,43 @@ function getGroupedParameters(
       !mediaType || !p.targetMediaType || p.targetMediaType === mediaType;
     return Boolean(matchesOperation && matchesMediaType);
   });
-  return {
-    requestBody: operationParams.find(
-      p => p.location === ParameterLocation.Body
-    ),
-    queryParameters: operationParams.filter(
-      p => p.location === ParameterLocation.Query
-    ),
-    urlParameters: operationParams.filter(
-      p =>
-        p.location === ParameterLocation.Path ||
-        p.location === ParameterLocation.Uri
-    ),
-    headerParameters: operationParams.filter(
-      p => p.location === ParameterLocation.Header
-    ),
-    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
-  };
+  if (mediaType && (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form)) {
+    return {
+      formDataParameters: operationParams.filter(
+        p => p.location === ParameterLocation.Body
+      ),
+      queryParameters: operationParams.filter(
+        p => p.location === ParameterLocation.Query
+      ),
+      urlParameters: operationParams.filter(
+        p =>
+          p.location === ParameterLocation.Path ||
+          p.location === ParameterLocation.Uri
+      ),
+      headerParameters: operationParams.filter(
+        p => p.location === ParameterLocation.Header
+      ),
+      cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
+    };
+  } else {
+    return {
+      requestBody: operationParams.find(
+        p => p.location === ParameterLocation.Body
+      ),
+      queryParameters: operationParams.filter(
+        p => p.location === ParameterLocation.Query
+      ),
+      urlParameters: operationParams.filter(
+        p =>
+          p.location === ParameterLocation.Path ||
+          p.location === ParameterLocation.Uri
+      ),
+      headerParameters: operationParams.filter(
+        p => p.location === ParameterLocation.Header
+      ),
+      cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
+    };
+  }
 }
 
 function getMapperForSchema(

@@ -1,0 +1,53 @@
+import {
+    BodyFormDataClient,
+    FormdataUploadFileResponse,
+    FormdataUploadFileViaBodyResponse
+} from "./generated/bodyFormData/src"
+import { assert } from "chai";
+import * as fs from "fs";
+
+describe("Integration tests for BodyFormData", () => {
+    let client: BodyFormDataClient;
+
+    it("should correctly accept file via form", async () => {
+        client = new BodyFormDataClient();
+        const fileName: string = `sample.png`;
+        const filePath: string = `${__dirname}/../res/${fileName}`;
+        const fileContent = fs.readFileSync(filePath);
+        const result: FormdataUploadFileResponse = await client.formdata.uploadFile(fileContent, fileName);
+        if (result.readableStreamBody) {
+            const buff = await readStreamToBuffer(result.readableStreamBody)
+            assert.deepEqual(buff, fileContent);
+        } else {
+            assert.fail("ReadableStreamBody must not be null!!!");
+        }
+    });
+
+    it('should correctly accept file via body', async function () {
+        client = new BodyFormDataClient();
+        const fileName: string = `sample.png`;
+        const filePath: string = `${__dirname}/../res/${fileName}`;
+        const fileContent = fs.readFileSync(filePath);
+        const result: FormdataUploadFileViaBodyResponse = await client.formdata.uploadFileViaBody(fileContent);
+        if (result.readableStreamBody) {
+            const buff = await readStreamToBuffer(result.readableStreamBody)
+            assert.deepEqual(buff, fileContent);
+        } else {
+            assert.fail("ReadableStreamBody must not be null!!!");
+        }
+    });
+});
+
+
+const readStreamToBuffer = async function (strm: NodeJS.ReadableStream): Promise<Buffer> {
+    return new Promise<Buffer>((resolve, reject) => {
+        const bufs: Buffer[] = [];
+        strm.on('data', function (d: Buffer) {
+            bufs.push(d);
+        });
+        strm.on('end', function () {
+            resolve(Buffer.concat(bufs));
+        });
+        strm.on('error', reject);
+    });
+};
