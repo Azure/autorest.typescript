@@ -238,6 +238,8 @@ function getXmlMetadata(
   }
 
   let xmlElementName: string | undefined = undefined;
+  let xmlNamespace = schema.serialization?.xml?.namespace;
+  let xmlNamespacePrefix = schema.serialization?.xml?.prefix;
   if (schema.type === SchemaType.Array) {
     const elementSchema = (schema as ArraySchema).elementType;
     const languageMetadata = getLanguageMetadata(elementSchema.language);
@@ -258,7 +260,9 @@ function getXmlMetadata(
     ...(xmlName && { xmlName }),
     ...(xmlIsAttribute && { xmlIsAttribute }),
     ...(xmlIsWrapped && { xmlIsWrapped }),
-    ...(xmlElementName && { xmlElementName })
+    ...(xmlElementName && { xmlElementName }),
+    ...(xmlNamespace && { xmlNamespace }),
+    ...(xmlNamespacePrefix && { xmlNamespacePrefix })
   };
 }
 
@@ -531,7 +535,12 @@ function transformStringMapper(pipelineValue: PipelineValue) {
    */
   if (
     !isSchemaType(
-      [SchemaType.String, SchemaType.Choice, SchemaType.Credential, SchemaType.Uri],
+      [
+        SchemaType.String,
+        SchemaType.Choice,
+        SchemaType.Credential,
+        SchemaType.Uri
+      ],
       schema
     )
   ) {
