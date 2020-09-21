@@ -617,11 +617,6 @@ namespace AutoRest.TypeScript.Model
             foreach (Parameter param in requiredParameters)
             {
                 string parameterName = param.Name;
-                if (param.ModelType is CompositeType && !isBrowser)
-                {
-                    parameterName += $": {ClientPrefix}Models.{param.ModelTypeName}";
-                }
-
                 string parameterValue = param.ModelType.InitializeType(param.Name, isBrowser);
 
                 builder.ConstVariable(parameterName, parameterValue);
@@ -861,24 +856,18 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
-        {
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
-        }
-
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRestNodeAuth", "@azure/ms-rest-nodeauth");
+            builder.Line("const msRestNodeAuth = require(\"@azure/ms-rest-nodeauth\");");
         }
 
         protected void GenerateNodeSampleClientImport(TSBuilder builder)
         {
-            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+            builder.Line($"const {{ {Name} }} = require(\"{PackageName}\");");   
         }
 
         protected virtual void GenerateNodeSampleImports(TSBuilder builder)
         {
-            GenerateNodeSampleMsRestJsImport(builder);
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
@@ -1065,12 +1054,6 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToUseInNodeJs(MarkdownBuilder builder)
         {
-            builder.Section($"Authentication", () => 
-            {
-                builder.Line("One of the first steps in accessing the services using SDK is to authenticate the client. There are several methods to authenticate such as interactive login, etc. Refer [readme for @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package for all options to authenticate the client.");
-                builder.Line("");
-                
-            });
             builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
             {
                 builder.Section("Install @azure/ms-rest-nodeauth", () =>
@@ -1081,6 +1064,7 @@ namespace AutoRest.TypeScript.Model
                 builder.Line();
                 builder.Section("Sample code", () =>
                 {
+                    builder.Line("While the below sample uses the interactive login, other authentication options can be found in the [README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package");
                     builder.TypeScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
                 });
             });

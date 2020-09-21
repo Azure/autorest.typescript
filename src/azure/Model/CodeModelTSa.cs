@@ -147,8 +147,6 @@ namespace AutoRest.TypeScript.Azure.Model
 
         protected override void GenerateNodeSampleImports(TSBuilder builder)
         {
-            GenerateNodeSampleMsRestJsImport(builder);
-            builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
