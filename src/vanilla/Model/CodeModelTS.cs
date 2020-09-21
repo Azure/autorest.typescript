@@ -856,24 +856,18 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
-        {
-            builder.Line("const msRest = require(\"@azure/ms-rest-js\")");
-        }
-
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
         {
-            builder.Line("const msRestNodeAuth = require(\"@azure/ms-rest-nodeauth\")");
+            builder.Line("const msRestNodeAuth = require(\"@azure/ms-rest-nodeauth\");");
         }
 
         protected void GenerateNodeSampleClientImport(TSBuilder builder)
         {
-            builder.Line($"const {{ {Name} }} = require(\"{PackageName}\")");   
+            builder.Line($"const {{ {Name} }} = require(\"{PackageName}\");");   
         }
 
         protected virtual void GenerateNodeSampleImports(TSBuilder builder)
         {
-            GenerateNodeSampleMsRestJsImport(builder);
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
