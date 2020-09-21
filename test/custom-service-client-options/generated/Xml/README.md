@@ -28,9 +28,9 @@ npm install @azure/ms-rest-nodeauth@"^3.0.0"
 
 While the below sample uses the interactive login, other authentication options can be found in the [README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package
 ```typescript
-import * as msRest from "@azure/ms-rest-js";
-import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
-import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels, AutoRestSwaggerBATXMLServiceMappers } from "";
+const msRest = require("@azure/ms-rest-js")
+const msRestNodeAuth = require("@azure/ms-rest-nodeauth")
+const { AutoRestSwaggerBATXMLService } = require("")
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
 msRestNodeAuth.interactiveLogin().then((creds) => {

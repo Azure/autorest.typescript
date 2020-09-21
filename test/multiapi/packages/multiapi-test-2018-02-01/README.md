@@ -30,10 +30,10 @@ npm install @azure/ms-rest-nodeauth@"^3.0.0"
 
 While the below sample uses the interactive login, other authentication options can be found in the [README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package
 ```typescript
-import * as msRest from "@azure/ms-rest-js";
+const msRest = require("@azure/ms-rest-js")
 import * as msRestAzure from "@azure/ms-rest-azure-js";
-import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
-import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test-2018-02-01";
+const msRestNodeAuth = require("@azure/ms-rest-nodeauth")
+const { AutoRestParameterizedCustomHostTestClient } = require("@azure/multiapi-test-2018-02-01")
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
 msRestNodeAuth.interactiveLogin().then((creds) => {

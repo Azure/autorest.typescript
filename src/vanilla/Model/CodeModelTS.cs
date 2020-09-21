@@ -617,11 +617,6 @@ namespace AutoRest.TypeScript.Model
             foreach (Parameter param in requiredParameters)
             {
                 string parameterName = param.Name;
-                if (param.ModelType is CompositeType && !isBrowser)
-                {
-                    parameterName += $": {ClientPrefix}Models.{param.ModelTypeName}";
-                }
-
                 string parameterValue = param.ModelType.InitializeType(param.Name, isBrowser);
 
                 builder.ConstVariable(parameterName, parameterValue);
@@ -863,17 +858,17 @@ namespace AutoRest.TypeScript.Model
 
         protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.Line("const msRest = require(\"@azure/ms-rest-js\")");
         }
 
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRestNodeAuth", "@azure/ms-rest-nodeauth");
+            builder.Line("const msRestNodeAuth = require(\"@azure/ms-rest-nodeauth\")");
         }
 
         protected void GenerateNodeSampleClientImport(TSBuilder builder)
         {
-            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+            builder.Line($"const {{ {Name} }} = require(\"{PackageName}\")");   
         }
 
         protected virtual void GenerateNodeSampleImports(TSBuilder builder)
