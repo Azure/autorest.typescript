@@ -263,6 +263,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyFormDataClient",
     packageName: "body-formdata",
     licenseHeader: true
+  },
+  validation: {
+    swagger: "validation.json",
+    clientName: "ValidationDataClient",
+    packageName: "validation",
+    licenseHeader: true
   }
 };
 
