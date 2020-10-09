@@ -633,7 +633,9 @@ export const CorsRule: coreHttp.CompositeMapper = {
         }
       },
       maxAgeInSeconds: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "MaxAgeInSeconds",
         required: true,
         xmlName: "MaxAgeInSeconds",

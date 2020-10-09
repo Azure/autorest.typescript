@@ -99,7 +99,9 @@ export const Location: coreHttp.CompositeMapper = {
         }
       },
       failoverPriority: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "failoverPriority",
         type: {
           name: "Number"
@@ -134,7 +136,9 @@ export const FailoverPolicy: coreHttp.CompositeMapper = {
         }
       },
       failoverPriority: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "failoverPriority",
         type: {
           name: "Number"
