@@ -1,41 +1,10 @@
 import { RequiredOptionalClient } from "./generated/requiredOptional/src";
 import { assert } from "chai";
-import {
-  RequestPolicy,
-  RequestPolicyOptionsLike,
-  WebResourceLike,
-  HttpOperationResponse
-} from "@azure/core-http";
+
 describe("Swagger that needs no mapper", () => {
   let client: RequiredOptionalClient;
   beforeEach(() => {
-    const interceptFactory = {
-      create: (
-        nextPolicy: RequestPolicy,
-        options: RequestPolicyOptionsLike
-      ): RequestPolicy => {
-        return {
-          sendRequest: async (
-            httpRequest: WebResourceLike
-          ): Promise<HttpOperationResponse> => {
-            const response = await nextPolicy.sendRequest(httpRequest);
-
-            if (response.status === 401) {
-              console.log(
-                "Do something on 401, you can also modify the response"
-              );
-            }
-
-            return response;
-          }
-        };
-      }
-    };
-    client = new RequiredOptionalClient("one", "two", {
-      requestPolicyFactories: defaultPolicies => {
-        return [...defaultPolicies];
-      }
-    });
+    client = new RequiredOptionalClient("one", "two");
   });
 
   describe("Implicit Optional", () => {

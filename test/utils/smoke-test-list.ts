@@ -1,4 +1,4 @@
-type BuildTag = "ci_1" | "ci_2" | "ci_3";
+type BuildTag = "ci_1" | "ci_2" | "ci_3" | "regen";
 
 export interface SpecDefinition {
   path: string;
@@ -75,7 +75,7 @@ export const readmes: SpecDefinition[] = [
   {
     path: "./.tmp/specs/specification/msi/resource-manager/readme.md",
     buildTag: "ci_3"
-  },
+  }
   // {
   //   path:
   //     "./.tmp/specs/specification/adhybridhealthservice/resource-manager/readme.md",

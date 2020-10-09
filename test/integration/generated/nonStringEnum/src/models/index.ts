@@ -11,11 +11,11 @@ import * as coreHttp from "@azure/core-http";
 /**
  * Defines values for IntEnum.
  */
-export type IntEnum = 200 | 403 | 405 | 406 | 429 | IntEnum;
+export type IntEnum = 200 | 403 | 405 | 406 | 429 | string;
 /**
  * Defines values for FloatEnum.
  */
-export type FloatEnum = 200.4 | 403.4 | 405.3 | 406.2 | 429.1 | FloatEnum;
+export type FloatEnum = 200.4 | 403.4 | 405.3 | 406.2 | 429.1 | string;
 
 /**
  * Optional parameters.
