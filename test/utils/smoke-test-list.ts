@@ -1,4 +1,4 @@
-type BuildTag = "ci_1" | "ci_2" | "ci_3" | "regen";
+type BuildTag = "ci_1" | "ci_2" | "ci_3";
 
 export interface SpecDefinition {
   path: string;
