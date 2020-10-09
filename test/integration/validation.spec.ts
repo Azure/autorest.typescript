@@ -1,5 +1,5 @@
 import {
-  ValidationDataClient,
+  ValidationClient,
   Product,
   ConstantProduct,
   ChildProduct
@@ -18,7 +18,7 @@ const constantBody: Product = {
 };
 
 describe("Integration tests for validation", () => {
-  let client = new ValidationDataClient("");
+  let client = new ValidationClient("");
 
   it("should succeed with a GET with a constant in path", async () => {
     await client.getWithConstantInPath();
