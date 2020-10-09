@@ -16,7 +16,9 @@ export const Product: coreHttp.CompositeMapper = {
       displayNames: {
         constraints: {
           MaxItems: 6,
-          UniqueItems: true
+          UniqueItems: true,
+          InclusiveMaximum: undefined,
+          InclusiveMinimum: undefined
         },
         serializedName: "display_names",
         type: {
@@ -26,7 +28,8 @@ export const Product: coreHttp.CompositeMapper = {
       },
       capacity: {
         constraints: {
-          ExclusiveMaximum: 100
+          ExclusiveMaximum: 100,
+          ExclusiveMinimum: 0
         },
         serializedName: "capacity",
         type: {
@@ -35,7 +38,9 @@ export const Product: coreHttp.CompositeMapper = {
       },
       image: {
         constraints: {
-          Pattern: new RegExp("http://w+")
+          Pattern: new RegExp("http://w+"),
+          InclusiveMaximum: undefined,
+          InclusiveMinimum: undefined
         },
         serializedName: "image",
         type: {

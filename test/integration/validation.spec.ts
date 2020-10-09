@@ -88,7 +88,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it.only("minimum ex validation", async () => {
+  it("minimum ex validation", async () => {
     constantBody.capacity = 0;
     try {
       await client.validationOfBody("123", 150, { body: constantBody });
