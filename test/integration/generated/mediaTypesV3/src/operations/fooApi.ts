@@ -12,8 +12,10 @@ import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
+  FooApiPostSendOnDefaultResponse,
   FooApiPostSend$binaryOptionalParams,
-  FooApiPostSend$textOptionalParams
+  FooApiPostSend$textOptionalParams,
+  FooApiPostSendResponse
 } from "../models";
 
 /**
@@ -40,7 +42,7 @@ export class FooApi {
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
     options?: FooApiPostSendOnDefault$binaryOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<FooApiPostSendOnDefaultResponse>;
   /**
    * Send payload to Foo service.
    * @param contentType Upload file type
@@ -51,7 +53,7 @@ export class FooApi {
     contentType: "text/plain",
     data: string,
     options?: FooApiPostSendOnDefault$textOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<FooApiPostSendOnDefaultResponse>;
   /**
    * Send payload to Foo service.
    * @param args Includes all the parameters for this operation.
@@ -64,7 +66,7 @@ export class FooApi {
           FooApiPostSendOnDefault$binaryOptionalParams?
         ]
       | ["text/plain", string, FooApiPostSendOnDefault$textOptionalParams?]
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<FooApiPostSendOnDefaultResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
     if (args[0] === "application/octet-stream") {
@@ -89,7 +91,7 @@ export class FooApi {
     return this.client.sendOperationRequest(
       operationArguments,
       operationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<FooApiPostSendOnDefaultResponse>;
   }
 
   /**
@@ -104,7 +106,7 @@ export class FooApi {
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
     options?: FooApiPostSend$binaryOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<FooApiPostSendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param thing Target thing name
@@ -117,7 +119,7 @@ export class FooApi {
     contentType: "text/plain",
     data: string,
     options?: FooApiPostSend$textOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<FooApiPostSendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param args Includes all the parameters for this operation.
@@ -131,7 +133,7 @@ export class FooApi {
           FooApiPostSend$binaryOptionalParams?
         ]
       | [string, "text/plain", string, FooApiPostSend$textOptionalParams?]
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<FooApiPostSendResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
     if (args[1] === "application/octet-stream") {
@@ -158,7 +160,7 @@ export class FooApi {
     return this.client.sendOperationRequest(
       operationArguments,
       operationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<FooApiPostSendResponse>;
   }
 }
 // Operation Specifications
@@ -168,44 +170,64 @@ const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 const postSendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
-  responses: { 202: {}, 400: {} },
+  responses: {
+    202: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
 };
 const postSendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
-  responses: { 202: {}, 400: {} },
+  responses: {
+    202: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType2],
+  headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer
 };
 const postSend$binaryOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
-  responses: { 202: {}, 400: {} },
+  responses: {
+    202: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
 };
 const postSend$textOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
-  responses: { 202: {}, 400: {} },
+  responses: {
+    202: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
-  headerParameters: [Parameters.contentType2],
+  headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer
 };

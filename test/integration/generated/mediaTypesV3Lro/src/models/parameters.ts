@@ -35,6 +35,18 @@ export const data: OperationParameter = {
   }
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const contentType1: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
@@ -52,6 +64,18 @@ export const data1: OperationParameter = {
   mapper: {
     serializedName: "data",
     required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
     type: {
       name: "String"
     }

@@ -1,0 +1,191 @@
+import { RequiredOptionalClient } from "./generated/requiredOptional/src";
+import { assert } from "chai";
+import {
+  RequestPolicy,
+  RequestPolicyOptionsLike,
+  WebResourceLike,
+  HttpOperationResponse
+} from "@azure/core-http";
+describe("Swagger that needs no mapper", () => {
+  let client: RequiredOptionalClient;
+  beforeEach(() => {
+    const interceptFactory = {
+      create: (
+        nextPolicy: RequestPolicy,
+        options: RequestPolicyOptionsLike
+      ): RequestPolicy => {
+        return {
+          sendRequest: async (
+            httpRequest: WebResourceLike
+          ): Promise<HttpOperationResponse> => {
+            const response = await nextPolicy.sendRequest(httpRequest);
+
+            if (response.status === 401) {
+              console.log(
+                "Do something on 401, you can also modify the response"
+              );
+            }
+
+            return response;
+          }
+        };
+      }
+    };
+    client = new RequiredOptionalClient("one", "two", {
+      requestPolicyFactories: defaultPolicies => {
+        return [...defaultPolicies];
+      }
+    });
+  });
+
+  describe("Implicit Optional", () => {
+    it("should handle putOptionalQuery", async () => {
+      const result = await client.implicit.putOptionalQuery();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle putOptionalHeader", async () => {
+      const result = await client.implicit.putOptionalHeader();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle putOptionalBody", async () => {
+      const result = await client.implicit.putOptionalBody();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle getOptionalGlobalQuery", async () => {
+      const result = await client.implicit.getOptionalGlobalQuery();
+      assert.equal(result._response.status, 200);
+    });
+  });
+
+  describe("Explicit Optional", () => {
+    it("should handle postOptionalArrayHeader", async () => {
+      const result = await client.explicit.postOptionalArrayHeader();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalArrayParameter", async () => {
+      const result = await client.explicit.postOptionalArrayParameter();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalArrayProperty", async () => {
+      const result = await client.explicit.postOptionalArrayProperty();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalClassParameter", async () => {
+      const result = await client.explicit.postOptionalClassParameter();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalClassProperty", async () => {
+      const result = await client.explicit.postOptionalClassProperty();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalIntegerHeader", async () => {
+      const result = await client.explicit.postOptionalIntegerHeader();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalIntegerParameter", async () => {
+      const result = await client.explicit.postOptionalIntegerParameter();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalIntegerProperty", async () => {
+      const result = await client.explicit.postOptionalIntegerProperty();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalStringHeader", async () => {
+      const result = await client.explicit.postOptionalStringHeader();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalStringParameter", async () => {
+      const result = await client.explicit.postOptionalStringParameter();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postOptionalStringProperty", async () => {
+      const result = await client.explicit.postOptionalStringProperty();
+      assert.equal(result._response.status, 200);
+    });
+
+    it("should handle postRequiredArrayHeader", async () => {
+      try {
+        await client.explicit.postRequiredArrayHeader(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredArrayParameter", async () => {
+      try {
+        await client.explicit.postRequiredArrayParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredIntegerHeader", async () => {
+      try {
+        await client.explicit.postRequiredIntegerHeader(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredIntegerParameter", async () => {
+      try {
+        await client.explicit.postRequiredIntegerParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredStringHeader", async () => {
+      try {
+        await client.explicit.postRequiredStringHeader(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredStringParameter", async () => {
+      try {
+        await client.explicit.postRequiredStringParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+  });
+});

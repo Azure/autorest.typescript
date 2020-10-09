@@ -20,6 +20,31 @@ export interface BarApiPostSendOnDefaultOptionalParams
 }
 
 /**
+ * Contains response data for the postSendOnDefault operation.
+ */
+export type BarApiPostSendOnDefaultResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: string;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: string;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface FooApiPostSendOnDefault$binaryOptionalParams
@@ -42,6 +67,31 @@ export interface FooApiPostSendOnDefault$textOptionalParams
 }
 
 /**
+ * Contains response data for the postSendOnDefault operation.
+ */
+export type FooApiPostSendOnDefaultResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: string;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: string;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface FooApiPostSend$binaryOptionalParams
@@ -62,6 +112,31 @@ export interface FooApiPostSend$textOptionalParams
    */
   excluded?: string[];
 }
+
+/**
+ * Contains response data for the postSend operation.
+ */
+export type FooApiPostSendResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: string;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: string;
+  };
+};
 
 /**
  * Optional parameters.

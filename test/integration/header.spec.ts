@@ -1,5 +1,5 @@
 import * as coreHttp from "@azure/core-http";
-import { should } from "chai";
+import { should, assert } from "chai";
 import { isEqual } from "lodash";
 import { HeaderClient } from "./generated/header/src";
 
@@ -96,9 +96,11 @@ describe("typescript", function() {
           "The quick brown fox jumps over the lazy dog"
         );
 
-        // Note: converting the header value "null" to a null literal is not supported.
-        // const response2 = await testClient.header.responseString('null');
-        // response2.value!.should.not.exist;
+        // Note: Currently core-http wouldn't deserialize "null" as null when coming from headers
+        // all other languages are doing the same for now. Filed https://github.com/Azure/autorest.typescript/issues/739
+        // to track this.
+        const response2 = await testClient.header.responseString("null");
+        response2.value!.should.be.deep.equal("null");
 
         const response3 = await testClient.header.responseString("empty");
         response3.value!.should.be.deep.equal("");
