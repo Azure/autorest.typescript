@@ -68,8 +68,8 @@ export const id: OperationURLParameter = {
   parameterPath: "id",
   mapper: {
     constraints: {
-      InclusiveMaximum: 1000,
       InclusiveMinimum: 100,
+      InclusiveMaximum: 1000,
       MultipleOf: 10
     },
     serializedName: "id",

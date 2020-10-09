@@ -21,83 +21,92 @@ describe("Integration tests for validation", () => {
   let client = new ValidationDataClient("");
 
   it("constant in path", async () => {
-    client.getWithConstantInPath();
+    await client.getWithConstantInPath();
   });
 
   it("post with constant in path", async () => {
-    client.postWithConstantInBody({ body: constantBody });
+    await client.postWithConstantInBody({ body: constantBody });
   });
 
   it("min length validation", async () => {
     try {
-      client.validationOfMethodParameters("1", 100);
+      await client.validationOfMethodParameters("1", 100);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "min_length");
-      assert.equal(e.target, "resource_group_name");
+      assert.include(e.message, "resourceGroupName");
+      assert.include(e.message, "MinLength");
     }
   });
 
   it("max length validation", async () => {
     try {
-      client.validationOfMethodParameters("11234567890A", 100);
+      await client.validationOfMethodParameters("11234567890A", 100);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "max_length");
-      assert.equal(e.target, "resource_group_name");
+      assert.include(e.message, "resourceGroupName");
+      assert.include(e.message, "MaxLength");
     }
   });
 
   it("pattern validation", async () => {
     try {
-      client.validationOfMethodParameters("!@#$", 100);
+      await client.validationOfMethodParameters("!@#$", 100);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "pattern");
-      assert.equal(e.target, "resource_group_name");
+      assert.include(e.message, "resourceGroupName");
+      assert.include(e.message, "Pattern");
     }
   });
 
   it("multiple validation", async () => {
     try {
-      client.validationOfMethodParameters("123", 105);
+      await client.validationOfMethodParameters("123", 105);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "multiple");
-      assert.equal(e.target, "id");
+      assert.include(e.message, "MultipleOf");
+      assert.include(e.message, "id");
     }
   });
 
   it("minimum validation", async () => {
     try {
-      client.validationOfMethodParameters("123", 0);
+      await client.validationOfMethodParameters("123", 0);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "minimum");
-      assert.equal(e.target, "id");
+      assert.include(e.message, "InclusiveMinimum");
+      assert.include(e.message, "id");
     }
   });
 
   it("maximum validation", async () => {
     try {
-      client.validationOfMethodParameters("123", 2000);
+      await client.validationOfMethodParameters("123", 2000);
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "maximum");
-      assert.equal(e.target, "id");
+      assert.include(e.message, "InclusiveMaximum");
+      assert.include(e.message, "id");
     }
   });
 
-  it("minimum ex validation", async () => {
+  it.only("minimum ex validation", async () => {
+    constantBody.capacity = 0;
     try {
-      client.validationOfBody("123", 150, { body: constantBody });
+      await client.validationOfBody("123", 150, { body: constantBody });
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "minimum_ex");
-      assert.include(e.target, "capacity");
+      assert.include(e.message, "ExclusiveMinimum");
+      assert.include(e.message, "capacity");
     }
   });
 
   it("maximum ex validation", async () => {
     constantBody.capacity = 100;
     try {
-      client.validationOfBody("123", 150, { body: constantBody });
+      await client.validationOfBody("123", 150, { body: constantBody });
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "maximum");
-      assert.include(e.target, "capacity");
+      assert.include(e.message, "ExclusiveMaximum");
+      assert.include(e.message, "capacity");
     }
   });
 
@@ -112,10 +121,11 @@ describe("Integration tests for validation", () => {
       "item7"
     ];
     try {
-      client.validationOfBody("123", 150, { body: constantBody });
+      await client.validationOfBody("123", 150, { body: constantBody });
+      assert.fail("Expected error");
     } catch (e) {
-      assert.equal(e.rule, "max_items");
-      assert.include(e.target, "display_names");
+      assert.include(e.message, "MaxItems");
+      assert.include(e.message, "display_names");
     }
   });
 });

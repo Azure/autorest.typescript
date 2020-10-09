@@ -26,7 +26,7 @@ export const Product: coreHttp.CompositeMapper = {
       },
       capacity: {
         constraints: {
-          InclusiveMaximum: 100
+          ExclusiveMaximum: 100
         },
         serializedName: "capacity",
         type: {
