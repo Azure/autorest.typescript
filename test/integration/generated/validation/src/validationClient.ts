@@ -9,25 +9,25 @@
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { ValidationDataClientContext } from "./validationDataClientContext";
+import { ValidationClientContext } from "./validationClientContext";
 import {
-  ValidationDataClientOptionalParams,
-  ValidationDataClientValidationOfMethodParametersResponse,
-  ValidationDataClientValidationOfBodyOptionalParams,
-  ValidationDataClientValidationOfBodyResponse,
-  ValidationDataClientPostWithConstantInBodyOptionalParams,
-  ValidationDataClientPostWithConstantInBodyResponse
+  ValidationClientOptionalParams,
+  ValidationClientValidationOfMethodParametersResponse,
+  ValidationClientValidationOfBodyOptionalParams,
+  ValidationClientValidationOfBodyResponse,
+  ValidationClientPostWithConstantInBodyOptionalParams,
+  ValidationClientPostWithConstantInBodyResponse
 } from "./models";
 
-export class ValidationDataClient extends ValidationDataClientContext {
+export class ValidationClient extends ValidationClientContext {
   /**
-   * Initializes a new instance of the ValidationDataClient class.
+   * Initializes a new instance of the ValidationClient class.
    * @param subscriptionId Subscription ID.
    * @param options The parameter options
    */
   constructor(
     subscriptionId: string,
-    options?: ValidationDataClientOptionalParams
+    options?: ValidationClientOptionalParams
   ) {
     super(subscriptionId, options);
   }
@@ -42,14 +42,14 @@ export class ValidationDataClient extends ValidationDataClientContext {
     resourceGroupName: string,
     id: number,
     options?: coreHttp.OperationOptions
-  ): Promise<ValidationDataClientValidationOfMethodParametersResponse> {
+  ): Promise<ValidationClientValidationOfMethodParametersResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { resourceGroupName, id, options: operationOptions },
       validationOfMethodParametersOperationSpec
-    ) as Promise<ValidationDataClientValidationOfMethodParametersResponse>;
+    ) as Promise<ValidationClientValidationOfMethodParametersResponse>;
   }
 
   /**
@@ -61,15 +61,15 @@ export class ValidationDataClient extends ValidationDataClientContext {
   validationOfBody(
     resourceGroupName: string,
     id: number,
-    options?: ValidationDataClientValidationOfBodyOptionalParams
-  ): Promise<ValidationDataClientValidationOfBodyResponse> {
+    options?: ValidationClientValidationOfBodyOptionalParams
+  ): Promise<ValidationClientValidationOfBodyResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { resourceGroupName, id, options: operationOptions },
       validationOfBodyOperationSpec
-    ) as Promise<ValidationDataClientValidationOfBodyResponse>;
+    ) as Promise<ValidationClientValidationOfBodyResponse>;
   }
 
   /**
@@ -91,15 +91,15 @@ export class ValidationDataClient extends ValidationDataClientContext {
    * @param options The options parameters.
    */
   postWithConstantInBody(
-    options?: ValidationDataClientPostWithConstantInBodyOptionalParams
-  ): Promise<ValidationDataClientPostWithConstantInBodyResponse> {
+    options?: ValidationClientPostWithConstantInBodyOptionalParams
+  ): Promise<ValidationClientPostWithConstantInBodyResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { options: operationOptions },
       postWithConstantInBodyOperationSpec
-    ) as Promise<ValidationDataClientPostWithConstantInBodyResponse>;
+    ) as Promise<ValidationClientPostWithConstantInBodyResponse>;
   }
 }
 // Operation Specifications

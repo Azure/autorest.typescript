@@ -7,5 +7,5 @@
  */
 
 export * from "./models";
-export { ValidationDataClient } from "./validationDataClient";
-export { ValidationDataClientContext } from "./validationDataClientContext";
+export { ValidationClient } from "./validationClient";
+export { ValidationClientContext } from "./validationClientContext";

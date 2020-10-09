@@ -7,24 +7,24 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { ValidationDataClientOptionalParams } from "./models";
+import { ValidationClientOptionalParams } from "./models";
 
 const packageName = "validation";
 const packageVersion = "1.0.0-preview1";
 
-export class ValidationDataClientContext extends coreHttp.ServiceClient {
+export class ValidationClientContext extends coreHttp.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
 
   /**
-   * Initializes a new instance of the ValidationDataClientContext class.
+   * Initializes a new instance of the ValidationClientContext class.
    * @param subscriptionId Subscription ID.
    * @param options The parameter options
    */
   constructor(
     subscriptionId: string,
-    options?: ValidationDataClientOptionalParams
+    options?: ValidationClientOptionalParams
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");

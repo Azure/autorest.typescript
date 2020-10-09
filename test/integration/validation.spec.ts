@@ -20,15 +20,15 @@ const constantBody: Product = {
 describe("Integration tests for validation", () => {
   let client = new ValidationDataClient("");
 
-  it("constant in path", async () => {
+  it("should succeed with a GET with a constant in path", async () => {
     await client.getWithConstantInPath();
   });
 
-  it("post with constant in path", async () => {
+  it("should succeed with a POST with constant in path", async () => {
     await client.postWithConstantInBody({ body: constantBody });
   });
 
-  it("min length validation", async () => {
+  it("should correctly validate a min length constraint", async () => {
     try {
       await client.validationOfMethodParameters("1", 100);
       assert.fail("Expected error");
@@ -38,7 +38,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("max length validation", async () => {
+  it("should correctly validate a max length constraint", async () => {
     try {
       await client.validationOfMethodParameters("11234567890A", 100);
       assert.fail("Expected error");
@@ -48,7 +48,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("pattern validation", async () => {
+  it("should correctly validate a pattern constraint", async () => {
     try {
       await client.validationOfMethodParameters("!@#$", 100);
       assert.fail("Expected error");
@@ -58,7 +58,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("multiple validation", async () => {
+  it("should correctly validate a multiple constraint", async () => {
     try {
       await client.validationOfMethodParameters("123", 105);
       assert.fail("Expected error");
@@ -68,7 +68,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("minimum validation", async () => {
+  it("should correctly validate an inclusive minimum constraint", async () => {
     try {
       await client.validationOfMethodParameters("123", 0);
       assert.fail("Expected error");
@@ -78,7 +78,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("maximum validation", async () => {
+  it("should correctly validate an inclusive maximum constraint", async () => {
     try {
       await client.validationOfMethodParameters("123", 2000);
       assert.fail("Expected error");
@@ -88,7 +88,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("minimum ex validation", async () => {
+  it("should correctly validate an exclusive minimum constraint", async () => {
     constantBody.capacity = 0;
     try {
       await client.validationOfBody("123", 150, { body: constantBody });
@@ -99,7 +99,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("maximum ex validation", async () => {
+  it("should correctly validate an exclusive minimum constraint", async () => {
     constantBody.capacity = 100;
     try {
       await client.validationOfBody("123", 150, { body: constantBody });
@@ -110,7 +110,7 @@ describe("Integration tests for validation", () => {
     }
   });
 
-  it("max items validation", async () => {
+  it("should correctly validate a max items constraint", async () => {
     constantBody.displayNames = [
       "item1",
       "item2",

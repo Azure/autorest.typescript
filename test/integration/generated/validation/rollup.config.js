@@ -14,7 +14,7 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  * @type {rollup.RollupFileOptions}
  */
 const config = {
-  input: "./esm/validationDataClient.js",
+  input: "./esm/validationClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
     file: "./dist/validation.js",

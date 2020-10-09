@@ -1,6 +1,6 @@
-## Azure ValidationDataClient SDK for JavaScript
+## Azure ValidationClient SDK for JavaScript
 
-This package contains an isomorphic SDK for ValidationDataClient.
+This package contains an isomorphic SDK for ValidationClient.
 
 ### Currently supported environments
 

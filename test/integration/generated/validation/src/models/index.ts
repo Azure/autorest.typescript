@@ -83,7 +83,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the validationOfMethodParameters operation.
  */
-export type ValidationDataClientValidationOfMethodParametersResponse = Product & {
+export type ValidationClientValidationOfMethodParametersResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -103,7 +103,7 @@ export type ValidationDataClientValidationOfMethodParametersResponse = Product &
 /**
  * Optional parameters.
  */
-export interface ValidationDataClientValidationOfBodyOptionalParams
+export interface ValidationClientValidationOfBodyOptionalParams
   extends coreHttp.OperationOptions {
   /**
    * The product documentation.
@@ -114,7 +114,7 @@ export interface ValidationDataClientValidationOfBodyOptionalParams
 /**
  * Contains response data for the validationOfBody operation.
  */
-export type ValidationDataClientValidationOfBodyResponse = Product & {
+export type ValidationClientValidationOfBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -134,7 +134,7 @@ export type ValidationDataClientValidationOfBodyResponse = Product & {
 /**
  * Optional parameters.
  */
-export interface ValidationDataClientPostWithConstantInBodyOptionalParams
+export interface ValidationClientPostWithConstantInBodyOptionalParams
   extends coreHttp.OperationOptions {
   /**
    * The product documentation.
@@ -145,7 +145,7 @@ export interface ValidationDataClientPostWithConstantInBodyOptionalParams
 /**
  * Contains response data for the postWithConstantInBody operation.
  */
-export type ValidationDataClientPostWithConstantInBodyResponse = Product & {
+export type ValidationClientPostWithConstantInBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */
@@ -165,7 +165,7 @@ export type ValidationDataClientPostWithConstantInBodyResponse = Product & {
 /**
  * Optional parameters.
  */
-export interface ValidationDataClientOptionalParams
+export interface ValidationClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
    * server parameter

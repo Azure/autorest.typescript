@@ -266,7 +266,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   },
   validation: {
     swagger: "validation.json",
-    clientName: "ValidationDataClient",
+    clientName: "ValidationClient",
     packageName: "validation",
     licenseHeader: true
   }
