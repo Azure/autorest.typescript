@@ -16,9 +16,7 @@ export const Product: coreHttp.CompositeMapper = {
       displayNames: {
         constraints: {
           MaxItems: 6,
-          UniqueItems: true,
-          InclusiveMaximum: undefined,
-          InclusiveMinimum: undefined
+          UniqueItems: true
         },
         serializedName: "display_names",
         type: {
@@ -38,9 +36,7 @@ export const Product: coreHttp.CompositeMapper = {
       },
       image: {
         constraints: {
-          Pattern: new RegExp("http://w+"),
-          InclusiveMaximum: undefined,
-          InclusiveMinimum: undefined
+          Pattern: new RegExp("http://w+")
         },
         serializedName: "image",
         type: {

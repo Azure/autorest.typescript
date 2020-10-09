@@ -54,9 +54,7 @@ export const resourceGroupName: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("[a-zA-Z0-9]+"),
       MaxLength: 10,
-      MinLength: 3,
-      InclusiveMaximum: undefined,
-      InclusiveMinimum: undefined
+      MinLength: 3
     },
     serializedName: "resourceGroupName",
     required: true,

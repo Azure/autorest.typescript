@@ -189,12 +189,12 @@ function buildMapper(
     ...(stringSchema.maxLength && { MaxLength: stringSchema.maxLength }),
     ...(stringSchema.minLength && { MinLength: stringSchema.minLength }),
     ...(stringSchema.pattern && { Pattern: new RegExp(stringSchema.pattern) }),
-    ...(numberSchema.maximum !== null || numberSchema.maximum !== undefined
+    ...(numberSchema.maximum !== null && numberSchema.maximum !== undefined
       ? numberSchema.exclusiveMaximum
         ? { ExclusiveMaximum: numberSchema.maximum }
         : { InclusiveMaximum: numberSchema.maximum }
       : {}),
-    ...(numberSchema.minimum !== null || numberSchema.minimum !== undefined
+    ...(numberSchema.minimum !== null && numberSchema.minimum !== undefined
       ? numberSchema.exclusiveMinimum
         ? { ExclusiveMinimum: numberSchema.minimum }
         : { InclusiveMinimum: numberSchema.minimum }
