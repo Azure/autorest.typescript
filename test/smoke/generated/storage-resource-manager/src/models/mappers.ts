@@ -1862,6 +1862,7 @@ export const DateAfterModification: coreHttp.CompositeMapper = {
     modelProperties: {
       daysAfterModificationGreaterThan: {
         constraints: {
+          InclusiveMinimum: 0,
           MultipleOf: 1
         },
         serializedName: "daysAfterModificationGreaterThan",
@@ -1897,6 +1898,7 @@ export const DateAfterCreation: coreHttp.CompositeMapper = {
     modelProperties: {
       daysAfterCreationGreaterThan: {
         constraints: {
+          InclusiveMinimum: 0,
           MultipleOf: 1
         },
         serializedName: "daysAfterCreationGreaterThan",

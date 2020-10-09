@@ -4160,7 +4160,8 @@ export const SiteConfig: coreHttp.CompositeMapper = {
       },
       preWarmedInstanceCount: {
         constraints: {
-          InclusiveMaximum: 10
+          InclusiveMaximum: 10,
+          InclusiveMinimum: 0
         },
         serializedName: "preWarmedInstanceCount",
         xmlName: "preWarmedInstanceCount",
@@ -12596,7 +12597,8 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
       },
       preWarmedInstanceCount: {
         constraints: {
-          InclusiveMaximum: 10
+          InclusiveMaximum: 10,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.preWarmedInstanceCount",
         xmlName: "properties.preWarmedInstanceCount",

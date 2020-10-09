@@ -938,7 +938,9 @@ export const ApplicationGatewayWebApplicationFirewallConfiguration: coreHttp.Com
         }
       },
       fileUploadLimitInMb: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "fileUploadLimitInMb",
         type: {
           name: "Number"
@@ -1019,7 +1021,9 @@ export const ApplicationGatewayAutoscaleConfiguration: coreHttp.CompositeMapper 
     className: "ApplicationGatewayAutoscaleConfiguration",
     modelProperties: {
       minCapacity: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "minCapacity",
         required: true,
         type: {
@@ -1754,7 +1758,8 @@ export const AzureFirewallApplicationRuleProtocol: coreHttp.CompositeMapper = {
       },
       port: {
         constraints: {
-          InclusiveMaximum: 64000
+          InclusiveMaximum: 64000,
+          InclusiveMinimum: 0
         },
         serializedName: "port",
         type: {
@@ -8722,7 +8727,8 @@ export const BgpSettings: coreHttp.CompositeMapper = {
     modelProperties: {
       asn: {
         constraints: {
-          InclusiveMaximum: 4294967295
+          InclusiveMaximum: 4294967295,
+          InclusiveMinimum: 0
         },
         serializedName: "asn",
         type: {
@@ -9004,7 +9010,8 @@ export const BgpPeerStatus: coreHttp.CompositeMapper = {
       },
       asn: {
         constraints: {
-          InclusiveMaximum: 4294967295
+          InclusiveMaximum: 4294967295,
+          InclusiveMinimum: 0
         },
         serializedName: "asn",
         readOnly: true,
@@ -10565,7 +10572,9 @@ export const PolicySettings: coreHttp.CompositeMapper = {
         }
       },
       fileUploadLimitInMb: {
-        constraints: {},
+        constraints: {
+          InclusiveMinimum: 0
+        },
         serializedName: "fileUploadLimitInMb",
         type: {
           name: "Number"
@@ -10907,7 +10916,8 @@ export const FirewallPolicyRuleConditionApplicationProtocol: coreHttp.CompositeM
       },
       port: {
         constraints: {
-          InclusiveMaximum: 64000
+          InclusiveMaximum: 64000,
+          InclusiveMinimum: 0
         },
         serializedName: "port",
         type: {
@@ -15077,7 +15087,8 @@ export const VirtualRouterPeering: coreHttp.CompositeMapper = {
       },
       peerAsn: {
         constraints: {
-          InclusiveMaximum: 4294967295
+          InclusiveMaximum: 4294967295,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.peerAsn",
         type: {
@@ -18029,7 +18040,8 @@ export const NetworkVirtualAppliance: coreHttp.CompositeMapper = {
       },
       virtualApplianceAsn: {
         constraints: {
-          InclusiveMaximum: 4294967295
+          InclusiveMaximum: 4294967295,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.virtualApplianceAsn",
         type: {
@@ -18927,7 +18939,8 @@ export const VirtualRouter: coreHttp.CompositeMapper = {
       },
       virtualRouterAsn: {
         constraints: {
-          InclusiveMaximum: 4294967295
+          InclusiveMaximum: 4294967295,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.virtualRouterAsn",
         type: {

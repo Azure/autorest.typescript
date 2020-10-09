@@ -2184,7 +2184,8 @@ export const RollingUpgradePolicy: coreHttp.CompositeMapper = {
       },
       maxUnhealthyUpgradedInstancePercent: {
         constraints: {
-          InclusiveMaximum: 100
+          InclusiveMaximum: 100,
+          InclusiveMinimum: 0
         },
         serializedName: "maxUnhealthyUpgradedInstancePercent",
         type: {
@@ -6639,7 +6640,8 @@ export const DedicatedHost: coreHttp.CompositeMapper = {
       },
       platformFaultDomain: {
         constraints: {
-          InclusiveMaximum: 2
+          InclusiveMaximum: 2,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.platformFaultDomain",
         type: {
@@ -8046,7 +8048,8 @@ export const DedicatedHostUpdate: coreHttp.CompositeMapper = {
       ...UpdateResource.type.modelProperties,
       platformFaultDomain: {
         constraints: {
-          InclusiveMaximum: 2
+          InclusiveMaximum: 2,
+          InclusiveMinimum: 0
         },
         serializedName: "properties.platformFaultDomain",
         type: {
