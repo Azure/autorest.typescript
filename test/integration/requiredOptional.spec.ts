@@ -27,6 +27,44 @@ describe("Swagger that needs no mapper", () => {
       const result = await client.implicit.getOptionalGlobalQuery();
       assert.equal(result._response.status, 200);
     });
+
+    it("should handle getRequiredPath", async () => {
+      try {
+        await client.implicit.getRequiredPath(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle getRequiredGlobalPath", async () => {
+      try {
+        client = new RequiredOptionalClient(null as any, null as any);
+        await client.implicit.getRequiredGlobalPath();
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle getRequiredGlobalQuery", async () => {
+      client = new RequiredOptionalClient(null as any, null as any);
+      try {
+        await client.implicit.getRequiredGlobalQuery();
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
   });
 
   describe("Explicit Optional", () => {
@@ -90,13 +128,54 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredArrayHeader(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-       assert.include(error.message, "cannot be null or undefined");
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
       }
     });
 
     it("should handle postRequiredArrayParameter", async () => {
       try {
         await client.explicit.postRequiredArrayParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredArrayProperty", async () => {
+      try {
+        await client.explicit.postRequiredArrayProperty({ value: null } as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    // https://github.com/Azure/autorest.typescript/issues/759
+    it.skip("should handle postRequiredClassParameter", async () => {
+      try {
+        await client.explicit.postRequiredClassParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    // https://github.com/Azure/autorest.typescript/issues/759
+    it.skip("should handle postRequiredClassProperty", async () => {
+      try {
+        await client.explicit.postRequiredClassProperty({ value: null } as any);
         assert.fail("Expected client to throw");
       } catch (error) {
         assert(
@@ -145,6 +224,20 @@ describe("Swagger that needs no mapper", () => {
     it("should handle postRequiredStringParameter", async () => {
       try {
         await client.explicit.postRequiredStringParameter(null as any);
+        assert.fail("Expected client to throw");
+      } catch (error) {
+        assert(
+          error.message.indexOf("cannot be null or undefined") !== -1,
+          "Expected error to contain 'cannot be null or undefined'"
+        );
+      }
+    });
+
+    it("should handle postRequiredStringProperty", async () => {
+      try {
+        await client.explicit.postRequiredStringProperty({
+          value: null
+        } as any);
         assert.fail("Expected client to throw");
       } catch (error) {
         assert(
