@@ -1005,7 +1005,7 @@ export interface EncryptionSettingsElement {
 export type EncryptionType = "EncryptionAtRestWithPlatformKey" | "EncryptionAtRestWithCustomerKey" | string;
 
 // @public
-export type Enum31 = 1 | 3 | 5 | string;
+export type Enum31 = 1 | 3 | 5 | number;
 
 // @public
 export type GalleriesCreateOrUpdateResponse = Gallery & {
