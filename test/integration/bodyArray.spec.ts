@@ -446,6 +446,78 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
+  describe("#getArrayComplex", () => {
+    it("returns a list of complex arrays", async () => {
+      const response = await client.array.getComplexValid();
+      expect(response).to.deep.equal([
+        { integer: 1, string: "2" },
+        { integer: 3, string: "4" },
+        { integer: 5, string: "6" }
+      ]);
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
+
+  describe("#getArrayDateTimeWithInvalidChars", () => {
+    it("returns an invalid date in the array", async () => {
+      const response = await client.array.getDateTimeInvalidChars();
+      expect(response).to.deep.equal([
+        new Date("2000-12-01T00:00:01.000Z"),
+        new Date("date-time") //Invalid Value
+      ]);
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
+
+  describe("#getArrayDateTimeWithNull", () => {
+    it("returns null date in the array", async () => {
+      const response = await client.array.getDateTimeInvalidNull();
+      expect(response).to.deep.equal([
+        new Date("2000-12-01T00:00:01.000Z"),
+        null
+      ]);
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
+
+  describe("#putArrayBooleanValid", () => {
+    it("sends an array of boolean values successfully", async () => {
+      const response = await client.array.putBooleanTfft([
+        true,
+        false,
+        false,
+        true
+      ]);
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
+
+  describe("#putArrayComplexValid", () => {
+    it("sends an array of complex objects successfully", async () => {
+      const response = await client.array.putComplexValid([
+        { integer: 1, string: "2" },
+        { integer: 3, string: "4" },
+        { integer: 5, string: "6" }
+      ]);
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
+
   describe("#getDictionaryValid", () => {
     it("returns an array of objects", async () => {
       const response = await client.array.getDictionaryValid();
