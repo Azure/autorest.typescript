@@ -25,7 +25,7 @@ export const input: OperationParameter = {
   mapper: {
     serializedName: "input",
     type: {
-      name: "String"
+      name: "Number"
     }
   }
 };
@@ -71,7 +71,7 @@ export const input1: OperationParameter = {
   mapper: {
     serializedName: "input",
     type: {
-      name: "String"
+      name: "Number"
     }
   }
 };
