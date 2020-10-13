@@ -33,10 +33,7 @@ describe("Swagger that needs no mapper", () => {
         await client.implicit.getRequiredPath(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -46,10 +43,7 @@ describe("Swagger that needs no mapper", () => {
         await client.implicit.getRequiredGlobalPath();
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -59,10 +53,7 @@ describe("Swagger that needs no mapper", () => {
         await client.implicit.getRequiredGlobalQuery();
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
   });
@@ -128,10 +119,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredArrayHeader(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -140,10 +128,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredArrayParameter(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -152,10 +137,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredArrayProperty({ value: null } as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -165,10 +147,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredClassParameter(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -178,10 +157,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredClassProperty({ value: null } as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -190,10 +166,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredIntegerHeader(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -202,10 +175,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredIntegerParameter(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -214,10 +184,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredStringHeader(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -226,10 +193,7 @@ describe("Swagger that needs no mapper", () => {
         await client.explicit.postRequiredStringParameter(null as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
 
@@ -240,10 +204,7 @@ describe("Swagger that needs no mapper", () => {
         } as any);
         assert.fail("Expected client to throw");
       } catch (error) {
-        assert(
-          error.message.indexOf("cannot be null or undefined") !== -1,
-          "Expected error to contain 'cannot be null or undefined'"
-        );
+        assert.include(error.message, "cannot be null or undefined");
       }
     });
   });
