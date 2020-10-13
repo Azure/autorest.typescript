@@ -58,6 +58,9 @@ export type StringGetNullResponse = {
  * Optional parameters.
  */
 export interface StringPutNullOptionalParams extends coreHttp.OperationOptions {
+  /**
+   * string body
+   */
   stringBody?: string;
 }
 

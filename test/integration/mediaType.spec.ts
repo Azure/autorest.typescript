@@ -58,4 +58,18 @@ describe("Integration tests for MediaTypes", () => {
       );
     });
   });
+
+  // https://github.com/Azure/autorest.typescript/issues/741
+  describe.skip("#contentTypeWithEncoding", () => {
+    it("works with text/plain", async () => {
+      const response = await client.contentTypeWithEncoding(
+        "text/plain; encoding=UTF-8"
+      );
+
+      expect(response._response.status).to.equal(
+        200,
+        `Unexpected status code.`
+      );
+    });
+  });
 });

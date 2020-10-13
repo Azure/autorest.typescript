@@ -372,6 +372,20 @@ export interface JsonOutput {
 }
 
 /**
+ * Contans property
+ */
+export interface ObjectWithXMsTextProperty {
+  /**
+   * Returned value should be 'english'
+   */
+  language?: string;
+  /**
+   * Returned value should be 'I am text'
+   */
+  content?: string;
+}
+
+/**
  * Defines headers for Xml_getHeaders operation.
  */
 export interface XmlGetHeadersHeaders {
@@ -745,6 +759,26 @@ export type XmlJsonOutputResponse = JsonOutput & {
      * The response body as parsed JSON or XML
      */
     parsedBody: JsonOutput;
+  };
+};
+
+/**
+ * Contains response data for the getXMsText operation.
+ */
+export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ObjectWithXMsTextProperty;
   };
 };
 

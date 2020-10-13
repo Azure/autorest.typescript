@@ -9,7 +9,10 @@
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { MediaTypesV3Client } from "../mediaTypesV3Client";
-import { BarApiPostSendOnDefaultOptionalParams } from "../models";
+import {
+  BarApiPostSendOnDefaultOptionalParams,
+  BarApiPostSendOnDefaultResponse
+} from "../models";
 
 /**
  * Class representing a BarApi.
@@ -33,14 +36,14 @@ export class BarApi {
   postSendOnDefault(
     data: string,
     options?: BarApiPostSendOnDefaultOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<BarApiPostSendOnDefaultResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { data, options: operationOptions },
       postSendOnDefaultOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<BarApiPostSendOnDefaultResponse>;
   }
 }
 // Operation Specifications
@@ -50,11 +53,16 @@ const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 const postSendOnDefaultOperationSpec: coreHttp.OperationSpec = {
   path: "/bar/api/v1",
   httpMethod: "POST",
-  responses: { 202: {}, 400: {} },
+  responses: {
+    202: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "text",
   serializer
 };

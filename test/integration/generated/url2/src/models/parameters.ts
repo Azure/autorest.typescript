@@ -11,7 +11,7 @@ import { OperationParameter, OperationURLParameter } from "@azure/core-http";
 export const accept: OperationParameter = {
   parameterPath: "accept",
   mapper: {
-    defaultValue: "application/json, text/json",
+    defaultValue: "text/plain, application/json, text/json",
     isConstant: true,
     serializedName: "Accept",
     type: {

@@ -24,6 +24,13 @@ export interface Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMulti
   fileName: string;
 }
 
+export interface Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema {
+  /**
+   * Files to upload.
+   */
+  fileContent: coreHttp.HttpRequestBody[];
+}
+
 /**
  * Contains response data for the uploadFile operation.
  */
@@ -53,6 +60,31 @@ export type FormdataUploadFileResponse = {
  * Contains response data for the uploadFileViaBody operation.
  */
 export type FormdataUploadFileViaBodyResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
+ * Contains response data for the uploadFiles operation.
+ */
+export type FormdataUploadFilesResponse = {
   /**
    * BROWSER ONLY
    *

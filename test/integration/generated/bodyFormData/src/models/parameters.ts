@@ -100,3 +100,15 @@ export const accept1: OperationParameter = {
     }
   }
 };
+
+export const fileContent2: OperationParameter = {
+  parameterPath: "fileContent",
+  mapper: {
+    serializedName: "fileContent",
+    required: true,
+    type: {
+      name: "Sequence",
+      element: { type: { name: "Stream" } }
+    }
+  }
+};

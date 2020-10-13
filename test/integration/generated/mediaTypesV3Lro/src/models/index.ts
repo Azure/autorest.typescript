@@ -53,6 +53,31 @@ export interface MediaTypesV3LROClientSend$textOptionalParams
 }
 
 /**
+ * Contains response data for the send operation.
+ */
+export type MediaTypesV3LROClientSendResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: string;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: string;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface MediaTypesV3LROClientOptionalParams

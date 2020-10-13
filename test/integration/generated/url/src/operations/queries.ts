@@ -1059,7 +1059,7 @@ const arrayStringNoCollectionFormatEmptyOperationSpec: coreHttp.OperationSpec = 
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery1],
+  queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
@@ -1073,7 +1073,7 @@ const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery2],
+  queryParameters: [Parameters.arrayQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
@@ -1087,7 +1087,7 @@ const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery3],
+  queryParameters: [Parameters.arrayQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
@@ -1101,7 +1101,7 @@ const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery4],
+  queryParameters: [Parameters.arrayQuery3],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer

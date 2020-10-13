@@ -35,6 +35,18 @@ export const data: OperationParameter = {
   }
 };
 
+export const accept: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
@@ -77,6 +89,18 @@ export const data1: OperationParameter = {
     required: true,
     type: {
       name: "Stream"
+    }
+  }
+};
+
+export const accept1: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
     }
   }
 };

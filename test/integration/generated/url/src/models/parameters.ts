@@ -645,7 +645,8 @@ export const arrayQuery1: OperationQueryParameter = {
       name: "Sequence",
       element: { type: { name: "String" } }
     }
-  }
+  },
+  collectionFormat: QueryCollectionFormat.Ssv
 };
 
 export const arrayQuery2: OperationQueryParameter = {
@@ -657,22 +658,10 @@ export const arrayQuery2: OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: QueryCollectionFormat.Ssv
-};
-
-export const arrayQuery3: OperationQueryParameter = {
-  parameterPath: ["options", "arrayQuery"],
-  mapper: {
-    serializedName: "arrayQuery",
-    type: {
-      name: "Sequence",
-      element: { type: { name: "String" } }
-    }
-  },
   collectionFormat: QueryCollectionFormat.Tsv
 };
 
-export const arrayQuery4: OperationQueryParameter = {
+export const arrayQuery3: OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",

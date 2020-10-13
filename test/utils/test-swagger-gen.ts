@@ -199,10 +199,22 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "no-mappers",
     licenseHeader: true
   },
+  nonStringEnum: {
+    swagger: "non-string-enum.json",
+    clientName: "NonStringEnumClient",
+    packageName: "non-string-num",
+    licenseHeader: true
+  },
   paging: {
     swagger: "paging.json",
     clientName: "PagingClient",
     packageName: "paging-service",
+    licenseHeader: true
+  },
+  requiredOptional: {
+    swagger: "required-optional.json",
+    clientName: "RequiredOptionalClient",
+    packageName: "required-optional",
     licenseHeader: true
   },
   regexConstraint: {

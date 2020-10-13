@@ -26,9 +26,9 @@ More information about these can be found [here](https://github.com/Azure/autore
 3. Hook up plugins into the AutoRest pipeline DAG, e.g.
 
 ```yaml
-version: 3.0.6267
+version: 3.0.6320
 use-extension:
-  "@autorest/modelerfour": "4.15.419"
+  "@autorest/modelerfour": "4.15.421"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
