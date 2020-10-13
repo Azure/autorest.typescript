@@ -617,17 +617,24 @@ function withDiscriminator(
   }
 
   const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
-    key => ({
-      docs: [
-        `Polymorphic discriminator, which specifies the different types this object can be`
-      ],
-      name: key,
-      type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
-      kind: StructureKind.PropertySignature
-    })
+    key => {
+      const name = normalizeName(key, NameType.Property);
+      return {
+        docs: [
+          `Polymorphic discriminator, which specifies the different types this object can be`
+        ],
+        name,
+        type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
+        kind: StructureKind.PropertySignature
+      };
+    }
   );
 
-  return [...discProps, ...properties];
+  const propertiesWithoutDiscriminator = properties.filter(
+    p => !discProps.some(dp => dp.name === p.name)
+  );
+
+  return [...discProps, ...propertiesWithoutDiscriminator];
 }
 
 /**

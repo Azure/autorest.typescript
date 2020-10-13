@@ -121,8 +121,7 @@ export interface DotFish {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
    */
-  "fish.type": "DotSalmon";
-  fishType: string;
+  fishType: "DotSalmon";
   species?: string;
 }
 

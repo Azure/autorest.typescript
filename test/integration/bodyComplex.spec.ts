@@ -9,7 +9,8 @@ import {
   Goblinshark,
   FishUnion,
   DateWrapper,
-  GoblinSharkColor
+  GoblinSharkColor,
+  DotSalmon
 } from "./generated/bodyComplex/src";
 
 const clientOptions = {
@@ -25,9 +26,9 @@ describe("typescript", function() {
       });
       it("should get and put valid basic type properties", async function() {
         const result = await testClient.basic.getValid();
-        assert.equal(result.id, 2);
-        assert.equal(result.name, "abc");
-        assert.equal(result.color, "YELLOW");
+        assert.strictEqual(result.id, 2);
+        assert.strictEqual(result.name, "abc");
+        assert.strictEqual(result.color, "YELLOW");
 
         const putResult = await testClient.basic.putValid({
           id: 2,
@@ -35,19 +36,19 @@ describe("typescript", function() {
           color: "Magenta"
         });
 
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get null basic type properties", async function() {
         const result = await testClient.basic.getNull();
-        assert.equal(null, result.id);
-        assert.equal(null, result.name);
+        assert.strictEqual(null, result.id);
+        assert.strictEqual(null, result.name);
       });
 
       it("should get empty basic type properties", async () => {
         const result = await testClient.basic.getEmpty();
-        assert.equal(result.id, undefined);
-        assert.equal(result.name, undefined);
+        assert.strictEqual(result.id, undefined);
+        assert.strictEqual(result.name, undefined);
       });
 
       it("should get basic type properties when the payload is empty", async () => {
@@ -67,65 +68,83 @@ describe("typescript", function() {
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
+
+      it("should handle getComplexPolymorphismDotSyntax", async () => {
+        const result = await testClient.primitive.putDouble({
+          field1: 3e-100,
+          field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: -5e-57
+        });
+        assert.strictEqual(result._response.status, 200);
+      });
+
+      it("should handle getComplexPolymorphismDotSyntax", async () => {
+        const result = await testClient.primitive.getDouble();
+        assert.strictEqual(result.field1, 3e-100);
+        assert.strictEqual(
+          result.field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose,
+          -0.000000000000000000000000000000000000000000000000000000005
+        );
+      });
+
       it("should get and put valid int properties", async () => {
         const result = await testClient.primitive.getInt();
-        assert.equal(result.field1, -1);
-        assert.equal(result.field2, 2);
+        assert.strictEqual(result.field1, -1);
+        assert.strictEqual(result.field2, 2);
 
         const putResult = await testClient.primitive.putInt({
           field1: -1,
           field2: 2
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid long properties", async () => {
         const result = await testClient.primitive.getLong();
-        assert.equal(result.field1, 1099511627775);
-        assert.equal(result.field2, -999511627788);
+        assert.strictEqual(result.field1, 1099511627775);
+        assert.strictEqual(result.field2, -999511627788);
 
         const putResult = await testClient.primitive.putLong({
           field1: 1099511627775,
           field2: -999511627788
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid float properties", async () => {
         const result = await testClient.primitive.getFloat();
-        assert.equal(result.field1, 1.05);
-        assert.equal(result.field2, -0.003);
+        assert.strictEqual(result.field1, 1.05);
+        assert.strictEqual(result.field2, -0.003);
 
         const putResult = await testClient.primitive.putFloat({
           field1: 1.05,
           field2: -0.003
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid bool properties", async () => {
         const result = await testClient.primitive.getBool();
-        assert.equal(result.fieldTrue, true);
-        assert.equal(result.fieldFalse, false);
+        assert.strictEqual(result.fieldTrue, true);
+        assert.strictEqual(result.fieldFalse, false);
 
         const putResult = await testClient.primitive.putBool({
           fieldTrue: true,
           fieldFalse: false
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid string properties", async () => {
         const result = await testClient.primitive.getString();
-        assert.equal(result.field, "goodrequest");
-        assert.equal(result.empty, "");
-        assert.equal((result as any)["nullProperty"], undefined);
+        assert.strictEqual(result.field, "goodrequest");
+        assert.strictEqual(result.empty, "");
+        assert.strictEqual((result as any)["nullProperty"], undefined);
 
         const putResult = await testClient.primitive.putString({
           field: "goodrequest",
           empty: ""
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid date properties", async () => {
@@ -139,7 +158,7 @@ describe("typescript", function() {
         };
 
         const putResult = await testClient.primitive.putDate(complexBody);
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid date-time properties", async () => {
@@ -151,7 +170,7 @@ describe("typescript", function() {
           field: new Date("0001-01-01T00:00:00Z"),
           now: new Date("2015-05-18T18:38:00Z")
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid date-time-rfc1123 properties", async () => {
@@ -169,18 +188,18 @@ describe("typescript", function() {
           now: new Date(timeStringTwo)
         });
 
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid duration properties", async function() {
         const durationString = "P123DT22H14M12.011S";
         const result = await testClient.primitive.getDuration();
-        assert.equal(result.field, durationString);
+        assert.strictEqual(result.field, durationString);
 
         const putResult = await testClient.primitive.putDuration({
           field: durationString
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put valid byte properties", async () => {
@@ -205,7 +224,7 @@ describe("typescript", function() {
         const putResult = await testClient.primitive.putByte({
           field: byteBuffer
         });
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
     });
 
@@ -227,7 +246,7 @@ describe("typescript", function() {
         assert.deepEqual(result.array, testArray);
 
         const putResult = await testClient.array.putValid(wrapper);
-        assert.equal(putResult._response.status, 200);
+        assert.strictEqual(putResult._response.status, 200);
       });
 
       it("should get and put empty array type properties", async () => {
@@ -239,7 +258,7 @@ describe("typescript", function() {
 
       it("should get array type properties when the payload is empty", async () => {
         const result = await testClient.array.getNotProvided();
-        assert.equal(result.array, undefined);
+        assert.strictEqual(result.array, undefined);
       });
     });
 
@@ -276,12 +295,12 @@ describe("typescript", function() {
 
       it("should get null dictionary type properties", async () => {
         const result = await testClient.dictionary.getNull();
-        assert.equal(result.defaultProgram, undefined);
+        assert.strictEqual(result.defaultProgram, null);
       });
 
       it("should get dictionary type properties when the payload is empty", async () => {
         const result = await testClient.dictionary.getNotProvided();
-        assert.equal(result.defaultProgram, undefined);
+        assert.strictEqual(result.defaultProgram, undefined);
       });
     });
 
@@ -361,16 +380,113 @@ describe("typescript", function() {
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
+
+      it("should handle getComplexPolymorphismDotSyntax", async () => {
+        const result: DotSalmon = await testClient.polymorphism.getDotSyntax();
+        assert.strictEqual(result.fishType, "DotSalmon");
+        assert.strictEqual(result.species, "king");
+        assert.strictEqual(result.location, "sweden");
+        assert.strictEqual(result.iswild, true);
+      });
+
+      it("should handle getComposedWithoutDiscriminator", async () => {
+        const result = await testClient.polymorphism.getComposedWithoutDiscriminator();
+        assert.deepStrictEqual(result.sampleSalmon, {
+          location: "sweden",
+          iswild: false,
+          species: "king"
+        });
+
+        assert.deepStrictEqual(result.sampleFish, {
+          location: "australia",
+          iswild: false,
+          species: "king"
+        });
+
+        assert.deepStrictEqual(result.salmons, [
+          {
+            location: "sweden",
+            iswild: false,
+            species: "king"
+          },
+          {
+            location: "atlantic",
+            iswild: true,
+            species: "king"
+          }
+        ]);
+
+        assert.deepStrictEqual(result.fishes, [
+          {
+            location: "australia",
+            iswild: false,
+            species: "king"
+          },
+          {
+            location: "canada",
+            iswild: true,
+            species: "king"
+          }
+        ]);
+      });
+
+      it("should handle getComposedWithDiscriminator", async () => {
+        const result = await testClient.polymorphism.getComposedWithDiscriminator();
+        assert.deepStrictEqual(result.sampleSalmon, {
+          fishType: "DotSalmon",
+          location: "sweden",
+          iswild: false,
+          species: "king"
+        });
+
+        assert.deepStrictEqual(result.sampleFish, {
+          fishType: "DotSalmon",
+          location: "australia",
+          iswild: false,
+          species: "king"
+        });
+
+        assert.deepStrictEqual(result.salmons, [
+          {
+            fishType: "DotSalmon",
+            location: "sweden",
+            iswild: false,
+            species: "king"
+          },
+          {
+            fishType: "DotSalmon",
+            location: "atlantic",
+            iswild: true,
+            species: "king"
+          }
+        ]);
+
+        assert.deepStrictEqual(result.fishes, [
+          {
+            fishType: "DotSalmon",
+            location: "australia",
+            iswild: false,
+            species: "king"
+          },
+          {
+            fishType: "DotSalmon",
+            location: "canada",
+            iswild: true,
+            species: "king"
+          }
+        ]);
+      });
+
       it("should get valid polymorphic properties", async function() {
         const getResult = await testClient.polymorphism.getValid();
         const actualBytes = (getResult.siblings![1] as Sawshark)!.picture;
-        assert.equal(!!actualBytes, true);
-        assert.equal(actualBytes!.length, 5);
-        assert.equal(actualBytes![0], 255);
-        assert.equal(actualBytes![1], 255);
-        assert.equal(actualBytes![2], 255);
-        assert.equal(actualBytes![3], 255);
-        assert.equal(actualBytes![4], 254);
+        assert.strictEqual(!!actualBytes, true);
+        assert.strictEqual(actualBytes!.length, 5);
+        assert.strictEqual(actualBytes![0], 255);
+        assert.strictEqual(actualBytes![1], 255);
+        assert.strictEqual(actualBytes![2], 255);
+        assert.strictEqual(actualBytes![3], 255);
+        assert.strictEqual(actualBytes![4], 254);
 
         // Working around the fact that Uint8Array doesn't work with deepEqual
         delete (getResult.siblings![1] as Sawshark).picture;
@@ -410,7 +526,7 @@ describe("typescript", function() {
           await testClient.polymorphism.putValidMissingRequired(getBadfish());
           assert.fail("Expected to throw");
         } catch (error) {
-          assert.equal(!!error, true);
+          assert.strictEqual(!!error, true);
           assert.ok(error.message.indexOf("birthday") > -1);
           assert.ok(error.message.indexOf("cannot be null or undefined") > -1);
         }
@@ -459,13 +575,13 @@ describe("typescript", function() {
       it("should get complicated polymorphic types", async function() {
         const result = await testClient.polymorphism.getComplicated();
         const picture = (result.siblings![1] as Sawshark)!.picture || [];
-        assert.equal(!!picture, true);
-        assert.equal(picture.length, 5);
-        assert.equal(picture[0], 255);
-        assert.equal(picture[1], 255);
-        assert.equal(picture[2], 255);
-        assert.equal(picture[3], 255);
-        assert.equal(picture[4], 254);
+        assert.strictEqual(!!picture, true);
+        assert.strictEqual(picture.length, 5);
+        assert.strictEqual(picture[0], 255);
+        assert.strictEqual(picture[1], 255);
+        assert.strictEqual(picture[2], 255);
+        assert.strictEqual(picture[3], 255);
+        assert.strictEqual(picture[4], 254);
         delete (result.siblings![1] as Sawshark).picture;
 
         const rawSalmon = getRawSalmon();
@@ -488,13 +604,13 @@ describe("typescript", function() {
 
         const picture = (response.siblings![1] as Sawshark).picture || [];
         delete (response.siblings![1] as Sawshark).picture;
-        assert.equal(!!picture, true);
-        assert.equal(picture.length, 5);
-        assert.equal(picture[0], 255);
-        assert.equal(picture[1], 255);
-        assert.equal(picture[2], 255);
-        assert.equal(picture[3], 255);
-        assert.equal(picture[4], 254);
+        assert.strictEqual(!!picture, true);
+        assert.strictEqual(picture.length, 5);
+        assert.strictEqual(picture[0], 255);
+        assert.strictEqual(picture[1], 255);
+        assert.strictEqual(picture[2], 255);
+        assert.strictEqual(picture[3], 255);
+        assert.strictEqual(picture[4], 254);
 
         const expected = getFish();
         delete (expected.siblings![1] as Sawshark).picture;
@@ -577,12 +693,12 @@ describe("typescript", function() {
             assert.fail("Expected actualBytes to be defined");
           }
 
-          assert.equal(actualBytes!.length, 5);
-          assert.equal(actualBytes![0], 255);
-          assert.equal(actualBytes![1], 255);
-          assert.equal(actualBytes![2], 255);
-          assert.equal(actualBytes![3], 255);
-          assert.equal(actualBytes![4], 254);
+          assert.strictEqual(actualBytes!.length, 5);
+          assert.strictEqual(actualBytes![0], 255);
+          assert.strictEqual(actualBytes![1], 255);
+          assert.strictEqual(actualBytes![2], 255);
+          assert.strictEqual(actualBytes![3], 255);
+          assert.strictEqual(actualBytes![4], 254);
           delete sawshark.picture;
         }
 
