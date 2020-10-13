@@ -5795,10 +5795,10 @@ export const ContainerServiceMasterProfile: coreHttp.CompositeMapper = {
     className: "ContainerServiceMasterProfile",
     modelProperties: {
       count: {
-        defaultValue: "1",
+        defaultValue: 1,
         serializedName: "count",
         type: {
-          name: "String"
+          name: "Number"
         }
       },
       dnsPrefix: {
