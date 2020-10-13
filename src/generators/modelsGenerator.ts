@@ -627,7 +627,11 @@ function withDiscriminator(
     })
   );
 
-  return [...discProps, ...properties];
+  const propertiesWithoutDiscriminator = properties.filter(
+    p => !discProps.some(dp => dp.name === p.name)
+  );
+
+  return [...discProps, ...propertiesWithoutDiscriminator];
 }
 
 /**

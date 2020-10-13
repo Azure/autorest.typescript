@@ -138,8 +138,8 @@ export function normalizeName(
   shouldGuard?: boolean
 ): string {
   const casingConvention = getCasingConvention(nameType);
-
-  let parts = getNameParts(name);
+  const sanitizedName = sanitizeName(name);
+  const parts = getNameParts(sanitizedName);
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
@@ -148,6 +148,11 @@ export function normalizeName(
 
   const normalized = `${normalizedFirstPart}${normalizedParts}`;
   return shouldGuard ? guardReservedNames(normalized, nameType) : normalized;
+}
+
+function sanitizeName(name: string): string {
+  // Remove \, " and ' from name string
+  return name.replace(/["'\\]+/g, "");
 }
 
 export function getModelsName(title: string): string {
