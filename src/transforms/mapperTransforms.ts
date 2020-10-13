@@ -462,20 +462,25 @@ function transformByteArrayMapper(pipelineValue: PipelineValue) {
 function transformChoiceMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.SealedChoice], schema)) {
+  if (!isSchemaType([SchemaType.SealedChoice, SchemaType.Choice], schema)) {
     return pipelineValue;
   }
 
   const choiceSchema = schema as ChoiceSchema;
+  let type;
 
-  const mapper = buildMapper(
-    schema,
-    {
+  if (isSchemaType([SchemaType.Choice], schema)) {
+    type = {
+      name: MapperType.String
+    };
+  } else {
+    type = {
       name: MapperType.Enum,
       allowedValues: choiceSchema.choices.map(choice => choice.value)
-    },
-    options
-  );
+    };
+  }
+
+  const mapper = buildMapper(schema, type, options);
 
   return {
     schema,
@@ -542,12 +547,7 @@ function transformStringMapper(pipelineValue: PipelineValue) {
    */
   if (
     !isSchemaType(
-      [
-        SchemaType.String,
-        SchemaType.Choice,
-        SchemaType.Credential,
-        SchemaType.Uri
-      ],
+      [SchemaType.String, SchemaType.Credential, SchemaType.Uri],
       schema
     )
   ) {

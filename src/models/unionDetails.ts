@@ -12,6 +12,7 @@ export interface UnionDetails {
   serializedName: string;
   properties: NameValuePair[];
   schemaType: SchemaType;
+  itemType?: SchemaType;
 }
 
 export interface NameValuePair {

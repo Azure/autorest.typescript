@@ -56,10 +56,18 @@ export function transformChoice(
   const metadata = getLanguageMetadata(choice.language);
   let name = normalizeName(metadata.name, NameType.Interface);
   let schemaType = choice.type;
+  let itemType =
+    //@ts-ignore
+    choice.choiceType.type === SchemaType.Integer ||
+    //@ts-ignore
+    choice.choiceType.type === SchemaType.Number
+      ? SchemaType.Number
+      : choice.choiceType.type;
 
   return {
     name,
     schemaType,
+    itemType,
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
     properties: extractProperties(choice)

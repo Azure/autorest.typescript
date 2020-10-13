@@ -387,7 +387,8 @@ const writeChoices = (
   clientDetails.unions.forEach(choice => {
     const values = choice.properties.map(p => p.value);
     if (choice.schemaType === SchemaType.Choice) {
-      values.push("string");
+      const valueToPush = choice.itemType ? choice.itemType : "string";
+      values.push(valueToPush);
     }
 
     modelsIndexFile.addTypeAlias({
