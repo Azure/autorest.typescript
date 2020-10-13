@@ -471,13 +471,7 @@ function transformChoiceMapper(pipelineValue: PipelineValue) {
 
   if (isSchemaType([SchemaType.Choice], schema)) {
     type = {
-      name:
-        // @ts-ignore
-        choiceSchema.choiceType.type === SchemaType.Number ||
-        // @ts-ignore
-        choiceSchema.choiceType.type === SchemaType.Integer
-          ? MapperType.Number
-          : choiceSchema.choiceType.type
+      name: getMapperTypeFromSchema(choiceSchema.choiceType.type)
     };
   } else {
     type = {
