@@ -5696,7 +5696,7 @@ export type GalleryApplicationVersionPropertiesProvisioningState =
 /**
  * Defines values for Enum31.
  */
-export type Enum31 = 1 | 3 | 5 | string;
+export type Enum31 = 1 | 3 | 5 | number;
 /**
  * Defines values for ContainerServiceVMSizeTypes.
  */

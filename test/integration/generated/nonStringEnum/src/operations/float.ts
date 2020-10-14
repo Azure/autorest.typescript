@@ -80,7 +80,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "Number" } }
     }
   },
   urlParameters: [Parameters.$host],

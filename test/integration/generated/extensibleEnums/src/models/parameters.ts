@@ -7,28 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-http";
-
-export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const input: OperationParameter = {
-  parameterPath: ["options", "input"],
-  mapper: {
-    serializedName: "input",
-    type: {
-      name: "Number"
-    }
-  }
-};
+import { Pet as PetMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -54,6 +33,34 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
+export const petId: OperationURLParameter = {
+  parameterPath: "petId",
+  mapper: {
+    serializedName: "petId",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const contentType: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const petParam: OperationParameter = {
+  parameterPath: ["options", "petParam"],
+  mapper: PetMapper
+};
+
 export const accept1: OperationParameter = {
   parameterPath: "accept",
   mapper: {
@@ -62,16 +69,6 @@ export const accept1: OperationParameter = {
     serializedName: "Accept",
     type: {
       name: "String"
-    }
-  }
-};
-
-export const input1: OperationParameter = {
-  parameterPath: ["options", "input"],
-  mapper: {
-    serializedName: "input",
-    type: {
-      name: "Number"
     }
   }
 };

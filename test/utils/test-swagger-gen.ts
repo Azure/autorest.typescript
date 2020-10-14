@@ -281,6 +281,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ValidationClient",
     packageName: "validation",
     licenseHeader: true
+  },
+  extensibleEnums: {
+    swagger: "extensible-enums-swagger.json",
+    clientName: "ExtensibleEnumsClient",
+    packageName: "extensible-enums",
+    licenseHeader: true
   }
 };
 

@@ -16,14 +16,12 @@ describe("Swagger that needs no mapper", () => {
     assert.equal(result.body, 429);
   });
 
-  // https://github.com/Azure/autorest.typescript/issues/742
-  it.skip("should handle float with put", async () => {
+  it("should handle float with put", async () => {
     const result = await client.float.put({ input: 200.4 });
     assert.equal(result._response.status, 200);
   });
 
-  // https://github.com/Azure/autorest.typescript/issues/742
-  it.skip("should handle int with put", async () => {
+  it("should handle int with put", async () => {
     const result = await client.int.put({ input: 200 });
     assert.equal(result._response.status, 200);
   });

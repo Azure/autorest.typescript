@@ -8699,7 +8699,7 @@
             },
             {
               "kind": "Content",
-              "text": "1 | 3 | 5 | string"
+              "text": "1 | 3 | 5 | number"
             },
             {
               "kind": "Content",
