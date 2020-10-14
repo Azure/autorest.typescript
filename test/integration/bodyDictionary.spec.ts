@@ -1,4 +1,4 @@
-import { assert } from "chai";
+import { assert, expect } from "chai";
 import {
   BodyDictionaryClient,
   DictionaryGetBase64UrlResponse,
@@ -576,5 +576,83 @@ describe("BodyDictionary", () => {
 
     const result = await client.dictionary.getByteInvalidNull();
     assert.deepEqual(result, dictionary);
+  });
+
+  it("should get an empty dictionary", async () => {
+    const result = await client.dictionary.getEmpty();
+    expect(result).to.deep.equal({});
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary with null item", async () => {
+    const result = await client.dictionary.getArrayItemNull();
+    expect(result).to.deep.equal({
+      "0": ["1", "2", "3"],
+      "1": null,
+      "2": ["7", "8", "9"]
+    });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary of valid arrays", async () => {
+    const result = await client.dictionary.getArrayValid();
+    expect(result).to.deep.equal({
+      "0": ["1", "2", "3"],
+      "1": ["4", "5", "6"],
+      "2": ["7", "8", "9"]
+    });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary of complex type null value", async () => {
+    const result = await client.dictionary.getComplexNull();
+    expect(result).to.deep.equal({});
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get an empty dictionary value", async () => {
+    const result = await client.dictionary.getEmpty();
+    expect(result).to.deep.equal({});
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary with an empty item", async () => {
+    const result = await client.dictionary.getDictionaryItemEmpty();
+    expect(result).to.deep.equal({
+      "0": { "1": "one", "2": "two", "3": "three" },
+      "1": {},
+      "2": { "7": "seven", "8": "eight", "9": "nine" }
+    });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary with a null item", async () => {
+    const result = await client.dictionary.getDictionaryItemNull();
+    expect(result).to.deep.equal({
+      "0": { "1": "one", "2": "two", "3": "three" },
+      "1": null,
+      "2": { "7": "seven", "8": "eight", "9": "nine" }
+    });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should get a dictionary of dictionaries", async () => {
+    const result = await client.dictionary.getDictionaryValid();
+    expect(result).to.deep.equal({
+      "0": { "1": "one", "2": "two", "3": "three" },
+      "1": { "4": "four", "5": "five", "6": "six" },
+      "2": { "7": "seven", "8": "eight", "9": "nine" }
+    });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
+  });
+
+  it("should put a dictionary of complex type", async () => {
+    const result = await client.dictionary.putComplexValid({
+      "0": { integer: 1, string: "2" },
+      "1": { integer: 3, string: "4" },
+      "2": { integer: 5, string: "6" }
+    });
+    expect(result).to.deep.equal({ body: undefined });
+    expect(result._response.status).to.equal(200, `Unexpected status code.`);
   });
 });
