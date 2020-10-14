@@ -470,9 +470,15 @@ function transformChoiceMapper(pipelineValue: PipelineValue) {
   let type;
 
   if (isSchemaType([SchemaType.Choice], schema)) {
-    type = {
-      name: getMapperTypeFromSchema(choiceSchema.choiceType.type)
-    };
+    if (choiceSchema.choiceType && choiceSchema.choiceType.type) {
+      type = {
+        name: getMapperTypeFromSchema(choiceSchema.choiceType.type)
+      };
+    } else {
+      type = {
+        name: MapperType.String
+      };
+    }
   } else {
     type = {
       name: MapperType.Enum,
