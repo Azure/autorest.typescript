@@ -19,15 +19,19 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
   });
 
   it("should get an animal not found error", async () => {
-    const response: any = await client.pet.getPetById("coyoteUgly");
-    const expected: AnimalNotFound = {
-      someBaseProp: "problem finding animal",
-      reason: "the type of animal requested is not available",
-      name: "coyote",
-      whatNotFound: "AnimalNotFound"
-    };
-    assert.deepEqual(response, expected);
-    assert.equal(response._response.status, 404);
+    try {
+      const response: any = await client.pet.getPetById("coyoteUgly");
+      assert.fail();
+    } catch (ex) {
+      const expected: AnimalNotFound = {
+        someBaseProp: "problem finding animal",
+        reason: "the type of animal requested is not available",
+        name: "coyote",
+        whatNotFound: "AnimalNotFound"
+      };
+      assert.deepEqual(JSON.parse(ex.message), expected);
+      assert.equal(ex.statusCode, 404);
+    }
   });
 
   it("should get an animal without error", async () => {
@@ -61,39 +65,55 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
   });
 
   it("should get an animal sad error", async () => {
-    const response: any = await client.pet.doSomething("jump");
-    const expected: PetSadError = {
-      actionResponse: "grrrr",
-      errorType: "PetSadError",
-      errorMessage: "casper aint happy",
-      reason: "need more treats"
-    };
+    try {
+      const response: any = await client.pet.doSomething("jump");
+      assert.fail();
+    } catch (ex) {
+      const expected: PetSadError = {
+        actionResponse: "grrrr",
+        errorType: "PetSadError",
+        errorMessage: "casper aint happy",
+        reason: "need more treats"
+      };
 
-    assert.deepEqual(response, expected);
-    assert.equal(response._response.status, 500);
-  }).timeout(30000);
+      assert.deepEqual(JSON.parse(ex.message), expected);
+      assert.equal(ex.statusCode, 500);
+    }
+  }).timeout(50000);
 
   it("should get a link found error", async () => {
-    const response: any = await client.pet.getPetById("weirdAlYankovic");
-    const expected: LinkNotFound = {
-      someBaseProp: "problem finding pet",
-      reason: "link to pet not found",
-      whatSubAddress: "pet/yourpet was not found",
-      whatNotFound: "InvalidResourceLink"
-    };
-    assert.deepEqual(response, expected);
-    assert.equal(response._response.status, 404);
+    try {
+      const response: any = await client.pet.getPetById("weirdAlYankovic");
+      assert.fail();
+    } catch (ex) {
+      const expected: LinkNotFound = {
+        someBaseProp: "problem finding pet",
+        reason: "link to pet not found",
+        whatSubAddress: "pet/yourpet was not found",
+        whatNotFound: "InvalidResourceLink"
+      };
+      assert.deepEqual(JSON.parse(ex.message), expected);
+      assert.equal(ex.statusCode, 404);
+    }
   });
 
   it("should get an unexpected int error", async () => {
-    const response: any = await client.pet.getPetById("alien123");
-    assert.deepEqual(response, { body: 123 });
-    assert.equal(response._response.status, 501);
+    try {
+      const response: any = await client.pet.getPetById("alien123");
+      assert.fail();
+    } catch (ex) {
+      assert.deepEqual(JSON.parse(ex.message), 123);
+      assert.equal(ex.statusCode, 501);
+    }
   });
 
   it("should get an bad requested string error", async () => {
-    const response: any = await client.pet.getPetById("ringo");
-    assert.deepEqual(response, { body: "ringo is missing" });
-    assert.equal(response._response.status, 400);
+    try {
+      const response: any = await client.pet.getPetById("ringo");
+      assert.fail();
+    } catch (ex) {
+      assert.deepEqual(JSON.parse(ex.message), "ringo is missing");
+      assert.equal(ex.statusCode, 400);
+    }
   });
 });

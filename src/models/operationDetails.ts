@@ -25,6 +25,7 @@ export type OperationResponseMapper = Mapper | string;
 export interface OperationResponseMappers {
   bodyMapper?: OperationResponseMapper;
   headersMapper?: OperationResponseMapper;
+  isError?: boolean;
 }
 
 /**

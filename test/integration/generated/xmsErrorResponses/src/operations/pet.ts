@@ -75,13 +75,16 @@ const getPetByIdOperationSpec: coreHttp.OperationSpec = {
     },
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
+      isError: true
     },
     404: {
-      bodyMapper: Mappers.NotFoundErrorBase
+      bodyMapper: Mappers.NotFoundErrorBase,
+      isError: true
     },
     501: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
+      isError: true
     },
     default: {}
   },
@@ -97,7 +100,8 @@ const doSomethingOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PetAction
     },
     500: {
-      bodyMapper: Mappers.PetActionError
+      bodyMapper: Mappers.PetActionError,
+      isError: true
     },
     default: {
       bodyMapper: Mappers.PetActionError
