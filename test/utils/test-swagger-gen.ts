@@ -287,6 +287,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ExtensibleEnumsClient",
     packageName: "extensible-enums",
     licenseHeader: true
+  },
+  xmsErrorResponses: {
+    swagger: "xms-error-responses.json",
+    clientName: "XmsErrorResponsesClient",
+    packageName: "xms-error-responses",
+    licenseHeader: true
   }
 };
 
