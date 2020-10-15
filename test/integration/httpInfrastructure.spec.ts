@@ -444,8 +444,13 @@ describe("Http infrastructure Client", () => {
       assert.equal(result._response.status, 200);
     });
 
-    // Enable when Azure/azure-sdk-for-js/issues/10103 is fixed
-    it.skip("patch302 should return 200", async () => {
+    it("patch302 should return 200", async function() {
+      // Manual redirection is not supported by the xhr in browser
+      // browsers will perform default redirect
+      if (!isNode) {
+        this.skip();
+      }
+
       const result = await client.httpRedirects.patch302();
       assert.equal(result._response.status, 200);
     });
@@ -470,10 +475,14 @@ describe("Http infrastructure Client", () => {
       assert.equal(result._response.status, 200);
     });
 
-    // Enable when Azure/azure-sdk-for-js/issues/10103 is fixed
-    it.skip("put301 should return 200", async () => {
+    it("put301 should return 301", async function() {
+      // Manual redirection is not supported by the xhr in browser
+      // browsers will perform default redirect
+      if (!isNode) {
+        this.skip();
+      }
       const result = await client.httpRedirects.put301();
-      assert.equal(result._response.status, 200);
+      assert.equal(result._response.status, 301);
     });
   });
 
