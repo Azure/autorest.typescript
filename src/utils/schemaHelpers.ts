@@ -61,22 +61,30 @@ export function getAdditionalProperties(
  * Helper function which given a schema returns type information for useful for generating Typescript code
  * @param schema schema to extract type information from
  */
-export function getTypeForSchema(schema: Schema): TypeDetails {
+export function getTypeForSchema(
+  schema: Schema,
+  isNullable: boolean = false
+): TypeDetails {
   let typeName: string = "";
   let usedModels: string[] = [];
   let defaultValue: string = "";
   let kind: PropertyKind = PropertyKind.Primitive;
-
   switch (schema.type) {
     case SchemaType.Any:
       typeName = "any";
       break;
     case SchemaType.Array:
       const arraySchema = schema as ArraySchema;
-      const itemsType = getTypeForSchema(arraySchema.elementType);
+      const itemsType = getTypeForSchema(
+        arraySchema.elementType,
+        arraySchema.nullableItems
+      );
       const itemsName = normalizeTypeName(itemsType);
       kind = itemsType.kind;
-      typeName = `${itemsName}[]`;
+      const wrappedItemsName = itemsType.nullable
+        ? "(" + itemsName + ")"
+        : itemsName;
+      typeName = `${wrappedItemsName}[]`;
       if (isModelNeeded(itemsType)) {
         usedModels.push(itemsName);
       }
@@ -121,7 +129,10 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       break;
     case SchemaType.Dictionary:
       const dictionarySchema = schema as DictionarySchema;
-      const elementType = getTypeForSchema(dictionarySchema.elementType);
+      const elementType = getTypeForSchema(
+        dictionarySchema.elementType,
+        dictionarySchema.nullableItems
+      );
       const elementTypeName = normalizeTypeName(elementType);
       kind = PropertyKind.Dictionary;
       typeName = `{[propertyName: string]: ${elementTypeName}}`;
@@ -164,11 +175,13 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       throw new Error(`Handling of ${schema.type} hasn't been implemented yet`);
   }
 
+  typeName = isNullable ? typeName + " | null" : typeName;
   return {
     typeName,
     kind,
     usedModels,
     isConstant: schema.type === SchemaType.Constant,
+    nullable: isNullable,
     ...(defaultValue && { defaultValue })
   };
 }

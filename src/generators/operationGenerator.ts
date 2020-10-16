@@ -516,8 +516,11 @@ function getOperationParameterSignatures(
       }
 
       // If the type collides with the class name, use the alias
-      const typeName =
+      const uniqueTypeName =
         operationGroupClass.getName() === type ? `${type}Model` : type;
+      const typeName = param.nullable
+        ? uniqueTypeName + " | null"
+        : uniqueTypeName;
 
       // If any models are used, add them to the named import list
       if (usedModels.length) {

@@ -52,6 +52,7 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   serializedName: "credentials",
   location: ParameterLocation.None,
   required: true,
+  nullable: false,
   parameterPath: "credentials",
   mapper: "any",
   isGlobal: true,
@@ -73,6 +74,7 @@ const buildEndpointParameter = (): ParameterDetails => ({
   serializedName: "endpoint",
   location: ParameterLocation.None,
   required: false,
+  nullable: true,
   parameterPath: "endpoint",
   mapper: "any",
   isGlobal: true,
@@ -217,6 +219,7 @@ export function populateOperationParameters(
   const sameNameParams = operationParameters.filter(p => p.name === name);
   description += getSchemaTypeDocumentation(parameter.schema);
   const isRequired = getParameterRequired(parameter);
+  const isNullable = !!parameter.nullable;
 
   const collectionFormat = getCollectionFormat(parameter);
   const typeDetails = getTypeForSchema(parameter.schema);
@@ -235,6 +238,7 @@ export function populateOperationParameters(
     },
     location: getParameterLocation(parameter),
     required: isRequired,
+    nullable: isNullable,
     schemaType: parameter.schema.type,
     parameterPath: getParameterPath(parameter),
     mapper: getMapperOrRef(

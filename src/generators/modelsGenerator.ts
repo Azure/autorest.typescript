@@ -585,9 +585,11 @@ function getProperties(
       )}"`;
     }
 
-    return property.name === "siblings"
-      ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
-      : property.type;
+    const typeName =
+      property.name === "siblings"
+        ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
+        : property.type;
+    return property.nullable ? typeName + " | null" : typeName;
   };
 
   return properties

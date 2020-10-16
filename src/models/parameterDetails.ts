@@ -19,6 +19,7 @@ export interface ParameterDetails {
   serializedName: string;
   location: ParameterLocation;
   required?: boolean;
+  nullable?: boolean;
   parameterPath: string | string[];
   mapper: string | Mapper;
   isGlobal: boolean;
