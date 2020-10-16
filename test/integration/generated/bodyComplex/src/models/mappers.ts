@@ -15,6 +15,7 @@ export const Basic: coreHttp.CompositeMapper = {
     modelProperties: {
       id: {
         serializedName: "id",
+        nullable: true,
         type: {
           name: "Number"
         }
@@ -305,6 +306,7 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
     modelProperties: {
       defaultProgram: {
         serializedName: "defaultProgram",
+        nullable: true,
         type: {
           name: "Dictionary",
           value: { type: { name: "String" } }
