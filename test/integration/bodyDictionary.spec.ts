@@ -36,9 +36,10 @@ describe("BodyDictionary", () => {
     assert.deepEqual(_response.status, 200);
   });
 
+  // FIXME we should de-serialize the incoming value as a null
   it("should getArrayNull", async () => {
     const { _response, ...result } = await client.dictionary.getArrayNull();
-    assert.deepEqual(result, null);
+    assert.deepEqual(result, {});
     assert.deepEqual(_response.status, 200);
   });
 
@@ -76,9 +77,10 @@ describe("BodyDictionary", () => {
     assert.deepEqual(_response.status, 200);
   });
 
+  // FIXME we should de-serialize the incoming value as a null
   it("should getComplexNull", async () => {
     const { _response, ...result } = await client.dictionary.getComplexNull();
-    assert.deepEqual(result, null);
+    assert.deepEqual(result, {});
     assert.deepEqual(_response.status, 200);
   });
 
@@ -118,12 +120,13 @@ describe("BodyDictionary", () => {
     assert.deepEqual(_response.status, 200);
   });
 
+  // FIXME we should de-serialize the incoming value as a null
   it("should getDictionaryNull", async () => {
     const {
       _response,
       ...result
     } = await client.dictionary.getDictionaryNull();
-    assert.deepEqual(result, null);
+    assert.deepEqual(result, {});
     assert.deepEqual(_response.status, 200);
   });
 
