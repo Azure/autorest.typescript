@@ -184,9 +184,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-          isConstant: true,
-          defaultValue: constantSchema.value.value
-        }
+            isConstant: true,
+            defaultValue: constantSchema.value.value
+          }
         : undefined;
       break;
     case SchemaType.String:
@@ -288,7 +288,8 @@ export function transformOperationResponse(
       : undefined,
     headersMapper: headersSchema
       ? getMapperForSchema(headersSchema, mediaType)
-      : undefined
+      : undefined,
+    isError: !isDefault && isError
   };
 
   if (mediaType === KnownMediaType.Binary && !mappers.bodyMapper) {
@@ -469,7 +470,14 @@ function getGroupedParameters(
   parameters: ParameterDetails[],
   operationFullname: string,
   mediaType?: KnownMediaType
-): { formDataParameters?: any, requestBody?: any, queryParameters: any, urlParameters: any, headerParameters: any, cookie: any } {
+): {
+  formDataParameters?: any;
+  requestBody?: any;
+  queryParameters: any;
+  urlParameters: any;
+  headerParameters: any;
+  cookie: any;
+} {
   const operationParams = parameters.filter(p => {
     // Ensure parameters are specific to the operation.
     const matchesOperation =
@@ -481,12 +489,22 @@ function getGroupedParameters(
     return Boolean(matchesOperation && matchesMediaType);
   });
 
-  const hasFormDataParameters = mediaType && (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form);
+  const hasFormDataParameters =
+    mediaType &&
+    (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form);
 
   return {
     ...(hasFormDataParameters
-      ? { formDataParameters: operationParams.filter(p => p.location === ParameterLocation.Body) }
-      : { requestBody: operationParams.find(p => p.location === ParameterLocation.Body) }),
+      ? {
+          formDataParameters: operationParams.filter(
+            p => p.location === ParameterLocation.Body
+          )
+        }
+      : {
+          requestBody: operationParams.find(
+            p => p.location === ParameterLocation.Body
+          )
+        }),
     queryParameters: operationParams.filter(
       p => p.location === ParameterLocation.Query
     ),
@@ -499,7 +517,7 @@ function getGroupedParameters(
       p => p.location === ParameterLocation.Header
     ),
     cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
-  }
+  };
 }
 
 function getMapperForSchema(
