@@ -61,6 +61,7 @@ describe("Integration tests for MediaTypes", () => {
 
   describe("#contentTypeWithEncoding", () => {
     it("works with text/plain", async () => {
+      client = new MediaTypesClient();
       const response = await client.contentTypeWithEncoding("test", {
         requestOptions: {
           customHeaders: { "content-type": "text/plain; encoding=UTF-8" }
