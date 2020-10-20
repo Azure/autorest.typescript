@@ -444,7 +444,7 @@ describe("Http infrastructure Client", () => {
       assert.equal(result._response.status, 200);
     });
 
-    it("patch302 should return 200", async function() {
+    it("patch302 should return 302", async function() {
       // Manual redirection is not supported by the xhr in browser
       // browsers will perform default redirect
       if (!isNode) {
@@ -452,7 +452,7 @@ describe("Http infrastructure Client", () => {
       }
 
       const result = await client.httpRedirects.patch302();
-      assert.equal(result._response.status, 200);
+      assert.equal(result._response.status, 302);
     });
 
     it("patch307 should return 200", async () => {
