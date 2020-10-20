@@ -220,9 +220,9 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
     const { bodyMapper, headersMapper, isError } = responses[code];
     const bodyMapperString = buildMapper(bodyMapper, "bodyMapper");
     const headersMapperString = buildMapper(headersMapper, "headersMapper");
-    const isMapperString = isError ? `isError: ${isError}` : "";
+    const isErrorMapperString = isError ? `isError: ${isError}` : "";
     parsedResponses.push(`${code}: {
-        ${bodyMapperString}${headersMapperString}${isMapperString}
+        ${bodyMapperString}${headersMapperString}${isErrorMapperString}
       }`);
   });
 
