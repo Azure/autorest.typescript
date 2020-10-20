@@ -105,7 +105,7 @@ export class NumberOperations {
 
   /**
    * Put big float value 3.402823e+20
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putBigFloat(
@@ -139,7 +139,7 @@ export class NumberOperations {
 
   /**
    * Put big double value 2.5976931e+101
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putBigDouble(
@@ -237,7 +237,7 @@ export class NumberOperations {
 
   /**
    * Put big decimal value 2.5976931e+101
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putBigDecimal(
@@ -335,7 +335,7 @@ export class NumberOperations {
 
   /**
    * Put small float value 3.402823e-20
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putSmallFloat(
@@ -369,7 +369,7 @@ export class NumberOperations {
 
   /**
    * Put small double value 2.5976931e-101
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putSmallDouble(
@@ -403,7 +403,7 @@ export class NumberOperations {
 
   /**
    * Put small decimal value 2.5976931e-101
-   * @param numberBody number body
+   * @param numberBody
    * @param options The options parameters.
    */
   putSmallDecimal(

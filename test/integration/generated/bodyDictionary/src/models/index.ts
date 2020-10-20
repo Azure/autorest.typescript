@@ -832,7 +832,7 @@ export type DictionaryGetComplexEmptyResponse = {
  * Contains response data for the getComplexItemNull operation.
  */
 export type DictionaryGetComplexItemNullResponse = {
-  [propertyName: string]: Widget;
+  [propertyName: string]: Widget | null;
 } & {
   /**
    * The underlying HTTP response.
@@ -846,7 +846,7 @@ export type DictionaryGetComplexItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: Widget };
+    parsedBody: { [propertyName: string]: Widget | null };
   };
 };
 

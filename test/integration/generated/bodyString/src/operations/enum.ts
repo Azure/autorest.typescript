@@ -50,7 +50,7 @@ export class Enum {
 
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
-   * @param stringBody string body
+   * @param stringBody
    * @param options The options parameters.
    */
   putNotExpandable(
@@ -84,7 +84,7 @@ export class Enum {
 
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
-   * @param enumStringBody enum string body
+   * @param enumStringBody
    * @param options The options parameters.
    */
   putReferenced(
@@ -118,7 +118,7 @@ export class Enum {
 
   /**
    * Sends value 'green-color' from a constant
-   * @param enumStringBody enum string body
+   * @param enumStringBody
    * @param options The options parameters.
    */
   putReferencedConstant(

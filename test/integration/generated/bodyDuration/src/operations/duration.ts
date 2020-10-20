@@ -48,7 +48,7 @@ export class Duration {
 
   /**
    * Put a positive duration value
-   * @param durationBody duration body
+   * @param durationBody
    * @param options The options parameters.
    */
   putPositiveDuration(

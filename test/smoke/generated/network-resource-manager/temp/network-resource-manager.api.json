@@ -31173,7 +31173,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    prefix?: string;\n    prefixLength?: number;\n    prefixType?: "
+              "text": ";\n    prefix?: string;\n    prefixLength?: number | null;\n    prefixType?: "
             },
             {
               "kind": "Reference",

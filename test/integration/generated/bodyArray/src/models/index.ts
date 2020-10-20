@@ -934,7 +934,7 @@ export type ArrayGetBase64UrlResponse = {
 /**
  * Contains response data for the getComplexNull operation.
  */
-export type ArrayGetComplexNullResponse = Product[] & {
+export type ArrayGetComplexNullResponse = (Product | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -947,7 +947,7 @@ export type ArrayGetComplexNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: (Product | null)[];
   };
 };
 
@@ -974,7 +974,7 @@ export type ArrayGetComplexEmptyResponse = Product[] & {
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export type ArrayGetComplexItemNullResponse = Product[] & {
+export type ArrayGetComplexItemNullResponse = (Product | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -987,7 +987,7 @@ export type ArrayGetComplexItemNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: (Product | null)[];
   };
 };
 

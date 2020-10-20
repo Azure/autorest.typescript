@@ -12,8 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyFormDataClient } from "../bodyFormDataClient";
 import {
   FormdataUploadFileResponse,
-  FormdataUploadFileViaBodyResponse,
-  FormdataUploadFilesResponse
+  FormdataUploadFileViaBodyResponse
 } from "../models";
 
 /**
@@ -67,24 +66,6 @@ export class Formdata {
       uploadFileViaBodyOperationSpec
     ) as Promise<FormdataUploadFileViaBodyResponse>;
   }
-
-  /**
-   * Upload multiple files
-   * @param fileContent Files to upload.
-   * @param options The options parameters.
-   */
-  uploadFiles(
-    fileContent: coreHttp.HttpRequestBody[],
-    options?: coreHttp.OperationOptions
-  ): Promise<FormdataUploadFilesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
-    return this.client.sendOperationRequest(
-      { fileContent, options: operationOptions },
-      uploadFilesOperationSpec
-    ) as Promise<FormdataUploadFilesResponse>;
-  }
 }
 // Operation Specifications
 
@@ -121,21 +102,5 @@ const uploadFileViaBodyOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
-};
-const uploadFilesOperationSpec: coreHttp.OperationSpec = {
-  path: "/formdata/stream/uploadfiles",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  formDataParameters: [Parameters.fileContent2],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };

@@ -8,11 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
+export type PetActionErrorUnion = PetActionError | PetSadErrorUnion;
 export type NotFoundErrorBaseUnion =
   | NotFoundErrorBase
   | LinkNotFound
   | AnimalNotFound;
-export type PetActionErrorUnion = PetActionError | PetSadErrorUnion;
 export type PetSadErrorUnion = PetSadError | PetHungryOrThirstyError;
 
 export interface Animal {
@@ -30,6 +30,17 @@ export interface PetAction {
   actionResponse?: string;
 }
 
+export interface PetActionError {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  errorType: "PetSadError" | "PetHungryOrThirstyError";
+  /**
+   * the error message
+   */
+  errorMessage?: string;
+}
+
 export type Pet = Animal & {
   /**
    * Gets the Pet by id.
@@ -42,12 +53,11 @@ export type NotFoundErrorBase = BaseError & {
   whatNotFound: string;
 };
 
-export type PetActionError = PetAction & {
-  errorType: string;
+export type PetSadError = PetActionError & {
   /**
-   * the error message
+   * why is the pet sad
    */
-  errorMessage?: string;
+  reason?: string;
 };
 
 export type LinkNotFound = NotFoundErrorBase & {
@@ -56,13 +66,6 @@ export type LinkNotFound = NotFoundErrorBase & {
 
 export type AnimalNotFound = NotFoundErrorBase & {
   name?: string;
-};
-
-export type PetSadError = PetActionError & {
-  /**
-   * why is the pet sad
-   */
-  reason?: string;
 };
 
 export type PetHungryOrThirstyError = PetSadError & {

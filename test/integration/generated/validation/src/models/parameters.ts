@@ -52,7 +52,7 @@ export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("[a-zA-Z0-9']+"),
+      Pattern: new RegExp("[a-zA-Z0-9]+"),
       MaxLength: 10,
       MinLength: 3
     },
@@ -115,22 +115,6 @@ export const accept1: OperationParameter = {
     defaultValue: "application/json",
     isConstant: true,
     serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName1: OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("[a-zA-Z0-9]+"),
-      MaxLength: 10,
-      MinLength: 3
-    },
-    serializedName: "resourceGroupName",
-    required: true,
     type: {
       name: "String"
     }

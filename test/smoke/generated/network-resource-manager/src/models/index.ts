@@ -10412,7 +10412,7 @@ export type IpAllocation = Resource & {
   /**
    * The address prefix length for the IpAllocation.
    */
-  prefixLength?: number;
+  prefixLength?: number | null;
   /**
    * The address prefix Type for the IpAllocation.
    */

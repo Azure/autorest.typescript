@@ -100,7 +100,7 @@ export class Datetimerfc1123 {
 
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
-   * @param datetimeBody datetime body
+   * @param datetimeBody
    * @param options The options parameters.
    */
   putUtcMaxDateTime(
@@ -150,7 +150,7 @@ export class Datetimerfc1123 {
 
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
-   * @param datetimeBody datetime body
+   * @param datetimeBody
    * @param options The options parameters.
    */
   putUtcMinDateTime(

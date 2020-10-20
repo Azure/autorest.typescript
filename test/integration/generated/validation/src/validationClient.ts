@@ -143,8 +143,8 @@ const validationOfBodyOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.id,
-    Parameters.resourceGroupName1
+    Parameters.resourceGroupName,
+    Parameters.id
   ],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",

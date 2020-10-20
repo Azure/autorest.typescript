@@ -210,7 +210,7 @@ export class StringOperations {
 
   /**
    * Put value that is base64url encoded
-   * @param stringBody string body
+   * @param stringBody
    * @param options The options parameters.
    */
   putBase64UrlEncoded(

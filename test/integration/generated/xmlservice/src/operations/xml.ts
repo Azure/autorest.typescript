@@ -34,8 +34,7 @@ import {
   SignedIdentifier,
   XmlListBlobsResponse,
   JsonInput,
-  XmlJsonOutputResponse,
-  XmlGetXMsTextResponse
+  XmlJsonOutputResponse
 } from "../models";
 
 /**
@@ -540,23 +539,6 @@ export class Xml {
       jsonOutputOperationSpec
     ) as Promise<XmlJsonOutputResponse>;
   }
-
-  /**
-   * Get back an XML object with an x-ms-text property, which should translate to the returned object's
-   * 'language' property being 'english' and its 'content' property being 'I am text'
-   * @param options The options parameters.
-   */
-  getXMsText(
-    options?: coreHttp.OperationOptions
-  ): Promise<XmlGetXMsTextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
-    return this.client.sendOperationRequest(
-      { options: operationOptions },
-      getXMsTextOperationSpec
-    ) as Promise<XmlGetXMsTextResponse>;
-  }
 }
 // Operation Specifications
 
@@ -976,17 +958,4 @@ const jsonOutputOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept2],
   serializer
-};
-const getXMsTextOperationSpec: coreHttp.OperationSpec = {
-  path: "/xml/x-ms-text",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ObjectWithXMsTextProperty
-    }
-  },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  isXML: true,
-  serializer: xmlSerializer
 };

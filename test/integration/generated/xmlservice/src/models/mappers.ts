@@ -1134,32 +1134,6 @@ export const JsonOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const ObjectWithXMsTextProperty: coreHttp.CompositeMapper = {
-  serializedName: "ObjectWithXMsTextProperty",
-  xmlName: "Data",
-  type: {
-    name: "Composite",
-    className: "ObjectWithXMsTextProperty",
-    modelProperties: {
-      language: {
-        serializedName: "language",
-        xmlName: "language",
-        xmlIsAttribute: true,
-        type: {
-          name: "String"
-        }
-      },
-      content: {
-        serializedName: "content",
-        xmlName: "content",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
   serializedName: "Xml_getHeadersHeaders",
   type: {

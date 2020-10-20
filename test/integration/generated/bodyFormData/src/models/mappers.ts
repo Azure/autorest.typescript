@@ -52,21 +52,3 @@ export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipart
     }
   }
 };
-
-export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema",
-    modelProperties: {
-      fileContent: {
-        serializedName: "fileContent",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Stream" } }
-        }
-      }
-    }
-  }
-};

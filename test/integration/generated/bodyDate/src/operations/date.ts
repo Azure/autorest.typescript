@@ -97,7 +97,7 @@ export class DateOperations {
 
   /**
    * Put max date value 9999-12-31
-   * @param dateBody date body
+   * @param dateBody
    * @param options The options parameters.
    */
   putMaxDate(
@@ -131,7 +131,7 @@ export class DateOperations {
 
   /**
    * Put min date value 0000-01-01
-   * @param dateBody date body
+   * @param dateBody
    * @param options The options parameters.
    */
   putMinDate(
