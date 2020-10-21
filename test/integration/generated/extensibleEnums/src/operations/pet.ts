@@ -31,6 +31,7 @@ export class Pet {
   }
 
   /**
+   * get pet by id
    * @param petId Pet id
    * @param options The options parameters.
    */
@@ -48,6 +49,7 @@ export class Pet {
   }
 
   /**
+   * add pet
    * @param options The options parameters.
    */
   addPet(options?: PetAddPetOptionalParams): Promise<PetAddPetResponse> {

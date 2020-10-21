@@ -132,7 +132,7 @@ export class Int {
 
   /**
    * Put max int32 value
-   * @param intBody
+   * @param intBody int body
    * @param options The options parameters.
    */
   putMax32(
@@ -150,7 +150,7 @@ export class Int {
 
   /**
    * Put max int64 value
-   * @param intBody
+   * @param intBody int body
    * @param options The options parameters.
    */
   putMax64(
@@ -168,7 +168,7 @@ export class Int {
 
   /**
    * Put min int32 value
-   * @param intBody
+   * @param intBody int body
    * @param options The options parameters.
    */
   putMin32(
@@ -186,7 +186,7 @@ export class Int {
 
   /**
    * Put min int64 value
-   * @param intBody
+   * @param intBody int body
    * @param options The options parameters.
    */
   putMin64(
@@ -220,7 +220,7 @@ export class Int {
 
   /**
    * Put datetime encoded as Unix time
-   * @param intBody date in seconds since 1970-01-01T00:00:00Z.
+   * @param intBody int body
    * @param options The options parameters.
    */
   putUnixTimeDate(

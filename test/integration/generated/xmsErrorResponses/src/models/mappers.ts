@@ -53,33 +53,6 @@ export const PetAction: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetActionError: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PetActionError",
-    uberParent: "PetActionError",
-    polymorphicDiscriminator: {
-      serializedName: "errorType",
-      clientName: "errorType"
-    },
-    modelProperties: {
-      errorType: {
-        serializedName: "errorType",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      errorMessage: {
-        serializedName: "errorMessage",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const Pet: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -126,20 +99,27 @@ export const NotFoundErrorBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetSadError: coreHttp.CompositeMapper = {
-  serializedName: "PetSadError",
+export const PetActionError: coreHttp.CompositeMapper = {
+  serializedName: "PetActionError",
   type: {
     name: "Composite",
-    className: "PetSadError",
-    uberParent: "PetActionError",
+    className: "PetActionError",
+    uberParent: "PetAction",
     polymorphicDiscriminator: {
       serializedName: "errorType",
       clientName: "errorType"
     },
     modelProperties: {
-      ...PetActionError.type.modelProperties,
-      reason: {
-        serializedName: "reason",
+      ...PetAction.type.modelProperties,
+      errorType: {
+        serializedName: "errorType",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      errorMessage: {
+        serializedName: "errorMessage",
         type: {
           name: "String"
         }
@@ -186,13 +166,35 @@ export const AnimalNotFound: coreHttp.CompositeMapper = {
   }
 };
 
+export const PetSadError: coreHttp.CompositeMapper = {
+  serializedName: "PetSadError",
+  type: {
+    name: "Composite",
+    className: "PetSadError",
+    uberParent: "PetAction",
+    polymorphicDiscriminator: {
+      serializedName: "errorType",
+      clientName: "errorType"
+    },
+    modelProperties: {
+      ...PetActionError.type.modelProperties,
+      reason: {
+        serializedName: "reason",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const PetHungryOrThirstyError: coreHttp.CompositeMapper = {
   serializedName: "PetHungryOrThirstyError",
   type: {
     name: "Composite",
     className: "PetHungryOrThirstyError",
-    uberParent: "PetActionError",
-    polymorphicDiscriminator: PetActionError.type.polymorphicDiscriminator,
+    uberParent: "PetAction",
+    polymorphicDiscriminator: PetAction.type.polymorphicDiscriminator,
     modelProperties: {
       ...PetSadError.type.modelProperties,
       hungryOrThirsty: {
@@ -206,10 +208,10 @@ export const PetHungryOrThirstyError: coreHttp.CompositeMapper = {
 };
 
 export let discriminators = {
-  PetActionError: PetActionError,
   "BaseError.NotFoundErrorBase": NotFoundErrorBase,
-  "PetActionError.PetSadError": PetSadError,
+  "PetAction.PetActionError": PetActionError,
   "BaseError.InvalidResourceLink": LinkNotFound,
   "BaseError.AnimalNotFound": AnimalNotFound,
-  "PetActionError.PetHungryOrThirstyError": PetHungryOrThirstyError
+  "PetAction.PetSadError": PetSadError,
+  "PetAction.PetHungryOrThirstyError": PetHungryOrThirstyError
 };

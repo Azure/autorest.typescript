@@ -9,6 +9,9 @@
 import * as coreHttp from "@azure/core-http";
 
 export interface Pet {
+  /**
+   * name
+   */
   name?: string;
   /**
    * Type of Pet
@@ -58,6 +61,9 @@ export type PetGetByPetIdResponse = Pet & {
  * Optional parameters.
  */
 export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
+  /**
+   * pet param
+   */
   petParam?: Pet;
 }
 
