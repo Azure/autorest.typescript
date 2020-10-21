@@ -62,13 +62,17 @@ describe("BodyDateTime Client", function() {
       body: date
     } = await testClient.datetime.getLocalNegativeOffsetMinDateTime();
 
-    expect(date.getUTCFullYear()).to.equal(1);
-    expect(date.getUTCMonth()).to.equal(0);
-    expect(date.getUTCDate()).to.equal(1);
-    expect(date.getUTCHours()).to.equal(14);
-    expect(date.getUTCMinutes()).to.equal(0);
-    expect(date.getUTCSeconds()).to.equal(0);
-    expect(date.getUTCMilliseconds()).to.equal(0);
+    expect(date.toISOString()).to.equal("0001-01-01T14:00:00.000Z");
+  });
+
+  it("should get local no offset Min DateTime value", async () => {
+    const {
+      body: date
+    } = await testClient.datetime.getLocalNoOffsetMinDateTime();
+
+    expect(date.toISOString()).to.equal(
+      new Date("0001-01-01T00:00:00").toISOString()
+    );
   });
 
   it("should get local positive offset Min DateTime value", async () => {
