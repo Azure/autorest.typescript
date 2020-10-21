@@ -91,7 +91,7 @@ describe("BodyDictionary", () => {
     } = await client.dictionary.getComplexItemNull();
     assert.deepEqual(result, {
       "0": { integer: 1, string: "2" },
-      "1": null as any,
+      "1": null,
       "2": { integer: 5, string: "6" }
     });
     assert.deepEqual(_response.status, 200);
