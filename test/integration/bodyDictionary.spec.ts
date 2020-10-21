@@ -107,6 +107,15 @@ describe("BodyDictionary", () => {
     assert.deepEqual(_response.status, 200);
   });
 
+  it("should putComplexValid", async () => {
+    const { _response, ...result } = await client.dictionary.putComplexValid({
+      "0": { integer: 1, string: "2" },
+      "1": { integer: 3, string: "4" },
+      "2": { integer: 5, string: "6" }
+    });
+    assert.deepEqual(_response.status, 200);
+  });
+
   it("should getComplexItemEmpty", async () => {
     const {
       _response,
