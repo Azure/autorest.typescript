@@ -37,6 +37,7 @@ describe("BodyDictionary", () => {
   });
 
   // FIXME we should de-serialize the incoming value as a null
+  // https://github.com/Azure/azure-sdk-for-js/issues/12009
   it("should getArrayNull", async () => {
     const { _response, ...result } = await client.dictionary.getArrayNull();
     assert.deepEqual(result, {});
@@ -78,6 +79,7 @@ describe("BodyDictionary", () => {
   });
 
   // FIXME we should de-serialize the incoming value as a null
+  // https://github.com/Azure/azure-sdk-for-js/issues/12009
   it("should getComplexNull", async () => {
     const { _response, ...result } = await client.dictionary.getComplexNull();
     assert.deepEqual(result, {});
@@ -130,6 +132,7 @@ describe("BodyDictionary", () => {
   });
 
   // FIXME we should de-serialize the incoming value as a null
+  // https://github.com/Azure/azure-sdk-for-js/issues/12009
   it("should getDictionaryNull", async () => {
     const {
       _response,
