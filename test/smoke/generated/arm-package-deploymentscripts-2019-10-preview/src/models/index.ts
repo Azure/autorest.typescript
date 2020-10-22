@@ -8,10 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type DeploymentScriptUnion =
-  | DeploymentScript
-  | AzurePowerShellScript
-  | AzureCliScript;
+export type DeploymentScriptUnion = AzurePowerShellScript | AzureCliScript;
 
 /**
  * Managed identity generic object.

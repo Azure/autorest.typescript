@@ -8,11 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type FishUnion = Fish | SalmonUnion | SharkUnion;
-export type DotFishUnion = DotFish | DotSalmon;
-export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
-export type SalmonUnion = Salmon | SmartSalmon;
-export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
+export type FishUnion = SalmonUnion | SharkUnion;
+export type DotFishUnion = DotSalmon;
+export type MyBaseTypeUnion = MyDerivedType;
+export type SalmonUnion = SmartSalmon;
+export type SharkUnion = Sawshark | Goblinshark | Cookiecuttershark;
 
 export interface Basic {
   /**

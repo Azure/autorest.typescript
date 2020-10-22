@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export type DirectoryObjectUnion =
-  | DirectoryObject
   | User
   | Application
   | ADGroup

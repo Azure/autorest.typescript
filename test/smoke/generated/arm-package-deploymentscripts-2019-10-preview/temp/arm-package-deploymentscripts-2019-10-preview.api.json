@@ -1772,15 +1772,6 @@
             },
             {
               "kind": "Reference",
-              "text": "DeploymentScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
               "text": "AzurePowerShellScript",
               "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type"
             },
@@ -1802,7 +1793,7 @@
           "name": "DeploymentScriptUnion",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 4
           }
         },
         {

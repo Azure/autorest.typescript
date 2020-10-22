@@ -9,11 +9,9 @@
 import * as coreHttp from "@azure/core-http";
 
 export type FirewallPolicyRuleUnion =
-  | FirewallPolicyRule
   | FirewallPolicyNatRule
   | FirewallPolicyFilterRule;
 export type FirewallPolicyRuleConditionUnion =
-  | FirewallPolicyRuleCondition
   | ApplicationRuleCondition
   | NatRuleCondition
   | NetworkRuleCondition;

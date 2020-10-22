@@ -226,7 +226,7 @@ export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion & {
 };
 
 // @public (undocumented)
-export type DeploymentScriptUnion = DeploymentScript | AzurePowerShellScript | AzureCliScript;
+export type DeploymentScriptUnion = AzurePowerShellScript | AzureCliScript;
 
 // @public
 export type DeploymentScriptUpdateParameter = AzureResourceBase & {

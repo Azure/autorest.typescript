@@ -444,13 +444,17 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
     .forEach(obj => {
       const polymorphicObject = obj as PolymorphicObjectDetails;
       const childrenNames = [
-        obj.name,
         ...polymorphicObject.children.map(c => {
           return c.schema.children && c.schema.children.immediate.length
             ? `${c.name}Union`
             : c.name;
         })
       ];
+
+      if (isPolymorphicParentInUnion(polymorphicObject)) {
+        childrenNames.unshift(polymorphicObject.name);
+      }
+
       modelsFile.addTypeAlias({
         name: `${obj.name}Union`,
         isExported: true,
@@ -458,6 +462,20 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
         trailingTrivia: writer => writer.newLine()
       });
     });
+}
+
+/**
+ * Checks if a polymorphic parent needs to be included in the Union type to represent its polymorphism
+ * A parent needs to be in the union only if its name is in the list of allowed discriminator values
+ * otherwise the parent should be excluded.
+ * @param parent Plymorphic parent to check
+ */
+function isPolymorphicParentInUnion(parent: PolymorphicObjectDetails): boolean {
+  return Object.keys(parent.discriminatorValues).some(property =>
+    parent.discriminatorValues[property].some(
+      discriminatorValue => discriminatorValue === parent.name
+    )
+  );
 }
 
 interface WriteOptionalParametersOptions {

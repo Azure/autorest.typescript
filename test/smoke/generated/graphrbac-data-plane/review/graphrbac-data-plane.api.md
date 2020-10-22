@@ -255,7 +255,7 @@ export interface DirectoryObjectListResult {
 }
 
 // @public (undocumented)
-export type DirectoryObjectUnion = DirectoryObject | User | Application | ADGroup | ServicePrincipal;
+export type DirectoryObjectUnion = User | Application | ADGroup | ServicePrincipal;
 
 // @public
 export interface Domain {
