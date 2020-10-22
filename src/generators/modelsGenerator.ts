@@ -589,7 +589,7 @@ function getProperties(
       property.name === "siblings"
         ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
         : property.type;
-    return property.nullable ? typeName + " | null" : typeName;
+    return property.nullable ? `${typeName} | null` : typeName;
   };
 
   return properties

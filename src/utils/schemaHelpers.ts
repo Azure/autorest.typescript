@@ -79,8 +79,11 @@ export function getTypeForSchema(
         arraySchema.elementType,
         arraySchema.nullableItems
       );
-      const itemsName = normalizeTypeName(itemsType);
+      const itemsName = itemsType.typeName;
       kind = itemsType.kind;
+      // In the case that this type is SomeType | null, it is necessary to wrap
+      // in brackets such that the array type is constructed correctly as
+      // (SomeType | null)[]
       const wrappedItemsName = itemsType.nullable
         ? "(" + itemsName + ")"
         : itemsName;
@@ -133,7 +136,7 @@ export function getTypeForSchema(
         dictionarySchema.elementType,
         dictionarySchema.nullableItems
       );
-      const elementTypeName = normalizeTypeName(elementType);
+      const elementTypeName = elementType.typeName;
       kind = PropertyKind.Dictionary;
       typeName = `{[propertyName: string]: ${elementTypeName}}`;
       if (isModelNeeded(elementType)) {
