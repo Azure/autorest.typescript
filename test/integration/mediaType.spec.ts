@@ -6,7 +6,7 @@ describe("Integration tests for MediaTypes", () => {
 
   beforeEach(() => {
     client = new MediaTypesClient({
-      requestPolicyFactories: defaultPolicies => {
+      requestPolicyFactories: (defaultPolicies) => {
         defaultPolicies.push({
           create(nextPolicy) {
             return {
@@ -71,6 +71,10 @@ describe("Integration tests for MediaTypes", () => {
       expect(response._response.status).to.equal(
         200,
         `Unexpected status code.`
+      );
+
+      expect(response.body).to.equal(
+        "Nice job sending content type with encoding"
       );
     });
   });
