@@ -6,7 +6,7 @@ describe("Integration tests for MediaTypes", () => {
 
   beforeEach(() => {
     client = new MediaTypesClient({
-      requestPolicyFactories: defaultPolicies => {
+      requestPolicyFactories: (defaultPolicies) => {
         defaultPolicies.push({
           create(nextPolicy) {
             return {
@@ -59,16 +59,22 @@ describe("Integration tests for MediaTypes", () => {
     });
   });
 
-  // https://github.com/Azure/autorest.typescript/issues/741
-  describe.skip("#contentTypeWithEncoding", () => {
+  describe("#contentTypeWithEncoding", () => {
     it("works with text/plain", async () => {
-      const response = await client.contentTypeWithEncoding(
-        "text/plain; encoding=UTF-8"
-      );
+      client = new MediaTypesClient();
+      const response = await client.contentTypeWithEncoding("test", {
+        requestOptions: {
+          customHeaders: { "content-type": "text/plain; encoding=UTF-8" }
+        }
+      });
 
       expect(response._response.status).to.equal(
         200,
         `Unexpected status code.`
+      );
+
+      expect(response.body).to.equal(
+        "Nice job sending content type with encoding"
       );
     });
   });
