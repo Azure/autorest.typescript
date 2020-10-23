@@ -27,22 +27,24 @@ describe("SchemaHelpers", () => {
         new StringSchema("StringType", "This is a string.")
       );
 
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "string",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
     });
 
-    it("converts BooleanSchena to boolean", () => {
+    it("converts BooleanSchema to boolean", () => {
       const typeDetails = getTypeForSchema(
         new BooleanSchema("BooleanType", "This is a boolean.")
       );
 
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "boolean",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -58,9 +60,10 @@ describe("SchemaHelpers", () => {
         )
       );
 
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "number",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -76,9 +79,10 @@ describe("SchemaHelpers", () => {
         )
       );
 
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "number",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -97,16 +101,17 @@ describe("SchemaHelpers", () => {
         })
       );
 
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "number",
         isConstant: true,
+        nullable: false,
         kind: PropertyKind.Primitive,
         defaultValue: 311,
         usedModels: []
       });
     });
 
-    it("converts a Cohice schema", () => {
+    it("converts a Choice schema", () => {
       const choices = [
         new ChoiceValue("", "", "red color"),
         new ChoiceValue("", "", "green-color"),
@@ -118,9 +123,10 @@ describe("SchemaHelpers", () => {
           choiceType: SchemaType.String as any
         })
       );
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "ChoiceSchema",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Enum,
         usedModels: ["ChoiceSchema"]
       });
@@ -134,9 +140,10 @@ describe("SchemaHelpers", () => {
           new StringSchema("StringSchema", "")
         )
       );
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "string[]",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -150,9 +157,10 @@ describe("SchemaHelpers", () => {
           new StringSchema("StringSchema", "")
         )
       );
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "{[propertyName: string]: string}",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Dictionary,
         usedModels: []
       });
@@ -160,25 +168,28 @@ describe("SchemaHelpers", () => {
 
     it("converts a Date schema", () => {
       let typeDetails = getTypeForSchema(new DateSchema("DateSchema", ""));
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
 
       typeDetails = getTypeForSchema(new DateTimeSchema("DateTimeSchema", ""));
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
 
       typeDetails = getTypeForSchema(new UnixTimeSchema("UnixTimeSchema", ""));
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -188,9 +199,10 @@ describe("SchemaHelpers", () => {
       const typeDetails = getTypeForSchema(
         new DurationSchema("DurationSchema", "")
       );
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName: "string",
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Primitive,
         usedModels: []
       });
@@ -201,15 +213,16 @@ describe("SchemaHelpers", () => {
         new ObjectSchema("ObjectSchema", "")
       );
       const typeName = "ObjectSchema";
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName,
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Composite,
         usedModels: [typeName]
       });
     });
 
-    it("converts an Object schema whith plymorphism", () => {
+    it("converts an Object schema with polymorphism", () => {
       const discriminatorProperty = new Property(
         "fishtype",
         "",
@@ -230,9 +243,10 @@ describe("SchemaHelpers", () => {
       const typeDetails = getTypeForSchema(parent);
 
       const typeName = "ParentUnion";
-      assert.deepEqual(typeDetails, {
+      assert.deepStrictEqual(typeDetails, {
         typeName,
         isConstant: false,
+        nullable: false,
         kind: PropertyKind.Composite,
         usedModels: [typeName]
       });

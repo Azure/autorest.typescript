@@ -70,6 +70,7 @@ export interface PropertyDetails {
   type: string;
   required: boolean;
   readOnly: boolean;
+  nullable: boolean;
   isConstant?: boolean;
   typeDetails: TypeDetails;
   isDiscriminator: boolean;
@@ -81,6 +82,7 @@ export interface PropertyDetails {
 export interface TypeDetails {
   typeName: string;
   isConstant?: boolean;
+  nullable?: boolean;
   defaultValue?: string;
   kind: PropertyKind;
   usedModels: string[];

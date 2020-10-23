@@ -18,7 +18,7 @@ export interface Basic {
   /**
    * Basic Id
    */
-  id?: number;
+  id?: number | null;
   /**
    * Name property with a very long description that does not fit on a single line and a line break.
    */
@@ -93,7 +93,7 @@ export interface DictionaryWrapper {
   /**
    * Dictionary of <string>
    */
-  defaultProgram?: { [propertyName: string]: string };
+  defaultProgram?: { [propertyName: string]: string } | null;
 }
 
 export interface Pet {

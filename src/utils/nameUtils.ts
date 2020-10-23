@@ -143,7 +143,9 @@ export function normalizeName(
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
-    .map(part => toCasing(part, CasingConvention.Pascal))
+    .map(part =>
+      part === "null" ? part : toCasing(part, CasingConvention.Pascal)
+    )
     .join("");
 
   const normalized = `${normalizedFirstPart}${normalizedParts}`;

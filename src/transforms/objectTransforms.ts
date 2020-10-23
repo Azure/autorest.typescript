@@ -74,7 +74,8 @@ export function transformProperty({
   schema,
   serializedName,
   required,
-  readOnly
+  readOnly,
+  nullable
 }: Property | GroupProperty): PropertyDetails {
   const metadata = getLanguageMetadata(language);
   const typeDetails = getTypeForSchema(schema);
@@ -96,6 +97,7 @@ export function transformProperty({
     type: typeName,
     required: !!required,
     readOnly: !!readOnly,
+    nullable: !!nullable,
     isConstant,
     defaultValue,
     typeDetails,

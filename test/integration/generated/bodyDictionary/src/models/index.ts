@@ -832,7 +832,7 @@ export type DictionaryGetComplexEmptyResponse = {
  * Contains response data for the getComplexItemNull operation.
  */
 export type DictionaryGetComplexItemNullResponse = {
-  [propertyName: string]: Widget;
+  [propertyName: string]: Widget | null;
 } & {
   /**
    * The underlying HTTP response.
@@ -846,7 +846,7 @@ export type DictionaryGetComplexItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: Widget };
+    parsedBody: { [propertyName: string]: Widget | null };
   };
 };
 
@@ -942,7 +942,7 @@ export type DictionaryGetArrayEmptyResponse = {
  * Contains response data for the getArrayItemNull operation.
  */
 export type DictionaryGetArrayItemNullResponse = {
-  [propertyName: string]: string[];
+  [propertyName: string]: string[] | null;
 } & {
   /**
    * The underlying HTTP response.
@@ -956,7 +956,7 @@ export type DictionaryGetArrayItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string[] };
+    parsedBody: { [propertyName: string]: string[] | null };
   };
 };
 

@@ -17705,6 +17705,7 @@ export const IpAllocation: coreHttp.CompositeMapper = {
       },
       prefixLength: {
         serializedName: "properties.prefixLength",
+        nullable: true,
         type: {
           name: "Number"
         }

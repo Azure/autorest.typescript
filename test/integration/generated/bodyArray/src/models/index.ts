@@ -563,7 +563,7 @@ export type ArrayGetStringWithNullResponse = {
   /**
    * The parsed response body.
    */
-  body: string[];
+  body: (string | null)[];
 
   /**
    * The underlying HTTP response.
@@ -577,7 +577,7 @@ export type ArrayGetStringWithNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[];
+    parsedBody: (string | null)[];
   };
 };
 
@@ -934,7 +934,7 @@ export type ArrayGetBase64UrlResponse = {
 /**
  * Contains response data for the getComplexNull operation.
  */
-export type ArrayGetComplexNullResponse = Product[] & {
+export type ArrayGetComplexNullResponse = (Product | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -947,7 +947,7 @@ export type ArrayGetComplexNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: (Product | null)[];
   };
 };
 
@@ -974,7 +974,7 @@ export type ArrayGetComplexEmptyResponse = Product[] & {
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export type ArrayGetComplexItemNullResponse = Product[] & {
+export type ArrayGetComplexItemNullResponse = (Product | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -987,7 +987,7 @@ export type ArrayGetComplexItemNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: (Product | null)[];
   };
 };
 
@@ -1088,7 +1088,7 @@ export type ArrayGetArrayItemNullResponse = {
   /**
    * The parsed response body.
    */
-  body: string[][];
+  body: (string[] | null)[];
 
   /**
    * The underlying HTTP response.
@@ -1102,7 +1102,7 @@ export type ArrayGetArrayItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: (string[] | null)[];
   };
 };
 
@@ -1159,9 +1159,9 @@ export type ArrayGetArrayValidResponse = {
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export type ArrayGetDictionaryNullResponse = {
+export type ArrayGetDictionaryNullResponse = ({
   [propertyName: string]: string;
-}[] & {
+} | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1174,7 +1174,7 @@ export type ArrayGetDictionaryNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: ({ [propertyName: string]: string } | null)[];
   };
 };
 
@@ -1203,9 +1203,9 @@ export type ArrayGetDictionaryEmptyResponse = {
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export type ArrayGetDictionaryItemNullResponse = {
+export type ArrayGetDictionaryItemNullResponse = ({
   [propertyName: string]: string;
-}[] & {
+} | null)[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1218,7 +1218,7 @@ export type ArrayGetDictionaryItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: ({ [propertyName: string]: string } | null)[];
   };
 };
 

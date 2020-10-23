@@ -66,6 +66,7 @@ export interface EntityOptions {
   readOnly?: boolean;
   hasXmlMetadata?: boolean;
   uberParents?: string[];
+  nullable?: boolean;
 }
 
 export interface MapperInput {
@@ -158,6 +159,7 @@ function buildMapper(
 ): Mapper {
   const required = !!options.required;
   const readOnly = !!options.readOnly;
+  const nullable = !!options.nullable;
   // Handle x-ms-discriminator-value Extension. More info:
   // https://github.com/Azure/autorest/tree/master/docs/extensions/swagger-extensions-examples/x-ms-discriminator-value
   const serializedName =
@@ -213,6 +215,7 @@ function buildMapper(
     }),
     ...(required && { required }),
     ...(readOnly && { readOnly }),
+    ...(nullable && { nullable }),
     ...(hasConstraints && { constraints }),
     ...xmlMetadata
   };
@@ -664,6 +667,7 @@ function processProperties(
       ...options,
       required: prop.required,
       readOnly: prop.readOnly,
+      nullable: prop.nullable,
       serializedName
     });
   });

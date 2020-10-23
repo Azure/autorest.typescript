@@ -22,6 +22,13 @@ describe("NameUtils", () => {
         );
       });
 
+      it("should generate class name with camelCase from dash separated and has a primitive name", () => {
+        assert.strictEqual(
+          normalizeName("body-boolean", NameType.Class),
+          "BodyBoolean"
+        );
+      });
+
       it("should generate property name with PascalCase from space separated", () => {
         assert.strictEqual(
           normalizeName("test code", NameType.Class),
