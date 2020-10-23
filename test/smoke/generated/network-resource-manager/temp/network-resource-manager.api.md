@@ -3137,7 +3137,7 @@ export type FirewallPolicyRuleConditionNetworkProtocol = "TCP" | "UDP" | "Any" |
 export type FirewallPolicyRuleConditionType = "ApplicationRuleCondition" | "NetworkRuleCondition" | "NatRuleCondition" | string;
 
 // @public (undocumented)
-export type FirewallPolicyRuleConditionUnion = FirewallPolicyRuleCondition | ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
+export type FirewallPolicyRuleConditionUnion = ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
 
 // @public
 export type FirewallPolicyRuleGroup = SubResource & {
@@ -3191,7 +3191,7 @@ export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListRe
 export type FirewallPolicyRuleType = "FirewallPolicyNatRule" | "FirewallPolicyFilterRule" | string;
 
 // @public (undocumented)
-export type FirewallPolicyRuleUnion = FirewallPolicyRule | FirewallPolicyNatRule | FirewallPolicyFilterRule;
+export type FirewallPolicyRuleUnion = FirewallPolicyNatRule | FirewallPolicyFilterRule;
 
 // @public
 export interface FirewallPolicyThreatIntelWhitelist {

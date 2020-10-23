@@ -2436,15 +2436,6 @@
             },
             {
               "kind": "Reference",
-              "text": "DirectoryObject",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObject:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
               "text": "User",
               "canonicalReference": "graphrbac-data-plane!User:type"
             },
@@ -2484,7 +2475,7 @@
           "name": "DirectoryObjectUnion",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 10
+            "endIndex": 8
           }
         },
         {
