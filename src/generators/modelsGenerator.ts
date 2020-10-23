@@ -621,16 +621,18 @@ function getProperties(
     }));
 }
 
-function getPropertyDescription(property: PropertyDetails) {
-  const description = property.description ? [property.description] : [];
-  if (property.readOnly) {
-    return [
-      ...description,
-      "NOTE: This property will not be serialized. It can only be populated by the server."
-    ];
+function getPropertyDescription({ description, readOnly }: PropertyDetails) {
+  if (!description) {
+    return undefined;
   }
 
-  return description.length ? description : undefined;
+  if (readOnly) {
+    const readonlyNote =
+      "NOTE: This property will not be serialized. It can only be populated by the server.";
+    return [`${description}\n${readonlyNote}`];
+  } else {
+    return [description];
+  }
 }
 
 /**

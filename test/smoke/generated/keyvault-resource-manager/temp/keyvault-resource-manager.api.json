@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -198,7 +198,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!CheckNameAvailabilityResult#message:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * An error message explaining the Reason value in more detail. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -223,7 +223,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!CheckNameAvailabilityResult#nameAvailable:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -248,7 +248,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!CheckNameAvailabilityResult#reason:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -423,7 +423,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVault#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource ID for the deleted key vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -448,7 +448,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVault#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the key vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -499,7 +499,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVault#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource type of the key vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -611,7 +611,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVaultProperties#deletionDate:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The deleted date. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -637,7 +637,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVaultProperties#location:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The location of the original vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -662,7 +662,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVaultProperties#scheduledPurgeDate:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The scheduled purged date. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -688,7 +688,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVaultProperties#tags:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Tags of the original vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -713,7 +713,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!DeletedVaultProperties#vaultId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource id of the original vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2133,7 +2133,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!PrivateEndpoint#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Full identifier of the private endpoint resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2283,7 +2283,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionItem#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Provisioning state of the private endpoint connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2910,7 +2910,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Resource#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Fully qualified identifier of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2935,7 +2935,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Resource#location:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Azure location of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2960,7 +2960,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Resource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Name of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2985,7 +2985,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Resource#tags:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Tags assigned to the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3010,7 +3010,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Resource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3336,7 +3336,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Vault#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Fully qualified identifier of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3386,7 +3386,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Vault#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Name of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3462,7 +3462,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!Vault#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type of the key vault resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3503,7 +3503,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!VaultAccessPolicyParameters#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource id of the access policy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3528,7 +3528,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!VaultAccessPolicyParameters#location:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource type of the access policy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3553,7 +3553,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!VaultAccessPolicyParameters#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource name of the access policy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3604,7 +3604,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!VaultAccessPolicyParameters#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource name of the access policy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4543,7 +4543,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "keyvault-resource-manager!VaultProperties#privateEndpointConnections:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of private endpoint connections associated with the key vault. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

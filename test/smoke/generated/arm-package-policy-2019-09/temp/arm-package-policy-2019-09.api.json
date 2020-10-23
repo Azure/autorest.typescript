@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -98,7 +98,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo#info:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -123,7 +123,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The additional info type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -164,7 +164,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#additionalInfo:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -194,7 +194,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#code:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error code. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -219,7 +219,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#details:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error details. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -249,7 +249,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#message:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -274,7 +274,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#target:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -315,7 +315,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!Identity#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal ID of the resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -340,7 +340,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!Identity#tenantId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tenant ID of the resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -775,7 +775,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -876,7 +876,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1036,7 +1036,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2704,7 +2704,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the policy definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2779,7 +2779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the policy definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2889,7 +2889,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource (Microsoft.Authorization/policyDefinitions). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3845,7 +3845,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the policy set definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3895,7 +3895,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the policy set definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4040,7 +4040,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource (Microsoft.Authorization/policySetDefinitions). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

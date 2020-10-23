@@ -1248,6 +1248,7 @@ export type AppServicePlansUpdateVnetRouteResponse = VnetRoute & {
 
 // @public
 export interface ArmIdWrapper {
+    // (undocumented)
     readonly id?: string;
 }
 

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -5325,7 +5325,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ApplicationSecurityGroupListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5919,7 +5919,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AutoApprovedPrivateLinkServicesResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6318,7 +6318,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AvailableDelegationsResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6793,7 +6793,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AvailablePrivateEndpointTypesResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7688,7 +7688,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AvailableServiceAliasesResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8573,7 +8573,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AzureFirewallIpGroups#changeNumber:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The iteration number. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8598,7 +8598,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!AzureFirewallIpGroups#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10599,7 +10599,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#protocol:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The protocol used to connect to the target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10625,7 +10625,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#resourceType:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10650,7 +10650,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#sessionDurationInMins:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Duration in mins the session has been active. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10675,7 +10675,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#sessionId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique id for the session. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10700,7 +10700,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#startTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time when the session started. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10725,7 +10725,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#targetHostName:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The host name of the target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10750,7 +10750,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#targetIpAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The IP Address of the target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10775,7 +10775,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#targetResourceGroup:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource group of the target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10800,7 +10800,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#targetResourceId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource id of the target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10825,7 +10825,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#targetSubscriptionId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The subscription id for the target virtual machine. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10850,7 +10850,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionActiveSession#userName:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The user name who is active on this session. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11531,7 +11531,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionSessionState#message:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Used for extra information. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11556,7 +11556,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionSessionState#sessionId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique id for the session. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11581,7 +11581,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionSessionState#state:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The state of the session. Disconnected/Failed/NotFound. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11622,7 +11622,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionShareableLink#bsl:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unique Bastion Shareable Link to the virtual machine. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11647,7 +11647,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionShareableLink#createdAt:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time when the link was created. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11672,7 +11672,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BastionShareableLink#message:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Optional field indicating the warning or error message related to the vm in case of partial failure. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12047,7 +12047,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#asn:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The autonomous system number of the remote BGP peer. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12072,7 +12072,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#connectedDuration:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * For how long the peering has been up. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12097,7 +12097,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#localAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The virtual network gateway's local address. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12122,7 +12122,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#messagesReceived:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The number of BGP messages received. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12147,7 +12147,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#messagesSent:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The number of BGP messages sent. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12172,7 +12172,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#neighbor:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The remote BGP peer. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12197,7 +12197,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#routesReceived:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The number of routes learned from this peer. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12222,7 +12222,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!BgpPeerStatus#state:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The BGP peer state. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12866,7 +12866,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties#clientId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The client id of user assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12891,7 +12891,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal id of user assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14329,7 +14329,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#connectionMonitorType:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Type of connection monitor. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14411,7 +14411,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique read-only string that changes whenever the resource is updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14436,7 +14436,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * ID of the connection monitor. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14511,7 +14511,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#monitoringStatus:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The monitoring status of the connection monitor. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14536,7 +14536,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Name of the connection monitor. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14616,7 +14616,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the connection monitor. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14668,7 +14668,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#startTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The date and time when the connection monitor was started. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14779,7 +14779,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionMonitorResult#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Connection monitor type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15993,7 +15993,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectionStateSnapshot#hops:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of hops between the source and the destination. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16281,7 +16281,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#address:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The IP address of the hop. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16306,7 +16306,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the hop. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16331,7 +16331,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#issues:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of issues. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16361,7 +16361,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#nextHopIds:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of next hop identifiers. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16386,7 +16386,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#resourceId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the resource corresponding to this hop. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16411,7 +16411,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityHop#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the hop. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16452,7 +16452,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#avgLatencyInMs:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Average latency in milliseconds. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16477,7 +16477,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#connectionStatus:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The connection status. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16503,7 +16503,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#hops:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of hops between the source and the destination. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16533,7 +16533,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#maxLatencyInMs:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Maximum latency in milliseconds. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16558,7 +16558,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#minLatencyInMs:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Minimum latency in milliseconds. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16583,7 +16583,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#probesFailed:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Number of failed probes. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16608,7 +16608,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityInformation#probesSent:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Total number of probes sent. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16649,7 +16649,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityIssue#context:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Provides additional context on the issue. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16674,7 +16674,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityIssue#origin:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The origin of the issue. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16700,7 +16700,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityIssue#severity:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The severity of the issue. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -16726,7 +16726,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ConnectivityIssue#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of issue. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17133,7 +17133,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ContainerNetworkInterfaceIpConfiguration#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique read-only string that changes whenever the resource is updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17183,7 +17183,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ContainerNetworkInterfaceIpConfiguration#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the container network interface IP configuration resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17209,7 +17209,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ContainerNetworkInterfaceIpConfiguration#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Sub Resource type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17567,7 +17567,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique read-only string that changes whenever the resource is updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17592,7 +17592,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17642,7 +17642,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17667,7 +17667,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the DDoS protection plan resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17693,7 +17693,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#resourceGuid:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17743,7 +17743,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17768,7 +17768,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlan#virtualNetworks:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of virtual networks associated with the DDoS protection plan resource. This list is read-only. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -17814,7 +17814,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!DdosProtectionPlanListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19027,7 +19027,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!EffectiveNetworkSecurityGroupListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -19686,7 +19686,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!EffectiveRouteListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -20288,7 +20288,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!EvaluatedNetworkSecurityGroup#rulesEvaluationResult:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of network security rules evaluation results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -21412,7 +21412,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRouteCircuitPeeringConfig#advertisedPublicPrefixesState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The advertised public prefix state of the Peering resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23377,7 +23377,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRouteConnectionId#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the ExpressRouteConnection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23674,7 +23674,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRouteCrossConnectionListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -23820,7 +23820,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRouteCrossConnectionPeeringList#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -24631,7 +24631,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRouteCrossConnectionsRoutesTableSummaryListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26167,7 +26167,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRoutePortsLocationBandwidths#offerName:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Bandwidth descriptive name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -26192,7 +26192,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ExpressRoutePortsLocationBandwidths#valueInGbps:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Bandwidth value in Gbps. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -28931,7 +28931,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!FlowLogListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29355,7 +29355,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#asPath:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The route's AS path sequence. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29380,7 +29380,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#localAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The gateway's local address. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29405,7 +29405,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#network:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The route's network prefix. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29430,7 +29430,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#nextHop:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The route's next hop. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29455,7 +29455,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#origin:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The source this route was learned from. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29480,7 +29480,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#sourcePeer:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The peer this route was learned from. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -29505,7 +29505,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!GatewayRoute#weight:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The route's weight. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -30740,7 +30740,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!InboundNatRuleListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31801,7 +31801,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!IPConfigurationBgpPeeringAddress#defaultBgpIpAddresses:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of default BGP peering addresses which belong to IP configuration. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -31851,7 +31851,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!IPConfigurationBgpPeeringAddress#tunnelIpAddresses:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of tunnel public IP addresses which belong to IP configuration. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -32842,7 +32842,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Ipv6CircuitConnectionConfig#circuitConnectionStatus:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Express Route Circuit connection state. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34159,7 +34159,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerBackendAddressPoolListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34422,7 +34422,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerFrontendIPConfigurationListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34637,7 +34637,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -34708,7 +34708,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerLoadBalancingRuleListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35019,7 +35019,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerOutboundRuleListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -35259,7 +35259,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LoadBalancerProbeListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36102,7 +36102,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!LocalNetworkGatewayListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36839,7 +36839,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ManagedServiceIdentity#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal id of the system assigned identity. This property will only be provided for a system assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -36864,7 +36864,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ManagedServiceIdentity#tenantId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38512,7 +38512,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkConfigurationDiagnosticResponse#results:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of network configuration diagnostic results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38816,7 +38816,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceAssociation#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Network interface ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38887,7 +38887,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceDnsSettings#appliedDnsServers:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set. This property is what is configured on each of those VMs. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38962,7 +38962,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceDnsSettings#internalDomainNameSuffix:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Even if internalDnsNameLabel is not specified, a DNS entry is created for the primary NIC of the VM. This DNS name can be constructed by concatenating the VM name with the value of internalDomainNameSuffix. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -38987,7 +38987,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceDnsSettings#internalFqdn:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Fully qualified DNS name supporting internal communications between VMs in the same virtual network. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39157,7 +39157,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceIPConfigurationListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39228,7 +39228,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties#fqdns:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of FQDNs for current private link connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39253,7 +39253,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties#groupId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The group ID for current private link connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39278,7 +39278,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties#requiredMemberName:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The required member name for current private link connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39463,7 +39463,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -39534,7 +39534,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceLoadBalancerListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -40860,7 +40860,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkInterfaceTapConfigurationListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -46619,7 +46619,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!NetworkSecurityGroupResult#evaluatedNetworkSecurityGroups:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of results network security groups diagnostic. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -51220,7 +51220,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PacketCaptureResult#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique read-only string that changes whenever the resource is updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -51275,7 +51275,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PacketCaptureResult#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * ID of the packet capture operation. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -51300,7 +51300,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PacketCaptureResult#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Name of the packet capture session. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -51325,7 +51325,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PacketCaptureResult#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the packet capture session. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -52583,7 +52583,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PrivateDnsZoneConfig#recordSets:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A collection of information regarding a recordSet, holding information to identify private resources. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -52677,7 +52677,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PrivateDnsZoneGroupListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -53081,7 +53081,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PrivateEndpointConnectionListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -53152,7 +53152,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PrivateEndpointListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -53868,7 +53868,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!PrivateLinkServiceListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -57147,7 +57147,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!RecordSet#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the recordset. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -57355,7 +57355,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Resource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -57405,7 +57405,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Resource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -57558,7 +57558,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ResourceNavigationLinksListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -60880,7 +60880,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceAssociationLinksListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61705,7 +61705,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceEndpointPolicyListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61801,7 +61801,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceEndpointPropertiesFormat#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state of the service endpoint resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61893,7 +61893,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformation#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of service tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61918,7 +61918,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformation#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of service tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61943,7 +61943,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformation#properties:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Properties of the service tag information. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -61985,7 +61985,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformationPropertiesFormat#addressPrefixes:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of IP address prefixes. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62010,7 +62010,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformationPropertiesFormat#changeNumber:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The iteration number of service tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62035,7 +62035,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformationPropertiesFormat#region:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The region of service tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62060,7 +62060,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagInformationPropertiesFormat#systemService:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of system service. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62149,7 +62149,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#changeNumber:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The iteration number. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62174,7 +62174,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#cloud:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the cloud. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62199,7 +62199,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the cloud. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62224,7 +62224,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the cloud. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62249,7 +62249,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The azure resource type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62274,7 +62274,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!ServiceTagsListResult#values:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of service tag information resources. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -62624,7 +62624,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!SubnetAssociation#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Subnet ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -63099,7 +63099,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Topology#createdDateTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The datetime when the topology was initially created for the resource group. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -63125,7 +63125,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Topology#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * GUID representing the operation id. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -63150,7 +63150,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Topology#lastModified:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The datetime when the topology was last modified. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64278,7 +64278,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!TunnelConnectionHealth#connectionStatus:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Virtual Network Gateway connection status. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64304,7 +64304,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!TunnelConnectionHealth#egressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The Egress Bytes Transferred in this connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64329,7 +64329,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!TunnelConnectionHealth#ingressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The Ingress Bytes Transferred in this connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64354,7 +64354,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!TunnelConnectionHealth#lastConnectionEstablishedUtcTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time at which connection was established in Utc format. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64379,7 +64379,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!TunnelConnectionHealth#tunnel:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Tunnel name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -64511,7 +64511,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!Usage#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource identifier. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -65197,7 +65197,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualApplianceNicProperties#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * NIC name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -65222,7 +65222,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualApplianceNicProperties#privateIpAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Private IP address. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -65247,7 +65247,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualApplianceNicProperties#publicIpAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Public IP address. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -66446,7 +66446,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkBgpCommunities#regionalCommunity:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The BGP community associated with the region of the virtual network. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -66931,7 +66931,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkGatewayConnectionListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -67655,7 +67655,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkGatewayListConnectionsResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -67726,7 +67726,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkGatewayListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to get the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -68294,7 +68294,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkGatewaySku#capacity:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The capacity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -69149,7 +69149,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkListUsageResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * VirtualNetwork usage stats. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70561,7 +70561,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsage#currentValue:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Indicates number of IPs used from the Subnet. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70586,7 +70586,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsage#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Subnet identifier. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70611,7 +70611,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsage#limit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Indicates the size of the subnet. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70636,7 +70636,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsage#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name containing common and localized value for usage. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70662,7 +70662,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsage#unit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Usage units. Returns 'Count'. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70703,7 +70703,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsageName#localizedValue:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Localized subnet size and usage string. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -70728,7 +70728,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualNetworkUsageName#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Subnet size and usage string. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -71694,7 +71694,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VirtualWanSecurityProvider#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Name of the security provider. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72630,7 +72630,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealth#totalEgressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Total of the Egress Bytes Transferred in this connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72655,7 +72655,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealth#totalIngressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Total of the Ingress Bytes Transferred in this P2S Vpn connection. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72721,7 +72721,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#egressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The egress bytes per second. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72746,7 +72746,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#egressPacketsTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The egress packets per second. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72771,7 +72771,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#ingressBytesTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ingress bytes per second. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72796,7 +72796,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#ingressPacketsTransferred:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ingress packets per second. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72821,7 +72821,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#maxBandwidth:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The max band width. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72846,7 +72846,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#maxPacketsPerSecond:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The max packets transferred per second. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72871,7 +72871,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#privateIpAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The assigned private Ip of a connected vpn client. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72896,7 +72896,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#publicIpAddress:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The public Ip of a connected vpn client. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72921,7 +72921,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#vpnConnectionDuration:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The duration time of a connected vpn client. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72946,7 +72946,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#vpnConnectionId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The vpn client Id. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72971,7 +72971,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#vpnConnectionTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The start time of a connected vpn client. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -72996,7 +72996,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnClientConnectionHealthDetail#vpnUserName:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The user name of a connected vpn client. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -75671,7 +75671,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!VpnSiteId#vpnSite:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource-uri of the vpn-site for which config is to be fetched. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -76448,7 +76448,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!WebApplicationFirewallCustomRule#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A unique read-only string that changes whenever the resource is updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -77085,7 +77085,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!WebApplicationFirewallPolicyListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * URL to get the next set of WebApplicationFirewallPolicy objects if there are any. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -77110,7 +77110,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "network-resource-manager!WebApplicationFirewallPolicyListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of WebApplicationFirewallPolicies within a resource group. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

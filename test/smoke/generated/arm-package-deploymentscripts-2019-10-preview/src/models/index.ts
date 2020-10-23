@@ -74,22 +74,16 @@ export interface SystemData {
 export interface AzureResourceBase {
   /**
    * String Id used to locate any resource on Azure.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Name of this resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Type of this resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -111,36 +105,26 @@ export interface DeploymentScriptsError {
 export interface ErrorResponse {
   /**
    * The error code.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * The error message.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * The error target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: string;
   /**
    * The error details.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: ErrorResponse[];
   /**
    * The error additional info.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly additionalInfo?: ErrorAdditionalInfo[];
@@ -152,15 +136,11 @@ export interface ErrorResponse {
 export interface ErrorAdditionalInfo {
   /**
    * The additional info type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The additional info.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly info?: any;
@@ -176,8 +156,6 @@ export interface DeploymentScriptListResult {
   value?: DeploymentScriptUnion[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -211,22 +189,16 @@ export interface DeploymentScriptPropertiesBase {
   cleanupPreference?: CleanupOptions;
   /**
    * State of the script execution. This only appears in the response.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ScriptProvisioningState;
   /**
    * Contains the results of script execution.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: ScriptStatus;
   /**
    * List of script outputs.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outputs?: { [propertyName: string]: any };
@@ -262,36 +234,26 @@ export interface StorageAccountConfiguration {
 export interface ScriptStatus {
   /**
    * ACI resource Id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly containerInstanceId?: string;
   /**
    * Storage account resource Id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly storageAccountId?: string;
   /**
    * Start time of the script execution.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * End time of the script execution.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * Time the deployment script resource will expire.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationTime?: Date;
@@ -379,8 +341,6 @@ export type DeploymentScript = AzureResourceBase & {
   kind: ScriptType;
   /**
    * The system metadata related to this resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly systemData?: SystemData;
@@ -402,8 +362,6 @@ export type DeploymentScriptUpdateParameter = AzureResourceBase & {
 export type ScriptLog = AzureResourceBase & {
   /**
    * Script execution logs in text format.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly log?: string;
@@ -449,22 +407,16 @@ export type AzurePowerShellScript = DeploymentScript & {
   cleanupPreference?: CleanupOptions;
   /**
    * State of the script execution. This only appears in the response.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ScriptProvisioningState;
   /**
    * Contains the results of script execution.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: ScriptStatus;
   /**
    * List of script outputs.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outputs?: { [propertyName: string]: any };
@@ -524,22 +476,16 @@ export type AzureCliScript = DeploymentScript & {
   cleanupPreference?: CleanupOptions;
   /**
    * State of the script execution. This only appears in the response.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ScriptProvisioningState;
   /**
    * Contains the results of script execution.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: ScriptStatus;
   /**
    * List of script outputs.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outputs?: { [propertyName: string]: any };

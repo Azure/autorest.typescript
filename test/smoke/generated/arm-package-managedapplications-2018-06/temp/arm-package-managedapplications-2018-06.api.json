@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -2014,7 +2014,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-managedapplications-2018-06!Identity#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal ID of resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2039,7 +2039,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-managedapplications-2018-06!Identity#tenantId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tenant ID of resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2412,7 +2412,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-managedapplications-2018-06!Resource#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource ID NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2462,7 +2462,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-managedapplications-2018-06!Resource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource name NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2512,7 +2512,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-managedapplications-2018-06!Resource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

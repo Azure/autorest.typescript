@@ -126,15 +126,11 @@ export interface Resource {
   id?: string;
   /**
    * Resource name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -190,8 +186,6 @@ export interface NetworkInterfaceDnsSettings {
   dnsServers?: string[];
   /**
    * If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set. This property is what is configured on each of those VMs.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly appliedDnsServers?: string[];
@@ -201,15 +195,11 @@ export interface NetworkInterfaceDnsSettings {
   internalDnsNameLabel?: string;
   /**
    * Fully qualified DNS name supporting internal communications between VMs in the same virtual network.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly internalFqdn?: string;
   /**
    * Even if internalDnsNameLabel is not specified, a DNS entry is created for the primary NIC of the VM. This DNS name can be constructed by concatenating the VM name with the value of internalDomainNameSuffix.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly internalDomainNameSuffix?: string;
@@ -293,8 +283,6 @@ export interface ServiceEndpointPropertiesFormat {
   locations?: string[];
   /**
    * The provisioning state of the service endpoint resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -412,8 +400,6 @@ export interface VirtualNetworkBgpCommunities {
   virtualNetworkCommunity: string;
   /**
    * The BGP community associated with the region of the virtual network.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly regionalCommunity?: string;
@@ -425,22 +411,16 @@ export interface VirtualNetworkBgpCommunities {
 export interface NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties {
   /**
    * The group ID for current private link connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly groupId?: string;
   /**
    * The required member name for current private link connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMemberName?: string;
   /**
    * List of FQDNs for current private link connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fqdns?: string[];
@@ -680,15 +660,11 @@ export interface ApplicationGatewayAutoscaleConfiguration {
 export interface ManagedServiceIdentity {
   /**
    * The principal id of the system assigned identity. This property will only be provided for a system assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant id of the system assigned identity. This property will only be provided for a system assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
@@ -707,15 +683,11 @@ export interface ManagedServiceIdentity {
 export interface Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties {
   /**
    * The principal id of user assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The client id of user assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
@@ -967,8 +939,6 @@ export interface ApplicationSecurityGroupListResult {
   value?: ApplicationSecurityGroup[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -984,8 +954,6 @@ export interface AvailableDelegationsResult {
   value?: AvailableDelegation[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1027,8 +995,6 @@ export interface AvailableServiceAliasesResult {
   value?: AvailableServiceAlias[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1242,15 +1208,11 @@ export interface AzureFirewallPublicIPAddress {
 export interface AzureFirewallIpGroups {
   /**
    * Resource ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The iteration number.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly changeNumber?: string;
@@ -1332,22 +1294,16 @@ export interface BastionShareableLink {
   vm: Resource;
   /**
    * The unique Bastion Shareable Link to the virtual machine.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly bsl?: string;
   /**
    * The time when the link was created.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdAt?: string;
   /**
    * Optional field indicating the warning or error message related to the vm in case of partial failure.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
@@ -1387,78 +1343,56 @@ export interface BastionActiveSessionListResult {
 export interface BastionActiveSession {
   /**
    * A unique id for the session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sessionId?: string;
   /**
    * The time when the session started.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: any;
   /**
    * The subscription id for the target virtual machine.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetSubscriptionId?: string;
   /**
    * The type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceType?: string;
   /**
    * The host name of the target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetHostName?: string;
   /**
    * The resource group of the target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetResourceGroup?: string;
   /**
    * The user name who is active on this session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly userName?: string;
   /**
    * The IP Address of the target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetIpAddress?: string;
   /**
    * The protocol used to connect to the target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly protocol?: BastionConnectProtocol;
   /**
    * The resource id of the target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetResourceId?: string;
   /**
    * Duration in mins the session has been active.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sessionDurationInMins?: number;
@@ -1494,22 +1428,16 @@ export interface BastionSessionDeleteResult {
 export interface BastionSessionState {
   /**
    * A unique id for the session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sessionId?: string;
   /**
    * Used for extra information.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * The state of the session. Disconnected/Failed/NotFound.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
@@ -1553,22 +1481,16 @@ export interface ProtocolCustomSettingsFormat {
 export interface DdosProtectionPlan {
   /**
    * Resource ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -1582,29 +1504,21 @@ export interface DdosProtectionPlan {
   tags?: { [propertyName: string]: string };
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the DDoS protection plan resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The list of virtual networks associated with the DDoS protection plan resource. This list is read-only.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualNetworks?: SubResource[];
@@ -1620,8 +1534,6 @@ export interface DdosProtectionPlanListResult {
   value?: DdosProtectionPlan[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1669,8 +1581,6 @@ export interface ExpressRouteCircuitPeeringConfig {
   advertisedCommunities?: string[];
   /**
    * The advertised public prefix state of the Peering resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly advertisedPublicPrefixesState?: ExpressRouteCircuitPeeringAdvertisedPublicPrefixState;
@@ -1742,8 +1652,6 @@ export interface Ipv6ExpressRouteCircuitPeeringConfig {
 export interface ExpressRouteConnectionId {
   /**
    * The ID of the ExpressRouteConnection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -1759,8 +1667,6 @@ export interface Ipv6CircuitConnectionConfig {
   addressPrefix?: string;
   /**
    * Express Route Circuit connection state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly circuitConnectionStatus?: CircuitConnectionStatus;
@@ -2012,8 +1918,6 @@ export interface ExpressRouteCrossConnectionListResult {
   value?: ExpressRouteCrossConnection[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2039,8 +1943,6 @@ export interface ExpressRouteCrossConnectionPeeringList {
   value?: ExpressRouteCrossConnectionPeering[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2056,8 +1958,6 @@ export interface ExpressRouteCrossConnectionsRoutesTableSummaryListResult {
   value?: ExpressRouteCrossConnectionRoutesTableSummary[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2105,15 +2005,11 @@ export interface ExpressRoutePortsLocationListResult {
 export interface ExpressRoutePortsLocationBandwidths {
   /**
    * Bandwidth descriptive name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly offerName?: string;
   /**
    * Bandwidth value in Gbps.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly valueInGbps?: number;
@@ -2319,8 +2215,6 @@ export interface LoadBalancerListResult {
   value?: LoadBalancer[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2336,8 +2230,6 @@ export interface LoadBalancerBackendAddressPoolListResult {
   value?: BackendAddressPool[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2353,8 +2245,6 @@ export interface LoadBalancerFrontendIPConfigurationListResult {
   value?: FrontendIPConfiguration[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2370,8 +2260,6 @@ export interface InboundNatRuleListResult {
   value?: InboundNatRule[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2387,8 +2275,6 @@ export interface LoadBalancerLoadBalancingRuleListResult {
   value?: LoadBalancingRule[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2404,8 +2290,6 @@ export interface LoadBalancerOutboundRuleListResult {
   value?: OutboundRule[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2421,8 +2305,6 @@ export interface NetworkInterfaceListResult {
   value?: NetworkInterface[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2438,8 +2320,6 @@ export interface LoadBalancerProbeListResult {
   value?: Probe[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2479,8 +2359,6 @@ export interface EffectiveRouteListResult {
   value?: EffectiveRoute[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2530,8 +2408,6 @@ export interface EffectiveNetworkSecurityGroupListResult {
   value?: EffectiveNetworkSecurityGroup[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2649,8 +2525,6 @@ export interface NetworkInterfaceIPConfigurationListResult {
   value?: NetworkInterfaceIPConfiguration[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2666,8 +2540,6 @@ export interface NetworkInterfaceLoadBalancerListResult {
   value?: LoadBalancer[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2683,8 +2555,6 @@ export interface NetworkInterfaceTapConfigurationListResult {
   value?: NetworkInterfaceTapConfiguration[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -2700,22 +2570,16 @@ export interface ContainerNetworkInterfaceIpConfiguration {
   name?: string;
   /**
    * Sub Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the container network interface IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -2769,22 +2633,16 @@ export interface SecurityRuleListResult {
 export interface VirtualApplianceNicProperties {
   /**
    * NIC name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Public IP address.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicIpAddress?: string;
   /**
    * Private IP address.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateIpAddress?: string;
@@ -2866,22 +2724,16 @@ export interface TopologyParameters {
 export interface Topology {
   /**
    * GUID representing the operation id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The datetime when the topology was initially created for the resource group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdDateTime?: Date;
   /**
    * The datetime when the topology was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModified?: Date;
@@ -3085,8 +2937,6 @@ export interface SecurityRuleAssociations {
 export interface NetworkInterfaceAssociation {
   /**
    * Network interface ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -3102,8 +2952,6 @@ export interface NetworkInterfaceAssociation {
 export interface SubnetAssociation {
   /**
    * Subnet ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -3223,22 +3071,16 @@ export interface PacketCaptureFilter {
 export interface PacketCaptureResult {
   /**
    * Name of the packet capture session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * ID of the packet capture operation.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -3268,8 +3110,6 @@ export interface PacketCaptureResult {
   filters?: PacketCaptureFilter[];
   /**
    * The provisioning state of the packet capture session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -3559,50 +3399,36 @@ export interface HttpHeader {
 export interface ConnectivityInformation {
   /**
    * List of hops between the source and the destination.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hops?: ConnectivityHop[];
   /**
    * The connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: ConnectionStatus;
   /**
    * Average latency in milliseconds.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly avgLatencyInMs?: number;
   /**
    * Minimum latency in milliseconds.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minLatencyInMs?: number;
   /**
    * Maximum latency in milliseconds.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxLatencyInMs?: number;
   /**
    * Total number of probes sent.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly probesSent?: number;
   /**
    * Number of failed probes.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly probesFailed?: number;
@@ -3614,43 +3440,31 @@ export interface ConnectivityInformation {
 export interface ConnectivityHop {
   /**
    * The type of the hop.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The ID of the hop.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The IP address of the hop.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly address?: string;
   /**
    * The ID of the resource corresponding to this hop.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceId?: string;
   /**
    * List of next hop identifiers.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextHopIds?: string[];
   /**
    * List of issues.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issues?: ConnectivityIssue[];
@@ -3662,29 +3476,21 @@ export interface ConnectivityHop {
 export interface ConnectivityIssue {
   /**
    * The origin of the issue.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly origin?: Origin;
   /**
    * The severity of the issue.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly severity?: Severity;
   /**
    * The type of issue.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: IssueType;
   /**
    * Provides additional context on the issue.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly context?: { [propertyName: string]: string }[];
@@ -3916,8 +3722,6 @@ export interface NetworkConfigurationDiagnosticProfile {
 export interface NetworkConfigurationDiagnosticResponse {
   /**
    * List of network configuration diagnostic results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly results?: NetworkConfigurationDiagnosticResult[];
@@ -3947,8 +3751,6 @@ export interface NetworkSecurityGroupResult {
   securityRuleAccessResult?: SecurityRuleAccess;
   /**
    * List of results network security groups diagnostic.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly evaluatedNetworkSecurityGroups?: EvaluatedNetworkSecurityGroup[];
@@ -3972,8 +3774,6 @@ export interface EvaluatedNetworkSecurityGroup {
   matchedRule?: MatchedRule;
   /**
    * List of network security rules evaluation results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rulesEvaluationResult?: NetworkSecurityRulesEvaluationResult[];
@@ -4359,29 +4159,21 @@ export interface ConnectionMonitorWorkspaceSettings {
 export interface ConnectionMonitorResult {
   /**
    * Name of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * ID of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Connection monitor type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -4431,29 +4223,21 @@ export interface ConnectionMonitorResult {
   notes?: string;
   /**
    * The provisioning state of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The date and time when the connection monitor was started.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The monitoring status of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly monitoringStatus?: string;
   /**
    * Type of connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionMonitorType?: ConnectionMonitorType;
@@ -4515,8 +4299,6 @@ export interface ConnectionStateSnapshot {
   probesFailed?: number;
   /**
    * List of hops between the source and the destination.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hops?: ConnectivityHop[];
@@ -4542,8 +4324,6 @@ export interface FlowLogListResult {
   value?: FlowLog[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4747,8 +4527,6 @@ export interface PrivateEndpointListResult {
   value?: PrivateEndpoint[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4764,8 +4542,6 @@ export interface AvailablePrivateEndpointTypesResult {
   value?: AvailablePrivateEndpointType[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4807,8 +4583,6 @@ export interface PrivateDnsZoneConfig {
   privateDnsZoneId?: string;
   /**
    * A collection of information regarding a recordSet, holding information to identify private resources.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly recordSets?: RecordSet[];
@@ -4832,8 +4606,6 @@ export interface RecordSet {
   fqdn?: string;
   /**
    * The provisioning state of the recordset.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -4857,8 +4629,6 @@ export interface PrivateDnsZoneGroupListResult {
   value?: PrivateDnsZoneGroup[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4884,8 +4654,6 @@ export interface PrivateLinkServiceListResult {
   value?: PrivateLinkService[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4901,8 +4669,6 @@ export interface PrivateEndpointConnectionListResult {
   value?: PrivateEndpointConnection[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -4938,8 +4704,6 @@ export interface AutoApprovedPrivateLinkServicesResult {
   value?: AutoApprovedPrivateLinkService[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5127,8 +4891,6 @@ export interface ServiceEndpointPolicyListResult {
   value?: ServiceEndpointPolicy[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5154,43 +4916,31 @@ export interface ServiceEndpointPolicyDefinitionListResult {
 export interface ServiceTagsListResult {
   /**
    * The name of the cloud.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The ID of the cloud.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The azure resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The iteration number.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly changeNumber?: string;
   /**
    * The name of the cloud.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly cloud?: string;
   /**
    * The list of service tag information resources.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly values?: ServiceTagInformation[];
@@ -5202,22 +4952,16 @@ export interface ServiceTagsListResult {
 export interface ServiceTagInformation {
   /**
    * Properties of the service tag information.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: ServiceTagInformationPropertiesFormat;
   /**
    * The name of service tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The ID of service tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -5229,29 +4973,21 @@ export interface ServiceTagInformation {
 export interface ServiceTagInformationPropertiesFormat {
   /**
    * The iteration number of service tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly changeNumber?: string;
   /**
    * The region of service tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly region?: string;
   /**
    * The name of system service.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly systemService?: string;
   /**
    * The list of IP address prefixes.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly addressPrefixes?: string[];
@@ -5277,8 +5013,6 @@ export interface UsagesListResult {
 export interface Usage {
   /**
    * Resource identifier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -5376,8 +5110,6 @@ export interface ResourceNavigationLinksListResult {
   value?: ResourceNavigationLink[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5393,8 +5125,6 @@ export interface ServiceAssociationLinksListResult {
   value?: ServiceAssociationLink[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5448,8 +5178,6 @@ export interface IPAddressAvailabilityResult {
 export interface VirtualNetworkListUsageResult {
   /**
    * VirtualNetwork usage stats.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: VirtualNetworkUsage[];
@@ -5465,36 +5193,26 @@ export interface VirtualNetworkListUsageResult {
 export interface VirtualNetworkUsage {
   /**
    * Indicates number of IPs used from the Subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * Subnet identifier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Indicates the size of the subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly limit?: number;
   /**
    * The name containing common and localized value for usage.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: VirtualNetworkUsageName;
   /**
    * Usage units. Returns 'Count'.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
@@ -5506,15 +5224,11 @@ export interface VirtualNetworkUsage {
 export interface VirtualNetworkUsageName {
   /**
    * Localized subnet size and usage string.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localizedValue?: string;
   /**
    * Subnet size and usage string.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
@@ -5534,8 +5248,6 @@ export interface VirtualNetworkGatewaySku {
   tier?: VirtualNetworkGatewaySkuTier;
   /**
    * The capacity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capacity?: number;
@@ -5679,8 +5391,6 @@ export interface IPConfigurationBgpPeeringAddress {
   ipconfigurationId?: string;
   /**
    * The list of default BGP peering addresses which belong to IP configuration.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultBgpIpAddresses?: string[];
@@ -5690,8 +5400,6 @@ export interface IPConfigurationBgpPeeringAddress {
   customBgpIpAddresses?: string[];
   /**
    * The list of tunnel public IP addresses which belong to IP configuration.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tunnelIpAddresses?: string[];
@@ -5707,8 +5415,6 @@ export interface VirtualNetworkGatewayListResult {
   value?: VirtualNetworkGateway[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5724,8 +5430,6 @@ export interface VirtualNetworkGatewayListConnectionsResult {
   value?: VirtualNetworkGatewayConnectionListEntity[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -5747,36 +5451,26 @@ export interface VirtualNetworkConnectionGatewayReference {
 export interface TunnelConnectionHealth {
   /**
    * Tunnel name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tunnel?: string;
   /**
    * Virtual Network Gateway connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * The Ingress Bytes Transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
   /**
    * The Egress Bytes Transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
   /**
    * The time at which connection was established in Utc format.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastConnectionEstablishedUtcTime?: string;
@@ -5834,57 +5528,41 @@ export interface BgpPeerStatusListResult {
 export interface BgpPeerStatus {
   /**
    * The virtual network gateway's local address.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localAddress?: string;
   /**
    * The remote BGP peer.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly neighbor?: string;
   /**
    * The autonomous system number of the remote BGP peer.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly asn?: number;
   /**
    * The BGP peer state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: BgpPeerState;
   /**
    * For how long the peering has been up.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectedDuration?: string;
   /**
    * The number of routes learned from this peer.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly routesReceived?: number;
   /**
    * The number of BGP messages sent.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly messagesSent?: number;
   /**
    * The number of BGP messages received.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly messagesReceived?: number;
@@ -5906,50 +5584,36 @@ export interface GatewayRouteListResult {
 export interface GatewayRoute {
   /**
    * The gateway's local address.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localAddress?: string;
   /**
    * The route's network prefix.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly network?: string;
   /**
    * The route's next hop.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextHop?: string;
   /**
    * The peer this route was learned from.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sourcePeer?: string;
   /**
    * The source this route was learned from.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly origin?: string;
   /**
    * The route's AS path sequence.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly asPath?: string;
   /**
    * The route's weight.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly weight?: number;
@@ -6041,8 +5705,6 @@ export interface VirtualNetworkGatewayConnectionListResult {
   value?: VirtualNetworkGatewayConnection[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -6068,8 +5730,6 @@ export interface LocalNetworkGatewayListResult {
   value?: LocalNetworkGateway[];
   /**
    * The URL to get the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -6091,85 +5751,61 @@ export interface VpnClientConnectionHealthDetailListResult {
 export interface VpnClientConnectionHealthDetail {
   /**
    * The vpn client Id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnConnectionId?: string;
   /**
    * The duration time of a connected vpn client.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnConnectionDuration?: number;
   /**
    * The start time of a connected vpn client.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnConnectionTime?: string;
   /**
    * The public Ip of a connected vpn client.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicIpAddress?: string;
   /**
    * The assigned private Ip of a connected vpn client.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateIpAddress?: string;
   /**
    * The user name of a connected vpn client.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnUserName?: string;
   /**
    * The max band width.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxBandwidth?: number;
   /**
    * The egress packets per second.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressPacketsTransferred?: number;
   /**
    * The egress bytes per second.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
   /**
    * The ingress packets per second.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressPacketsTransferred?: number;
   /**
    * The ingress bytes per second.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
   /**
    * The max packets transferred per second.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxPacketsPerSecond?: number;
@@ -6353,8 +5989,6 @@ export interface VirtualWanSecurityProvider {
   url?: string;
   /**
    * Name of the security provider.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: VirtualWanSecurityProviderType;
@@ -6500,15 +6134,11 @@ export interface StaticRoute {
 export interface VpnClientConnectionHealth {
   /**
    * Total of the Ingress Bytes Transferred in this P2S Vpn connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly totalIngressBytesTransferred?: number;
   /**
    * Total of the Egress Bytes Transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly totalEgressBytesTransferred?: number;
@@ -6858,15 +6488,11 @@ export interface ListHubRouteTablesResult {
 export interface WebApplicationFirewallPolicyListResult {
   /**
    * List of WebApplicationFirewallPolicies within a resource group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: WebApplicationFirewallPolicy[];
   /**
    * URL to get the next set of WebApplicationFirewallPolicy objects if there are any.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -6908,8 +6534,6 @@ export interface WebApplicationFirewallCustomRule {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7124,8 +6748,6 @@ export interface AzureAsyncOperationResult {
 export interface VpnSiteId {
   /**
    * The resource-uri of the vpn-site for which config is to be fetched.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnSite?: string;
@@ -7141,15 +6763,11 @@ export type ApplicationGatewayIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7159,8 +6777,6 @@ export type ApplicationGatewayIPConfiguration = SubResource & {
   subnet?: SubResource;
   /**
    * The provisioning state of the application gateway IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7176,15 +6792,11 @@ export type ApplicationGatewayAuthenticationCertificate = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7194,8 +6806,6 @@ export type ApplicationGatewayAuthenticationCertificate = SubResource & {
   data?: string;
   /**
    * The provisioning state of the authentication certificate resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7211,15 +6821,11 @@ export type ApplicationGatewayTrustedRootCertificate = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7233,8 +6839,6 @@ export type ApplicationGatewayTrustedRootCertificate = SubResource & {
   keyVaultSecretId?: string;
   /**
    * The provisioning state of the trusted root certificate resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7250,15 +6854,11 @@ export type ApplicationGatewaySslCertificate = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7272,8 +6872,6 @@ export type ApplicationGatewaySslCertificate = SubResource & {
   password?: string;
   /**
    * Base-64 encoded Public cert data corresponding to pfx specified in data. Only applicable in GET request.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicCertData?: string;
@@ -7283,8 +6881,6 @@ export type ApplicationGatewaySslCertificate = SubResource & {
   keyVaultSecretId?: string;
   /**
    * The provisioning state of the SSL certificate resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7300,15 +6896,11 @@ export type ApplicationGatewayFrontendIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7330,8 +6922,6 @@ export type ApplicationGatewayFrontendIPConfiguration = SubResource & {
   publicIPAddress?: SubResource;
   /**
    * The provisioning state of the frontend IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7347,15 +6937,11 @@ export type ApplicationGatewayFrontendPort = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7365,8 +6951,6 @@ export type ApplicationGatewayFrontendPort = SubResource & {
   port?: number;
   /**
    * The provisioning state of the frontend port resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7382,15 +6966,11 @@ export type ApplicationGatewayProbe = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7432,8 +7012,6 @@ export type ApplicationGatewayProbe = SubResource & {
   match?: ApplicationGatewayProbeHealthResponseMatch;
   /**
    * The provisioning state of the probe resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7453,15 +7031,11 @@ export type NetworkInterfaceTapConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Sub Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7471,8 +7045,6 @@ export type NetworkInterfaceTapConfiguration = SubResource & {
   virtualNetworkTap?: VirtualNetworkTap;
   /**
    * The provisioning state of the network interface tap configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7488,8 +7060,6 @@ export type SecurityRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7555,8 +7125,6 @@ export type SecurityRule = SubResource & {
   direction?: SecurityRuleDirection;
   /**
    * The provisioning state of the security rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7572,22 +7140,16 @@ export type PrivateLinkServiceConnection = SubResource & {
   name?: string;
   /**
    * The resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the private link service connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7619,8 +7181,6 @@ export type Route = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7638,8 +7198,6 @@ export type Route = SubResource & {
   nextHopIpAddress?: string;
   /**
    * The provisioning state of the route resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7655,8 +7213,6 @@ export type ServiceEndpointPolicyDefinition = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7674,8 +7230,6 @@ export type ServiceEndpointPolicyDefinition = SubResource & {
   serviceResources?: string[];
   /**
    * The provisioning state of the service endpoint policy definition resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7691,8 +7245,6 @@ export type IPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7714,8 +7266,6 @@ export type IPConfiguration = SubResource & {
   publicIPAddress?: PublicIPAddress;
   /**
    * The provisioning state of the IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7731,15 +7281,11 @@ export type IPConfigurationProfile = SubResource & {
   name?: string;
   /**
    * Sub Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7749,8 +7295,6 @@ export type IPConfigurationProfile = SubResource & {
   subnet?: Subnet;
   /**
    * The provisioning state of the IP configuration profile resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7766,15 +7310,11 @@ export type ResourceNavigationLink = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7788,8 +7328,6 @@ export type ResourceNavigationLink = SubResource & {
   link?: string;
   /**
    * The provisioning state of the resource navigation link resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7805,15 +7343,11 @@ export type ServiceAssociationLink = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -7827,8 +7361,6 @@ export type ServiceAssociationLink = SubResource & {
   link?: string;
   /**
    * The provisioning state of the service association link resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7852,8 +7384,6 @@ export type Delegation = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7863,15 +7393,11 @@ export type Delegation = SubResource & {
   serviceName?: string;
   /**
    * The actions permitted to the service upon delegation.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actions?: string[];
   /**
    * The provisioning state of the service delegation resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7887,8 +7413,6 @@ export type Subnet = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -7922,22 +7446,16 @@ export type Subnet = SubResource & {
   serviceEndpointPolicies?: ServiceEndpointPolicy[];
   /**
    * An array of references to private endpoints.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpoints?: PrivateEndpoint[];
   /**
    * An array of references to the network interface IP configurations using subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipConfigurations?: IPConfiguration[];
   /**
    * Array of IP configuration profiles which reference this subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipConfigurationProfiles?: IPConfigurationProfile[];
@@ -7947,15 +7465,11 @@ export type Subnet = SubResource & {
   ipAllocations?: SubResource[];
   /**
    * An array of references to the external resources using subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceNavigationLinks?: ResourceNavigationLink[];
   /**
    * An array of references to services injecting into this subnet.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceAssociationLinks?: ServiceAssociationLink[];
@@ -7965,15 +7479,11 @@ export type Subnet = SubResource & {
   delegations?: Delegation[];
   /**
    * A read-only string identifying the intention of use for this subnet based on delegations and other user-defined properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly purpose?: string;
   /**
    * The provisioning state of the subnet resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7997,15 +7507,11 @@ export type FrontendIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8015,29 +7521,21 @@ export type FrontendIPConfiguration = SubResource & {
   zones?: string[];
   /**
    * An array of references to inbound rules that use this frontend IP.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inboundNatRules?: SubResource[];
   /**
    * An array of references to inbound pools that use this frontend IP.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inboundNatPools?: SubResource[];
   /**
    * An array of references to outbound rules that use this frontend IP.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundRules?: SubResource[];
   /**
    * An array of references to load balancing rules that use this frontend IP.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly loadBalancingRules?: SubResource[];
@@ -8067,8 +7565,6 @@ export type FrontendIPConfiguration = SubResource & {
   publicIPPrefix?: SubResource;
   /**
    * The provisioning state of the frontend IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8084,8 +7580,6 @@ export type VirtualNetworkPeering = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8119,8 +7613,6 @@ export type VirtualNetworkPeering = SubResource & {
   peeringState?: VirtualNetworkPeeringState;
   /**
    * The provisioning state of the virtual network peering resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8136,22 +7628,16 @@ export type BackendAddressPool = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * An array of references to IP addresses defined in network interfaces.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
@@ -8161,29 +7647,21 @@ export type BackendAddressPool = SubResource & {
   loadBalancerBackendAddresses?: LoadBalancerBackendAddress[];
   /**
    * An array of references to load balancing rules that use this backend address pool.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly loadBalancingRules?: SubResource[];
   /**
    * A reference to an outbound rule that uses this backend address pool.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundRule?: SubResource;
   /**
    * An array of references to outbound rules that use this backend address pool.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundRules?: SubResource[];
   /**
    * The provisioning state of the backend address pool resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8199,15 +7677,11 @@ export type InboundNatRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8217,8 +7691,6 @@ export type InboundNatRule = SubResource & {
   frontendIPConfiguration?: SubResource;
   /**
    * A reference to a private IP address defined on a network interface of a VM. Traffic sent to the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
@@ -8248,8 +7720,6 @@ export type InboundNatRule = SubResource & {
   enableTcpReset?: boolean;
   /**
    * The provisioning state of the inbound NAT rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8265,8 +7735,6 @@ export type NetworkInterfaceIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8316,15 +7784,11 @@ export type NetworkInterfaceIPConfiguration = SubResource & {
   applicationSecurityGroups?: ApplicationSecurityGroup[];
   /**
    * The provisioning state of the network interface IP configuration.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * PrivateLinkConnection properties for the network interface.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateLinkConnectionProperties?: NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties;
@@ -8340,22 +7804,16 @@ export type ApplicationGatewayBackendAddressPool = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * Collection of references to IPs defined in network interfaces.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
@@ -8365,8 +7823,6 @@ export type ApplicationGatewayBackendAddressPool = SubResource & {
   backendAddresses?: ApplicationGatewayBackendAddress[];
   /**
    * The provisioning state of the backend address pool resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8382,15 +7838,11 @@ export type ApplicationGatewayBackendHttpSettings = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8448,8 +7900,6 @@ export type ApplicationGatewayBackendHttpSettings = SubResource & {
   path?: string;
   /**
    * The provisioning state of the backend HTTP settings resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8465,15 +7915,11 @@ export type ApplicationGatewayHttpListener = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8503,8 +7949,6 @@ export type ApplicationGatewayHttpListener = SubResource & {
   requireServerNameIndication?: boolean;
   /**
    * The provisioning state of the HTTP listener resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8532,15 +7976,11 @@ export type ApplicationGatewayPathRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8566,8 +8006,6 @@ export type ApplicationGatewayPathRule = SubResource & {
   rewriteRuleSet?: SubResource;
   /**
    * The provisioning state of the path rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8587,15 +8025,11 @@ export type ApplicationGatewayUrlPathMap = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8621,8 +8055,6 @@ export type ApplicationGatewayUrlPathMap = SubResource & {
   pathRules?: ApplicationGatewayPathRule[];
   /**
    * The provisioning state of the URL path map resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8638,15 +8070,11 @@ export type ApplicationGatewayRequestRoutingRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8684,8 +8112,6 @@ export type ApplicationGatewayRequestRoutingRule = SubResource & {
   redirectConfiguration?: SubResource;
   /**
    * The provisioning state of the request routing rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8701,8 +8127,6 @@ export type ApplicationGatewayRewriteRuleSet = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8712,8 +8136,6 @@ export type ApplicationGatewayRewriteRuleSet = SubResource & {
   rewriteRules?: ApplicationGatewayRewriteRule[];
   /**
    * The provisioning state of the rewrite rule set resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8729,15 +8151,11 @@ export type ApplicationGatewayRedirectConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8803,8 +8221,6 @@ export type AzureFirewallApplicationRuleCollection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8822,8 +8238,6 @@ export type AzureFirewallApplicationRuleCollection = SubResource & {
   rules?: AzureFirewallApplicationRule[];
   /**
    * The provisioning state of the application rule collection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8839,8 +8253,6 @@ export type AzureFirewallNatRuleCollection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8858,8 +8270,6 @@ export type AzureFirewallNatRuleCollection = SubResource & {
   rules?: AzureFirewallNatRule[];
   /**
    * The provisioning state of the NAT rule collection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8875,8 +8285,6 @@ export type AzureFirewallNetworkRuleCollection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -8894,8 +8302,6 @@ export type AzureFirewallNetworkRuleCollection = SubResource & {
   rules?: AzureFirewallNetworkRule[];
   /**
    * The provisioning state of the network rule collection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8911,22 +8317,16 @@ export type AzureFirewallIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The Firewall Internal Load Balancer IP to be used as the next hop in User Defined Routes.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateIPAddress?: string;
@@ -8940,8 +8340,6 @@ export type AzureFirewallIPConfiguration = SubResource & {
   publicIPAddress?: SubResource;
   /**
    * The provisioning state of the Azure firewall IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8957,15 +8355,11 @@ export type BastionHostIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Ip configuration type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -8979,8 +8373,6 @@ export type BastionHostIPConfiguration = SubResource & {
   publicIPAddress?: SubResource;
   /**
    * The provisioning state of the bastion host IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -8996,15 +8388,11 @@ export type BastionHostIPConfiguration = SubResource & {
 export type EndpointServiceResult = SubResource & {
   /**
    * Name of the endpoint service.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Type of the endpoint service.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9020,15 +8408,11 @@ export type ExpressRouteCircuitAuthorization = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9042,8 +8426,6 @@ export type ExpressRouteCircuitAuthorization = SubResource & {
   authorizationUseStatus?: AuthorizationUseStatus;
   /**
    * The provisioning state of the authorization resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9059,15 +8441,11 @@ export type ExpressRouteCircuitConnection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9093,15 +8471,11 @@ export type ExpressRouteCircuitConnection = SubResource & {
   ipv6CircuitConnectionConfig?: Ipv6CircuitConnectionConfig;
   /**
    * Express Route Circuit connection state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly circuitConnectionStatus?: CircuitConnectionStatus;
   /**
    * The provisioning state of the express route circuit connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9117,15 +8491,11 @@ export type PeerExpressRouteCircuitConnection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9143,8 +8513,6 @@ export type PeerExpressRouteCircuitConnection = SubResource & {
   addressPrefix?: string;
   /**
    * Express Route Circuit connection state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly circuitConnectionStatus?: CircuitConnectionStatus;
@@ -9158,8 +8526,6 @@ export type PeerExpressRouteCircuitConnection = SubResource & {
   authResourceGuid?: string;
   /**
    * The provisioning state of the peer express route circuit connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9175,15 +8541,11 @@ export type ExpressRouteCircuitPeering = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9237,8 +8599,6 @@ export type ExpressRouteCircuitPeering = SubResource & {
   stats?: ExpressRouteCircuitStats;
   /**
    * The provisioning state of the express route circuit peering resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9248,8 +8608,6 @@ export type ExpressRouteCircuitPeering = SubResource & {
   gatewayManagerEtag?: string;
   /**
    * Who was the last to modify the peering.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedBy?: string;
@@ -9271,8 +8629,6 @@ export type ExpressRouteCircuitPeering = SubResource & {
   connections?: ExpressRouteCircuitConnection[];
   /**
    * The list of peered circuit connections associated with Azure Private Peering for this circuit.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly peeredConnections?: PeerExpressRouteCircuitConnection[];
@@ -9288,8 +8644,6 @@ export type ExpressRouteCrossConnectionPeering = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -9303,8 +8657,6 @@ export type ExpressRouteCrossConnectionPeering = SubResource & {
   state?: ExpressRoutePeeringState;
   /**
    * The Azure ASN.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly azureASN?: number;
@@ -9322,15 +8674,11 @@ export type ExpressRouteCrossConnectionPeering = SubResource & {
   secondaryPeerAddressPrefix?: string;
   /**
    * The primary port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryAzurePort?: string;
   /**
    * The secondary port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryAzurePort?: string;
@@ -9348,8 +8696,6 @@ export type ExpressRouteCrossConnectionPeering = SubResource & {
   microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
   /**
    * The provisioning state of the express route cross connection peering resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9359,8 +8705,6 @@ export type ExpressRouteCrossConnectionPeering = SubResource & {
   gatewayManagerEtag?: string;
   /**
    * Who was the last to modify the peering.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedBy?: string;
@@ -9380,43 +8724,31 @@ export type ExpressRouteLink = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Name of Azure router associated with physical port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly routerName?: string;
   /**
    * Name of Azure router interface.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly interfaceName?: string;
   /**
    * Mapping between physical port to patch panel port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly patchPanelId?: string;
   /**
    * Mapping of physical patch panel to rack.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rackId?: string;
   /**
    * Physical fiber port type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectorType?: ExpressRouteLinkConnectorType;
@@ -9426,8 +8758,6 @@ export type ExpressRouteLink = SubResource & {
   adminState?: ExpressRouteLinkAdminState;
   /**
    * The provisioning state of the express route link resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9447,15 +8777,11 @@ export type FirewallPolicyRuleGroup = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Rule Group type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9469,8 +8795,6 @@ export type FirewallPolicyRuleGroup = SubResource & {
   rules?: FirewallPolicyRuleUnion[];
   /**
    * The provisioning state of the firewall policy rule group resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9486,15 +8810,11 @@ export type LoadBalancingRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9544,8 +8864,6 @@ export type LoadBalancingRule = SubResource & {
   disableOutboundSnat?: boolean;
   /**
    * The provisioning state of the load balancing rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9561,22 +8879,16 @@ export type Probe = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The load balancer rules that use this probe.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly loadBalancingRules?: SubResource[];
@@ -9602,8 +8914,6 @@ export type Probe = SubResource & {
   requestPath?: string;
   /**
    * The provisioning state of the probe resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9619,15 +8929,11 @@ export type InboundNatPool = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9665,8 +8971,6 @@ export type InboundNatPool = SubResource & {
   enableTcpReset?: boolean;
   /**
    * The provisioning state of the inbound NAT pool resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9682,15 +8986,11 @@ export type OutboundRule = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Type of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9708,8 +9008,6 @@ export type OutboundRule = SubResource & {
   backendAddressPool?: SubResource;
   /**
    * The provisioning state of the outbound rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9737,15 +9035,11 @@ export type ContainerNetworkInterfaceConfiguration = SubResource & {
   name?: string;
   /**
    * Sub Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -9759,8 +9053,6 @@ export type ContainerNetworkInterfaceConfiguration = SubResource & {
   containerNetworkInterfaces?: SubResource[];
   /**
    * The provisioning state of the container network interface configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9776,22 +9068,16 @@ export type ContainerNetworkInterface = SubResource & {
   name?: string;
   /**
    * Sub Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Container network interface configuration from which this container network interface is created.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
@@ -9801,15 +9087,11 @@ export type ContainerNetworkInterface = SubResource & {
   container?: SubResource;
   /**
    * Reference to the ip configuration on this container nic.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipConfigurations?: ContainerNetworkInterfaceIpConfiguration[];
   /**
    * The provisioning state of the container network interface resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9825,15 +9107,11 @@ export type PrivateDnsZoneGroup = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the private dns zone group resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9853,15 +9131,11 @@ export type PrivateLinkServiceIpConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -9883,8 +9157,6 @@ export type PrivateLinkServiceIpConfiguration = SubResource & {
   primary?: boolean;
   /**
    * The provisioning state of the private link service IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9904,22 +9176,16 @@ export type PrivateEndpointConnection = SubResource & {
   name?: string;
   /**
    * The resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The resource of private end point.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpoint?: PrivateEndpoint;
@@ -9929,15 +9195,11 @@ export type PrivateEndpointConnection = SubResource & {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
   /**
    * The provisioning state of the private endpoint connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The consumer link id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly linkIdentifier?: string;
@@ -9957,8 +9219,6 @@ export type RouteFilterRule = SubResource & {
   location?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -9976,8 +9236,6 @@ export type RouteFilterRule = SubResource & {
   communities?: string[];
   /**
    * The provisioning state of the route filter rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -9993,8 +9251,6 @@ export type VirtualNetworkGatewayIPConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10012,15 +9268,11 @@ export type VirtualNetworkGatewayIPConfiguration = SubResource & {
   publicIPAddress?: SubResource;
   /**
    * Private IP Address for this gateway.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateIPAddress?: string;
   /**
    * The provisioning state of the virtual network gateway IP configuration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10036,8 +9288,6 @@ export type VpnClientRootCertificate = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10047,8 +9297,6 @@ export type VpnClientRootCertificate = SubResource & {
   publicCertData: string;
   /**
    * The provisioning state of the VPN client root certificate resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10064,8 +9312,6 @@ export type VpnClientRevokedCertificate = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10075,8 +9321,6 @@ export type VpnClientRevokedCertificate = SubResource & {
   thumbprint?: string;
   /**
    * The provisioning state of the VPN client revoked certificate resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10102,15 +9346,11 @@ export type VirtualRouterPeering = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Peering type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -10124,8 +9364,6 @@ export type VirtualRouterPeering = SubResource & {
   peerIp?: string;
   /**
    * The provisioning state of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10137,8 +9375,6 @@ export type VirtualRouterPeering = SubResource & {
 export type VpnSiteLink = SubResource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10148,8 +9384,6 @@ export type VpnSiteLink = SubResource & {
   name?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -10171,8 +9405,6 @@ export type VpnSiteLink = SubResource & {
   bgpProperties?: VpnLinkBgpSettings;
   /**
    * The provisioning state of the VPN site link resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10188,8 +9420,6 @@ export type P2SConnectionConfiguration = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10203,8 +9433,6 @@ export type P2SConnectionConfiguration = SubResource & {
   routingConfiguration?: RoutingConfiguration;
   /**
    * The provisioning state of the P2SConnectionConfiguration resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10220,8 +9448,6 @@ export type HubVirtualNetworkConnection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10247,8 +9473,6 @@ export type HubVirtualNetworkConnection = SubResource & {
   routingConfiguration?: RoutingConfiguration;
   /**
    * The provisioning state of the hub virtual network connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10264,8 +9488,6 @@ export type VirtualHubRouteTableV2 = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10279,8 +9501,6 @@ export type VirtualHubRouteTableV2 = SubResource & {
   attachedConnections?: string[];
   /**
    * The provisioning state of the virtual hub route table v2 resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10296,15 +9516,11 @@ export type VpnSiteLinkConnection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -10318,8 +9534,6 @@ export type VpnSiteLinkConnection = SubResource & {
   routingWeight?: number;
   /**
    * The connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: VpnConnectionStatus;
@@ -10329,15 +9543,11 @@ export type VpnSiteLinkConnection = SubResource & {
   vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
   /**
    * Ingress bytes transferred.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
   /**
    * Egress bytes transferred.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
@@ -10371,8 +9581,6 @@ export type VpnSiteLinkConnection = SubResource & {
   useLocalAzureIpAddress?: boolean;
   /**
    * The provisioning state of the VPN site link connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10388,8 +9596,6 @@ export type VpnConnection = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10407,8 +9613,6 @@ export type VpnConnection = SubResource & {
   dpdTimeoutSeconds?: number;
   /**
    * The connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: VpnConnectionStatus;
@@ -10418,15 +9622,11 @@ export type VpnConnection = SubResource & {
   vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
   /**
    * Ingress bytes transferred.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
   /**
    * Egress bytes transferred.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
@@ -10464,8 +9664,6 @@ export type VpnConnection = SubResource & {
   useLocalAzureIpAddress?: boolean;
   /**
    * The provisioning state of the VPN connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10489,8 +9687,6 @@ export type ExpressRouteConnection = SubResource & {
   name: string;
   /**
    * The provisioning state of the express route connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10526,15 +9722,11 @@ export type HubRouteTable = SubResource & {
   name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -10548,22 +9740,16 @@ export type HubRouteTable = SubResource & {
   labels?: string[];
   /**
    * List of all connections associated with this route table.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly associatedConnections?: SubResource[];
   /**
    * List of all connections that advertise to this route table.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly propagatingConnections?: SubResource[];
   /**
    * The provisioning state of the RouteTable resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10580,15 +9766,11 @@ export type Container = SubResource & {};
 export type PatchRouteFilterRule = SubResource & {
   /**
    * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10606,8 +9788,6 @@ export type PatchRouteFilterRule = SubResource & {
   communities?: string[];
   /**
    * The provisioning state of the route filter rule resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10619,22 +9799,16 @@ export type PatchRouteFilterRule = SubResource & {
 export type PatchRouteFilter = SubResource & {
   /**
    * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Resource type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -10648,22 +9822,16 @@ export type PatchRouteFilter = SubResource & {
   rules?: RouteFilterRule[];
   /**
    * A collection of references to express route circuit peerings.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly peerings?: ExpressRouteCircuitPeering[];
   /**
    * A collection of references to express route circuit ipv6 peerings.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipv6Peerings?: ExpressRouteCircuitPeering[];
   /**
    * The provisioning state of the route filter resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10675,22 +9843,16 @@ export type PatchRouteFilter = SubResource & {
 export type ApplicationSecurityGroup = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The resource GUID property of the application security group resource. It uniquely identifies a resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the application security group resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10702,8 +9864,6 @@ export type ApplicationSecurityGroup = Resource & {
 export type PrivateEndpoint = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10713,15 +9873,11 @@ export type PrivateEndpoint = Resource & {
   subnet?: Subnet;
   /**
    * An array of references to the network interfaces created for this private endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly networkInterfaces?: NetworkInterface[];
   /**
    * The provisioning state of the private endpoint resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10745,15 +9901,11 @@ export type PrivateEndpoint = Resource & {
 export type NetworkInterface = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The reference to a virtual machine.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachine?: SubResource;
@@ -10763,8 +9915,6 @@ export type NetworkInterface = Resource & {
   networkSecurityGroup?: NetworkSecurityGroup;
   /**
    * A reference to the private endpoint to which the network interface is linked.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpoint?: PrivateEndpoint;
@@ -10774,8 +9924,6 @@ export type NetworkInterface = Resource & {
   ipConfigurations?: NetworkInterfaceIPConfiguration[];
   /**
    * A list of TapConfigurations of the network interface.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tapConfigurations?: NetworkInterfaceTapConfiguration[];
@@ -10785,15 +9933,11 @@ export type NetworkInterface = Resource & {
   dnsSettings?: NetworkInterfaceDnsSettings;
   /**
    * The MAC address of the network interface.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly macAddress?: string;
   /**
    * Whether this is a primary network interface on a virtual machine.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primary?: boolean;
@@ -10807,22 +9951,16 @@ export type NetworkInterface = Resource & {
   enableIPForwarding?: boolean;
   /**
    * A list of references to linked BareMetal resources.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostedWorkloads?: string[];
   /**
    * The resource GUID property of the network interface resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the network interface resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10834,8 +9972,6 @@ export type NetworkInterface = Resource & {
 export type FlowLog = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10845,8 +9981,6 @@ export type FlowLog = Resource & {
   targetResourceId?: string;
   /**
    * Guid of network security group to which flow log will be applied.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetResourceGuid?: string;
@@ -10872,8 +10006,6 @@ export type FlowLog = Resource & {
   flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
   /**
    * The provisioning state of the flow log.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10885,8 +10017,6 @@ export type FlowLog = Resource & {
 export type NetworkSecurityGroup = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10896,43 +10026,31 @@ export type NetworkSecurityGroup = Resource & {
   securityRules?: SecurityRule[];
   /**
    * The default security rules of network security group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultSecurityRules?: SecurityRule[];
   /**
    * A collection of references to network interfaces.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly networkInterfaces?: NetworkInterface[];
   /**
    * A collection of references to subnets.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnets?: Subnet[];
   /**
    * A collection of references to flow log resources.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly flowLogs?: FlowLog[];
   /**
    * The resource GUID property of the network security group resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the network security group resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10944,8 +10062,6 @@ export type NetworkSecurityGroup = Resource & {
 export type RouteTable = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10955,8 +10071,6 @@ export type RouteTable = Resource & {
   routes?: Route[];
   /**
    * A collection of references to subnets.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnets?: Subnet[];
@@ -10966,8 +10080,6 @@ export type RouteTable = Resource & {
   disableBgpRoutePropagation?: boolean;
   /**
    * The provisioning state of the route table resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -10979,8 +10091,6 @@ export type RouteTable = Resource & {
 export type ServiceEndpointPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -10990,22 +10100,16 @@ export type ServiceEndpointPolicy = Resource & {
   serviceEndpointPolicyDefinitions?: ServiceEndpointPolicyDefinition[];
   /**
    * A collection of references to subnets.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnets?: Subnet[];
   /**
    * The resource GUID property of the service endpoint policy resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the service endpoint policy resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11021,8 +10125,6 @@ export type PublicIPAddress = Resource & {
   sku?: PublicIPAddressSku;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11040,8 +10142,6 @@ export type PublicIPAddress = Resource & {
   publicIPAddressVersion?: IPVersion;
   /**
    * The IP configuration associated with the public IP address.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipConfiguration?: IPConfiguration;
@@ -11071,15 +10171,11 @@ export type PublicIPAddress = Resource & {
   idleTimeoutInMinutes?: number;
   /**
    * The resource GUID property of the public IP address resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the public IP address resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11091,29 +10187,21 @@ export type PublicIPAddress = Resource & {
 export type VirtualNetworkTap = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * Specifies the list of resource IDs for the network interface IP configuration that needs to be tapped.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly networkInterfaceTapConfigurations?: NetworkInterfaceTapConfiguration[];
   /**
    * The resource GUID property of the virtual network tap resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the virtual network tap resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11137,8 +10225,6 @@ export type VirtualNetworkTap = Resource & {
 export type VirtualNetwork = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11160,15 +10246,11 @@ export type VirtualNetwork = Resource & {
   virtualNetworkPeerings?: VirtualNetworkPeering[];
   /**
    * The resourceGuid property of the Virtual Network resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the virtual network resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11200,8 +10282,6 @@ export type VirtualNetwork = Resource & {
 export type ApplicationGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11223,8 +10303,6 @@ export type ApplicationGateway = Resource & {
   sslPolicy?: ApplicationGatewaySslPolicy;
   /**
    * Operational state of the application gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationalState?: ApplicationGatewayOperationalState;
@@ -11306,15 +10384,11 @@ export type ApplicationGateway = Resource & {
   autoscaleConfiguration?: ApplicationGatewayAutoscaleConfiguration;
   /**
    * The resource GUID property of the application gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the application gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11334,8 +10408,6 @@ export type ApplicationGateway = Resource & {
 export type ApplicationGatewayFirewallRuleSet = Resource & {
   /**
    * The provisioning state of the web application firewall rule set.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11385,8 +10457,6 @@ export type AzureFirewall = Resource & {
   zones?: string[];
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11412,8 +10482,6 @@ export type AzureFirewall = Resource & {
   managementIpConfiguration?: AzureFirewallIPConfiguration;
   /**
    * The provisioning state of the Azure firewall resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11431,15 +10499,11 @@ export type AzureFirewall = Resource & {
   firewallPolicy?: SubResource;
   /**
    * IP addresses associated with AzureFirewall.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hubIpAddresses?: HubIPAddresses;
   /**
    * IpGroups associated with AzureFirewall.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipGroups?: AzureFirewallIpGroups[];
@@ -11459,22 +10523,16 @@ export type AzureFirewall = Resource & {
 export type AzureFirewallFqdnTag = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the Azure firewall FQDN tag resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The name of this FQDN Tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fqdnTagName?: string;
@@ -11486,8 +10544,6 @@ export type AzureFirewallFqdnTag = Resource & {
 export type BastionHost = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11501,8 +10557,6 @@ export type BastionHost = Resource & {
   dnsName?: string;
   /**
    * The provisioning state of the bastion host resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11514,29 +10568,21 @@ export type BastionHost = Resource & {
 export type DdosCustomPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The resource GUID property of the DDoS custom policy resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the DDoS custom policy resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The list of public IPs associated with the DDoS custom policy resource. This list is read-only.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicIPAddresses?: SubResource[];
@@ -11556,8 +10602,6 @@ export type ExpressRouteCircuit = Resource & {
   sku?: ExpressRouteCircuitSku;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11603,15 +10647,11 @@ export type ExpressRouteCircuit = Resource & {
   bandwidthInGbps?: number;
   /**
    * The identifier of the circuit traffic. Outer tag for QinQ encapsulation.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly stag?: number;
   /**
    * The provisioning state of the express route circuit resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11639,8 +10679,6 @@ export type ExpressRouteServiceProvider = Resource & {
   bandwidthsOffered?: ExpressRouteServiceProviderBandwidthsOffered[];
   /**
    * The provisioning state of the express route service provider resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11652,29 +10690,21 @@ export type ExpressRouteServiceProvider = Resource & {
 export type ExpressRouteCrossConnection = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The name of the primary port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryAzurePort?: string;
   /**
    * The name of the secondary port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryAzurePort?: string;
   /**
    * The identifier of the circuit traffic.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sTag?: number;
@@ -11700,8 +10730,6 @@ export type ExpressRouteCrossConnection = Resource & {
   serviceProviderNotes?: string;
   /**
    * The provisioning state of the express route cross connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11717,15 +10745,11 @@ export type ExpressRouteCrossConnection = Resource & {
 export type ExpressRoutePortsLocation = Resource & {
   /**
    * Address of peering location.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly address?: string;
   /**
    * Contact details of peering locations.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly contact?: string;
@@ -11735,8 +10759,6 @@ export type ExpressRoutePortsLocation = Resource & {
   availableBandwidths?: ExpressRoutePortsLocationBandwidths[];
   /**
    * The provisioning state of the express route port location resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11748,8 +10770,6 @@ export type ExpressRoutePortsLocation = Resource & {
 export type ExpressRoutePort = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11767,15 +10787,11 @@ export type ExpressRoutePort = Resource & {
   bandwidthInGbps?: number;
   /**
    * Aggregate Gbps of associated circuit bandwidths.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisionedBandwidthInGbps?: number;
   /**
    * Maximum transmission unit of the physical port pair(s).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly mtu?: string;
@@ -11785,15 +10801,11 @@ export type ExpressRoutePort = Resource & {
   encapsulation?: ExpressRoutePortsEncapsulation;
   /**
    * Ether type of the physical port.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etherType?: string;
   /**
    * Date of the physical port allocation to be used in Letter of Authorization.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allocationDate?: string;
@@ -11803,22 +10815,16 @@ export type ExpressRoutePort = Resource & {
   links?: ExpressRouteLink[];
   /**
    * Reference the ExpressRoute circuit(s) that are provisioned on this ExpressRoutePort resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly circuits?: SubResource[];
   /**
    * The provisioning state of the express route port resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The resource GUID property of the express route port resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
@@ -11830,8 +10836,6 @@ export type ExpressRoutePort = Resource & {
 export type FirewallPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -11841,15 +10845,11 @@ export type FirewallPolicy = Resource & {
   identity?: ManagedServiceIdentity;
   /**
    * List of references to FirewallPolicyRuleGroups.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ruleGroups?: SubResource[];
   /**
    * The provisioning state of the firewall policy resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11859,15 +10859,11 @@ export type FirewallPolicy = Resource & {
   basePolicy?: SubResource;
   /**
    * List of references to Azure Firewalls that this Firewall Policy is associated with.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly firewalls?: SubResource[];
   /**
    * List of references to Child Firewall Policies.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly childPolicies?: SubResource[];
@@ -11895,22 +10891,16 @@ export type FirewallPolicy = Resource & {
 export type IpAllocation = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The Subnet that using the prefix of this IpAllocation resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnet?: SubResource;
   /**
    * The VirtualNetwork that using the prefix of this IpAllocation resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualNetwork?: SubResource;
@@ -11946,15 +10936,11 @@ export type IpAllocation = Resource & {
 export type IpGroup = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the IpGroups resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -11964,8 +10950,6 @@ export type IpGroup = Resource & {
   ipAddresses?: string[];
   /**
    * List of references to Azure resources that this IpGroups is associated with.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly firewalls?: SubResource[];
@@ -11981,8 +10965,6 @@ export type LoadBalancer = Resource & {
   sku?: LoadBalancerSku;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12016,15 +10998,11 @@ export type LoadBalancer = Resource & {
   outboundRules?: OutboundRule[];
   /**
    * The resource GUID property of the load balancer resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the load balancer resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12044,8 +11022,6 @@ export type NatGateway = Resource & {
   zones?: string[];
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12063,22 +11039,16 @@ export type NatGateway = Resource & {
   publicIpPrefixes?: SubResource[];
   /**
    * An array of references to the subnets using this nat gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnets?: SubResource[];
   /**
    * The resource GUID property of the NAT gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the NAT gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12090,15 +11060,11 @@ export type NatGateway = Resource & {
 export type NetworkProfile = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * List of child container network interfaces.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly containerNetworkInterfaces?: ContainerNetworkInterface[];
@@ -12108,15 +11074,11 @@ export type NetworkProfile = Resource & {
   containerNetworkInterfaceConfigurations?: ContainerNetworkInterfaceConfiguration[];
   /**
    * The resource GUID property of the network profile resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the network profile resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12136,8 +11098,6 @@ export type NetworkVirtualAppliance = Resource & {
   sku?: VirtualApplianceSkuProperties;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12159,15 +11119,11 @@ export type NetworkVirtualAppliance = Resource & {
   virtualApplianceAsn?: number;
   /**
    * List of Virtual Appliance Network Interfaces.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualApplianceNics?: VirtualApplianceNicProperties[];
   /**
    * The provisioning state of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12179,15 +11135,11 @@ export type NetworkVirtualAppliance = Resource & {
 export type NetworkWatcher = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the network watcher resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12199,8 +11151,6 @@ export type NetworkWatcher = Resource & {
 export type PrivateLinkService = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12214,22 +11164,16 @@ export type PrivateLinkService = Resource & {
   ipConfigurations?: PrivateLinkServiceIpConfiguration[];
   /**
    * An array of references to the network interfaces created for this private link service.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly networkInterfaces?: NetworkInterface[];
   /**
    * The provisioning state of the private link service resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * An array of list about connections to the private endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
@@ -12247,8 +11191,6 @@ export type PrivateLinkService = Resource & {
   fqdns?: string[];
   /**
    * The alias of the private link service.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly alias?: string;
@@ -12268,8 +11210,6 @@ export type PublicIPPrefix = Resource & {
   sku?: PublicIPPrefixSku;
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12291,36 +11231,26 @@ export type PublicIPPrefix = Resource & {
   prefixLength?: number;
   /**
    * The allocated Prefix.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipPrefix?: string;
   /**
    * The list of all referenced PublicIPAddresses.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicIPAddresses?: ReferencedPublicIpAddress[];
   /**
    * The reference to load balancer frontend IP configuration associated with the public IP prefix.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly loadBalancerFrontendIpConfiguration?: SubResource;
   /**
    * The resource GUID property of the public IP prefix resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the public IP prefix resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12332,8 +11262,6 @@ export type PublicIPPrefix = Resource & {
 export type RouteFilter = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12343,22 +11271,16 @@ export type RouteFilter = Resource & {
   rules?: RouteFilterRule[];
   /**
    * A collection of references to express route circuit peerings.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly peerings?: ExpressRouteCircuitPeering[];
   /**
    * A collection of references to express route circuit ipv6 peerings.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ipv6Peerings?: ExpressRouteCircuitPeering[];
   /**
    * The provisioning state of the route filter resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12370,15 +11292,11 @@ export type RouteFilter = Resource & {
 export type SecurityPartnerProvider = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The provisioning state of the Security Partner Provider resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12388,8 +11306,6 @@ export type SecurityPartnerProvider = Resource & {
   securityProviderName?: SecurityProviderName;
   /**
    * The connection status with the Security Partner Provider.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: SecurityPartnerProviderConnectionStatus;
@@ -12419,8 +11335,6 @@ export type BgpServiceCommunity = Resource & {
 export type NetworkIntentPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12432,8 +11346,6 @@ export type NetworkIntentPolicy = Resource & {
 export type VirtualNetworkGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12487,15 +11399,11 @@ export type VirtualNetworkGateway = Resource & {
   customRoutes?: AddressSpace;
   /**
    * The resource GUID property of the virtual network gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the virtual network gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12505,8 +11413,6 @@ export type VirtualNetworkGateway = Resource & {
   enableDnsForwarding?: boolean;
   /**
    * The IP address allocated by the gateway to which dns requests can be sent.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inboundDnsForwardingEndpoint?: string;
@@ -12518,8 +11424,6 @@ export type VirtualNetworkGateway = Resource & {
 export type VirtualNetworkGatewayConnectionListEntity = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12557,29 +11461,21 @@ export type VirtualNetworkGatewayConnectionListEntity = Resource & {
   sharedKey?: string;
   /**
    * Virtual Network Gateway connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * Collection of all tunnels' connection health status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
   /**
    * The egress bytes transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
   /**
    * The ingress bytes transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
@@ -12605,15 +11501,11 @@ export type VirtualNetworkGatewayConnectionListEntity = Resource & {
   trafficSelectorPolicies?: TrafficSelectorPolicy[];
   /**
    * The resource GUID property of the virtual network gateway connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the virtual network gateway connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12629,8 +11521,6 @@ export type VirtualNetworkGatewayConnectionListEntity = Resource & {
 export type LocalNetworkGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12652,15 +11542,11 @@ export type LocalNetworkGateway = Resource & {
   bgpSettings?: BgpSettings;
   /**
    * The resource GUID property of the local network gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the local network gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12672,8 +11558,6 @@ export type LocalNetworkGateway = Resource & {
 export type VirtualNetworkGatewayConnection = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12715,29 +11599,21 @@ export type VirtualNetworkGatewayConnection = Resource & {
   sharedKey?: string;
   /**
    * Virtual Network Gateway connection status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * Collection of all tunnels' connection health status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
   /**
    * The egress bytes transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly egressBytesTransferred?: number;
   /**
    * The ingress bytes transferred in this connection.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ingressBytesTransferred?: number;
@@ -12767,15 +11643,11 @@ export type VirtualNetworkGatewayConnection = Resource & {
   trafficSelectorPolicies?: TrafficSelectorPolicy[];
   /**
    * The resource GUID property of the virtual network gateway connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the virtual network gateway connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12791,8 +11663,6 @@ export type VirtualNetworkGatewayConnection = Resource & {
 export type VirtualRouter = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12814,15 +11684,11 @@ export type VirtualRouter = Resource & {
   hostedGateway?: SubResource;
   /**
    * List of references to VirtualRouterPeerings.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly peerings?: SubResource[];
   /**
    * The provisioning state of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12834,8 +11700,6 @@ export type VirtualRouter = Resource & {
 export type VirtualWAN = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12845,15 +11709,11 @@ export type VirtualWAN = Resource & {
   disableVpnEncryption?: boolean;
   /**
    * List of VirtualHubs in the VirtualWAN.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualHubs?: SubResource[];
   /**
    * List of VpnSites in the VirtualWAN.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnSites?: SubResource[];
@@ -12867,15 +11727,11 @@ export type VirtualWAN = Resource & {
   allowVnetToVnetTraffic?: boolean;
   /**
    * The office local breakout category.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly office365LocalBreakoutCategory?: OfficeTrafficCategory;
   /**
    * The provisioning state of the virtual WAN resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12891,8 +11747,6 @@ export type VirtualWAN = Resource & {
 export type VpnSite = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12922,8 +11776,6 @@ export type VpnSite = Resource & {
   bgpProperties?: BgpSettings;
   /**
    * The provisioning state of the VPN site resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12943,8 +11795,6 @@ export type VpnSite = Resource & {
 export type P2SVpnGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -12958,8 +11808,6 @@ export type P2SVpnGateway = Resource & {
   p2SConnectionConfigurations?: P2SConnectionConfiguration[];
   /**
    * The provisioning state of the P2S VPN gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -12973,8 +11821,6 @@ export type P2SVpnGateway = Resource & {
   vpnServerConfiguration?: SubResource;
   /**
    * All P2S VPN clients' connection health status.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnClientConnectionHealth?: VpnClientConnectionHealth;
@@ -12986,8 +11832,6 @@ export type P2SVpnGateway = Resource & {
 export type VpnServerConfiguration = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -13041,22 +11885,16 @@ export type VpnServerConfiguration = Resource & {
   aadAuthenticationParameters?: AadAuthenticationParameters;
   /**
    * The provisioning state of the VpnServerConfiguration resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * List of references to P2SVpnGateways.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p2SVpnGateways?: P2SVpnGateway[];
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etagPropertiesEtag?: string;
@@ -13068,8 +11906,6 @@ export type VpnServerConfiguration = Resource & {
 export type VirtualHub = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -13111,8 +11947,6 @@ export type VirtualHub = Resource & {
   routeTable?: VirtualHubRouteTable;
   /**
    * The provisioning state of the virtual hub resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -13136,8 +11970,6 @@ export type VirtualHub = Resource & {
 export type VpnGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -13155,8 +11987,6 @@ export type VpnGateway = Resource & {
   bgpSettings?: BgpSettings;
   /**
    * The provisioning state of the VPN gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -13172,8 +12002,6 @@ export type VpnGateway = Resource & {
 export type ExpressRouteGateway = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -13183,15 +12011,11 @@ export type ExpressRouteGateway = Resource & {
   autoScaleConfiguration?: ExpressRouteGatewayPropertiesAutoScaleConfiguration;
   /**
    * List of ExpressRoute connections to the ExpressRoute gateway.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expressRouteConnections?: ExpressRouteConnection[];
   /**
    * The provisioning state of the express route gateway resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -13207,8 +12031,6 @@ export type ExpressRouteGateway = Resource & {
 export type WebApplicationFirewallPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -13222,22 +12044,16 @@ export type WebApplicationFirewallPolicy = Resource & {
   customRules?: WebApplicationFirewallCustomRule[];
   /**
    * A collection of references to application gateways.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly applicationGateways?: ApplicationGateway[];
   /**
    * The provisioning state of the web application firewall policy resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Resource status of the policy.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceState?: WebApplicationFirewallPolicyResourceState;
@@ -13247,15 +12063,11 @@ export type WebApplicationFirewallPolicy = Resource & {
   managedRules?: ManagedRulesDefinition;
   /**
    * A collection of references to application gateway http listeners.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly httpListeners?: SubResource[];
   /**
    * A collection of references to application gateway path rules.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly pathBasedRules?: SubResource[];
@@ -13308,8 +12120,6 @@ export type FirewallPolicyFilterRule = FirewallPolicyRule & {
 export type PacketCaptureResultProperties = PacketCaptureParameters & {
   /**
    * The provisioning state of the packet capture session.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -13321,29 +12131,21 @@ export type PacketCaptureResultProperties = PacketCaptureParameters & {
 export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
   /**
    * The provisioning state of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * The date and time when the connection monitor was started.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The monitoring status of the connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly monitoringStatus?: string;
   /**
    * Type of connection monitor.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionMonitorType?: ConnectionMonitorType;

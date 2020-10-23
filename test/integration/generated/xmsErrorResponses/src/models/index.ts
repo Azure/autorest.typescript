@@ -30,6 +30,7 @@ export interface PetAction {
 export type Pet = Animal & {
   /**
    * Gets the Pet by id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
 };

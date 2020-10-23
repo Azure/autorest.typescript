@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -31,7 +31,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMProxyResource#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unique resource identifier of the database account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -56,7 +56,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMProxyResource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the database account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -81,7 +81,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMProxyResource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of Azure resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -122,7 +122,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMResourceProperties#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unique resource identifier of the ARM resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -172,7 +172,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMResourceProperties#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the ARM resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -222,7 +222,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ARMResourceProperties#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of Azure resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -511,7 +511,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!CassandraKeyspaceListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of Cassandra keyspaces and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1390,7 +1390,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!CassandraTableListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of Cassandra tables and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3530,7 +3530,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountConnectionString#connectionString:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Value of the connection string NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3555,7 +3555,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountConnectionString#description:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Description of the connection string NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3919,7 +3919,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountListReadOnlyKeysResult#primaryReadonlyMasterKey:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Base 64 encoded value of the primary read-only key. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3944,7 +3944,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountListReadOnlyKeysResult#secondaryReadonlyMasterKey:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Base 64 encoded value of the secondary read-only key. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4555,7 +4555,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountsListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of database account and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5068,7 +5068,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountUpdateParameters#publicNetworkAccess:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Whether requests from Public Network are allowed NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5525,7 +5525,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ExtendedResourceProperties#etag:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A system generated property representing the resource etag required for optimistic concurrency control. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5550,7 +5550,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ExtendedResourceProperties#rid:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A system generated property. A unique identifier. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5575,7 +5575,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ExtendedResourceProperties#ts:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * A system generated property that denotes the last updated timestamp of the resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5687,7 +5687,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!FailoverPolicy#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unique identifier of the region in which the database account replicates to. Example: &lt;accountName&gt;-&lt;locationName&gt;. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5918,7 +5918,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!GremlinDatabaseListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of Gremlin databases and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6170,7 +6170,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!GremlinGraphListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of graphs and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7292,7 +7292,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Location_2#documentEndpoint:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The connection endpoint for the specific region. Example: https://&lt;accountName&gt;-&lt;locationName&gt;.documents.azure.com:443/ NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7342,7 +7342,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Location_2#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unique identifier of the region within the database account. Example: &lt;accountName&gt;-&lt;locationName&gt;. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7417,7 +7417,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Location_2#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7458,7 +7458,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#endTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The end time for the metric (ISO-8601 format). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7484,7 +7484,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#metricValues:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The metric values for the specified time window and timestep. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7514,7 +7514,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name information for the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7540,7 +7540,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#startTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The start time for the metric (ISO-8601 format). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7566,7 +7566,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#timeGrain:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time grain to be used to summarize the metric values. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7591,7 +7591,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Metric#unit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unit of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7633,7 +7633,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricAvailability#retention:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The retention for the metric values. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7658,7 +7658,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricAvailability#timeGrain:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time grain to be used to summarize the metric values. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7699,7 +7699,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinition#metricAvailabilities:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of metric availabilities for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7729,7 +7729,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinition#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name information for the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7755,7 +7755,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinition#primaryAggregationType:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The primary aggregation type of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7781,7 +7781,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinition#resourceUri:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource uri of the database. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7806,7 +7806,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinition#unit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unit of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7848,7 +7848,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricDefinitionsListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of metric definitions for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7894,7 +7894,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of metrics for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7940,7 +7940,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricName#localizedValue:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The friendly name of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7965,7 +7965,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricName#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8006,7 +8006,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#average:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The average value of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8031,7 +8031,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#count:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The number of values for the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8056,7 +8056,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#maximum:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The max value of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8081,7 +8081,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#minimum:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The min value of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8106,7 +8106,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#timestamp:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The metric timestamp (ISO-8601 format). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8132,7 +8132,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MetricValue#total:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The total value of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8338,7 +8338,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MongoDBCollectionListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of MongoDB collections and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8645,7 +8645,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!MongoDBDatabaseListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of MongoDB databases and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9417,7 +9417,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!NotebookWorkspaceConnectionInfoResult#authToken:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Specifies auth token used for connecting to Notebook server (uses token-based auth). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9442,7 +9442,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!NotebookWorkspaceConnectionInfoResult#notebookServerEndpoint:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Specifies the endpoint of Notebook server. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10318,7 +10318,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PartitionMetricListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of partition-level metrics for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10394,7 +10394,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PartitionUsagesResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of partition-level usages for the database. A usage is a point in time metric NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10488,7 +10488,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#endTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The end time for the metric (ISO-8601 format). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10514,7 +10514,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#metricValues:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The percentile metric values for the specified time window and timestep. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10544,7 +10544,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name information for the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10570,7 +10570,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#startTime:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The start time for the metric (ISO-8601 format). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10596,7 +10596,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#timeGrain:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The time grain to be used to summarize the metric values. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10621,7 +10621,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetric#unit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unit of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10663,7 +10663,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PercentileMetricListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of percentile metrics for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11359,7 +11359,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PrivateLinkServiceConnectionStateProperty#actionsRequired:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Any action that is required beyond basic workflow (approve/ reject/ disconnect) NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11425,7 +11425,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!PrivateLinkServiceConnectionStatePropertyAutoGenerated#actionsRequired:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Any action that is required beyond basic workflow (approve/ reject/ disconnect) NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11567,7 +11567,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ProvisionedThroughputSettingsResource#targetMaxThroughput:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Represents target maximum throughput container can scale up to once offer is no longer in pending state. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11704,7 +11704,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Resource#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11729,7 +11729,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Resource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the resource NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11754,7 +11754,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Resource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12056,7 +12056,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!SqlContainerListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of containers and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12437,7 +12437,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!SqlDatabaseListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of SQL databases and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13562,7 +13562,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!SqlStoredProcedureListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of storedProcedures and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13800,7 +13800,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!SqlTriggerListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of triggers and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14090,7 +14090,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!SqlUserDefinedFunctionListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of userDefinedFunctions and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14367,7 +14367,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!TableListResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * List of Table and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14838,7 +14838,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ThroughputSettingsResource#minimumThroughput:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The minimum throughput of the resource NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14863,7 +14863,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!ThroughputSettingsResource#offerReplacePending:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The throughput replace is pending NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15156,7 +15156,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Usage#currentValue:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Current value for this metric NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15181,7 +15181,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Usage#limit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Maximum value for this metric NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15206,7 +15206,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Usage#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name information for the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15232,7 +15232,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Usage#quotaPeriod:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The quota period used to summarize the usage values. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15257,7 +15257,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!Usage#unit:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The unit of the metric. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -15299,7 +15299,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "cosmos-db-resource-manager!UsagesResult#value:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The list of usages for the database. A usage is a point in time metric NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

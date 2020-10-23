@@ -60,22 +60,16 @@ export interface OperationDisplay {
 export interface ManagementLockObject {
   /**
    * The resource ID of the lock.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The resource type of the lock - Microsoft.Authorization/locks.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The name of the lock.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;

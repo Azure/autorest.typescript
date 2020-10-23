@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -326,7 +326,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties#clientId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The client id of user assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -351,7 +351,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal id of user assigned identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -662,7 +662,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentExtended#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -712,7 +712,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentExtended#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -763,7 +763,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentExtended#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -845,7 +845,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -941,7 +941,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperation#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Full deployment operation ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -966,7 +966,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperation#operationId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Deployment operation ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1033,7 +1033,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#duration:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The duration of the operation. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1058,7 +1058,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The state of the provisioning. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1083,7 +1083,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#request:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The HTTP request message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1109,7 +1109,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#response:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The HTTP response message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1135,7 +1135,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#serviceRequestId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Deployment operation service request id. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1160,7 +1160,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#statusCode:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Operation status code. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1185,7 +1185,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#statusMessage:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Operation status message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1210,7 +1210,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#targetResource:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The target resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1236,7 +1236,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationProperties#timestamp:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The date and time of the operation. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2588,7 +2588,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentOperationsListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2855,7 +2855,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentPropertiesExtended#correlationId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The correlation ID of the deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2936,7 +2936,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentPropertiesExtended#duration:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The duration of the template deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3119,7 +3119,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentPropertiesExtended#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The state of the provisioning. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3195,7 +3195,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!DeploymentPropertiesExtended#timestamp:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The timestamp of the template deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6009,7 +6009,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorAdditionalInfo#info:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6034,7 +6034,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorAdditionalInfo#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The additional info type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6075,7 +6075,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorResponse#additionalInfo:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6105,7 +6105,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorResponse#code:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error code. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6130,7 +6130,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorResponse#details:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error details. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6160,7 +6160,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorResponse#message:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6185,7 +6185,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ErrorResponse#target:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The error target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6529,7 +6529,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Identity#principalId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The principal ID of resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6554,7 +6554,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Identity#tenantId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tenant ID of resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6747,7 +6747,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!OnErrorDeploymentExtended#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The state of the provisioning for the on error deployment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7421,7 +7421,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Provider#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provider ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7471,7 +7471,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Provider#registrationPolicy:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The registration policy of the resource provider. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7496,7 +7496,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Provider#registrationState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The registration state of the resource provider. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7521,7 +7521,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Provider#resourceTypes:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The collection of provider resource types. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -7567,7 +7567,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ProviderListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8647,7 +8647,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Resource#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource ID NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8697,7 +8697,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Resource#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource name NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8747,7 +8747,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!Resource#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Resource type NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8788,7 +8788,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroup#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The ID of the resource group. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8863,7 +8863,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroup#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the resource group. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8939,7 +8939,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroup#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource group. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9113,7 +9113,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroupListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9301,7 +9301,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroupProperties#provisioningState:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The provisioning state. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9823,7 +9823,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11971,7 +11971,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!TagDetails#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tag ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12259,7 +12259,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!TagsListResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12356,7 +12356,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-resources-2019-08!TagValue#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The tag ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

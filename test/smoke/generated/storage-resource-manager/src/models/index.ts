@@ -134,8 +134,6 @@ export interface Dimension {
 export interface StorageSkuListResult {
   /**
    * Get the list result of storage SKUs and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SkuInformation[];
@@ -151,36 +149,26 @@ export interface SkuInformation {
   name: SkuName;
   /**
    * The SKU tier. This is based on the SKU name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tier?: SkuTier;
   /**
    * The type of the resource, usually it is 'storageAccounts'.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceType?: string;
   /**
    * Indicates the type of storage account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: Kind;
   /**
    * The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locations?: string[];
   /**
    * The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capabilities?: SKUCapability[];
@@ -196,15 +184,11 @@ export interface SkuInformation {
 export interface SKUCapability {
   /**
    * The name of capability, The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * A string value to indicate states of given capability. Possibly 'true' or 'false'.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
@@ -216,15 +200,11 @@ export interface SKUCapability {
 export interface Restriction {
   /**
    * The type of restrictions. As of now only possible value for this is location.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly values?: string[];
@@ -254,22 +234,16 @@ export interface StorageAccountCheckNameAvailabilityParameters {
 export interface CheckNameAvailabilityResult {
   /**
    * Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nameAvailable?: boolean;
   /**
    * Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reason?: Reason;
   /**
    * Gets an error message explaining the Reason value in more detail.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
@@ -347,8 +321,6 @@ export interface Sku {
   name: SkuName;
   /**
    * The SKU tier. This is based on the SKU name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tier?: SkuTier;
@@ -360,15 +332,11 @@ export interface Sku {
 export interface Identity {
   /**
    * The principal ID of resource identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant ID of resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
@@ -442,8 +410,6 @@ export interface EncryptionService {
   enabled?: boolean;
   /**
    * Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastEnabledTime?: Date;
@@ -471,15 +437,11 @@ export interface KeyVaultProperties {
   keyVaultUri?: string;
   /**
    * The object identifier of the current versioned Key Vault Key in use.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentVersionedKeyIdentifier?: string;
   /**
    * Timestamp of last rotation of the Key Vault Key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastKeyRotationTimestamp?: Date;
@@ -607,43 +569,31 @@ export interface RoutingPreference {
 export interface Endpoints {
   /**
    * Gets the blob endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blob?: string;
   /**
    * Gets the queue endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly queue?: string;
   /**
    * Gets the table endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly table?: string;
   /**
    * Gets the file endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly file?: string;
   /**
    * Gets the web endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly web?: string;
   /**
    * Gets the dfs endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dfs?: string;
@@ -663,43 +613,31 @@ export interface Endpoints {
 export interface StorageAccountMicrosoftEndpoints {
   /**
    * Gets the blob endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blob?: string;
   /**
    * Gets the queue endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly queue?: string;
   /**
    * Gets the table endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly table?: string;
   /**
    * Gets the file endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly file?: string;
   /**
    * Gets the web endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly web?: string;
   /**
    * Gets the dfs endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dfs?: string;
@@ -711,29 +649,21 @@ export interface StorageAccountMicrosoftEndpoints {
 export interface StorageAccountInternetEndpoints {
   /**
    * Gets the blob endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blob?: string;
   /**
    * Gets the file endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly file?: string;
   /**
    * Gets the web endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly web?: string;
   /**
    * Gets the dfs endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dfs?: string;
@@ -745,22 +675,16 @@ export interface StorageAccountInternetEndpoints {
 export interface GeoReplicationStats {
   /**
    * The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: GeoReplicationStatus;
   /**
    * All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastSyncTime?: Date;
   /**
    * A boolean flag which indicates whether or not account failover is supported for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly canFailover?: boolean;
@@ -772,8 +696,6 @@ export interface GeoReplicationStats {
 export interface PrivateEndpoint {
   /**
    * The ARM identifier for Private Endpoint
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -800,22 +722,16 @@ export interface PrivateLinkServiceConnectionState {
 export interface Resource {
   /**
    * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the resource
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -827,29 +743,21 @@ export interface Resource {
 export interface BlobRestoreStatus {
   /**
    * The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: BlobRestoreProgressStatus;
   /**
    * Failure reason when blob restore is failed.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failureReason?: string;
   /**
    * Id for tracking blob restore request.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restoreId?: string;
   /**
    * Blob restore request parameters.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly parameters?: BlobRestoreParameters;
@@ -943,15 +851,11 @@ export interface StorageAccountUpdateParameters {
 export interface StorageAccountListResult {
   /**
    * Gets the list of storage accounts and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: StorageAccount[];
   /**
    * Request URL that can be used to query next page of storage accounts. Returned when total number of requested storage accounts exceed maximum page size.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -963,8 +867,6 @@ export interface StorageAccountListResult {
 export interface StorageAccountListKeysResult {
   /**
    * Gets the list of storage account keys and their properties for the specified storage account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly keys?: StorageAccountKey[];
@@ -976,22 +878,16 @@ export interface StorageAccountListKeysResult {
 export interface StorageAccountKey {
   /**
    * Name of the key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly keyName?: string;
   /**
    * Base 64-encoded value of the key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
   /**
    * Permissions for the key -- read-only or full permissions.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly permissions?: KeyPermission;
@@ -1023,29 +919,21 @@ export interface UsageListResult {
 export interface Usage {
   /**
    * Gets the unit of measurement.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UsageUnit;
   /**
    * Gets the current count of the allocated resources in the subscription.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * Gets the maximum count of the resources that can be allocated in the subscription.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly limit?: number;
   /**
    * Gets the name of the type of usage.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: UsageName;
@@ -1057,15 +945,11 @@ export interface Usage {
 export interface UsageName {
   /**
    * Gets a string describing the resource name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
   /**
    * Gets a localized string describing the resource name.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localizedValue?: string;
@@ -1115,8 +999,6 @@ export interface AccountSasParameters {
 export interface ListAccountSasResponse {
   /**
    * List SAS credentials of storage account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accountSasToken?: string;
@@ -1206,8 +1088,6 @@ export interface ServiceSasParameters {
 export interface ListServiceSasResponse {
   /**
    * List service SAS credentials of specific resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceSasToken?: string;
@@ -1453,15 +1333,11 @@ export interface EncryptionScopeKeyVaultProperties {
 export interface EncryptionScopeListResult {
   /**
    * List of encryption scopes requested.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: EncryptionScope[];
   /**
    * Request URL that can be used to query next page of encryption scopes. Returned when total number of requested encryption scopes exceeds the maximum page size.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1470,8 +1346,6 @@ export interface EncryptionScopeListResult {
 export interface BlobServiceItems {
   /**
    * List of blob services returned.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: BlobServiceProperties[];
@@ -1551,8 +1425,6 @@ export interface RestorePolicyProperties {
   days?: number;
   /**
    * Returns the date and time the restore policy was last enabled.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastEnabledTime?: Date;
@@ -1564,15 +1436,11 @@ export interface RestorePolicyProperties {
 export interface ListContainerItems {
   /**
    * List of blobs containers returned.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: ListContainerItem[];
   /**
    * Request URL that can be used to query next page of containers. Returned when total number of requested containers exceed maximum page size.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1584,15 +1452,11 @@ export interface ListContainerItems {
 export interface ImmutabilityPolicyProperties {
   /**
    * ImmutabilityPolicy Etag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
   /**
    * The ImmutabilityPolicy update history of the blob container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly updateHistory?: UpdateHistoryProperty[];
@@ -1602,8 +1466,6 @@ export interface ImmutabilityPolicyProperties {
   immutabilityPeriodSinceCreationInDays?: number;
   /**
    * The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: ImmutabilityPolicyState;
@@ -1619,43 +1481,31 @@ export interface ImmutabilityPolicyProperties {
 export interface UpdateHistoryProperty {
   /**
    * The ImmutabilityPolicy update type of a blob container, possible values include: put, lock and extend.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly update?: ImmutabilityPolicyUpdateType;
   /**
    * The immutability period for the blobs in the container since the policy creation, in days.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly immutabilityPeriodSinceCreationInDays?: number;
   /**
    * Returns the date and time the ImmutabilityPolicy was updated.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestamp?: Date;
   /**
    * Returns the Object ID of the user who updated the ImmutabilityPolicy.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly objectIdentifier?: string;
   /**
    * Returns the Tenant ID that issued the token for the user who updated the ImmutabilityPolicy.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
    * Returns the User Principal Name of the user who updated the ImmutabilityPolicy.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly upn?: string;
@@ -1667,8 +1517,6 @@ export interface UpdateHistoryProperty {
 export interface LegalHoldProperties {
   /**
    * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasLegalHold?: boolean;
@@ -1684,36 +1532,26 @@ export interface LegalHoldProperties {
 export interface TagProperty {
   /**
    * The tag value.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tag?: string;
   /**
    * Returns the date and time the tag was added.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestamp?: Date;
   /**
    * Returns the Object ID of the user who added the tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly objectIdentifier?: string;
   /**
    * Returns the Tenant ID that issued the token for the user who added the tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
    * Returns the User Principal Name of the user who added the tag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly upn?: string;
@@ -1725,8 +1563,6 @@ export interface TagProperty {
 export interface LegalHold {
   /**
    * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasLegalHold?: boolean;
@@ -1779,8 +1615,6 @@ export interface LeaseContainerResponse {
 export interface FileServiceItems {
   /**
    * List of file services returned.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: FileServiceProperties[];
@@ -1824,15 +1658,11 @@ export interface CloudErrorBody {
 export interface FileShareItems {
   /**
    * List of file shares returned.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: FileShareItem[];
   /**
    * Request URL that can be used to query next page of shares. Returned when total number of requested shares exceed maximum page size.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1866,8 +1696,6 @@ export type PrivateEndpointConnection = Resource & {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
   /**
    * The provisioning state of the private endpoint connection resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
@@ -1893,8 +1721,6 @@ export type TrackedResource = Resource & {
 export type ManagementPolicy = Resource & {
   /**
    * Returns the date and time the ManagementPolicies was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
@@ -1910,15 +1736,11 @@ export type ManagementPolicy = Resource & {
 export type PrivateLinkResource = Resource & {
   /**
    * The private link resource group id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly groupId?: string;
   /**
    * The private link resource required member names.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMembers?: string[];
@@ -1934,15 +1756,11 @@ export type PrivateLinkResource = Resource & {
 export type ObjectReplicationPolicy = Resource & {
   /**
    * A unique id for object replication policy.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly policyId?: string;
   /**
    * Indicates when the policy is enabled on the source account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly enabledTime?: Date;
@@ -1974,15 +1792,11 @@ export type EncryptionScope = Resource & {
   state?: EncryptionScopeState;
   /**
    * Gets the creation date and time of the encryption scope in UTC.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
   /**
    * Gets the last modification date and time of the encryption scope in UTC.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
@@ -1998,8 +1812,6 @@ export type EncryptionScope = Resource & {
 export type BlobServiceProperties = Resource & {
   /**
    * Sku name and tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
@@ -2043,8 +1855,6 @@ export type BlobServiceProperties = Resource & {
 export type AzureEntityResource = Resource & {
   /**
    * Resource Etag.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -2056,8 +1866,6 @@ export type AzureEntityResource = Resource & {
 export type FileServiceProperties = Resource & {
   /**
    * Sku name and tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
@@ -2077,15 +1885,11 @@ export type FileServiceProperties = Resource & {
 export type StorageAccount = TrackedResource & {
   /**
    * Gets the SKU.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
   /**
    * Gets the Kind.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: Kind;
@@ -2095,85 +1899,61 @@ export type StorageAccount = TrackedResource & {
   identity?: Identity;
   /**
    * Gets the status of the storage account at the time the operation was called.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object. Note that Standard_ZRS and Premium_LRS accounts only return the blob endpoint.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryEndpoints?: Endpoints;
   /**
    * Gets the location of the primary data center for the storage account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryLocation?: string;
   /**
    * Gets the status indicating whether the primary location of the storage account is available or unavailable.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusOfPrimary?: AccountStatus;
   /**
    * Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastGeoFailoverTime?: Date;
   /**
    * Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryLocation?: string;
   /**
    * Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusOfSecondary?: AccountStatus;
   /**
    * Gets the creation date and time of the storage account in UTC.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
   /**
    * Gets the custom domain the user assigned to this storage account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly customDomain?: CustomDomain;
   /**
    * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object from the secondary location of the storage account. Only available if the SKU name is Standard_RAGRS.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryEndpoints?: Endpoints;
   /**
    * Gets the encryption settings on the account. If unspecified, the account is unencrypted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly encryption?: Encryption;
   /**
    * Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessTier?: AccessTier;
@@ -2187,8 +1967,6 @@ export type StorageAccount = TrackedResource & {
   enableHttpsTrafficOnly?: boolean;
   /**
    * Network rule set
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly networkRuleSet?: NetworkRuleSet;
@@ -2198,15 +1976,11 @@ export type StorageAccount = TrackedResource & {
   isHnsEnabled?: boolean;
   /**
    * Geo Replication Stats
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly geoReplicationStats?: GeoReplicationStats;
   /**
    * If the failover is in progress, the value will be true, otherwise, it will be null.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverInProgress?: boolean;
@@ -2216,8 +1990,6 @@ export type StorageAccount = TrackedResource & {
   largeFileSharesState?: LargeFileSharesState;
   /**
    * List of private endpoint connection associated with the specified storage account
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
@@ -2227,8 +1999,6 @@ export type StorageAccount = TrackedResource & {
   routingPreference?: RoutingPreference;
   /**
    * Blob restore status
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blobRestoreStatus?: BlobRestoreStatus;
@@ -2252,29 +2022,21 @@ export type ListContainerItem = AzureEntityResource & {
   publicAccess?: PublicAccess;
   /**
    * Returns the date and time the container was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
   /**
    * The lease status of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseStatus?: LeaseStatus;
   /**
    * Lease state of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseState?: LeaseState;
   /**
    * Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseDuration?: LeaseDuration;
@@ -2284,29 +2046,21 @@ export type ListContainerItem = AzureEntityResource & {
   metadata?: { [propertyName: string]: string };
   /**
    * The ImmutabilityPolicy property of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
   /**
    * The LegalHold property of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly legalHold?: LegalHoldProperties;
   /**
    * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasLegalHold?: boolean;
   /**
    * The hasImmutabilityPolicy public property is set to true by SRP if ImmutabilityPolicy has been created for this container. The hasImmutabilityPolicy public property is set to false by SRP if ImmutabilityPolicy has not been created for this container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasImmutabilityPolicy?: boolean;
@@ -2330,29 +2084,21 @@ export type BlobContainer = AzureEntityResource & {
   publicAccess?: PublicAccess;
   /**
    * Returns the date and time the container was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
   /**
    * The lease status of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseStatus?: LeaseStatus;
   /**
    * Lease state of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseState?: LeaseState;
   /**
    * Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly leaseDuration?: LeaseDuration;
@@ -2362,29 +2108,21 @@ export type BlobContainer = AzureEntityResource & {
   metadata?: { [propertyName: string]: string };
   /**
    * The ImmutabilityPolicy property of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
   /**
    * The LegalHold property of the container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly legalHold?: LegalHoldProperties;
   /**
    * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasLegalHold?: boolean;
   /**
    * The hasImmutabilityPolicy public property is set to true by SRP if ImmutabilityPolicy has been created for this container. The hasImmutabilityPolicy public property is set to false by SRP if ImmutabilityPolicy has not been created for this container.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasImmutabilityPolicy?: boolean;
@@ -2400,8 +2138,6 @@ export type ImmutabilityPolicy = AzureEntityResource & {
   immutabilityPeriodSinceCreationInDays?: number;
   /**
    * The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: ImmutabilityPolicyState;
@@ -2417,8 +2153,6 @@ export type ImmutabilityPolicy = AzureEntityResource & {
 export type FileShareItem = AzureEntityResource & {
   /**
    * Returns the date and time the share was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
@@ -2440,29 +2174,21 @@ export type FileShareItem = AzureEntityResource & {
   rootSquash?: RootSquashType;
   /**
    * The version of the share.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: string;
   /**
    * Indicates whether the share was deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deleted?: boolean;
   /**
    * The deleted time if the share was deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedTime?: Date;
   /**
    * Remaining retention days for share that was soft deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly remainingRetentionDays?: number;
@@ -2472,22 +2198,16 @@ export type FileShareItem = AzureEntityResource & {
   accessTier?: ShareAccessTier;
   /**
    * Indicates the last modification time for share access tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessTierChangeTime?: Date;
   /**
    * Indicates if there is a pending transition for access tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessTierStatus?: string;
   /**
    * The approximate size of the data stored on the share. Note that this value may not include all recently created or recently resized files.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly shareUsageBytes?: number;
@@ -2499,8 +2219,6 @@ export type FileShareItem = AzureEntityResource & {
 export type FileShare = AzureEntityResource & {
   /**
    * Returns the date and time the share was last modified.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTime?: Date;
@@ -2522,29 +2240,21 @@ export type FileShare = AzureEntityResource & {
   rootSquash?: RootSquashType;
   /**
    * The version of the share.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: string;
   /**
    * Indicates whether the share was deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deleted?: boolean;
   /**
    * The deleted time if the share was deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedTime?: Date;
   /**
    * Remaining retention days for share that was soft deleted.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly remainingRetentionDays?: number;
@@ -2554,22 +2264,16 @@ export type FileShare = AzureEntityResource & {
   accessTier?: ShareAccessTier;
   /**
    * Indicates the last modification time for share access tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessTierChangeTime?: Date;
   /**
    * Indicates if there is a pending transition for access tier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessTierStatus?: string;
   /**
    * The approximate size of the data stored on the share. Note that this value may not include all recently created or recently resized files.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly shareUsageBytes?: number;

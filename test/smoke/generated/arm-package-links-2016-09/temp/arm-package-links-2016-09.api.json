@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.14",
+    "toolVersion": "7.9.10",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -834,7 +834,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-links-2016-09!ResourceLink#id:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The fully qualified ID of the resource link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -859,7 +859,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-links-2016-09!ResourceLink#name:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The name of the resource link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -910,7 +910,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-links-2016-09!ResourceLink#type:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The resource link object. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1017,7 +1017,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#sourceId:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The fully qualified ID of the source resource in the link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1083,7 +1083,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult#nextLink:member",
-              "docComment": "/**\n * NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

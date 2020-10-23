@@ -42,8 +42,6 @@ export interface Capability {
 export interface Location {
   /**
    * The unique identifier of the region within the database account. Example: &lt;accountName&gt;-&lt;locationName&gt;.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -53,15 +51,11 @@ export interface Location {
   locationName?: string;
   /**
    * The connection endpoint for the specific region. Example: https://&lt;accountName&gt;-&lt;locationName&gt;.documents.azure.com:443/
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly documentEndpoint?: string;
   /**
    * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
@@ -81,8 +75,6 @@ export interface Location {
 export interface FailoverPolicy {
   /**
    * The unique identifier of the region in which the database account replicates to. Example: &lt;accountName&gt;-&lt;locationName&gt;.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -130,8 +122,6 @@ export interface PrivateLinkServiceConnectionStateProperty {
   status?: string;
   /**
    * Any action that is required beyond basic workflow (approve/ reject/ disconnect)
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actionsRequired?: string;
@@ -140,22 +130,16 @@ export interface PrivateLinkServiceConnectionStateProperty {
 export interface Resource {
   /**
    * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the resource
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -167,22 +151,16 @@ export interface Resource {
 export interface ARMResourceProperties {
   /**
    * The unique resource identifier of the ARM resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the ARM resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of Azure resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -258,8 +236,6 @@ export interface DatabaseAccountUpdateParameters {
   keyVaultKeyUri?: string;
   /**
    * Whether requests from Public Network are allowed
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicNetworkAccess?: PublicNetworkAccess;
@@ -281,8 +257,6 @@ export interface FailoverPolicies {
 export interface DatabaseAccountsListResult {
   /**
    * List of database account and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: DatabaseAccountGetResults[];
@@ -294,15 +268,11 @@ export interface DatabaseAccountsListResult {
 export interface DatabaseAccountListReadOnlyKeysResult {
   /**
    * Base 64 encoded value of the primary read-only key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryReadonlyMasterKey?: string;
   /**
    * Base 64 encoded value of the secondary read-only key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryReadonlyMasterKey?: string;
@@ -324,15 +294,11 @@ export interface DatabaseAccountListConnectionStringsResult {
 export interface DatabaseAccountConnectionString {
   /**
    * Value of the connection string
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly connectionString?: string;
   /**
    * Description of the connection string
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
@@ -428,8 +394,6 @@ export interface OperationDisplay {
 export interface MetricListResult {
   /**
    * The list of metrics for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: Metric[];
@@ -441,43 +405,31 @@ export interface MetricListResult {
 export interface Metric {
   /**
    * The start time for the metric (ISO-8601 format).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The end time for the metric (ISO-8601 format).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * The time grain to be used to summarize the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeGrain?: string;
   /**
    * The unit of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UnitType;
   /**
    * The name information for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: MetricName;
   /**
    * The metric values for the specified time window and timestep.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricValues?: MetricValue[];
@@ -489,15 +441,11 @@ export interface Metric {
 export interface MetricName {
   /**
    * The name of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
   /**
    * The friendly name of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localizedValue?: string;
@@ -509,43 +457,31 @@ export interface MetricName {
 export interface MetricValue {
   /**
    * The number of values for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly count?: number;
   /**
    * The average value of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly average?: number;
   /**
    * The max value of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximum?: number;
   /**
    * The min value of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minimum?: number;
   /**
    * The metric timestamp (ISO-8601 format).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestamp?: Date;
   /**
    * The total value of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly total?: number;
@@ -557,8 +493,6 @@ export interface MetricValue {
 export interface PercentileMetricListResult {
   /**
    * The list of percentile metrics for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: PercentileMetric[];
@@ -570,43 +504,31 @@ export interface PercentileMetricListResult {
 export interface PercentileMetric {
   /**
    * The start time for the metric (ISO-8601 format).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The end time for the metric (ISO-8601 format).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * The time grain to be used to summarize the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeGrain?: string;
   /**
    * The unit of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UnitType;
   /**
    * The name information for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: MetricName;
   /**
    * The percentile metric values for the specified time window and timestep.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricValues?: PercentileMetricValue[];
@@ -618,8 +540,6 @@ export interface PercentileMetric {
 export interface PartitionMetricListResult {
   /**
    * The list of partition-level metrics for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: PartitionMetric[];
@@ -631,8 +551,6 @@ export interface PartitionMetricListResult {
 export interface UsagesResult {
   /**
    * The list of usages for the database. A usage is a point in time metric
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: Usage[];
@@ -644,36 +562,26 @@ export interface UsagesResult {
 export interface Usage {
   /**
    * The unit of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UnitType;
   /**
    * The name information for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: MetricName;
   /**
    * The quota period used to summarize the usage values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly quotaPeriod?: string;
   /**
    * Maximum value for this metric
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly limit?: number;
   /**
    * Current value for this metric
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
@@ -685,8 +593,6 @@ export interface Usage {
 export interface PartitionUsagesResult {
   /**
    * The list of partition-level usages for the database. A usage is a point in time metric
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: PartitionUsage[];
@@ -698,8 +604,6 @@ export interface PartitionUsagesResult {
 export interface MetricDefinitionsListResult {
   /**
    * The list of metric definitions for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: MetricDefinition[];
@@ -711,36 +615,26 @@ export interface MetricDefinitionsListResult {
 export interface MetricDefinition {
   /**
    * The list of metric availabilities for the account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricAvailabilities?: MetricAvailability[];
   /**
    * The primary aggregation type of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryAggregationType?: PrimaryAggregationType;
   /**
    * The unit of the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: UnitType;
   /**
    * The resource uri of the database.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceUri?: string;
   /**
    * The name information for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: MetricName;
@@ -752,15 +646,11 @@ export interface MetricDefinition {
 export interface MetricAvailability {
   /**
    * The time grain to be used to summarize the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeGrain?: string;
   /**
    * The retention for the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly retention?: string;
@@ -772,8 +662,6 @@ export interface MetricAvailability {
 export interface SqlDatabaseListResult {
   /**
    * List of SQL databases and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SqlDatabaseGetResults[];
@@ -795,22 +683,16 @@ export interface SqlDatabaseResource {
 export interface ExtendedResourceProperties {
   /**
    * A system generated property. A unique identifier.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rid?: string;
   /**
    * A system generated property that denotes the last updated timestamp of the resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly ts?: any;
   /**
    * A system generated property representing the resource etag required for optimistic concurrency control.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
@@ -854,15 +736,11 @@ export interface ThroughputSettingsResource {
   provisionedThroughputSettings?: ProvisionedThroughputSettingsResource;
   /**
    * The minimum throughput of the resource
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minimumThroughput?: string;
   /**
    * The throughput replace is pending
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly offerReplacePending?: string;
@@ -882,8 +760,6 @@ export interface ProvisionedThroughputSettingsResource {
   autoUpgradePolicy?: AutoUpgradePolicyResource;
   /**
    * Represents target maximum throughput container can scale up to once offer is no longer in pending state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetMaxThroughput?: number;
@@ -919,8 +795,6 @@ export interface ThroughputPolicyResource {
 export interface SqlContainerListResult {
   /**
    * List of containers and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SqlContainerGetResults[];
@@ -1109,8 +983,6 @@ export interface ConflictResolutionPolicy {
 export interface SqlStoredProcedureListResult {
   /**
    * List of storedProcedures and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SqlStoredProcedureGetResults[];
@@ -1136,8 +1008,6 @@ export interface SqlStoredProcedureResource {
 export interface SqlUserDefinedFunctionListResult {
   /**
    * List of userDefinedFunctions and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SqlUserDefinedFunctionGetResults[];
@@ -1163,8 +1033,6 @@ export interface SqlUserDefinedFunctionResource {
 export interface SqlTriggerListResult {
   /**
    * List of triggers and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: SqlTriggerGetResults[];
@@ -1198,8 +1066,6 @@ export interface SqlTriggerResource {
 export interface MongoDBDatabaseListResult {
   /**
    * List of MongoDB databases and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: MongoDBDatabaseGetResults[];
@@ -1221,8 +1087,6 @@ export interface MongoDBDatabaseResource {
 export interface MongoDBCollectionListResult {
   /**
    * List of MongoDB collections and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: MongoDBCollectionGetResults[];
@@ -1290,8 +1154,6 @@ export interface MongoIndexOptions {
 export interface TableListResult {
   /**
    * List of Table and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: TableGetResults[];
@@ -1313,8 +1175,6 @@ export interface TableResource {
 export interface CassandraKeyspaceListResult {
   /**
    * List of Cassandra keyspaces and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: CassandraKeyspaceGetResults[];
@@ -1336,8 +1196,6 @@ export interface CassandraKeyspaceResource {
 export interface CassandraTableListResult {
   /**
    * List of Cassandra tables and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: CassandraTableGetResults[];
@@ -1423,8 +1281,6 @@ export interface ClusterKey {
 export interface GremlinDatabaseListResult {
   /**
    * List of Gremlin databases and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: GremlinDatabaseGetResults[];
@@ -1446,8 +1302,6 @@ export interface GremlinDatabaseResource {
 export interface GremlinGraphListResult {
   /**
    * List of graphs and their properties.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: GremlinGraphGetResults[];
@@ -1499,22 +1353,16 @@ export interface NotebookWorkspaceListResult {
 export interface ARMProxyResource {
   /**
    * The unique resource identifier of the database account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the database account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of Azure resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -1526,15 +1374,11 @@ export interface ARMProxyResource {
 export interface NotebookWorkspaceConnectionInfoResult {
   /**
    * Specifies auth token used for connecting to Notebook server (uses token-based auth).
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly authToken?: string;
   /**
    * Specifies the endpoint of Notebook server.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly notebookServerEndpoint?: string;
@@ -1574,8 +1418,6 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
   description?: string;
   /**
    * Any action that is required beyond basic workflow (approve/ reject/ disconnect)
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actionsRequired?: string;
@@ -1632,22 +1474,16 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
   kind?: DatabaseAccountKind;
   /**
    * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The connection endpoint for the Cosmos DB database account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly documentEndpoint?: string;
   /**
    * The offer type for the Cosmos DB database account. Default value: Standard.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseAccountOfferType?: "Standard";
@@ -1673,29 +1509,21 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
   capabilities?: Capability[];
   /**
    * An array that contains the write location for the Cosmos DB account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly writeLocations?: Location[];
   /**
    * An array that contains of the read locations enabled for the Cosmos DB account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly readLocations?: Location[];
   /**
    * An array that contains all of the locations enabled for the Cosmos DB account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locations?: Location[];
   /**
    * An array that contains the regions ordered by their failover priorities.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverPolicies?: FailoverPolicy[];
@@ -1705,8 +1533,6 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
   virtualNetworkRules?: VirtualNetworkRule[];
   /**
    * List of Private Endpoint Connections configured for the Cosmos DB account.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
@@ -1732,8 +1558,6 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
   keyVaultKeyUri?: string;
   /**
    * Whether requests from Public Network are allowed
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicNetworkAccess?: PublicNetworkAccess;
@@ -1801,8 +1625,6 @@ export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
   keyVaultKeyUri?: string;
   /**
    * Whether requests from Public Network are allowed
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicNetworkAccess?: PublicNetworkAccess;
@@ -2119,15 +1941,11 @@ export type GremlinGraphCreateUpdateParameters = ARMResourceProperties & {
 export type DatabaseAccountListKeysResult = DatabaseAccountListReadOnlyKeysResult & {
   /**
    * Base 64 encoded value of the primary read-write key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryMasterKey?: string;
   /**
    * Base 64 encoded value of the secondary read-write key.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly secondaryMasterKey?: string;
@@ -2139,15 +1957,11 @@ export type DatabaseAccountListKeysResult = DatabaseAccountListReadOnlyKeysResul
 export type PartitionMetric = Metric & {
   /**
    * The partition id (GUID identifier) of the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partitionId?: string;
   /**
    * The partition key range id (integer identifier) of the metric values.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partitionKeyRangeId?: string;
@@ -2159,50 +1973,36 @@ export type PartitionMetric = Metric & {
 export type PercentileMetricValue = MetricValue & {
   /**
    * The 10th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p10?: number;
   /**
    * The 25th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p25?: number;
   /**
    * The 50th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p50?: number;
   /**
    * The 75th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p75?: number;
   /**
    * The 90th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p90?: number;
   /**
    * The 95th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p95?: number;
   /**
    * The 99th percentile value for the metric.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly p99?: number;
@@ -2214,15 +2014,11 @@ export type PercentileMetricValue = MetricValue & {
 export type PartitionUsage = Usage & {
   /**
    * The partition id (GUID identifier) of the usages.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partitionId?: string;
   /**
    * The partition key range id (integer identifier) of the usages.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly partitionKeyRangeId?: string;
@@ -2300,15 +2096,11 @@ export type GremlinGraphGetPropertiesOptions = OptionsResource & {};
 export type NotebookWorkspace = ARMProxyResource & {
   /**
    * Specifies the endpoint of Notebook server.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly notebookServerEndpoint?: string;
   /**
    * Status of the notebook workspace. Possible values are: Creating, Online, Deleting, Failed, Updating.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: string;
@@ -2320,22 +2112,16 @@ export type NotebookWorkspace = ARMProxyResource & {
 export type PrivateLinkResource = ARMProxyResource & {
   /**
    * The private link resource group id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly groupId?: string;
   /**
    * The private link resource required member names.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMembers?: string[];
   /**
    * The private link resource required zone names.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredZoneNames?: string[];

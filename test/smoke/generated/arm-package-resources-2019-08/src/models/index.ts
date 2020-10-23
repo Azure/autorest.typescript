@@ -74,36 +74,26 @@ export interface CloudError {
 export interface ErrorResponse {
   /**
    * The error code.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * The error message.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * The error target.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: string;
   /**
    * The error details.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: ErrorResponse[];
   /**
    * The error additional info.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly additionalInfo?: ErrorAdditionalInfo[];
@@ -115,15 +105,11 @@ export interface ErrorResponse {
 export interface ErrorAdditionalInfo {
   /**
    * The additional info type.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The additional info.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly info?: any;
@@ -235,22 +221,16 @@ export interface OnErrorDeployment {
 export interface DeploymentExtended {
   /**
    * The ID of the deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -270,29 +250,21 @@ export interface DeploymentExtended {
 export interface DeploymentPropertiesExtended {
   /**
    * The state of the provisioning.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The correlation ID of the deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly correlationId?: string;
   /**
    * The timestamp of the template deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestamp?: Date;
   /**
    * The duration of the template deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly duration?: string;
@@ -344,8 +316,6 @@ export interface DeploymentPropertiesExtended {
 export interface Provider {
   /**
    * The provider ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -355,22 +325,16 @@ export interface Provider {
   namespace?: string;
   /**
    * The registration state of the resource provider.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly registrationState?: string;
   /**
    * The registration policy of the resource provider.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly registrationPolicy?: string;
   /**
    * The collection of provider resource types.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceTypes?: ProviderResourceType[];
@@ -480,8 +444,6 @@ export interface BasicDependency {
 export interface OnErrorDeploymentExtended {
   /**
    * The state of the provisioning for the on error deployment.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
@@ -529,8 +491,6 @@ export interface DeploymentListResult {
   value?: DeploymentExtended[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -654,8 +614,6 @@ export interface ProviderListResult {
   value?: Provider[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -671,8 +629,6 @@ export interface ResourceListResult {
   value?: GenericResourceExpanded[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -740,15 +696,11 @@ export interface Sku {
 export interface Identity {
   /**
    * The principal ID of resource identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant ID of resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
@@ -767,15 +719,11 @@ export interface Identity {
 export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties {
   /**
    * The principal id of user assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The client id of user assigned identity.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
@@ -787,22 +735,16 @@ export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentities
 export interface Resource {
   /**
    * Resource ID
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource name
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -822,22 +764,16 @@ export interface Resource {
 export interface ResourceGroup {
   /**
    * The ID of the resource group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the resource group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the resource group.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
@@ -865,8 +801,6 @@ export interface ResourceGroup {
 export interface ResourceGroupProperties {
   /**
    * The provisioning state.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
@@ -932,8 +866,6 @@ export interface ResourceGroupListResult {
   value?: ResourceGroup[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -959,8 +891,6 @@ export interface ResourcesMoveInfo {
 export interface TagValue {
   /**
    * The tag ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -994,8 +924,6 @@ export interface TagCount {
 export interface TagDetails {
   /**
    * The tag ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
@@ -1023,8 +951,6 @@ export interface TagsListResult {
   value?: TagDetails[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1036,15 +962,11 @@ export interface TagsListResult {
 export interface DeploymentOperation {
   /**
    * Full deployment operation ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Deployment operation ID.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationId?: string;
@@ -1060,64 +982,46 @@ export interface DeploymentOperation {
 export interface DeploymentOperationProperties {
   /**
    * The state of the provisioning.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The date and time of the operation.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestamp?: Date;
   /**
    * The duration of the operation.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly duration?: string;
   /**
    * Deployment operation service request id.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceRequestId?: string;
   /**
    * Operation status code.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusCode?: string;
   /**
    * Operation status message.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusMessage?: any;
   /**
    * The target resource.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetResource?: TargetResource;
   /**
    * The HTTP request message.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly request?: HttpMessage;
   /**
    * The HTTP response message.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly response?: HttpMessage;
@@ -1161,8 +1065,6 @@ export interface DeploymentOperationsListResult {
   value?: DeploymentOperation[];
   /**
    * The URL to use for getting the next set of results.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
@@ -1306,22 +1208,16 @@ export type GenericResource = Resource & {
 export type GenericResourceExpanded = GenericResource & {
   /**
    * The created time of the resource. This is only present if requested via the $expand query parameter.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdTime?: Date;
   /**
    * The changed time of the resource. This is only present if requested via the $expand query parameter.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly changedTime?: Date;
   /**
    * The provisioning state of the resource. This is only present if requested via the $expand query parameter.
-   */
-  /**
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
