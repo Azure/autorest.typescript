@@ -1,56 +1,58 @@
 # Table of Contents
 
-1.  [Autorest.Typescript](#org89a3068)
-    1.  [Overview](#org89a3069)
-        1.  [What is Autorest (core)](#org89a3066)
-        2.  [What is Autorest.Typescript](#org9b5d6b1)
-        3.  [Why writing a new version of Autorest](#org47f1d3e)
-    2.  [High level design](#orga880ede)
-        1.  [Code generation flow](#orgcfafb9a)
-    3.  [Detailed description](#org2b92ed7)
-        1.  [Entry Points](#org6fa7dee)
-        2.  [Basic Generators](#orgec24606)
-        3.  [Operations](#orgd9f217c)
-        4.  [Operation Specs](#orgff54626)
-        5.  [Parameters](#org22bdc54)
-        6.  [Mappers](#org5efb54d)
-        7.  [Models](#orge55796f)
+1.  [Autorest.Typescript](#link89a3068)
+    1.  [Overview](#link89a3069)
+        1.  [What is Autorest (core)](#link89a3066)
+        2.  [What is Autorest.Typescript](#link9b5d6b1)
+        3.  [Why writing a new version of Autorest](#link47f1d3e)
+    2.  [High level design](#linka880ede)
+        1.  [Code generation flow](#linkcfafb9a)
+    3.  [Detailed description](#link2b92ed7)
+        1.  [Entry Points](#link6fa7dee)
+        2.  [Basic Generators](#linkec24606)
+        3.  [Operations](#linkd9f217c)
+        4.  [Operation Specs](#linkff54626)
+        5.  [Parameters](#link22bdc54)
+        6.  [Mappers](#link5efb54d)
+        7.  [Models](#linke55796f)
 
-<a id="org89a3068"></a>
+<a id="link89a3068"></a>
+
 # Autorest.Typescript
 
-<a id="org89a3069"></a>
+<a id="link89a3069"></a>
+
 ## Overview
 
-<a id="org89a3066"></a>
+<a id="link89a3066"></a>
 
 ### What is Autorest (core)
 
 - Autorest is an OpenAPI (Swagger) specification code generator.
-- The new version of autorest (v3) supports [OpenApi v3](https://github.com/OAI/OpenAPI-Specification)
-- Autorest v3 uses[ @azure/modelerfour](https://github.com/Azure/autorest.modelerfour) to parse the OpenAPI (Swagger) document and generates a language agnostic code model
-- Autorest supports plugins, these plugins are responsible for Language specific code generation
-- Autorest communicates with the plugins through stdin/stdout using JsonRPC
-- Autorest core is written in Typescript, however the plugins can be written in any language
+- The new version of autorest (v3) supports [OpenApi v3](https://github.com/OAI/OpenAPI-Specification).
+- Autorest v3 uses[ @azure/modelerfour](https://github.com/Azure/autorest.modelerfour) to parse the OpenAPI (Swagger) document and generates a language agnostic code model.
+- Autorest supports plugins, these plugins are responsible for Language specific code generation.
+- Autorest communicates with the plugins through stdin/stdout using JsonRPC.
+- Autorest core is written in Typescript, however the plugins can be written in any language.
 
-<a id="org9b5d6b1"></a>
+<a id="link9b5d6b1"></a>
 
 ### What is Autorest.Typescript
 
 - Autorest.Typescript is a plugin for Autorest (core) which takes the code model generated buy Autorest (core) and generates a Typescript SDK
 - Autorest.Typescript is written in Typescript (of course)
 
-<a id="org47f1d3e"></a>
+<a id="link47f1d3e"></a>
 
 ### Why writing a new version of Autorest
 
-- The main reason is that, to support OpenAPI v4, changes in the previous version would be substantial requiring big architecture changes, so a re-write was a more attractive investment
+- The main reason is that, to support OpenAPI v3, changes in the previous version would be substantial requiring big architectural changes, so a re-write was a more attractive investment
 
-<a id="orga880ede"></a>
+<a id="linka880ede"></a>
 
 ## High level design
 
-<a id="orgcfafb9a"></a>
+<a id="linkcfafb9a"></a>
 
 ### Code generation flow
 
@@ -63,22 +65,39 @@
 2.  GENERATORS
 
     - Once the transforms finished generating the enhanced code model, it is handed off to the Generators layer
-    - Our each generator is responsible of generating one part of the SDK, so far this is the structure of the generated SDK
-      src/
-      models/
-      index.ts
-      mappers.ts
-      parameters.ts
-      operations/
-      index.ts
-      <OperationName1>.ts
-      &#x2026;
-      <OperationNameN>.ts
-      <Name>Client.ts
-      <Nane>ClientContext.ts
-      - We use [ts-morph](https://github.com/dsherret/ts-morph) library to generate typescript
+    - We use [ts-morph](https://github.com/dsherret/ts-morph) library to generate typescript
+    - Each generator is responsible of generating one part of the SDK, this is the structure of the generated SDK
 
-<a id="org2b92ed7"></a>
+      ```bash
+
+        ├── LICENSE.txt
+        ├── README.md
+        ├── api-extractor.json
+        ├── package.json
+        ├── rollup.config.js
+        ├── src
+        │ ├── bodyComplexClient.ts
+        │ ├── bodyComplexClientContext.ts
+        │ ├── index.ts
+        │ ├── models
+        │ │ ├── index.ts
+        │ │ ├── mappers.ts
+        │ │ └── parameters.ts
+        │ └── operations
+        │ ├── array.ts
+        │ ├── basic.ts
+        │ ├── dictionary.ts
+        │ ├── flattencomplex.ts
+        │ ├── index.ts
+        │ ├── inheritance.ts
+        │ ├── polymorphicrecursive.ts
+        │ ├── polymorphism.ts
+        │ ├── primitive.ts
+        │ └── readonlyproperty.ts
+        └── tsconfig.json
+      ```
+
+<a id="link2b92ed7"></a>
 
 ## Detailed description
 
@@ -96,7 +115,7 @@ Project structure
   - unit/
   - utils
 
-<a id="org6fa7dee"></a>
+<a id="link6fa7dee"></a>
 
 ### Entry Points
 
@@ -104,7 +123,7 @@ Project structure
 
     - These are the main entry points, main.ts makes the plugin available to Autorest (core) and calls typescriptGenerator which is the integration point of Transforms and Generators
 
-<a id="orgec24606"></a>
+<a id="linkec24606"></a>
 
 ### Basic Generators
 
@@ -116,12 +135,13 @@ Project structure
       - README
       - rollup
       - tsconfig
+      - api-extractor.json
 
 2.  clientContextFileGenerator.ts
 
     - This generator is responsible for generating the clientContext file for a library
     - In the generated class all the Client level parameters are set as properties on this class
-      - The generated class extends coreHttp.Service client
+      - The generated class extends `coreHttp.Service` client
 
 3.  clientFileGenerator.cs
 
@@ -131,18 +151,19 @@ Project structure
     - The generated class has each operation group as property, form which consumers can access each operation
 
       - There are also operations that don't belong to any operation group and belong to the clientFileGenerator
-```ts
-      const client = new ServiceNameClient();
 
-      // Calling an operation which is part of an operation group. Where paths is the operation group
-      // and getAll is the operation
-      const paths = await client.paths.getAll();
+        ```ts
+        const client = new ServiceNameClient();
 
-      // Calling a client operation
-      const paths = await client.getConfig();
-```
+        // Calling an operation which is part of an operation group. Where paths is the operation group
+        // and getAll is the operation
+        const paths = await client.paths.getAll();
 
-<a id="orgd9f217c"></a>
+        // Calling a client operation
+        const paths = await client.getConfig();
+        ```
+
+<a id="linkd9f217c"></a>
 
 ### Operations
 
@@ -189,61 +210,63 @@ Project structure
 
       /**
        * Get complex type {id: 2, name: 'abc', color: 'YELLOW'}
-       * @param name name of the valid item.
        * @param options The options parameters.
        */
       getValid(
-        name: string,
-        options?: coreHttp.BasicGetValidOptions
-      ): Promise<Models.BasicGetValidResponse> {
+        options?: coreHttp.OperationOptions
+      ): Promise<BasicGetValidResponse> {
+        const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+          options || {}
+        );
         return this.client.sendOperationRequest(
-          { name, options },
+          { options: operationOptions },
           getValidOperationSpec
-        ) as Promise<Models.BasicGetValidResponse>;
+        ) as Promise<BasicGetValidResponse>;
       }
     }
     ```
 
-<a id="orgff54626"></a>
+<a id="linkff54626"></a>
 
 ### Operation Specs
 
--   The operation spec is an specification provided to coreHttp.ServiceClient.sendOperationRequest, which is used to be able to craft and send the request to the service.
--   The Operation Spec contains information about:
-    -   Which HttpMethod should be used
-    -   The Path to be called
-    -   Mappers to serialize the responses
-    -   Where each parameter should be put into, for example QueryParameters, PathParameters, etc.
-    -   How does the requestBody should be
+- The operation spec is an specification provided to coreHttp.ServiceClient.sendOperationRequest, which is used to be able to craft and send the request to the service.
+- The Operation Spec contains information about:
+  - Which HttpMethod should be used
+  - The Path to be called
+  - Mappers to serialize the responses
+  - Where each parameter should be put into, for example QueryParameters, PathParameters, etc.
+  - How does the requestBody should be
 
 1.  Operation Spec Transforms
 
-    -   These transforms, located in the same file as operationTransforms, take as input the Operation object generated by the Operation Transform and generates the OperationSpec based on the Operation
-    -   The operation spec can reference Mappers and Parameters located in other generated files, or define the mappers inline. We try to reference as much as possible and only inline primitive mappers such as string
+    - These transforms, located in the same file as operationTransforms, take as input the Operation object generated by the Operation Transform and generates the OperationSpec based on the Operation
+    - The operation spec can reference Mappers and Parameters located in other generated files, or define the mappers inline. We try to reference as much as possible and only inline primitive mappers such as string
 
 2.  Operation Spec Generator
 
-    -   We generate the operationSpecs in the same file as the operations, we may consider moving them to their own file in the future to help reducing verbosity
-    -   Generating these is a simple process, the only interesting thing done is figuring out if a mapper should be inline or referenced.
-    -   A generated Operation Spec would look like this
-   ```typescript
-        const putValidOperationSpec: coreHttp.OperationSpec = {
-          path: "/complex/basic/valid",
-          httpMethod: "PUT",
-          responses: {
-            200: {},
-            default: {
-              bodyMapper: Mappers.ErrorModel
-            }
-          },
-          requestBody: Parameters.complexBody,
-          queryParameters: [Parameters.apiVersion],
-          urlParameters: [Parameters.$host],
-          serializer
-        };
-````
+    - We generate the operationSpecs in the same file as the operations, we may consider moving them to their own file in the future to help reducing verbosity
+    - Generating these is a simple process, the only interesting thing done is figuring out if a mapper should be inline or referenced.
+    - A generated Operation Spec would look like this
 
-<a id="org22bdc54"></a>
+      ```typescript
+      const putValidOperationSpec: coreHttp.OperationSpec = {
+        path: "/complex/basic/valid",
+        httpMethod: "PUT",
+        responses: {
+          200: {},
+          default: {
+            bodyMapper: Mappers.ErrorModel
+          }
+        },
+        requestBody: Parameters.complexBody,
+        queryParameters: [Parameters.apiVersion],
+        urlParameters: [Parameters.$host],
+        serializer
+      };
+      ```
+
+<a id="link22bdc54"></a>
 
 ### Parameters
 
@@ -278,26 +301,26 @@ Project structure
 
     - Sample generated parameters
 
-```typescript
-export const apiVersion: coreHttp.OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    defaultValue: "2016-02-29",
-    serializedName: "api-version",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
+      ```typescript
+      export const apiVersion: coreHttp.OperationQueryParameter = {
+        parameterPath: "apiVersion",
+        mapper: {
+          defaultValue: "2016-02-29",
+          serializedName: "api-version",
+          isConstant: true,
+          type: {
+            name: "String"
+          }
+        }
+      };
 
-export const complexBody: coreHttp.OperationParameter = {
-  parameterPath: "complexBody",
-  mapper: Mappers.Basic
-};
-```
+      export const complexBody: coreHttp.OperationParameter = {
+        parameterPath: "complexBody",
+        mapper: Mappers.Basic
+      };
+      ```
 
-<a id="org5efb54d"></a>
+<a id="link5efb54d"></a>
 
 ### Mappers
 
@@ -316,26 +339,28 @@ export const complexBody: coreHttp.OperationParameter = {
       3.  If the current step doesn't know how to process the Object, the it just hands it off to the next step (transform)
   4.  Once all the Object have been transformed, this transform returns a collection of Mappers to be generated by the Generator
 - **Mapper Generator:** Simply takes the Mappers transformed in the transforms layer and generates code for them
+
   - Some of the interesting the mapper generator does are:
+
     - Generates a mapping to help serializing Polymorphic Objects which is used by @azure/core-http for serializing polymorphic objects. This is a mapping tells core-http which mapper to use, given a discriminator value.
     - If a Object's mapper has a parent, the generator will generate the mapper in a way that the parent's properties are spread, and then add all the properties form the object
 
-```typescript
-    const mapper = {
-       serializedName: "child"
-       modelProperties: {
-          ...Mappers.Parent,
-          color: {
-            type: {
-              name: "String"
-            },
-            serializedName: "color"
+      ```typescript
+          const mapper = {
+            serializedName: "child"
+            modelProperties: {
+                ...Mappers.Parent,
+                color: {
+                  type: {
+                    name: "String"
+                  },
+                  serializedName: "color"
+                }
+            }
           }
-       }
-    }
-```
+      ```
 
-<a id="orge55796f"></a>
+<a id="linke55796f"></a>
 
 ### Models
 
@@ -344,6 +369,7 @@ export const complexBody: coreHttp.OperationParameter = {
 1.  Model Transforms
 
     1.  Object Transforms
+
         - Currently we extract models from 2 parts of the CodeModel (1) Object Schemas (2) Headers which are converted as Objects
         - Returns a collection of ObjectDetails that contain information for generating the interfaces
 
@@ -353,70 +379,75 @@ export const complexBody: coreHttp.OperationParameter = {
 2.  Model Generation
 
     1.  Union Types
+
         - This part of the generator is responsible for generating Union types, these are the Types that can have different shapes. This is used for polymorphic objects. An union type will contain the parent plus all its children
         - An example of a multi level hierarchy
-```ts 
-export type FishUnion = Fish | SalmonUnion | SharkUnion;
-export type SalmonUnion = Salmon | SmartSalmon;
-export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
-```
+
+          ```ts
+          export type FishUnion = SalmonUnion | SharkUnion;
+          export type SalmonUnion = SmartSalmon;
+          export type SharkUnion = Sawshark | Goblinshark | Cookiecuttershark;
+          ```
 
     2.  Objects
-        -   These are the definition of all the objects found in Operations as Responses. There are 2 ways we represent this
-            1.  When an Object has a parent, we create an intersection type of the parent plus the current Object's properties.
-            2.  Otherwise we just create any interface with the object itself
 
-```typescript
-export interface Fish {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
-  fishtype:
-    | "salmon"
-    | "smart_salmon"
-    | "shark"
-    | "sawshark"
-    | "goblin"
-    | "cookiecuttershark";
-  species?: string;
-  length: number;
-  siblings?: FishUnion[];
-}
+        - These are the definition of all the objects found in Operations as Responses. There are 2 ways we represent this
 
-export type Salmon = Fish & {
-  location?: string;
-  iswild?: boolean;
-};
+          1.  When an Object has a parent, we create an intersection type of the parent plus the current Object's properties.
+          2.  Otherwise we just create any interface with the object itself
 
-export type SmartSalmon = Salmon & {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
-  [property: string]: any;
-  collegeDegree?: string;
-};
+          ```typescript
+          export interface Fish {
+            /**
+             * Polymorphic discriminator, which specifies the different types this object can be
+             */
+            fishtype:
+              | "salmon"
+              | "smart_salmon"
+              | "shark"
+              | "sawshark"
+              | "goblin"
+              | "cookiecuttershark";
+            species?: string;
+            length: number;
+            siblings?: FishUnion[];
+          }
 
-export type Shark = Fish & {
-  age?: number;
-  birthday: Date;
-};
+          export type Salmon = Fish & {
+            location?: string;
+            iswild?: boolean;
+          };
 
-export type Sawshark = Shark & {
-  picture?: Uint8Array;
-};
+          export type SmartSalmon = Salmon & {
+            /**
+             * Describes unknown properties. The value of an unknown property can be of "any" type.
+             */
+            [property: string]: any;
+            collegeDegree?: string;
+          };
 
-export type Goblinshark = Shark & {
-  jawsize?: number;
-  /**
-   * Colors possible
-   */
-  color?: GoblinSharkColor;
-};
+          export type Shark = Fish & {
+            age?: number;
+            birthday: Date;
+          };
 
-export type Cookiecuttershark = Shark & {};
-```
+          export type Sawshark = Shark & {
+            picture?: Uint8Array;
+          };
 
- -   Note that the "fishtype" property is known as the polymorphicDiscriminator, this is helpful to specify that an Object and be of many shapes but during serialization being able to produce the right shape.
+          export type Goblinshark = Shark & {
+            jawsize?: number;
+            /**
+             * Colors possible
+             */
+            color?: GoblinSharkColor;
+          };
+
+          export type Cookiecuttershark = Shark & {};
+          ```
+
+- Note that the "fishtype" property is known as the polymorphicDiscriminator, this is helpful to specify that an Object and be of many shapes but during serialization being able to produce the right shape.
+
 
     3.  Operation Models
 
@@ -425,33 +456,31 @@ export type Cookiecuttershark = Shark & {};
         -   Each operation may be defined as an union type with the model representing its body or headers (if it has any) otherwise it will just contain the basic response properties
         -   Example:
 
+          ```typescript
+          export type PolymorphismGetComplicatedResponse = SalmonHeaders &
+            SalmonUnion & {
+              /**
+               * The underlying HTTP response.
+              */
+              _response: coreHttp.HttpResponse & {
+                /**
+                 * The response body as text (string format)
+                */
+                bodyAsText: string;
 
-```typescript
-export type PolymorphismGetComplicatedResponse = SalmonHeaders &
-  SalmonUnion & {
-    /**
-     * The underlying HTTP response.
-     */
-    _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
-      bodyAsText: string;
-
-      /**
-       * The response body as parsed JSON or XML
-       */
-      parsedBody: SalmonUnion;
-    };
-  };
-```
+                /**
+                 * The response body as parsed JSON or XML
+                */
+                parsedBody: SalmonUnion;
+              };
+            };
+          ```
 
     4.  Choices
 
         -   Here we generate the choices which are the Enums. We represent the Enums as union types. For example:
 
-
-```typescript
-export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
-export type GoblinSharkColor = "pink" | "gray" | "brown" | "RED" | "red";
-```
+        ```typescript
+        export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
+        export type GoblinSharkColor = "pink" | "gray" | "brown" | "RED" | "red";
+        ```
