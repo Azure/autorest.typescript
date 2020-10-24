@@ -1114,7 +1114,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "msi-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\n */\n",
+              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1139,7 +1139,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "msi-resource-manager!Resource#name:member",
-              "docComment": "/**\n * The name of the resource\n */\n",
+              "docComment": "/**\n * The name of the resource NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1164,7 +1164,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "msi-resource-manager!Resource#type:member",
-              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.\n */\n",
+              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

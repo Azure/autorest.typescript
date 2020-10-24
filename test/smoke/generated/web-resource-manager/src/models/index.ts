@@ -18,6 +18,7 @@ export interface AppServiceCertificateOrderCollection {
   value: AppServiceCertificateOrder[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -36,6 +37,7 @@ export interface AppServiceCertificate {
   keyVaultSecretName?: string;
   /**
    * Status of the Key Vault secret.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: KeyVaultSecretStatus;
 }
@@ -46,38 +48,47 @@ export interface AppServiceCertificate {
 export interface CertificateDetails {
   /**
    * Certificate Version.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: number;
   /**
    * Certificate Serial Number.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serialNumber?: string;
   /**
    * Certificate Thumbprint.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
   /**
    * Certificate Subject.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subject?: string;
   /**
    * Date Certificate is valid from.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly notBefore?: Date;
   /**
    * Date Certificate is valid to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly notAfter?: Date;
   /**
    * Certificate Signature algorithm.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly signatureAlgorithm?: string;
   /**
    * Certificate Issuer.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issuer?: string;
   /**
    * Raw certificate data.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rawData?: string;
 }
@@ -88,10 +99,12 @@ export interface CertificateDetails {
 export interface Resource {
   /**
    * Resource Id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource Name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
@@ -104,6 +117,7 @@ export interface Resource {
   location: string;
   /**
    * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -118,6 +132,7 @@ export interface Resource {
 export interface DefaultErrorResponse {
   /**
    * Error model.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly error?: DefaultErrorResponseError;
 }
@@ -128,19 +143,23 @@ export interface DefaultErrorResponse {
 export interface DefaultErrorResponseError {
   /**
    * Standardized string to programmatically identify the error.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * Detailed error description and debugging information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * Detailed error description and debugging information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: string;
   details?: DefaultErrorResponseErrorDetailsItem[];
   /**
    * More information to debug error.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly innererror?: string;
 }
@@ -151,14 +170,17 @@ export interface DefaultErrorResponseError {
 export interface DefaultErrorResponseErrorDetailsItem {
   /**
    * Standardized string to programmatically identify the error.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * Detailed error description and debugging information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * Detailed error description and debugging information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: string;
 }
@@ -169,10 +191,12 @@ export interface DefaultErrorResponseErrorDetailsItem {
 export interface ProxyOnlyResource {
   /**
    * Resource Id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource Name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
@@ -181,6 +205,7 @@ export interface ProxyOnlyResource {
   kind?: string;
   /**
    * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
 }
@@ -195,6 +220,7 @@ export interface AppServiceCertificateCollection {
   value: AppServiceCertificateResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -243,6 +269,7 @@ export interface CsmOperationCollection {
   value: CsmOperationDescription[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -369,6 +396,7 @@ export interface DomainCollection {
   value: Domain[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -500,14 +528,17 @@ export interface DomainPurchaseConsent {
 export interface DomainControlCenterSsoRequest {
   /**
    * URL where the single sign-on request is to be made.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly url?: string;
   /**
    * Post parameter key.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly postParameterKey?: string;
   /**
    * Post parameter value. Client should use 'application/x-www-form-urlencoded' encoding for this value.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly postParameterValue?: string;
 }
@@ -536,6 +567,7 @@ export interface NameIdentifierCollection {
   value: NameIdentifier[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -550,6 +582,7 @@ export interface DomainOwnershipIdentifierCollection {
   value: DomainOwnershipIdentifier[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -564,6 +597,7 @@ export interface TopLevelDomainCollection {
   value: TopLevelDomain[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -592,6 +626,7 @@ export interface TldLegalAgreementCollection {
   value: TldLegalAgreement[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -628,6 +663,7 @@ export interface CertificateCollection {
   value: Certificate[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -642,10 +678,12 @@ export interface HostingEnvironmentProfile {
   id?: string;
   /**
    * Name of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
 }
@@ -660,6 +698,7 @@ export interface DeletedWebAppCollection {
   value: DeletedSite[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -674,6 +713,7 @@ export interface DetectorResponseCollection {
   value: DetectorResponse[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -684,18 +724,22 @@ export interface DetectorResponseCollection {
 export interface DetectorInfo {
   /**
    * Short description of the detector and its purpose
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
   /**
    * Support Category
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly category?: string;
   /**
    * Support Sub Category
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subCategory?: string;
   /**
    * Support Topic Id
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly supportTopicId?: string;
 }
@@ -778,6 +822,7 @@ export interface DiagnosticCategoryCollection {
   value: DiagnosticCategory[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -792,6 +837,7 @@ export interface DiagnosticAnalysisCollection {
   value: AnalysisDefinition[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1024,6 +1070,7 @@ export interface DiagnosticDetectorCollection {
   value: DetectorDefinition[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1038,6 +1085,7 @@ export interface ApplicationStackCollection {
   value: ApplicationStackResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1138,6 +1186,7 @@ export interface RecommendationCollection {
   value: Recommendation[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1152,6 +1201,7 @@ export interface SourceControlCollection {
   value: SourceControl[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1166,6 +1216,7 @@ export interface BillingMeterCollection {
   value: BillingMeter[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1239,10 +1290,12 @@ export interface AppServiceEnvironment {
   location: string;
   /**
    * Provisioning state of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Current status of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: HostingEnvironmentStatus;
   /**
@@ -1283,18 +1336,22 @@ export interface AppServiceEnvironment {
   ipsslAddressCount?: number;
   /**
    * Edition of the metadata database for the App Service Environment, e.g. "Standard".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseEdition?: string;
   /**
    * Service objective of the metadata database for the App Service Environment, e.g. "S0".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseServiceObjective?: string;
   /**
    * Number of upgrade domains of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly upgradeDomains?: number;
   /**
    * Subscription of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscriptionId?: string;
   /**
@@ -1303,30 +1360,37 @@ export interface AppServiceEnvironment {
   dnsSuffix?: string;
   /**
    * Last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAction?: string;
   /**
    * Result of the last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastActionResult?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for front-ends.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedMultiSizes?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for workers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedWorkerSizes?: string;
   /**
    * Maximum number of VMs in the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximumNumberOfMachines?: number;
   /**
    * Description of IP SSL mapping for the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vipMappings?: VirtualIPMapping[];
   /**
    * Current total, used, and available worker capacities.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentCapacities?: StampCapacity[];
   /**
@@ -1335,14 +1399,17 @@ export interface AppServiceEnvironment {
   networkAccessControlList?: NetworkAccessControlEntry[];
   /**
    * True/false indicating whether the App Service Environment is healthy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentIsHealthy?: boolean;
   /**
    * Detailed message about with results of the last check of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentStatus?: string;
   /**
    * Resource group of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
@@ -1351,6 +1418,7 @@ export interface AppServiceEnvironment {
   frontEndScaleFactor?: number;
   /**
    * Default Scale Factor for FrontEnds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultFrontEndScaleFactor?: number;
   /**
@@ -1399,10 +1467,12 @@ export interface VirtualNetworkProfile {
   id?: string;
   /**
    * Name of the Virtual Network (read-only).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type of the Virtual Network (read-only).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -1433,6 +1503,7 @@ export interface WorkerPool {
   workerCount?: number;
   /**
    * Names of all instances in the worker pool (read only).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceNames?: string[];
 }
@@ -1563,6 +1634,7 @@ export interface GeoRegionCollection {
   value: GeoRegion[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1577,6 +1649,7 @@ export interface IdentifierCollection {
   value: Identifier[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1591,6 +1664,7 @@ export interface PremierAddOnOfferCollection {
   value: PremierAddOnOffer[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1799,6 +1873,7 @@ export interface WebAppCollection {
   value: Site[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -1915,6 +1990,7 @@ export interface SiteConfig {
   connectionStrings?: ConnStringInfo[];
   /**
    * Site MachineKey.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly machineKey?: SiteMachineKey;
   /**
@@ -2499,14 +2575,17 @@ export interface CloningInfo {
 export interface SlotSwapStatus {
   /**
    * The time the last successful slot swap completed.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timestampUtc?: Date;
   /**
    * The source slot of the last swap operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sourceSlotName?: string;
   /**
    * The destination slot of the last swap operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly destinationSlotName?: string;
 }
@@ -2521,10 +2600,12 @@ export interface ManagedServiceIdentity {
   type?: ManagedServiceIdentityType;
   /**
    * Tenant of managed service identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
    * Principal Id of managed service identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
@@ -2538,10 +2619,12 @@ export interface ManagedServiceIdentity {
 export interface Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties {
   /**
    * Principal Id of user assigned identity
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * Client Id of user assigned identity
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
 }
@@ -2616,6 +2699,7 @@ export interface BackupSchedule {
   startTime?: Date;
   /**
    * Last time when this schedule was triggered.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastExecutionTime?: Date;
 }
@@ -2650,6 +2734,7 @@ export interface BackupItemCollection {
   value: BackupItem[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2664,6 +2749,7 @@ export interface SiteConfigResourceCollection {
   value: SiteConfigResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2694,6 +2780,7 @@ export interface AzureStorageInfoValue {
   mountPath?: string;
   /**
    * State of the storage account.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: AzureStorageState;
 }
@@ -2868,6 +2955,7 @@ export interface SiteConfigurationSnapshotInfoCollection {
   value: SiteConfigurationSnapshotInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2882,6 +2970,7 @@ export interface ContinuousWebJobCollection {
   value: ContinuousWebJob[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2896,6 +2985,7 @@ export interface DeploymentCollection {
   value: Deployment[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2906,14 +2996,17 @@ export interface DeploymentCollection {
 export interface MSDeployLogEntry {
   /**
    * Timestamp of log entry
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly time?: Date;
   /**
    * Log entry type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: MSDeployLogEntryType;
   /**
    * Log entry message
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
 }
@@ -2928,6 +3021,7 @@ export interface FunctionEnvelopeCollection {
   value: FunctionEnvelope[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2974,6 +3068,7 @@ export interface HostNameBindingCollection {
   value: HostNameBinding[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -2988,6 +3083,7 @@ export interface WebAppInstanceCollection {
   value: SiteInstance[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3050,6 +3146,7 @@ export interface ProcessInfoCollection {
   value: ProcessInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3064,6 +3161,7 @@ export interface ProcessModuleInfoCollection {
   value: ProcessModuleInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3078,6 +3176,7 @@ export interface ProcessThreadInfoCollection {
   value: ProcessThreadInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3185,6 +3284,7 @@ export interface PerfMonCounterCollection {
   value: PerfMonResponse[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3297,6 +3397,7 @@ export interface PublicCertificateCollection {
   value: PublicCertificate[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3344,6 +3445,7 @@ export interface SiteExtensionInfoCollection {
   value: SiteExtensionInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3369,6 +3471,9 @@ export interface CsmCopySlotEntity {
  * A wrapper for an ARM resource id
  */
 export interface ArmIdWrapper {
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
 }
 
@@ -3419,14 +3524,17 @@ export interface PrivateLinkResource {
 export interface PrivateLinkResourceProperties {
   /**
    * GroupId of a private link resource
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly groupId?: string;
   /**
    * RequiredMembers of a private link resource
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMembers?: string[];
   /**
    * RequiredZoneNames of a private link resource
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredZoneNames?: string[];
 }
@@ -3441,6 +3549,7 @@ export interface SlotDifferenceCollection {
   value: SlotDifference[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3455,6 +3564,7 @@ export interface SnapshotCollection {
   value: Snapshot[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3469,6 +3579,7 @@ export interface TriggeredWebJobCollection {
   value: TriggeredWebJob[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3483,6 +3594,7 @@ export interface TriggeredJobHistoryCollection {
   value: TriggeredJobHistory[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3497,6 +3609,7 @@ export interface CsmUsageQuotaCollection {
   value: CsmUsageQuota[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3551,6 +3664,7 @@ export interface WebJobCollection {
   value: WebJob[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3565,6 +3679,7 @@ export interface StaticSiteCollection {
   value: StaticSiteARMResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3635,6 +3750,7 @@ export interface StaticSiteUserCollection {
   value: StaticSiteUserARMResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3649,6 +3765,7 @@ export interface StaticSiteBuildCollection {
   value: StaticSiteBuildARMResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3663,6 +3780,7 @@ export interface StaticSiteFunctionOverviewCollection {
   value: StaticSiteFunctionOverviewARMResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3677,6 +3795,7 @@ export interface StaticSiteCustomDomainOverviewCollection {
   value: StaticSiteCustomDomainOverviewARMResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3691,6 +3810,7 @@ export interface AppServiceEnvironmentCollection {
   value: AppServiceEnvironmentResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3705,6 +3825,7 @@ export interface StampCapacityCollection {
   value: StampCapacity[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3733,6 +3854,7 @@ export interface InboundEnvironmentEndpointCollection {
   value: InboundEnvironmentEndpoint[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3765,6 +3887,7 @@ export interface WorkerPoolCollection {
   value: WorkerPoolResource[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3779,6 +3902,7 @@ export interface ResourceMetricDefinitionCollection {
   value: ResourceMetricDefinition[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3789,10 +3913,12 @@ export interface ResourceMetricDefinitionCollection {
 export interface ResourceMetricAvailability {
   /**
    * Time grain .
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeGrain?: string;
   /**
    * Retention period for the current time grain.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly retention?: string;
 }
@@ -3807,6 +3933,7 @@ export interface SkuInfoCollection {
   value: SkuInfo[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3839,6 +3966,7 @@ export interface UsageCollection {
   value: Usage[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3853,6 +3981,7 @@ export interface OutboundEnvironmentEndpointCollection {
   value: OutboundEnvironmentEndpoint[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3917,6 +4046,7 @@ export interface AppServicePlanCollection {
   value: AppServicePlan[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3931,6 +4061,7 @@ export interface ResourceCollection {
   value: string[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3945,6 +4076,7 @@ export interface HybridConnectionCollection {
   value: HybridConnection[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3959,6 +4091,7 @@ export interface ResourceHealthMetadataCollection {
   value: ResourceHealthMetadata[];
   /**
    * Link to next page of resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }
@@ -3977,6 +4110,7 @@ export type AppServiceCertificateOrder = Resource & {
   distinguishedName?: string;
   /**
    * Domain verification token.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domainVerificationToken?: string;
   /**
@@ -3997,14 +4131,17 @@ export type AppServiceCertificateOrder = Resource & {
   autoRenew?: boolean;
   /**
    * Status of certificate order.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Current order status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CertificateOrderStatus;
   /**
    * Signed certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly signedCertificate?: CertificateDetails;
   /**
@@ -4013,34 +4150,42 @@ export type AppServiceCertificateOrder = Resource & {
   csr?: string;
   /**
    * Intermediate certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly intermediate?: CertificateDetails;
   /**
    * Root certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly root?: CertificateDetails;
   /**
    * Current serial number of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serialNumber?: string;
   /**
    * Certificate last issuance time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastCertificateIssuanceTime?: Date;
   /**
    * Certificate expiration time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationTime?: Date;
   /**
    * <code>true</code> if private key is external; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isPrivateKeyExternal?: boolean;
   /**
    * Reasons why App Service Certificate is not renewable at the current moment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem[];
   /**
    * Time stamp when the certificate would be auto renewed next
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextAutoRenewalTimeStamp?: Date;
 };
@@ -4059,6 +4204,7 @@ export type AppServiceCertificateResource = Resource & {
   keyVaultSecretName?: string;
   /**
    * Status of the Key Vault secret.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: KeyVaultSecretStatus;
 };
@@ -4085,14 +4231,17 @@ export type Domain = Resource & {
   contactTech?: Contact;
   /**
    * Domain registration status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly registrationStatus?: DomainStatus;
   /**
    * Domain provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Name servers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nameServers?: string[];
   /**
@@ -4101,14 +4250,17 @@ export type Domain = Resource & {
   privacy?: boolean;
   /**
    * Domain creation timestamp.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdTime?: Date;
   /**
    * Domain expiration timestamp.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationTime?: Date;
   /**
    * Timestamp when the domain was renewed last time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastRenewedTime?: Date;
   /**
@@ -4118,10 +4270,12 @@ export type Domain = Resource & {
   /**
    * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
    *  it is hosted on name servers Azure has programmatic access to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly readyForDnsRecordManagement?: boolean;
   /**
    * All hostnames derived from the domain and assigned to Azure resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedHostNames?: HostName[];
   /**
@@ -4130,6 +4284,7 @@ export type Domain = Resource & {
   consent?: DomainPurchaseConsent;
   /**
    * Reasons why domain is not renewable.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domainNotRenewableReasons?: DomainPropertiesDomainNotRenewableReasonsItem[];
   /**
@@ -4153,10 +4308,12 @@ export type Domain = Resource & {
 export type Certificate = Resource & {
   /**
    * Friendly name of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly friendlyName?: string;
   /**
    * Subject name of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subjectName?: string;
   /**
@@ -4169,22 +4326,27 @@ export type Certificate = Resource & {
   pfxBlob?: Uint8Array;
   /**
    * App name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly siteName?: string;
   /**
    * Self link.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly selfLink?: string;
   /**
    * Certificate issuer.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issuer?: string;
   /**
    * Certificate issue Date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issueDate?: Date;
   /**
    * Certificate expiration date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationDate?: Date;
   /**
@@ -4193,22 +4355,27 @@ export type Certificate = Resource & {
   password?: string;
   /**
    * Certificate thumbprint.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
   /**
    * Is the certificate valid?.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly valid?: boolean;
   /**
    * Raw bytes of .cer file
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly cerBlob?: Uint8Array;
   /**
    * Public key hash.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicKeyHash?: string;
   /**
    * Specification for the App Service Environment to use for the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
   /**
@@ -4221,6 +4388,7 @@ export type Certificate = Resource & {
   keyVaultSecretName?: string;
   /**
    * Status of the Key Vault secret.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
   /**
@@ -4243,18 +4411,22 @@ export type Site = Resource & {
   identity?: ManagedServiceIdentity;
   /**
    * Current state of the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
    * Hostnames associated with the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostNames?: string[];
   /**
    * Name of the repository site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly repositorySiteName?: string;
   /**
    * State indicating whether the app has exceeded its quota usage. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly usageState?: UsageState;
   /**
@@ -4264,10 +4436,12 @@ export type Site = Resource & {
   /**
    * Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
    * the app is not served on those hostnames.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly enabledHostNames?: string[];
   /**
    * Management information availability state for the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly availabilityState?: SiteAvailabilityState;
   /**
@@ -4292,6 +4466,7 @@ export type Site = Resource & {
   hyperV?: boolean;
   /**
    * Last time the app was modified, in UTC. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTimeUtc?: Date;
   /**
@@ -4300,6 +4475,7 @@ export type Site = Resource & {
   siteConfig?: SiteConfig;
   /**
    * Azure Traffic Manager hostnames associated with the app. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly trafficManagerHostNames?: string[];
   /**
@@ -4308,6 +4484,7 @@ export type Site = Resource & {
   scmSiteAlsoStopped?: boolean;
   /**
    * Specifies which deployment slot this app will swap into. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetSwapSlot?: string;
   /**
@@ -4333,10 +4510,12 @@ export type Site = Resource & {
   hostNamesDisabled?: boolean;
   /**
    * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundIpAddresses?: string;
   /**
    * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly possibleOutboundIpAddresses?: string;
   /**
@@ -4349,11 +4528,13 @@ export type Site = Resource & {
   dailyMemoryTimeQuota?: number;
   /**
    * App suspended till in case memory-time quota is exceeded.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly suspendedTill?: Date;
   /**
    * Maximum number of workers.
    * This only applies to Functions container.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxNumberOfWorkers?: number;
   /**
@@ -4362,18 +4543,22 @@ export type Site = Resource & {
   cloningInfo?: CloningInfo;
   /**
    * Name of the resource group the app belongs to. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
    * <code>true</code> if the app is a default container; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isDefaultContainer?: boolean;
   /**
    * Default hostname of the app. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultHostName?: string;
   /**
    * Status of the last deployment slot swap operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly slotSwapStatus?: SlotSwapStatus;
   /**
@@ -4387,6 +4572,7 @@ export type Site = Resource & {
   redundancyMode?: RedundancyMode;
   /**
    * Specifies an operation id if this site has a pending operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inProgressOperationId?: string;
 };
@@ -4427,6 +4613,7 @@ export type StaticSiteARMResource = Resource & {
   sku?: SkuDescription;
   /**
    * The default autogenerated hostname for the static site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultHostname?: string;
   /**
@@ -4439,6 +4626,7 @@ export type StaticSiteARMResource = Resource & {
   branch?: string;
   /**
    * The custom domains associated with this static site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly customDomains?: string[];
   /**
@@ -4465,10 +4653,12 @@ export type AppServiceEnvironmentResource = Resource & {
   locationPropertiesLocation?: string;
   /**
    * Provisioning state of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Current status of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: HostingEnvironmentStatus;
   /**
@@ -4509,18 +4699,22 @@ export type AppServiceEnvironmentResource = Resource & {
   ipsslAddressCount?: number;
   /**
    * Edition of the metadata database for the App Service Environment, e.g. "Standard".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseEdition?: string;
   /**
    * Service objective of the metadata database for the App Service Environment, e.g. "S0".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseServiceObjective?: string;
   /**
    * Number of upgrade domains of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly upgradeDomains?: number;
   /**
    * Subscription of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscriptionId?: string;
   /**
@@ -4529,30 +4723,37 @@ export type AppServiceEnvironmentResource = Resource & {
   dnsSuffix?: string;
   /**
    * Last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAction?: string;
   /**
    * Result of the last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastActionResult?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for front-ends.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedMultiSizes?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for workers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedWorkerSizes?: string;
   /**
    * Maximum number of VMs in the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximumNumberOfMachines?: number;
   /**
    * Description of IP SSL mapping for the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vipMappings?: VirtualIPMapping[];
   /**
    * Current total, used, and available worker capacities.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentCapacities?: StampCapacity[];
   /**
@@ -4561,14 +4762,17 @@ export type AppServiceEnvironmentResource = Resource & {
   networkAccessControlList?: NetworkAccessControlEntry[];
   /**
    * True/false indicating whether the App Service Environment is healthy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentIsHealthy?: boolean;
   /**
    * Detailed message about with results of the last check of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentStatus?: string;
   /**
    * Resource group of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
@@ -4577,6 +4781,7 @@ export type AppServiceEnvironmentResource = Resource & {
   frontEndScaleFactor?: number;
   /**
    * Default Scale Factor for FrontEnds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultFrontEndScaleFactor?: number;
   /**
@@ -4629,10 +4834,12 @@ export type AppServicePlan = Resource & {
   workerTierName?: string;
   /**
    * App Service plan status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: StatusOptions;
   /**
    * App Service plan subscription.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscription?: string;
   /**
@@ -4641,10 +4848,12 @@ export type AppServicePlan = Resource & {
   hostingEnvironmentProfile?: HostingEnvironmentProfile;
   /**
    * Maximum number of instances that can be assigned to this App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximumNumberOfWorkers?: number;
   /**
    * Geographical location for the App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly geoRegion?: string;
   /**
@@ -4658,6 +4867,7 @@ export type AppServicePlan = Resource & {
   maximumElasticWorkerCount?: number;
   /**
    * Number of apps assigned to this App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly numberOfSites?: number;
   /**
@@ -4674,6 +4884,7 @@ export type AppServicePlan = Resource & {
   freeOfferExpirationTime?: Date;
   /**
    * Resource group of the App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
@@ -4698,6 +4909,7 @@ export type AppServicePlan = Resource & {
   targetWorkerSizeId?: number;
   /**
    * Provisioning state of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
 };
@@ -4716,6 +4928,7 @@ export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
   distinguishedName?: string;
   /**
    * Domain verification token.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domainVerificationToken?: string;
   /**
@@ -4736,14 +4949,17 @@ export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
   autoRenew?: boolean;
   /**
    * Status of certificate order.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Current order status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CertificateOrderStatus;
   /**
    * Signed certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly signedCertificate?: CertificateDetails;
   /**
@@ -4752,34 +4968,42 @@ export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
   csr?: string;
   /**
    * Intermediate certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly intermediate?: CertificateDetails;
   /**
    * Root certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly root?: CertificateDetails;
   /**
    * Current serial number of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serialNumber?: string;
   /**
    * Certificate last issuance time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastCertificateIssuanceTime?: Date;
   /**
    * Certificate expiration time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationTime?: Date;
   /**
    * <code>true</code> if private key is external; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isPrivateKeyExternal?: boolean;
   /**
    * Reasons why App Service Certificate is not renewable at the current moment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem[];
   /**
    * Time stamp when the certificate would be auto renewed next
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextAutoRenewalTimeStamp?: Date;
 };
@@ -4798,6 +5022,7 @@ export type AppServiceCertificatePatchResource = ProxyOnlyResource & {
   keyVaultSecretName?: string;
   /**
    * Status of the Key Vault secret.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: KeyVaultSecretStatus;
 };
@@ -4848,10 +5073,12 @@ export type RenewCertificateOrderRequest = ProxyOnlyResource & {
 export type CertificateOrderAction = ProxyOnlyResource & {
   /**
    * Action type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actionType?: CertificateOrderActionType;
   /**
    * Time at which the certificate action was performed.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdAt?: Date;
 };
@@ -4892,14 +5119,17 @@ export type DomainPatchResource = ProxyOnlyResource & {
   contactTech?: Contact;
   /**
    * Domain registration status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly registrationStatus?: DomainStatus;
   /**
    * Domain provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Name servers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nameServers?: string[];
   /**
@@ -4908,14 +5138,17 @@ export type DomainPatchResource = ProxyOnlyResource & {
   privacy?: boolean;
   /**
    * Domain creation timestamp.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdTime?: Date;
   /**
    * Domain expiration timestamp.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationTime?: Date;
   /**
    * Timestamp when the domain was renewed last time.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastRenewedTime?: Date;
   /**
@@ -4925,10 +5158,12 @@ export type DomainPatchResource = ProxyOnlyResource & {
   /**
    * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
    *  it is hosted on name servers Azure has programmatic access to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly readyForDnsRecordManagement?: boolean;
   /**
    * All hostnames derived from the domain and assigned to Azure resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedHostNames?: HostName[];
   /**
@@ -4937,6 +5172,7 @@ export type DomainPatchResource = ProxyOnlyResource & {
   consent?: DomainPurchaseConsent;
   /**
    * Reasons why domain is not renewable.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domainNotRenewableReasons?: DomainPatchResourcePropertiesDomainNotRenewableReasonsItem[];
   /**
@@ -4980,10 +5216,12 @@ export type TopLevelDomain = ProxyOnlyResource & {
 export type CertificatePatchResource = ProxyOnlyResource & {
   /**
    * Friendly name of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly friendlyName?: string;
   /**
    * Subject name of the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subjectName?: string;
   /**
@@ -4996,22 +5234,27 @@ export type CertificatePatchResource = ProxyOnlyResource & {
   pfxBlob?: Uint8Array;
   /**
    * App name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly siteName?: string;
   /**
    * Self link.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly selfLink?: string;
   /**
    * Certificate issuer.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issuer?: string;
   /**
    * Certificate issue Date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issueDate?: Date;
   /**
    * Certificate expiration date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expirationDate?: Date;
   /**
@@ -5020,22 +5263,27 @@ export type CertificatePatchResource = ProxyOnlyResource & {
   password?: string;
   /**
    * Certificate thumbprint.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
   /**
    * Is the certificate valid?.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly valid?: boolean;
   /**
    * Raw bytes of .cer file
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly cerBlob?: Uint8Array;
   /**
    * Public key hash.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publicKeyHash?: string;
   /**
    * Specification for the App Service Environment to use for the certificate.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
   /**
@@ -5048,6 +5296,7 @@ export type CertificatePatchResource = ProxyOnlyResource & {
   keyVaultSecretName?: string;
   /**
    * Status of the Key Vault secret.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
   /**
@@ -5066,34 +5315,42 @@ export type CertificatePatchResource = ProxyOnlyResource & {
 export type DeletedSite = ProxyOnlyResource & {
   /**
    * Numeric id for the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedSiteId?: number;
   /**
    * Time in UTC when the app was deleted.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedTimestamp?: string;
   /**
    * Subscription containing the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscription?: string;
   /**
    * ResourceGroup that contained the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
    * Name of the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedSiteName?: string;
   /**
    * Slot of the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly slot?: string;
   /**
    * Kind of site that was deleted
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kindPropertiesKind?: string;
   /**
    * Geo Region of the deleted site
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly geoRegionName?: string;
 };
@@ -5118,6 +5375,7 @@ export type DetectorResponse = ProxyOnlyResource & {
 export type DiagnosticCategory = ProxyOnlyResource & {
   /**
    * Description of the diagnostic category
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
 };
@@ -5128,6 +5386,7 @@ export type DiagnosticCategory = ProxyOnlyResource & {
 export type AnalysisDefinition = ProxyOnlyResource & {
   /**
    * Description of the Analysis
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
 };
@@ -5138,18 +5397,22 @@ export type AnalysisDefinition = ProxyOnlyResource & {
 export type DetectorDefinition = ProxyOnlyResource & {
   /**
    * Display name of the detector
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * Description of the detector
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
   /**
    * Detector Rank
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rank?: number;
   /**
    * Flag representing whether detector is enabled or not.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isEnabled?: boolean;
 };
@@ -5286,6 +5549,7 @@ export type Recommendation = ProxyOnlyResource & {
   channels?: Channels;
   /**
    * The list of category tags that this recommendation belongs to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly categoryTags?: string[];
   /**
@@ -5381,6 +5645,7 @@ export type RecommendationRule = ProxyOnlyResource & {
   channels?: Channels;
   /**
    * The list of category tags that this recommendation rule belongs to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly categoryTags?: string[];
   /**
@@ -5488,14 +5753,17 @@ export type BillingMeter = ProxyOnlyResource & {
 export type GeoRegion = ProxyOnlyResource & {
   /**
    * Region description.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
   /**
    * Display name for region.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * Display name for region.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly orgDomain?: string;
 };
@@ -5637,18 +5905,22 @@ export type SitePatchResource = ProxyOnlyResource & {
   identity?: ManagedServiceIdentity;
   /**
    * Current state of the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
   /**
    * Hostnames associated with the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostNames?: string[];
   /**
    * Name of the repository site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly repositorySiteName?: string;
   /**
    * State indicating whether the app has exceeded its quota usage. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly usageState?: UsageState;
   /**
@@ -5658,10 +5930,12 @@ export type SitePatchResource = ProxyOnlyResource & {
   /**
    * Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
    * the app is not served on those hostnames.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly enabledHostNames?: string[];
   /**
    * Management information availability state for the app.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly availabilityState?: SiteAvailabilityState;
   /**
@@ -5686,6 +5960,7 @@ export type SitePatchResource = ProxyOnlyResource & {
   hyperV?: boolean;
   /**
    * Last time the app was modified, in UTC. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastModifiedTimeUtc?: Date;
   /**
@@ -5694,6 +5969,7 @@ export type SitePatchResource = ProxyOnlyResource & {
   siteConfig?: SiteConfig;
   /**
    * Azure Traffic Manager hostnames associated with the app. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly trafficManagerHostNames?: string[];
   /**
@@ -5702,6 +5978,7 @@ export type SitePatchResource = ProxyOnlyResource & {
   scmSiteAlsoStopped?: boolean;
   /**
    * Specifies which deployment slot this app will swap into. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetSwapSlot?: string;
   /**
@@ -5727,10 +6004,12 @@ export type SitePatchResource = ProxyOnlyResource & {
   hostNamesDisabled?: boolean;
   /**
    * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundIpAddresses?: string;
   /**
    * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly possibleOutboundIpAddresses?: string;
   /**
@@ -5743,11 +6022,13 @@ export type SitePatchResource = ProxyOnlyResource & {
   dailyMemoryTimeQuota?: number;
   /**
    * App suspended till in case memory-time quota is exceeded.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly suspendedTill?: Date;
   /**
    * Maximum number of workers.
    * This only applies to Functions container.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maxNumberOfWorkers?: number;
   /**
@@ -5756,18 +6037,22 @@ export type SitePatchResource = ProxyOnlyResource & {
   cloningInfo?: CloningInfo;
   /**
    * Name of the resource group the app belongs to. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
    * <code>true</code> if the app is a default container; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isDefaultContainer?: boolean;
   /**
    * Default hostname of the app. Read-only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultHostName?: string;
   /**
    * Status of the last deployment slot swap operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly slotSwapStatus?: SlotSwapStatus;
   /**
@@ -5781,6 +6066,7 @@ export type SitePatchResource = ProxyOnlyResource & {
   redundancyMode?: RedundancyMode;
   /**
    * Specifies an operation id if this site has a pending operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inProgressOperationId?: string;
 };
@@ -5791,26 +6077,32 @@ export type SitePatchResource = ProxyOnlyResource & {
 export type CustomHostnameAnalysisResult = ProxyOnlyResource & {
   /**
    * <code>true</code> if hostname is already verified; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isHostnameAlreadyVerified?: boolean;
   /**
    * DNS verification test result.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly customDomainVerificationTest?: DnsVerificationTestResult;
   /**
    * Raw failure information if DNS verification fails.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly customDomainVerificationFailureInfo?: ErrorEntity;
   /**
    * <code>true</code> if there is a conflict on a scale unit; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasConflictOnScaleUnit?: boolean;
   /**
    * <code>true</code> if there is a conflict across subscriptions; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hasConflictAcrossSubscription?: boolean;
   /**
    * Name of the conflicting app on scale unit if it's within the same subscription.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly conflictingAppResourceId?: string;
   /**
@@ -5867,58 +6159,72 @@ export type BackupRequest = ProxyOnlyResource & {
 export type BackupItem = ProxyOnlyResource & {
   /**
    * Id of the backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backupId?: number;
   /**
    * SAS URL for the storage account container which contains this backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly storageAccountUrl?: string;
   /**
    * Name of the blob which contains data for this backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blobName?: string;
   /**
    * Name of this backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly namePropertiesName?: string;
   /**
    * Backup status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: BackupItemStatus;
   /**
    * Size of the backup in bytes.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sizeInBytes?: number;
   /**
    * Timestamp of the backup creation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly created?: Date;
   /**
    * Details regarding this backup. Might contain an error message.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly log?: string;
   /**
    * List of databases included in the backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databases?: DatabaseBackupSetting[];
   /**
    * True if this backup has been created due to a schedule being triggered.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly scheduled?: boolean;
   /**
    * Timestamp of a last restore operation which used this backup.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastRestoreTimeStamp?: Date;
   /**
    * Timestamp when this backup finished.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly finishedTimeStamp?: Date;
   /**
    * Unique correlation identifier. Please use this along with the timestamp while communicating with Azure support.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly correlationId?: string;
   /**
    * Size of the original web app which has been backed up.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly websiteSizeInBytes?: number;
 };
@@ -6056,6 +6362,7 @@ export type SiteConfigResource = ProxyOnlyResource & {
   connectionStrings?: ConnStringInfo[];
   /**
    * Site MachineKey.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly machineKey?: SiteMachineKey;
   /**
@@ -6453,10 +6760,12 @@ export type SlotConfigNamesResource = ProxyOnlyResource & {
 export type SiteConfigurationSnapshotInfo = ProxyOnlyResource & {
   /**
    * The time the snapshot was taken.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly time?: Date;
   /**
    * The id of the snapshot
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly snapshotId?: number;
 };
@@ -6555,22 +6864,27 @@ export type Deployment = ProxyOnlyResource & {
 export type MSDeployStatus = ProxyOnlyResource & {
   /**
    * Username of deployer
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deployer?: string;
   /**
    * Provisioning state
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: MSDeployProvisioningState;
   /**
    * Start time of deploy operation
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * End time of deploy operation
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
   /**
    * Whether the deployment operation has completed
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly complete?: boolean;
 };
@@ -6619,6 +6933,7 @@ export type MSDeploy = ProxyOnlyResource & {
 export type MSDeployLog = ProxyOnlyResource & {
   /**
    * List of log entry messages
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly entries?: MSDeployLogEntry[];
 };
@@ -6733,6 +7048,7 @@ export type HostNameBinding = ProxyOnlyResource & {
   thumbprint?: string;
   /**
    * Virtual IP address assigned to the hostname if IP based SSL is enabled.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualIP?: string;
 };
@@ -6795,6 +7111,7 @@ export type RelayServiceConnectionEntity = ProxyOnlyResource & {
 export type SiteInstance = ProxyOnlyResource & {
   /**
    * Name of instance.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly siteInstanceName?: string;
 };
@@ -6825,6 +7142,7 @@ export type WebSiteInstanceStatus = ProxyOnlyResource & {
 export type ProcessThreadInfo = ProxyOnlyResource & {
   /**
    * Site extension ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly identifier?: number;
   /**
@@ -6929,6 +7247,7 @@ export type ProcessModuleInfo = ProxyOnlyResource & {
 export type ProcessInfo = ProxyOnlyResource & {
   /**
    * ARM Identifier for deployment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly identifier?: number;
   /**
@@ -7101,6 +7420,7 @@ export type StorageMigrationOptions = ProxyOnlyResource & {
 export type StorageMigrationResponse = ProxyOnlyResource & {
   /**
    * When server starts the migration process, it will return an operation ID identifying that particular migration operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationId?: string;
 };
@@ -7125,14 +7445,17 @@ export type MigrateMySqlRequest = ProxyOnlyResource & {
 export type MigrateMySqlStatus = ProxyOnlyResource & {
   /**
    * Status of the migration task.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly migrationOperationStatus?: OperationStatus;
   /**
    * Operation ID for the migration task.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationId?: string;
   /**
    * True if the web app has in app MySql enabled
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly localMySqlEnabled?: boolean;
 };
@@ -7184,6 +7507,7 @@ export type VnetInfo = ProxyOnlyResource & {
   vnetResourceId?: string;
   /**
    * The client certificate thumbprint.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly certThumbprint?: string;
   /**
@@ -7193,10 +7517,12 @@ export type VnetInfo = ProxyOnlyResource & {
   certBlob?: string;
   /**
    * The routes that this Virtual Network connection uses.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly routes?: VnetRoute[];
   /**
    * <code>true</code> if a resync is required; otherwise, <code>false</code>.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resyncRequired?: boolean;
   /**
@@ -7215,18 +7541,22 @@ export type VnetInfo = ProxyOnlyResource & {
 export type NetworkFeatures = ProxyOnlyResource & {
   /**
    * The Virtual Network name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualNetworkName?: string;
   /**
    * The Virtual Network summary view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualNetworkConnection?: VnetInfo;
   /**
    * The Hybrid Connections summary view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hybridConnections?: RelayServiceConnectionEntity[];
   /**
    * The Hybrid Connection V2 (Service Bus) view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hybridConnectionsV2?: HybridConnection[];
 };
@@ -7307,6 +7637,7 @@ export type PublicCertificate = ProxyOnlyResource & {
   publicCertificateLocation?: PublicCertificateLocation;
   /**
    * Certificate Thumbprint
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly thumbprint?: string;
 };
@@ -7454,6 +7785,9 @@ export type SiteExtensionInfo = ProxyOnlyResource & {
  * Private Endpoint Connection ARM resource.
  */
 export type PrivateEndpointConnectionResource = ProxyOnlyResource & {
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningState?: string;
   /**
    * PrivateEndpoint of a remote private endpoint connection
@@ -7481,30 +7815,37 @@ export type PrivateLinkConnectionApprovalRequestResource = ProxyOnlyResource & {
 export type SlotDifference = ProxyOnlyResource & {
   /**
    * Level of the difference: Information, Warning or Error.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly level?: string;
   /**
    * The type of the setting: General, AppSetting or ConnectionString.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly settingType?: string;
   /**
    * Rule that describes how to process the setting difference during a slot swap.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diffRule?: string;
   /**
    * Name of the setting.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly settingName?: string;
   /**
    * Value of the setting in the current slot.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly valueInCurrentSlot?: string;
   /**
    * Value of the setting in the target slot.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly valueInTargetSlot?: string;
   /**
    * Description of the setting difference.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
 };
@@ -7515,6 +7856,7 @@ export type SlotDifference = ProxyOnlyResource & {
 export type Snapshot = ProxyOnlyResource & {
   /**
    * The time the snapshot was taken.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly time?: string;
 };
@@ -7705,6 +8047,7 @@ export type WebJob = ProxyOnlyResource & {
 export type StaticSitePatchResource = ProxyOnlyResource & {
   /**
    * The default autogenerated hostname for the static site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultHostname?: string;
   /**
@@ -7717,6 +8060,7 @@ export type StaticSitePatchResource = ProxyOnlyResource & {
   branch?: string;
   /**
    * The custom domains associated with this static site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly customDomains?: string[];
   /**
@@ -7735,14 +8079,17 @@ export type StaticSitePatchResource = ProxyOnlyResource & {
 export type StaticSiteUserARMResource = ProxyOnlyResource & {
   /**
    * The identity provider for the static site user.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provider?: string;
   /**
    * The user id for the static site user.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly userId?: string;
   /**
    * The display name for the static site user.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
@@ -7757,30 +8104,37 @@ export type StaticSiteUserARMResource = ProxyOnlyResource & {
 export type StaticSiteBuildARMResource = ProxyOnlyResource & {
   /**
    * An identifier for the static site build.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly buildId?: string;
   /**
    * The source branch.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sourceBranch?: string;
   /**
    * The title of a pull request that a static site build is related to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly pullRequestTitle?: string;
   /**
    * The hostname for a static site build.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostname?: string;
   /**
    * When this build was created.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdTimeUtc?: Date;
   /**
    * When this build was updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastUpdatedOn?: Date;
   /**
    * The status of the static site build.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: BuildStatus;
 };
@@ -7791,10 +8145,12 @@ export type StaticSiteBuildARMResource = ProxyOnlyResource & {
 export type StaticSiteFunctionOverviewARMResource = ProxyOnlyResource & {
   /**
    * The name for the function
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly functionName?: string;
   /**
    * The trigger type of the function
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly triggerType?: TriggerTypes;
 };
@@ -7831,10 +8187,12 @@ export type StaticSiteUserInvitationRequestResource = ProxyOnlyResource & {
 export type StaticSiteUserInvitationResponseResource = ProxyOnlyResource & {
   /**
    * The expiration time of the invitation
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly expiresOn?: Date;
   /**
    * The url for the invitation link
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly invitationUrl?: string;
 };
@@ -7845,10 +8203,12 @@ export type StaticSiteUserInvitationResponseResource = ProxyOnlyResource & {
 export type StaticSiteCustomDomainOverviewARMResource = ProxyOnlyResource & {
   /**
    * The domain name for the static site custom domain.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domainName?: string;
   /**
    * The date and time on which the custom domain was created for the static site.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly createdOn?: Date;
 };
@@ -7881,10 +8241,12 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
   location?: string;
   /**
    * Provisioning state of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
   /**
    * Current status of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: HostingEnvironmentStatus;
   /**
@@ -7925,18 +8287,22 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
   ipsslAddressCount?: number;
   /**
    * Edition of the metadata database for the App Service Environment, e.g. "Standard".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseEdition?: string;
   /**
    * Service objective of the metadata database for the App Service Environment, e.g. "S0".
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseServiceObjective?: string;
   /**
    * Number of upgrade domains of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly upgradeDomains?: number;
   /**
    * Subscription of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscriptionId?: string;
   /**
@@ -7945,30 +8311,37 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
   dnsSuffix?: string;
   /**
    * Last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAction?: string;
   /**
    * Result of the last deployment action on the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastActionResult?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for front-ends.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedMultiSizes?: string;
   /**
    * List of comma separated strings describing which VM sizes are allowed for workers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly allowedWorkerSizes?: string;
   /**
    * Maximum number of VMs in the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximumNumberOfMachines?: number;
   /**
    * Description of IP SSL mapping for the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vipMappings?: VirtualIPMapping[];
   /**
    * Current total, used, and available worker capacities.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentCapacities?: StampCapacity[];
   /**
@@ -7977,14 +8350,17 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
   networkAccessControlList?: NetworkAccessControlEntry[];
   /**
    * True/false indicating whether the App Service Environment is healthy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentIsHealthy?: boolean;
   /**
    * Detailed message about with results of the last check of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly environmentStatus?: string;
   /**
    * Resource group of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
@@ -7993,6 +8369,7 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
   frontEndScaleFactor?: number;
   /**
    * Default Scale Factor for FrontEnds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultFrontEndScaleFactor?: number;
   /**
@@ -8079,6 +8456,7 @@ export type WorkerPoolResource = ProxyOnlyResource & {
   workerCount?: number;
   /**
    * Names of all instances in the worker pool (read only).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceNames?: string[];
 };
@@ -8089,22 +8467,27 @@ export type WorkerPoolResource = ProxyOnlyResource & {
 export type ResourceMetricDefinition = ProxyOnlyResource & {
   /**
    * Unit of the metric.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
   /**
    * Primary aggregation type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primaryAggregationType?: string;
   /**
    * List of time grains supported for the metric together with retention period.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly metricAvailabilities?: ResourceMetricAvailability[];
   /**
    * Resource URI.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceUri?: string;
   /**
    * Resource metric definition properties.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: { [propertyName: string]: string };
 };
@@ -8115,34 +8498,42 @@ export type ResourceMetricDefinition = ProxyOnlyResource & {
 export type Usage = ProxyOnlyResource & {
   /**
    * Friendly name shown in the UI.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * Name of the quota resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceName?: string;
   /**
    * Units of measurement for the quota resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
   /**
    * The current value of the resource counter.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentValue?: number;
   /**
    * The resource limit.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly limit?: number;
   /**
    * Next reset time for the resource counter.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextResetTime?: Date;
   /**
    * Compute mode used for this usage.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly computeMode?: ComputeModeOptions;
   /**
    * Site mode used for this usage.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly siteMode?: string;
 };
@@ -8157,10 +8548,12 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
   workerTierName?: string;
   /**
    * App Service plan status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: StatusOptions;
   /**
    * App Service plan subscription.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscription?: string;
   /**
@@ -8169,10 +8562,12 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
   hostingEnvironmentProfile?: HostingEnvironmentProfile;
   /**
    * Maximum number of instances that can be assigned to this App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximumNumberOfWorkers?: number;
   /**
    * Geographical location for the App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly geoRegion?: string;
   /**
@@ -8186,6 +8581,7 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
   maximumElasticWorkerCount?: number;
   /**
    * Number of apps assigned to this App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly numberOfSites?: number;
   /**
@@ -8202,6 +8598,7 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
   freeOfferExpirationTime?: Date;
   /**
    * Resource group of the App Service plan.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceGroup?: string;
   /**
@@ -8226,6 +8623,7 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
   targetWorkerSizeId?: number;
   /**
    * Provisioning state of the App Service Environment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
 };
@@ -8236,10 +8634,12 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
 export type HybridConnectionKey = ProxyOnlyResource & {
   /**
    * The name of the send key.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sendKeyName?: string;
   /**
    * The value of the send key.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sendKeyValue?: string;
 };
@@ -8250,10 +8650,12 @@ export type HybridConnectionKey = ProxyOnlyResource & {
 export type HybridConnectionLimits = ProxyOnlyResource & {
   /**
    * The current number of Hybrid Connections.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly current?: number;
   /**
    * The maximum number of Hybrid Connections allowed.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximum?: number;
 };

@@ -74,26 +74,32 @@ export interface LocationListResult {
 export interface Location {
   /**
    * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The subscription ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscriptionId?: string;
   /**
    * The location name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The display name of the location.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * The latitude of the location.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly latitude?: string;
   /**
    * The longitude of the location.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly longitude?: string;
 }
@@ -104,22 +110,27 @@ export interface Location {
 export interface Subscription {
   /**
    * The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The subscription ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subscriptionId?: string;
   /**
    * The subscription display name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * The subscription tenant ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
    * The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: SubscriptionState;
   /**
@@ -142,14 +153,17 @@ export interface Subscription {
 export interface SubscriptionPolicies {
   /**
    * The subscription location placement ID. The ID indicates which regions are visible for a subscription. For example, a subscription with a location placement Id of Public_2014-09-01 has access to Azure public regions.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locationPlacementId?: string;
   /**
    * The subscription quota ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly quotaId?: string;
   /**
    * The subscription spending limit.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly spendingLimit?: SpendingLimit;
 }
@@ -160,6 +174,7 @@ export interface SubscriptionPolicies {
 export interface ManagedByTenant {
   /**
    * The tenant ID of the managing tenant. This is a GUID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
 }
@@ -198,30 +213,37 @@ export interface TenantListResult {
 export interface TenantIdDescription {
   /**
    * The fully qualified ID of the tenant. For example, /tenants/00000000-0000-0000-0000-000000000000.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The tenant ID. For example, 00000000-0000-0000-0000-000000000000.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
    * The tenant category.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantCategory?: TenantCategory;
   /**
    * Country/region name of the address for the tenant.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly country?: string;
   /**
    * Country/region abbreviation for the tenant.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly countryCode?: string;
   /**
    * The display name of the tenant.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
   /**
    * The list of domains for the tenant.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly domains?: string[];
 }

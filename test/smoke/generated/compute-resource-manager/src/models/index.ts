@@ -14,6 +14,7 @@ import * as coreHttp from "@azure/core-http";
 export interface ComputeOperationListResult {
   /**
    * The list of compute operations
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: ComputeOperationValue[];
 }
@@ -24,26 +25,32 @@ export interface ComputeOperationListResult {
 export interface ComputeOperationValue {
   /**
    * The origin of the compute operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly origin?: string;
   /**
    * The name of the compute operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The display name of the compute operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operation?: string;
   /**
    * The display name of the resource the operation applies to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resource?: string;
   /**
    * The description of the operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly description?: string;
   /**
    * The resource provider for the operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provider?: string;
 }
@@ -105,14 +112,17 @@ export interface Sku {
 export interface Resource {
   /**
    * Resource Id
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -206,6 +216,7 @@ export interface ProximityPlacementGroupListResult {
 export interface SubResourceReadOnly {
   /**
    * Resource Id
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
 }
@@ -230,6 +241,7 @@ export interface DedicatedHostGroupListResult {
 export interface DedicatedHostInstanceView {
   /**
    * Specifies the unique id of the dedicated physical machine on which the dedicated host resides.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly assetId?: string;
   /**
@@ -382,6 +394,7 @@ export interface OSDiskImage {
 export interface DataDiskImage {
   /**
    * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lun?: number;
 }
@@ -676,10 +689,12 @@ export interface DataDisk {
   toBeDetached?: boolean;
   /**
    * Specifies the Read-Write IOPS for the managed disk when StorageAccountType is UltraSSD_LRS. Returned only for VirtualMachine ScaleSet VM disks. Can be updated only via updates to the VirtualMachine Scale Set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diskIopsReadWrite?: number;
   /**
    * Specifies the bandwidth in MB per second for the managed disk when StorageAccountType is UltraSSD_LRS. Returned only for VirtualMachine ScaleSet VM disks. Can be updated only via updates to the VirtualMachine Scale Set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diskMBpsReadWrite?: number;
 }
@@ -1074,14 +1089,17 @@ export interface DiskInstanceView {
 export interface BootDiagnosticsInstanceView {
   /**
    * The console screenshot blob URI.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly consoleScreenshotBlobUri?: string;
   /**
    * The Linux serial console log blob Uri.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serialConsoleLogBlobUri?: string;
   /**
    * The boot diagnostics status information for the VM. <br><br> NOTE: It will be set only if there are errors encountered in enabling boot diagnostics.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: InstanceViewStatus;
 }
@@ -1092,10 +1110,12 @@ export interface BootDiagnosticsInstanceView {
 export interface VirtualMachineIdentity {
   /**
    * The principal id of virtual machine identity. This property will only be provided for a system assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant id associated with the virtual machine. This property will only be provided for a system assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
@@ -1113,10 +1133,12 @@ export interface VirtualMachineIdentity {
 export interface Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassignedidentitiesAdditionalproperties {
   /**
    * The principal id of user assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The client id of user assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
 }
@@ -1683,10 +1705,12 @@ export interface ScaleInPolicy {
 export interface VirtualMachineScaleSetIdentity {
   /**
    * The principal id of virtual machine scale set identity. This property will only be provided for a system assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant id associated with the virtual machine scale set. This property will only be provided for a system assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
@@ -1704,10 +1728,12 @@ export interface VirtualMachineScaleSetIdentity {
 export interface ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUserassignedidentitiesAdditionalproperties {
   /**
    * The principal id of user assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The client id of user assigned identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
 }
@@ -1878,10 +1904,12 @@ export interface VirtualMachineScaleSetVMInstanceRequiredIDs {
 export interface VirtualMachineScaleSetInstanceView {
   /**
    * The instance view status summary for the virtual machine scale set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachine?: VirtualMachineScaleSetInstanceViewStatusesSummary;
   /**
    * The extensions information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly extensions?: VirtualMachineScaleSetVMExtensionsSummary[];
   /**
@@ -1890,6 +1918,7 @@ export interface VirtualMachineScaleSetInstanceView {
   statuses?: InstanceViewStatus[];
   /**
    * The orchestration services information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly orchestrationServices?: OrchestrationServiceSummary[];
 }
@@ -1900,6 +1929,7 @@ export interface VirtualMachineScaleSetInstanceView {
 export interface VirtualMachineScaleSetInstanceViewStatusesSummary {
   /**
    * The extensions information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusesSummary?: VirtualMachineStatusCodeCount[];
 }
@@ -1910,10 +1940,12 @@ export interface VirtualMachineScaleSetInstanceViewStatusesSummary {
 export interface VirtualMachineStatusCodeCount {
   /**
    * The instance view status code.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * The number of instances having a particular status code.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly count?: number;
 }
@@ -1924,10 +1956,12 @@ export interface VirtualMachineStatusCodeCount {
 export interface VirtualMachineScaleSetVMExtensionsSummary {
   /**
    * The extension name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The extensions information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statusesSummary?: VirtualMachineStatusCodeCount[];
 }
@@ -1938,10 +1972,12 @@ export interface VirtualMachineScaleSetVMExtensionsSummary {
 export interface OrchestrationServiceSummary {
   /**
    * The name of the service.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceName?: OrchestrationServiceNames;
   /**
    * The current state of the service.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly serviceState?: OrchestrationServiceState;
 }
@@ -2008,14 +2044,17 @@ export interface VirtualMachineScaleSetListSkusResult {
 export interface VirtualMachineScaleSetSku {
   /**
    * The type of resource the sku applies to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceType?: string;
   /**
    * The Sku.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
   /**
    * Specifies the number of virtual machines in the scale set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capacity?: VirtualMachineScaleSetSkuCapacity;
 }
@@ -2026,18 +2065,22 @@ export interface VirtualMachineScaleSetSku {
 export interface VirtualMachineScaleSetSkuCapacity {
   /**
    * The minimum capacity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minimum?: number;
   /**
    * The maximum capacity that can be set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximum?: number;
   /**
    * The default capacity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultCapacity?: number;
   /**
    * The scale type applicable to the sku.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly scaleType?: VirtualMachineScaleSetSkuScaleType;
 }
@@ -2062,14 +2105,17 @@ export interface VirtualMachineScaleSetListOSUpgradeHistory {
 export interface UpgradeOperationHistoricalStatusInfo {
   /**
    * Information about the properties of the upgrade operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: UpgradeOperationHistoricalStatusInfoProperties;
   /**
    * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * Resource location
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
 }
@@ -2080,26 +2126,32 @@ export interface UpgradeOperationHistoricalStatusInfo {
 export interface UpgradeOperationHistoricalStatusInfoProperties {
   /**
    * Information about the overall status of the upgrade operation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly runningStatus?: UpgradeOperationHistoryStatus;
   /**
    * Counts of the VMs in each state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly progress?: RollingUpgradeProgressInfo;
   /**
    * Error Details for this upgrade if there are any.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly error?: ApiError;
   /**
    * Invoker of the Upgrade Operation
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startedBy?: UpgradeOperationInvoker;
   /**
    * Image Reference details
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly targetImageReference?: ImageReference;
   /**
    * Information about OS rollback if performed
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rollbackInfo?: RollbackStatusInfo;
 }
@@ -2110,14 +2162,17 @@ export interface UpgradeOperationHistoricalStatusInfoProperties {
 export interface UpgradeOperationHistoryStatus {
   /**
    * Code indicating the current status of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: UpgradeState;
   /**
    * Start time of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * End time of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
 }
@@ -2128,18 +2183,22 @@ export interface UpgradeOperationHistoryStatus {
 export interface RollingUpgradeProgressInfo {
   /**
    * The number of instances that have been successfully upgraded.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly successfulInstanceCount?: number;
   /**
    * The number of instances that have failed to be upgraded successfully.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failedInstanceCount?: number;
   /**
    * The number of instances that are currently being upgraded.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inProgressInstanceCount?: number;
   /**
    * The number of instances that have not yet begun to be upgraded.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly pendingInstanceCount?: number;
 }
@@ -2150,14 +2209,17 @@ export interface RollingUpgradeProgressInfo {
 export interface RollbackStatusInfo {
   /**
    * The number of instances which have been successfully rolled back.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly successfullyRolledbackInstanceCount?: number;
   /**
    * The number of instances which failed to rollback.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failedRolledbackInstanceCount?: number;
   /**
    * Error details if OS rollback failed.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rollbackError?: ApiError;
 }
@@ -2168,18 +2230,22 @@ export interface RollbackStatusInfo {
 export interface RollingUpgradeRunningStatus {
   /**
    * Code indicating the current status of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: RollingUpgradeStatusCode;
   /**
    * Start time of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly startTime?: Date;
   /**
    * The last action performed on the rolling upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAction?: RollingUpgradeActionType;
   /**
    * Last action time of the upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastActionTime?: Date;
 }
@@ -2190,10 +2256,12 @@ export interface RollingUpgradeRunningStatus {
 export interface RecoveryWalkResponse {
   /**
    * Whether the recovery walk was performed
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly walkPerformed?: boolean;
   /**
    * The next update domain that needs to be walked. Null means walk spanning all update domains has been completed
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextPlatformUpdateDomain?: number;
 }
@@ -2253,6 +2321,7 @@ export interface VirtualMachineScaleSetVMInstanceView {
   extensions?: VirtualMachineExtensionInstanceView[];
   /**
    * The health status for the VM.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vmHealth?: VirtualMachineHealthStatus;
   /**
@@ -2275,6 +2344,7 @@ export interface VirtualMachineScaleSetVMInstanceView {
 export interface VirtualMachineHealthStatus {
   /**
    * The health status information for the VM.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: InstanceViewStatus;
 }
@@ -2353,6 +2423,7 @@ export interface LogAnalyticsInputBase {
 export interface LogAnalyticsOperationResult {
   /**
    * LogAnalyticsOutput
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: LogAnalyticsOutput;
 }
@@ -2363,6 +2434,7 @@ export interface LogAnalyticsOperationResult {
 export interface LogAnalyticsOutput {
   /**
    * Output file Uri path to blob container.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly output?: string;
 }
@@ -2488,54 +2560,67 @@ export interface ResourceSkusResult {
 export interface ResourceSku {
   /**
    * The type of resource the SKU applies to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resourceType?: string;
   /**
    * The name of SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Specifies the tier of virtual machines in a scale set.<br /><br /> Possible Values:<br /><br /> **Standard**<br /><br /> **Basic**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tier?: string;
   /**
    * The Size of the SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly size?: string;
   /**
    * The Family of this particular SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly family?: string;
   /**
    * The Kind of resources that are supported in this SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
   /**
    * Specifies the number of virtual machines in the scale set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capacity?: ResourceSkuCapacity;
   /**
    * The set of locations that the SKU is available.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locations?: string[];
   /**
    * A list of locations and availability zones in those locations where the SKU is available.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locationInfo?: ResourceSkuLocationInfo[];
   /**
    * The api versions that support this SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly apiVersions?: string[];
   /**
    * Metadata for retrieving price info.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly costs?: ResourceSkuCosts[];
   /**
    * A name value pair to describe the capability.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capabilities?: ResourceSkuCapabilities[];
   /**
    * The restrictions because of which SKU cannot be used. This is empty if there are no restrictions.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restrictions?: ResourceSkuRestrictions[];
 }
@@ -2546,18 +2631,22 @@ export interface ResourceSku {
 export interface ResourceSkuCapacity {
   /**
    * The minimum capacity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly minimum?: number;
   /**
    * The maximum capacity that can be set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maximum?: number;
   /**
    * The default capacity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly default?: number;
   /**
    * The scale type applicable to the sku.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly scaleType?: ResourceSkuCapacityScaleType;
 }
@@ -2565,14 +2654,17 @@ export interface ResourceSkuCapacity {
 export interface ResourceSkuLocationInfo {
   /**
    * Location of the SKU
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
    * List of availability zones where the SKU is supported.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly zones?: string[];
   /**
    * Details of capabilities available to a SKU in specific zones.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly zoneDetails?: ResourceSkuZoneDetails[];
 }
@@ -2583,10 +2675,12 @@ export interface ResourceSkuLocationInfo {
 export interface ResourceSkuZoneDetails {
   /**
    * The set of zones that the SKU is available in with the specified capabilities.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string[];
   /**
    * A list of capabilities that are available for the SKU in the specified list of zones.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly capabilities?: ResourceSkuCapabilities[];
 }
@@ -2597,10 +2691,12 @@ export interface ResourceSkuZoneDetails {
 export interface ResourceSkuCapabilities {
   /**
    * An invariant to describe the feature.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * An invariant if the feature is measured by quantity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly value?: string;
 }
@@ -2611,14 +2707,17 @@ export interface ResourceSkuCapabilities {
 export interface ResourceSkuCosts {
   /**
    * Used for querying price from commerce.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly meterID?: string;
   /**
    * The multiplier is needed to extend the base metered cost.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly quantity?: number;
   /**
    * An invariant to show the extended unit.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly extendedUnit?: string;
 }
@@ -2629,18 +2728,22 @@ export interface ResourceSkuCosts {
 export interface ResourceSkuRestrictions {
   /**
    * The type of restrictions.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: ResourceSkuRestrictionsType;
   /**
    * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly values?: string[];
   /**
    * The information about the restriction where the SKU cannot be used.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restrictionInfo?: ResourceSkuRestrictionInfo;
   /**
    * The reason for restriction.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reasonCode?: ResourceSkuRestrictionsReasonCode;
 }
@@ -2648,10 +2751,12 @@ export interface ResourceSkuRestrictions {
 export interface ResourceSkuRestrictionInfo {
   /**
    * Locations where the SKU is restricted
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly locations?: string[];
   /**
    * List of availability zones where the SKU is restricted.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly zones?: string[];
 }
@@ -2666,6 +2771,7 @@ export interface DiskSku {
   name?: DiskStorageAccountTypes;
   /**
    * The sku tier.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tier?: string;
 }
@@ -2700,6 +2806,7 @@ export interface CreationData {
   sourceResourceId?: string;
   /**
    * If this field is set, this is the unique id identifying the source of this resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sourceUniqueId?: string;
   /**
@@ -2809,6 +2916,7 @@ export interface Encryption {
 export interface ShareInfoElement {
   /**
    * A relative URI containing the ID of the VM that has the disk attached.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vmUri?: string;
 }
@@ -2894,6 +3002,7 @@ export interface GrantAccessData {
 export interface AccessUri {
   /**
    * A SAS uri for accessing a disk.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly accessSAS?: string;
 }
@@ -2908,6 +3017,7 @@ export interface SnapshotSku {
   name?: SnapshotStorageAccountTypes;
   /**
    * The sku tier.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tier?: string;
 }
@@ -2966,10 +3076,12 @@ export interface EncryptionSetIdentity {
   type?: DiskEncryptionSetIdentityType;
   /**
    * The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
 }
@@ -3008,6 +3120,7 @@ export interface DiskEncryptionSetList {
 export interface GalleryIdentifier {
   /**
    * The unique name of the Shared Image Gallery. This name is generated automatically by Azure.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly uniqueName?: string;
 }
@@ -3018,14 +3131,17 @@ export interface GalleryIdentifier {
 export interface UpdateResourceDefinition {
   /**
    * Resource Id
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -3126,6 +3242,7 @@ export interface GalleryArtifactPublishingProfileBase {
   excludeFromLatest?: boolean;
   /**
    * The timestamp for when the gallery Image Version is published.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly publishedDate?: Date;
   /**
@@ -3218,6 +3335,7 @@ export interface GalleryArtifactVersionSource {
 export interface GalleryDiskImage {
   /**
    * This property indicates the size of the VHD to be created.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sizeInGB?: number;
   /**
@@ -3236,10 +3354,12 @@ export interface GalleryDiskImage {
 export interface ReplicationStatus {
   /**
    * This is the aggregated replication status based on all the regional replication status flags.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly aggregatedState?: AggregatedReplicationState;
   /**
    * This is a summary of replication status for each region.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly summary?: RegionalReplicationStatus[];
 }
@@ -3250,18 +3370,22 @@ export interface ReplicationStatus {
 export interface RegionalReplicationStatus {
   /**
    * The region to which the gallery Image Version is being replicated to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly region?: string;
   /**
    * This is the regional replication state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: ReplicationState;
   /**
    * The details of the replication status.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: string;
   /**
    * It indicates progress of the replication job.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly progress?: number;
 }
@@ -3412,6 +3536,7 @@ export interface ContainerServiceMasterProfile {
   dnsPrefix: string;
   /**
    * FQDN for the master.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fqdn?: string;
 }
@@ -3438,6 +3563,7 @@ export interface ContainerServiceAgentPoolProfile {
   dnsPrefix: string;
   /**
    * FQDN for the agent pool.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fqdn?: string;
 }
@@ -3507,6 +3633,7 @@ export interface ContainerServiceVMDiagnostics {
   enabled: boolean;
   /**
    * The URI of the storage account where diagnostics are stored.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly storageUri?: string;
 }
@@ -3578,6 +3705,7 @@ export type ImageReference = SubResource & {
   version?: string;
   /**
    * Specifies in decimal numbers, the version of platform image or marketplace image used to create the virtual machine. This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly exactVersion?: string;
 };
@@ -3612,18 +3740,22 @@ export type NetworkInterfaceReference = SubResource & {
 export type VirtualMachineCaptureResult = SubResource & {
   /**
    * the schema of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly schema?: string;
   /**
    * the version of the content
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly contentVersion?: string;
   /**
    * parameters of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly parameters?: any;
   /**
    * a list of resource items of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resources?: any[];
 };
@@ -3811,6 +3943,7 @@ export type AvailabilitySet = Resource & {
   proximityPlacementGroup?: SubResource;
   /**
    * The resource status information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statuses?: InstanceViewStatus[];
 };
@@ -3825,14 +3958,17 @@ export type ProximityPlacementGroup = Resource & {
   proximityPlacementGroupType?: ProximityPlacementGroupType;
   /**
    * A list of references to all virtual machines in the proximity placement group.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachines?: SubResourceWithColocationStatus[];
   /**
    * A list of references to all virtual machine scale sets in the proximity placement group.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachineScaleSets?: SubResourceWithColocationStatus[];
   /**
    * A list of references to all availability sets in the proximity placement group.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly availabilitySets?: SubResourceWithColocationStatus[];
   /**
@@ -3855,6 +3991,7 @@ export type DedicatedHostGroup = Resource & {
   platformFaultDomainCount?: number;
   /**
    * A list of references to all dedicated hosts in the dedicated host group.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hosts?: SubResourceReadOnly[];
 };
@@ -3877,10 +4014,12 @@ export type DedicatedHost = Resource & {
   autoReplaceOnFailure?: boolean;
   /**
    * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostId?: string;
   /**
    * A list of references to all virtual machines in the Dedicated Host.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachines?: SubResourceReadOnly[];
   /**
@@ -3889,14 +4028,17 @@ export type DedicatedHost = Resource & {
   licenseType?: DedicatedHostLicenseTypes;
   /**
    * The date when the host was first provisioned.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningTime?: Date;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The dedicated host instance view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: DedicatedHostInstanceView;
 };
@@ -3971,6 +4113,7 @@ export type VirtualMachineExtension = Resource & {
   protectedSettings?: any;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -3989,6 +4132,7 @@ export type VirtualMachine = Resource & {
   plan?: Plan;
   /**
    * The virtual machine child extension resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resources?: VirtualMachineExtension[];
   /**
@@ -4053,10 +4197,12 @@ export type VirtualMachine = Resource & {
   host?: SubResource;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The virtual machine instance view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: VirtualMachineInstanceView;
   /**
@@ -4065,6 +4211,7 @@ export type VirtualMachine = Resource & {
   licenseType?: string;
   /**
    * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vmId?: string;
 };
@@ -4083,6 +4230,7 @@ export type Image = Resource & {
   storageProfile?: ImageStorageProfile;
   /**
    * The provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4125,6 +4273,7 @@ export type VirtualMachineScaleSet = Resource & {
   virtualMachineProfile?: VirtualMachineScaleSetVMProfile;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4137,6 +4286,7 @@ export type VirtualMachineScaleSet = Resource & {
   doNotRunExtensionsOnOverprovisionedVMs?: boolean;
   /**
    * Specifies the ID which uniquely identifies a Virtual Machine Scale Set.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly uniqueId?: string;
   /**
@@ -4171,18 +4321,22 @@ export type VirtualMachineScaleSet = Resource & {
 export type RollingUpgradeStatusInfo = Resource & {
   /**
    * The rolling upgrade policies applied for this upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly policy?: RollingUpgradePolicy;
   /**
    * Information about the current running state of the overall upgrade.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly runningStatus?: RollingUpgradeRunningStatus;
   /**
    * Information about the number of virtual machine instances in each upgrade state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly progress?: RollingUpgradeProgressInfo;
   /**
    * Error details for this upgrade, if there are any.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly error?: ApiError;
 };
@@ -4193,10 +4347,12 @@ export type RollingUpgradeStatusInfo = Resource & {
 export type VirtualMachineScaleSetVM = Resource & {
   /**
    * The virtual machine instance ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceId?: string;
   /**
    * The virtual machine SKU.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sku?: Sku;
   /**
@@ -4205,22 +4361,27 @@ export type VirtualMachineScaleSetVM = Resource & {
   plan?: Plan;
   /**
    * The virtual machine child extension resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resources?: VirtualMachineExtension[];
   /**
    * The virtual machine zones.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly zones?: string[];
   /**
    * Specifies whether the latest model has been applied to the virtual machine.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly latestModelApplied?: boolean;
   /**
    * Azure VM unique ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vmId?: string;
   /**
    * The virtual machine instance view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: VirtualMachineScaleSetVMInstanceView;
   /**
@@ -4257,6 +4418,7 @@ export type VirtualMachineScaleSetVM = Resource & {
   availabilitySet?: SubResource;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4265,6 +4427,7 @@ export type VirtualMachineScaleSetVM = Resource & {
   licenseType?: string;
   /**
    * Specifies whether the model applied to the virtual machine is the model of the virtual machine scale set or the customized model for the virtual machine.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly modelDefinitionApplied?: string;
   /**
@@ -4279,10 +4442,12 @@ export type VirtualMachineScaleSetVM = Resource & {
 export type Disk = Resource & {
   /**
    * A relative URI containing the ID of the VM that has the disk attached.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedBy?: string;
   /**
    * List of relative URIs containing the IDs of the VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedByExtended?: string[];
   /**
@@ -4295,6 +4460,7 @@ export type Disk = Resource & {
   zones?: string[];
   /**
    * The time when the disk was created.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeCreated?: Date;
   /**
@@ -4315,10 +4481,12 @@ export type Disk = Resource & {
   diskSizeGB?: number;
   /**
    * The size of the disk in bytes. This field is read only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diskSizeBytes?: number;
   /**
    * Unique Guid identifying the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly uniqueId?: string;
   /**
@@ -4327,6 +4495,7 @@ export type Disk = Resource & {
   encryptionSettingsCollection?: EncryptionSettingsCollection;
   /**
    * The disk provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4347,6 +4516,7 @@ export type Disk = Resource & {
   diskMBpsReadOnly?: number;
   /**
    * The state of the disk.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diskState?: DiskState;
   /**
@@ -4359,6 +4529,7 @@ export type Disk = Resource & {
   maxShares?: number;
   /**
    * Details of the list of all VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly shareInfo?: ShareInfoElement[];
 };
@@ -4369,6 +4540,7 @@ export type Disk = Resource & {
 export type Snapshot = Resource & {
   /**
    * Unused. Always Null.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly managedBy?: string;
   /**
@@ -4377,6 +4549,7 @@ export type Snapshot = Resource & {
   sku?: SnapshotSku;
   /**
    * The time when the disk was created.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeCreated?: Date;
   /**
@@ -4397,10 +4570,12 @@ export type Snapshot = Resource & {
   diskSizeGB?: number;
   /**
    * The size of the disk in bytes. This field is read only.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly diskSizeBytes?: number;
   /**
    * Unique Guid identifying the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly uniqueId?: string;
   /**
@@ -4409,6 +4584,7 @@ export type Snapshot = Resource & {
   encryptionSettingsCollection?: EncryptionSettingsCollection;
   /**
    * The disk provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4435,10 +4611,12 @@ export type DiskEncryptionSet = Resource & {
   activeKey?: KeyVaultAndKeyReference;
   /**
    * A readonly collection of key vault keys previously used by this disk encryption set while a key rotation is in progress. It will be empty if there is no ongoing key rotation.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly previousKeys?: KeyVaultAndKeyReference[];
   /**
    * The disk encryption set provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
 };
@@ -4457,6 +4635,7 @@ export type Gallery = Resource & {
   identifier?: GalleryIdentifier;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryPropertiesProvisioningState;
 };
@@ -4515,6 +4694,7 @@ export type GalleryImage = Resource & {
   purchasePlan?: ImagePurchasePlan;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryImagePropertiesProvisioningState;
 };
@@ -4529,6 +4709,7 @@ export type GalleryImageVersion = Resource & {
   publishingProfile?: GalleryArtifactPublishingProfileBase;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
   /**
@@ -4537,6 +4718,7 @@ export type GalleryImageVersion = Resource & {
   storageProfile?: GalleryImageVersionStorageProfile;
   /**
    * This is the replication status of the gallery Image Version.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
 };
@@ -4581,10 +4763,12 @@ export type GalleryApplicationVersion = Resource & {
   publishingProfile?: GalleryApplicationVersionPublishingProfile;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
   /**
    * This is the replication status of the gallery Image Version.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
 };
@@ -4595,6 +4779,7 @@ export type GalleryApplicationVersion = Resource & {
 export type ContainerService = Resource & {
   /**
    * the current deployment or provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4657,6 +4842,7 @@ export type AvailabilitySetUpdate = UpdateResource & {
   proximityPlacementGroup?: SubResource;
   /**
    * The resource status information.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statuses?: InstanceViewStatus[];
 };
@@ -4675,6 +4861,7 @@ export type DedicatedHostGroupUpdate = UpdateResource & {
   platformFaultDomainCount?: number;
   /**
    * A list of references to all dedicated hosts in the dedicated host group.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hosts?: SubResourceReadOnly[];
 };
@@ -4693,10 +4880,12 @@ export type DedicatedHostUpdate = UpdateResource & {
   autoReplaceOnFailure?: boolean;
   /**
    * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly hostId?: string;
   /**
    * A list of references to all virtual machines in the Dedicated Host.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualMachines?: SubResourceReadOnly[];
   /**
@@ -4705,14 +4894,17 @@ export type DedicatedHostUpdate = UpdateResource & {
   licenseType?: DedicatedHostLicenseTypes;
   /**
    * The date when the host was first provisioned.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningTime?: Date;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The dedicated host instance view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: DedicatedHostInstanceView;
 };
@@ -4775,6 +4967,7 @@ export type ImageUpdate = UpdateResource & {
   storageProfile?: ImageStorageProfile;
   /**
    * The provisioning state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4853,10 +5046,12 @@ export type VirtualMachineUpdate = UpdateResource & {
   host?: SubResource;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
    * The virtual machine instance view.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: VirtualMachineInstanceView;
   /**
@@ -4865,6 +5060,7 @@ export type VirtualMachineUpdate = UpdateResource & {
   licenseType?: string;
   /**
    * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vmId?: string;
 };
@@ -4938,6 +5134,7 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
   name?: string;
   /**
    * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -4970,6 +5167,7 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
   protectedSettings?: any;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -4984,10 +5182,12 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
 export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
   /**
    * The name of the extension.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -5020,6 +5220,7 @@ export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
   protectedSettings?: any;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
   /**
@@ -5110,6 +5311,7 @@ export type GalleryUpdate = UpdateResourceDefinition & {
   identifier?: GalleryIdentifier;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryPropertiesProvisioningState;
 };
@@ -5168,6 +5370,7 @@ export type GalleryImageUpdate = UpdateResourceDefinition & {
   purchasePlan?: ImagePurchasePlan;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryImagePropertiesProvisioningState;
 };
@@ -5182,6 +5385,7 @@ export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
   publishingProfile?: GalleryArtifactPublishingProfileBase;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
   /**
@@ -5190,6 +5394,7 @@ export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
   storageProfile?: GalleryImageVersionStorageProfile;
   /**
    * This is the replication status of the gallery Image Version.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
 };
@@ -5234,10 +5439,12 @@ export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
   publishingProfile?: GalleryApplicationVersionPublishingProfile;
   /**
    * The provisioning state, which only appears in the response.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
   /**
    * This is the replication status of the gallery Image Version.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
 };

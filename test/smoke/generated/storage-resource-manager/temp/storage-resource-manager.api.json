@@ -2174,7 +2174,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!BlobRestoreStatus#failureReason:member",
-              "docComment": "/**\n * Failure reason when blob restore is failed.\n */\n",
+              "docComment": "/**\n * Failure reason when blob restore is failed. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2199,7 +2199,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!BlobRestoreStatus#parameters:member",
-              "docComment": "/**\n * Blob restore request parameters.\n */\n",
+              "docComment": "/**\n * Blob restore request parameters. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2225,7 +2225,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!BlobRestoreStatus#restoreId:member",
-              "docComment": "/**\n * Id for tracking blob restore request.\n */\n",
+              "docComment": "/**\n * Id for tracking blob restore request. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2250,7 +2250,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!BlobRestoreStatus#status:member",
-              "docComment": "/**\n * The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.\n */\n",
+              "docComment": "/**\n * The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2292,7 +2292,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!BlobServiceItems#value:member",
-              "docComment": "/**\n * List of blob services returned.\n */\n",
+              "docComment": "/**\n * List of blob services returned. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2632,7 +2632,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!CheckNameAvailabilityResult#message:member",
-              "docComment": "/**\n * Gets an error message explaining the Reason value in more detail.\n */\n",
+              "docComment": "/**\n * Gets an error message explaining the Reason value in more detail. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2657,7 +2657,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!CheckNameAvailabilityResult#nameAvailable:member",
-              "docComment": "/**\n * Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used.\n */\n",
+              "docComment": "/**\n * Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2682,7 +2682,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!CheckNameAvailabilityResult#reason:member",
-              "docComment": "/**\n * Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.\n */\n",
+              "docComment": "/**\n * Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3735,7 +3735,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!EncryptionScopeListResult#nextLink:member",
-              "docComment": "/**\n * Request URL that can be used to query next page of encryption scopes. Returned when total number of requested encryption scopes exceeds the maximum page size.\n */\n",
+              "docComment": "/**\n * Request URL that can be used to query next page of encryption scopes. Returned when total number of requested encryption scopes exceeds the maximum page size. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3760,7 +3760,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!EncryptionScopeListResult#value:member",
-              "docComment": "/**\n * List of encryption scopes requested.\n */\n",
+              "docComment": "/**\n * List of encryption scopes requested. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4147,7 +4147,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!EncryptionService#lastEnabledTime:member",
-              "docComment": "/**\n * Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.\n */\n",
+              "docComment": "/**\n * Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4309,7 +4309,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#blob:member",
-              "docComment": "/**\n * Gets the blob endpoint.\n */\n",
+              "docComment": "/**\n * Gets the blob endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4334,7 +4334,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#dfs:member",
-              "docComment": "/**\n * Gets the dfs endpoint.\n */\n",
+              "docComment": "/**\n * Gets the dfs endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4359,7 +4359,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#file:member",
-              "docComment": "/**\n * Gets the file endpoint.\n */\n",
+              "docComment": "/**\n * Gets the file endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4436,7 +4436,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#queue:member",
-              "docComment": "/**\n * Gets the queue endpoint.\n */\n",
+              "docComment": "/**\n * Gets the queue endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4461,7 +4461,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#table:member",
-              "docComment": "/**\n * Gets the table endpoint.\n */\n",
+              "docComment": "/**\n * Gets the table endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4486,7 +4486,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Endpoints#web:member",
-              "docComment": "/**\n * Gets the web endpoint.\n */\n",
+              "docComment": "/**\n * Gets the web endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4593,7 +4593,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!FileServiceItems#value:member",
-              "docComment": "/**\n * List of file services returned.\n */\n",
+              "docComment": "/**\n * List of file services returned. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5008,7 +5008,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!FileShareItems#nextLink:member",
-              "docComment": "/**\n * Request URL that can be used to query next page of shares. Returned when total number of requested shares exceed maximum page size.\n */\n",
+              "docComment": "/**\n * Request URL that can be used to query next page of shares. Returned when total number of requested shares exceed maximum page size. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5033,7 +5033,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!FileShareItems#value:member",
-              "docComment": "/**\n * List of file shares returned.\n */\n",
+              "docComment": "/**\n * List of file shares returned. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5487,7 +5487,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!GeoReplicationStats#canFailover:member",
-              "docComment": "/**\n * A boolean flag which indicates whether or not account failover is supported for the account.\n */\n",
+              "docComment": "/**\n * A boolean flag which indicates whether or not account failover is supported for the account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5512,7 +5512,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!GeoReplicationStats#lastSyncTime:member",
-              "docComment": "/**\n * All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.\n */\n",
+              "docComment": "/**\n * All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5538,7 +5538,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!GeoReplicationStats#status:member",
-              "docComment": "/**\n * The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.\n */\n",
+              "docComment": "/**\n * The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5630,7 +5630,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Identity#principalId:member",
-              "docComment": "/**\n * The principal ID of resource identity.\n */\n",
+              "docComment": "/**\n * The principal ID of resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5655,7 +5655,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Identity#tenantId:member",
-              "docComment": "/**\n * The tenant ID of resource.\n */\n",
+              "docComment": "/**\n * The tenant ID of resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5785,7 +5785,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ImmutabilityPolicyProperties#etag:member",
-              "docComment": "/**\n * ImmutabilityPolicy Etag.\n */\n",
+              "docComment": "/**\n * ImmutabilityPolicy Etag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5835,7 +5835,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ImmutabilityPolicyProperties#state:member",
-              "docComment": "/**\n * The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked.\n */\n",
+              "docComment": "/**\n * The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5861,7 +5861,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ImmutabilityPolicyProperties#updateHistory:member",
-              "docComment": "/**\n * The ImmutabilityPolicy update history of the blob container.\n */\n",
+              "docComment": "/**\n * The ImmutabilityPolicy update history of the blob container. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6098,7 +6098,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!KeyVaultProperties#currentVersionedKeyIdentifier:member",
-              "docComment": "/**\n * The object identifier of the current versioned Key Vault Key in use.\n */\n",
+              "docComment": "/**\n * The object identifier of the current versioned Key Vault Key in use. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6198,7 +6198,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!KeyVaultProperties#lastKeyRotationTimestamp:member",
-              "docComment": "/**\n * Timestamp of last rotation of the Key Vault Key.\n */\n",
+              "docComment": "/**\n * Timestamp of last rotation of the Key Vault Key. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6598,7 +6598,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!LegalHold#hasLegalHold:member",
-              "docComment": "/**\n * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.\n */\n",
+              "docComment": "/**\n * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6664,7 +6664,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!LegalHoldProperties#hasLegalHold:member",
-              "docComment": "/**\n * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.\n */\n",
+              "docComment": "/**\n * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6735,7 +6735,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ListAccountSasResponse#accountSasToken:member",
-              "docComment": "/**\n * List SAS credentials of storage account.\n */\n",
+              "docComment": "/**\n * List SAS credentials of storage account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6869,7 +6869,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ListContainerItems#nextLink:member",
-              "docComment": "/**\n * Request URL that can be used to query next page of containers. Returned when total number of requested containers exceed maximum page size.\n */\n",
+              "docComment": "/**\n * Request URL that can be used to query next page of containers. Returned when total number of requested containers exceed maximum page size. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6894,7 +6894,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ListContainerItems#value:member",
-              "docComment": "/**\n * List of blobs containers returned.\n */\n",
+              "docComment": "/**\n * List of blobs containers returned. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6940,7 +6940,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!ListServiceSasResponse#serviceSasToken:member",
-              "docComment": "/**\n * List service SAS credentials of specific resource.\n */\n",
+              "docComment": "/**\n * List service SAS credentials of specific resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8830,7 +8830,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!PrivateEndpoint#id:member",
-              "docComment": "/**\n * The ARM identifier for Private Endpoint\n */\n",
+              "docComment": "/**\n * The ARM identifier for Private Endpoint NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9484,7 +9484,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\n */\n",
+              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9509,7 +9509,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Resource#name:member",
-              "docComment": "/**\n * The name of the resource\n */\n",
+              "docComment": "/**\n * The name of the resource NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9534,7 +9534,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Resource#type:member",
-              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.\n */\n",
+              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9625,7 +9625,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!RestorePolicyProperties#lastEnabledTime:member",
-              "docComment": "/**\n * Returns the date and time the restore policy was last enabled.\n */\n",
+              "docComment": "/**\n * Returns the date and time the restore policy was last enabled. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9693,7 +9693,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Restriction#type:member",
-              "docComment": "/**\n * The type of restrictions. As of now only possible value for this is location.\n */\n",
+              "docComment": "/**\n * The type of restrictions. As of now only possible value for this is location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -9718,7 +9718,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Restriction#values:member",
-              "docComment": "/**\n * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.\n */\n",
+              "docComment": "/**\n * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10569,7 +10569,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Sku#tier:member",
-              "docComment": "/**\n * The SKU tier. This is based on the SKU name.\n */\n",
+              "docComment": "/**\n * The SKU tier. This is based on the SKU name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10611,7 +10611,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SKUCapability#name:member",
-              "docComment": "/**\n * The name of capability, The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.\n */\n",
+              "docComment": "/**\n * The name of capability, The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10636,7 +10636,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SKUCapability#value:member",
-              "docComment": "/**\n * A string value to indicate states of given capability. Possibly 'true' or 'false'.\n */\n",
+              "docComment": "/**\n * A string value to indicate states of given capability. Possibly 'true' or 'false'. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10677,7 +10677,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SkuInformation#capabilities:member",
-              "docComment": "/**\n * The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.\n */\n",
+              "docComment": "/**\n * The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10707,7 +10707,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SkuInformation#kind:member",
-              "docComment": "/**\n * Indicates the type of storage account.\n */\n",
+              "docComment": "/**\n * Indicates the type of storage account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10733,7 +10733,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SkuInformation#locations:member",
-              "docComment": "/**\n * The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).\n */\n",
+              "docComment": "/**\n * The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10784,7 +10784,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SkuInformation#resourceType:member",
-              "docComment": "/**\n * The type of the resource, usually it is 'storageAccounts'.\n */\n",
+              "docComment": "/**\n * The type of the resource, usually it is 'storageAccounts'. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -10839,7 +10839,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!SkuInformation#tier:member",
-              "docComment": "/**\n * The SKU tier. This is based on the SKU name.\n */\n",
+              "docComment": "/**\n * The SKU tier. This is based on the SKU name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11681,7 +11681,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountInternetEndpoints#blob:member",
-              "docComment": "/**\n * Gets the blob endpoint.\n */\n",
+              "docComment": "/**\n * Gets the blob endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11706,7 +11706,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountInternetEndpoints#dfs:member",
-              "docComment": "/**\n * Gets the dfs endpoint.\n */\n",
+              "docComment": "/**\n * Gets the dfs endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11731,7 +11731,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountInternetEndpoints#file:member",
-              "docComment": "/**\n * Gets the file endpoint.\n */\n",
+              "docComment": "/**\n * Gets the file endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11756,7 +11756,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountInternetEndpoints#web:member",
-              "docComment": "/**\n * Gets the web endpoint.\n */\n",
+              "docComment": "/**\n * Gets the web endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11797,7 +11797,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountKey#keyName:member",
-              "docComment": "/**\n * Name of the key.\n */\n",
+              "docComment": "/**\n * Name of the key. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11822,7 +11822,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountKey#permissions:member",
-              "docComment": "/**\n * Permissions for the key -- read-only or full permissions.\n */\n",
+              "docComment": "/**\n * Permissions for the key -- read-only or full permissions. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11848,7 +11848,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountKey#value:member",
-              "docComment": "/**\n * Base 64-encoded value of the key.\n */\n",
+              "docComment": "/**\n * Base 64-encoded value of the key. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11889,7 +11889,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountListKeysResult#keys:member",
-              "docComment": "/**\n * Gets the list of storage account keys and their properties for the specified storage account.\n */\n",
+              "docComment": "/**\n * Gets the list of storage account keys and their properties for the specified storage account. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11935,7 +11935,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountListResult#nextLink:member",
-              "docComment": "/**\n * Request URL that can be used to query next page of storage accounts. Returned when total number of requested storage accounts exceed maximum page size.\n */\n",
+              "docComment": "/**\n * Request URL that can be used to query next page of storage accounts. Returned when total number of requested storage accounts exceed maximum page size. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11960,7 +11960,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountListResult#value:member",
-              "docComment": "/**\n * Gets the list of storage accounts and their properties.\n */\n",
+              "docComment": "/**\n * Gets the list of storage accounts and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12006,7 +12006,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#blob:member",
-              "docComment": "/**\n * Gets the blob endpoint.\n */\n",
+              "docComment": "/**\n * Gets the blob endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12031,7 +12031,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#dfs:member",
-              "docComment": "/**\n * Gets the dfs endpoint.\n */\n",
+              "docComment": "/**\n * Gets the dfs endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12056,7 +12056,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#file:member",
-              "docComment": "/**\n * Gets the file endpoint.\n */\n",
+              "docComment": "/**\n * Gets the file endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12081,7 +12081,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#queue:member",
-              "docComment": "/**\n * Gets the queue endpoint.\n */\n",
+              "docComment": "/**\n * Gets the queue endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12106,7 +12106,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#table:member",
-              "docComment": "/**\n * Gets the table endpoint.\n */\n",
+              "docComment": "/**\n * Gets the table endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -12131,7 +12131,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageAccountMicrosoftEndpoints#web:member",
-              "docComment": "/**\n * Gets the web endpoint.\n */\n",
+              "docComment": "/**\n * Gets the web endpoint. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -13925,7 +13925,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!StorageSkuListResult#value:member",
-              "docComment": "/**\n * Get the list result of storage SKUs and their properties.\n */\n",
+              "docComment": "/**\n * Get the list result of storage SKUs and their properties. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14062,7 +14062,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!TagProperty#objectIdentifier:member",
-              "docComment": "/**\n * Returns the Object ID of the user who added the tag.\n */\n",
+              "docComment": "/**\n * Returns the Object ID of the user who added the tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14087,7 +14087,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!TagProperty#tag:member",
-              "docComment": "/**\n * The tag value.\n */\n",
+              "docComment": "/**\n * The tag value. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14112,7 +14112,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!TagProperty#tenantId:member",
-              "docComment": "/**\n * Returns the Tenant ID that issued the token for the user who added the tag.\n */\n",
+              "docComment": "/**\n * Returns the Tenant ID that issued the token for the user who added the tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14137,7 +14137,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!TagProperty#timestamp:member",
-              "docComment": "/**\n * Returns the date and time the tag was added.\n */\n",
+              "docComment": "/**\n * Returns the date and time the tag was added. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14163,7 +14163,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!TagProperty#upn:member",
-              "docComment": "/**\n * Returns the User Principal Name of the user who added the tag.\n */\n",
+              "docComment": "/**\n * Returns the User Principal Name of the user who added the tag. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14234,7 +14234,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#immutabilityPeriodSinceCreationInDays:member",
-              "docComment": "/**\n * The immutability period for the blobs in the container since the policy creation, in days.\n */\n",
+              "docComment": "/**\n * The immutability period for the blobs in the container since the policy creation, in days. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14259,7 +14259,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#objectIdentifier:member",
-              "docComment": "/**\n * Returns the Object ID of the user who updated the ImmutabilityPolicy.\n */\n",
+              "docComment": "/**\n * Returns the Object ID of the user who updated the ImmutabilityPolicy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14284,7 +14284,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#tenantId:member",
-              "docComment": "/**\n * Returns the Tenant ID that issued the token for the user who updated the ImmutabilityPolicy.\n */\n",
+              "docComment": "/**\n * Returns the Tenant ID that issued the token for the user who updated the ImmutabilityPolicy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14309,7 +14309,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#timestamp:member",
-              "docComment": "/**\n * Returns the date and time the ImmutabilityPolicy was updated.\n */\n",
+              "docComment": "/**\n * Returns the date and time the ImmutabilityPolicy was updated. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14335,7 +14335,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#update:member",
-              "docComment": "/**\n * The ImmutabilityPolicy update type of a blob container, possible values include: put, lock and extend.\n */\n",
+              "docComment": "/**\n * The ImmutabilityPolicy update type of a blob container, possible values include: put, lock and extend. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14361,7 +14361,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UpdateHistoryProperty#upn:member",
-              "docComment": "/**\n * Returns the User Principal Name of the user who updated the ImmutabilityPolicy.\n */\n",
+              "docComment": "/**\n * Returns the User Principal Name of the user who updated the ImmutabilityPolicy. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14402,7 +14402,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Usage#currentValue:member",
-              "docComment": "/**\n * Gets the current count of the allocated resources in the subscription.\n */\n",
+              "docComment": "/**\n * Gets the current count of the allocated resources in the subscription. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14427,7 +14427,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Usage#limit:member",
-              "docComment": "/**\n * Gets the maximum count of the resources that can be allocated in the subscription.\n */\n",
+              "docComment": "/**\n * Gets the maximum count of the resources that can be allocated in the subscription. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14452,7 +14452,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Usage#name:member",
-              "docComment": "/**\n * Gets the name of the type of usage.\n */\n",
+              "docComment": "/**\n * Gets the name of the type of usage. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14478,7 +14478,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!Usage#unit:member",
-              "docComment": "/**\n * Gets the unit of measurement.\n */\n",
+              "docComment": "/**\n * Gets the unit of measurement. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14566,7 +14566,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UsageName#localizedValue:member",
-              "docComment": "/**\n * Gets a localized string describing the resource name.\n */\n",
+              "docComment": "/**\n * Gets a localized string describing the resource name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -14591,7 +14591,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "storage-resource-manager!UsageName#value:member",
-              "docComment": "/**\n * Gets a string describing the resource name.\n */\n",
+              "docComment": "/**\n * Gets a string describing the resource name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

@@ -14,14 +14,17 @@ import * as coreHttp from "@azure/core-http";
 export interface PolicyAssignment {
   /**
    * The ID of the policy assignment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The type of the policy assignment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The name of the policy assignment.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
@@ -100,10 +103,12 @@ export interface PolicySku {
 export interface Identity {
   /**
    * The principal ID of the resource identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
   /**
    * The tenant ID of the resource identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
   /**
@@ -128,22 +133,27 @@ export interface CloudError {
 export interface ErrorResponse {
   /**
    * The error code.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly code?: string;
   /**
    * The error message.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
   /**
    * The error target.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: string;
   /**
    * The error details.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: ErrorResponse[];
   /**
    * The error additional info.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
@@ -154,10 +164,12 @@ export interface ErrorResponse {
 export interface ErrorAdditionalInfo {
   /**
    * The additional info type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The additional info.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly info?: any;
 }
@@ -182,14 +194,17 @@ export interface PolicyAssignmentListResult {
 export interface PolicyDefinition {
   /**
    * The ID of the policy definition.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the policy definition.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the resource (Microsoft.Authorization/policyDefinitions).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -282,14 +297,17 @@ export interface PolicyDefinitionListResult {
 export interface PolicySetDefinition {
   /**
    * The ID of the policy set definition.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the policy set definition.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The type of the resource (Microsoft.Authorization/policySetDefinitions).
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**

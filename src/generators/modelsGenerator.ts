@@ -66,7 +66,7 @@ const writeClientModels = (
   modelsIndexFile: SourceFile
 ) => {
   let clientOptionalParams = clientDetails.parameters.filter(
-    (p) =>
+    p =>
       (!p.required || p.defaultValue) &&
       p.implementationLocation === ImplementationLocation.Client
   );
@@ -85,8 +85,8 @@ const writeOperationModels = (
   modelsIndexFile: SourceFile
 ) => {
   const modelsNames = getAllModelsNames(clientDetails);
-  return clientDetails.operationGroups.forEach((operationGroup) => {
-    operationGroup.operations.forEach((operation) => {
+  return clientDetails.operationGroups.forEach(operationGroup => {
+    operationGroup.operations.forEach(operation => {
       writeOptionsParameter(
         clientDetails,
         operationGroup,
@@ -125,7 +125,7 @@ function writeOptionsParameter(
   const operationName = normalizeName(operation.name, NameType.Interface);
   const operationRequestMediaTypes = new Set<KnownMediaType>();
   operation.requests.forEach(
-    (r) => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
+    r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
   );
   writeOptionalParameters(
     operationGroupName,
@@ -164,7 +164,7 @@ function writeResponseTypes(
       ({ isError, mappers }) =>
         !isError && (mappers.bodyMapper || mappers.headersMapper)
     )
-    .forEach((operation) => {
+    .forEach(operation => {
       const { statusCodes, ...coreResponse } = operation;
       if (addedResponses.length === 0) {
         // Define possible values for response
@@ -173,13 +173,13 @@ function writeResponseTypes(
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
           type: buildResponseType(operation),
-          leadingTrivia: (writer) => writer.blankLine(),
+          leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
         addedResponses.push({ name: responseName, response: coreResponse });
       }
 
-      const existingResponse = addedResponses.find((r) => r.name === name);
+      const existingResponse = addedResponses.find(r => r.name === name);
       if (
         existingResponse &&
         isEqual(existingResponse.response, coreResponse)
@@ -234,14 +234,14 @@ function getBodyProperties({
       {
         name: "bodyAsText",
         type: "string",
-        leadingTrivia: (writer) => writer.blankLine(),
+        leadingTrivia: writer => writer.blankLine(),
         docs: ["The response body as text (string format)"]
       },
       {
         name: "parsedBody",
         docs: ["The response body as parsed JSON or XML"],
         type: bodyType.typeName,
-        leadingTrivia: (writer) => writer.blankLine()
+        leadingTrivia: writer => writer.blankLine()
       }
     );
   } else if (mediaType === KnownMediaType.Binary) {
@@ -336,7 +336,7 @@ function buildResponseType(
               })
             )
           : "coreHttp.HttpResponse",
-        leadingTrivia: (writer) => writer.blankLine()
+        leadingTrivia: writer => writer.blankLine()
       }
     ]
   });
@@ -384,8 +384,8 @@ const writeChoices = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
 ) =>
-  clientDetails.unions.forEach((choice) => {
-    const values = choice.properties.map((p) => p.value);
+  clientDetails.unions.forEach(choice => {
+    const values = choice.properties.map(p => p.value);
     if (choice.schemaType === SchemaType.Choice) {
       const valueToPush = choice.itemType ? choice.itemType : "string";
       values.push(valueToPush);
@@ -396,7 +396,7 @@ const writeChoices = (
       docs: [choice.description],
       isExported: true,
       type: values.join(" | "),
-      trailingTrivia: (writer) => writer.newLine()
+      trailingTrivia: writer => writer.newLine()
     });
   });
 
@@ -409,7 +409,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   model: ObjectDetails
 ) => {
   const properties = getPropertiesSignatures(model);
-  const parents = model.parents.map((p) => p.name).join(" & ");
+  const parents = model.parents.map(p => p.name).join(" & ");
 
   if (parents) {
     modelsIndexFile.addTypeAlias({
@@ -420,7 +420,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
         parents,
         Writers.objectType({ properties })
       ),
-      leadingTrivia: (writer) => writer.blankLine()
+      leadingTrivia: writer => writer.blankLine()
     });
   } else {
     modelsIndexFile.addInterface({
@@ -428,7 +428,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
       docs: model.description ? [model.description] : [],
       isExported: true,
       properties,
-      leadingTrivia: (writer) => writer.blankLine()
+      leadingTrivia: writer => writer.blankLine()
     });
   }
 };
@@ -439,15 +439,15 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
 function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
   objects
     .filter(
-      (obj) => obj.kind === ObjectKind.Polymorphic && obj.children.length > 0
+      obj => obj.kind === ObjectKind.Polymorphic && obj.children.length > 0
     )
-    .forEach((obj) => {
+    .forEach(obj => {
       const polymorphicObject = obj as PolymorphicObjectDetails;
       const childrenNames = [
         ...(isPolymorphicParentInUnion(polymorphicObject)
           ? [polymorphicObject.name]
           : []),
-        ...polymorphicObject.children.map((c) => {
+        ...polymorphicObject.children.map(c => {
           return c.schema.children && c.schema.children.immediate.length
             ? `${c.name}Union`
             : c.name;
@@ -458,7 +458,7 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
         name: `${obj.name}Union`,
         isExported: true,
         type: childrenNames.join(" | "),
-        trailingTrivia: (writer) => writer.newLine()
+        trailingTrivia: writer => writer.newLine()
       });
     });
 }
@@ -470,9 +470,9 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
  * @param parent Plymorphic parent to check
  */
 function isPolymorphicParentInUnion(parent: PolymorphicObjectDetails): boolean {
-  return Object.keys(parent.discriminatorValues).some((property) =>
+  return Object.keys(parent.discriminatorValues).some(property =>
     parent.discriminatorValues[property].some(
-      (discriminatorValue) => discriminatorValue === parent.name
+      discriminatorValue => discriminatorValue === parent.name
     )
   );
 }
@@ -494,10 +494,10 @@ function getOptionalGroups(
 
   optionalParams
     .filter(({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required)
-    .forEach((p) => {
+    .forEach(p => {
       const { parameter } = p;
       const groupName = getLanguageMetadata(parameter.groupedBy!.language).name;
-      const isAlreadyTracked = optionalGroups.some((p) => {
+      const isAlreadyTracked = optionalGroups.some(p => {
         const { name } = getLanguageMetadata(p.language);
         return name === groupName;
       });
@@ -508,7 +508,7 @@ function getOptionalGroups(
       pull(optionalParams, p);
     });
 
-  return optionalGroups.map((group) => {
+  return optionalGroups.map(group => {
     const { name, description } = getLanguageMetadata(group.language);
     return {
       name: normalizeName(name, NameType.Parameter, true),
@@ -548,10 +548,8 @@ function writeOptionalParameters(
         properties: [
           ...optionalGroupDeclarations,
           ...optionalParams
-            .filter(
-              (p) => !p.targetMediaType || p.targetMediaType === mediaType
-            )
-            .map<PropertySignatureStructure>((p) => {
+            .filter(p => !p.targetMediaType || p.targetMediaType === mediaType)
+            .map<PropertySignatureStructure>(p => {
               const description = getParameterDescription(p, operationFullName);
               return {
                 name: p.name,
@@ -572,7 +570,7 @@ function writeOptionalParameters(
       extends: [baseClass || "coreHttp.OperationOptions"],
       properties: [
         ...optionalGroupDeclarations,
-        ...optionalParams.map<PropertySignatureStructure>((p) => {
+        ...optionalParams.map<PropertySignatureStructure>(p => {
           const description = getParameterDescription(p, operationFullName);
           return {
             name: p.name,
@@ -612,15 +610,25 @@ function getProperties(
   };
 
   return properties
-    .filter((property) => !property.isDiscriminator)
-    .map<PropertySignatureStructure>((property) => ({
+    .filter(property => !property.isDiscriminator)
+    .map<PropertySignatureStructure>(property => ({
       name: property.name,
       hasQuestionToken: !property.required,
       isReadonly: property.readOnly,
       type: getTypename(property),
-      docs: property.description ? [property.description] : undefined,
+      docs: getPropertyDescription(property),
       kind: StructureKind.PropertySignature
     }));
+}
+
+function getPropertyDescription({ description, readOnly }: PropertyDetails) {
+  if (readOnly) {
+    const readonlyNote =
+      "NOTE: This property will not be serialized. It can only be populated by the server.";
+    return description ? [`${description}\n${readonlyNote}`] : [readonlyNote];
+  } else {
+    return description ? [description] : undefined;
+  }
 }
 
 /**
@@ -639,21 +647,21 @@ function withDiscriminator(
   }
 
   const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
-    (key) => {
+    key => {
       const name = normalizeName(key, NameType.Property);
       return {
         docs: [
           `Polymorphic discriminator, which specifies the different types this object can be`
         ],
         name,
-        type: discriminatorValues[key].map((disc) => `"${disc}"`).join(" | "),
+        type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
         kind: StructureKind.PropertySignature
       };
     }
   );
 
   const propertiesWithoutDiscriminator = properties.filter(
-    (p) => !discProps.some((dp) => dp.name === p.name)
+    p => !discProps.some(dp => dp.name === p.name)
   );
 
   return [...discProps, ...propertiesWithoutDiscriminator];

@@ -64,14 +64,17 @@ export interface OperationDisplay {
 export interface ResourceLink {
   /**
    * The fully qualified ID of the resource link.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the resource link.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The resource link object.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: any;
   /**
@@ -86,6 +89,7 @@ export interface ResourceLink {
 export interface ResourceLinkProperties {
   /**
    * The fully qualified ID of the source resource in the link.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sourceId?: string;
   /**
@@ -108,6 +112,7 @@ export interface ResourceLinkResult {
   value: ResourceLink[];
   /**
    * The URL to use for getting the next set of results.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
 }

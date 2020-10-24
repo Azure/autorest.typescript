@@ -84,6 +84,7 @@ export interface VaultProperties {
   networkAcls?: NetworkRuleSet;
   /**
    * List of private endpoint connections associated with the key vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnectionItem[];
 }
@@ -202,6 +203,7 @@ export interface PrivateEndpointConnectionItem {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
   /**
    * Provisioning state of the private endpoint connection.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
@@ -212,6 +214,7 @@ export interface PrivateEndpointConnectionItem {
 export interface PrivateEndpoint {
   /**
    * Full identifier of the private endpoint resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
 }
@@ -240,14 +243,17 @@ export interface PrivateLinkServiceConnectionState {
 export interface Vault {
   /**
    * Fully qualified identifier of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Name of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -338,18 +344,22 @@ export interface VaultPatchProperties {
 export interface VaultAccessPolicyParameters {
   /**
    * The resource id of the access policy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The resource name of the access policy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The resource name of the access policy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * The resource type of the access policy.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
@@ -402,14 +412,17 @@ export interface DeletedVaultListResult {
 export interface DeletedVault {
   /**
    * The resource ID for the deleted key vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * The name of the key vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * The resource type of the key vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
@@ -424,22 +437,27 @@ export interface DeletedVault {
 export interface DeletedVaultProperties {
   /**
    * The resource id of the original vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vaultId?: string;
   /**
    * The location of the original vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
    * The deleted date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletionDate?: Date;
   /**
    * The scheduled purged date.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly scheduledPurgeDate?: Date;
   /**
    * Tags of the original vault.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tags?: { [propertyName: string]: string };
 }
@@ -464,22 +482,27 @@ export interface ResourceListResult {
 export interface Resource {
   /**
    * Fully qualified identifier of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
   /**
    * Name of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
   /**
    * Resource type of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
   /**
    * Azure location of the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
   /**
    * Tags assigned to the key vault resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tags?: { [propertyName: string]: string };
 }
@@ -504,14 +527,17 @@ export interface VaultCheckNameAvailabilityParameters {
 export interface CheckNameAvailabilityResult {
   /**
    * A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nameAvailable?: boolean;
   /**
    * The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reason?: Reason;
   /**
    * An error message explaining the Reason value in more detail.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
 }
@@ -650,6 +676,7 @@ export type PrivateEndpointConnection = Resource & {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
   /**
    * Provisioning state of the private endpoint connection.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
 };
@@ -660,10 +687,12 @@ export type PrivateEndpointConnection = Resource & {
 export type PrivateLinkResource = Resource & {
   /**
    * Group identifier of private link resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly groupId?: string;
   /**
    * Required member names of private link resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requiredMembers?: string[];
   /**
