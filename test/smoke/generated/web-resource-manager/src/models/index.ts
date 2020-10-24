@@ -3471,6 +3471,9 @@ export interface CsmCopySlotEntity {
  * A wrapper for an ARM resource id
  */
 export interface ArmIdWrapper {
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly id?: string;
 }
 
@@ -7782,6 +7785,9 @@ export type SiteExtensionInfo = ProxyOnlyResource & {
  * Private Endpoint Connection ARM resource.
  */
 export type PrivateEndpointConnectionResource = ProxyOnlyResource & {
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly provisioningState?: string;
   /**
    * PrivateEndpoint of a remote private endpoint connection

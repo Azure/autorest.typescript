@@ -1143,6 +1143,9 @@ export type ServicePrincipal = DirectoryObject & {
    * The application ID.
    */
   appId?: string;
+  /**
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
   readonly appOwnerTenantId?: string;
   /**
    * Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application.

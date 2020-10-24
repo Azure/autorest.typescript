@@ -622,16 +622,12 @@ function getProperties(
 }
 
 function getPropertyDescription({ description, readOnly }: PropertyDetails) {
-  if (!description) {
-    return undefined;
-  }
-
   if (readOnly) {
     const readonlyNote =
       "NOTE: This property will not be serialized. It can only be populated by the server.";
-    return [`${description}\n${readonlyNote}`];
+    return description ? [`${description}\n${readonlyNote}`] : [readonlyNote];
   } else {
-    return [description];
+    return description ? [description] : undefined;
   }
 }
 
