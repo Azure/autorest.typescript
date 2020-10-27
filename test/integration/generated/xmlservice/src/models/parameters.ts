@@ -105,7 +105,12 @@ export const bananas: OperationParameter = {
     xmlElementName: "banana",
     type: {
       name: "Sequence",
-      element: { type: { name: "Composite", className: "Banana" } }
+      element: {
+        type: {
+          name: "Composite",
+          className: "Banana"
+        }
+      }
     }
   }
 };
@@ -190,7 +195,12 @@ export const properties1: OperationParameter = {
     xmlElementName: "SignedIdentifier",
     type: {
       name: "Sequence",
-      element: { type: { name: "Composite", className: "SignedIdentifier" } }
+      element: {
+        type: {
+          name: "Composite",
+          className: "SignedIdentifier"
+        }
+      }
     }
   }
 };

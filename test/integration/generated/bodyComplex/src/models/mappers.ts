@@ -292,7 +292,11 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
         serializedName: "array",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -371,7 +375,12 @@ export const Fish: coreHttp.CompositeMapper = {
         serializedName: "siblings",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Fish" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Fish"
+            }
+          }
         }
       }
     }
@@ -421,7 +430,12 @@ export const DotFishMarket: coreHttp.CompositeMapper = {
         serializedName: "salmons",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DotSalmon" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DotSalmon"
+            }
+          }
         }
       },
       sampleFish: {
@@ -435,7 +449,12 @@ export const DotFishMarket: coreHttp.CompositeMapper = {
         serializedName: "fishes",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DotFish" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DotFish"
+            }
+          }
         }
       }
     }
@@ -529,7 +548,12 @@ export const Cat: coreHttp.CompositeMapper = {
         serializedName: "hates",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Dog" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Dog"
+            }
+          }
         }
       }
     }

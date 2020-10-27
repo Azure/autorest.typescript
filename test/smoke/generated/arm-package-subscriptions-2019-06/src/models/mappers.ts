@@ -17,7 +17,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -94,7 +99,12 @@ export const LocationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       }
     }
@@ -210,7 +220,12 @@ export const Subscription: coreHttp.CompositeMapper = {
         serializedName: "managedByTenants",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ManagedByTenant" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ManagedByTenant"
+            }
+          }
         }
       }
     }
@@ -273,7 +288,12 @@ export const SubscriptionListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Subscription" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Subscription"
+            }
+          }
         }
       },
       nextLink: {
@@ -297,7 +317,10 @@ export const TenantListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "TenantIdDescription" }
+            type: {
+              name: "Composite",
+              className: "TenantIdDescription"
+            }
           }
         }
       },
@@ -365,7 +388,11 @@ export const TenantIdDescription: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }

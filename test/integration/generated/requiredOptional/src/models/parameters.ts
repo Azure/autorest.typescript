@@ -265,7 +265,11 @@ export const bodyParameter13: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -276,7 +280,11 @@ export const bodyParameter14: OperationParameter = {
     serializedName: "bodyParameter",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -298,7 +306,11 @@ export const headerParameter3: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -309,7 +321,11 @@ export const headerParameter4: OperationParameter = {
     serializedName: "headerParameter",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

@@ -9,13 +9,14 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
+  QueryCollectionFormat
 } from "@azure/core-http";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "text/plain",
+    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -24,13 +25,19 @@ export const contentType: OperationParameter = {
   }
 };
 
-export const data: OperationParameter = {
-  parameterPath: "data",
+export const arrayBody: OperationParameter = {
+  parameterPath: "arrayBody",
   mapper: {
-    serializedName: "data",
+    serializedName: "arrayBody",
     required: true,
     type: {
-      name: "String"
+      name: "Sequence",
+      element: {
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -38,7 +45,7 @@ export const data: OperationParameter = {
 export const accept: OperationParameter = {
   parameterPath: "accept",
   mapper: {
-    defaultValue: "text/plain",
+    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Accept",
     type: {
@@ -59,73 +66,44 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const excluded: OperationQueryParameter = {
-  parameterPath: ["options", "excluded"],
+export const apiVersion: OperationParameter = {
+  parameterPath: "apiVersion",
   mapper: {
-    serializedName: "excluded",
+    serializedName: "api-version",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const pageRange: OperationQueryParameter = {
+  parameterPath: ["options", "pageRange"],
+  mapper: {
+    serializedName: "pageRange",
     type: {
       name: "Sequence",
       element: {
+        constraints: {
+          Pattern: new RegExp("^d+(-d+)?$"),
+          MaxLength: 24,
+          MinLength: 1
+        },
         type: {
           name: "String"
         }
       }
     }
-  }
-};
-
-export const contentType1: OperationParameter = {
-  parameterPath: "contentType",
-  mapper: {
-    defaultValue: "application/octet-stream",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const data1: OperationParameter = {
-  parameterPath: "data",
-  mapper: {
-    serializedName: "data",
-    required: true,
-    type: {
-      name: "Stream"
-    }
-  }
+  },
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const accept1: OperationParameter = {
   parameterPath: "accept",
   mapper: {
-    defaultValue: "text/plain",
+    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const contentType2: OperationParameter = {
-  parameterPath: "contentType",
-  mapper: {
-    defaultValue: "text/plain",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const thing: OperationURLParameter = {
-  parameterPath: "thing",
-  mapper: {
-    serializedName: "thing",
-    required: true,
     type: {
       name: "String"
     }

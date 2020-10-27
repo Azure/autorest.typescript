@@ -259,7 +259,10 @@ export const ApplicationDefinitionListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ApplicationDefinition" }
+            type: {
+              name: "Composite",
+              className: "ApplicationDefinition"
+            }
           }
         }
       },
@@ -282,7 +285,12 @@ export const ApplicationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Application" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Application"
+            }
+          }
         }
       },
       nextLink: {
@@ -468,7 +476,10 @@ export const ApplicationDefinition: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ApplicationArtifact" }
+            type: {
+              name: "Composite",
+              className: "ApplicationArtifact"
+            }
           }
         }
       },

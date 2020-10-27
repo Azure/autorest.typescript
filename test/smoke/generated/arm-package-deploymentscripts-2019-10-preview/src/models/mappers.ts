@@ -175,7 +175,12 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ErrorResponse" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ErrorResponse"
+            }
+          }
         }
       },
       additionalInfo: {
@@ -184,7 +189,10 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ErrorAdditionalInfo" }
+            type: {
+              name: "Composite",
+              className: "ErrorAdditionalInfo"
+            }
           }
         }
       }
@@ -225,7 +233,10 @@ export const DeploymentScriptListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DeploymentScript" }
+            type: {
+              name: "Composite",
+              className: "DeploymentScript"
+            }
           }
         }
       },
@@ -249,7 +260,12 @@ export const ScriptLogsList: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ScriptLog" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ScriptLog"
+            }
+          }
         }
       }
     }
@@ -413,7 +429,11 @@ export const ScriptConfigurationBase: coreHttp.CompositeMapper = {
         serializedName: "supportingScriptUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       scriptContent: {
@@ -436,7 +456,10 @@ export const ScriptConfigurationBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "EnvironmentVariable" }
+            type: {
+              name: "Composite",
+              className: "EnvironmentVariable"
+            }
           }
         }
       },
@@ -673,7 +696,11 @@ export const AzurePowerShellScript: coreHttp.CompositeMapper = {
         serializedName: "properties.supportingScriptUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       scriptContent: {
@@ -696,7 +723,10 @@ export const AzurePowerShellScript: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "EnvironmentVariable" }
+            type: {
+              name: "Composite",
+              className: "EnvironmentVariable"
+            }
           }
         }
       },
@@ -791,7 +821,11 @@ export const AzureCliScript: coreHttp.CompositeMapper = {
         serializedName: "properties.supportingScriptUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       scriptContent: {
@@ -814,7 +848,10 @@ export const AzureCliScript: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "EnvironmentVariable" }
+            type: {
+              name: "Composite",
+              className: "EnvironmentVariable"
+            }
           }
         }
       },

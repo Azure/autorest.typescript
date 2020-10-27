@@ -97,7 +97,12 @@ export const DirectoryObjectListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DirectoryObject" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DirectoryObject"
+            }
+          }
         }
       },
       odataNextLink: {
@@ -137,14 +142,23 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         serializedName: "appRoles",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AppRole" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AppRole"
+            }
+          }
         }
       },
       appPermissions: {
         serializedName: "appPermissions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       availableToOtherTenants: {
@@ -188,14 +202,23 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         serializedName: "keyCredentials",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       },
       knownClientApplications: {
         serializedName: "knownClientApplications",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       logoutUrl: {
@@ -221,7 +244,10 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "OAuth2Permission" }
+            type: {
+              name: "Composite",
+              className: "OAuth2Permission"
+            }
           }
         }
       },
@@ -235,7 +261,11 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         serializedName: "orgRestrictions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       optionalClaims: {
@@ -250,7 +280,10 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       },
@@ -259,7 +292,10 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PreAuthorizedApplication" }
+            type: {
+              name: "Composite",
+              className: "PreAuthorizedApplication"
+            }
           }
         }
       },
@@ -279,7 +315,11 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         serializedName: "replyUrls",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredResourceAccess: {
@@ -287,7 +327,10 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "RequiredResourceAccess" }
+            type: {
+              name: "Composite",
+              className: "RequiredResourceAccess"
+            }
           }
         }
       },
@@ -328,7 +371,11 @@ export const AppRole: coreHttp.CompositeMapper = {
         serializedName: "allowedMemberTypes",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       description: {
@@ -510,21 +557,36 @@ export const OptionalClaims: coreHttp.CompositeMapper = {
         serializedName: "idToken",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "OptionalClaim" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "OptionalClaim"
+            }
+          }
         }
       },
       accessToken: {
         serializedName: "accessToken",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "OptionalClaim" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "OptionalClaim"
+            }
+          }
         }
       },
       samlToken: {
         serializedName: "samlToken",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "OptionalClaim" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "OptionalClaim"
+            }
+          }
         }
       }
     }
@@ -658,7 +720,11 @@ export const PreAuthorizedApplicationPermission: coreHttp.CompositeMapper = {
         serializedName: "accessGrants",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -674,7 +740,11 @@ export const PreAuthorizedApplicationExtension: coreHttp.CompositeMapper = {
         serializedName: "conditions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -692,7 +762,12 @@ export const RequiredResourceAccess: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ResourceAccess" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ResourceAccess"
+            }
+          }
         }
       },
       resourceAppId: {
@@ -737,7 +812,12 @@ export const ApplicationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Application" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Application"
+            }
+          }
         }
       },
       odataNextLink: {
@@ -776,7 +856,12 @@ export const KeyCredentialListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       }
     }
@@ -793,7 +878,12 @@ export const KeyCredentialsUpdateParameters: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       }
     }
@@ -810,7 +900,10 @@ export const PasswordCredentialListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       }
@@ -829,7 +922,10 @@ export const PasswordCredentialsUpdateParameters: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       }
@@ -943,7 +1039,12 @@ export const GroupListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ADGroup" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ADGroup"
+            }
+          }
         }
       },
       odataNextLink: {
@@ -982,7 +1083,11 @@ export const GroupGetMemberGroupsResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1010,7 +1115,12 @@ export const ServicePrincipalBase: coreHttp.CompositeMapper = {
         serializedName: "keyCredentials",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       },
       passwordCredentials: {
@@ -1018,7 +1128,10 @@ export const ServicePrincipalBase: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       },
@@ -1032,7 +1145,11 @@ export const ServicePrincipalBase: coreHttp.CompositeMapper = {
         serializedName: "tags",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1049,7 +1166,10 @@ export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ServicePrincipal" }
+            type: {
+              name: "Composite",
+              className: "ServicePrincipal"
+            }
           }
         }
       },
@@ -1156,7 +1276,12 @@ export const UserListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "User" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "User"
+            }
+          }
         }
       },
       odataNextLink: {
@@ -1195,7 +1320,11 @@ export const UserGetMemberGroupsResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1212,14 +1341,22 @@ export const GetObjectsParameters: coreHttp.CompositeMapper = {
         serializedName: "objectIds",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       types: {
         serializedName: "types",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       includeDirectoryObjectReferences: {
@@ -1241,7 +1378,12 @@ export const DomainListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Domain" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Domain"
+            }
+          }
         }
       }
     }
@@ -1296,7 +1438,10 @@ export const OAuth2PermissionGrantListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "OAuth2PermissionGrant" }
+            type: {
+              name: "Composite",
+              className: "OAuth2PermissionGrant"
+            }
           }
         }
       },
@@ -1447,7 +1592,12 @@ export const User: coreHttp.CompositeMapper = {
         serializedName: "signInNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SignInName" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SignInName"
+            }
+          }
         }
       }
     }
@@ -1492,14 +1642,23 @@ export const Application: coreHttp.CompositeMapper = {
         serializedName: "appRoles",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AppRole" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AppRole"
+            }
+          }
         }
       },
       appPermissions: {
         serializedName: "appPermissions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       availableToOtherTenants: {
@@ -1536,7 +1695,11 @@ export const Application: coreHttp.CompositeMapper = {
         serializedName: "identifierUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       informationalUrls: {
@@ -1556,14 +1719,23 @@ export const Application: coreHttp.CompositeMapper = {
         serializedName: "keyCredentials",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       },
       knownClientApplications: {
         serializedName: "knownClientApplications",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       logoutUrl: {
@@ -1589,7 +1761,10 @@ export const Application: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "OAuth2Permission" }
+            type: {
+              name: "Composite",
+              className: "OAuth2Permission"
+            }
           }
         }
       },
@@ -1603,7 +1778,11 @@ export const Application: coreHttp.CompositeMapper = {
         serializedName: "orgRestrictions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       optionalClaims: {
@@ -1618,7 +1797,10 @@ export const Application: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       },
@@ -1627,7 +1809,10 @@ export const Application: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PreAuthorizedApplication" }
+            type: {
+              name: "Composite",
+              className: "PreAuthorizedApplication"
+            }
           }
         }
       },
@@ -1647,7 +1832,11 @@ export const Application: coreHttp.CompositeMapper = {
         serializedName: "replyUrls",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredResourceAccess: {
@@ -1655,7 +1844,10 @@ export const Application: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "RequiredResourceAccess" }
+            type: {
+              name: "Composite",
+              className: "RequiredResourceAccess"
+            }
           }
         }
       },
@@ -1745,7 +1937,11 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "alternativeNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       appDisplayName: {
@@ -1778,7 +1974,12 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "appRoles",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AppRole" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AppRole"
+            }
+          }
         }
       },
       displayName: {
@@ -1803,7 +2004,12 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "keyCredentials",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "KeyCredential"
+            }
+          }
         }
       },
       logoutUrl: {
@@ -1818,7 +2024,10 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "OAuth2Permission" }
+            type: {
+              name: "Composite",
+              className: "OAuth2Permission"
+            }
           }
         }
       },
@@ -1827,7 +2036,10 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PasswordCredential" }
+            type: {
+              name: "Composite",
+              className: "PasswordCredential"
+            }
           }
         }
       },
@@ -1847,7 +2059,11 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "replyUrls",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       samlMetadataUrl: {
@@ -1860,7 +2076,11 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "servicePrincipalNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       servicePrincipalType: {
@@ -1873,7 +2093,11 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
         serializedName: "tags",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1897,7 +2121,11 @@ export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
         serializedName: "identifierUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1920,7 +2148,11 @@ export const ApplicationUpdateParameters: coreHttp.CompositeMapper = {
         serializedName: "identifierUris",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }

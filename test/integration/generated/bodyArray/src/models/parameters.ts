@@ -51,7 +51,11 @@ export const arrayBody: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -75,7 +79,11 @@ export const arrayBody1: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Boolean" } }
+      element: {
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -87,7 +95,11 @@ export const arrayBody2: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" } }
+      element: {
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -100,7 +112,10 @@ export const arrayBody3: OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
+        type: {
+          name: "Enum",
+          allowedValues: ["foo1", "foo2", "foo3"]
+        }
       }
     }
   }
@@ -113,7 +128,11 @@ export const arrayBody4: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -125,7 +144,11 @@ export const arrayBody5: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Uuid" } }
+      element: {
+        type: {
+          name: "Uuid"
+        }
+      }
     }
   }
 };
@@ -137,7 +160,11 @@ export const arrayBody6: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Date" } }
+      element: {
+        type: {
+          name: "Date"
+        }
+      }
     }
   }
 };
@@ -149,7 +176,11 @@ export const arrayBody7: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTime" } }
+      element: {
+        type: {
+          name: "DateTime"
+        }
+      }
     }
   }
 };
@@ -161,7 +192,11 @@ export const arrayBody8: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTimeRfc1123" } }
+      element: {
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
     }
   }
 };
@@ -173,7 +208,11 @@ export const arrayBody9: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "TimeSpan" } }
+      element: {
+        type: {
+          name: "TimeSpan"
+        }
+      }
     }
   }
 };
@@ -185,7 +224,11 @@ export const arrayBody10: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "ByteArray" } }
+      element: {
+        type: {
+          name: "ByteArray"
+        }
+      }
     }
   }
 };
@@ -197,7 +240,12 @@ export const arrayBody11: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Composite", className: "Product" } }
+      element: {
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -210,7 +258,14 @@ export const arrayBody12: OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
+        }
       }
     }
   }
@@ -224,7 +279,10 @@ export const arrayBody13: OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
       }
     }
   }

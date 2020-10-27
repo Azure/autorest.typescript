@@ -17,7 +17,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -161,7 +166,12 @@ export const ResourceLinkResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ResourceLink" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ResourceLink"
+            }
+          }
         }
       },
       nextLink: {

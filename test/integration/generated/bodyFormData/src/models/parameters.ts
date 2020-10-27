@@ -108,7 +108,11 @@ export const fileContent2: OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Stream" } }
+      element: {
+        type: {
+          name: "Stream"
+        }
+      }
     }
   }
 };

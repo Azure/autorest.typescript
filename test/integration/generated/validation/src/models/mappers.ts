@@ -21,7 +21,11 @@ export const Product: coreHttp.CompositeMapper = {
         serializedName: "display_names",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capacity: {

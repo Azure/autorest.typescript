@@ -126,7 +126,10 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "FlattenedProduct" }
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
           }
         }
       },

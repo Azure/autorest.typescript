@@ -17,7 +17,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -123,7 +128,10 @@ export const ManagementLockObject: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ManagementLockOwner" }
+            type: {
+              name: "Composite",
+              className: "ManagementLockOwner"
+            }
           }
         }
       }
@@ -156,7 +164,10 @@ export const ManagementLockListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ManagementLockObject" }
+            type: {
+              name: "Composite",
+              className: "ManagementLockObject"
+            }
           }
         }
       },

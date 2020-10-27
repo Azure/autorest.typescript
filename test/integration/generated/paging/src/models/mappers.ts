@@ -17,7 +17,12 @@ export const ProductResultValue: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Product"
+            }
+          }
         }
       },
       nextLink: {
@@ -76,7 +81,12 @@ export const ProductResult: coreHttp.CompositeMapper = {
         serializedName: "values",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Product"
+            }
+          }
         }
       },
       nextLink: {
@@ -98,7 +108,12 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
         serializedName: "values",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Product"
+            }
+          }
         }
       },
       odataNextLink: {
@@ -120,7 +135,12 @@ export const ProductResultValueWithXMSClientName: coreHttp.CompositeMapper = {
         serializedName: "values",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Product"
+            }
+          }
         }
       },
       nextLink: {

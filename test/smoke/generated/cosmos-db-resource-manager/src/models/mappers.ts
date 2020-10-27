@@ -308,7 +308,12 @@ export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
         serializedName: "properties.locations",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       },
       ipRangeFilter: {
@@ -333,7 +338,12 @@ export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
         serializedName: "properties.capabilities",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Capability"
+            }
+          }
         }
       },
       virtualNetworkRules: {
@@ -341,7 +351,10 @@ export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
+            type: {
+              name: "Composite",
+              className: "VirtualNetworkRule"
+            }
           }
         }
       },
@@ -396,7 +409,12 @@ export const FailoverPolicies: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "FailoverPolicy" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "FailoverPolicy"
+            }
+          }
         }
       }
     }
@@ -414,7 +432,10 @@ export const DatabaseAccountsListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DatabaseAccountGetResults" }
+            type: {
+              name: "Composite",
+              className: "DatabaseAccountGetResults"
+            }
           }
         }
       }
@@ -551,7 +572,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -629,7 +655,12 @@ export const MetricListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Metric" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Metric"
+            }
+          }
         }
       }
     }
@@ -681,7 +712,12 @@ export const Metric: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "MetricValue" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "MetricValue"
+            }
+          }
         }
       }
     }
@@ -773,7 +809,10 @@ export const PercentileMetricListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PercentileMetric" }
+            type: {
+              name: "Composite",
+              className: "PercentileMetric"
+            }
           }
         }
       }
@@ -827,7 +866,10 @@ export const PercentileMetric: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PercentileMetricValue" }
+            type: {
+              name: "Composite",
+              className: "PercentileMetricValue"
+            }
           }
         }
       }
@@ -845,7 +887,12 @@ export const PartitionMetricListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "PartitionMetric" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "PartitionMetric"
+            }
+          }
         }
       }
     }
@@ -862,7 +909,12 @@ export const UsagesResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Usage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Usage"
+            }
+          }
         }
       }
     }
@@ -923,7 +975,12 @@ export const PartitionUsagesResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "PartitionUsage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "PartitionUsage"
+            }
+          }
         }
       }
     }
@@ -941,7 +998,10 @@ export const MetricDefinitionsListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MetricDefinition" }
+            type: {
+              name: "Composite",
+              className: "MetricDefinition"
+            }
           }
         }
       }
@@ -960,7 +1020,10 @@ export const MetricDefinition: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MetricAvailability" }
+            type: {
+              name: "Composite",
+              className: "MetricAvailability"
+            }
           }
         }
       },
@@ -1030,7 +1093,10 @@ export const SqlDatabaseListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SqlDatabaseGetResults" }
+            type: {
+              name: "Composite",
+              className: "SqlDatabaseGetResults"
+            }
           }
         }
       }
@@ -1229,7 +1295,10 @@ export const SqlContainerListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SqlContainerGetResults" }
+            type: {
+              name: "Composite",
+              className: "SqlContainerGetResults"
+            }
           }
         }
       }
@@ -1309,14 +1378,24 @@ export const IndexingPolicy: coreHttp.CompositeMapper = {
         serializedName: "includedPaths",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "IncludedPath" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "IncludedPath"
+            }
+          }
         }
       },
       excludedPaths: {
         serializedName: "excludedPaths",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ExcludedPath" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ExcludedPath"
+            }
+          }
         }
       },
       compositeIndexes: {
@@ -1327,7 +1406,10 @@ export const IndexingPolicy: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "CompositePath" }
+                type: {
+                  name: "Composite",
+                  className: "CompositePath"
+                }
               }
             }
           }
@@ -1337,7 +1419,12 @@ export const IndexingPolicy: coreHttp.CompositeMapper = {
         serializedName: "spatialIndexes",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SpatialSpec" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SpatialSpec"
+            }
+          }
         }
       }
     }
@@ -1359,7 +1446,12 @@ export const IncludedPath: coreHttp.CompositeMapper = {
         serializedName: "indexes",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Indexes" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Indexes"
+            }
+          }
         }
       }
     }
@@ -1446,7 +1538,11 @@ export const SpatialSpec: coreHttp.CompositeMapper = {
         serializedName: "types",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1462,7 +1558,11 @@ export const ContainerPartitionKey: coreHttp.CompositeMapper = {
         serializedName: "paths",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       kind: {
@@ -1495,7 +1595,12 @@ export const UniqueKeyPolicy: coreHttp.CompositeMapper = {
         serializedName: "uniqueKeys",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "UniqueKey" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "UniqueKey"
+            }
+          }
         }
       }
     }
@@ -1511,7 +1616,11 @@ export const UniqueKey: coreHttp.CompositeMapper = {
         serializedName: "paths",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1645,7 +1754,10 @@ export const SqlTriggerListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SqlTriggerGetResults" }
+            type: {
+              name: "Composite",
+              className: "SqlTriggerGetResults"
+            }
           }
         }
       }
@@ -1698,7 +1810,10 @@ export const MongoDBDatabaseListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MongoDBDatabaseGetResults" }
+            type: {
+              name: "Composite",
+              className: "MongoDBDatabaseGetResults"
+            }
           }
         }
       }
@@ -1767,7 +1882,12 @@ export const MongoDBCollectionResource: coreHttp.CompositeMapper = {
         serializedName: "indexes",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "MongoIndex" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "MongoIndex"
+            }
+          }
         }
       }
     }
@@ -1806,7 +1926,11 @@ export const MongoIndexKeys: coreHttp.CompositeMapper = {
         serializedName: "keys",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -1844,7 +1968,12 @@ export const TableListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TableGetResults" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TableGetResults"
+            }
+          }
         }
       }
     }
@@ -1916,7 +2045,10 @@ export const CassandraTableListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "CassandraTableGetResults" }
+            type: {
+              name: "Composite",
+              className: "CassandraTableGetResults"
+            }
           }
         }
       }
@@ -1962,7 +2094,12 @@ export const CassandraSchema: coreHttp.CompositeMapper = {
         serializedName: "columns",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Column" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Column"
+            }
+          }
         }
       },
       partitionKeys: {
@@ -1970,7 +2107,10 @@ export const CassandraSchema: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "CassandraPartitionKey" }
+            type: {
+              name: "Composite",
+              className: "CassandraPartitionKey"
+            }
           }
         }
       },
@@ -1978,7 +2118,12 @@ export const CassandraSchema: coreHttp.CompositeMapper = {
         serializedName: "clusterKeys",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ClusterKey" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ClusterKey"
+            }
+          }
         }
       }
     }
@@ -2053,7 +2198,10 @@ export const GremlinDatabaseListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GremlinDatabaseGetResults" }
+            type: {
+              name: "Composite",
+              className: "GremlinDatabaseGetResults"
+            }
           }
         }
       }
@@ -2088,7 +2236,10 @@ export const GremlinGraphListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GremlinGraphGetResults" }
+            type: {
+              name: "Composite",
+              className: "GremlinGraphGetResults"
+            }
           }
         }
       }
@@ -2156,7 +2307,10 @@ export const NotebookWorkspaceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "NotebookWorkspace" }
+            type: {
+              name: "Composite",
+              className: "NotebookWorkspace"
+            }
           }
         }
       }
@@ -2227,7 +2381,10 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateLinkResource" }
+            type: {
+              name: "Composite",
+              className: "PrivateLinkResource"
+            }
           }
         }
       }
@@ -2417,7 +2574,12 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         serializedName: "properties.capabilities",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Capability"
+            }
+          }
         }
       },
       writeLocations: {
@@ -2425,7 +2587,12 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       },
       readLocations: {
@@ -2433,7 +2600,12 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       },
       locations: {
@@ -2441,7 +2613,12 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       },
       failoverPolicies: {
@@ -2449,7 +2626,12 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "FailoverPolicy" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "FailoverPolicy"
+            }
+          }
         }
       },
       virtualNetworkRules: {
@@ -2457,7 +2639,10 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
+            type: {
+              name: "Composite",
+              className: "VirtualNetworkRule"
+            }
           }
         }
       },
@@ -2467,7 +2652,10 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateEndpointConnection" }
+            type: {
+              name: "Composite",
+              className: "PrivateEndpointConnection"
+            }
           }
         }
       },
@@ -2536,7 +2724,12 @@ export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Location"
+            }
+          }
         }
       },
       databaseAccountOfferType: {
@@ -2569,7 +2762,12 @@ export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
         serializedName: "properties.capabilities",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Capability"
+            }
+          }
         }
       },
       virtualNetworkRules: {
@@ -2577,7 +2775,10 @@ export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
+            type: {
+              name: "Composite",
+              className: "VirtualNetworkRule"
+            }
           }
         }
       },
@@ -3629,7 +3830,11 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredZoneNames: {
@@ -3637,7 +3842,11 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }

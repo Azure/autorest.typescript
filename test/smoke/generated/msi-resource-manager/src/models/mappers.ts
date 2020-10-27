@@ -81,7 +81,12 @@ export const CloudErrorBody: coreHttp.CompositeMapper = {
         serializedName: "details",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "CloudErrorBody" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "CloudErrorBody"
+            }
+          }
         }
       }
     }
@@ -97,7 +102,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -174,7 +184,12 @@ export const UserAssignedIdentitiesListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Identity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Identity"
+            }
+          }
         }
       },
       nextLink: {
