@@ -30,7 +30,12 @@ export const resourceArray: OperationParameter = {
     serializedName: "resourceArray",
     type: {
       name: "Sequence",
-      element: { type: { name: "Composite", className: "Resource" } }
+      element: {
+        type: {
+          name: "Composite",
+          className: "Resource"
+        }
+      }
     }
   }
 };
@@ -77,7 +82,12 @@ export const resourceArray1: OperationParameter = {
     serializedName: "resourceArray",
     type: {
       name: "Sequence",
-      element: { type: { name: "Composite", className: "WrappedProduct" } }
+      element: {
+        type: {
+          name: "Composite",
+          className: "WrappedProduct"
+        }
+      }
     }
   }
 };

@@ -14,6 +14,7 @@ import {
   Mapper,
   CompositeMapper,
   CompositeMapperType,
+  SequenceMapperType,
   PolymorphicDiscriminator,
   MapperConstraints
 } from "@azure/core-http";
@@ -152,28 +153,82 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   // so we extract them from the type object. The remaining of the type
   // object we'll just write all its properties as they are using writeObjectProps
   const { type, defaultValue, constraints, ...restMapper } = mapper;
-  const {
-    modelProperties,
-    polymorphicDiscriminator,
-    ...restType
-  } = type as CompositeMapperType;
+
   writer.block(() => {
     // we need to handle default value differently, since some types need to be
     // converted, such as ByteAttay, hence extracting it from the props
-    writeDefaultValue(writer, defaultValue, restType);
+    writeDefaultValue(writer, defaultValue, type);
     // Write mapper constraints
     writeMapperContraints(writer, constraints);
     // Writing the rest of the props
     writeObjectProps(restMapper, writer)
       .write("type:")
       .block(() => {
-        // Write all type properties that don't need special handling
-        writeObjectProps(restType, writer);
-        // Write type properties that need special handling
-        writePolymorphicDiscriminator(writer, polymorphicDiscriminator);
-        writeModelProperties(writer, parents, modelProperties);
+        // Write tipe properties for the current mapper
+        writeMapperType(writer, mapper.type, parents);
       });
   });
+}
+
+/**
+ * Figures out if the mapper type to generate is a Sequence or Composite
+ * mapper type and generates it.
+ */
+function writeMapperType(
+  writer: CodeBlockWriter,
+  mapperType: MapperType,
+  parents: string[]
+) {
+  if (isSequenceMapperType(mapperType)) {
+    return writeSequenceMapperType(writer, mapperType);
+  }
+
+  return writeCompositeMapperType(writer, mapperType, parents);
+}
+
+/**
+ * Check if a MapperType is a SequenceMapperType
+ */
+function isSequenceMapperType(
+  mapperType: MapperType
+): mapperType is SequenceMapperType {
+  return Boolean((<SequenceMapperType>mapperType).element);
+}
+
+/**
+ * Generates the type content for a CompositeMapperType
+ */
+function writeCompositeMapperType(
+  writer: CodeBlockWriter,
+  mapperType: MapperType,
+  parents: string[]
+) {
+  const {
+    modelProperties,
+    polymorphicDiscriminator,
+    ...restType
+  } = mapperType as CompositeMapperType;
+  writeObjectProps(restType, writer);
+  // Write type properties that need special handling
+  writePolymorphicDiscriminator(writer, polymorphicDiscriminator);
+  writeModelProperties(writer, parents, modelProperties);
+}
+
+/**
+ * Generates the type content for a SequenceMapperType
+ */
+function writeSequenceMapperType(
+  writer: CodeBlockWriter,
+  mapperType: MapperType
+) {
+  const sequenceMapperType = mapperType as SequenceMapperType;
+  const { element } = sequenceMapperType;
+  if (!element) {
+    return writer;
+  }
+
+  writer.write("element:");
+  return writeMapper(writer, element);
 }
 
 function writeMapperContraints(

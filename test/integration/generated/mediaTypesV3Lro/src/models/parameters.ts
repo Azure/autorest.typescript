@@ -100,7 +100,11 @@ export const excluded: OperationQueryParameter = {
     serializedName: "excluded",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

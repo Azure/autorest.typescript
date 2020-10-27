@@ -316,7 +316,11 @@ export const arrayPath: OperationURLParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -631,7 +635,11 @@ export const arrayQuery: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Csv
@@ -643,7 +651,11 @@ export const arrayQuery1: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Ssv
@@ -655,7 +667,11 @@ export const arrayQuery2: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Tsv
@@ -667,7 +683,11 @@ export const arrayQuery3: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Pipes

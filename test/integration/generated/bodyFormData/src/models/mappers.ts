@@ -64,7 +64,11 @@ export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipar
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Stream" } }
+          element: {
+            type: {
+              name: "Stream"
+            }
+          }
         }
       }
     }

@@ -17,7 +17,12 @@ export const ProductResult: coreHttp.CompositeMapper = {
         serializedName: "values",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Product"
+            }
+          }
         }
       },
       nextLink: {

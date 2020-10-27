@@ -130,7 +130,12 @@ export const Slideshow: coreHttp.CompositeMapper = {
         xmlElementName: "slide",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Slide" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Slide"
+            }
+          }
         }
       }
     }
@@ -165,7 +170,11 @@ export const Slide: coreHttp.CompositeMapper = {
         xmlElementName: "item",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -209,7 +218,11 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
         xmlElementName: "Apple",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       badApples: {
@@ -219,7 +232,11 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
         xmlElementName: "Apple",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -304,7 +321,12 @@ export const ListContainersResponse: coreHttp.CompositeMapper = {
         xmlElementName: "Container",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Container" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Container"
+            }
+          }
         }
       },
       nextMarker: {
@@ -453,7 +475,12 @@ export const StorageServiceProperties: coreHttp.CompositeMapper = {
         xmlElementName: "CorsRule",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "CorsRule" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "CorsRule"
+            }
+          }
         }
       },
       defaultServiceVersion: {
@@ -796,7 +823,12 @@ export const Blobs: coreHttp.CompositeMapper = {
         xmlElementName: "BlobPrefix",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "BlobPrefix" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "BlobPrefix"
+            }
+          }
         }
       },
       blob: {
@@ -805,7 +837,12 @@ export const Blobs: coreHttp.CompositeMapper = {
         xmlElementName: "Blob",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Blob" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Blob"
+            }
+          }
         }
       }
     }
