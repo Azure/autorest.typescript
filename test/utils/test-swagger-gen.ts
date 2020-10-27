@@ -18,6 +18,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "additional-properties",
     licenseHeader: true
   },
+  arrayConstraints: {
+    swagger: "test/integration/swaggers/arrayConstraints.json",
+    clientName: "ArrayConstraintsClient",
+    packageName: "array-constraints-client",
+    licenseHeader: true
+  },
   azureParameterGrouping: {
     swagger: "azure-parameter-grouping.json",
     clientName: "AzureParameterGroupingClient",

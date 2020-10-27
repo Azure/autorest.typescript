@@ -22,7 +22,10 @@ export const AppServiceCertificateOrderCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AppServiceCertificateOrder" }
+            type: {
+              name: "Composite",
+              className: "AppServiceCertificateOrder"
+            }
           }
         }
       },
@@ -477,7 +480,10 @@ export const CsmOperationCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "CsmOperationDescription" }
+            type: {
+              name: "Composite",
+              className: "CsmOperationDescription"
+            }
           }
         }
       },
@@ -602,7 +608,10 @@ export const ServiceSpecification: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MetricSpecification" }
+            type: {
+              name: "Composite",
+              className: "MetricSpecification"
+            }
           }
         }
       },
@@ -613,7 +622,10 @@ export const ServiceSpecification: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "LogSpecification" }
+            type: {
+              name: "Composite",
+              className: "LogSpecification"
+            }
           }
         }
       }
@@ -717,7 +729,12 @@ export const MetricSpecification: coreHttp.CompositeMapper = {
         xmlElementName: "Dimension",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Dimension" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Dimension"
+            }
+          }
         }
       },
       category: {
@@ -734,7 +751,10 @@ export const MetricSpecification: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MetricAvailability" }
+            type: {
+              name: "Composite",
+              className: "MetricAvailability"
+            }
           }
         }
       },
@@ -744,7 +764,11 @@ export const MetricSpecification: coreHttp.CompositeMapper = {
         xmlElementName: "MetricSpecificationSupportedTimeGrainTypesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -889,7 +913,12 @@ export const DomainCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Domain",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Domain" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Domain"
+            }
+          }
         }
       },
       nextLink: {
@@ -1058,7 +1087,11 @@ export const HostName: coreHttp.CompositeMapper = {
         xmlElementName: "HostNameSiteNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       azureResourceName: {
@@ -1108,7 +1141,11 @@ export const DomainPurchaseConsent: coreHttp.CompositeMapper = {
         xmlElementName: "DomainPurchaseConsentAgreementKeysItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       agreedBy: {
@@ -1200,7 +1237,12 @@ export const NameIdentifierCollection: coreHttp.CompositeMapper = {
         xmlElementName: "NameIdentifier",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameIdentifier" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameIdentifier"
+            }
+          }
         }
       },
       nextLink: {
@@ -1229,7 +1271,10 @@ export const DomainOwnershipIdentifierCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DomainOwnershipIdentifier" }
+            type: {
+              name: "Composite",
+              className: "DomainOwnershipIdentifier"
+            }
           }
         }
       },
@@ -1258,7 +1303,12 @@ export const TopLevelDomainCollection: coreHttp.CompositeMapper = {
         xmlElementName: "TopLevelDomain",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TopLevelDomain" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TopLevelDomain"
+            }
+          }
         }
       },
       nextLink: {
@@ -1311,7 +1361,10 @@ export const TldLegalAgreementCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "TldLegalAgreement" }
+            type: {
+              name: "Composite",
+              className: "TldLegalAgreement"
+            }
           }
         }
       },
@@ -1381,7 +1434,12 @@ export const CertificateCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Certificate",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Certificate" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Certificate"
+            }
+          }
         }
       },
       nextLink: {
@@ -1442,7 +1500,12 @@ export const DeletedWebAppCollection: coreHttp.CompositeMapper = {
         xmlElementName: "DeletedSite",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DeletedSite" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DeletedSite"
+            }
+          }
         }
       },
       nextLink: {
@@ -1471,7 +1534,10 @@ export const DetectorResponseCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DetectorResponse" }
+            type: {
+              name: "Composite",
+              className: "DetectorResponse"
+            }
           }
         }
       },
@@ -1575,7 +1641,10 @@ export const DataTableResponseObject: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DataTableResponseColumn" }
+            type: {
+              name: "Composite",
+              className: "DataTableResponseColumn"
+            }
           }
         }
       },
@@ -1586,7 +1655,14 @@ export const DataTableResponseObject: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
+            type: {
+              name: "Sequence",
+              element: {
+                type: {
+                  name: "String"
+                }
+              }
+            }
           }
         }
       }
@@ -1676,7 +1752,10 @@ export const DiagnosticCategoryCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiagnosticCategory" }
+            type: {
+              name: "Composite",
+              className: "DiagnosticCategory"
+            }
           }
         }
       },
@@ -1706,7 +1785,10 @@ export const DiagnosticAnalysisCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AnalysisDefinition" }
+            type: {
+              name: "Composite",
+              className: "AnalysisDefinition"
+            }
           }
         }
       },
@@ -1749,7 +1831,10 @@ export const AbnormalTimePeriod: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DetectorAbnormalTimePeriod" }
+            type: {
+              name: "Composite",
+              className: "DetectorAbnormalTimePeriod"
+            }
           }
         }
       },
@@ -1759,7 +1844,12 @@ export const AbnormalTimePeriod: coreHttp.CompositeMapper = {
         xmlElementName: "Solution",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Solution" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Solution"
+            }
+          }
         }
       }
     }
@@ -1817,7 +1907,10 @@ export const DetectorAbnormalTimePeriod: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "NameValuePair" }
+                type: {
+                  name: "Composite",
+                  className: "NameValuePair"
+                }
               }
             }
           }
@@ -1846,7 +1939,12 @@ export const DetectorAbnormalTimePeriod: coreHttp.CompositeMapper = {
         xmlElementName: "Solution",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Solution" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Solution"
+            }
+          }
         }
       }
     }
@@ -1929,7 +2027,10 @@ export const Solution: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "NameValuePair" }
+                type: {
+                  name: "Composite",
+                  className: "NameValuePair"
+                }
               }
             }
           }
@@ -1945,7 +2046,10 @@ export const Solution: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "NameValuePair" }
+                type: {
+                  name: "Composite",
+                  className: "NameValuePair"
+                }
               }
             }
           }
@@ -1983,7 +2087,10 @@ export const AnalysisData: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiagnosticMetricSet" }
+            type: {
+              name: "Composite",
+              className: "DiagnosticMetricSet"
+            }
           }
         }
       },
@@ -1997,7 +2104,10 @@ export const AnalysisData: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "NameValuePair" }
+                type: {
+                  name: "Composite",
+                  className: "NameValuePair"
+                }
               }
             }
           }
@@ -2063,7 +2173,10 @@ export const DiagnosticMetricSet: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiagnosticMetricSample" }
+            type: {
+              name: "Composite",
+              className: "DiagnosticMetricSample"
+            }
           }
         }
       }
@@ -2153,7 +2266,11 @@ export const DataSource: coreHttp.CompositeMapper = {
         xmlElementName: "DataSourceInstructionsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       dataSourceUri: {
@@ -2162,7 +2279,12 @@ export const DataSource: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       }
     }
@@ -2183,7 +2305,10 @@ export const DiagnosticDetectorCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DetectorDefinition" }
+            type: {
+              name: "Composite",
+              className: "DetectorDefinition"
+            }
           }
         }
       },
@@ -2213,7 +2338,10 @@ export const ApplicationStackCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ApplicationStackResource" }
+            type: {
+              name: "Composite",
+              className: "ApplicationStackResource"
+            }
           }
         }
       },
@@ -2263,7 +2391,10 @@ export const ApplicationStack: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StackMajorVersion" }
+            type: {
+              name: "Composite",
+              className: "StackMajorVersion"
+            }
           }
         }
       },
@@ -2274,7 +2405,10 @@ export const ApplicationStack: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ApplicationStack" }
+            type: {
+              name: "Composite",
+              className: "ApplicationStack"
+            }
           }
         }
       }
@@ -2316,7 +2450,10 @@ export const StackMajorVersion: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StackMinorVersion" }
+            type: {
+              name: "Composite",
+              className: "StackMinorVersion"
+            }
           }
         }
       },
@@ -2403,7 +2540,12 @@ export const RecommendationCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Recommendation",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Recommendation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Recommendation"
+            }
+          }
         }
       },
       nextLink: {
@@ -2431,7 +2573,12 @@ export const SourceControlCollection: coreHttp.CompositeMapper = {
         xmlElementName: "SourceControl",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SourceControl" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SourceControl"
+            }
+          }
         }
       },
       nextLink: {
@@ -2459,7 +2606,12 @@ export const BillingMeterCollection: coreHttp.CompositeMapper = {
         xmlElementName: "BillingMeter",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "BillingMeter" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "BillingMeter"
+            }
+          }
         }
       },
       nextLink: {
@@ -2550,7 +2702,12 @@ export const DeploymentLocations: coreHttp.CompositeMapper = {
         xmlElementName: "GeoRegion",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "GeoRegion" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "GeoRegion"
+            }
+          }
         }
       },
       hostingEnvironments: {
@@ -2560,7 +2717,10 @@ export const DeploymentLocations: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AppServiceEnvironment" }
+            type: {
+              name: "Composite",
+              className: "AppServiceEnvironment"
+            }
           }
         }
       },
@@ -2686,7 +2846,12 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         xmlElementName: "WorkerPool",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WorkerPool" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WorkerPool"
+            }
+          }
         }
       },
       ipsslAddressCount: {
@@ -2783,7 +2948,10 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualIPMapping" }
+            type: {
+              name: "Composite",
+              className: "VirtualIPMapping"
+            }
           }
         }
       },
@@ -2794,7 +2962,12 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         xmlElementName: "StampCapacity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "StampCapacity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "StampCapacity"
+            }
+          }
         }
       },
       networkAccessControlList: {
@@ -2804,7 +2977,10 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "NetworkAccessControlEntry" }
+            type: {
+              name: "Composite",
+              className: "NetworkAccessControlEntry"
+            }
           }
         }
       },
@@ -2874,7 +3050,12 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       },
       userWhitelistedIpRanges: {
@@ -2883,7 +3064,11 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
         xmlElementName: "AppServiceEnvironmentUserWhitelistedIpRangesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       hasLinuxWorkers: {
@@ -2993,7 +3178,11 @@ export const WorkerPool: coreHttp.CompositeMapper = {
         xmlElementName: "WorkerPoolInstanceNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -3219,7 +3408,12 @@ export const GeoRegionCollection: coreHttp.CompositeMapper = {
         xmlElementName: "GeoRegion",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "GeoRegion" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "GeoRegion"
+            }
+          }
         }
       },
       nextLink: {
@@ -3247,7 +3441,12 @@ export const IdentifierCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Identifier",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Identifier" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Identifier"
+            }
+          }
         }
       },
       nextLink: {
@@ -3276,7 +3475,10 @@ export const PremierAddOnOfferCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PremierAddOnOffer" }
+            type: {
+              name: "Composite",
+              className: "PremierAddOnOffer"
+            }
           }
         }
       },
@@ -3312,7 +3514,10 @@ export const SkuInfos: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GlobalCsmSkuDescription" }
+            type: {
+              name: "Composite",
+              className: "GlobalCsmSkuDescription"
+            }
           }
         }
       }
@@ -3368,7 +3573,11 @@ export const GlobalCsmSkuDescription: coreHttp.CompositeMapper = {
         xmlElementName: "GlobalCsmSkuDescriptionLocationsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capabilities: {
@@ -3377,7 +3586,12 @@ export const GlobalCsmSkuDescription: coreHttp.CompositeMapper = {
         xmlElementName: "Capability",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Capability"
+            }
+          }
         }
       }
     }
@@ -3477,7 +3691,11 @@ export const CsmMoveResourceEnvelope: coreHttp.CompositeMapper = {
         xmlElementName: "CsmMoveResourceEnvelopeResourcesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -3674,7 +3892,12 @@ export const WebAppCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Site",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Site" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Site"
+            }
+          }
         }
       },
       nextLink: {
@@ -3762,7 +3985,11 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         xmlElementName: "SiteConfigDefaultDocumentsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       netFrameworkVersion: {
@@ -3877,7 +4104,12 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       },
       connectionStrings: {
@@ -3886,7 +4118,12 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         xmlElementName: "ConnStringInfo",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ConnStringInfo" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ConnStringInfo"
+            }
+          }
         }
       },
       machineKey: {
@@ -3903,7 +4140,12 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         xmlElementName: "HandlerMapping",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "HandlerMapping" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "HandlerMapping"
+            }
+          }
         }
       },
       documentRoot: {
@@ -3984,7 +4226,10 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualApplication" }
+            type: {
+              name: "Composite",
+              className: "VirtualApplication"
+            }
           }
         }
       },
@@ -4114,7 +4359,10 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "IpSecurityRestriction" }
+            type: {
+              name: "Composite",
+              className: "IpSecurityRestriction"
+            }
           }
         }
       },
@@ -4125,7 +4373,10 @@ export const SiteConfig: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "IpSecurityRestriction" }
+            type: {
+              name: "Composite",
+              className: "IpSecurityRestriction"
+            }
           }
         }
       },
@@ -4327,7 +4578,10 @@ export const VirtualApplication: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualDirectory" }
+            type: {
+              name: "Composite",
+              className: "VirtualDirectory"
+            }
           }
         }
       }
@@ -4371,7 +4625,12 @@ export const Experiments: coreHttp.CompositeMapper = {
         xmlElementName: "RampUpRule",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "RampUpRule" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "RampUpRule"
+            }
+          }
         }
       }
     }
@@ -4529,7 +4788,10 @@ export const AutoHealTriggers: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StatusCodesBasedTrigger" }
+            type: {
+              name: "Composite",
+              className: "StatusCodesBasedTrigger"
+            }
           }
         }
       },
@@ -4714,7 +4976,11 @@ export const CorsSettings: coreHttp.CompositeMapper = {
         xmlElementName: "CorsSettingsAllowedOriginsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       supportCredentials: {
@@ -5068,7 +5334,11 @@ export const ErrorEntity: coreHttp.CompositeMapper = {
         xmlElementName: "ErrorEntityParametersItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       innerErrors: {
@@ -5077,7 +5347,12 @@ export const ErrorEntity: coreHttp.CompositeMapper = {
         xmlElementName: "ErrorEntity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ErrorEntity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ErrorEntity"
+            }
+          }
         }
       },
       code: {
@@ -5238,7 +5513,12 @@ export const BackupItemCollection: coreHttp.CompositeMapper = {
         xmlElementName: "BackupItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "BackupItem" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "BackupItem"
+            }
+          }
         }
       },
       nextLink: {
@@ -5267,7 +5547,10 @@ export const SiteConfigResourceCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SiteConfigResource" }
+            type: {
+              name: "Composite",
+              className: "SiteConfigResource"
+            }
           }
         }
       },
@@ -5730,7 +6013,10 @@ export const ContinuousWebJobCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ContinuousWebJob" }
+            type: {
+              name: "Composite",
+              className: "ContinuousWebJob"
+            }
           }
         }
       },
@@ -5759,7 +6045,12 @@ export const DeploymentCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Deployment",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Deployment" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Deployment"
+            }
+          }
         }
       },
       nextLink: {
@@ -5823,7 +6114,10 @@ export const FunctionEnvelopeCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "FunctionEnvelope" }
+            type: {
+              name: "Composite",
+              className: "FunctionEnvelope"
+            }
           }
         }
       },
@@ -5909,7 +6203,12 @@ export const HostNameBindingCollection: coreHttp.CompositeMapper = {
         xmlElementName: "HostNameBinding",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "HostNameBinding" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "HostNameBinding"
+            }
+          }
         }
       },
       nextLink: {
@@ -5937,7 +6236,12 @@ export const WebAppInstanceCollection: coreHttp.CompositeMapper = {
         xmlElementName: "SiteInstance",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SiteInstance" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SiteInstance"
+            }
+          }
         }
       },
       nextLink: {
@@ -6081,7 +6385,11 @@ export const ContainerCpuUsage: coreHttp.CompositeMapper = {
         xmlElementName: "ArrayItemschema",
         type: {
           name: "Sequence",
-          element: { type: { name: "Number" } }
+          element: {
+            type: {
+              name: "Number"
+            }
+          }
         }
       },
       kernelModeUsage: {
@@ -6243,7 +6551,12 @@ export const ProcessInfoCollection: coreHttp.CompositeMapper = {
         xmlElementName: "ProcessInfo",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ProcessInfo" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ProcessInfo"
+            }
+          }
         }
       },
       nextLink: {
@@ -6272,7 +6585,10 @@ export const ProcessModuleInfoCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProcessModuleInfo" }
+            type: {
+              name: "Composite",
+              className: "ProcessModuleInfo"
+            }
           }
         }
       },
@@ -6302,7 +6618,10 @@ export const ProcessThreadInfoCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProcessThreadInfo" }
+            type: {
+              name: "Composite",
+              className: "ProcessThreadInfo"
+            }
           }
         }
       },
@@ -6339,7 +6658,10 @@ export const SiteCloneability: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SiteCloneabilityCriterion" }
+            type: {
+              name: "Composite",
+              className: "SiteCloneabilityCriterion"
+            }
           }
         }
       },
@@ -6350,7 +6672,10 @@ export const SiteCloneability: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SiteCloneabilityCriterion" }
+            type: {
+              name: "Composite",
+              className: "SiteCloneabilityCriterion"
+            }
           }
         }
       },
@@ -6361,7 +6686,10 @@ export const SiteCloneability: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SiteCloneabilityCriterion" }
+            type: {
+              name: "Composite",
+              className: "SiteCloneabilityCriterion"
+            }
           }
         }
       }
@@ -6433,7 +6761,12 @@ export const Operation: coreHttp.CompositeMapper = {
         xmlElementName: "ErrorEntity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ErrorEntity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ErrorEntity"
+            }
+          }
         }
       },
       createdTime: {
@@ -6512,7 +6845,12 @@ export const PerfMonCounterCollection: coreHttp.CompositeMapper = {
         xmlElementName: "PerfMonResponse",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "PerfMonResponse" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "PerfMonResponse"
+            }
+          }
         }
       },
       nextLink: {
@@ -6599,7 +6937,12 @@ export const PerfMonSet: coreHttp.CompositeMapper = {
         xmlElementName: "PerfMonSample",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "PerfMonSample" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "PerfMonSample"
+            }
+          }
         }
       }
     }
@@ -6671,7 +7014,10 @@ export const PrivateAccessVirtualNetwork: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateAccessSubnet" }
+            type: {
+              name: "Composite",
+              className: "PrivateAccessSubnet"
+            }
           }
         }
       }
@@ -6717,7 +7063,10 @@ export const PublicCertificateCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PublicCertificate" }
+            type: {
+              name: "Composite",
+              className: "PublicCertificate"
+            }
           }
         }
       },
@@ -6795,7 +7144,10 @@ export const SiteExtensionInfoCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SiteExtensionInfo" }
+            type: {
+              name: "Composite",
+              className: "SiteExtensionInfo"
+            }
           }
         }
       },
@@ -6900,7 +7252,10 @@ export const PrivateLinkResourcesWrapper: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateLinkResource" }
+            type: {
+              name: "Composite",
+              className: "PrivateLinkResource"
+            }
           }
         }
       }
@@ -6971,7 +7326,11 @@ export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
         xmlElementName: "PrivateLinkResourcePropertiesRequiredMembersItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredZoneNames: {
@@ -6981,7 +7340,11 @@ export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
         xmlElementName: "PrivateLinkResourcePropertiesRequiredZoneNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -7001,7 +7364,12 @@ export const SlotDifferenceCollection: coreHttp.CompositeMapper = {
         xmlElementName: "SlotDifference",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SlotDifference" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SlotDifference"
+            }
+          }
         }
       },
       nextLink: {
@@ -7029,7 +7397,12 @@ export const SnapshotCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Snapshot",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Snapshot" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Snapshot"
+            }
+          }
         }
       },
       nextLink: {
@@ -7057,7 +7430,12 @@ export const TriggeredWebJobCollection: coreHttp.CompositeMapper = {
         xmlElementName: "TriggeredWebJob",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TriggeredWebJob" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TriggeredWebJob"
+            }
+          }
         }
       },
       nextLink: {
@@ -7086,7 +7464,10 @@ export const TriggeredJobHistoryCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "TriggeredJobHistory" }
+            type: {
+              name: "Composite",
+              className: "TriggeredJobHistory"
+            }
           }
         }
       },
@@ -7115,7 +7496,12 @@ export const CsmUsageQuotaCollection: coreHttp.CompositeMapper = {
         xmlElementName: "CsmUsageQuota",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "CsmUsageQuota" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "CsmUsageQuota"
+            }
+          }
         }
       },
       nextLink: {
@@ -7213,7 +7599,12 @@ export const WebJobCollection: coreHttp.CompositeMapper = {
         xmlElementName: "WebJob",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WebJob" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WebJob"
+            }
+          }
         }
       },
       nextLink: {
@@ -7242,7 +7633,10 @@ export const StaticSiteCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StaticSiteARMResource" }
+            type: {
+              name: "Composite",
+              className: "StaticSiteARMResource"
+            }
           }
         }
       },
@@ -7344,7 +7738,11 @@ export const SkuDescription: coreHttp.CompositeMapper = {
         xmlElementName: "SkuDescriptionLocationsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capabilities: {
@@ -7353,7 +7751,12 @@ export const SkuDescription: coreHttp.CompositeMapper = {
         xmlElementName: "Capability",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Capability"
+            }
+          }
         }
       }
     }
@@ -7374,7 +7777,10 @@ export const StaticSiteUserCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StaticSiteUserARMResource" }
+            type: {
+              name: "Composite",
+              className: "StaticSiteUserARMResource"
+            }
           }
         }
       },
@@ -7404,7 +7810,10 @@ export const StaticSiteBuildCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StaticSiteBuildARMResource" }
+            type: {
+              name: "Composite",
+              className: "StaticSiteBuildARMResource"
+            }
           }
         }
       },
@@ -7532,7 +7941,12 @@ export const StampCapacityCollection: coreHttp.CompositeMapper = {
         xmlElementName: "StampCapacity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "StampCapacity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "StampCapacity"
+            }
+          }
         }
       },
       nextLink: {
@@ -7585,7 +7999,10 @@ export const InboundEnvironmentEndpointCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InboundEnvironmentEndpoint" }
+            type: {
+              name: "Composite",
+              className: "InboundEnvironmentEndpoint"
+            }
           }
         }
       },
@@ -7620,7 +8037,11 @@ export const InboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
         xmlElementName: "InboundEnvironmentEndpointEndpointsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       ports: {
@@ -7629,7 +8050,11 @@ export const InboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
         xmlElementName: "InboundEnvironmentEndpointPortsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -7650,7 +8075,10 @@ export const WorkerPoolCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "WorkerPoolResource" }
+            type: {
+              name: "Composite",
+              className: "WorkerPoolResource"
+            }
           }
         }
       },
@@ -7680,7 +8108,10 @@ export const ResourceMetricDefinitionCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceMetricDefinition" }
+            type: {
+              name: "Composite",
+              className: "ResourceMetricDefinition"
+            }
           }
         }
       },
@@ -7735,7 +8166,12 @@ export const SkuInfoCollection: coreHttp.CompositeMapper = {
         xmlElementName: "SkuInfo",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SkuInfo" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SkuInfo"
+            }
+          }
         }
       },
       nextLink: {
@@ -7796,7 +8232,12 @@ export const UsageCollection: coreHttp.CompositeMapper = {
         xmlElementName: "Usage",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Usage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Usage"
+            }
+          }
         }
       },
       nextLink: {
@@ -7864,7 +8305,10 @@ export const OutboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "EndpointDependency" }
+            type: {
+              name: "Composite",
+              className: "EndpointDependency"
+            }
           }
         }
       }
@@ -7891,7 +8335,12 @@ export const EndpointDependency: coreHttp.CompositeMapper = {
         xmlElementName: "EndpointDetail",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "EndpointDetail" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "EndpointDetail"
+            }
+          }
         }
       }
     }
@@ -7949,7 +8398,12 @@ export const AppServicePlanCollection: coreHttp.CompositeMapper = {
         xmlElementName: "AppServicePlan",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AppServicePlan" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AppServicePlan"
+            }
+          }
         }
       },
       nextLink: {
@@ -7977,7 +8431,11 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
         xmlElementName: "ResourceCollectionValueItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       nextLink: {
@@ -8006,7 +8464,10 @@ export const HybridConnectionCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "HybridConnection" }
+            type: {
+              name: "Composite",
+              className: "HybridConnection"
+            }
           }
         }
       },
@@ -8036,7 +8497,10 @@ export const ResourceHealthMetadataCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceHealthMetadata" }
+            type: {
+              name: "Composite",
+              className: "ResourceHealthMetadata"
+            }
           }
         }
       },
@@ -8229,7 +8693,11 @@ export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
           "AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       nextAutoRenewalTimeStamp: {
@@ -8382,7 +8850,11 @@ export const Domain: coreHttp.CompositeMapper = {
         xmlElementName: "DomainPropertiesNameServersItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       privacy: {
@@ -8439,7 +8911,12 @@ export const Domain: coreHttp.CompositeMapper = {
         xmlElementName: "HostName",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "HostName" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "HostName"
+            }
+          }
         }
       },
       consent: {
@@ -8457,7 +8934,11 @@ export const Domain: coreHttp.CompositeMapper = {
         xmlElementName: "DomainPropertiesDomainNotRenewableReasonsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       dnsType: {
@@ -8523,7 +9004,11 @@ export const Certificate: coreHttp.CompositeMapper = {
         xmlElementName: "CertificatePropertiesHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       pfxBlob: {
@@ -8703,7 +9188,11 @@ export const Site: coreHttp.CompositeMapper = {
         xmlElementName: "SitePropertiesHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       repositorySiteName: {
@@ -8737,7 +9226,11 @@ export const Site: coreHttp.CompositeMapper = {
         xmlElementName: "SitePropertiesEnabledHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       availabilityState: {
@@ -8756,7 +9249,10 @@ export const Site: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "HostNameSslState" }
+            type: {
+              name: "Composite",
+              className: "HostNameSslState"
+            }
           }
         }
       },
@@ -8811,7 +9307,11 @@ export const Site: coreHttp.CompositeMapper = {
         xmlElementName: "SitePropertiesTrafficManagerHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       scmSiteAlsoStopped: {
@@ -9074,7 +9574,11 @@ export const StaticSiteARMResource: coreHttp.CompositeMapper = {
         xmlElementName: "StaticSiteCustomDomainsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       repositoryToken: {
@@ -9198,7 +9702,12 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         xmlElementName: "WorkerPool",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WorkerPool" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WorkerPool"
+            }
+          }
         }
       },
       ipsslAddressCount: {
@@ -9295,7 +9804,10 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualIPMapping" }
+            type: {
+              name: "Composite",
+              className: "VirtualIPMapping"
+            }
           }
         }
       },
@@ -9306,7 +9818,12 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         xmlElementName: "StampCapacity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "StampCapacity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "StampCapacity"
+            }
+          }
         }
       },
       networkAccessControlList: {
@@ -9316,7 +9833,10 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "NetworkAccessControlEntry" }
+            type: {
+              name: "Composite",
+              className: "NetworkAccessControlEntry"
+            }
           }
         }
       },
@@ -9386,7 +9906,12 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       },
       userWhitelistedIpRanges: {
@@ -9395,7 +9920,11 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         xmlElementName: "AppServiceEnvironmentUserWhitelistedIpRangesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       hasLinuxWorkers: {
@@ -9768,7 +10297,11 @@ export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper =
           "AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       nextAutoRenewalTimeStamp: {
@@ -10060,7 +10593,11 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "DomainPatchResourcePropertiesNameServersItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       privacy: {
@@ -10117,7 +10654,12 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "HostName",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "HostName" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "HostName"
+            }
+          }
         }
       },
       consent: {
@@ -10136,7 +10678,11 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
           "DomainPatchResourcePropertiesDomainNotRenewableReasonsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       dnsType: {
@@ -10238,7 +10784,11 @@ export const CertificatePatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "CertificatePatchResourcePropertiesHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       pfxBlob: {
@@ -10484,7 +11034,12 @@ export const DetectorResponse: coreHttp.CompositeMapper = {
         xmlElementName: "DiagnosticData",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DiagnosticData" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DiagnosticData"
+            }
+          }
         }
       }
     }
@@ -10600,7 +11155,10 @@ export const DiagnosticAnalysis: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AbnormalTimePeriod" }
+            type: {
+              name: "Composite",
+              className: "AbnormalTimePeriod"
+            }
           }
         }
       },
@@ -10610,7 +11168,12 @@ export const DiagnosticAnalysis: coreHttp.CompositeMapper = {
         xmlElementName: "AnalysisData",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AnalysisData" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AnalysisData"
+            }
+          }
         }
       },
       nonCorrelatedDetectors: {
@@ -10620,7 +11183,10 @@ export const DiagnosticAnalysis: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DetectorDefinition" }
+            type: {
+              name: "Composite",
+              className: "DetectorDefinition"
+            }
           }
         }
       }
@@ -10671,7 +11237,10 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiagnosticMetricSet" }
+            type: {
+              name: "Composite",
+              className: "DiagnosticMetricSet"
+            }
           }
         }
       },
@@ -10682,7 +11251,10 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DetectorAbnormalTimePeriod" }
+            type: {
+              name: "Composite",
+              className: "DetectorAbnormalTimePeriod"
+            }
           }
         }
       },
@@ -10696,7 +11268,10 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
             type: {
               name: "Sequence",
               element: {
-                type: { name: "Composite", className: "NameValuePair" }
+                type: {
+                  name: "Composite",
+                  className: "NameValuePair"
+                }
               }
             }
           }
@@ -10749,7 +11324,10 @@ export const ApplicationStackResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StackMajorVersion" }
+            type: {
+              name: "Composite",
+              className: "StackMajorVersion"
+            }
           }
         }
       },
@@ -10760,7 +11338,10 @@ export const ApplicationStackResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ApplicationStack" }
+            type: {
+              name: "Composite",
+              className: "ApplicationStack"
+            }
           }
         }
       }
@@ -10852,7 +11433,11 @@ export const Recommendation: coreHttp.CompositeMapper = {
         xmlElementName: "RecommendationPropertiesCategoryTagsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       actionName: {
@@ -10875,7 +11460,11 @@ export const Recommendation: coreHttp.CompositeMapper = {
         xmlElementName: "RecommendationPropertiesStatesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       startTime: {
@@ -11029,7 +11618,11 @@ export const RecommendationRule: coreHttp.CompositeMapper = {
         xmlElementName: "RecommendationRulePropertiesCategoryTagsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       isDynamic: {
@@ -11422,7 +12015,10 @@ export const VnetValidationFailureDetails: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VnetValidationTestFailure" }
+            type: {
+              name: "Composite",
+              className: "VnetValidationTestFailure"
+            }
           }
         }
       }
@@ -11499,7 +12095,11 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "SitePatchResourcePropertiesHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       repositorySiteName: {
@@ -11533,7 +12133,11 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "SitePatchResourcePropertiesEnabledHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       availabilityState: {
@@ -11552,7 +12156,10 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "HostNameSslState" }
+            type: {
+              name: "Composite",
+              className: "HostNameSslState"
+            }
           }
         }
       },
@@ -11608,7 +12215,11 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
           "SitePatchResourcePropertiesTrafficManagerHostNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       scmSiteAlsoStopped: {
@@ -11844,7 +12455,11 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
           "CustomHostnameAnalysisResultPropertiesCNameRecordsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       txtRecords: {
@@ -11853,7 +12468,11 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
         xmlElementName: "CustomHostnameAnalysisResultPropertiesTxtRecordsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       aRecords: {
@@ -11862,7 +12481,11 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
         xmlElementName: "CustomHostnameAnalysisResultPropertiesARecordsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       alternateCNameRecords: {
@@ -11872,7 +12495,11 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
           "CustomHostnameAnalysisResultPropertiesAlternateCNameRecordsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       alternateTxtRecords: {
@@ -11882,7 +12509,11 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
           "CustomHostnameAnalysisResultPropertiesAlternateTxtRecordsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -11932,7 +12563,10 @@ export const BackupRequest: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DatabaseBackupSetting" }
+            type: {
+              name: "Composite",
+              className: "DatabaseBackupSetting"
+            }
           }
         }
       }
@@ -12031,7 +12665,10 @@ export const BackupItem: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DatabaseBackupSetting" }
+            type: {
+              name: "Composite",
+              className: "DatabaseBackupSetting"
+            }
           }
         }
       },
@@ -12121,7 +12758,10 @@ export const RestoreRequest: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DatabaseBackupSetting" }
+            type: {
+              name: "Composite",
+              className: "DatabaseBackupSetting"
+            }
           }
         }
       },
@@ -12199,7 +12839,11 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         xmlElementName: "SiteConfigDefaultDocumentsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       netFrameworkVersion: {
@@ -12314,7 +12958,12 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       },
       connectionStrings: {
@@ -12323,7 +12972,12 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         xmlElementName: "ConnStringInfo",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ConnStringInfo" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ConnStringInfo"
+            }
+          }
         }
       },
       machineKey: {
@@ -12340,7 +12994,12 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         xmlElementName: "HandlerMapping",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "HandlerMapping" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "HandlerMapping"
+            }
+          }
         }
       },
       documentRoot: {
@@ -12421,7 +13080,10 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualApplication" }
+            type: {
+              name: "Composite",
+              className: "VirtualApplication"
+            }
           }
         }
       },
@@ -12551,7 +13213,10 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "IpSecurityRestriction" }
+            type: {
+              name: "Composite",
+              className: "IpSecurityRestriction"
+            }
           }
         }
       },
@@ -12562,7 +13227,10 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "IpSecurityRestriction" }
+            type: {
+              name: "Composite",
+              className: "IpSecurityRestriction"
+            }
           }
         }
       },
@@ -12679,7 +13347,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
           "SiteAuthSettingsPropertiesAllowedExternalRedirectUrlsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       defaultProvider: {
@@ -12744,7 +13416,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
         xmlElementName: "SiteAuthSettingsPropertiesAllowedAudiencesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       additionalLoginParams: {
@@ -12753,7 +13429,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
         xmlElementName: "SiteAuthSettingsPropertiesAdditionalLoginParamsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       googleClientId: {
@@ -12776,7 +13456,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
         xmlElementName: "SiteAuthSettingsPropertiesGoogleOAuthScopesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       facebookAppId: {
@@ -12799,7 +13483,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
         xmlElementName: "SiteAuthSettingsPropertiesFacebookOAuthScopesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       twitterConsumerKey: {
@@ -12837,7 +13525,11 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
           "SiteAuthSettingsPropertiesMicrosoftAccountOAuthScopesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -13049,7 +13741,11 @@ export const SlotConfigNamesResource: coreHttp.CompositeMapper = {
         xmlElementName: "SlotConfigNamesConnectionStringNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       appSettingNames: {
@@ -13058,7 +13754,11 @@ export const SlotConfigNamesResource: coreHttp.CompositeMapper = {
         xmlElementName: "SlotConfigNamesAppSettingNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       azureStorageConfigNames: {
@@ -13067,7 +13767,11 @@ export const SlotConfigNamesResource: coreHttp.CompositeMapper = {
         xmlElementName: "SlotConfigNamesAzureStorageConfigNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -13399,7 +14103,10 @@ export const MSDeployLog: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MSDeployLogEntry" }
+            type: {
+              name: "Composite",
+              className: "MSDeployLogEntry"
+            }
           }
         }
       }
@@ -14062,7 +14769,11 @@ export const ProcessInfo: coreHttp.CompositeMapper = {
         xmlElementName: "ProcessInfoPropertiesChildrenItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       threads: {
@@ -14072,7 +14783,10 @@ export const ProcessInfo: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProcessThreadInfo" }
+            type: {
+              name: "Composite",
+              className: "ProcessThreadInfo"
+            }
           }
         }
       },
@@ -14082,7 +14796,11 @@ export const ProcessInfo: coreHttp.CompositeMapper = {
         xmlElementName: "ProcessInfoPropertiesOpenFileHandlesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       modules: {
@@ -14092,7 +14810,10 @@ export const ProcessInfo: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProcessModuleInfo" }
+            type: {
+              name: "Composite",
+              className: "ProcessModuleInfo"
+            }
           }
         }
       },
@@ -14488,7 +15209,12 @@ export const VnetInfo: coreHttp.CompositeMapper = {
         xmlElementName: "VnetRoute",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "VnetRoute" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "VnetRoute"
+            }
+          }
         }
       },
       resyncRequired: {
@@ -14563,7 +15289,10 @@ export const NetworkFeatures: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "HybridConnection" }
+            type: {
+              name: "Composite",
+              className: "HybridConnection"
+            }
           }
         }
       }
@@ -14906,7 +15635,11 @@ export const SiteExtensionInfo: coreHttp.CompositeMapper = {
         xmlElementName: "SiteExtensionInfoPropertiesAuthorsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       installerCommandLineParams: {
@@ -15341,7 +16074,12 @@ export const TriggeredJobHistory: coreHttp.CompositeMapper = {
         xmlElementName: "TriggeredJobRun",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TriggeredJobRun" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TriggeredJobRun"
+            }
+          }
         }
       }
     }
@@ -15471,7 +16209,11 @@ export const StaticSitePatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "StaticSiteCustomDomainsItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       repositoryToken: {
@@ -15856,7 +16598,12 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "WorkerPool",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WorkerPool" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WorkerPool"
+            }
+          }
         }
       },
       ipsslAddressCount: {
@@ -15953,7 +16700,10 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualIPMapping" }
+            type: {
+              name: "Composite",
+              className: "VirtualIPMapping"
+            }
           }
         }
       },
@@ -15964,7 +16714,12 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "StampCapacity",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "StampCapacity" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "StampCapacity"
+            }
+          }
         }
       },
       networkAccessControlList: {
@@ -15974,7 +16729,10 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "NetworkAccessControlEntry" }
+            type: {
+              name: "Composite",
+              className: "NetworkAccessControlEntry"
+            }
           }
         }
       },
@@ -16044,7 +16802,12 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "NameValuePair",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "NameValuePair" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "NameValuePair"
+            }
+          }
         }
       },
       userWhitelistedIpRanges: {
@@ -16053,7 +16816,11 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         xmlElementName: "AppServiceEnvironmentUserWhitelistedIpRangesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       hasLinuxWorkers: {
@@ -16108,7 +16875,11 @@ export const AddressResponse: coreHttp.CompositeMapper = {
         xmlElementName: "AddressResponsePropertiesOutboundIpAddressesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       vipMappings: {
@@ -16118,7 +16889,10 @@ export const AddressResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualIPMapping" }
+            type: {
+              name: "Composite",
+              className: "VirtualIPMapping"
+            }
           }
         }
       }
@@ -16177,7 +16951,11 @@ export const WorkerPoolResource: coreHttp.CompositeMapper = {
         xmlElementName: "WorkerPoolInstanceNamesItem",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -16215,7 +16993,10 @@ export const ResourceMetricDefinition: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceMetricAvailability" }
+            type: {
+              name: "Composite",
+              className: "ResourceMetricAvailability"
+            }
           }
         }
       },

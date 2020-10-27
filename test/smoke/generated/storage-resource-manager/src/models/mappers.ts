@@ -17,7 +17,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       }
     }
@@ -102,7 +107,10 @@ export const ServiceSpecification: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "MetricSpecification" }
+            type: {
+              name: "Composite",
+              className: "MetricSpecification"
+            }
           }
         }
       }
@@ -143,7 +151,12 @@ export const MetricSpecification: coreHttp.CompositeMapper = {
         serializedName: "dimensions",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Dimension" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Dimension"
+            }
+          }
         }
       },
       aggregationType: {
@@ -205,7 +218,12 @@ export const StorageSkuListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SkuInformation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SkuInformation"
+            }
+          }
         }
       }
     }
@@ -251,7 +269,11 @@ export const SkuInformation: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capabilities: {
@@ -259,14 +281,24 @@ export const SkuInformation: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SKUCapability" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SKUCapability"
+            }
+          }
         }
       },
       restrictions: {
         serializedName: "restrictions",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Restriction" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Restriction"
+            }
+          }
         }
       }
     }
@@ -313,7 +345,11 @@ export const Restriction: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       reasonCode: {
@@ -716,7 +752,10 @@ export const NetworkRuleSet: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
+            type: {
+              name: "Composite",
+              className: "VirtualNetworkRule"
+            }
           }
         }
       },
@@ -724,7 +763,12 @@ export const NetworkRuleSet: coreHttp.CompositeMapper = {
         serializedName: "ipRules",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "IPRule" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "IPRule"
+            }
+          }
         }
       },
       defaultAction: {
@@ -1213,7 +1257,10 @@ export const BlobRestoreParameters: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "BlobRestoreRange" }
+            type: {
+              name: "Composite",
+              className: "BlobRestoreRange"
+            }
           }
         }
       }
@@ -1344,7 +1391,12 @@ export const StorageAccountListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "StorageAccount" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "StorageAccount"
+            }
+          }
         }
       },
       nextLink: {
@@ -1369,7 +1421,10 @@ export const StorageAccountListKeysResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "StorageAccountKey" }
+            type: {
+              name: "Composite",
+              className: "StorageAccountKey"
+            }
           }
         }
       }
@@ -1433,7 +1488,12 @@ export const UsageListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Usage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Usage"
+            }
+          }
         }
       }
     }
@@ -1735,7 +1795,10 @@ export const ManagementPolicySchema: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ManagementPolicyRule" }
+            type: {
+              name: "Composite",
+              className: "ManagementPolicyRule"
+            }
           }
         }
       }
@@ -1920,7 +1983,11 @@ export const ManagementPolicyFilter: coreHttp.CompositeMapper = {
         serializedName: "prefixMatch",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       blobTypes: {
@@ -1928,14 +1995,23 @@ export const ManagementPolicyFilter: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       blobIndexMatch: {
         serializedName: "blobIndexMatch",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TagFilter" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TagFilter"
+            }
+          }
         }
       }
     }
@@ -1989,7 +2065,10 @@ export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateEndpointConnection" }
+            type: {
+              name: "Composite",
+              className: "PrivateEndpointConnection"
+            }
           }
         }
       }
@@ -2028,7 +2107,10 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateLinkResource" }
+            type: {
+              name: "Composite",
+              className: "PrivateLinkResource"
+            }
           }
         }
       }
@@ -2046,7 +2128,10 @@ export const ObjectReplicationPolicies: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ObjectReplicationPolicy" }
+            type: {
+              name: "Composite",
+              className: "ObjectReplicationPolicy"
+            }
           }
         }
       }
@@ -2099,7 +2184,11 @@ export const ObjectReplicationPolicyFilter: coreHttp.CompositeMapper = {
         serializedName: "prefixMatch",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       minCreationTime: {
@@ -2137,7 +2226,12 @@ export const EncryptionScopeListResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "EncryptionScope" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "EncryptionScope"
+            }
+          }
         }
       },
       nextLink: {
@@ -2162,7 +2256,10 @@ export const BlobServiceItems: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "BlobServiceProperties" }
+            type: {
+              name: "Composite",
+              className: "BlobServiceProperties"
+            }
           }
         }
       }
@@ -2179,7 +2276,12 @@ export const CorsRules: coreHttp.CompositeMapper = {
         serializedName: "corsRules",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "CorsRule" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "CorsRule"
+            }
+          }
         }
       }
     }
@@ -2196,7 +2298,11 @@ export const CorsRule: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       allowedMethods: {
@@ -2204,7 +2310,11 @@ export const CorsRule: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       maxAgeInSeconds: {
@@ -2219,7 +2329,11 @@ export const CorsRule: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       allowedHeaders: {
@@ -2227,7 +2341,11 @@ export const CorsRule: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -2318,7 +2436,10 @@ export const ListContainerItems: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ListContainerItem" }
+            type: {
+              name: "Composite",
+              className: "ListContainerItem"
+            }
           }
         }
       },
@@ -2351,7 +2472,10 @@ export const ImmutabilityPolicyProperties: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "UpdateHistoryProperty" }
+            type: {
+              name: "Composite",
+              className: "UpdateHistoryProperty"
+            }
           }
         }
       },
@@ -2445,7 +2569,12 @@ export const LegalHoldProperties: coreHttp.CompositeMapper = {
         serializedName: "tags",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TagProperty" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TagProperty"
+            }
+          }
         }
       }
     }
@@ -2514,8 +2643,13 @@ export const LegalHold: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "String" },
-            constraints: { MaxLength: 23, MinLength: 3 }
+            constraints: {
+              MaxLength: 23,
+              MinLength: 3
+            },
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -2595,7 +2729,10 @@ export const FileServiceItems: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "FileServiceProperties" }
+            type: {
+              name: "Composite",
+              className: "FileServiceProperties"
+            }
           }
         }
       }
@@ -2646,7 +2783,12 @@ export const CloudErrorBody: coreHttp.CompositeMapper = {
         serializedName: "details",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "CloudErrorBody" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "CloudErrorBody"
+            }
+          }
         }
       }
     }
@@ -2663,7 +2805,12 @@ export const FileShareItems: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "FileShareItem" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "FileShareItem"
+            }
+          }
         }
       },
       nextLink: {
@@ -2797,14 +2944,22 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredZoneNames: {
         serializedName: "properties.requiredZoneNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -3187,7 +3342,10 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateEndpointConnection" }
+            type: {
+              name: "Composite",
+              className: "PrivateEndpointConnection"
+            }
           }
         }
       },

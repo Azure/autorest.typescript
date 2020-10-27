@@ -19,7 +19,10 @@ export const ComputeOperationListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ComputeOperationValue" }
+            type: {
+              name: "Composite",
+              className: "ComputeOperationValue"
+            }
           }
         }
       }
@@ -230,7 +233,12 @@ export const AvailabilitySetListResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AvailabilitySet" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AvailabilitySet"
+            }
+          }
         }
       },
       nextLink: {
@@ -253,7 +261,10 @@ export const VirtualMachineSizeListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineSize" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineSize"
+            }
           }
         }
       }
@@ -317,7 +328,10 @@ export const ProximityPlacementGroupListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProximityPlacementGroup" }
+            type: {
+              name: "Composite",
+              className: "ProximityPlacementGroup"
+            }
           }
         }
       },
@@ -358,7 +372,10 @@ export const DedicatedHostGroupListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DedicatedHostGroup" }
+            type: {
+              name: "Composite",
+              className: "DedicatedHostGroup"
+            }
           }
         }
       },
@@ -396,7 +413,10 @@ export const DedicatedHostInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -414,7 +434,10 @@ export const DedicatedHostAvailableCapacity: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DedicatedHostAllocatableVM" }
+            type: {
+              name: "Composite",
+              className: "DedicatedHostAllocatableVM"
+            }
           }
         }
       }
@@ -453,7 +476,12 @@ export const DedicatedHostListResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DedicatedHost" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DedicatedHost"
+            }
+          }
         }
       },
       nextLink: {
@@ -477,7 +505,10 @@ export const SshPublicKeysGroupListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SshPublicKeyResource" }
+            type: {
+              name: "Composite",
+              className: "SshPublicKeyResource"
+            }
           }
         }
       },
@@ -549,7 +580,10 @@ export const VirtualMachineExtensionInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       },
@@ -558,7 +592,10 @@ export const VirtualMachineExtensionInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -576,7 +613,10 @@ export const VirtualMachineExtensionsListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineExtension" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineExtension"
+            }
           }
         }
       }
@@ -673,7 +713,12 @@ export const ListUsagesResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Usage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Usage"
+            }
+          }
         }
       },
       nextLink: {
@@ -755,7 +800,12 @@ export const VirtualMachineListResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "VirtualMachine" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "VirtualMachine"
+            }
+          }
         }
       },
       nextLink: {
@@ -839,7 +889,12 @@ export const StorageProfile: coreHttp.CompositeMapper = {
         serializedName: "dataDisks",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DataDisk" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DataDisk"
+            }
+          }
         }
       }
     }
@@ -1192,7 +1247,10 @@ export const OSProfile: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VaultSecretGroup" }
+            type: {
+              name: "Composite",
+              className: "VaultSecretGroup"
+            }
           }
         }
       },
@@ -1240,7 +1298,10 @@ export const WindowsConfiguration: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AdditionalUnattendContent" }
+            type: {
+              name: "Composite",
+              className: "AdditionalUnattendContent"
+            }
           }
         }
       },
@@ -1302,7 +1363,12 @@ export const WinRMConfiguration: coreHttp.CompositeMapper = {
         serializedName: "listeners",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WinRMListener" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WinRMListener"
+            }
+          }
         }
       }
     }
@@ -1368,7 +1434,12 @@ export const SshConfiguration: coreHttp.CompositeMapper = {
         serializedName: "publicKeys",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SshPublicKey" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SshPublicKey"
+            }
+          }
         }
       }
     }
@@ -1413,7 +1484,10 @@ export const VaultSecretGroup: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VaultCertificate" }
+            type: {
+              name: "Composite",
+              className: "VaultCertificate"
+            }
           }
         }
       }
@@ -1452,7 +1526,10 @@ export const NetworkProfile: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "NetworkInterfaceReference" }
+            type: {
+              name: "Composite",
+              className: "NetworkInterfaceReference"
+            }
           }
         }
       }
@@ -1578,7 +1655,10 @@ export const VirtualMachineInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiskInstanceView" }
+            type: {
+              name: "Composite",
+              className: "DiskInstanceView"
+            }
           }
         }
       },
@@ -1606,7 +1686,10 @@ export const VirtualMachineInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -1642,7 +1725,10 @@ export const VirtualMachineAgentInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -1751,7 +1837,10 @@ export const DiskInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiskEncryptionSettings" }
+            type: {
+              name: "Composite",
+              className: "DiskEncryptionSettings"
+            }
           }
         }
       },
@@ -1760,7 +1849,10 @@ export const DiskInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -1886,7 +1978,12 @@ export const ImageStorageProfile: coreHttp.CompositeMapper = {
         serializedName: "dataDisks",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ImageDataDisk" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ImageDataDisk"
+            }
+          }
         }
       },
       zoneResilient: {
@@ -1964,7 +2061,12 @@ export const ImageListResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Image" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Image"
+            }
+          }
         }
       },
       nextLink: {
@@ -2032,7 +2134,12 @@ export const ApiError: coreHttp.CompositeMapper = {
         serializedName: "details",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ApiErrorBase" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ApiErrorBase"
+            }
+          }
         }
       },
       innererror: {
@@ -2368,7 +2475,10 @@ export const VirtualMachineScaleSetOSProfile: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VaultSecretGroup" }
+            type: {
+              name: "Composite",
+              className: "VaultSecretGroup"
+            }
           }
         }
       }
@@ -2473,7 +2583,11 @@ export const VirtualMachineScaleSetOSDisk: coreHttp.CompositeMapper = {
         serializedName: "vhdContainers",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       managedDisk: {
@@ -2628,7 +2742,11 @@ export const VirtualMachineScaleSetNetworkConfigurationDnsSettings: coreHttp.Com
         serializedName: "dnsServers",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -2794,7 +2912,11 @@ export const ScaleInPolicy: coreHttp.CompositeMapper = {
         serializedName: "rules",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -2967,7 +3089,10 @@ export const VirtualMachineScaleSetUpdateOSProfile: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VaultSecretGroup" }
+            type: {
+              name: "Composite",
+              className: "VaultSecretGroup"
+            }
           }
         }
       }
@@ -3045,7 +3170,11 @@ export const VirtualMachineScaleSetUpdateOSDisk: coreHttp.CompositeMapper = {
         serializedName: "vhdContainers",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       managedDisk: {
@@ -3125,7 +3254,11 @@ export const VirtualMachineScaleSetVMInstanceIDs: coreHttp.CompositeMapper = {
         serializedName: "instanceIds",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -3142,7 +3275,11 @@ export const VirtualMachineScaleSetVMInstanceRequiredIDs: coreHttp.CompositeMapp
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -3179,7 +3316,10 @@ export const VirtualMachineScaleSetInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       },
@@ -3308,7 +3448,10 @@ export const VirtualMachineScaleSetListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineScaleSet" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineScaleSet"
+            }
           }
         }
       },
@@ -3361,7 +3504,10 @@ export const VirtualMachineScaleSetListWithLinkResult: coreHttp.CompositeMapper 
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineScaleSet" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineScaleSet"
+            }
           }
         }
       },
@@ -3386,7 +3532,10 @@ export const VirtualMachineScaleSetListSkusResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineScaleSetSku" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineScaleSetSku"
+            }
           }
         }
       },
@@ -3818,7 +3967,10 @@ export const VirtualMachineScaleSetVMInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiskInstanceView" }
+            type: {
+              name: "Composite",
+              className: "DiskInstanceView"
+            }
           }
         }
       },
@@ -3853,7 +4005,10 @@ export const VirtualMachineScaleSetVMInstanceView: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       },
@@ -3936,7 +4091,10 @@ export const VirtualMachineScaleSetVMListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineScaleSetVM" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineScaleSetVM"
+            }
           }
         }
       },
@@ -4041,7 +4199,10 @@ export const RunCommandListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "RunCommandDocumentBase" }
+            type: {
+              name: "Composite",
+              className: "RunCommandDocumentBase"
+            }
           }
         }
       },
@@ -4151,7 +4312,11 @@ export const RunCommandInput: coreHttp.CompositeMapper = {
         serializedName: "script",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       parameters: {
@@ -4159,7 +4324,10 @@ export const RunCommandInput: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "RunCommandInputParameter" }
+            type: {
+              name: "Composite",
+              className: "RunCommandInputParameter"
+            }
           }
         }
       }
@@ -4200,7 +4368,10 @@ export const RunCommandResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -4218,7 +4389,12 @@ export const ResourceSkusResult: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ResourceSku" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ResourceSku"
+            }
+          }
         }
       },
       nextLink: {
@@ -4290,7 +4466,11 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       locationInfo: {
@@ -4299,7 +4479,10 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuLocationInfo" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuLocationInfo"
+            }
           }
         }
       },
@@ -4308,7 +4491,11 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       costs: {
@@ -4317,7 +4504,10 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuCosts" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuCosts"
+            }
           }
         }
       },
@@ -4327,7 +4517,10 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuCapabilities" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuCapabilities"
+            }
           }
         }
       },
@@ -4337,7 +4530,10 @@ export const ResourceSku: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuRestrictions" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuRestrictions"
+            }
           }
         }
       }
@@ -4400,7 +4596,11 @@ export const ResourceSkuLocationInfo: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       zoneDetails: {
@@ -4409,7 +4609,10 @@ export const ResourceSkuLocationInfo: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuZoneDetails" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuZoneDetails"
+            }
           }
         }
       }
@@ -4427,7 +4630,11 @@ export const ResourceSkuZoneDetails: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capabilities: {
@@ -4436,7 +4643,10 @@ export const ResourceSkuZoneDetails: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ResourceSkuCapabilities" }
+            type: {
+              name: "Composite",
+              className: "ResourceSkuCapabilities"
+            }
           }
         }
       }
@@ -4515,7 +4725,11 @@ export const ResourceSkuRestrictions: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       restrictionInfo: {
@@ -4547,7 +4761,11 @@ export const ResourceSkuRestrictionInfo: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       zones: {
@@ -4555,7 +4773,11 @@ export const ResourceSkuRestrictionInfo: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -4684,7 +4906,10 @@ export const EncryptionSettingsCollection: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "EncryptionSettingsElement" }
+            type: {
+              name: "Composite",
+              className: "EncryptionSettingsElement"
+            }
           }
         }
       },
@@ -4909,7 +5134,12 @@ export const DiskList: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Disk" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Disk"
+            }
+          }
         }
       },
       nextLink: {
@@ -5043,7 +5273,12 @@ export const SnapshotList: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Snapshot" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Snapshot"
+            }
+          }
         }
       },
       nextLink: {
@@ -5119,7 +5354,10 @@ export const DiskEncryptionSetList: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DiskEncryptionSet" }
+            type: {
+              name: "Composite",
+              className: "DiskEncryptionSet"
+            }
           }
         }
       },
@@ -5269,7 +5507,11 @@ export const Disallowed: coreHttp.CompositeMapper = {
         serializedName: "diskTypes",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -5312,7 +5554,12 @@ export const GalleryArtifactPublishingProfileBase: coreHttp.CompositeMapper = {
         serializedName: "targetRegions",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TargetRegion" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TargetRegion"
+            }
+          }
         }
       },
       replicaCount: {
@@ -5402,7 +5649,10 @@ export const EncryptionImages: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DataDiskImageEncryption" }
+            type: {
+              name: "Composite",
+              className: "DataDiskImageEncryption"
+            }
           }
         }
       }
@@ -5449,7 +5699,10 @@ export const GalleryImageVersionStorageProfile: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GalleryDataDiskImage" }
+            type: {
+              name: "Composite",
+              className: "GalleryDataDiskImage"
+            }
           }
         }
       }
@@ -5520,7 +5773,10 @@ export const ReplicationStatus: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "RegionalReplicationStatus" }
+            type: {
+              name: "Composite",
+              className: "RegionalReplicationStatus"
+            }
           }
         }
       }
@@ -5598,7 +5854,12 @@ export const GalleryList: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Gallery" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Gallery"
+            }
+          }
         }
       },
       nextLink: {
@@ -5621,7 +5882,12 @@ export const GalleryImageList: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "GalleryImage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "GalleryImage"
+            }
+          }
         }
       },
       nextLink: {
@@ -5645,7 +5911,10 @@ export const GalleryImageVersionList: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GalleryImageVersion" }
+            type: {
+              name: "Composite",
+              className: "GalleryImageVersion"
+            }
           }
         }
       },
@@ -5670,7 +5939,10 @@ export const GalleryApplicationList: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GalleryApplication" }
+            type: {
+              name: "Composite",
+              className: "GalleryApplication"
+            }
           }
         }
       },
@@ -5695,7 +5967,10 @@ export const GalleryApplicationVersionList: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GalleryApplicationVersion" }
+            type: {
+              name: "Composite",
+              className: "GalleryApplicationVersion"
+            }
           }
         }
       },
@@ -5719,7 +5994,10 @@ export const ContainerServiceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ContainerService" }
+            type: {
+              name: "Composite",
+              className: "ContainerService"
+            }
           }
         }
       },
@@ -6194,7 +6472,11 @@ export const VirtualMachineCaptureResult: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "any" } }
+          element: {
+            type: {
+              name: "any"
+            }
+          }
         }
       }
     }
@@ -6244,28 +6526,48 @@ export const VirtualMachineScaleSetIPConfiguration: coreHttp.CompositeMapper = {
         serializedName: "properties.applicationGatewayBackendAddressPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       applicationSecurityGroups: {
         serializedName: "properties.applicationSecurityGroups",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       loadBalancerBackendAddressPools: {
         serializedName: "properties.loadBalancerBackendAddressPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       loadBalancerInboundNatPools: {
         serializedName: "properties.loadBalancerInboundNatPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       }
     }
@@ -6375,28 +6677,48 @@ export const VirtualMachineScaleSetUpdateIPConfiguration: coreHttp.CompositeMapp
         serializedName: "properties.applicationGatewayBackendAddressPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       applicationSecurityGroups: {
         serializedName: "properties.applicationSecurityGroups",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       loadBalancerBackendAddressPools: {
         serializedName: "properties.loadBalancerBackendAddressPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       loadBalancerInboundNatPools: {
         serializedName: "properties.loadBalancerInboundNatPools",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       }
     }
@@ -6502,7 +6824,12 @@ export const AvailabilitySet: coreHttp.CompositeMapper = {
         serializedName: "properties.virtualMachines",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       proximityPlacementGroup: {
@@ -6518,7 +6845,10 @@ export const AvailabilitySet: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -6598,7 +6928,11 @@ export const DedicatedHostGroup: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       platformFaultDomainCount: {
@@ -6617,7 +6951,10 @@ export const DedicatedHostGroup: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SubResourceReadOnly" }
+            type: {
+              name: "Composite",
+              className: "SubResourceReadOnly"
+            }
           }
         }
       }
@@ -6667,7 +7004,10 @@ export const DedicatedHost: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SubResourceReadOnly" }
+            type: {
+              name: "Composite",
+              className: "SubResourceReadOnly"
+            }
           }
         }
       },
@@ -6848,7 +7188,10 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineExtension" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineExtension"
+            }
           }
         }
       },
@@ -6863,7 +7206,11 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       hardwareProfile: {
@@ -7054,7 +7401,11 @@ export const VirtualMachineScaleSet: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       upgradePolicy: {
@@ -7218,7 +7569,10 @@ export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualMachineExtension" }
+            type: {
+              name: "Composite",
+              className: "VirtualMachineExtension"
+            }
           }
         }
       },
@@ -7227,7 +7581,11 @@ export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       latestModelApplied: {
@@ -7356,7 +7714,11 @@ export const Disk: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       sku: {
@@ -7370,7 +7732,11 @@ export const Disk: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       timeCreated: {
@@ -7484,7 +7850,10 @@ export const Disk: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ShareInfoElement" }
+            type: {
+              name: "Composite",
+              className: "ShareInfoElement"
+            }
           }
         }
       }
@@ -7616,7 +7985,10 @@ export const DiskEncryptionSet: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "KeyVaultAndKeyReference" }
+            type: {
+              name: "Composite",
+              className: "KeyVaultAndKeyReference"
+            }
           }
         }
       },
@@ -7979,7 +8351,12 @@ export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
         serializedName: "properties.virtualMachines",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "SubResource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "SubResource"
+            }
+          }
         }
       },
       proximityPlacementGroup: {
@@ -7995,7 +8372,10 @@ export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "InstanceViewStatus" }
+            type: {
+              name: "Composite",
+              className: "InstanceViewStatus"
+            }
           }
         }
       }
@@ -8013,7 +8393,11 @@ export const DedicatedHostGroupUpdate: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       platformFaultDomainCount: {
@@ -8032,7 +8416,10 @@ export const DedicatedHostGroupUpdate: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SubResourceReadOnly" }
+            type: {
+              name: "Composite",
+              className: "SubResourceReadOnly"
+            }
           }
         }
       }
@@ -8075,7 +8462,10 @@ export const DedicatedHostUpdate: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "SubResourceReadOnly" }
+            type: {
+              name: "Composite",
+              className: "SubResourceReadOnly"
+            }
           }
         }
       },
@@ -8244,7 +8634,11 @@ export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
         serializedName: "zones",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       hardwareProfile: {
@@ -8540,7 +8934,11 @@ export const VirtualMachineScaleSetExtension: coreHttp.CompositeMapper = {
         serializedName: "properties.provisionAfterExtensions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -8620,7 +9018,11 @@ export const VirtualMachineScaleSetExtensionUpdate: coreHttp.CompositeMapper = {
         serializedName: "properties.provisionAfterExtensions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -8680,7 +9082,11 @@ export const VirtualMachineScaleSetReimageParameters: coreHttp.CompositeMapper =
         serializedName: "instanceIds",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -8736,7 +9142,11 @@ export const RunCommandDocument: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       parameters: {
@@ -9113,7 +9523,12 @@ export const VirtualMachineImage: coreHttp.CompositeMapper = {
         serializedName: "properties.dataDiskImages",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DataDiskImage" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DataDiskImage"
+            }
+          }
         }
       },
       automaticOSUpgradeProperties: {

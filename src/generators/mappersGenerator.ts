@@ -20,7 +20,7 @@ import {
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
 import { keys, isEmpty, isString, isNil, isEqual } from "lodash";
-import { getStringForValue } from "../utils/valueHelpers";
+import { getStringForValue, MapperTypes } from "../utils/valueHelpers";
 import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
 import { logger } from "../utils/logger";
 
@@ -192,7 +192,7 @@ function writeMapperType(
 function isSequenceMapperType(
   mapperType: MapperType
 ): mapperType is SequenceMapperType {
-  return Boolean((<SequenceMapperType>mapperType).element);
+  return (mapperType as SequenceMapperType).element !== undefined;
 }
 
 /**
@@ -226,7 +226,7 @@ function writeSequenceMapperType(
   if (!element) {
     return writer;
   }
-
+  writer.write(`name: "${MapperType.Sequence}",`);
   writer.write("element:");
   return writeMapper(writer, element);
 }

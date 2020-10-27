@@ -70,7 +70,11 @@ export const AzureMetricsBaseData: coreHttp.CompositeMapper = {
         serializedName: "dimNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       series: {
@@ -79,7 +83,10 @@ export const AzureMetricsBaseData: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AzureTimeSeriesData" }
+            type: {
+              name: "Composite",
+              className: "AzureTimeSeriesData"
+            }
           }
         }
       }
@@ -96,7 +103,11 @@ export const AzureTimeSeriesData: coreHttp.CompositeMapper = {
         serializedName: "dimValues",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       min: {

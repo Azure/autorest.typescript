@@ -76,7 +76,11 @@ export const PolicyAssignment: coreHttp.CompositeMapper = {
         serializedName: "properties.notScopes",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       parameters: {
@@ -224,7 +228,12 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ErrorResponse" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ErrorResponse"
+            }
+          }
         }
       },
       additionalInfo: {
@@ -233,7 +242,10 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ErrorAdditionalInfo" }
+            type: {
+              name: "Composite",
+              className: "ErrorAdditionalInfo"
+            }
           }
         }
       }
@@ -274,7 +286,10 @@ export const PolicyAssignmentListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PolicyAssignment" }
+            type: {
+              name: "Composite",
+              className: "PolicyAssignment"
+            }
           }
         }
       },
@@ -378,7 +393,11 @@ export const ParameterDefinitionsValue: coreHttp.CompositeMapper = {
         serializedName: "allowedValues",
         type: {
           name: "Sequence",
-          element: { type: { name: "any" } }
+          element: {
+            type: {
+              name: "any"
+            }
+          }
         }
       },
       defaultValue: {
@@ -430,7 +449,10 @@ export const PolicyDefinitionListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PolicyDefinition" }
+            type: {
+              name: "Composite",
+              className: "PolicyDefinition"
+            }
           }
         }
       },
@@ -508,7 +530,10 @@ export const PolicySetDefinition: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PolicyDefinitionReference" }
+            type: {
+              name: "Composite",
+              className: "PolicyDefinitionReference"
+            }
           }
         }
       },
@@ -517,7 +542,10 @@ export const PolicySetDefinition: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PolicyDefinitionGroup" }
+            type: {
+              name: "Composite",
+              className: "PolicyDefinitionGroup"
+            }
           }
         }
       }
@@ -556,7 +584,11 @@ export const PolicyDefinitionReference: coreHttp.CompositeMapper = {
         serializedName: "groupNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -613,7 +645,10 @@ export const PolicySetDefinitionListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PolicySetDefinition" }
+            type: {
+              name: "Composite",
+              className: "PolicySetDefinition"
+            }
           }
         }
       },

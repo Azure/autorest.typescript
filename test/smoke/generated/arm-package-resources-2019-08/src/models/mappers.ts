@@ -17,7 +17,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -132,7 +137,12 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ErrorResponse" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ErrorResponse"
+            }
+          }
         }
       },
       additionalInfo: {
@@ -141,7 +151,10 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ErrorAdditionalInfo" }
+            type: {
+              name: "Composite",
+              className: "ErrorAdditionalInfo"
+            }
           }
         }
       }
@@ -418,14 +431,24 @@ export const DeploymentPropertiesExtended: coreHttp.CompositeMapper = {
         serializedName: "providers",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Provider" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Provider"
+            }
+          }
         }
       },
       dependencies: {
         serializedName: "dependencies",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Dependency" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Dependency"
+            }
+          }
         }
       },
       template: {
@@ -517,7 +540,10 @@ export const Provider: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "ProviderResourceType" }
+            type: {
+              name: "Composite",
+              className: "ProviderResourceType"
+            }
           }
         }
       }
@@ -540,21 +566,34 @@ export const ProviderResourceType: coreHttp.CompositeMapper = {
         serializedName: "locations",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       aliases: {
         serializedName: "aliases",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AliasType" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AliasType"
+            }
+          }
         }
       },
       apiVersions: {
         serializedName: "apiVersions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       capabilities: {
@@ -589,7 +628,12 @@ export const AliasType: coreHttp.CompositeMapper = {
         serializedName: "paths",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "AliasPathType" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "AliasPathType"
+            }
+          }
         }
       }
     }
@@ -611,7 +655,11 @@ export const AliasPathType: coreHttp.CompositeMapper = {
         serializedName: "apiVersions",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -627,7 +675,12 @@ export const Dependency: coreHttp.CompositeMapper = {
         serializedName: "dependsOn",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "BasicDependency" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "BasicDependency"
+            }
+          }
         }
       },
       id: {
@@ -756,7 +809,10 @@ export const DeploymentListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DeploymentExtended" }
+            type: {
+              name: "Composite",
+              className: "DeploymentExtended"
+            }
           }
         }
       },
@@ -854,7 +910,12 @@ export const WhatIfOperationResult: coreHttp.CompositeMapper = {
         serializedName: "properties.changes",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "WhatIfChange" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "WhatIfChange"
+            }
+          }
         }
       }
     }
@@ -905,7 +966,10 @@ export const WhatIfChange: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "WhatIfPropertyChange" }
+            type: {
+              name: "Composite",
+              className: "WhatIfPropertyChange"
+            }
           }
         }
       }
@@ -950,7 +1014,10 @@ export const WhatIfPropertyChange: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "WhatIfPropertyChange" }
+            type: {
+              name: "Composite",
+              className: "WhatIfPropertyChange"
+            }
           }
         }
       }
@@ -967,7 +1034,12 @@ export const ProviderListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Provider" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Provider"
+            }
+          }
         }
       },
       nextLink: {
@@ -991,7 +1063,10 @@ export const ResourceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "GenericResourceExpanded" }
+            type: {
+              name: "Composite",
+              className: "GenericResourceExpanded"
+            }
           }
         }
       },
@@ -1322,7 +1397,11 @@ export const ExportTemplateRequest: coreHttp.CompositeMapper = {
         serializedName: "resources",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       options: {
@@ -1366,7 +1445,12 @@ export const ResourceGroupListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ResourceGroup" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "ResourceGroup"
+            }
+          }
         }
       },
       nextLink: {
@@ -1389,7 +1473,11 @@ export const ResourcesMoveInfo: coreHttp.CompositeMapper = {
         serializedName: "resources",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       targetResourceGroup: {
@@ -1481,7 +1569,12 @@ export const TagDetails: coreHttp.CompositeMapper = {
         serializedName: "values",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TagValue" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TagValue"
+            }
+          }
         }
       }
     }
@@ -1497,7 +1590,12 @@ export const TagsListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "TagDetails" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "TagDetails"
+            }
+          }
         }
       },
       nextLink: {
@@ -1665,7 +1763,10 @@ export const DeploymentOperationsListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "DeploymentOperation" }
+            type: {
+              name: "Composite",
+              className: "DeploymentOperation"
+            }
           }
         }
       },

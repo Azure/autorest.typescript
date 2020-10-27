@@ -62,7 +62,10 @@ export const VaultProperties: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AccessPolicyEntry" }
+            type: {
+              name: "Composite",
+              className: "AccessPolicyEntry"
+            }
           }
         }
       },
@@ -216,28 +219,44 @@ export const Permissions: coreHttp.CompositeMapper = {
         serializedName: "keys",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       secrets: {
         serializedName: "secrets",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       certificates: {
         serializedName: "certificates",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       storage: {
         serializedName: "storage",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
@@ -265,7 +284,12 @@ export const NetworkRuleSet: coreHttp.CompositeMapper = {
         serializedName: "ipRules",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "IPRule" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "IPRule"
+            }
+          }
         }
       },
       virtualNetworkRules: {
@@ -273,7 +297,10 @@ export const NetworkRuleSet: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
+            type: {
+              name: "Composite",
+              className: "VirtualNetworkRule"
+            }
           }
         }
       }
@@ -482,7 +509,10 @@ export const VaultPatchProperties: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AccessPolicyEntry" }
+            type: {
+              name: "Composite",
+              className: "AccessPolicyEntry"
+            }
           }
         }
       },
@@ -601,7 +631,10 @@ export const VaultAccessPolicyProperties: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "AccessPolicyEntry" }
+            type: {
+              name: "Composite",
+              className: "AccessPolicyEntry"
+            }
           }
         }
       }
@@ -618,7 +651,12 @@ export const VaultListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Vault" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Vault"
+            }
+          }
         }
       },
       nextLink: {
@@ -640,7 +678,12 @@ export const DeletedVaultListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "DeletedVault" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "DeletedVault"
+            }
+          }
         }
       },
       nextLink: {
@@ -744,7 +787,12 @@ export const ResourceListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Resource" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Resource"
+            }
+          }
         }
       },
       nextLink: {
@@ -904,7 +952,10 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "PrivateLinkResource" }
+            type: {
+              name: "Composite",
+              className: "PrivateLinkResource"
+            }
           }
         }
       }
@@ -921,7 +972,12 @@ export const OperationListResult: coreHttp.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Operation" } }
+          element: {
+            type: {
+              name: "Composite",
+              className: "Operation"
+            }
+          }
         }
       },
       nextLink: {
@@ -1012,7 +1068,10 @@ export const ServiceSpecification: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "LogSpecification" }
+            type: {
+              name: "Composite",
+              className: "LogSpecification"
+            }
           }
         }
       }
@@ -1096,14 +1155,22 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       },
       requiredZoneNames: {
         serializedName: "properties.requiredZoneNames",
         type: {
           name: "Sequence",
-          element: { type: { name: "String" } }
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }
