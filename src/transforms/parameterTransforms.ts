@@ -360,7 +360,9 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
       queryCollectionFormat = QueryCollectionFormat.Ssv;
       break;
     case AllSerializationStyles.Form:
-      queryCollectionFormat = QueryCollectionFormat.Csv;
+      queryCollectionFormat = parameter.protocol.http?.explode
+        ? QueryCollectionFormat.Multi
+        : QueryCollectionFormat.Csv;
       break;
     case AllSerializationStyles.TabDelimited:
       queryCollectionFormat = QueryCollectionFormat.Tsv;

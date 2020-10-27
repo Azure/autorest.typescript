@@ -247,6 +247,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "url",
     licenseHeader: true
   },
+  urlMulti: {
+    swagger: "url-multi-collectionFormat.json",
+    clientName: "UrlMultiClient",
+    packageName: "url-multi",
+    licenseHeader: true
+  },
   url2: {
     swagger: "test/integration/swaggers/url.json",
     clientName: "UrlClient",
