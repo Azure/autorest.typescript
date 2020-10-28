@@ -35,9 +35,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const hasMappers = !!clientDetails.mappers.length;
 
   // Check if there are any client level operations
-  const hasInlineOperations = clientDetails.operationGroups.some(
+  const inlineOperations = clientDetails.operationGroups.filter(
     og => og.isTopLevel
   );
+
+  const hasInlineOperations = inlineOperations.length > 0;
 
   // Check if there are any non client-level operations to import
   const importedOperations = clientDetails.operationGroups.filter(
@@ -45,6 +47,12 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
 
   const hasImportedOperations = importedOperations.length > 0;
+
+  if (hasImportedOperations && hasInlineOperations) {
+    // Check if there is a name collision between client-level operation names
+    // and operation group key names.
+    checkForNameCollisions(importedOperations, inlineOperations);
+  }
 
   const hasCredentials = !!clientDetails.options.addCredentials;
   const hasClientOptionalParams = clientDetails.parameters.some(
@@ -129,6 +137,30 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namedImports: [...importedModels],
       moduleSpecifier: "./models"
     });
+  }
+}
+
+export function checkForNameCollisions(
+  importedOperations: OperationGroupDetails[],
+  inlineOperations: OperationGroupDetails[]
+) {
+  const groupOpsKeyNames = importedOperations.map(og => og.key.toLowerCase());
+  const inlineOpsKeyNames = inlineOperations.map(og =>
+    og.operations.map(operation => operation.name.toLowerCase())
+  );
+
+  const collidingKeyNames = inlineOpsKeyNames.map(inlineOpsKeyArray =>
+    inlineOpsKeyArray.filter(inlineOpKey =>
+      groupOpsKeyNames.includes(inlineOpKey)
+    )
+  );
+
+  if (collidingKeyNames.length > 0 && collidingKeyNames[0].length > 0) {
+    const messages = collidingKeyNames.map(
+      key =>
+        `Operation Group(s) '${key}' is/are colliding with client-level operation(s) with the same name.`
+    );
+    throw new Error(...messages);
   }
 }
 
