@@ -1,8 +1,8 @@
 import { assert } from "chai";
-import { createBodyPollingStrategy } from "../../../src/lro/bodyPollingStrategy";
-import { LROOperationStep, LROResponseInfo } from "../../../src/lro/models";
+import { createBodyPollingStrategy } from "@azure/core-lro";
+import { LROOperationStep, LROResponseInfo } from "@azure/core-lro";
 import { OperationSpec, OperationArguments } from "@azure/core-http";
-import { SendOperationFn } from "../../../src/lro/lroPoller";
+import { SendOperationFn } from "@azure/core-lro";
 describe("BodyPollingStrategy", () => {
   const mockSendOperation: any = () => Promise.resolve({});
   let lastOperation: LROOperationStep<any>;
