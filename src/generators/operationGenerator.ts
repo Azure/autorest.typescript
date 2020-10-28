@@ -1079,7 +1079,7 @@ function addImports(
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
       namedImports: ["LROPoller", "shouldDeserializeLRO"],
-      moduleSpecifier: "@azure/core-http"
+      moduleSpecifier: "@azure/core-lro"
     });
   }
 }

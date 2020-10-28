@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO } from "@azure/core-lro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,

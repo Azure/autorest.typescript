@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import { PagingClientOptionalParams } from "./models";
-import { lroPolicy } from "./lro";
+import { lroPolicy } from "@azure/core-lro";
 
 const packageName = "paging-service";
 const packageVersion = "1.0.0-preview1";

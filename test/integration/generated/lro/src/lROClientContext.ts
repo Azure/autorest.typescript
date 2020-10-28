@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import { LROClientOptionalParams } from "./models";
-import { lroPolicy } from "./lro";
+import { lroPolicy } from "@azure/core-lro";
 
 const packageName = "lro";
 const packageVersion = "1.0.0-preview1";

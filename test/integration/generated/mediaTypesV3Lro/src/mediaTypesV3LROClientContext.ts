@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import { MediaTypesV3LROClientOptionalParams } from "./models";
-import { lroPolicy } from "./lro";
+import { lroPolicy } from "@azure/core-lro";
 
 const packageName = "media-types-v3-lro-client";
 const packageVersion = "1.0.0-preview1";
