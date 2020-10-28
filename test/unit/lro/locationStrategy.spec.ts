@@ -3,7 +3,7 @@ import {
   LROStrategy,
   SendOperationFn,
   LROOperationStep
-} from "../.././../src/lro";
+} from "@azure/core-lro";
 import { assert } from "chai";
 describe("LocationStrategy", () => {
   let locationStrategy: LROStrategy<any>;
