@@ -1,8 +1,11 @@
+import { OperationArguments, OperationSpec } from "@azure/core-http";
+import {
+  createBodyPollingStrategy,
+  LROOperationStep,
+  LROResponseInfo,
+  SendOperationFn
+} from "@azure/core-lro";
 import { assert } from "chai";
-import { createBodyPollingStrategy } from "@azure/core-lro";
-import { LROOperationStep, LROResponseInfo } from "@azure/core-lro";
-import { OperationSpec, OperationArguments } from "@azure/core-http";
-import { SendOperationFn } from "@azure/core-lro";
 describe("BodyPollingStrategy", () => {
   const mockSendOperation: any = () => Promise.resolve({});
   let lastOperation: LROOperationStep<any>;
