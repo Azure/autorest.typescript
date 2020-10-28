@@ -94,7 +94,7 @@ function writeImports(
   if (hasLRO) {
     sourceFile.addImportDeclaration({
       namedImports: ["lroPolicy"],
-      moduleSpecifier: "./lro"
+      moduleSpecifier: "@azure/core-lro"
     });
   }
 }

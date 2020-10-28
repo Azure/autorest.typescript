@@ -1,6 +1,6 @@
 import { LROClient, Product } from "./generated/lro/src";
 import { assert } from "chai";
-import { BaseResult } from "./generated/lro/src/lro";
+import { BaseResult } from "@azure/core-lro";
 import { InternalPipelineOptions, OperationOptions } from "@azure/core-http";
 
 describe("LROs", () => {

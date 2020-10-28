@@ -73,7 +73,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasInlineOperations && hasLRO) {
     clientFile.addImportDeclaration({
       namedImports: ["LROPoller", "shouldDeserializeLRO"],
-      moduleSpecifier: "./lro"
+      moduleSpecifier: "@azure/core-lro"
     });
   }
 

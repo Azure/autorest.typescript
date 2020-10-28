@@ -21,7 +21,6 @@ import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
-import { generateLROFiles } from "./generators/LROGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -90,7 +89,6 @@ export async function generateTypeScriptLibrary(
   generateOperations(clientDetails, project);
   generateParameters(clientDetails, project);
   generateIndexFile(clientDetails, project);
-  await generateLROFiles(clientDetails, project);
 
   const licenseHeader = `
 /*
