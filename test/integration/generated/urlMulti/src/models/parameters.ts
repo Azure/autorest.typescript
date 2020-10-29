@@ -43,7 +43,11 @@ export const arrayQuery: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Multi
@@ -55,7 +59,11 @@ export const arrayQuery1: OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: {
+        type: {
+          name: "String"
+        }
+      }
     }
   },
   collectionFormat: QueryCollectionFormat.Multi
