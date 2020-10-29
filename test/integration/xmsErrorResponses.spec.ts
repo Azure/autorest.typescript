@@ -14,7 +14,8 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
   beforeEach(() => {
     client = new XmsErrorResponsesClient({
       endpoint: "http://localhost:3000",
-      $host: "http://localhost:3000"
+      $host: "http://localhost:3000",
+      noRetryPolicy: true
     });
   });
 
