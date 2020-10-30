@@ -1,4 +1,4 @@
-import { expect, assert } from "chai";
+import { assert } from "chai";
 import {
   AnimalNotFound,
   LinkNotFound,
@@ -14,7 +14,8 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
   beforeEach(() => {
     client = new XmsErrorResponsesClient({
       endpoint: "http://localhost:3000",
-      $host: "http://localhost:3000"
+      $host: "http://localhost:3000",
+      noRetryPolicy: true
     });
   });
 

@@ -36,6 +36,21 @@ describe("Integration tests for Url", () => {
       await shouldThrow(() => client.paths.stringNull(null as any));
     });
 
+    it("should work when path has string unicode", async () => {
+      const result = await client.paths.stringUnicode();
+      assert.strictEqual(result._response.status, 200);
+    });
+
+    it("should work when path has string URL Encoded", async () => {
+      const result = await client.paths.stringUrlEncoded();
+      assert.strictEqual(result._response.status, 200);
+    });
+
+    it("should work when path has string URL NOT Encoded", async () => {
+      const result = await client.paths.stringUrlNonEncoded();
+      assert.strictEqual(result._response.status, 200);
+    });
+
     it("should work when path has base64url encoded string", async () => {
       //TODO: Check browser compatibility
       const byteArray = stringToByteArray("lorem");
@@ -231,8 +246,12 @@ describe("Integration tests for Url", () => {
       assert.ok("Call succeeded");
     });
 
-    // TODO: Re-enable when PullRequest#8604 is merged
-    it.skip("should work when query has string array values", async function() {
+    it("should work when query has stringUnicode", async function() {
+      const result = await client.queries.stringUnicode();
+      assert.strictEqual(result._response.status, 200);
+    });
+
+    it("should work when query has string array values", async function() {
       const testArray = [
         "ArrayQuery1",
         "begin!*'();:@ &=+$,/?#[]end",
@@ -255,6 +274,21 @@ describe("Integration tests for Url", () => {
         ""
       ] as string[]);
       assert.ok("Call succeeded");
+    });
+
+    it("should work when path has valid date", async function() {
+      const result = await client.paths.dateValid();
+      assert.strictEqual(result._response.status, 200);
+    });
+
+    it("should work when path has doubleDecimalPositive", async function() {
+      const result = await client.paths.doubleDecimalPositive();
+      assert.strictEqual(result._response.status, 200);
+    });
+
+    it("should work when path has doubleDecimalNegative", async function() {
+      const result = await client.paths.doubleDecimalNegative();
+      assert.strictEqual(result._response.status, 200);
     });
 
     it("should work when use null values in url query", async function() {
