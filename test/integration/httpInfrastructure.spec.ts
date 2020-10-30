@@ -786,8 +786,7 @@ describe("Http infrastructure Client", () => {
       assert.strictEqual(result._response.status, 204);
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("should handle get200ModelA202Valid", async () => {
+    it("should handle get200ModelA202Valid", async () => {
       try {
         await client.multipleResponses.get200ModelA202Valid();
         assert.fail("Expected get200ModelA202Valid to throw");
@@ -798,8 +797,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("should handle get200ModelA400Invalid", async () => {
+    it("should handle get200ModelA400Invalid", async () => {
       try {
         await client.multipleResponses.get200ModelA400Invalid();
         assert.fail("Expected get200ModelA400Invalid to throw");
@@ -810,8 +808,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("should handle get200ModelA400Valid", async () => {
+    it("should handle get200ModelA400Valid", async () => {
       try {
         await client.multipleResponses.get200ModelA400Valid();
         assert.fail("Expected get200ModelA400Valid to throw");
@@ -822,8 +819,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("should handle get200ModelA400None", async () => {
+    it("should handle get200ModelA400None", async () => {
       try {
         await client.multipleResponses.get200ModelA400None();
         assert.fail("Expected get200ModelA400None to throw");
@@ -835,7 +831,7 @@ describe("Http infrastructure Client", () => {
   });
 
   describe("Failure scenarios", () => {
-    it.skip("getEmptyError should throw error", async () => {
+    it("getEmptyError should throw error", async () => {
       try {
         await client.httpFailure.getEmptyError();
         assert.fail("Expected error");
@@ -844,8 +840,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("getNoModelEmpty should throw 400", async () => {
+    it("getNoModelEmpty should throw 400", async () => {
       try {
         await client.httpFailure.getNoModelEmpty();
         assert.fail("Expected getNoModelEmpty to throw");
@@ -855,8 +850,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // Enable when https://github.com/Azure/azure-sdk-for-js/pull/12153 is merged
-    it.skip("getNoModelError should throw 400", async () => {
+    it("getNoModelError should throw 400", async () => {
       try {
         await client.httpFailure.getNoModelError();
         assert.fail("Expected getNoModelError to throw");
