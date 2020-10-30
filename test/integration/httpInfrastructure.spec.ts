@@ -5,7 +5,8 @@ import {
   redirectPolicy,
   exponentialRetryPolicy,
   deserializationPolicy,
-  isNode
+  isNode,
+  RestError
 } from "@azure/core-http";
 describe("Http infrastructure Client", () => {
   let client: HttpInfrastructureClient;
@@ -757,6 +758,76 @@ describe("Http infrastructure Client", () => {
         assert.equal(error.statusCode, 400);
       }
     });
+
+    it("should handle get200Model204NoModelDefaultError200Valid", async () => {
+      const result = await client.multipleResponses.get200Model204NoModelDefaultError200Valid();
+      assert.strictEqual(result.statusCode, "200");
+    });
+
+    it("should handle ResponsesScenarioD400DefaultModel", async () => {
+      try {
+        await client.multipleResponses.get202None204NoneDefaultError400Valid();
+        assert.fail(
+          "Expected get202None204NoneDefaultError400Valid to throw an error"
+        );
+      } catch (error) {
+        assert.strictEqual(error.message, "client error");
+        assert.strictEqual(error.statusCode, 400);
+      }
+    });
+
+    it("should handle get202None204NoneDefaultNone202Invalid", async () => {
+      const result = await client.multipleResponses.get202None204NoneDefaultNone202Invalid();
+      assert.strictEqual(result._response.status, 202);
+    });
+
+    it("should handle get202None204NoneDefaultNone204None", async () => {
+      const result = await client.multipleResponses.get202None204NoneDefaultNone204None();
+      assert.strictEqual(result._response.status, 204);
+    });
+
+    it("should handle get200ModelA202Valid", async () => {
+      try {
+        await client.multipleResponses.get200ModelA202Valid();
+        assert.fail("Expected get200ModelA202Valid to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 202);
+        assert.include(error.message, "202");
+      }
+    });
+
+    it("should handle get200ModelA400Invalid", async () => {
+      try {
+        await client.multipleResponses.get200ModelA400Invalid();
+        assert.fail("Expected get200ModelA400Invalid to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 400);
+        assert.include(error.message, "400");
+      }
+    });
+
+    it("should handle get200ModelA400Valid", async () => {
+      try {
+        await client.multipleResponses.get200ModelA400Valid();
+        assert.fail("Expected get200ModelA400Valid to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 400);
+        assert.include(error.message, "400");
+      }
+    });
+
+    it("should handle get200ModelA400None", async () => {
+      try {
+        await client.multipleResponses.get200ModelA400None();
+        assert.fail("Expected get200ModelA400None to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 400);
+      }
+    });
   });
 
   describe("Failure scenarios", () => {
@@ -769,14 +840,25 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    it("getNoModelEmpty should return 400", async () => {
-      const result = await client.httpFailure.getNoModelEmpty();
-      assert.equal(result._response.status, 400);
+    it("getNoModelEmpty should throw 400", async () => {
+      try {
+        await client.httpFailure.getNoModelEmpty();
+        assert.fail("Expected getNoModelEmpty to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 400);
+      }
     });
 
-    it("getNoModelError should return 400", async () => {
-      const result = await client.httpFailure.getNoModelError();
-      assert.deepEqual(result, { status: 400, message: "NoErrorModel" } as any);
+    it("getNoModelError should throw 400", async () => {
+      try {
+        await client.httpFailure.getNoModelError();
+        assert.fail("Expected getNoModelError to throw");
+      } catch (e) {
+        const error: RestError = e;
+        assert.strictEqual(error.statusCode, 400);
+        assert.include(error.message, "NoErrorModel");
+      }
     });
   });
 });

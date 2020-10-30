@@ -33,7 +33,7 @@
         "@azure-tools/autorest-extension-base": "^3.1.246",
         "@azure-tools/codegen": "^2.4.267",
         "@azure-tools/codemodel": "^4.13.339",
-        "@azure/core-http": "1.2.0-alpha.20201019.1",
+        "@azure/core-http": "1.2.0-alpha.20201030.2",
         "@azure/core-lro": "^1.0.1",
         "@azure/core-paging": "^1.0.0",
         "@azure/logger": "^1.0.0",
