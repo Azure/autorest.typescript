@@ -195,6 +195,18 @@ describe("Integration tests for Url", () => {
       assert.equal(result._response.status, 200);
     });
 
+    it("should work when query has double values", async function() {
+      const resultNegative = await client.queries.doubleDecimalNegative();
+      const resultPositive = await client.queries.doubleDecimalPositive();
+      assert.deepStrictEqual(resultNegative._response.status, 200);
+      assert.deepStrictEqual(resultPositive._response.status, 200);
+    });
+
+    it("should work when query has date values", async function() {
+      const result = await client.queries.dateValid();
+      assert.deepStrictEqual(result._response.status, 200);
+    });
+
     it("should work when query has bool", async function() {
       await client.queries.getBooleanTrue();
       await client.queries.getBooleanFalse();
