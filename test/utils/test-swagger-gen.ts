@@ -211,6 +211,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "non-string-num",
     licenseHeader: true
   },
+  objectType: {
+    swagger: "object-type.json",
+    clientName: "ObjectTypeClient",
+    packageName: "object-type",
+    licenseHeader: true
+  },
   paging: {
     swagger: "paging.json",
     clientName: "PagingClient",
