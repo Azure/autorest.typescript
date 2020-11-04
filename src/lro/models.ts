@@ -2,9 +2,11 @@ import {
   OperationArguments,
   OperationSpec,
   RestResponse,
-  HttpMethods
+  HttpMethods,
+  HttpOperationResponse
 } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
+export const LROSYM = Symbol.for("LROData");
 
 export type FinalStateVia =
   | "azure-async-operation"
@@ -23,7 +25,12 @@ export interface LROResponseInfo {
 }
 
 export interface BaseResult extends RestResponse {
-  _lroData?: LROResponseInfo;
+  /**
+   * The underlying HTTP response containing both raw and deserialized response data.
+   */
+  _response: HttpOperationResponse & {
+    [LROSYM]?: LROResponseInfo;
+  };
 }
 
 export interface LROOperationStep<TResult extends BaseResult> {

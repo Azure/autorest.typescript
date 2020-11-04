@@ -1,7 +1,7 @@
 import { LROClient, Product } from "./generated/lro/src";
 import { assert } from "chai";
-import { BaseResult } from "./generated/lro/src/lro";
 import { InternalPipelineOptions, OperationOptions } from "@azure/core-http";
+import { LROSYM } from "./generated/lro/src/lro/models";
 
 describe("LROs", () => {
   let client: LROClient;
@@ -235,16 +235,16 @@ describe("LROs", () => {
       const poller = await client.lROs.deleteAsyncRetrycanceled();
       // To avoid timing out, override the default delay function
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.equal(result._lroData?.status, "Canceled");
+      const result = await poller.pollUntilDone();
+      assert.equal(result._response[LROSYM].status, "Canceled");
     });
 
     it("should handle DeleteAsyncRetryFailed", async () => {
       const poller = await client.lROs.deleteAsyncRetryFailed();
       // To avoid timing out, override the default delay function
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.equal(result._lroData?.status, "Failed");
+      const result = await poller.pollUntilDone();
+      assert.equal(result._response[LROSYM].status, "Failed");
     });
 
     it("should handle putAsyncRetrySucceeded", async () => {
@@ -257,12 +257,31 @@ describe("LROs", () => {
       assert.equal(result.provisioningState, "Succeeded");
     });
 
+    it("should handle put201Succeeded", async () => {
+      const poller = await client.lROs.put201Succeeded({ product: {} });
+      // To avoid timing out, override the default delay function
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+      assert.equal(result.id, "100");
+      assert.equal(result.name, "foo");
+      assert.equal(result.provisioningState, "Succeeded");
+    });
+
+    it("should handle post202List", async () => {
+      const poller = await client.lROs.post202List();
+      // To avoid timing out, override the default delay function
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+      assert.equal(result[0].id, "100");
+      assert.equal(result[0].name, "foo");
+    });
+
     it("should handle putAsyncRetryFailed", async () => {
       const poller = await client.lROs.putAsyncRetryFailed();
       // To avoid timing out, override the default delay function
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.equal(result._lroData?.status, "Failed");
+      const result = await poller.pollUntilDone();
+      assert.equal(result._response[LROSYM].status, "Failed");
     });
 
     it("should handle putAsyncNonResource", async () => {
@@ -298,8 +317,8 @@ describe("LROs", () => {
       const poller = await client.lROs.putAsyncNoRetrycanceled();
       // To avoid timing out, override the default delay function
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.equal(result._lroData?.status, "Canceled");
+      const result = await poller.pollUntilDone();
+      assert.equal(result._response[LROSYM].status, "Canceled");
     });
 
     it("should handle putAsyncSubResource", async () => {
@@ -333,8 +352,8 @@ describe("LROs", () => {
         product
       });
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.deepEqual(result.status, "Failed");
+      const result = await poller.pollUntilDone();
+      assert.deepEqual(result._response[LROSYM].status, "Failed");
     });
 
     it("should handle postAsyncRetrySucceeded", async () => {
@@ -342,7 +361,7 @@ describe("LROs", () => {
         product
       });
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
+      const result = await poller.pollUntilDone();
       assert.deepInclude(result, { id: "100", name: "foo" });
     });
 
@@ -351,8 +370,8 @@ describe("LROs", () => {
         product
       });
       poller.delay = () => Promise.resolve();
-      const result: BaseResult = await poller.pollUntilDone();
-      assert.deepInclude(result._lroData?.status, "Canceled");
+      const result = await poller.pollUntilDone();
+      assert.deepInclude(result._response[LROSYM].status, "Canceled");
     });
   });
 });

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export interface Resource {
   /**
@@ -999,6 +1000,10 @@ export type LROsPut200SucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1030,6 +1035,10 @@ export type LROsPut201SucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1050,6 +1059,10 @@ export type LROsPost202ListResponse = Product[] & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product[];
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1081,6 +1094,10 @@ export type LROsPut200SucceededNoStateResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1112,6 +1129,10 @@ export type LROsPut202Retry200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1143,6 +1164,10 @@ export type LROsPut201CreatingSucceeded200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1174,6 +1199,10 @@ export type LROsPut200UpdatingSucceeded204Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1205,6 +1234,10 @@ export type LROsPut201CreatingFailed200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1236,6 +1269,10 @@ export type LROsPut200Acceptedcanceled200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1272,6 +1309,10 @@ export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1308,6 +1349,10 @@ export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeade
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1344,6 +1389,10 @@ export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededH
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1380,6 +1429,10 @@ export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1416,6 +1469,10 @@ export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHea
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1452,6 +1509,10 @@ export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHea
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1483,6 +1544,10 @@ export type LROsPutNonResourceResponse = Sku & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Sku;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1514,6 +1579,10 @@ export type LROsPutAsyncNonResourceResponse = Sku & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Sku;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1545,6 +1614,10 @@ export type LROsPutSubResourceResponse = SubProduct & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SubProduct;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1576,6 +1649,10 @@ export type LROsPutAsyncSubResourceResponse = SubProduct & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SubProduct;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1596,6 +1673,10 @@ export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1616,6 +1697,10 @@ export type LROsDeleteProvisioning202DeletingFailed200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1636,6 +1721,10 @@ export type LROsDeleteProvisioning202Deletingcanceled200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1656,6 +1745,10 @@ export type LROsDelete202Retry200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1676,6 +1769,10 @@ export type LROsDelete202NoRetry204Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1691,6 +1788,10 @@ export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1706,6 +1807,10 @@ export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRe
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1721,6 +1826,10 @@ export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceede
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1736,6 +1845,10 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucc
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1751,6 +1864,10 @@ export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeade
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1766,6 +1883,10 @@ export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledH
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1786,6 +1907,10 @@ export type LROsPost200WithPayloadResponse = Sku & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Sku;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1812,6 +1937,10 @@ export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsPost202Retry200Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1848,6 +1977,10 @@ export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsPost202NoRetry204Headers;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -1868,6 +2001,10 @@ export type LROsPostDoubleHeadersFinalLocationGetResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1888,6 +2025,10 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1908,6 +2049,10 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & 
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1939,6 +2084,10 @@ export type LROsPostAsyncRetrySucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1970,6 +2119,10 @@ export type LROsPostAsyncNoRetrySucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1996,6 +2149,10 @@ export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders &
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2022,6 +2179,10 @@ export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeade
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2053,6 +2214,10 @@ export type LRORetrysPut201CreatingSucceeded200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2089,6 +2254,10 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncR
        * The parsed HTTP response headers.
        */
       parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2109,6 +2278,10 @@ export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2124,6 +2297,10 @@ export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Heade
      * The parsed HTTP response headers.
      */
     parsedHeaders: LRORetrysDelete202Retry200Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2139,6 +2316,10 @@ export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDelete
      * The parsed HTTP response headers.
      */
     parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2165,6 +2346,10 @@ export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers &
      * The parsed HTTP response headers.
      */
     parsedHeaders: LRORetrysPost202Retry200Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2191,6 +2376,10 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyn
      * The parsed HTTP response headers.
      */
     parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2222,6 +2411,10 @@ export type LrosaDsPutNonRetry400Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2253,6 +2446,10 @@ export type LrosaDsPutNonRetry201Creating400Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2284,6 +2481,10 @@ export type LrosaDsPutNonRetry201Creating400InvalidJsonResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2320,6 +2521,10 @@ export type LrosaDsPutAsyncRelativeRetry400Response = LrosaDsPutAsyncRelativeRet
        * The parsed HTTP response headers.
        */
       parsedHeaders: LrosaDsPutAsyncRelativeRetry400Headers;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2335,6 +2540,10 @@ export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers &
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDeleteNonRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2350,6 +2559,10 @@ export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Hea
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDelete202NonRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2365,6 +2578,10 @@ export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelat
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2391,6 +2608,10 @@ export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers & {
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPostNonRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2417,6 +2638,10 @@ export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPost202NonRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2443,6 +2668,10 @@ export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeR
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPostAsyncRelativeRetry400Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2474,6 +2703,10 @@ export type LrosaDsPutError201NoProvisioningStatePayloadResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2510,6 +2743,10 @@ export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosaDsPutAsyncRelati
        * The parsed HTTP response headers.
        */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2546,6 +2783,10 @@ export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosaDsPutAsyn
        * The parsed HTTP response headers.
        */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2561,6 +2802,10 @@ export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsync
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2587,6 +2832,10 @@ export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders &
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPost202NoLocationHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2613,6 +2862,10 @@ export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRel
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryNoPayloadHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2644,6 +2897,10 @@ export type LrosaDsPut200InvalidJsonResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2680,6 +2937,10 @@ export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPutAsyncR
        * The parsed HTTP response headers.
        */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2716,6 +2977,10 @@ export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPutA
        * The parsed HTTP response headers.
        */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2731,6 +2996,10 @@ export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryIn
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDelete202RetryInvalidHeaderHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2746,6 +3015,10 @@ export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDelete
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2761,6 +3034,10 @@ export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsD
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2787,6 +3064,10 @@ export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvali
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPost202RetryInvalidHeaderHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2813,6 +3094,10 @@ export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyn
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2839,6 +3124,10 @@ export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPos
      * The parsed HTTP response headers.
      */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2875,6 +3164,10 @@ export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPut
        * The parsed HTTP response headers.
        */
       parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+      /**
+       * The parsed HTTP response headers.
+       */
+      [LROSYM]: LROResponseInfo;
     };
   };
 
@@ -2906,6 +3199,10 @@ export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2932,6 +3229,10 @@ export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Ret
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2958,6 +3259,10 @@ export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPo
      * The parsed HTTP response headers.
      */
     parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

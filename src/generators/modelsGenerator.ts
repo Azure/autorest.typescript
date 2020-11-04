@@ -54,6 +54,16 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
     moduleSpecifier: "@azure/core-http"
   });
 
+  // Import LRO Symbol if any of the operations is an LRO one
+  if (
+    clientDetails.operationGroups.some(og => og.operations.some(o => o.isLRO))
+  ) {
+    modelsIndexFile.addImportDeclaration({
+      namedImports: ["LROSYM", "LROResponseInfo"],
+      moduleSpecifier: "../lro"
+    });
+  }
+
   writeUniontypes(clientDetails, modelsIndexFile);
   writeObjects(clientDetails, modelsIndexFile);
   writeChoices(clientDetails, modelsIndexFile);
@@ -144,7 +154,7 @@ function writeOptionsParameter(
  * the response body and headers
  */
 function writeResponseTypes(
-  { responses, name, typeDetails: operationType }: OperationDetails,
+  { responses, name, typeDetails: operationType, isLRO }: OperationDetails,
   modelsIndexFile: SourceFile,
   allModelsNames: Set<string>
 ) {
@@ -172,7 +182,7 @@ function writeResponseTypes(
           name: responseName,
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
-          type: buildResponseType(operation),
+          type: buildResponseType(operation, isLRO),
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
@@ -312,15 +322,26 @@ type IntersectionTypeParameters = [
  * to create a type that contains all the properties that a response may include
  */
 function buildResponseType(
-  operationResponse: OperationResponseDetails
+  operationResponse: OperationResponseDetails,
+  isLro: boolean = false
 ): WriterFunction {
   // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
+  const lroProperties: OptionalKind<PropertySignatureStructure>[] = isLro
+    ? [
+        {
+          name: "[LROSYM]",
+          docs: ["The parsed HTTP response headers."],
+          type: "LROResponseInfo"
+        }
+      ]
+    : [];
 
   const innerResponseProperties = [
     ...(bodyProperties?.internalResponseProperties || []),
-    ...(headersProperties?.internalResponseProperties || [])
+    ...(headersProperties?.internalResponseProperties || []),
+    ...lroProperties
   ];
   const innerTypeWriter = Writers.objectType({
     properties: [
