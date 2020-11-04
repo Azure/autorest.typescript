@@ -32,13 +32,21 @@ export interface LROResponseInfo {
   status?: string;
 }
 
+/**
+ * Extended operation response for LROs
+ */
+export type LROOperationResponse = HttpOperationResponse & {
+  /**
+   * Symbol that contains LRO details
+   */
+  [LROSYM]?: LROResponseInfo;
+};
+
 export interface BaseResult extends RestResponse {
   /**
    * The underlying HTTP response containing both raw and deserialized response data.
    */
-  _response: HttpOperationResponse & {
-    [LROSYM]?: LROResponseInfo;
-  };
+  _response: LROOperationResponse;
 }
 
 export interface LROOperationStep<TResult extends BaseResult> {
