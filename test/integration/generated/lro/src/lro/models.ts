@@ -14,7 +14,7 @@ import {
   HttpOperationResponse
 } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
-export const LROSYM = Symbol.for("LROData");
+export const LROSYM = Symbol("LROData");
 
 export type FinalStateVia =
   | "azure-async-operation"
