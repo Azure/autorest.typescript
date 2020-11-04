@@ -60,7 +60,7 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   ) {
     modelsIndexFile.addImportDeclaration({
       namedImports: ["LROSYM", "LROResponseInfo"],
-      moduleSpecifier: "../lro"
+      moduleSpecifier: "../lro/models"
     });
   }
 
