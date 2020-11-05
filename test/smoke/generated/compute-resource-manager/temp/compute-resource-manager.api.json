@@ -3938,6 +3938,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3949,7 +3967,7 @@
           "name": "ContainerServicesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -5946,6 +5964,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -5957,7 +5993,7 @@
           "name": "DedicatedHostsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -6138,6 +6174,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -6149,7 +6203,7 @@
           "name": "DedicatedHostsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -6797,6 +6851,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -6808,7 +6880,7 @@
           "name": "DiskEncryptionSetsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7085,6 +7157,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7096,7 +7186,7 @@
           "name": "DiskEncryptionSetsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7506,6 +7596,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7517,7 +7625,7 @@
           "name": "DisksCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7602,6 +7710,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7613,7 +7739,7 @@
           "name": "DisksGrantAccessResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7959,6 +8085,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7970,7 +8114,7 @@
           "name": "DisksUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -8747,6 +8891,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -8758,7 +8920,7 @@
           "name": "GalleriesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9035,6 +9197,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9046,7 +9226,7 @@
           "name": "GalleriesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9250,6 +9430,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9261,7 +9459,7 @@
           "name": "GalleryApplicationsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9442,6 +9640,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9453,7 +9669,7 @@
           "name": "GalleryApplicationsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9730,6 +9946,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9741,7 +9975,7 @@
           "name": "GalleryApplicationVersionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9982,6 +10216,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9993,7 +10245,7 @@
           "name": "GalleryApplicationVersionsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -10806,6 +11058,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -10817,7 +11087,7 @@
           "name": "GalleryImagesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -10998,6 +11268,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11009,7 +11297,7 @@
           "name": "GalleryImagesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11349,6 +11637,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11360,7 +11666,7 @@
           "name": "GalleryImageVersionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11699,6 +12005,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11710,7 +12034,7 @@
           "name": "GalleryImageVersionsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -12785,6 +13109,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -12796,7 +13138,7 @@
           "name": "ImagesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -13229,6 +13571,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -13240,7 +13600,7 @@
           "name": "ImagesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -14024,6 +14384,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -14035,7 +14413,7 @@
           "name": "LogAnalyticsExportRequestRateByIntervalResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -14072,6 +14450,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -14083,7 +14479,7 @@
           "name": "LogAnalyticsExportThrottledRequestsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -20050,6 +20446,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -20061,7 +20475,7 @@
           "name": "SnapshotsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -20146,6 +20560,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -20157,7 +20589,7 @@
           "name": "SnapshotsGrantAccessResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -20478,6 +20910,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -20489,7 +20939,7 @@
           "name": "SnapshotsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -24166,6 +24616,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -24177,7 +24645,7 @@
           "name": "VirtualMachineExtensionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -24474,6 +24942,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -24485,7 +24971,7 @@
           "name": "VirtualMachineExtensionsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -26317,6 +26803,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -26328,7 +26832,7 @@
           "name": "VirtualMachineScaleSetExtensionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -26568,6 +27072,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -26579,7 +27101,7 @@
           "name": "VirtualMachineScaleSetExtensionsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -28419,6 +28941,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -28430,7 +28970,7 @@
           "name": "VirtualMachineScaleSetsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -29833,6 +30373,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -29844,7 +30402,7 @@
           "name": "VirtualMachineScaleSetsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -31066,6 +31624,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -31077,7 +31653,7 @@
           "name": "VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -31399,6 +31975,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -31410,7 +32004,7 @@
           "name": "VirtualMachineScaleSetVMExtensionsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -32856,6 +33450,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -32867,7 +33479,7 @@
           "name": "VirtualMachineScaleSetVMsRunCommandResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -32904,6 +33516,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -32915,7 +33545,7 @@
           "name": "VirtualMachineScaleSetVMsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -32952,6 +33582,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -32963,7 +33611,7 @@
           "name": "VirtualMachinesCaptureResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -33000,6 +33648,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -33011,7 +33677,7 @@
           "name": "VirtualMachinesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -34002,6 +34668,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -34013,7 +34697,7 @@
           "name": "VirtualMachinesRunCommandResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -34116,6 +34800,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "compute-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "compute-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -34127,7 +34829,7 @@
           "name": "VirtualMachinesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * The List Compute Operation operation response.
@@ -6584,6 +6585,10 @@ export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DedicatedHost;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6604,6 +6609,10 @@ export type DedicatedHostsUpdateResponse = DedicatedHost & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DedicatedHost;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6917,6 +6926,10 @@ export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExten
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6937,6 +6950,10 @@ export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7192,6 +7209,10 @@ export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineCaptureResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7212,6 +7233,10 @@ export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachine;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7232,6 +7257,10 @@ export type VirtualMachinesUpdateResponse = VirtualMachine & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachine;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7385,6 +7414,10 @@ export type VirtualMachinesRunCommandResponse = RunCommandResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RunCommandResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7496,6 +7529,10 @@ export type ImagesCreateOrUpdateResponse = Image & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Image;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7516,6 +7553,10 @@ export type ImagesUpdateResponse = Image & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Image;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7646,6 +7687,10 @@ export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleS
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineScaleSet;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7666,6 +7711,10 @@ export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineScaleSet;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -7998,6 +8047,10 @@ export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMach
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineScaleSetExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8018,6 +8071,10 @@ export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScale
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineScaleSetExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8129,6 +8186,10 @@ export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMa
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8149,6 +8210,10 @@ export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExt
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineExtension;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8242,6 +8307,10 @@ export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM &
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualMachineScaleSetVM;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8352,6 +8421,10 @@ export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RunCommandResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8411,6 +8484,10 @@ export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperat
      * The response body as parsed JSON or XML
      */
     parsedBody: LogAnalyticsOperationResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8431,6 +8508,10 @@ export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationR
      * The response body as parsed JSON or XML
      */
     parsedBody: LogAnalyticsOperationResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8573,6 +8654,10 @@ export type DisksCreateOrUpdateResponse = Disk & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Disk;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8593,6 +8678,10 @@ export type DisksUpdateResponse = Disk & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Disk;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8673,6 +8762,10 @@ export type DisksGrantAccessResponse = AccessUri & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AccessUri;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8733,6 +8826,10 @@ export type SnapshotsCreateOrUpdateResponse = Snapshot & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Snapshot;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8753,6 +8850,10 @@ export type SnapshotsUpdateResponse = Snapshot & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Snapshot;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8833,6 +8934,10 @@ export type SnapshotsGrantAccessResponse = AccessUri & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AccessUri;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8893,6 +8998,10 @@ export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DiskEncryptionSet;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8913,6 +9022,10 @@ export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DiskEncryptionSet;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9033,6 +9146,10 @@ export type GalleriesCreateOrUpdateResponse = Gallery & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Gallery;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9053,6 +9170,10 @@ export type GalleriesUpdateResponse = Gallery & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Gallery;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9173,6 +9294,10 @@ export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryImage;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9193,6 +9318,10 @@ export type GalleryImagesUpdateResponse = GalleryImage & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryImage;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9273,6 +9402,10 @@ export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryImageVersion;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9293,6 +9426,10 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryImageVersion;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9384,6 +9521,10 @@ export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryApplication;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9404,6 +9545,10 @@ export type GalleryApplicationsUpdateResponse = GalleryApplication & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryApplication;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9484,6 +9629,10 @@ export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicatio
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryApplicationVersion;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9504,6 +9653,10 @@ export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion
      * The response body as parsed JSON or XML
      */
     parsedBody: GalleryApplicationVersion;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9615,6 +9768,10 @@ export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ContainerService;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

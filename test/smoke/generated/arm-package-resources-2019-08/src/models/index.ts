@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.
@@ -1343,6 +1344,10 @@ export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentExtended;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1458,6 +1463,10 @@ export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended 
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentExtended;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1573,6 +1582,10 @@ export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = Deployment
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentExtended;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1688,6 +1701,10 @@ export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExt
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentExtended;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1748,6 +1765,10 @@ export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult
      * The response body as parsed JSON or XML
      */
     parsedBody: WhatIfOperationResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1823,6 +1844,10 @@ export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentExtended;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1883,6 +1908,10 @@ export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WhatIfOperationResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2470,6 +2499,10 @@ export type ResourcesCreateOrUpdateResponse = GenericResource & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GenericResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2490,6 +2523,10 @@ export type ResourcesUpdateResponse = GenericResource & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GenericResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2530,6 +2567,10 @@ export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GenericResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2550,6 +2591,10 @@ export type ResourcesUpdateByIdResponse = GenericResource & {
      * The response body as parsed JSON or XML
      */
     parsedBody: GenericResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2728,6 +2773,10 @@ export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ResourceGroupExportResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

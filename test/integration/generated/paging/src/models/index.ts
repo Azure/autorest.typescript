@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export interface ProductResultValue {
   value?: Product[];
@@ -504,6 +505,10 @@ export type PagingGetMultiplePagesLROResponse = ProductResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ProductResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

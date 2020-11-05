@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * Collection of certificate orders.
@@ -9308,6 +9309,10 @@ export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertif
      * The response body as parsed JSON or XML
      */
     parsedBody: AppServiceCertificateOrder;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9388,6 +9393,10 @@ export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppSe
      * The response body as parsed JSON or XML
      */
     parsedBody: AppServiceCertificateResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9708,6 +9717,10 @@ export type DomainsCreateOrUpdateResponse = Domain & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Domain;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12150,6 +12163,10 @@ export type WebAppsCreateOrUpdateResponse = Site & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Site;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12655,6 +12672,10 @@ export type WebAppsListPublishingCredentialsResponse = User & {
      * The response body as parsed JSON or XML
      */
     parsedBody: User;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13145,6 +13166,10 @@ export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus & {
      * The response body as parsed JSON or XML
      */
     parsedBody: MSDeployStatus;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13250,6 +13275,10 @@ export type WebAppsCreateFunctionResponse = FunctionEnvelope & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FunctionEnvelope;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13650,6 +13679,10 @@ export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus & {
      * The response body as parsed JSON or XML
      */
     parsedBody: MSDeployStatus;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13875,6 +13908,10 @@ export type WebAppsMigrateStorageResponse = StorageMigrationResponse & {
      * The response body as parsed JSON or XML
      */
     parsedBody: StorageMigrationResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13895,6 +13932,10 @@ export type WebAppsMigrateMySqlResponse = Operation & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Operation;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14098,6 +14139,10 @@ export type WebAppsStartWebSiteNetworkTraceOperationResponse = NetworkTrace[] & 
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkTrace[];
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14614,6 +14659,10 @@ export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SiteExtensionInfo;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14674,6 +14723,10 @@ export type WebAppsCreateOrUpdateSlotResponse = Site & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Site;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15140,6 +15193,10 @@ export type WebAppsListPublishingCredentialsSlotResponse = User & {
      * The response body as parsed JSON or XML
      */
     parsedBody: User;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15590,6 +15647,10 @@ export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus & {
      * The response body as parsed JSON or XML
      */
     parsedBody: MSDeployStatus;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15695,6 +15756,10 @@ export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FunctionEnvelope;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16095,6 +16160,10 @@ export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus 
      * The response body as parsed JSON or XML
      */
     parsedBody: MSDeployStatus;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16503,6 +16572,10 @@ export type WebAppsStartWebSiteNetworkTraceOperationSlotResponse = NetworkTrace[
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkTrace[];
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16774,6 +16847,10 @@ export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEnd
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateEndpointConnectionResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16799,6 +16876,10 @@ export type WebAppsDeletePrivateEndpointConnectionResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: any;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17104,6 +17185,10 @@ export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SiteExtensionInfo;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17204,6 +17289,10 @@ export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl &
      * The response body as parsed JSON or XML
      */
     parsedBody: SiteSourceControl;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17263,6 +17352,10 @@ export type WebAppsStartNetworkTraceSlotResponse = NetworkTrace[] & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkTrace[];
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17654,6 +17747,10 @@ export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SiteSourceControl;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17713,6 +17810,10 @@ export type WebAppsStartNetworkTraceResponse = NetworkTrace[] & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkTrace[];
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19759,6 +19860,10 @@ export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironment
      * The response body as parsed JSON or XML
      */
     parsedBody: AppServiceEnvironmentResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19850,6 +19955,10 @@ export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WebAppCollection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19970,6 +20079,10 @@ export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPo
      * The response body as parsed JSON or XML
      */
     parsedBody: WorkerPoolResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20130,6 +20243,10 @@ export type AppServiceEnvironmentsResumeResponse = WebAppCollection & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WebAppCollection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20201,6 +20318,10 @@ export type AppServiceEnvironmentsSuspendResponse = WebAppCollection & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WebAppCollection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20292,6 +20413,10 @@ export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolR
      * The response body as parsed JSON or XML
      */
     parsedBody: WorkerPoolResource;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20926,6 +21051,10 @@ export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AppServicePlan;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

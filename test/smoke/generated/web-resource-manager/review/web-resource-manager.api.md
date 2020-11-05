@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -197,6 +198,7 @@ export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppSe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AppServiceCertificateResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -205,6 +207,7 @@ export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertif
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AppServiceCertificateOrder;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -474,6 +477,7 @@ export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WebAppCollection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -482,6 +486,7 @@ export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPo
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkerPoolResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -490,6 +495,7 @@ export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironment
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AppServiceEnvironmentResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -498,6 +504,7 @@ export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolR
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkerPoolResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -883,6 +890,7 @@ export type AppServiceEnvironmentsResumeResponse = WebAppCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WebAppCollection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -899,6 +907,7 @@ export type AppServiceEnvironmentsSuspendResponse = WebAppCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WebAppCollection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -987,6 +996,7 @@ export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AppServicePlan;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2549,6 +2559,7 @@ export type DomainsCreateOrUpdateResponse = Domain & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Domain;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5200,6 +5211,7 @@ export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEnd
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnectionResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5240,6 +5252,7 @@ export type WebAppsCreateFunctionResponse = FunctionEnvelope & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FunctionEnvelope;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5248,6 +5261,7 @@ export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FunctionEnvelope;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5256,6 +5270,7 @@ export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MSDeployStatus;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5264,6 +5279,7 @@ export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MSDeployStatus;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5272,6 +5288,7 @@ export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MSDeployStatus;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5280,6 +5297,7 @@ export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MSDeployStatus;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5416,6 +5434,7 @@ export type WebAppsCreateOrUpdateResponse = Site & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Site;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5424,6 +5443,7 @@ export type WebAppsCreateOrUpdateSlotResponse = Site & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Site;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5432,6 +5452,7 @@ export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SiteSourceControl;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5440,6 +5461,7 @@ export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SiteSourceControl;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5503,6 +5525,7 @@ export type WebAppsDeletePrivateEndpointConnectionResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: any;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6279,6 +6302,7 @@ export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SiteExtensionInfo;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6287,6 +6311,7 @@ export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SiteExtensionInfo;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7101,6 +7126,7 @@ export type WebAppsListPublishingCredentialsResponse = User & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: User;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7109,6 +7135,7 @@ export type WebAppsListPublishingCredentialsSlotResponse = User & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: User;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7535,6 +7562,7 @@ export type WebAppsMigrateMySqlResponse = Operation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Operation;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7543,6 +7571,7 @@ export type WebAppsMigrateStorageResponse = StorageMigrationResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: StorageMigrationResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7586,6 +7615,7 @@ export type WebAppsStartNetworkTraceResponse = NetworkTrace[] & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkTrace[];
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7601,6 +7631,7 @@ export type WebAppsStartNetworkTraceSlotResponse = NetworkTrace[] & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkTrace[];
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7616,6 +7647,7 @@ export type WebAppsStartWebSiteNetworkTraceOperationResponse = NetworkTrace[] & 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkTrace[];
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7631,6 +7663,7 @@ export type WebAppsStartWebSiteNetworkTraceOperationSlotResponse = NetworkTrace[
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkTrace[];
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8307,6 +8340,10 @@ export type WorkerPoolResource = ProxyOnlyResource & {
 // @public
 export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "NestedSmall" | "Default";
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:9399:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
