@@ -13,5 +13,5 @@ describe("lroParametrizedEndpoints", () => {
     poller.delay = () => Promise.resolve();
     const result = await poller.pollUntilDone();
     assert.equal(result.body, "success");
-  }).timeout(10000);
+  });
 });
