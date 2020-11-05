@@ -22,6 +22,22 @@ function getAbortController() {
 
 describe("typescript", function() {
   describe("XML client", function() {
+    it("should handle getXMsText", async () => {
+      const result = await testClient.xml.getXMsText();
+      result.language?.should.be.equals("english");
+      result.content?.should.be.equals("I am text");
+    });
+
+    it("should handle jsonInput", async () => {
+      const result = await testClient.xml.jsonInput({ id: 42 });
+      result._response.status.should.be.equals(200);
+    });
+
+    it("should handle getXMsText", async () => {
+      const result = await testClient.xml.jsonOutput();
+      result.id?.should.be.equals(42);
+    });
+
     it("should be able to abort a simple XML get", async function() {
       const controller = getAbortController();
       const slideshowPromise = testClient.xml.getSimple({
