@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * Parameters for creating or updating a vault
@@ -869,6 +870,10 @@ export type VaultsCreateOrUpdateResponse = Vault & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Vault;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1259,6 +1264,10 @@ export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateEndpointConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

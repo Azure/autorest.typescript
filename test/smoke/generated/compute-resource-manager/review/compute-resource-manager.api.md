@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -440,6 +441,7 @@ export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ContainerService;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -667,6 +669,7 @@ export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHost;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -699,6 +702,7 @@ export type DedicatedHostsUpdateResponse = DedicatedHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHost;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -792,6 +796,7 @@ export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSet;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -840,6 +845,7 @@ export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSet;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -881,6 +887,7 @@ export type DisksCreateOrUpdateResponse = Disk & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Disk;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -897,6 +904,7 @@ export type DisksGrantAccessResponse = AccessUri & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AccessUri;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -949,6 +957,7 @@ export type DisksUpdateResponse = Disk & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Disk;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1012,6 +1021,7 @@ export type GalleriesCreateOrUpdateResponse = Gallery & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Gallery;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1060,6 +1070,7 @@ export type GalleriesUpdateResponse = Gallery & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Gallery;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1091,6 +1102,7 @@ export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplication;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1123,6 +1135,7 @@ export type GalleryApplicationsUpdateResponse = GalleryApplication & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplication;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1164,6 +1177,7 @@ export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicatio
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationVersion;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1201,6 +1215,7 @@ export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationVersion;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1286,6 +1301,7 @@ export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImage;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1318,6 +1334,7 @@ export type GalleryImagesUpdateResponse = GalleryImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImage;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1363,6 +1380,7 @@ export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageVersion;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1407,6 +1425,7 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageVersion;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1526,6 +1545,7 @@ export type ImagesCreateOrUpdateResponse = Image_2 & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Image_2;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1586,6 +1606,7 @@ export type ImagesUpdateResponse = Image_2 & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Image_2;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1660,6 +1681,7 @@ export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperat
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LogAnalyticsOperationResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1668,6 +1690,7 @@ export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationR
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LogAnalyticsOperationResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2205,6 +2228,7 @@ export type SnapshotsCreateOrUpdateResponse = Snapshot & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Snapshot;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2221,6 +2245,7 @@ export type SnapshotsGrantAccessResponse = AccessUri & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AccessUri;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2270,6 +2295,7 @@ export type SnapshotsUpdateResponse = Snapshot & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Snapshot;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2672,6 +2698,7 @@ export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExten
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2711,6 +2738,7 @@ export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2927,6 +2955,7 @@ export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMach
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2964,6 +2993,7 @@ export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScale
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3137,6 +3167,7 @@ export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleS
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSet;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3299,6 +3330,7 @@ export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSet;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3421,6 +3453,7 @@ export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMa
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3461,6 +3494,7 @@ export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExt
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3584,6 +3618,7 @@ export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RunCommandResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3592,6 +3627,7 @@ export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetVM;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3600,6 +3636,7 @@ export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineCaptureResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3608,6 +3645,7 @@ export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachine;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3734,6 +3772,7 @@ export type VirtualMachinesRunCommandResponse = RunCommandResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RunCommandResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3748,6 +3787,7 @@ export type VirtualMachinesUpdateResponse = VirtualMachine & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachine;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3800,6 +3840,10 @@ export interface WinRMListener {
     protocol?: ProtocolTypes;
 }
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:9774:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

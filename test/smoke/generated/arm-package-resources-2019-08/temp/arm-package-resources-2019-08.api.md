@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -330,6 +331,7 @@ export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = Deployment
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -338,6 +340,7 @@ export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -346,6 +349,7 @@ export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExt
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -354,6 +358,7 @@ export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -362,6 +367,7 @@ export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -636,6 +642,7 @@ export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WhatIfOperationResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -650,6 +657,7 @@ export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WhatIfOperationResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1000,6 +1008,7 @@ export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ResourceGroupExportResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1121,6 +1130,7 @@ export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1129,6 +1139,7 @@ export type ResourcesCreateOrUpdateResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1219,6 +1230,7 @@ export type ResourcesUpdateByIdResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1227,6 +1239,7 @@ export type ResourcesUpdateResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1357,6 +1370,10 @@ export interface WhatIfPropertyChange {
 // @public
 export type WhatIfResultFormat = "ResourceIdOnly" | "FullResourcePayloads";
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:1588:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

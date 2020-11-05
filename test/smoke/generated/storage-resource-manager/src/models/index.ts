@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * Result of the request to list Storage operations. It contains a list of operations and a URL link to get the next set of results.
@@ -2663,6 +2664,10 @@ export type StorageAccountsCreateResponse = StorageAccount & {
      * The response body as parsed JSON or XML
      */
     parsedBody: StorageAccount;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2854,6 +2859,10 @@ export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
      * The response body as parsed JSON or XML
      */
     parsedBody: BlobRestoreStatus;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

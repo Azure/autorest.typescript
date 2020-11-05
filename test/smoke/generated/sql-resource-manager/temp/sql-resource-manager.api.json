@@ -750,6 +750,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -761,7 +779,7 @@
           "name": "BackupLongTermRetentionPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -924,6 +942,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -935,7 +971,7 @@
           "name": "BackupShortTermRetentionPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -1116,6 +1152,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1127,7 +1181,7 @@
           "name": "BackupShortTermRetentionPoliciesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -2794,6 +2848,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -2805,7 +2877,7 @@
           "name": "DatabasesCreateImportOperationResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -2842,6 +2914,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -2853,7 +2943,7 @@
           "name": "DatabasesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -2947,6 +3037,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -2958,7 +3066,7 @@
           "name": "DatabasesExportResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3103,6 +3211,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3114,7 +3240,7 @@
           "name": "DatabasesImportResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3439,6 +3565,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3450,7 +3594,7 @@
           "name": "DatabasesPauseResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3487,6 +3631,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3498,7 +3660,7 @@
           "name": "DatabasesResumeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3585,6 +3747,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3596,7 +3776,7 @@
           "name": "DatabasesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7662,6 +7842,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7673,7 +7871,7 @@
           "name": "ElasticPoolsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -8093,6 +8291,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -8104,7 +8320,7 @@
           "name": "ElasticPoolsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -8445,6 +8661,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -8456,7 +8690,7 @@
           "name": "EncryptionProtectorsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9132,6 +9366,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9143,7 +9395,7 @@
           "name": "ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9730,6 +9982,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9741,7 +10011,7 @@
           "name": "FailoverGroupsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9778,6 +10048,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9789,7 +10077,7 @@
           "name": "FailoverGroupsFailoverResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9826,6 +10114,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9837,7 +10143,7 @@
           "name": "FailoverGroupsForceFailoverAllowDataLossResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -10018,6 +10324,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -10029,7 +10353,7 @@
           "name": "FailoverGroupsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11339,6 +11663,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11350,7 +11692,7 @@
           "name": "InstanceFailoverGroupsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11387,6 +11729,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11398,7 +11758,7 @@
           "name": "InstanceFailoverGroupsFailoverResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11435,6 +11795,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11446,7 +11824,7 @@
           "name": "InstanceFailoverGroupsForceFailoverAllowDataLossResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -12045,6 +12423,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -12056,7 +12452,7 @@
           "name": "InstancePoolsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -12333,6 +12729,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -12344,7 +12758,7 @@
           "name": "InstancePoolsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -12723,6 +13137,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -12734,7 +13166,7 @@
           "name": "JobAgentsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -12940,6 +13372,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -12951,7 +13401,7 @@
           "name": "JobAgentsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -13511,6 +13961,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -13522,7 +13990,7 @@
           "name": "JobExecutionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -13559,6 +14027,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -13570,7 +14056,7 @@
           "name": "JobExecutionsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -22643,6 +23129,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -22654,7 +23158,7 @@
           "name": "ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -22835,6 +23339,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -22846,7 +23368,7 @@
           "name": "ManagedBackupShortTermRetentionPoliciesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -23260,6 +23782,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -23271,7 +23811,7 @@
           "name": "ManagedDatabasesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -24508,6 +25048,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -24519,7 +25077,7 @@
           "name": "ManagedDatabasesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -25652,6 +26210,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -25663,7 +26239,7 @@
           "name": "ManagedInstanceAdministratorsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -26101,6 +26677,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -26112,7 +26706,7 @@
           "name": "ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -26589,6 +27183,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -26600,7 +27212,7 @@
           "name": "ManagedInstanceKeysCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -27132,6 +27744,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -27143,7 +27773,7 @@
           "name": "ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -27813,6 +28443,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -27824,7 +28472,7 @@
           "name": "ManagedInstancesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -28197,6 +28845,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -28208,7 +28874,7 @@
           "name": "ManagedInstancesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -29468,6 +30134,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -29479,7 +30163,7 @@
           "name": "ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -29660,6 +30344,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -29671,7 +30373,7 @@
           "name": "ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -29733,6 +30435,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -29744,7 +30464,7 @@
           "name": "ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -32286,6 +33006,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -32297,7 +33035,7 @@
           "name": "PrivateEndpointConnectionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -35423,6 +36161,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -35434,7 +36190,7 @@
           "name": "RestorePointsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -36775,6 +37531,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -36786,7 +37560,7 @@
           "name": "ServerAzureADAdministratorsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -36823,6 +37597,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -36834,7 +37626,7 @@
           "name": "ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -37015,6 +37807,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -37026,7 +37836,7 @@
           "name": "ServerBlobAuditingPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -37393,6 +38203,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -37404,7 +38232,7 @@
           "name": "ServerCommunicationLinksCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -37768,6 +38596,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -37779,7 +38625,7 @@
           "name": "ServerDnsAliasesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -38150,6 +38996,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -38161,7 +39025,7 @@
           "name": "ServerKeysCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -38578,6 +39442,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -38589,7 +39471,7 @@
           "name": "ServersCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -38626,6 +39508,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -38637,7 +39537,7 @@
           "name": "ServerSecurityAlertPoliciesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -39106,6 +40006,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -39117,7 +40035,7 @@
           "name": "ServersUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -44628,6 +45546,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -44639,7 +45575,7 @@
           "name": "SyncAgentsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -46265,6 +47201,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -46276,7 +47230,7 @@
           "name": "SyncGroupsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -46888,6 +47842,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -46899,7 +47871,7 @@
           "name": "SyncGroupsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -47089,6 +48061,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -47100,7 +48090,7 @@
           "name": "SyncMembersCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -47402,6 +48392,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -47413,7 +48421,7 @@
           "name": "SyncMembersUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -48762,6 +49770,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -48773,7 +49799,7 @@
           "name": "VirtualClustersUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -49036,6 +50062,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -49047,7 +50091,7 @@
           "name": "VirtualNetworkRulesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -49757,6 +50801,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -49768,7 +50830,7 @@
           "name": "WorkloadClassifiersCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -50050,6 +51112,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "sql-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "sql-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -50061,7 +51141,7 @@
           "name": "WorkloadGroupsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

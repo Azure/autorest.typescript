@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -143,6 +144,7 @@ export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentScriptUnion;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -328,6 +330,10 @@ export interface UserAssignedIdentity {
     principalId?: string;
 }
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:583:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

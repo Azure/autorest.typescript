@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -221,6 +222,7 @@ export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -422,6 +424,7 @@ export type VaultsCreateOrUpdateResponse = Vault & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Vault;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -556,6 +559,10 @@ export interface VirtualNetworkRule {
     id: string;
 }
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:1270:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

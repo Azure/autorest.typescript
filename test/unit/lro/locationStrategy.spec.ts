@@ -5,6 +5,7 @@ import {
   LROOperationStep
 } from "../.././../src/lro";
 import { assert } from "chai";
+import { LROSYM } from "../../../src/lro/models";
 describe("LocationStrategy", () => {
   let locationStrategy: LROStrategy<any>;
   let dummyInitialOperation: LROOperationStep<any>;
@@ -14,10 +15,10 @@ describe("LocationStrategy", () => {
     dummyInitialOperation = {
       args: {} as any,
       spec: {} as any,
-      result: { _lroData: { location: "dummyUrl" } } as any
+      result: { _response: { [LROSYM]: { location: "dummyUrl" } } } as any
     };
     dummySendOperationFn = () => {
-      return {} as any;
+      return { _response: {} } as any;
     };
 
     locationStrategy = createLocationStrategy(
@@ -42,7 +43,9 @@ describe("LocationStrategy", () => {
       locationStrategy = createLocationStrategy(
         dummyInitialOperation,
         (_args, _spec) => {
-          return Promise.resolve({ _lroData: { statusCode: 200 } });
+          return Promise.resolve({
+            _response: { [LROSYM]: { statusCode: 200 } }
+          });
         }
       );
 
@@ -56,7 +59,9 @@ describe("LocationStrategy", () => {
       locationStrategy = createLocationStrategy(
         dummyInitialOperation,
         (_args, _spec) => {
-          return Promise.resolve({ _lroData: { statusCode: 202 } });
+          return Promise.resolve({
+            _response: { [LROSYM]: { statusCode: 202 } }
+          });
         }
       );
 
@@ -82,7 +87,9 @@ describe("LocationStrategy", () => {
     it("should do a GET call to the URL in location header from last result", async () => {
       const expectedUrl = "pollingURL";
       dummySendOperationFn = (_args, spec) => {
-        return Promise.resolve({ _lroData: { location: expectedUrl } });
+        return Promise.resolve({
+          _response: { [LROSYM]: { location: expectedUrl } }
+        });
       };
       locationStrategy = createLocationStrategy(
         dummyInitialOperation,

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export type DeploymentScriptUnion = AzurePowerShellScript | AzureCliScript;
 
@@ -576,6 +577,10 @@ export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DeploymentScriptUnion;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

@@ -3,9 +3,14 @@ import {
   BaseResult,
   LROOperationStep,
   LROResponseInfo,
-  FinalStateVia
+  FinalStateVia,
+  LROSYM
 } from "./models";
-import { OperationSpec, OperationArguments } from "@azure/core-http";
+import {
+  OperationSpec,
+  OperationArguments,
+  OperationResponse
+} from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from ".";
 
@@ -14,7 +19,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   sendOperationFn: SendOperationFn<TResult>,
   finalStateVia?: FinalStateVia
 ): LROStrategy<TResult> {
-  const lroData = initialOperation.result._lroData;
+  const lroData = initialOperation.result._response[LROSYM];
   if (!lroData) {
     throw new Error(
       "Expected lroData to be defined for Azure-AsyncOperation strategy"
@@ -27,7 +32,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
 
   return {
     isTerminal: () => {
-      const currentResult = currentOperation.result._lroData;
+      const currentResult = currentOperation.result._response[LROSYM];
 
       if (!currentResult) {
         throw new Error("Expected lroData to determine terminal status");
@@ -43,16 +48,16 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
       return terminalStates.includes(status.toLowerCase());
     },
     sendFinalRequest: async () => {
-      if (!initialOperation.result._lroData) {
+      if (!initialOperation.result._response[LROSYM]) {
         throw new Error("Expected lroData to determine terminal status");
       }
 
-      if (!currentOperation.result._lroData) {
+      if (!currentOperation.result._response[LROSYM]) {
         throw new Error("Expected lroData to determine terminal status");
       }
 
-      const initialOperationResult = initialOperation.result._lroData;
-      const currentOperationResult = currentOperation.result._lroData;
+      const initialOperationResult = initialOperation.result._response[LROSYM];
+      const currentOperationResult = currentOperation.result._response[LROSYM];
 
       if (
         !shouldPerformFinalGet(initialOperationResult, currentOperationResult)
@@ -60,7 +65,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
         return currentOperation;
       }
 
-      if (initialOperationResult.requestMethod === "PUT") {
+      if (initialOperationResult?.requestMethod === "PUT") {
         currentOperation = await sendFinalGet(
           initialOperation,
           sendOperationFn
@@ -69,7 +74,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
         return currentOperation;
       }
 
-      if (initialOperationResult.location) {
+      if (initialOperationResult?.location) {
         switch (finalStateVia) {
           case "original-uri":
             currentOperation = await sendFinalGet(
@@ -84,7 +89,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
           default:
             const location =
               initialOperationResult.location ||
-              currentOperationResult.location;
+              currentOperationResult?.location;
 
             if (!location) {
               throw new Error("Couldn't determine final GET URL from location");
@@ -108,9 +113,11 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
 
       const pollingArgs = currentOperation.args;
       // Make sure we don't send any body to the get request
-      const { requestBody, ...restSpec } = currentOperation.spec;
+      const { requestBody, responses, ...restSpec } = currentOperation.spec;
+
       const pollingSpec: OperationSpec = {
         ...restSpec,
+        responses: getCompositeMappers(responses),
         httpMethod: "GET",
         path: lastKnownPollingUrl
       };
@@ -119,8 +126,8 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
 
       // Update latest polling url
       lastKnownPollingUrl =
-        result._lroData?.azureAsyncOperation ||
-        result._lroData?.operationLocation ||
+        result._response[LROSYM]?.azureAsyncOperation ||
+        result._response[LROSYM]?.operationLocation ||
         lastKnownPollingUrl;
 
       // Update lastOperation result
@@ -135,12 +142,47 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   };
 }
 
+/**
+ * Polling calls will always return a status object i.e. {"status": "success"}
+ * these intermediate responses are not described in the swagger so we need to
+ * pass custom mappers at runtime.
+ * This function replaces all the existing mappers to be able to deserialize a status object
+ * @param responses Original set of responses defined in the operation
+ */
+function getCompositeMappers(responses: {
+  [responseCode: string]: OperationResponse;
+}): {
+  [responseCode: string]: OperationResponse;
+} {
+  return Object.keys(responses).reduce((acc, statusCode) => {
+    return {
+      ...acc,
+      [statusCode]: {
+        ...responses[statusCode],
+        bodyMapper: {
+          type: {
+            name: "Composite",
+            modelProperties: {
+              status: {
+                serializedName: "status",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+  }, {} as { [responseCode: string]: OperationResponse });
+}
+
 function shouldPerformFinalGet(
-  initialResult: LROResponseInfo,
-  currentResult: LROResponseInfo
+  initialResult?: LROResponseInfo,
+  currentResult?: LROResponseInfo
 ) {
-  const { status } = currentResult;
-  const { requestMethod: initialRequestMethod, location } = initialResult;
+  const { status } = currentResult || {};
+  const { requestMethod: initialRequestMethod, location } = initialResult || {};
   if (status && status.toLowerCase() !== "succeeded") {
     return false;
   }

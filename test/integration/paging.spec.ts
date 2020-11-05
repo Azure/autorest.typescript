@@ -4,7 +4,9 @@ import {
   PagingGetMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetResponse,
   PagingGetMultiplePagesFragmentNextLinkResponse,
-  Product
+  Product,
+  PagingGetMultiplePagesLROResponse,
+  PagingGetMultiplePagesLRONextResponse
 } from "./generated/paging/src";
 import { InternalPipelineOptions } from "@azure/core-http";
 
@@ -352,8 +354,7 @@ describe("Integration tests for Paging", () => {
       const poller = await client.paging.getMultiplePagesLRO();
       poller.delay = () => Promise.resolve();
       let pageCount = 1;
-      let page = await poller.pollUntilDone();
-
+      let page: PagingGetMultiplePagesLROResponse | PagingGetMultiplePagesLRONextResponse = await poller.pollUntilDone();
       while (page.nextLink) {
         page = await client.paging.getMultiplePagesLRONext(page.nextLink);
         pageCount++;

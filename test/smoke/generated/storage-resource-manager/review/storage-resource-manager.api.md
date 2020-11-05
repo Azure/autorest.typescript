@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -1264,6 +1265,7 @@ export type StorageAccountsCreateResponse = StorageAccount & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: StorageAccount;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1341,6 +1343,7 @@ export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BlobRestoreStatus;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1521,6 +1524,10 @@ export interface VirtualNetworkRule {
     virtualNetworkResourceId: string;
 }
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:2670:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * ARM resource.
@@ -8273,6 +8274,10 @@ export type DatabasesImportResponse = ImportExportResponse & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ImportExportResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8293,6 +8298,10 @@ export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ImportExportResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8313,6 +8322,10 @@ export type DatabasesExportResponse = ImportExportResponse & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ImportExportResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8413,6 +8426,10 @@ export type DatabasesCreateOrUpdateResponse = Database & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Database;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8433,6 +8450,10 @@ export type DatabasesUpdateResponse = Database & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Database;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8473,6 +8494,10 @@ export type DatabasesPauseResponse = Database & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Database;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8493,6 +8518,10 @@ export type DatabasesResumeResponse = Database & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Database;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8655,6 +8684,10 @@ export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ElasticPool;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8675,6 +8708,10 @@ export type ElasticPoolsUpdateResponse = ElasticPool & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ElasticPool;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8846,6 +8883,10 @@ export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunication
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerCommunicationLink;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9186,6 +9227,10 @@ export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
      * The response body as parsed JSON or XML
      */
     parsedBody: EncryptionProtector;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9246,6 +9291,10 @@ export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9266,6 +9315,10 @@ export type FailoverGroupsUpdateResponse = FailoverGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9306,6 +9359,10 @@ export type FailoverGroupsFailoverResponse = FailoverGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9326,6 +9383,10 @@ export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9446,6 +9507,10 @@ export type ServerKeysCreateOrUpdateResponse = ServerKey & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerKey;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9506,6 +9571,10 @@ export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SyncAgent;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9717,6 +9786,10 @@ export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SyncGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9737,6 +9810,10 @@ export type SyncGroupsUpdateResponse = SyncGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SyncGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9888,6 +9965,10 @@ export type SyncMembersCreateOrUpdateResponse = SyncMember & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SyncMember;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9908,6 +9989,10 @@ export type SyncMembersUpdateResponse = SyncMember & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SyncMember;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10128,6 +10213,10 @@ export type VirtualClustersUpdateResponse = VirtualCluster & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualCluster;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10208,6 +10297,10 @@ export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkRule;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10368,6 +10461,10 @@ export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedS
      * The response body as parsed JSON or XML
      */
     parsedBody: ExtendedServerBlobAuditingPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10448,6 +10545,10 @@ export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditin
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerBlobAuditingPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10748,6 +10849,10 @@ export type JobAgentsCreateOrUpdateResponse = JobAgent & {
      * The response body as parsed JSON or XML
      */
     parsedBody: JobAgent;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10768,6 +10873,10 @@ export type JobAgentsUpdateResponse = JobAgent & {
      * The response body as parsed JSON or XML
      */
     parsedBody: JobAgent;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -10943,6 +11052,10 @@ export type JobExecutionsCreateResponse = JobExecution & {
      * The response body as parsed JSON or XML
      */
     parsedBody: JobExecution;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -11038,6 +11151,10 @@ export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
      * The response body as parsed JSON or XML
      */
     parsedBody: JobExecution;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12378,6 +12495,10 @@ export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTe
      * The response body as parsed JSON or XML
      */
     parsedBody: BackupLongTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12438,6 +12559,10 @@ export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = Mana
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12458,6 +12583,10 @@ export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBacku
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12538,6 +12667,10 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCrea
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12558,6 +12691,10 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12678,6 +12815,10 @@ export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerDnsAlias;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12758,6 +12899,10 @@ export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAl
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerSecurityAlertPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -12898,6 +13043,10 @@ export type RestorePointsCreateResponse = RestorePoint & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RestorePoint;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13038,6 +13187,10 @@ export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedSe
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedServerSecurityAlertPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13312,6 +13465,10 @@ export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanc
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstanceAdministrator;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13732,6 +13889,10 @@ export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup
      * The response body as parsed JSON or XML
      */
     parsedBody: InstanceFailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13772,6 +13933,10 @@ export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: InstanceFailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13792,6 +13957,10 @@ export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceF
      * The response body as parsed JSON or XML
      */
     parsedBody: InstanceFailoverGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13852,6 +14021,10 @@ export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShort
      * The response body as parsed JSON or XML
      */
     parsedBody: BackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13872,6 +14045,10 @@ export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRete
      * The response body as parsed JSON or XML
      */
     parsedBody: BackupShortTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13983,6 +14160,10 @@ export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstanceKey;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14074,6 +14255,10 @@ export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedI
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstanceEncryptionProtector;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14528,6 +14713,10 @@ export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
      * The response body as parsed JSON or XML
      */
     parsedBody: InstancePool;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14548,6 +14737,10 @@ export type InstancePoolsUpdateResponse = InstancePool & {
      * The response body as parsed JSON or XML
      */
     parsedBody: InstancePool;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14770,6 +14963,10 @@ export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstance;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14790,6 +14987,10 @@ export type ManagedInstancesUpdateResponse = ManagedInstance & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstance;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14910,6 +15111,10 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointCo
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateEndpointConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15070,6 +15275,10 @@ export type ServersCreateOrUpdateResponse = Server & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Server;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15090,6 +15299,10 @@ export type ServersUpdateResponse = Server & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Server;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15701,6 +15914,10 @@ export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = Man
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedInstanceLongTermRetentionPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15781,6 +15998,10 @@ export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WorkloadGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15861,6 +16082,10 @@ export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
      * The response body as parsed JSON or XML
      */
     parsedBody: WorkloadClassifier;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15981,6 +16206,10 @@ export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedDatabase;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16001,6 +16230,10 @@ export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ManagedDatabase;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16101,6 +16334,10 @@ export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdm
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerAzureADAdministrator;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16141,6 +16378,10 @@ export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse 
      * The response body as parsed JSON or XML
      */
     parsedBody: ServerAzureADAdministrator;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

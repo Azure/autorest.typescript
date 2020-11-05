@@ -3303,6 +3303,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3314,7 +3332,7 @@
           "name": "DeploymentsCreateOrUpdateAtManagementGroupScopeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3351,6 +3369,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3362,7 +3398,7 @@
           "name": "DeploymentsCreateOrUpdateAtScopeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3399,6 +3435,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3410,7 +3464,7 @@
           "name": "DeploymentsCreateOrUpdateAtSubscriptionScopeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3447,6 +3501,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3458,7 +3530,7 @@
           "name": "DeploymentsCreateOrUpdateAtTenantScopeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3495,6 +3567,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3506,7 +3596,7 @@
           "name": "DeploymentsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -5649,6 +5739,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -5660,7 +5768,7 @@
           "name": "DeploymentsWhatIfAtSubscriptionScopeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -5763,6 +5871,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -5774,7 +5900,7 @@
           "name": "DeploymentsWhatIfResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -9408,6 +9534,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -9419,7 +9563,7 @@
           "name": "ResourceGroupsExportTemplateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -10641,6 +10785,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -10652,7 +10814,7 @@
           "name": "ResourcesCreateOrUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -10689,6 +10851,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -10700,7 +10880,7 @@
           "name": "ResourcesCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11527,6 +11707,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11538,7 +11736,7 @@
           "name": "ResourcesUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -11575,6 +11773,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-resources-2019-08!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-resources-2019-08!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -11586,7 +11802,7 @@
           "name": "ResourcesUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

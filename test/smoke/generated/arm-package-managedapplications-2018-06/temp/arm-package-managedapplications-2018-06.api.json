@@ -795,6 +795,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -806,7 +824,7 @@
           "name": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -843,6 +861,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -854,7 +890,7 @@
           "name": "ApplicationDefinitionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -1293,6 +1329,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1304,7 +1358,7 @@
           "name": "ApplicationsCreateOrUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -1341,6 +1395,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1352,7 +1424,7 @@
           "name": "ApplicationsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

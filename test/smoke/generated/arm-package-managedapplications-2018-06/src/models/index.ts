@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * Plan for the managed application.
@@ -410,6 +411,10 @@ export type ApplicationsCreateOrUpdateResponse = Application & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Application;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -521,6 +526,10 @@ export type ApplicationsCreateOrUpdateByIdResponse = Application & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Application;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -632,6 +641,10 @@ export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationDefinition;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -692,6 +705,10 @@ export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefini
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationDefinition;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

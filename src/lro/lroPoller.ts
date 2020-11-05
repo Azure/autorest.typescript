@@ -9,7 +9,8 @@ import {
   BaseResult,
   LROOperationState,
   LROOperationStep,
-  FinalStateVia
+  FinalStateVia,
+  LROSYM
 } from "./models";
 import { makeOperation } from "./operation";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
@@ -114,7 +115,7 @@ function getPollingStrategy<TResult extends BaseResult>(
   sendOperationFn: SendOperationFn<TResult>,
   finalStateVia?: FinalStateVia
 ) {
-  const lroData = initialOperation.result._lroData;
+  const lroData = initialOperation.result._response[LROSYM];
 
   if (!lroData) {
     const error = new RestError(

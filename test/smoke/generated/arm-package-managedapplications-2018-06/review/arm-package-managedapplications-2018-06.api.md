@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -88,6 +89,7 @@ export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefini
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationDefinition;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -96,6 +98,7 @@ export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationDefinition;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -162,6 +165,7 @@ export type ApplicationsCreateOrUpdateByIdResponse = Application & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Application;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -170,6 +174,7 @@ export type ApplicationsCreateOrUpdateResponse = Application & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Application;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -310,6 +315,10 @@ export interface Sku {
     tier?: string;
 }
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:711:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

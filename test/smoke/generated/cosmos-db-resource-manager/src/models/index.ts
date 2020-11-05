@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /**
  * The consistency policy for the Cosmos DB database account.
@@ -2284,6 +2285,10 @@ export type DatabaseAccountsUpdateResponse = DatabaseAccountGetResults & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DatabaseAccountGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2304,6 +2309,10 @@ export type DatabaseAccountsCreateOrUpdateResponse = DatabaseAccountGetResults &
      * The response body as parsed JSON or XML
      */
     parsedBody: DatabaseAccountGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2948,6 +2957,10 @@ export type SqlResourcesCreateUpdateSqlDatabaseResponse = SqlDatabaseGetResults 
      * The response body as parsed JSON or XML
      */
     parsedBody: SqlDatabaseGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -2988,6 +3001,10 @@ export type SqlResourcesUpdateSqlDatabaseThroughputResponse = ThroughputSettings
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3048,6 +3065,10 @@ export type SqlResourcesCreateUpdateSqlContainerResponse = SqlContainerGetResult
      * The response body as parsed JSON or XML
      */
     parsedBody: SqlContainerGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3088,6 +3109,10 @@ export type SqlResourcesUpdateSqlContainerThroughputResponse = ThroughputSetting
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3148,6 +3173,10 @@ export type SqlResourcesCreateUpdateSqlStoredProcedureResponse = SqlStoredProced
      * The response body as parsed JSON or XML
      */
     parsedBody: SqlStoredProcedureGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3208,6 +3237,10 @@ export type SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse = SqlUserDefi
      * The response body as parsed JSON or XML
      */
     parsedBody: SqlUserDefinedFunctionGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3268,6 +3301,10 @@ export type SqlResourcesCreateUpdateSqlTriggerResponse = SqlTriggerGetResults & 
      * The response body as parsed JSON or XML
      */
     parsedBody: SqlTriggerGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3328,6 +3365,10 @@ export type MongoDBResourcesCreateUpdateMongoDBDatabaseResponse = MongoDBDatabas
      * The response body as parsed JSON or XML
      */
     parsedBody: MongoDBDatabaseGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3368,6 +3409,10 @@ export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse = Throughput
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3428,6 +3473,10 @@ export type MongoDBResourcesCreateUpdateMongoDBCollectionResponse = MongoDBColle
      * The response body as parsed JSON or XML
      */
     parsedBody: MongoDBCollectionGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3468,6 +3517,10 @@ export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponse = Throughp
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3528,6 +3581,10 @@ export type TableResourcesCreateUpdateTableResponse = TableGetResults & {
      * The response body as parsed JSON or XML
      */
     parsedBody: TableGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3568,6 +3625,10 @@ export type TableResourcesUpdateTableThroughputResponse = ThroughputSettingsGetR
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3628,6 +3689,10 @@ export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse = CassandraK
      * The response body as parsed JSON or XML
      */
     parsedBody: CassandraKeyspaceGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3668,6 +3733,10 @@ export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponse = Throug
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3728,6 +3797,10 @@ export type CassandraResourcesCreateUpdateCassandraTableResponse = CassandraTabl
      * The response body as parsed JSON or XML
      */
     parsedBody: CassandraTableGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3768,6 +3841,10 @@ export type CassandraResourcesUpdateCassandraTableThroughputResponse = Throughpu
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3828,6 +3905,10 @@ export type GremlinResourcesCreateUpdateGremlinDatabaseResponse = GremlinDatabas
      * The response body as parsed JSON or XML
      */
     parsedBody: GremlinDatabaseGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3868,6 +3949,10 @@ export type GremlinResourcesUpdateGremlinDatabaseThroughputResponse = Throughput
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3928,6 +4013,10 @@ export type GremlinResourcesCreateUpdateGremlinGraphResponse = GremlinGraphGetRe
      * The response body as parsed JSON or XML
      */
     parsedBody: GremlinGraphGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -3968,6 +4057,10 @@ export type GremlinResourcesUpdateGremlinGraphThroughputResponse = ThroughputSet
      * The response body as parsed JSON or XML
      */
     parsedBody: ThroughputSettingsGetResults;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -4028,6 +4121,10 @@ export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NotebookWorkspace;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -4148,6 +4245,10 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointCo
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateEndpointConnectionAutoGenerated;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

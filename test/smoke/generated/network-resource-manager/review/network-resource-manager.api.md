@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -413,6 +414,7 @@ export type ApplicationGatewaysBackendHealthOnDemandResponse = ApplicationGatewa
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayBackendHealthOnDemand;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -426,6 +428,7 @@ export type ApplicationGatewaysBackendHealthResponse = ApplicationGatewayBackend
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayBackendHealth;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -434,6 +437,7 @@ export type ApplicationGatewaysCreateOrUpdateResponse = ApplicationGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -678,6 +682,7 @@ export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurit
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationSecurityGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1135,6 +1140,7 @@ export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewall;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1195,6 +1201,7 @@ export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewall;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1304,6 +1311,7 @@ export type BastionHostsCreateOrUpdateResponse = BastionHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionHost;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1605,6 +1613,7 @@ export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionMonitorResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1638,6 +1647,7 @@ export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionMonitorQueryResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1819,6 +1829,7 @@ export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosCustomPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1879,6 +1890,7 @@ export type DdosProtectionPlansCreateOrUpdateResponse = DdosProtectionPlan & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosProtectionPlan;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2155,6 +2167,7 @@ export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRou
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitAuthorization;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2207,6 +2220,7 @@ export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = ExpressRouteC
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2296,6 +2310,7 @@ export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCirc
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitPeering;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2360,6 +2375,7 @@ export type ExpressRouteCircuitsCreateOrUpdateResponse = ExpressRouteCircuit & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuit;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2428,6 +2444,7 @@ export type ExpressRouteCircuitsListArpTableResponse = ExpressRouteCircuitsArpTa
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsArpTableListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2452,6 +2469,7 @@ export type ExpressRouteCircuitsListRoutesTableResponse = ExpressRouteCircuitsRo
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2460,6 +2478,7 @@ export type ExpressRouteCircuitsListRoutesTableSummaryResponse = ExpressRouteCir
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2517,6 +2536,7 @@ export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnecti
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2589,6 +2609,7 @@ export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressR
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionPeering;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2629,6 +2650,7 @@ export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = ExpressRouteCro
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2645,6 +2667,7 @@ export type ExpressRouteCrossConnectionsListArpTableResponse = ExpressRouteCircu
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsArpTableListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2685,6 +2708,7 @@ export type ExpressRouteCrossConnectionsListRoutesTableResponse = ExpressRouteCi
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2693,6 +2717,7 @@ export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = Express
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2740,6 +2765,7 @@ export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2861,6 +2887,7 @@ export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRoutePort;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2999,6 +3026,7 @@ export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3160,6 +3188,7 @@ export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleG
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicyRuleGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3255,6 +3284,7 @@ export type FlowLogsCreateOrUpdateResponse = FlowLog & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLog;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3379,6 +3409,7 @@ export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: HubRouteTable;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3494,6 +3525,7 @@ export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InboundNatRule;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3561,6 +3593,7 @@ export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpAllocation;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3670,6 +3703,7 @@ export type IpGroupsCreateOrUpdateResponse = IpGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3877,6 +3911,7 @@ export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddre
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackendAddressPool;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4054,6 +4089,7 @@ export type LoadBalancersCreateOrUpdateResponse = LoadBalancer & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancer;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4162,6 +4198,7 @@ export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LocalNetworkGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4305,6 +4342,7 @@ export type NatGatewaysCreateOrUpdateResponse = NatGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NatGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4539,6 +4577,7 @@ export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterface;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4547,6 +4586,7 @@ export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteList
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EffectiveRouteListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4610,6 +4650,7 @@ export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = Effect
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EffectiveNetworkSecurityGroupListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4715,6 +4756,7 @@ export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInt
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceTapConfiguration;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5174,6 +5216,7 @@ export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnpr
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnProfileResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5190,6 +5233,7 @@ export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSess
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionActiveSessionListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5228,6 +5272,7 @@ export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShar
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionShareableLinkListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5357,6 +5402,7 @@ export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkSecurityGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5447,6 +5493,7 @@ export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppli
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkVirtualAppliance;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5519,6 +5566,7 @@ export type NetworkWatchersCheckConnectivityResponse = ConnectivityInformation &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectivityInformation;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5535,6 +5583,7 @@ export type NetworkWatchersGetAzureReachabilityReportResponse = AzureReachabilit
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureReachabilityReport;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5543,6 +5592,7 @@ export type NetworkWatchersGetFlowLogStatusResponse = FlowLogInformation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLogInformation;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5551,6 +5601,7 @@ export type NetworkWatchersGetNetworkConfigurationDiagnosticResponse = NetworkCo
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkConfigurationDiagnosticResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5559,6 +5610,7 @@ export type NetworkWatchersGetNextHopResponse = NextHopResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NextHopResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5583,6 +5635,7 @@ export type NetworkWatchersGetTroubleshootingResponse = TroubleshootingResult & 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: TroubleshootingResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5591,6 +5644,7 @@ export type NetworkWatchersGetTroubleshootingResultResponse = TroubleshootingRes
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: TroubleshootingResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5599,6 +5653,7 @@ export type NetworkWatchersGetVMSecurityRulesResponse = SecurityGroupViewResult 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityGroupViewResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5615,6 +5670,7 @@ export type NetworkWatchersListAvailableProvidersResponse = AvailableProvidersLi
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AvailableProvidersList;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5631,6 +5687,7 @@ export type NetworkWatchersSetFlowLogConfigurationResponse = FlowLogInformation 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLogInformation;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5647,6 +5704,7 @@ export type NetworkWatchersVerifyIPFlowResponse = VerificationIPFlowResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VerificationIPFlowResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5789,6 +5847,7 @@ export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5797,6 +5856,7 @@ export type P2SVpnGatewaysGenerateVpnProfileResponse = VpnProfileResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnProfileResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5805,6 +5865,7 @@ export type P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse = P2SVpnConn
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnConnectionHealth;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5813,6 +5874,7 @@ export type P2SVpnGatewaysGetP2SVpnConnectionHealthResponse = P2SVpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5937,6 +5999,7 @@ export type PacketCapturesCreateResponse = PacketCaptureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PacketCaptureResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5953,6 +6016,7 @@ export type PacketCapturesGetStatusResponse = PacketCaptureQueryStatusResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PacketCaptureQueryStatusResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6095,6 +6159,7 @@ export type PrivateDnsZoneGroupsCreateOrUpdateResponse = PrivateDnsZoneGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateDnsZoneGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6161,6 +6226,7 @@ export type PrivateEndpointsCreateOrUpdateResponse = PrivateEndpoint & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpoint;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6289,6 +6355,7 @@ export type PrivateLinkServicesCreateOrUpdateResponse = PrivateLinkService & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateLinkService;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6486,6 +6553,7 @@ export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddress;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6621,6 +6689,7 @@ export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPPrefix;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6814,6 +6883,7 @@ export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilterRule;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6849,6 +6919,7 @@ export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilter;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6919,6 +6990,7 @@ export type RoutesCreateOrUpdateResponse = Route & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Route;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6966,6 +7038,7 @@ export type RouteTablesCreateOrUpdateResponse = RouteTable & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteTable;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7068,6 +7141,7 @@ export type SecurityPartnerProvidersCreateOrUpdateResponse = SecurityPartnerProv
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityPartnerProvider;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7172,6 +7246,7 @@ export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityRule;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7230,6 +7305,7 @@ export type ServiceEndpointPoliciesCreateOrUpdateResponse = ServiceEndpointPolic
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7316,6 +7392,7 @@ export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndp
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicyDefinition;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7448,6 +7525,7 @@ export type SubnetsCreateOrUpdateResponse = Subnet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Subnet;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7717,6 +7795,7 @@ export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTable
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualHubRouteTableV2;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7757,6 +7836,7 @@ export type VirtualHubsCreateOrUpdateResponse = VirtualHub & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualHub;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7922,6 +8002,7 @@ export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetw
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7962,6 +8043,7 @@ export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = ConnectionR
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionResetSharedKey;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7970,6 +8052,7 @@ export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = ConnectionSha
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionSharedKey;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7984,6 +8067,7 @@ export type VirtualNetworkGatewayConnectionsStartPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7993,6 +8077,7 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8004,6 +8089,7 @@ export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkG
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8038,6 +8124,7 @@ export type VirtualNetworkGatewaysCreateOrUpdateResponse = VirtualNetworkGateway
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8047,6 +8134,7 @@ export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8056,6 +8144,7 @@ export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8064,6 +8153,7 @@ export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = GatewayRouteList
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GatewayRouteListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8077,6 +8167,7 @@ export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = BgpPeerStatusListRe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BgpPeerStatusListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8085,6 +8176,7 @@ export type VirtualNetworkGatewaysGetLearnedRoutesResponse = GatewayRouteListRes
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GatewayRouteListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8101,6 +8193,7 @@ export type VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse = VpnClie
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientConnectionHealthDetailListResult;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8109,6 +8202,7 @@ export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = VpnClien
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientIPsecParameters;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8118,6 +8212,7 @@ export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8176,6 +8271,7 @@ export type VirtualNetworkGatewaysResetResponse = VirtualNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8184,6 +8280,7 @@ export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = VpnClien
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientIPsecParameters;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8198,6 +8295,7 @@ export type VirtualNetworkGatewaysStartPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8207,6 +8305,7 @@ export type VirtualNetworkGatewaysStopPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8224,6 +8323,7 @@ export type VirtualNetworkGatewaysUpdateTagsResponse = VirtualNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8276,6 +8376,7 @@ export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkPeering;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8319,6 +8420,7 @@ export type VirtualNetworksCreateOrUpdateResponse = VirtualNetwork & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetwork;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8413,6 +8515,7 @@ export type VirtualNetworkTapsCreateOrUpdateResponse = VirtualNetworkTap & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkTap;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8517,6 +8620,7 @@ export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouterPeering;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8549,6 +8653,7 @@ export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouter;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8615,6 +8720,7 @@ export type VirtualWansCreateOrUpdateResponse = VirtualWAN & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualWAN;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8810,6 +8916,7 @@ export type VpnConnectionsCreateOrUpdateResponse = VpnConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8865,6 +8972,7 @@ export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -8913,6 +9021,7 @@ export type VpnGatewaysResetResponse = VpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnGateway;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -9007,6 +9116,7 @@ export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnSer
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnServerConfigurationsResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -9015,6 +9125,7 @@ export type VpnServerConfigurationsCreateOrUpdateResponse = VpnServerConfigurati
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnServerConfiguration;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -9172,6 +9283,7 @@ export type VpnSitesCreateOrUpdateResponse = VpnSite & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnSite;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -9327,6 +9439,10 @@ export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid" | string;
 // @public
 export type WebApplicationFirewallTransform = "Lowercase" | "Trim" | "UrlDecode" | "UrlEncode" | "RemoveNulls" | "HtmlEntityDecode" | string;
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:13368:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

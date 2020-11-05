@@ -1821,6 +1821,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1832,7 +1850,7 @@
           "name": "AppServiceCertificateOrdersCreateOrUpdateCertificateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -1869,6 +1887,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1880,7 +1916,7 @@
           "name": "AppServiceCertificateOrdersCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -3980,6 +4016,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3991,7 +4045,7 @@
           "name": "AppServiceEnvironmentsChangeVnetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -4028,6 +4082,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -4039,7 +4111,7 @@
           "name": "AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -4076,6 +4148,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -4087,7 +4177,7 @@
           "name": "AppServiceEnvironmentsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -4124,6 +4214,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -4135,7 +4243,7 @@
           "name": "AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -6579,6 +6687,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -6590,7 +6716,7 @@
           "name": "AppServiceEnvironmentsResumeResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -6675,6 +6801,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -6686,7 +6830,7 @@
           "name": "AppServiceEnvironmentsSuspendResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -7122,6 +7266,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -7133,7 +7295,7 @@
           "name": "AppServicePlansCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -20616,6 +20778,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -20627,7 +20807,7 @@
           "name": "DomainsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43163,6 +43343,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43174,7 +43372,7 @@
           "name": "WebAppsApproveOrRejectPrivateEndpointConnectionResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43403,6 +43601,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43414,7 +43630,7 @@
           "name": "WebAppsCreateFunctionResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43451,6 +43667,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43462,7 +43696,7 @@
           "name": "WebAppsCreateInstanceFunctionSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43499,6 +43733,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43510,7 +43762,7 @@
           "name": "WebAppsCreateInstanceMSDeployOperationResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43547,6 +43799,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43558,7 +43828,7 @@
           "name": "WebAppsCreateInstanceMSDeployOperationSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43595,6 +43865,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43606,7 +43894,7 @@
           "name": "WebAppsCreateMSDeployOperationResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -43643,6 +43931,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -43654,7 +43960,7 @@
           "name": "WebAppsCreateMSDeployOperationSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -44459,6 +44765,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -44470,7 +44794,7 @@
           "name": "WebAppsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -44507,6 +44831,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -44518,7 +44860,7 @@
           "name": "WebAppsCreateOrUpdateSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -44555,6 +44897,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -44566,7 +44926,7 @@
           "name": "WebAppsCreateOrUpdateSourceControlResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -44603,6 +44963,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -44614,7 +44992,7 @@
           "name": "WebAppsCreateOrUpdateSourceControlSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -45009,7 +45387,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: any;\n    };\n}"
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: any;\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
             },
             {
               "kind": "Content",
@@ -45020,7 +45416,7 @@
           "name": "WebAppsDeletePrivateEndpointConnectionResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 8
           }
         },
         {
@@ -49825,6 +50221,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -49836,7 +50250,7 @@
           "name": "WebAppsInstallSiteExtensionResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -49873,6 +50287,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -49884,7 +50316,7 @@
           "name": "WebAppsInstallSiteExtensionSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -54931,6 +55363,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -54942,7 +55392,7 @@
           "name": "WebAppsListPublishingCredentialsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -54979,6 +55429,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -54990,7 +55458,7 @@
           "name": "WebAppsListPublishingCredentialsSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -57689,6 +58157,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -57700,7 +58186,7 @@
           "name": "WebAppsMigrateMySqlResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -57737,6 +58223,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -57748,7 +58252,7 @@
           "name": "WebAppsMigrateStorageResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -58158,7 +58662,25 @@
             },
             {
               "kind": "Content",
-              "text": "[];\n    };\n}"
+              "text": "[];\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
             },
             {
               "kind": "Content",
@@ -58169,7 +58691,7 @@
           "name": "WebAppsStartNetworkTraceResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -58315,7 +58837,25 @@
             },
             {
               "kind": "Content",
-              "text": "[];\n    };\n}"
+              "text": "[];\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
             },
             {
               "kind": "Content",
@@ -58326,7 +58866,7 @@
           "name": "WebAppsStartNetworkTraceSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -58472,7 +59012,25 @@
             },
             {
               "kind": "Content",
-              "text": "[];\n    };\n}"
+              "text": "[];\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
             },
             {
               "kind": "Content",
@@ -58483,7 +59041,7 @@
           "name": "WebAppsStartWebSiteNetworkTraceOperationResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -58629,7 +59187,25 @@
             },
             {
               "kind": "Content",
-              "text": "[];\n    };\n}"
+              "text": "[];\n        ["
+            },
+            {
+              "kind": "Reference",
+              "text": "LROSYM",
+              "canonicalReference": "web-resource-manager!LROSYM"
+            },
+            {
+              "kind": "Content",
+              "text": "]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LROResponseInfo",
+              "canonicalReference": "web-resource-manager!LROResponseInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
             },
             {
               "kind": "Content",
@@ -58640,7 +59216,7 @@
           "name": "WebAppsStartWebSiteNetworkTraceOperationSlotResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

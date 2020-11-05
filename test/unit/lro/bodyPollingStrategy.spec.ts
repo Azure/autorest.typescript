@@ -1,6 +1,10 @@
 import { assert } from "chai";
 import { createBodyPollingStrategy } from "../../../src/lro/bodyPollingStrategy";
-import { LROOperationStep, LROResponseInfo } from "../../../src/lro/models";
+import {
+  LROOperationStep,
+  LROResponseInfo,
+  LROSYM
+} from "../../../src/lro/models";
 import { OperationSpec, OperationArguments } from "@azure/core-http";
 import { SendOperationFn } from "../../../src/lro/lroPoller";
 describe("BodyPollingStrategy", () => {
@@ -15,7 +19,7 @@ describe("BodyPollingStrategy", () => {
     lastOperation = {
       args: {},
       spec: { httpMethod: "PUT", path: "originalPath" } as any,
-      result: { _lroData: lroData }
+      result: { _response: { [LROSYM]: lroData } }
     };
   });
 
@@ -31,9 +35,7 @@ describe("BodyPollingStrategy", () => {
 
     it("should be terminal state when provisioningState is succeeded", () => {
       lroData = { ...lroData, provisioningState: "Succeeded" };
-      lastOperation.result = {
-        _lroData: lroData
-      };
+      lastOperation.result = { _response: { [LROSYM]: lroData } };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
@@ -44,9 +46,7 @@ describe("BodyPollingStrategy", () => {
 
     it("should be terminal state when provisioningState is Failed", () => {
       lroData = { ...lroData, provisioningState: "Failed" };
-      lastOperation.result = {
-        _lroData: lroData
-      };
+      lastOperation.result = { _response: { [LROSYM]: lroData } };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
@@ -57,9 +57,7 @@ describe("BodyPollingStrategy", () => {
 
     it("should be terminal state when provisioningState is Canceled", () => {
       lroData = { ...lroData, provisioningState: "Canceled" };
-      lastOperation.result = {
-        _lroData: lroData
-      };
+      lastOperation.result = { _response: { [LROSYM]: lroData } };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
@@ -70,9 +68,7 @@ describe("BodyPollingStrategy", () => {
 
     it("should be not terminal state when provisioningState is not a terminal one", () => {
       lroData = { ...lroData, provisioningState: "InProgress" };
-      lastOperation.result = {
-        _lroData: lroData
-      };
+      lastOperation.result = { _response: { [LROSYM]: lroData } };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation

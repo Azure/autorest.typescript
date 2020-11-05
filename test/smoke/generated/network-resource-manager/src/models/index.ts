@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export type FirewallPolicyRuleUnion =
   | FirewallPolicyNatRule
@@ -13231,6 +13232,10 @@ export type ApplicationGatewaysCreateOrUpdateResponse = ApplicationGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13322,6 +13327,10 @@ export type ApplicationGatewaysBackendHealthResponse = ApplicationGatewayBackend
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationGatewayBackendHealth;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13353,6 +13362,10 @@ export type ApplicationGatewaysBackendHealthOnDemandResponse = ApplicationGatewa
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationGatewayBackendHealthOnDemand;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13608,6 +13621,10 @@ export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurit
      * The response body as parsed JSON or XML
      */
     parsedBody: ApplicationSecurityGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13908,6 +13925,10 @@ export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AzureFirewall;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13928,6 +13949,10 @@ export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AzureFirewall;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14088,6 +14113,10 @@ export type BastionHostsCreateOrUpdateResponse = BastionHost & {
      * The response body as parsed JSON or XML
      */
     parsedBody: BastionHost;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14188,6 +14217,10 @@ export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShar
      * The response body as parsed JSON or XML
      */
     parsedBody: BastionShareableLinkListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14228,6 +14261,10 @@ export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSess
      * The response body as parsed JSON or XML
      */
     parsedBody: BastionActiveSessionListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14308,6 +14345,10 @@ export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnpr
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnProfileResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14428,6 +14469,10 @@ export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DdosCustomPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14488,6 +14533,10 @@ export type DdosProtectionPlansCreateOrUpdateResponse = DdosProtectionPlan & {
      * The response body as parsed JSON or XML
      */
     parsedBody: DdosProtectionPlan;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14668,6 +14717,10 @@ export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRou
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitAuthorization;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14748,6 +14801,10 @@ export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCirc
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitPeering;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14828,6 +14885,10 @@ export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = ExpressRouteC
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -14968,6 +15029,10 @@ export type ExpressRouteCircuitsCreateOrUpdateResponse = ExpressRouteCircuit & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuit;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15008,6 +15073,10 @@ export type ExpressRouteCircuitsListArpTableResponse = ExpressRouteCircuitsArpTa
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitsArpTableListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15028,6 +15097,10 @@ export type ExpressRouteCircuitsListRoutesTableResponse = ExpressRouteCircuitsRo
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15048,6 +15121,10 @@ export type ExpressRouteCircuitsListRoutesTableSummaryResponse = ExpressRouteCir
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15288,6 +15365,10 @@ export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = ExpressRouteCro
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCrossConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15328,6 +15409,10 @@ export type ExpressRouteCrossConnectionsListArpTableResponse = ExpressRouteCircu
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitsArpTableListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15348,6 +15433,10 @@ export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = Express
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15368,6 +15457,10 @@ export type ExpressRouteCrossConnectionsListRoutesTableResponse = ExpressRouteCi
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15468,6 +15561,10 @@ export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressR
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteCrossConnectionPeering;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15588,6 +15685,10 @@ export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRoutePort;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15799,6 +15900,10 @@ export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FirewallPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -15919,6 +16024,10 @@ export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleG
      * The response body as parsed JSON or XML
      */
     parsedBody: FirewallPolicyRuleGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16010,6 +16119,10 @@ export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
      * The response body as parsed JSON or XML
      */
     parsedBody: IpAllocation;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16160,6 +16273,10 @@ export type IpGroupsCreateOrUpdateResponse = IpGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: IpGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16311,6 +16428,10 @@ export type LoadBalancersCreateOrUpdateResponse = LoadBalancer & {
      * The response body as parsed JSON or XML
      */
     parsedBody: LoadBalancer;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16471,6 +16592,10 @@ export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddre
      * The response body as parsed JSON or XML
      */
     parsedBody: BackendAddressPool;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16622,6 +16747,10 @@ export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule & {
      * The response body as parsed JSON or XML
      */
     parsedBody: InboundNatRule;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -16913,6 +17042,10 @@ export type NatGatewaysCreateOrUpdateResponse = NatGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NatGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17064,6 +17197,10 @@ export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkInterface;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17144,6 +17281,10 @@ export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteList
      * The response body as parsed JSON or XML
      */
     parsedBody: EffectiveRouteListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17164,6 +17305,10 @@ export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = Effect
      * The response body as parsed JSON or XML
      */
     parsedBody: EffectiveNetworkSecurityGroupListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17548,6 +17693,10 @@ export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInt
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkInterfaceTapConfiguration;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17790,6 +17939,10 @@ export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup &
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkSecurityGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -17930,6 +18083,10 @@ export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
      * The response body as parsed JSON or XML
      */
     parsedBody: SecurityRule;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18101,6 +18258,10 @@ export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppli
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkVirtualAppliance;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18321,6 +18482,10 @@ export type NetworkWatchersVerifyIPFlowResponse = VerificationIPFlowResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VerificationIPFlowResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18341,6 +18506,10 @@ export type NetworkWatchersGetNextHopResponse = NextHopResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: NextHopResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18361,6 +18530,10 @@ export type NetworkWatchersGetVMSecurityRulesResponse = SecurityGroupViewResult 
      * The response body as parsed JSON or XML
      */
     parsedBody: SecurityGroupViewResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18381,6 +18554,10 @@ export type NetworkWatchersGetTroubleshootingResponse = TroubleshootingResult & 
      * The response body as parsed JSON or XML
      */
     parsedBody: TroubleshootingResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18401,6 +18578,10 @@ export type NetworkWatchersGetTroubleshootingResultResponse = TroubleshootingRes
      * The response body as parsed JSON or XML
      */
     parsedBody: TroubleshootingResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18421,6 +18602,10 @@ export type NetworkWatchersSetFlowLogConfigurationResponse = FlowLogInformation 
      * The response body as parsed JSON or XML
      */
     parsedBody: FlowLogInformation;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18441,6 +18626,10 @@ export type NetworkWatchersGetFlowLogStatusResponse = FlowLogInformation & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FlowLogInformation;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18461,6 +18650,10 @@ export type NetworkWatchersCheckConnectivityResponse = ConnectivityInformation &
      * The response body as parsed JSON or XML
      */
     parsedBody: ConnectivityInformation;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18481,6 +18674,10 @@ export type NetworkWatchersGetAzureReachabilityReportResponse = AzureReachabilit
      * The response body as parsed JSON or XML
      */
     parsedBody: AzureReachabilityReport;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18501,6 +18698,10 @@ export type NetworkWatchersListAvailableProvidersResponse = AvailableProvidersLi
      * The response body as parsed JSON or XML
      */
     parsedBody: AvailableProvidersList;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18521,6 +18722,10 @@ export type NetworkWatchersGetNetworkConfigurationDiagnosticResponse = NetworkCo
      * The response body as parsed JSON or XML
      */
     parsedBody: NetworkConfigurationDiagnosticResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18541,6 +18746,10 @@ export type PacketCapturesCreateResponse = PacketCaptureResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PacketCaptureResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18581,6 +18790,10 @@ export type PacketCapturesGetStatusResponse = PacketCaptureQueryStatusResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PacketCaptureQueryStatusResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18621,6 +18834,10 @@ export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult &
      * The response body as parsed JSON or XML
      */
     parsedBody: ConnectionMonitorResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18681,6 +18898,10 @@ export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ConnectionMonitorQueryResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18721,6 +18942,10 @@ export type FlowLogsCreateOrUpdateResponse = FlowLog & {
      * The response body as parsed JSON or XML
      */
     parsedBody: FlowLog;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -18872,6 +19097,10 @@ export type PrivateEndpointsCreateOrUpdateResponse = PrivateEndpoint & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateEndpoint;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19072,6 +19301,10 @@ export type PrivateDnsZoneGroupsCreateOrUpdateResponse = PrivateDnsZoneGroup & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateDnsZoneGroup;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19163,6 +19396,10 @@ export type PrivateLinkServicesCreateOrUpdateResponse = PrivateLinkService & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateLinkService;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19505,6 +19742,10 @@ export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PublicIPAddress;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19767,6 +20008,10 @@ export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix & {
      * The response body as parsed JSON or XML
      */
     parsedBody: PublicIPPrefix;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -19918,6 +20163,10 @@ export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RouteFilter;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20058,6 +20307,10 @@ export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RouteFilterRule;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20149,6 +20402,10 @@ export type RouteTablesCreateOrUpdateResponse = RouteTable & {
      * The response body as parsed JSON or XML
      */
     parsedBody: RouteTable;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20289,6 +20546,10 @@ export type RoutesCreateOrUpdateResponse = Route & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Route;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20369,6 +20630,10 @@ export type SecurityPartnerProvidersCreateOrUpdateResponse = SecurityPartnerProv
      * The response body as parsed JSON or XML
      */
     parsedBody: SecurityPartnerProvider;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20560,6 +20825,10 @@ export type ServiceEndpointPoliciesCreateOrUpdateResponse = ServiceEndpointPolic
      * The response body as parsed JSON or XML
      */
     parsedBody: ServiceEndpointPolicy;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20700,6 +20969,10 @@ export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndp
      * The response body as parsed JSON or XML
      */
     parsedBody: ServiceEndpointPolicyDefinition;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -20851,6 +21124,10 @@ export type VirtualNetworksCreateOrUpdateResponse = VirtualNetwork & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetwork;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21061,6 +21338,10 @@ export type SubnetsCreateOrUpdateResponse = Subnet & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Subnet;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21181,6 +21462,10 @@ export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkPeering;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21241,6 +21526,10 @@ export type VirtualNetworkGatewaysCreateOrUpdateResponse = VirtualNetworkGateway
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21281,6 +21570,10 @@ export type VirtualNetworkGatewaysUpdateTagsResponse = VirtualNetworkGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21352,6 +21645,10 @@ export type VirtualNetworkGatewaysResetResponse = VirtualNetworkGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21377,6 +21674,10 @@ export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21402,6 +21703,10 @@ export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21427,6 +21732,10 @@ export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21458,6 +21767,10 @@ export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = BgpPeerStatusListRe
      * The response body as parsed JSON or XML
      */
     parsedBody: BgpPeerStatusListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21503,6 +21816,10 @@ export type VirtualNetworkGatewaysGetLearnedRoutesResponse = GatewayRouteListRes
      * The response body as parsed JSON or XML
      */
     parsedBody: GatewayRouteListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21523,6 +21840,10 @@ export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = GatewayRouteList
      * The response body as parsed JSON or XML
      */
     parsedBody: GatewayRouteListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21543,6 +21864,10 @@ export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = VpnClien
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnClientIPsecParameters;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21563,6 +21888,10 @@ export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = VpnClien
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnClientIPsecParameters;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21624,6 +21953,10 @@ export type VirtualNetworkGatewaysStartPacketCaptureResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21649,6 +21982,10 @@ export type VirtualNetworkGatewaysStopPacketCaptureResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21669,6 +22006,10 @@ export type VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse = VpnClie
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnClientConnectionHealthDetailListResult;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21729,6 +22070,10 @@ export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetw
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkGatewayConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21769,6 +22114,10 @@ export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkG
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkGatewayConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21789,6 +22138,10 @@ export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = ConnectionSha
      * The response body as parsed JSON or XML
      */
     parsedBody: ConnectionSharedKey;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21849,6 +22202,10 @@ export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = ConnectionR
      * The response body as parsed JSON or XML
      */
     parsedBody: ConnectionResetSharedKey;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21885,6 +22242,10 @@ export type VirtualNetworkGatewayConnectionsStartPacketCaptureResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21910,6 +22271,10 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
      * The response body as parsed JSON or XML
      */
     parsedBody: string;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -21950,6 +22315,10 @@ export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: LocalNetworkGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22070,6 +22439,10 @@ export type VirtualNetworkTapsCreateOrUpdateResponse = VirtualNetworkTap & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualNetworkTap;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22221,6 +22594,10 @@ export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualRouter;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22341,6 +22718,10 @@ export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering &
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualRouterPeering;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22421,6 +22802,10 @@ export type VirtualWansCreateOrUpdateResponse = VirtualWAN & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualWAN;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22561,6 +22946,10 @@ export type VpnSitesCreateOrUpdateResponse = VpnSite & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnSite;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22761,6 +23150,10 @@ export type VpnServerConfigurationsCreateOrUpdateResponse = VpnServerConfigurati
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnServerConfiguration;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -22901,6 +23294,10 @@ export type VirtualHubsCreateOrUpdateResponse = VirtualHub & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualHub;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23101,6 +23498,10 @@ export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23141,6 +23542,10 @@ export type VpnGatewaysResetResponse = VpnGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23261,6 +23666,10 @@ export type VpnConnectionsCreateOrUpdateResponse = VpnConnection & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23401,6 +23810,10 @@ export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: P2SVpnGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23481,6 +23894,10 @@ export type P2SVpnGatewaysGenerateVpnProfileResponse = VpnProfileResponse & {
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnProfileResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23501,6 +23918,10 @@ export type P2SVpnGatewaysGetP2SVpnConnectionHealthResponse = P2SVpnGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: P2SVpnGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23521,6 +23942,10 @@ export type P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse = P2SVpnConn
      * The response body as parsed JSON or XML
      */
     parsedBody: P2SVpnConnectionHealth;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23581,6 +24006,10 @@ export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnSer
      * The response body as parsed JSON or XML
      */
     parsedBody: VpnServerConfigurationsResponse;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23621,6 +24050,10 @@ export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTable
      * The response body as parsed JSON or XML
      */
     parsedBody: VirtualHubRouteTableV2;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23721,6 +24154,10 @@ export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteGateway;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23761,6 +24198,10 @@ export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnecti
      * The response body as parsed JSON or XML
      */
     parsedBody: ExpressRouteConnection;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -23821,6 +24262,10 @@ export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable & {
      * The response body as parsed JSON or XML
      */
     parsedBody: HubRouteTable;
+    /**
+     * The parsed HTTP response headers.
+     */
+    [LROSYM]: LROResponseInfo;
   };
 };
 

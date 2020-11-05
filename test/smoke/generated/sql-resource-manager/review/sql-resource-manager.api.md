@@ -6,6 +6,7 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
+import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { Poller } from '@azure/core-lro';
@@ -76,6 +77,7 @@ export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupLongTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -108,6 +110,7 @@ export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShort
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -140,6 +143,7 @@ export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRete
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -389,6 +393,7 @@ export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -397,6 +402,7 @@ export type DatabasesCreateOrUpdateResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -419,6 +425,7 @@ export type DatabasesExportResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -440,6 +447,7 @@ export type DatabasesImportResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -496,6 +504,7 @@ export type DatabasesPauseResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -504,6 +513,7 @@ export type DatabasesResumeResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -518,6 +528,7 @@ export type DatabasesUpdateResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -981,6 +992,7 @@ export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ElasticPool;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1042,6 +1054,7 @@ export type ElasticPoolsUpdateResponse = ElasticPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ElasticPool;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1082,6 +1095,7 @@ export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EncryptionProtector;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1179,6 +1193,7 @@ export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedS
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExtendedServerBlobAuditingPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1268,6 +1283,7 @@ export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1276,6 +1292,7 @@ export type FailoverGroupsFailoverResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1284,6 +1301,7 @@ export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1316,6 +1334,7 @@ export type FailoverGroupsUpdateResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1486,6 +1505,7 @@ export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1494,6 +1514,7 @@ export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1502,6 +1523,7 @@ export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceF
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1568,6 +1590,7 @@ export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePool;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1616,6 +1639,7 @@ export type InstancePoolsUpdateResponse = InstancePool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePool;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1660,6 +1684,7 @@ export type JobAgentsCreateOrUpdateResponse = JobAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobAgent;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1695,6 +1720,7 @@ export type JobAgentsUpdateResponse = JobAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobAgent;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1780,6 +1806,7 @@ export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobExecution;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1788,6 +1815,7 @@ export type JobExecutionsCreateResponse = JobExecution & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobExecution;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2690,6 +2718,7 @@ export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = Mana
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2722,6 +2751,7 @@ export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBacku
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2791,6 +2821,7 @@ export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabase;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2966,6 +2997,7 @@ export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabase;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3115,6 +3147,7 @@ export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanc
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceAdministrator;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3173,6 +3206,7 @@ export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedI
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceEncryptionProtector;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3230,6 +3264,7 @@ export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceKey;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3297,6 +3332,7 @@ export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = Man
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceLongTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3402,6 +3438,7 @@ export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstance;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3466,6 +3503,7 @@ export type ManagedInstancesUpdateResponse = ManagedInstance & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstance;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3568,6 +3606,7 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCrea
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3600,6 +3639,7 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3611,6 +3651,7 @@ export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedSe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedServerSecurityAlertPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3849,6 +3890,7 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointCo
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnection;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4268,6 +4310,7 @@ export type RestorePointsCreateResponse = RestorePoint & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RestorePoint;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4457,6 +4500,7 @@ export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdm
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerAzureADAdministrator;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4465,6 +4509,7 @@ export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse 
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerAzureADAdministrator;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4497,6 +4542,7 @@ export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditin
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerBlobAuditingPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4561,6 +4607,7 @@ export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunication
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerCommunicationLink;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4621,6 +4668,7 @@ export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerDnsAlias;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4676,6 +4724,7 @@ export type ServerKeysCreateOrUpdateResponse = ServerKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerKey;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4734,6 +4783,7 @@ export type ServersCreateOrUpdateResponse = Server & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Server;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4742,6 +4792,7 @@ export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAl
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerSecurityAlertPolicy;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4826,6 +4877,7 @@ export type ServersUpdateResponse = Server & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Server;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5514,6 +5566,7 @@ export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncAgent;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5678,6 +5731,7 @@ export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5771,6 +5825,7 @@ export type SyncGroupsUpdateResponse = SyncGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5801,6 +5856,7 @@ export type SyncMembersCreateOrUpdateResponse = SyncMember & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncMember;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5852,6 +5908,7 @@ export type SyncMembersUpdateResponse = SyncMember & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncMember;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6032,6 +6089,7 @@ export type VirtualClustersUpdateResponse = VirtualCluster & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualCluster;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6063,6 +6121,7 @@ export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkRule;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6157,6 +6216,7 @@ export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadClassifier;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6205,6 +6265,7 @@ export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadGroup;
+        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6232,6 +6293,10 @@ export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
     };
 };
 
+
+// Warnings were encountered during analysis:
+//
+// src/models/index.ts:12501:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
