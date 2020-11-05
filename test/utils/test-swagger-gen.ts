@@ -169,6 +169,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "lro",
     licenseHeader: true
   },
+  lroParametrizedEndpoints: {
+    swagger: "lro-parameterized-endpoints.json",
+    clientName: "LroParametrizedEndpointsClient",
+    packageName: "lro-parameterized-endpoints",
+    licenseHeader: true
+  },
   mediaTypes: {
     swagger: "media_types.json",
     clientName: "MediaTypesClient",

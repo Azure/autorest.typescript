@@ -8,8 +8,7 @@ describe("URLMultiCollectionFormat", () => {
     client = new UrlMultiClient();
   });
 
-  // TODO: Enable when https://github.com/Azure/azure-sdk-for-js/pull/12090 is merged
-  it.skip("should handle arrayStringMultiEmpty", async () => {
+  it("should handle arrayStringMultiEmpty", async () => {
     const result = await client.queries.arrayStringMultiEmpty({
       arrayQuery: []
     });
