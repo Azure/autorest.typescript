@@ -153,6 +153,26 @@ export interface FlattenParameterGroup {
    * Simple body product to put
    */
   simpleBodyProduct?: SimpleProduct;
+  /**
+   * Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+   */
+  productId: string;
+  /**
+   * Description of product.
+   */
+  description?: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName?: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue?: string;
+  /**
+   * URL value.
+   */
+  odataValue?: string;
 }
 
 /**
@@ -335,9 +355,21 @@ export type ModelFlatteningClientPutSimpleProductResponse = SimpleProduct & {
 export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * Simple body product to post
+   * Description of product.
    */
-  simpleBodyProduct?: SimpleProduct;
+  description?: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName?: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue?: string;
+  /**
+   * URL value.
+   */
+  odataValue?: string;
 }
 
 /**
@@ -366,9 +398,21 @@ export type ModelFlatteningClientPostFlattenedSimpleProductResponse = SimpleProd
 export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * Simple body product to put
+   * Description of product.
    */
-  simpleBodyProduct?: SimpleProduct;
+  description?: string;
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName?: string;
+  /**
+   * Generic URL value.
+   */
+  genericValue?: string;
+  /**
+   * URL value.
+   */
+  odataValue?: string;
 }
 
 /**

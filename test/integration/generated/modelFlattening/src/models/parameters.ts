@@ -113,8 +113,58 @@ export const simpleBodyProduct: OperationParameter = {
   mapper: SimpleProductMapper
 };
 
-export const simpleBodyProduct1: OperationParameter = {
-  parameterPath: ["options", "flattenParameterGroup", "simpleBodyProduct"],
+export const productId: OperationParameter = {
+  parameterPath: "productId",
+  mapper: SimpleProductMapper
+};
+
+export const description: OperationParameter = {
+  parameterPath: ["options", "description"],
+  mapper: SimpleProductMapper
+};
+
+export const maxProductDisplayName: OperationParameter = {
+  parameterPath: ["options", "maxProductDisplayName"],
+  mapper: SimpleProductMapper
+};
+
+export const capacity: OperationParameter = {
+  parameterPath: ["options", "capacity"],
+  mapper: SimpleProductMapper
+};
+
+export const genericValue: OperationParameter = {
+  parameterPath: ["options", "genericValue"],
+  mapper: SimpleProductMapper
+};
+
+export const odataValue: OperationParameter = {
+  parameterPath: ["options", "odataValue"],
+  mapper: SimpleProductMapper
+};
+
+export const productId1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "productId"],
+  mapper: SimpleProductMapper
+};
+
+export const description1: OperationParameter = {
+  parameterPath: ["options", "flattenParameterGroup", "description"],
+  mapper: SimpleProductMapper
+};
+
+export const maxProductDisplayName1: OperationParameter = {
+  parameterPath: ["options", "flattenParameterGroup", "maxProductDisplayName"],
+  mapper: SimpleProductMapper
+};
+
+export const genericValue1: OperationParameter = {
+  parameterPath: ["options", "flattenParameterGroup", "genericValue"],
+  mapper: SimpleProductMapper
+};
+
+export const odataValue1: OperationParameter = {
+  parameterPath: ["options", "flattenParameterGroup", "odataValue"],
   mapper: SimpleProductMapper
 };
 

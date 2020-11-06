@@ -9,7 +9,8 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema
+  ConstantSchema,
+  VirtualParameter
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -142,13 +143,17 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           // We need to ensure that the parameters from each request (method overload) is accounted for.
           const requestParams: OperationParameterDetails[] = [];
           requests.forEach(request => {
-            request.parameters?.forEach(parameter => {
-              requestParams.push({
-                operationName,
-                parameter,
-                targetMediaType: request.protocol.http?.knownMediaType
+            request.parameters
+              ?.filter(
+                p => !p.flattened || (p as VirtualParameter).originalParameter
+              )
+              .forEach(parameter => {
+                requestParams.push({
+                  operationName,
+                  parameter,
+                  targetMediaType: request.protocol.http?.knownMediaType
+                });
               });
-            });
           });
           return [...operations, ...requestParams, ...operationParams];
         },
@@ -242,7 +247,9 @@ export function populateOperationParameters(
     schemaType: parameter.schema.type,
     parameterPath: getParameterPath(parameter),
     mapper: getMapperOrRef(
-      parameter.schema,
+      (parameter as VirtualParameter).originalParameter
+        ? (parameter as VirtualParameter).originalParameter.schema
+        : parameter.schema,
       serializedName,
       parameter.required,
       hasXmlMetadata
@@ -319,7 +326,9 @@ const isClientImplementation = (parameter: Parameter) =>
   parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
-  const originalLocaltion = parameter.protocol.http?.in;
+  const originalLocaltion =
+    parameter.protocol.http?.in ||
+    (parameter as VirtualParameter).originalParameter.protocol.http?.in;
   const locationExtension =
     parameter.extensions && parameter.extensions["x-in"];
   if (!originalLocaltion && !locationExtension) {
@@ -339,13 +348,16 @@ enum AdditionalStyles {
 const AllSerializationStyles = { ...SerializationStyle, ...AdditionalStyles };
 
 function getCollectionFormat(parameter: Parameter): string | undefined {
-  if (!parameter.protocol.http) {
+  const httpInfo =
+    parameter.protocol.http ||
+    (parameter as VirtualParameter).originalParameter.protocol.http;
+  if (!httpInfo) {
     throw new Error("Expected parameter to contain HTTP Protocol information");
   }
 
-  const style = parameter.protocol.http.style;
+  const style = httpInfo.style;
 
-  if (parameter.protocol.http.in !== ParameterLocation.Query || !style) {
+  if (httpInfo.in !== ParameterLocation.Query || !style) {
     return undefined;
   }
 
@@ -360,7 +372,7 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
       queryCollectionFormat = QueryCollectionFormat.Ssv;
       break;
     case AllSerializationStyles.Form:
-      queryCollectionFormat = parameter.protocol.http?.explode
+      queryCollectionFormat = httpInfo?.explode
         ? QueryCollectionFormat.Multi
         : QueryCollectionFormat.Csv;
       break;

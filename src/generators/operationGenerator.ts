@@ -10,7 +10,8 @@ import {
   ParameterDeclarationStructure,
   OptionalKind,
   ExportDeclarationStructure,
-  MethodDeclaration
+  MethodDeclaration,
+  CodeBlockWriter
 } from "ts-morph";
 import { normalizeName, NameType, normalizeTypeName } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
@@ -46,6 +47,12 @@ import {
   getResponseTypeName
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
+import {
+  BaseMapper,
+  CompositeMapper,
+  Mapper,
+  ParameterPath
+} from "@azure/core-http";
 
 /**
  * Function that writes the code for all the operations.
@@ -137,11 +144,23 @@ export function writeGetOperationOptions(
   });
 }
 
+interface Spec {
+  responses: string[];
+  requestBody: string | RequestBody;
+  queryParams: string;
+  urlParams: string;
+  headerParams: string;
+  formDataParams: string;
+  contentType: string;
+  mediaType: string;
+  isXml: boolean;
+}
+
 /**
  * Generates a string representation of an Operation spec
  * the output is to be inserted in the Operation group file
  */
-function buildSpec(spec: OperationSpecDetails): string {
+function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
   const responses = buildResponses(spec);
   const requestBody = buildRequestBody(spec);
   const queryParams = buildParameters(spec, "queryParameters");
@@ -151,31 +170,108 @@ function buildSpec(spec: OperationSpecDetails): string {
   const contentType = buildContentType(spec);
   const mediaType = buildMediaType(spec);
 
-  const isXML = spec.isXML ? "isXML: true," : "";
   const serializerName = spec.isXML
     ? "serializer: xmlSerializer"
     : "serializer";
 
-  return `{ path: "${spec.path}", httpMethod: "${
-    spec.httpMethod
-  }", responses: {${responses.join(
-    ", "
-  )}},${requestBody}${formDataParams}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}${serializerName}
-    }`;
+  writer.block(() => {
+    writer.write(`path: "${spec.path}",`);
+    writer.write(`httpMethod: "${spec.httpMethod}",`);
+    writer.write(`responses: { ${responses.join(", ")} },`);
+    if (formDataParams) {
+      writer.write(formDataParams);
+      writer.write(", ");
+    }
+
+    if (queryParams) {
+      writer.write(queryParams);
+      writer.write(", ");
+    }
+
+    if (urlParams) {
+      writer.write(urlParams);
+      writer.write(", ");
+    }
+
+    if (headerParams) {
+      writer.write(headerParams);
+      writer.write(", ");
+    }
+
+    if (contentType) {
+      writer.write(contentType);
+      writer.write(", ");
+    }
+
+    if (mediaType) {
+      writer.write(mediaType);
+      writer.write(", ");
+    }
+
+    if (serializerName) {
+      writer.write(serializerName);
+      writer.write(", ");
+    }
+
+    if (typeof requestBody === "string") {
+      writer.write(requestBody);
+    } else {
+      const mapper =
+        typeof requestBody.mapper === "string"
+          ? `Mappers.${requestBody.mapper}`
+          : `${JSON.stringify(requestBody.mapper)}`;
+
+      writer.write(
+        `requestBody: { parameterPath: ${JSON.stringify(
+          requestBody.parameterPath
+        )}, mapper: ${mapper}}, `
+      );
+    }
+
+    if (spec.isXML) {
+      writer.write("isXML: true");
+    }
+  });
+
+  return {
+    responses,
+    requestBody,
+    queryParams,
+    urlParams,
+    headerParams,
+    formDataParams,
+    contentType,
+    mediaType,
+    isXml: !!spec.isXML
+  };
 }
 
 function buildMediaType({ requestBody }: OperationSpecDetails) {
-  if (requestBody?.targetMediaType) {
-    return `mediaType: '${requestBody.targetMediaType}',`;
+  let targetMediaType: string | undefined = "";
+  if (Array.isArray(requestBody)) {
+    targetMediaType = requestBody[0]?.targetMediaType;
+  } else {
+    targetMediaType = requestBody?.targetMediaType;
+  }
+
+  if (targetMediaType) {
+    return `mediaType: '${targetMediaType}'`;
   }
   return "";
 }
 
 function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
   return requestBody && isXML
-    ? "contentType: 'application/xml; charset=utf-8',"
+    ? "contentType: 'application/xml; charset=utf-8'"
     : "";
 }
+
+type RequestBody = {
+  parameterPath: {
+    [propertyName: string]: ParameterPath;
+  };
+  mapper: string | Mapper;
+};
 
 /**
  * This function transforms the requestBody of OperationSpecDetails into its string representation
@@ -184,12 +280,36 @@ function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
 function buildRequestBody({
   requestBody,
   httpMethod
-}: OperationSpecDetails): string {
+}: OperationSpecDetails): string | RequestBody {
   if (!requestBody || httpMethod === "GET") {
     return "";
   }
 
-  return `requestBody: Parameters.${requestBody.nameRef},`;
+  if (isSingleRequestBody(requestBody)) {
+    return `requestBody: Parameters.${requestBody.nameRef},`;
+  }
+  const mapper = requestBody[0].mapper;
+  const parameters = requestBody.reduce((acc, curr) => {
+    const name = curr.name;
+    const parameterPath = curr.required ? name : ["options", name];
+    return {
+      ...acc,
+      [name]: parameterPath
+    };
+  }, {} as { [propertyName: string]: ParameterPath });
+
+  const body = {
+    parameterPath: parameters,
+    mapper
+  };
+
+  return body;
+}
+
+function isSingleRequestBody(
+  requestBody: ParameterDetails | ParameterDetails[]
+): requestBody is ParameterDetails {
+  return !Array.isArray(requestBody);
 }
 
 function buildParameters(
@@ -205,7 +325,7 @@ function buildParameters(
 
   const parameters = parameterGroup.map(param => `Parameters.${param.nameRef}`);
 
-  return `${parameterGroupName}: [${parameters.join()}],`;
+  return `${parameterGroupName}: [${parameters.join()}]`;
 }
 
 /**
@@ -1010,7 +1130,7 @@ export function addOperationSpecs(
           {
             name: operationSpec.name,
             type: "coreHttp.OperationSpec",
-            initializer: buildSpec(operationSpec)
+            initializer: writer => writeSpec(operationSpec, writer)
           }
         ]
       });

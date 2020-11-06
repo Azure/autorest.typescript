@@ -81,7 +81,7 @@ export interface OperationSpecDetails {
   path: string;
   httpMethod: string;
   responses: OperationSpecResponses;
-  requestBody?: ParameterDetails;
+  requestBody?: ParameterDetails | ParameterDetails[];
   formDataParameters?: ParameterDetails[];
   queryParameters?: ParameterDetails[];
   urlParameters?: ParameterDetails[];

@@ -493,6 +493,20 @@ function getGroupedParameters(
     mediaType &&
     (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form);
 
+  const bodyParams = operationParams.filter(
+    p => p.location === ParameterLocation.Body
+  );
+
+  let requestBody: ParameterDetails | ParameterDetails[] | undefined;
+
+  if (bodyParams.length === 0) {
+    requestBody = undefined;
+  } else if (bodyParams.length === 1) {
+    requestBody = bodyParams[0];
+  } else {
+    requestBody = bodyParams;
+  }
+
   return {
     ...(hasFormDataParameters
       ? {
@@ -501,9 +515,7 @@ function getGroupedParameters(
           )
         }
       : {
-          requestBody: operationParams.find(
-            p => p.location === ParameterLocation.Body
-          )
+          requestBody
         }),
     queryParameters: operationParams.filter(
       p => p.location === ParameterLocation.Query
