@@ -13,7 +13,10 @@ import {
   OperationGroup,
   ParameterLocation,
   ConstantSchema,
-  CodeModel
+  CodeModel,
+  ImplementationLocation,
+  Parameter,
+  VirtualParameter
 } from "@azure-tools/codemodel";
 import {
   normalizeName,
@@ -95,6 +98,7 @@ export function transformOperationSpec(
     NameType.Operation,
     true /** shouldGuard */
   );
+
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
 
@@ -112,7 +116,12 @@ export function transformOperationSpec(
       queryParameters,
       urlParameters,
       headerParameters
-    } = getGroupedParameters(parameters, operationFullName, request.mediaType);
+    } = getGroupedParameters(
+      parameters,
+      request,
+      operationDetails.parameters,
+      request.mediaType
+    );
 
     const name = hasMultipleRequests
       ? `${operationName}$${request.mediaType}OperationSpec`
@@ -251,7 +260,8 @@ export function transformOperationRequest(
     path: request.protocol.http.path,
     method: request.protocol.http.method,
     mediaType: request.protocol.http.knownMediaType,
-    parameters: request.parameters
+    parameters: request.parameters,
+    signatureParameters: request.signatureParameters || []
   };
 }
 
@@ -468,7 +478,8 @@ async function getOperationMediaTypes(
 
 function getGroupedParameters(
   parameters: ParameterDetails[],
-  operationFullname: string,
+  request: OperationRequestDetails,
+  globalOperationParams: (Parameter | VirtualParameter)[],
   mediaType?: KnownMediaType
 ): {
   formDataParameters?: any;
@@ -478,16 +489,30 @@ function getGroupedParameters(
   headerParameters: any;
   cookie: any;
 } {
-  const operationParams = parameters.filter(p => {
-    // Ensure parameters are specific to the operation.
-    const matchesOperation =
-      p.operationsIn && p.operationsIn[operationFullname];
-    // Consider the media type as a match if none was provided, or they actually match.
-    // This is important when an operation supports multiple media types.
-    const matchesMediaType =
-      !mediaType || !p.targetMediaType || p.targetMediaType === mediaType;
-    return Boolean(matchesOperation && matchesMediaType);
-  });
+  const signatureParams = parameters.filter(
+    p =>
+      request.signatureParameters.includes(p.parameter) ||
+      request.parameters
+        ?.filter(rp => rp.groupedBy && !rp.flattened)
+        .includes(p.parameter)
+  );
+
+  const constantParams = parameters.filter(
+    p =>
+      request.parameters?.some(rp => isEqual(rp, p.parameter)) &&
+      (p.implementationLocation === ImplementationLocation.Client ||
+        p.schemaType === SchemaType.Constant)
+  );
+
+  const globalParams = parameters.filter(p =>
+    globalOperationParams.includes(p.parameter)
+  );
+
+  const operationParams = [
+    ...signatureParams,
+    ...constantParams,
+    ...globalParams
+  ];
 
   const hasFormDataParameters =
     mediaType &&

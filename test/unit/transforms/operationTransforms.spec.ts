@@ -23,6 +23,7 @@ import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { OperationSpecDetails } from "../../../src/models/operationDetails";
 import { PropertyKind } from "../../../src/models/modelDetails";
+import { ParameterDetails } from "../../../dist/src/models/parameterDetails";
 
 const choice = new ChoiceSchema("mockChoice", "", {
   choices: [
@@ -235,7 +236,10 @@ describe("OperationTransforms", () => {
           }
         ])[0];
         checkHttpMethodAndPath(operationSpec);
-        assert.deepEqual(operationSpec.requestBody!.nameRef, "MockOperation");
+        assert.deepEqual(
+          (operationSpec.requestBody as ParameterDetails)!.nameRef,
+          "MockOperation"
+        );
       });
 
       it("should create an operation spec with correct responses spec and cosntant schema response", async () => {

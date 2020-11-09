@@ -43,6 +43,7 @@ interface OperationParameterDetails {
    * This is used to identify which request a parameter belongs to.
    */
   targetMediaType?: KnownMediaType;
+  isInSignature: boolean;
 }
 
 const buildCredentialsParameter = (): ParameterDetails => ({
@@ -95,6 +96,7 @@ export function transformParameters(
   options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
+
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
     populateOperationParameters(
@@ -136,24 +138,27 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           }
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
-          ).map(p => ({ parameter: p, operationName }));
+          ).map(p => {
+            const inSignature =
+              operation.signatureParameters?.includes(p) || false;
+            return { parameter: p, operationName, isInSignature: inSignature };
+          });
 
           // Operations may have multiple requests, each with their own set of parameters.
           // This is known to be the case when an operation can consume multiple media types.
           // We need to ensure that the parameters from each request (method overload) is accounted for.
           const requestParams: OperationParameterDetails[] = [];
           requests.forEach(request => {
-            request.parameters
-              ?.filter(
-                p => !p.flattened || (p as VirtualParameter).originalParameter
-              )
-              .forEach(parameter => {
-                requestParams.push({
-                  operationName,
-                  parameter,
-                  targetMediaType: request.protocol.http?.knownMediaType
-                });
+            request.parameters?.forEach(parameter => {
+              const inSignature =
+                request.signatureParameters?.includes(parameter) || false;
+              requestParams.push({
+                operationName,
+                parameter,
+                isInSignature: inSignature,
+                targetMediaType: request.protocol.http?.knownMediaType
               });
+            });
           });
           return [...operations, ...requestParams, ...operationParams];
         },
@@ -311,7 +316,9 @@ function getParameterPath(parameter: Parameter) {
     const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
       .name;
     return [
-      ...(!parameter.required ? ["options"] : []),
+      ...(!parameter.required && !parameter.groupedBy.required
+        ? ["options"]
+        : []),
       normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
       name
     ];
@@ -463,9 +470,9 @@ export function disambiguateParameter(
   operationName: string,
   description: string
 ) {
-  const param = getComparableParameter(parameter);
+  // const param = getComparableParameter(parameter);
   const existingParam = sameNameParams.find(p =>
-    isEqual(getComparableParameter(p), param)
+    isEqual(p.parameter, parameter.parameter)
   );
 
   if (existingParam) {

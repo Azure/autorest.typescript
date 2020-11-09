@@ -258,7 +258,7 @@ const getArrayOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
@@ -293,7 +293,7 @@ const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putDictionaryOperationSpec: coreHttp.OperationSpec = {
@@ -328,7 +328,7 @@ const getDictionaryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -358,7 +358,7 @@ const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
@@ -395,12 +395,12 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
   serializer,
   requestBody: {
     parameterPath: {
-      productId: "productId",
+      productId: ["productId"],
       description: ["options", "description"],
       maxProductDisplayName: ["options", "maxProductDisplayName"],
-      capacity: ["options", "capacity"],
       genericValue: ["options", "genericValue"],
-      odataValue: ["options", "odataValue"]
+      odataValue: ["options", "odataValue"],
+      capacity: ["options", "capacity"]
     },
     mapper: Mappers.SimpleProduct
   }
@@ -422,12 +422,12 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   serializer,
   requestBody: {
     parameterPath: {
-      capacity: ["options", "capacity"],
-      productId: "productId",
-      description: ["options", "description"],
-      maxProductDisplayName: ["options", "maxProductDisplayName"],
-      genericValue: ["options", "genericValue"],
-      odataValue: ["options", "odataValue"]
+      productId: ["flattenParameterGroup", "productId"],
+      description: ["flattenParameterGroup", "description"],
+      maxProductDisplayName: ["flattenParameterGroup", "maxProductDisplayName"],
+      genericValue: ["flattenParameterGroup", "genericValue"],
+      odataValue: ["flattenParameterGroup", "odataValue"],
+      capacity: ["options", "capacity"]
     },
     mapper: Mappers.SimpleProduct
   }

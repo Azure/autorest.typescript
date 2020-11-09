@@ -291,7 +291,18 @@ function buildRequestBody({
   const mapper = requestBody[0].mapper;
   const parameters = requestBody.reduce((acc, curr) => {
     const name = curr.name;
-    const parameterPath = curr.required ? name : ["options", name];
+    const sourcePath = curr.parameter.groupedBy
+      ? [getLanguageMetadata(curr.parameter.groupedBy.language).name, name]
+      : [name];
+    const isRequired = curr.required || curr.parameter.groupedBy?.required;
+
+    let parameterPath: ParameterPath;
+    if (isRequired) {
+      parameterPath = sourcePath;
+    } else {
+      parameterPath = ["options", ...sourcePath];
+    }
+
     return {
       ...acc,
       [name]: parameterPath
@@ -377,10 +388,12 @@ function getGroupedParameters(
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
-  filterOperationParameters(parameters, operation, {
-    includeGroupedParameters: true
-  })
-    .filter(({ parameter }) => parameter.groupedBy)
+  // filterOperationParameters(parameters, operation, {
+  //   includeGroupedParameters: true
+  // })
+  //   .filter(({ parameter }) => parameter.groupedBy)
+  parameters
+    .filter(p => operation.parameters.includes(p.parameter))
     // Get optional grouped properties and store them in parameterGroups
     .forEach(({ parameter: { groupedBy } }) => {
       if (!groupedBy || !groupedBy.required) {
