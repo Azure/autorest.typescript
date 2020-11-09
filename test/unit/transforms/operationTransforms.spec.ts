@@ -129,6 +129,7 @@ describe("OperationTransforms", () => {
           requests: [
             {
               parameters,
+              signatureParameters: parameters,
               protocol: {
                 http: {
                   path: operationPath,
