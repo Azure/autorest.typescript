@@ -88,7 +88,7 @@ const addPetOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.petParam,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

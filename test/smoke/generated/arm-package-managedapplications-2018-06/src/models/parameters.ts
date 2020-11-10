@@ -111,18 +111,6 @@ export const parameters: OperationParameter = {
   mapper: ApplicationMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters1: OperationParameter = {
   parameterPath: ["options", "parameters"],
   mapper: ApplicationMapper

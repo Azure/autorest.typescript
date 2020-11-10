@@ -301,7 +301,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -326,7 +326,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -394,7 +394,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.shareName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

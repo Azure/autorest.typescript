@@ -443,7 +443,7 @@ const postRequiredIntegerParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -458,7 +458,7 @@ const postOptionalIntegerParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -473,7 +473,7 @@ const postRequiredIntegerPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter3,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -488,7 +488,7 @@ const postOptionalIntegerPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -529,7 +529,7 @@ const postRequiredStringParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter5,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -544,7 +544,7 @@ const postOptionalStringParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -559,7 +559,7 @@ const postRequiredStringPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter6,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -574,7 +574,7 @@ const postOptionalStringPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter7,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -615,7 +615,7 @@ const postRequiredClassParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter9,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -630,7 +630,7 @@ const postOptionalClassParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter10,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -645,7 +645,7 @@ const postRequiredClassPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter11,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -660,7 +660,7 @@ const postOptionalClassPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter12,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -675,7 +675,7 @@ const postRequiredArrayParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter13,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -690,7 +690,7 @@ const postOptionalArrayParameterOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter14,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -705,7 +705,7 @@ const postRequiredArrayPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter15,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -720,7 +720,7 @@ const postOptionalArrayPropertyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter16,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

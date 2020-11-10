@@ -106,18 +106,6 @@ export const parameters: OperationParameter = {
   mapper: ApplicationCreateParametersMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json, text/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
@@ -296,7 +284,7 @@ export const domainName: OperationURLParameter = {
   }
 };
 
-export const accept2: OperationParameter = {
+export const accept1: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "application/json",
@@ -311,16 +299,4 @@ export const accept2: OperationParameter = {
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: OAuth2PermissionGrantMapper
-};
-
-export const accept3: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
 };

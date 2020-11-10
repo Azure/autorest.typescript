@@ -652,7 +652,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -676,7 +676,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -824,7 +824,7 @@ const backendHealthOnDemandOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationGatewayName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -146,7 +146,7 @@ const validationOfBodyOperationSpec: coreHttp.OperationSpec = {
     Parameters.id,
     Parameters.resourceGroupName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -167,7 +167,7 @@ const postWithConstantInBodyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.body,
   urlParameters: [Parameters.$host, Parameters.constantParam],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -294,7 +294,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeFilterName,
     Parameters.ruleName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

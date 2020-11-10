@@ -582,7 +582,7 @@ const createOrUpdateAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = 
     Parameters.lockName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -633,7 +633,7 @@ const createOrUpdateByScopeOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.lockName, Parameters.scope],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -682,7 +682,7 @@ const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -746,7 +746,7 @@ const createOrUpdateAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
     Parameters.lockName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

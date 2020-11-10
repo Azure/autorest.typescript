@@ -116,18 +116,6 @@ export const parameters: OperationParameter = {
   mapper: AvailabilitySetMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
@@ -481,7 +469,7 @@ export const parameters14: OperationParameter = {
   mapper: RunCommandInputMapper
 };
 
-export const accept2: OperationParameter = {
+export const accept1: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "application/json, text/json",
@@ -642,18 +630,6 @@ export const parameters22: OperationParameter = {
 export const parameters23: OperationParameter = {
   parameterPath: "parameters",
   mapper: LogAnalyticsInputBaseMapper
-};
-
-export const accept3: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json, text/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const commandId: OperationURLParameter = {

@@ -56,18 +56,6 @@ export const horse: OperationParameter = {
   mapper: HorseMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const pet: OperationParameter = {
   parameterPath: "pet",
   mapper: PetMapper

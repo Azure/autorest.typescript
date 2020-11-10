@@ -149,18 +149,6 @@ export const appServiceCertificateOrder: OperationParameter = {
   mapper: AppServiceCertificateOrderMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
@@ -316,19 +304,6 @@ export const domain1: OperationParameter = {
 export const domainOwnershipIdentifier: OperationParameter = {
   parameterPath: "domainOwnershipIdentifier",
   mapper: DomainOwnershipIdentifierMapper
-};
-
-export const nextLink1: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    xmlName: "nextLink",
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const agreementOption: OperationParameter = {
@@ -612,8 +587,18 @@ export const osType: OperationQueryParameter = {
   }
 };
 
-export const request: OperationParameter = {
-  parameterPath: "request",
+export const name1: OperationParameter = {
+  parameterPath: "name",
+  mapper: ResourceNameAvailabilityRequestMapper
+};
+
+export const typeParam: OperationParameter = {
+  parameterPath: "typeParam",
+  mapper: ResourceNameAvailabilityRequestMapper
+};
+
+export const isFqdn: OperationParameter = {
+  parameterPath: ["options", "isFqdn"],
   mapper: ResourceNameAvailabilityRequestMapper
 };
 
@@ -826,7 +811,7 @@ export const snapshotId: OperationURLParameter = {
   }
 };
 
-export const accept2: OperationParameter = {
+export const accept1: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "application/octet-stream",
@@ -838,7 +823,7 @@ export const accept2: OperationParameter = {
   }
 };
 
-export const accept3: OperationParameter = {
+export const accept2: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "application/zip",
@@ -1179,7 +1164,7 @@ export const publishingProfileOptions: OperationParameter = {
   mapper: CsmPublishingProfileOptionsMapper
 };
 
-export const accept4: OperationParameter = {
+export const accept3: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "application/xml",

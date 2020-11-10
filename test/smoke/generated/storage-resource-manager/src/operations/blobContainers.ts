@@ -581,7 +581,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -603,7 +603,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -660,7 +660,7 @@ const setLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -682,7 +682,7 @@ const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -708,8 +708,8 @@ const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.immutabilityPolicyName
   ],
   headerParameters: [
+    Parameters.accept,
     Parameters.contentType,
-    Parameters.accept1,
     Parameters.ifMatch
   ],
   mediaType: "json",
@@ -800,8 +800,8 @@ const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [
+    Parameters.accept,
     Parameters.contentType,
-    Parameters.accept1,
     Parameters.ifMatch1
   ],
   mediaType: "json",
@@ -825,7 +825,7 @@ const leaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

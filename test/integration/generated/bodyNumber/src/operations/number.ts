@@ -510,7 +510,7 @@ const putBigFloatOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -540,7 +540,7 @@ const putBigDoubleOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -570,7 +570,7 @@ const putBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -600,7 +600,7 @@ const putBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -630,7 +630,7 @@ const putBigDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -660,7 +660,7 @@ const putBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -690,7 +690,7 @@ const putBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -720,7 +720,7 @@ const putSmallFloatOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -750,7 +750,7 @@ const putSmallDoubleOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -780,7 +780,7 @@ const putSmallDecimalOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

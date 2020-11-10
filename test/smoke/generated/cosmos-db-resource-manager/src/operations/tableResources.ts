@@ -318,7 +318,7 @@ const createUpdateTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -384,7 +384,7 @@ const updateTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.tableName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

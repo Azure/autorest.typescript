@@ -417,7 +417,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.columnName,
     Parameters.sensitivityLabelSource2
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -92,7 +92,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.timeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

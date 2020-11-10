@@ -199,7 +199,7 @@ const putOptionalBodyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

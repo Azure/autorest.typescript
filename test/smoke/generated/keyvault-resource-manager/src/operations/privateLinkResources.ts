@@ -69,6 +69,6 @@ const listByVaultOperationSpec: coreHttp.OperationSpec = {
     Parameters.vaultName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };

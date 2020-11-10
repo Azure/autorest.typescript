@@ -217,7 +217,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.encryptionScopeName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -242,7 +242,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.encryptionScopeName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -246,7 +246,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName,
     Parameters.virtualHubName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

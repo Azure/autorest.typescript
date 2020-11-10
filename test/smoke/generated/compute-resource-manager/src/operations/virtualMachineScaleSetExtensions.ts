@@ -290,7 +290,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.vmssExtensionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -321,7 +321,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.vmssExtensionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -1074,7 +1074,7 @@ const createUpdateSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1140,7 +1140,7 @@ const updateSqlDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1213,7 +1213,7 @@ const createUpdateSqlContainerOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1282,7 +1282,7 @@ const updateSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.containerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1358,7 +1358,7 @@ const createUpdateSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.storedProcedureName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1451,7 +1451,7 @@ const createUpdateSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = 
     Parameters.containerName,
     Parameters.userDefinedFunctionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1544,7 +1544,7 @@ const createUpdateSqlTriggerOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName,
     Parameters.triggerName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -217,7 +217,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

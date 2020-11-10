@@ -152,7 +152,7 @@ const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1,
     Parameters.fileServicesName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

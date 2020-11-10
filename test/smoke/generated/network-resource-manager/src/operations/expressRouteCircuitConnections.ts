@@ -316,7 +316,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.peeringName,
     Parameters.connectionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

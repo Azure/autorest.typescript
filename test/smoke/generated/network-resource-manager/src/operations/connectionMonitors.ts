@@ -383,7 +383,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -455,7 +455,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

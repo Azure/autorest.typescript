@@ -1399,7 +1399,7 @@ const createOrUpdateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1464,7 +1464,7 @@ const validateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.deploymentName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1560,7 +1560,7 @@ const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1611,7 +1611,7 @@ const validateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1718,7 +1718,7 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     Parameters.deploymentName,
     Parameters.groupId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1784,7 +1784,7 @@ const validateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.groupId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1896,7 +1896,7 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1962,7 +1962,7 @@ const validateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1994,7 +1994,7 @@ const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2109,7 +2109,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2178,7 +2178,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2211,7 +2211,7 @@ const whatIfOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2272,7 +2272,7 @@ const calculateTemplateHashOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.template,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

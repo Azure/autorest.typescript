@@ -1078,7 +1078,7 @@ const deleteNonRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1102,7 +1102,7 @@ const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1126,7 +1126,7 @@ const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postNonRetry400OperationSpec: coreHttp.OperationSpec = {
@@ -1306,7 +1306,7 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
@@ -1330,7 +1330,7 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const post202NoLocationOperationSpec: coreHttp.OperationSpec = {
@@ -1496,7 +1496,7 @@ const delete202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
@@ -1520,7 +1520,7 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSpec = {
@@ -1548,7 +1548,7 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.Operatio
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const post202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {

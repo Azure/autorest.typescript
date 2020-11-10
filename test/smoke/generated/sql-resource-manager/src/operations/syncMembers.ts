@@ -481,7 +481,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -532,7 +532,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

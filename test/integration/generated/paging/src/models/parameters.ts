@@ -116,11 +116,7 @@ export const timeout1: OperationParameter = {
 };
 
 export const maxresults2: OperationParameter = {
-  parameterPath: [
-    "options",
-    "pagingGetMultiplePagesWithOffsetOptions",
-    "maxresults"
-  ],
+  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -141,11 +137,7 @@ export const offset: OperationURLParameter = {
 };
 
 export const timeout2: OperationParameter = {
-  parameterPath: [
-    "options",
-    "pagingGetMultiplePagesWithOffsetOptions",
-    "timeout"
-  ],
+  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "timeout"],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",

@@ -114,7 +114,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.accept2],
+  headerParameters: [Parameters.accept1],
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -128,7 +128,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType, Parameters.accept3],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

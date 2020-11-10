@@ -60,18 +60,6 @@ export const arrayBody: OperationParameter = {
   }
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const arrayBody1: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {

@@ -8051,7 +8051,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     //
     // (undocumented)
     certificates: Certificates;
-    checkNameAvailability(request: ResourceNameAvailabilityRequest, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
+    checkNameAvailability(request: ResourceNameAvailabilityRequest, name: string, typeParam: CheckNameResourceTypes, options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
     // Warning: (ae-forgotten-export) The symbol "DeletedWebApps" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
@@ -8112,6 +8112,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     //
     // (undocumented)
     webApps: WebApps;
+}
+
+// @public
+export interface WebSiteManagementClientCheckNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
+    isFqdn?: boolean;
 }
 
 // @public

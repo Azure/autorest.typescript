@@ -315,7 +315,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.policySetDefinitionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -432,7 +432,7 @@ const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementGroupId,
     Parameters.policySetDefinitionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

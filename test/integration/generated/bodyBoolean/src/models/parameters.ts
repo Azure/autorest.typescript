@@ -56,18 +56,6 @@ export const boolBody: OperationParameter = {
   }
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const boolBody1: OperationParameter = {
   parameterPath: "boolBody",
   mapper: {

@@ -291,7 +291,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.circuitName,
     Parameters.authorizationName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
