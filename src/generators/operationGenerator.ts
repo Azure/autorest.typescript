@@ -178,6 +178,22 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
     writer.write(`path: "${spec.path}",`);
     writer.write(`httpMethod: "${spec.httpMethod}",`);
     writer.write(`responses: { ${responses.join(", ")} },`);
+
+    if (typeof requestBody === "string") {
+      writer.write(requestBody);
+    } else {
+      const mapper =
+        typeof requestBody.mapper === "string"
+          ? `Mappers.${requestBody.mapper}`
+          : `${JSON.stringify(requestBody.mapper)}`;
+
+      writer.write(
+        `requestBody: { parameterPath: ${JSON.stringify(
+          requestBody.parameterPath
+        )}, mapper: ${mapper}}, `
+      );
+    }
+
     if (formDataParams) {
       writer.write(formDataParams);
       writer.write(", ");
@@ -198,6 +214,11 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
       writer.write(", ");
     }
 
+    if (spec.isXML) {
+      writer.write("isXML: true");
+      writer.write(", ");
+    }
+
     if (contentType) {
       writer.write(contentType);
       writer.write(", ");
@@ -211,25 +232,6 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
     if (serializerName) {
       writer.write(serializerName);
       writer.write(", ");
-    }
-
-    if (typeof requestBody === "string") {
-      writer.write(requestBody);
-    } else {
-      const mapper =
-        typeof requestBody.mapper === "string"
-          ? `Mappers.${requestBody.mapper}`
-          : `${JSON.stringify(requestBody.mapper)}`;
-
-      writer.write(
-        `requestBody: { parameterPath: ${JSON.stringify(
-          requestBody.parameterPath
-        )}, mapper: ${mapper}}, `
-      );
-    }
-
-    if (spec.isXML) {
-      writer.write("isXML: true");
     }
   });
 
@@ -290,6 +292,9 @@ function buildRequestBody({
   }
   const mapper = requestBody[0].mapper;
   const parameters = requestBody.reduce((acc, curr) => {
+    if (curr.schemaType === SchemaType.Group || curr.parameter.flattened) {
+      return acc;
+    }
     const name = curr.name;
     const sourcePath = curr.parameter.groupedBy
       ? [getLanguageMetadata(curr.parameter.groupedBy.language).name, name]
@@ -388,12 +393,10 @@ function getGroupedParameters(
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
-  // filterOperationParameters(parameters, operation, {
-  //   includeGroupedParameters: true
-  // })
-  //   .filter(({ parameter }) => parameter.groupedBy)
-  parameters
-    .filter(p => operation.parameters.includes(p.parameter))
+  filterOperationParameters(parameters, operation, {
+    includeGroupedParameters: true
+  })
+    .filter(({ parameter }) => parameter.groupedBy)
     // Get optional grouped properties and store them in parameterGroups
     .forEach(({ parameter: { groupedBy } }) => {
       if (!groupedBy || !groupedBy.required) {

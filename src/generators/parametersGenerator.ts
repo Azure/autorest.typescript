@@ -51,6 +51,7 @@ export function generateParameters(
 
   clientDetails.parameters
     .filter(p => !p.isSynthetic)
+    .filter(p => !p.isFlattened)
     .forEach(param => {
       parametersFile.addVariableStatement({
         isExported: true,

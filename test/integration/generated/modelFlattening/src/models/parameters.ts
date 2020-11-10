@@ -101,11 +101,6 @@ export const simpleBodyProduct: OperationParameter = {
   mapper: SimpleProductMapper
 };
 
-export const simpleBodyProduct1: OperationParameter = {
-  parameterPath: ["options", "simpleBodyProduct"],
-  mapper: SimpleProductMapper
-};
-
 export const productId: OperationParameter = {
   parameterPath: "productId",
   mapper: SimpleProductMapper
@@ -136,11 +131,6 @@ export const odataValue: OperationParameter = {
   mapper: SimpleProductMapper
 };
 
-export const simpleBodyProduct2: OperationParameter = {
-  parameterPath: ["flattenParameterGroup", "simpleBodyProduct"],
-  mapper: SimpleProductMapper
-};
-
 export const productId1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "productId"],
   mapper: SimpleProductMapper
@@ -153,11 +143,6 @@ export const description1: OperationParameter = {
 
 export const maxProductDisplayName1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "maxProductDisplayName"],
-  mapper: SimpleProductMapper
-};
-
-export const capacity1: OperationParameter = {
-  parameterPath: ["options", "capacity"],
   mapper: SimpleProductMapper
 };
 

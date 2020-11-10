@@ -43,7 +43,6 @@ interface OperationParameterDetails {
    * This is used to identify which request a parameter belongs to.
    */
   targetMediaType?: KnownMediaType;
-  isInSignature: boolean;
 }
 
 const buildCredentialsParameter = (): ParameterDetails => ({
@@ -66,7 +65,8 @@ const buildCredentialsParameter = (): ParameterDetails => ({
     usedModels: []
   },
   isSynthetic: true,
-  schemaType: SchemaType.Object
+  schemaType: SchemaType.Object,
+  isFlattened: false
 });
 
 const buildEndpointParameter = (): ParameterDetails => ({
@@ -88,7 +88,8 @@ const buildEndpointParameter = (): ParameterDetails => ({
     usedModels: []
   },
   isSynthetic: true,
-  schemaType: SchemaType.String
+  schemaType: SchemaType.String,
+  isFlattened: false
 });
 
 export function transformParameters(
@@ -138,11 +139,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           }
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
-          ).map(p => {
-            const inSignature =
-              operation.signatureParameters?.includes(p) || false;
-            return { parameter: p, operationName, isInSignature: inSignature };
-          });
+          ).map(p => ({ parameter: p, operationName }));
 
           // Operations may have multiple requests, each with their own set of parameters.
           // This is known to be the case when an operation can consume multiple media types.
@@ -150,12 +147,9 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const requestParams: OperationParameterDetails[] = [];
           requests.forEach(request => {
             request.parameters?.forEach(parameter => {
-              const inSignature =
-                request.signatureParameters?.includes(parameter) || false;
               requestParams.push({
                 operationName,
                 parameter,
-                isInSignature: inSignature,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
             });
@@ -266,7 +260,8 @@ export function populateOperationParameters(
     typeDetails,
     defaultValue: getDefaultValue(parameter),
     skipEncoding: getSkipEncoding(parameter),
-    targetMediaType
+    targetMediaType,
+    isFlattened: !!parameter.flattened
   };
 
   if (!sameNameParams.length) {
@@ -434,7 +429,8 @@ function getComparableParameter({
   typeDetails,
   skipEncoding,
   isSynthetic,
-  targetMediaType
+  targetMediaType,
+  parameter
 }: ParameterDetails) {
   return {
     name,
@@ -449,7 +445,8 @@ function getComparableParameter({
     typeDetails,
     skipEncoding,
     isSynthetic,
-    targetMediaType
+    targetMediaType: targetMediaType || KnownMediaType.Json,
+    isFlattened: parameter.flattened
   };
 }
 
@@ -470,9 +467,9 @@ export function disambiguateParameter(
   operationName: string,
   description: string
 ) {
-  // const param = getComparableParameter(parameter);
+  const param = getComparableParameter(parameter);
   const existingParam = sameNameParams.find(p =>
-    isEqual(p.parameter, parameter.parameter)
+    isEqual(getComparableParameter(p), param)
   );
 
   if (existingParam) {

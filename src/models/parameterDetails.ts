@@ -32,6 +32,7 @@ export interface ParameterDetails {
   typeDetails: TypeDetails;
   skipEncoding?: boolean;
   isSynthetic?: boolean;
+  isFlattened: boolean;
   /**
    * Only specified when an operation has multiple requests.
    * This is used to identify which request a parameter belongs to.

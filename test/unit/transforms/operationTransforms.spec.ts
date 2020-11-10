@@ -233,7 +233,8 @@ describe("OperationTransforms", () => {
             name: "MockOperation",
             description: "",
             schemaType: SchemaType.String,
-            implementationLocation: ImplementationLocation.Method
+            implementationLocation: ImplementationLocation.Method,
+            isFlattened: false
           }
         ])[0];
         checkHttpMethodAndPath(operationSpec);

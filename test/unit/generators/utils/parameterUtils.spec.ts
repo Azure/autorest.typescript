@@ -169,7 +169,8 @@ const getParameter = ({
     new StringSchema("mock_string", "")
   ),
   operationsIn = {},
-  implementationLocation = ImplementationLocation.Method
+  implementationLocation = ImplementationLocation.Method,
+  isFlattened = false
 }: Partial<ParameterDetails & { sufix: string }>): ParameterDetails => ({
   nameRef: nameRef || `MockParameter${sufix}`,
   description: description || `mock parameter description${sufix}`,
@@ -189,5 +190,6 @@ const getParameter = ({
   required,
   operationsIn,
   collectionFormat,
-  implementationLocation
+  implementationLocation,
+  isFlattened
 });

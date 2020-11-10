@@ -233,11 +233,11 @@ const putArrayOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  requestBody: Parameters.resourceArray,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer,
-  requestBody: Parameters.resourceArray
+  serializer
 };
 const getArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/array",
@@ -270,11 +270,11 @@ const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  requestBody: Parameters.resourceArray1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer,
-  requestBody: Parameters.resourceArray1
+  serializer
 };
 const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/wrappedarray",
@@ -305,11 +305,11 @@ const putDictionaryOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  requestBody: Parameters.resourceDictionary,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer,
-  requestBody: Parameters.resourceDictionary
+  serializer
 };
 const getDictionaryOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/dictionary",
@@ -340,11 +340,11 @@ const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  requestBody: Parameters.resourceComplexObject,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer,
-  requestBody: Parameters.resourceComplexObject
+  serializer
 };
 const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/resourcecollection",
@@ -372,11 +372,11 @@ const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer,
-  requestBody: Parameters.simpleBodyProduct
+  serializer
 };
 const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/customFlattening",
@@ -389,21 +389,21 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept],
-  mediaType: "json",
-  serializer,
   requestBody: {
     parameterPath: {
       productId: ["productId"],
       description: ["options", "description"],
       maxProductDisplayName: ["options", "maxProductDisplayName"],
+      capacity: ["options", "capacity"],
       genericValue: ["options", "genericValue"],
-      odataValue: ["options", "odataValue"],
-      capacity: ["options", "capacity"]
+      odataValue: ["options", "odataValue"]
     },
     mapper: Mappers.SimpleProduct
-  }
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept],
+  mediaType: "json",
+  serializer
 };
 const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/customFlattening/parametergrouping/{name}/",
@@ -416,19 +416,19 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.name],
-  headerParameters: [Parameters.contentType, Parameters.accept],
-  mediaType: "json",
-  serializer,
   requestBody: {
     parameterPath: {
+      capacity: ["options", "capacity"],
       productId: ["flattenParameterGroup", "productId"],
       description: ["flattenParameterGroup", "description"],
       maxProductDisplayName: ["flattenParameterGroup", "maxProductDisplayName"],
       genericValue: ["flattenParameterGroup", "genericValue"],
-      odataValue: ["flattenParameterGroup", "odataValue"],
-      capacity: ["options", "capacity"]
+      odataValue: ["flattenParameterGroup", "odataValue"]
     },
     mapper: Mappers.SimpleProduct
-  }
+  },
+  urlParameters: [Parameters.$host, Parameters.name],
+  headerParameters: [Parameters.contentType, Parameters.accept],
+  mediaType: "json",
+  serializer
 };

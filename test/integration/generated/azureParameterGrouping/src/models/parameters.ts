@@ -60,11 +60,7 @@ export const $host: OperationURLParameter = {
 };
 
 export const customHeader: OperationParameter = {
-  parameterPath: [
-    "options",
-    "parameterGroupingPostRequiredParameters",
-    "customHeader"
-  ],
+  parameterPath: ["parameterGroupingPostRequiredParameters", "customHeader"],
   mapper: {
     serializedName: "customHeader",
     type: {
@@ -74,11 +70,7 @@ export const customHeader: OperationParameter = {
 };
 
 export const query: OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "parameterGroupingPostRequiredParameters",
-    "query"
-  ],
+  parameterPath: ["parameterGroupingPostRequiredParameters", "query"],
   mapper: {
     defaultValue: 30,
     serializedName: "query",
@@ -93,18 +85,6 @@ export const path: OperationURLParameter = {
   mapper: {
     serializedName: "path",
     required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
     type: {
       name: "String"
     }
