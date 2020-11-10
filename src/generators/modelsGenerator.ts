@@ -129,7 +129,7 @@ function writeOptionsParameter(
   );
 
   const optionalParams = operationParameters.filter(
-    ({ required }) => !required
+    ({ required, isFlattened }) => !required && !isFlattened
   );
 
   const operationName = normalizeName(operation.name, NameType.Interface);
@@ -514,7 +514,10 @@ function getOptionalGroups(
   let optionalGroups: Parameter[] = [];
 
   optionalParams
-    .filter(({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required)
+    .filter(
+      ({ parameter: { groupedBy, flattened } }) =>
+        groupedBy && !groupedBy.required && !flattened
+    )
     .forEach(p => {
       const { parameter } = p;
       const groupName = getLanguageMetadata(parameter.groupedBy!.language).name;

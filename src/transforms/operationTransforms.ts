@@ -13,10 +13,7 @@ import {
   OperationGroup,
   ParameterLocation,
   ConstantSchema,
-  CodeModel,
-  ImplementationLocation,
-  Parameter,
-  VirtualParameter
+  CodeModel
 } from "@azure-tools/codemodel";
 import {
   normalizeName,
@@ -255,8 +252,7 @@ export function transformOperationRequest(
     path: request.protocol.http.path,
     method: request.protocol.http.method,
     mediaType: request.protocol.http.knownMediaType,
-    parameters: request.parameters,
-    signatureParameters: request.signatureParameters || []
+    parameters: request.parameters
   };
 }
 
@@ -497,18 +493,24 @@ function getGroupedParameters(
     mediaType &&
     (mediaType == KnownMediaType.Multipart || mediaType == KnownMediaType.Form);
 
+  // Extract parameters that are located in the operation body
   const bodyParams = operationParams.filter(
     p => p.location === ParameterLocation.Body
   );
 
-  let requestBody: ParameterDetails | ParameterDetails[] | undefined;
+  let requestBody:
+    | ParameterDetails
+    | ParameterDetails[]
+    | undefined = bodyParams;
 
+  // If we have an empty array make the request boyd undefined
   if (bodyParams.length === 0) {
     requestBody = undefined;
-  } else if (bodyParams.length === 1) {
+  }
+
+  // Flatten the bodyParams array if it only contains a single parameter
+  if (bodyParams.length === 1) {
     requestBody = bodyParams[0];
-  } else {
-    requestBody = bodyParams;
   }
 
   return {

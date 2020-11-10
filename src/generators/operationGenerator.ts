@@ -47,12 +47,7 @@ import {
   getResponseTypeName
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
-import {
-  BaseMapper,
-  CompositeMapper,
-  Mapper,
-  ParameterPath
-} from "@azure/core-http";
+import { Mapper, ParameterPath } from "@azure/core-http";
 
 /**
  * Function that writes the code for all the operations.
@@ -142,18 +137,6 @@ export function writeGetOperationOptions(
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
   });
-}
-
-interface Spec {
-  responses: string[];
-  requestBody: string | RequestBody;
-  queryParams: string;
-  urlParams: string;
-  headerParams: string;
-  formDataParams: string;
-  contentType: string;
-  mediaType: string;
-  isXml: boolean;
 }
 
 /**
@@ -250,7 +233,11 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
 
 function buildMediaType({ requestBody }: OperationSpecDetails) {
   let targetMediaType: string | undefined = "";
+
+  // requestBody may be an array of parameters, this is the scenario
+  // where the body parameter has been flattened.
   if (Array.isArray(requestBody)) {
+    // We just need to take the first know targetMediaType as all others would be the same
     targetMediaType = requestBody[0]?.targetMediaType;
   } else {
     targetMediaType = requestBody?.targetMediaType;
@@ -259,6 +246,7 @@ function buildMediaType({ requestBody }: OperationSpecDetails) {
   if (targetMediaType) {
     return `mediaType: '${targetMediaType}'`;
   }
+
   return "";
 }
 
@@ -268,6 +256,9 @@ function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
     : "";
 }
 
+/**
+ * Internal type that represents the shape of a RequestBody which contains a parameter path and a mapper
+ */
 type RequestBody = {
   parameterPath: {
     [propertyName: string]: ParameterPath;
@@ -277,7 +268,9 @@ type RequestBody = {
 
 /**
  * This function transforms the requestBody of OperationSpecDetails into its string representation
- * to insert in generated files
+ * to insert in generated files.
+ * Whenever the request body parameter has been flattened this function will return the ResponseBody as a complex
+ * object.
  */
 function buildRequestBody({
   requestBody,
@@ -287,21 +280,38 @@ function buildRequestBody({
     return "";
   }
 
+  // No flattened parameters so we can just return the simple representation
   if (isSingleRequestBody(requestBody)) {
     return `requestBody: Parameters.${requestBody.nameRef},`;
   }
+
+  // Request body has been flattened so we need to represent it as a complex RequestBody
+  // object in which we'll describe the parameter name and where to find it in the operation parameters
+
+  // First get the mapper, this will be the mapper for the parameter before flattening
   const mapper = requestBody[0].mapper;
+
+  // Generate the request body from the parameters
   const parameters = requestBody.reduce((acc, curr) => {
+    // We ignore any Grouped or Flattened parameters
     if (curr.schemaType === SchemaType.Group || curr.parameter.flattened) {
       return acc;
     }
+
     const name = curr.name;
+
+    // Figure out how to find the parameter, if the parameter belongs to a group we need to access the group object so the
+    // path would be ["groupName", "parameterName"] to tell the serialized to get it from groupName.parameterName.
+    // If it is a regular parameter the path would be its name.
     const sourcePath = curr.parameter.groupedBy
       ? [getLanguageMetadata(curr.parameter.groupedBy.language).name, name]
       : [name];
+
     const isRequired = curr.required || curr.parameter.groupedBy?.required;
 
     let parameterPath: ParameterPath;
+
+    // If the parameter is optional it will be put in the "options" parameter bag, so add "options" to the path.
     if (isRequired) {
       parameterPath = sourcePath;
     } else {
@@ -314,12 +324,10 @@ function buildRequestBody({
     };
   }, {} as { [propertyName: string]: ParameterPath });
 
-  const body = {
+  return {
     parameterPath: parameters,
     mapper
   };
-
-  return body;
 }
 
 function isSingleRequestBody(

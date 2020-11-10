@@ -19,7 +19,6 @@ export interface OperationRequestDetails {
   method: HttpMethod;
   mediaType?: KnownMediaType;
   parameters?: (Parameter | VirtualParameter)[];
-  signatureParameters: (Parameter | VirtualParameter)[];
 }
 
 export type OperationResponseMapper = Mapper | string;
