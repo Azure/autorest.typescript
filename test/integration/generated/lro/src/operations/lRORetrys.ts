@@ -369,7 +369,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -393,7 +393,7 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -417,7 +417,7 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const post202Retry200OperationSpec: coreHttp.OperationSpec = {

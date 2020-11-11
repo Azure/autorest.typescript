@@ -576,7 +576,7 @@ const createUpdateCassandraKeyspaceOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.keyspaceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -642,7 +642,7 @@ const updateCassandraKeyspaceThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName,
     Parameters.keyspaceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -715,7 +715,7 @@ const createUpdateCassandraTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.tableName,
     Parameters.keyspaceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -784,7 +784,7 @@ const updateCassandraTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.tableName,
     Parameters.keyspaceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

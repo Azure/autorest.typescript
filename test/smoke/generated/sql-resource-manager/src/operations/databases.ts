@@ -769,7 +769,7 @@ const importOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -801,7 +801,7 @@ const createImportOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName,
     Parameters.extensionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -832,7 +832,7 @@ const exportOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -945,7 +945,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -992,7 +992,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName,
     Parameters.databaseName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

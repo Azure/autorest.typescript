@@ -457,7 +457,7 @@ const put400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -471,7 +471,7 @@ const patch400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -485,7 +485,7 @@ const post400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -499,7 +499,7 @@ const delete400OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -561,7 +561,7 @@ const put404OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -575,7 +575,7 @@ const patch405OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -589,7 +589,7 @@ const post406OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -603,7 +603,7 @@ const delete407OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -617,7 +617,7 @@ const put409OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -679,7 +679,7 @@ const put413OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -693,7 +693,7 @@ const patch414OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -707,7 +707,7 @@ const post415OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -733,7 +733,7 @@ const delete417OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

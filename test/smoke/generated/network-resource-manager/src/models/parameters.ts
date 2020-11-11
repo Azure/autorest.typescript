@@ -196,18 +196,6 @@ export const parameters: OperationParameter = {
   mapper: ApplicationGatewayMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters1: OperationParameter = {
   parameterPath: "parameters",
   mapper: TagsObjectMapper
@@ -360,18 +348,6 @@ export const virtualWANName: OperationURLParameter = {
 export const vpnClientParams: OperationParameter = {
   parameterPath: "vpnClientParams",
   mapper: VirtualWanVpnProfileParametersMapper
-};
-
-export const nextLink1: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const ddosCustomPolicyName: OperationURLParameter = {

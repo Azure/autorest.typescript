@@ -169,7 +169,7 @@ const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.stringBody5,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -204,7 +204,7 @@ const putReferencedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.enumStringBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -234,7 +234,7 @@ const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.enumStringBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

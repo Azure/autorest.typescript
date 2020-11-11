@@ -373,7 +373,7 @@ const putMax32OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -388,7 +388,7 @@ const putMax64OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -403,7 +403,7 @@ const putMin32OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -418,7 +418,7 @@ const putMin64OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -448,7 +448,7 @@ const putUnixTimeDateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

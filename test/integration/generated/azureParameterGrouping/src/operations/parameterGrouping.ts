@@ -132,7 +132,7 @@ const postOptionalOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.query1],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1, Parameters.customHeader1],
+  headerParameters: [Parameters.accept, Parameters.customHeader1],
   serializer
 };
 const postMultiParamGroupsOperationSpec: coreHttp.OperationSpec = {
@@ -147,7 +147,7 @@ const postMultiParamGroupsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.queryOne, Parameters.queryTwo],
   urlParameters: [Parameters.$host],
   headerParameters: [
-    Parameters.accept1,
+    Parameters.accept,
     Parameters.headerOne,
     Parameters.headerTwo
   ],
@@ -164,6 +164,6 @@ const postSharedParameterGroupObjectOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.queryOne],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1, Parameters.headerOne],
+  headerParameters: [Parameters.accept, Parameters.headerOne],
   serializer
 };

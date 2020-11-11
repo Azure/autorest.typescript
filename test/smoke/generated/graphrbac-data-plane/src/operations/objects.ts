@@ -82,7 +82,7 @@ const getObjectsByObjectIdsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters14,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

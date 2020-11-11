@@ -450,7 +450,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -474,7 +474,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -573,7 +573,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -591,7 +591,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -171,7 +171,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const putOperationSpec: coreHttp.OperationSpec = {
@@ -229,6 +229,6 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.privateEndpointConnectionName
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };

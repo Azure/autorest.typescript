@@ -11755,6 +11755,17 @@ export type WebSiteManagementClientListBillingMetersResponse = BillingMeterColle
 };
 
 /**
+ * Optional parameters.
+ */
+export interface WebSiteManagementClientCheckNameAvailabilityOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Is fully qualified domain name.
+   */
+  isFqdn?: boolean;
+}
+
+/**
  * Contains response data for the checkNameAvailability operation.
  */
 export type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameAvailability & {

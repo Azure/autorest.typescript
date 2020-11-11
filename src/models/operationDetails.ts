@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethod, Parameter } from "@azure-tools/codemodel";
+import {
+  HttpMethod,
+  Parameter,
+  VirtualParameter
+} from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
@@ -14,7 +18,7 @@ export interface OperationRequestDetails {
   path: string;
   method: HttpMethod;
   mediaType?: KnownMediaType;
-  parameters?: Parameter[];
+  parameters?: (Parameter | VirtualParameter)[];
 }
 
 export type OperationResponseMapper = Mapper | string;
@@ -81,7 +85,7 @@ export interface OperationSpecDetails {
   path: string;
   httpMethod: string;
   responses: OperationSpecResponses;
-  requestBody?: ParameterDetails;
+  requestBody?: ParameterDetails | ParameterDetails[];
   formDataParameters?: ParameterDetails[];
   queryParameters?: ParameterDetails[];
   urlParameters?: ParameterDetails[];

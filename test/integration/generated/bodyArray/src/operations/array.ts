@@ -1308,7 +1308,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1340,7 +1340,7 @@ const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1406,7 +1406,7 @@ const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1472,7 +1472,7 @@ const putLongValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1538,7 +1538,7 @@ const putFloatValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1604,7 +1604,7 @@ const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1670,7 +1670,7 @@ const putStringValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1707,7 +1707,7 @@ const putEnumValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody3,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1739,7 +1739,7 @@ const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1805,7 +1805,7 @@ const putUuidValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody5,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1854,7 +1854,7 @@ const putDateValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody6,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1920,7 +1920,7 @@ const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody7,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1989,7 +1989,7 @@ const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody8,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2021,7 +2021,7 @@ const putDurationValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody9,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2053,7 +2053,7 @@ const putByteValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody10,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2202,7 +2202,7 @@ const putComplexValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody11,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2327,7 +2327,7 @@ const putArrayValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody12,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -2452,7 +2452,7 @@ const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody13,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

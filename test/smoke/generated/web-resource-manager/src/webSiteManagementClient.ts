@@ -40,6 +40,8 @@ import {
   WebSiteManagementClientListBillingMetersOptionalParams,
   WebSiteManagementClientListBillingMetersResponse,
   ResourceNameAvailabilityRequest,
+  CheckNameResourceTypes,
+  WebSiteManagementClientCheckNameAvailabilityOptionalParams,
   WebSiteManagementClientCheckNameAvailabilityResponse,
   WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse,
   WebSiteManagementClientListGeoRegionsOptionalParams,
@@ -214,17 +216,21 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   /**
    * Description for Check if a resource name is available.
    * @param request Name availability request.
+   * @param name Resource name to verify.
+   * @param typeParam Resource type used for verification.
    * @param options The options parameters.
    */
   checkNameAvailability(
     request: ResourceNameAvailabilityRequest,
-    options?: coreHttp.OperationOptions
+    name: string,
+    typeParam: CheckNameResourceTypes,
+    options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams
   ): Promise<WebSiteManagementClientCheckNameAvailabilityResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
-      { request, options: operationOptions },
+      { request, name, typeParam, options: operationOptions },
       checkNameAvailabilityOperationSpec
     ) as Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
   }
@@ -545,7 +551,7 @@ const updatePublishingUserOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.userDetails,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -595,7 +601,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.requestMessage,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.sourceControlType],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -631,10 +637,17 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request,
+  requestBody: {
+    parameterPath: {
+      name: ["name"],
+      typeParam: ["typeParam"],
+      isFqdn: ["options", "isFqdn"]
+    },
+    mapper: Mappers.ResourceNameAvailabilityRequest
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -692,7 +705,7 @@ const listSiteIdentifiersAssignedToHostNameOperationSpec: coreHttp.OperationSpec
   requestBody: Parameters.nameIdentifier,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -744,7 +757,7 @@ const verifyHostingEnvironmentVnetOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -765,7 +778,7 @@ const moveOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -788,7 +801,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -809,7 +822,7 @@ const validateMoveOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -894,9 +907,9 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.Operation
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

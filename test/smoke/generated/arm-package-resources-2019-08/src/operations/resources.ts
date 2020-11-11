@@ -679,7 +679,7 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.sourceResourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -703,7 +703,7 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.sourceResourceGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -810,7 +810,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -846,7 +846,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceType,
     Parameters.resourceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -930,7 +930,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -957,7 +957,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

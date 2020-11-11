@@ -239,7 +239,7 @@ const putHorseOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.horse,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -268,7 +268,7 @@ const putPetOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.pet,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -297,7 +297,7 @@ const putFelineOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.feline,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -326,7 +326,7 @@ const putCatOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.cat,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -355,7 +355,7 @@ const putKittenOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.kitten,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

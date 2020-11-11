@@ -369,7 +369,7 @@ const put200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -384,7 +384,7 @@ const patch200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -399,7 +399,7 @@ const post200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -414,7 +414,7 @@ const delete200OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -429,7 +429,7 @@ const put201OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -444,7 +444,7 @@ const post201OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -459,7 +459,7 @@ const put202OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -474,7 +474,7 @@ const patch202OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -489,7 +489,7 @@ const post202OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -504,7 +504,7 @@ const delete202OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -532,7 +532,7 @@ const put204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -547,7 +547,7 @@ const patch204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -562,7 +562,7 @@ const post204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -577,7 +577,7 @@ const delete204OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

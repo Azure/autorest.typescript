@@ -288,7 +288,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName,
     Parameters.managedInstanceName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

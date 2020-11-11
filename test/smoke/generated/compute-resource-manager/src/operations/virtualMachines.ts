@@ -908,7 +908,7 @@ const captureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -938,7 +938,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -968,7 +968,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1267,7 +1267,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept2],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
   serializer
 };

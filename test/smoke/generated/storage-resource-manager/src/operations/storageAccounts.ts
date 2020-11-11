@@ -501,7 +501,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.accountName,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -531,7 +531,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -585,7 +585,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -657,7 +657,7 @@ const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -678,7 +678,7 @@ const listAccountSASOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -699,7 +699,7 @@ const listServiceSASOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -743,7 +743,7 @@ const restoreBlobRangesOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName1
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

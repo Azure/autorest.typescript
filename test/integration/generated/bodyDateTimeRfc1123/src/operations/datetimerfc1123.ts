@@ -257,7 +257,7 @@ const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -302,7 +302,7 @@ const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

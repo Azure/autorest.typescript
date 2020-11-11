@@ -306,7 +306,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName,
     Parameters.packetCaptureName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -5,7 +5,8 @@ import {
   Parameter,
   ParameterLocation,
   AllSchemaTypes,
-  ImplementationLocation
+  ImplementationLocation,
+  VirtualParameter
 } from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
 import { TypeDetails } from "./modelDetails";
@@ -23,7 +24,7 @@ export interface ParameterDetails {
   parameterPath: string | string[];
   mapper: string | Mapper;
   isGlobal: boolean;
-  parameter: Parameter;
+  parameter: Parameter | VirtualParameter;
   operationsIn?: { [operationName: string]: { description: string } };
   collectionFormat?: string;
   schemaType: AllSchemaTypes;
@@ -31,6 +32,7 @@ export interface ParameterDetails {
   typeDetails: TypeDetails;
   skipEncoding?: boolean;
   isSynthetic?: boolean;
+  isFlattened: boolean;
   /**
    * Only specified when an operation has multiple requests.
    * This is used to identify which request a parameter belongs to.

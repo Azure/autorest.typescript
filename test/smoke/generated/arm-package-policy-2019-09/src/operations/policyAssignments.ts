@@ -483,7 +483,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.scope,
     Parameters.policyAssignmentName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -619,7 +619,7 @@ const createByIdOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

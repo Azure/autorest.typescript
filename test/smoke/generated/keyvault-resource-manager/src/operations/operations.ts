@@ -72,7 +72,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -85,6 +85,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };

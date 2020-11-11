@@ -100,18 +100,6 @@ export const accountName: OperationParameter = {
   mapper: StorageAccountCheckNameAvailabilityParametersMapper
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
   mapper: StorageAccountCreateParametersMapper

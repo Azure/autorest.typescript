@@ -180,7 +180,7 @@ const listAgreementsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.agreementOption,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId, Parameters.name],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -220,9 +220,9 @@ const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.name,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

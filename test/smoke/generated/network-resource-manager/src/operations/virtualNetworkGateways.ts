@@ -1028,7 +1028,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1106,7 +1106,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1236,7 +1236,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1269,7 +1269,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1448,7 +1448,7 @@ const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1503,7 +1503,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayConnectionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1536,7 +1536,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1569,7 +1569,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1625,7 +1625,7 @@ const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.Opera
     Parameters.subscriptionId,
     Parameters.virtualNetworkGatewayName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

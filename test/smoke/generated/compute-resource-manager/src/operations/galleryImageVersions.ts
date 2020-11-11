@@ -323,7 +323,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -358,7 +358,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

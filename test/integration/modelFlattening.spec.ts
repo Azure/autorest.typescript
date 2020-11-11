@@ -1,7 +1,9 @@
 import { assert } from "chai";
+import { response } from "express";
 import { ModelFlatteningClient } from "./generated/modelFlattening/src";
 import {
   FlattenedProduct,
+  FlattenParameterGroup,
   ResourceCollection,
   SimpleProduct
 } from "./generated/modelFlattening/src/models";
@@ -251,14 +253,32 @@ describe("ModelFlatteningClient", () => {
       capacity: "Large",
       odataValue: "http://foo"
     };
-    const result = await client.postFlattenedSimpleProduct({
-      simpleBodyProduct
+    const result = await client.postFlattenedSimpleProduct("123", {
+      description: "product description",
+      maxProductDisplayName: "max name",
+      odataValue: "http://foo"
     });
     assert.deepEqual(result, simpleBodyProduct);
   });
 
-  // TODO: Support for parameter grouping
-  it.skip("should put flattened and grouped product", async () => {
-    // const result = await client.putSimpleProductWithGrouping()
+  it("should put flattened and grouped product", async () => {
+    const paramGroup: FlattenParameterGroup = {
+      productId: "123",
+      description: "product description",
+      maxProductDisplayName: "max name",
+      odataValue: "http://foo",
+      name: "groupproduct"
+    };
+    const { _response, ...result } = await client.putSimpleProductWithGrouping(
+      paramGroup
+    );
+
+    assert.deepEqual(result, {
+      capacity: "Large",
+      description: "product description",
+      maxProductDisplayName: "max name",
+      odataValue: "http://foo",
+      productId: "123"
+    });
   });
 });

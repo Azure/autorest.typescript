@@ -124,18 +124,6 @@ export const vaultName1: OperationURLParameter = {
   }
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters2: OperationParameter = {
   parameterPath: "parameters",
   mapper: VaultAccessPolicyParametersMapper

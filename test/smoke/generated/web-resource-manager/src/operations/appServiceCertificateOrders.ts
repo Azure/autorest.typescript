@@ -668,7 +668,7 @@ const validatePurchaseInformationOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.appServiceCertificateOrder,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -744,7 +744,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -792,7 +792,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -871,7 +871,7 @@ const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -921,7 +921,7 @@ const updateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName,
     Parameters.name
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -943,7 +943,7 @@ const reissueOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -965,7 +965,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1007,7 +1007,7 @@ const resendRequestEmailsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -1031,7 +1031,7 @@ const retrieveSiteSealOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.certificateOrderName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

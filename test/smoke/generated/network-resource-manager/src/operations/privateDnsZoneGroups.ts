@@ -293,7 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.privateEndpointName,
     Parameters.privateDnsZoneGroupName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

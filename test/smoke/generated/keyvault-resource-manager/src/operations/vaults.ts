@@ -505,7 +505,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vaultName1
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const updateAccessPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -548,7 +548,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
@@ -561,7 +561,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeletedOperationSpec: coreHttp.OperationSpec = {
@@ -575,7 +575,7 @@ const listDeletedOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getDeletedOperationSpec: coreHttp.OperationSpec = {
@@ -594,7 +594,7 @@ const getDeletedOperationSpec: coreHttp.OperationSpec = {
     Parameters.vaultName1,
     Parameters.location
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const purgeDeletedOperationSpec: coreHttp.OperationSpec = {
@@ -621,7 +621,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
@@ -655,7 +655,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
@@ -672,7 +672,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listDeletedNextOperationSpec: coreHttp.OperationSpec = {
@@ -689,7 +689,7 @@ const listDeletedNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -706,6 +706,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -180,7 +180,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -240,7 +240,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.tenantID,
     Parameters.upnOrObjectId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -276,7 +276,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.parameters13,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

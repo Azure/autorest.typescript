@@ -1572,7 +1572,7 @@ const post202ListOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
@@ -2036,7 +2036,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpec = {
@@ -2060,7 +2060,7 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpe
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationSpec = {
@@ -2084,7 +2084,7 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationS
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2100,7 +2100,7 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -2124,7 +2124,7 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
@@ -2148,7 +2148,7 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
@@ -2172,7 +2172,7 @@ const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
@@ -2196,7 +2196,7 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2220,7 +2220,7 @@ const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -2244,7 +2244,7 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
@@ -2268,7 +2268,7 @@ const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
@@ -2292,7 +2292,7 @@ const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
@@ -2316,7 +2316,7 @@ const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const post202Retry200OperationSpec: coreHttp.OperationSpec = {
@@ -2396,7 +2396,7 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec = {
@@ -2420,7 +2420,7 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec 
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.OperationSpec = {
@@ -2444,7 +2444,7 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.Operati
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept1],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {

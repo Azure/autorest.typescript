@@ -292,7 +292,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.loadBalancerName,
     Parameters.backendAddressPoolName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

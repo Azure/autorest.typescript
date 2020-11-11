@@ -9,7 +9,8 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema
+  ConstantSchema,
+  VirtualParameter
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -64,7 +65,8 @@ const buildCredentialsParameter = (): ParameterDetails => ({
     usedModels: []
   },
   isSynthetic: true,
-  schemaType: SchemaType.Object
+  schemaType: SchemaType.Object,
+  isFlattened: false
 });
 
 const buildEndpointParameter = (): ParameterDetails => ({
@@ -86,7 +88,8 @@ const buildEndpointParameter = (): ParameterDetails => ({
     usedModels: []
   },
   isSynthetic: true,
-  schemaType: SchemaType.String
+  schemaType: SchemaType.String,
+  isFlattened: false
 });
 
 export function transformParameters(
@@ -94,6 +97,7 @@ export function transformParameters(
   options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
+
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
     populateOperationParameters(
@@ -242,7 +246,9 @@ export function populateOperationParameters(
     schemaType: parameter.schema.type,
     parameterPath: getParameterPath(parameter),
     mapper: getMapperOrRef(
-      parameter.schema,
+      (parameter as VirtualParameter).originalParameter
+        ? (parameter as VirtualParameter).originalParameter.schema
+        : parameter.schema,
       serializedName,
       parameter.required,
       hasXmlMetadata
@@ -254,7 +260,8 @@ export function populateOperationParameters(
     typeDetails,
     defaultValue: getDefaultValue(parameter),
     skipEncoding: getSkipEncoding(parameter),
-    targetMediaType
+    targetMediaType,
+    isFlattened: !!parameter.flattened
   };
 
   if (!sameNameParams.length) {
@@ -304,7 +311,9 @@ function getParameterPath(parameter: Parameter) {
     const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
       .name;
     return [
-      ...(!parameter.required ? ["options"] : []),
+      ...(!parameter.required && !parameter.groupedBy.required
+        ? ["options"]
+        : []),
       normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
       name
     ];
@@ -319,7 +328,9 @@ const isClientImplementation = (parameter: Parameter) =>
   parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
-  const originalLocaltion = parameter.protocol.http?.in;
+  const originalLocaltion =
+    parameter.protocol.http?.in ||
+    (parameter as VirtualParameter).originalParameter.protocol.http?.in;
   const locationExtension =
     parameter.extensions && parameter.extensions["x-in"];
   if (!originalLocaltion && !locationExtension) {
@@ -339,13 +350,16 @@ enum AdditionalStyles {
 const AllSerializationStyles = { ...SerializationStyle, ...AdditionalStyles };
 
 function getCollectionFormat(parameter: Parameter): string | undefined {
-  if (!parameter.protocol.http) {
+  const httpInfo =
+    parameter.protocol.http ||
+    (parameter as VirtualParameter).originalParameter.protocol.http;
+  if (!httpInfo) {
     throw new Error("Expected parameter to contain HTTP Protocol information");
   }
 
-  const style = parameter.protocol.http.style;
+  const style = httpInfo.style;
 
-  if (parameter.protocol.http.in !== ParameterLocation.Query || !style) {
+  if (httpInfo.in !== ParameterLocation.Query || !style) {
     return undefined;
   }
 
@@ -360,7 +374,7 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
       queryCollectionFormat = QueryCollectionFormat.Ssv;
       break;
     case AllSerializationStyles.Form:
-      queryCollectionFormat = parameter.protocol.http?.explode
+      queryCollectionFormat = httpInfo?.explode
         ? QueryCollectionFormat.Multi
         : QueryCollectionFormat.Csv;
       break;
@@ -415,7 +429,8 @@ function getComparableParameter({
   typeDetails,
   skipEncoding,
   isSynthetic,
-  targetMediaType
+  targetMediaType,
+  parameter
 }: ParameterDetails) {
   return {
     name,
@@ -430,7 +445,8 @@ function getComparableParameter({
     typeDetails,
     skipEncoding,
     isSynthetic,
-    targetMediaType
+    targetMediaType: targetMediaType || KnownMediaType.Json,
+    isFlattened: parameter.flattened
   };
 }
 

@@ -310,7 +310,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.diskEncryptionSetName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -343,7 +343,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.diskEncryptionSetName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

@@ -328,7 +328,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.tapName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -352,7 +352,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.tapName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

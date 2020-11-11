@@ -155,7 +155,7 @@ const putTrueOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.boolBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -185,7 +185,7 @@ const putFalseOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.boolBody,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

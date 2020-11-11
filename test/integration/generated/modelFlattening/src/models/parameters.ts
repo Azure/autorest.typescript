@@ -64,18 +64,6 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const accept1: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const resourceArray1: OperationParameter = {
   parameterPath: ["options", "resourceArray"],
   mapper: {
@@ -113,8 +101,58 @@ export const simpleBodyProduct: OperationParameter = {
   mapper: SimpleProductMapper
 };
 
-export const simpleBodyProduct1: OperationParameter = {
-  parameterPath: ["options", "flattenParameterGroup", "simpleBodyProduct"],
+export const productId: OperationParameter = {
+  parameterPath: "productId",
+  mapper: SimpleProductMapper
+};
+
+export const description: OperationParameter = {
+  parameterPath: ["options", "description"],
+  mapper: SimpleProductMapper
+};
+
+export const maxProductDisplayName: OperationParameter = {
+  parameterPath: ["options", "maxProductDisplayName"],
+  mapper: SimpleProductMapper
+};
+
+export const capacity: OperationParameter = {
+  parameterPath: ["options", "capacity"],
+  mapper: SimpleProductMapper
+};
+
+export const genericValue: OperationParameter = {
+  parameterPath: ["options", "genericValue"],
+  mapper: SimpleProductMapper
+};
+
+export const odataValue: OperationParameter = {
+  parameterPath: ["options", "odataValue"],
+  mapper: SimpleProductMapper
+};
+
+export const productId1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "productId"],
+  mapper: SimpleProductMapper
+};
+
+export const description1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "description"],
+  mapper: SimpleProductMapper
+};
+
+export const maxProductDisplayName1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "maxProductDisplayName"],
+  mapper: SimpleProductMapper
+};
+
+export const genericValue1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "genericValue"],
+  mapper: SimpleProductMapper
+};
+
+export const odataValue1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "odataValue"],
   mapper: SimpleProductMapper
 };
 
