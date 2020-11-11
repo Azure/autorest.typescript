@@ -143,7 +143,7 @@ export function writeGetOperationOptions(
  * Generates a string representation of an Operation spec
  * the output is to be inserted in the Operation group file
  */
-function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
+function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   const responses = buildResponses(spec);
   const requestBody = buildRequestBody(spec);
   const queryParams = buildParameters(spec, "queryParameters");
@@ -217,18 +217,6 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter) {
       writer.write(", ");
     }
   });
-
-  return {
-    responses,
-    requestBody,
-    queryParams,
-    urlParams,
-    headerParams,
-    formDataParams,
-    contentType,
-    mediaType,
-    isXml: !!spec.isXML
-  };
 }
 
 function buildMediaType({ requestBody }: OperationSpecDetails) {
