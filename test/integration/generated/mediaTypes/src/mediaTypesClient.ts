@@ -77,15 +77,15 @@ export class MediaTypesClient extends MediaTypesClientContext {
       };
     } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
-      operationArguments = {
-        contentType: args[0],
-        options: args[1]
-      };
+      operationArguments = { contentType: args[0], options: args[1] };
     } else {
       throw new TypeError(
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      operationArguments.options || {}
+    );
     return this.sendOperationRequest(
       operationArguments,
       operationSpec
@@ -101,11 +101,12 @@ export class MediaTypesClient extends MediaTypesClientContext {
     input: string,
     options?: coreHttp.OperationOptions
   ): Promise<MediaTypesClientContentTypeWithEncodingResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      input,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { input, options: operationOptions },
+      operationArguments,
       contentTypeWithEncodingOperationSpec
     ) as Promise<MediaTypesClientContentTypeWithEncodingResponse>;
   }

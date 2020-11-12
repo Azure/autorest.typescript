@@ -37,11 +37,11 @@ export class Queries {
   arrayStringMultiNull(
     options?: QueriesArrayStringMultiNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       arrayStringMultiNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -53,11 +53,11 @@ export class Queries {
   arrayStringMultiEmpty(
     options?: QueriesArrayStringMultiEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       arrayStringMultiEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -70,11 +70,11 @@ export class Queries {
   arrayStringMultiValid(
     options?: QueriesArrayStringMultiValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       arrayStringMultiValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

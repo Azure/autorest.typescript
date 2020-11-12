@@ -34,11 +34,11 @@ export class Float {
    * @param options The options parameters.
    */
   put(options?: FloatPutOptionalParams): Promise<FloatPutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       putOperationSpec
     ) as Promise<FloatPutResponse>;
   }
@@ -48,11 +48,11 @@ export class Float {
    * @param options The options parameters.
    */
   get(options?: coreHttp.OperationOptions): Promise<FloatGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<FloatGetResponse>;
   }

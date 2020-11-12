@@ -37,6 +37,8 @@
         "@azure/core-lro": "^1.0.1",
         "@azure/core-paging": "^1.0.0",
         "@azure/logger": "^1.0.0",
+        "@azure/core-tracing": "1.0.0-preview.9",
+        "@opentelemetry/api": "^0.10.2",
         "@types/lodash": "^4.14.149",
         "autorest": "^3.0.6187",
         "lodash": "^4.17.15",

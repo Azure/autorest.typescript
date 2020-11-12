@@ -50,11 +50,11 @@ export class HttpRedirects {
   head300(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsHead300Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head300OperationSpec
     ) as Promise<HttpRedirectsHead300Response>;
   }
@@ -66,11 +66,11 @@ export class HttpRedirects {
   get300(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsGet300Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get300OperationSpec
     ) as Promise<HttpRedirectsGet300Response>;
   }
@@ -82,11 +82,11 @@ export class HttpRedirects {
   head301(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsHead301Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head301OperationSpec
     ) as Promise<HttpRedirectsHead301Response>;
   }
@@ -98,11 +98,11 @@ export class HttpRedirects {
   get301(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsGet301Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get301OperationSpec
     ) as Promise<HttpRedirectsGet301Response>;
   }
@@ -115,11 +115,11 @@ export class HttpRedirects {
   put301(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPut301Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put301OperationSpec
     ) as Promise<HttpRedirectsPut301Response>;
   }
@@ -131,11 +131,11 @@ export class HttpRedirects {
   head302(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsHead302Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head302OperationSpec
     ) as Promise<HttpRedirectsHead302Response>;
   }
@@ -147,11 +147,11 @@ export class HttpRedirects {
   get302(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsGet302Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get302OperationSpec
     ) as Promise<HttpRedirectsGet302Response>;
   }
@@ -164,11 +164,11 @@ export class HttpRedirects {
   patch302(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPatch302Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch302OperationSpec
     ) as Promise<HttpRedirectsPatch302Response>;
   }
@@ -181,11 +181,11 @@ export class HttpRedirects {
   post303(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPost303Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post303OperationSpec
     ) as Promise<HttpRedirectsPost303Response>;
   }
@@ -197,11 +197,11 @@ export class HttpRedirects {
   head307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsHead307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head307OperationSpec
     ) as Promise<HttpRedirectsHead307Response>;
   }
@@ -213,11 +213,11 @@ export class HttpRedirects {
   get307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsGet307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get307OperationSpec
     ) as Promise<HttpRedirectsGet307Response>;
   }
@@ -229,11 +229,11 @@ export class HttpRedirects {
   options307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsOptions307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options307OperationSpec
     ) as Promise<HttpRedirectsOptions307Response>;
   }
@@ -245,11 +245,11 @@ export class HttpRedirects {
   put307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPut307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put307OperationSpec
     ) as Promise<HttpRedirectsPut307Response>;
   }
@@ -261,11 +261,11 @@ export class HttpRedirects {
   patch307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPatch307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch307OperationSpec
     ) as Promise<HttpRedirectsPatch307Response>;
   }
@@ -277,11 +277,11 @@ export class HttpRedirects {
   post307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsPost307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post307OperationSpec
     ) as Promise<HttpRedirectsPost307Response>;
   }
@@ -293,11 +293,11 @@ export class HttpRedirects {
   delete307(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRedirectsDelete307Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete307OperationSpec
     ) as Promise<HttpRedirectsDelete307Response>;
   }

@@ -50,14 +50,9 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
       LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
     >
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       accountName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -67,12 +62,11 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
         LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       pollWithParameterizedEndpointsOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: pollWithParameterizedEndpointsOperationSpec,
       initialOperationResult,
       sendOperation,

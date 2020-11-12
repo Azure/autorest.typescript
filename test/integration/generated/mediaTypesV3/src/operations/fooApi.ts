@@ -88,6 +88,9 @@ export class FooApi {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      operationArguments.options || {}
+    );
     return this.client.sendOperationRequest(
       operationArguments,
       operationSpec
@@ -157,6 +160,9 @@ export class FooApi {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      operationArguments.options || {}
+    );
     return this.client.sendOperationRequest(
       operationArguments,
       operationSpec

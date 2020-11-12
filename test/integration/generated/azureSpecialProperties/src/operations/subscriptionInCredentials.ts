@@ -33,11 +33,11 @@ export class SubscriptionInCredentials {
   postMethodGlobalValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postMethodGlobalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -50,11 +50,11 @@ export class SubscriptionInCredentials {
   postMethodGlobalNull(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postMethodGlobalNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -67,11 +67,11 @@ export class SubscriptionInCredentials {
   postMethodGlobalNotProvidedValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postMethodGlobalNotProvidedValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -84,11 +84,11 @@ export class SubscriptionInCredentials {
   postPathGlobalValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postPathGlobalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -101,11 +101,11 @@ export class SubscriptionInCredentials {
   postSwaggerGlobalValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postSwaggerGlobalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

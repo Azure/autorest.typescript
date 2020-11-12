@@ -38,11 +38,11 @@ export class Array {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getValidOperationSpec
     ) as Promise<ArrayGetValidResponse>;
   }
@@ -57,11 +57,12 @@ export class Array {
     complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -73,11 +74,11 @@ export class Array {
   getEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetEmptyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyOperationSpec
     ) as Promise<ArrayGetEmptyResponse>;
   }
@@ -91,11 +92,12 @@ export class Array {
     complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -107,11 +109,11 @@ export class Array {
   getNotProvided(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetNotProvidedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNotProvidedOperationSpec
     ) as Promise<ArrayGetNotProvidedResponse>;
   }

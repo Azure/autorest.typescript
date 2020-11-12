@@ -34,11 +34,11 @@ export class Int {
    * @param options The options parameters.
    */
   put(options?: IntPutOptionalParams): Promise<IntPutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       putOperationSpec
     ) as Promise<IntPutResponse>;
   }
@@ -48,11 +48,11 @@ export class Int {
    * @param options The options parameters.
    */
   get(options?: coreHttp.OperationOptions): Promise<IntGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<IntGetResponse>;
   }

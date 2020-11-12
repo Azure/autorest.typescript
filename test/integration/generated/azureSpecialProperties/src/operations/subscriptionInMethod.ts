@@ -35,11 +35,12 @@ export class SubscriptionInMethod {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       postMethodLocalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -55,11 +56,12 @@ export class SubscriptionInMethod {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       postMethodLocalNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -74,11 +76,12 @@ export class SubscriptionInMethod {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       postPathLocalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -94,11 +97,12 @@ export class SubscriptionInMethod {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       postSwaggerLocalValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

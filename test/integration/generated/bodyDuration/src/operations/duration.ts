@@ -37,11 +37,11 @@ export class Duration {
   getNull(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<DurationGetNullResponse>;
   }
@@ -55,11 +55,12 @@ export class Duration {
     durationBody: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      durationBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { durationBody, options: operationOptions },
+      operationArguments,
       putPositiveDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -71,11 +72,11 @@ export class Duration {
   getPositiveDuration(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetPositiveDurationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getPositiveDurationOperationSpec
     ) as Promise<DurationGetPositiveDurationResponse>;
   }
@@ -87,11 +88,11 @@ export class Duration {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetInvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidOperationSpec
     ) as Promise<DurationGetInvalidResponse>;
   }

@@ -35,11 +35,12 @@ export class Group {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupGetSampleResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       getSampleResourceGroupOperationSpec
     ) as Promise<GroupGetSampleResourceGroupResponse>;
   }

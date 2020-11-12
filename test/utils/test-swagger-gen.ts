@@ -6,6 +6,7 @@ interface SwaggerConfig {
   packageName: string;
   addCredentials?: boolean;
   licenseHeader?: boolean;
+  enableTracing?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -72,6 +73,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyComplexClient",
     packageName: "body-complex",
     licenseHeader: true
+  },
+  bodyComplexWithTracing: {
+    swagger: "body-complex.json",
+    clientName: "bodyComplexWithTracing",
+    packageName: "body-complex-tracing",
+    licenseHeader: true,
+    enableTracing: true
   },
   bodyDate: {
     swagger: "body-date.json",
@@ -180,6 +188,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypesClient",
     packageName: "media-types-service",
     licenseHeader: true
+  },
+  mediaTypesWithTracing: {
+    swagger: "media_types.json",
+    clientName: "mediaTypesWithTracingClient",
+    packageName: "media-types-service-tracing",
+    licenseHeader: true,
+    enableTracing: true
   },
   mediaTypesV3: {
     swagger: "test/integration/swaggers/media-types-v3.json",
@@ -337,7 +352,8 @@ const generateSwaggers = async (
       clientName,
       swagger,
       packageName,
-      licenseHeader
+      licenseHeader,
+      enableTracing
     } = testSwaggers[name];
 
     let swaggerPath = swagger;
@@ -347,7 +363,7 @@ const generateSwaggers = async (
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand = `autorest --clear-output-folder=true --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand = `autorest --clear-output-folder=true --enable-tracing=${!!enableTracing} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;

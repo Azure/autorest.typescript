@@ -31,11 +31,11 @@ export class HttpRetry {
    * @param options The options parameters.
    */
   head408(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head408OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -45,11 +45,11 @@ export class HttpRetry {
    * @param options The options parameters.
    */
   put500(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put500OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -61,11 +61,11 @@ export class HttpRetry {
   patch500(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch500OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -75,11 +75,11 @@ export class HttpRetry {
    * @param options The options parameters.
    */
   get502(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get502OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -91,11 +91,11 @@ export class HttpRetry {
   options502(
     options?: coreHttp.OperationOptions
   ): Promise<HttpRetryOptions502Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options502OperationSpec
     ) as Promise<HttpRetryOptions502Response>;
   }
@@ -105,11 +105,11 @@ export class HttpRetry {
    * @param options The options parameters.
    */
   post503(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post503OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -121,11 +121,11 @@ export class HttpRetry {
   delete503(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete503OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -135,11 +135,11 @@ export class HttpRetry {
    * @param options The options parameters.
    */
   put504(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put504OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -151,11 +151,11 @@ export class HttpRetry {
   patch504(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch504OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

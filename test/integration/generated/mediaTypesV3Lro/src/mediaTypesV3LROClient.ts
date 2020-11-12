@@ -101,6 +101,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      operationArguments.options || {}
+    );
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -110,7 +113,6 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       operationArguments,
       operationSpec
     );
-
     return new LROPoller({
       initialOperationArguments: operationArguments,
       initialOperationSpec: operationSpec,
@@ -187,6 +189,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      operationArguments.options || {}
+    );
     return this.sendOperationRequest(
       operationArguments,
       operationSpec

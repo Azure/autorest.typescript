@@ -28,11 +28,11 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<NoLicenseHeaderClientApiV1ValueGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       apiV1ValueGetOperationSpec
     ) as Promise<NoLicenseHeaderClientApiV1ValueGetResponse>;
   }

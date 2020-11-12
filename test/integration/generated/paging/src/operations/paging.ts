@@ -76,11 +76,11 @@ export class Paging {
   getNoItemNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNoItemNamePagesOperationSpec
     ) as Promise<PagingGetNoItemNamePagesResponse>;
   }
@@ -92,11 +92,11 @@ export class Paging {
   getNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullNextLinkNamePagesOperationSpec
     ) as Promise<PagingGetNullNextLinkNamePagesResponse>;
   }
@@ -108,11 +108,11 @@ export class Paging {
   getSinglePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSinglePagesOperationSpec
     ) as Promise<PagingGetSinglePagesResponse>;
   }
@@ -124,11 +124,11 @@ export class Paging {
   getMultiplePages(
     options?: PagingGetMultiplePagesOptionalParams
   ): Promise<PagingGetMultiplePagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMultiplePagesOperationSpec
     ) as Promise<PagingGetMultiplePagesResponse>;
   }
@@ -143,11 +143,12 @@ export class Paging {
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetWithQueryParamsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      requiredQueryParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { requiredQueryParameter, options: operationOptions },
+      operationArguments,
       getWithQueryParamsOperationSpec
     ) as Promise<PagingGetWithQueryParamsResponse>;
   }
@@ -159,11 +160,11 @@ export class Paging {
   nextOperationWithQueryParams(
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       nextOperationWithQueryParamsOperationSpec
     ) as Promise<PagingNextOperationWithQueryParamsResponse>;
   }
@@ -175,11 +176,11 @@ export class Paging {
   getOdataMultiplePages(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): Promise<PagingGetOdataMultiplePagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOdataMultiplePagesOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesResponse>;
   }
@@ -193,11 +194,12 @@ export class Paging {
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pagingGetMultiplePagesWithOffsetOptions,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesWithOffsetOptions, options: operationOptions },
+      operationArguments,
       getMultiplePagesWithOffsetOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
   }
@@ -210,11 +212,11 @@ export class Paging {
   getMultiplePagesRetryFirst(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMultiplePagesRetryFirstOperationSpec
     ) as Promise<PagingGetMultiplePagesRetryFirstResponse>;
   }
@@ -227,11 +229,11 @@ export class Paging {
   getMultiplePagesRetrySecond(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMultiplePagesRetrySecondOperationSpec
     ) as Promise<PagingGetMultiplePagesRetrySecondResponse>;
   }
@@ -243,11 +245,11 @@ export class Paging {
   getSinglePagesFailure(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesFailureResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSinglePagesFailureOperationSpec
     ) as Promise<PagingGetSinglePagesFailureResponse>;
   }
@@ -259,11 +261,11 @@ export class Paging {
   getMultiplePagesFailure(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMultiplePagesFailureOperationSpec
     ) as Promise<PagingGetMultiplePagesFailureResponse>;
   }
@@ -275,11 +277,11 @@ export class Paging {
   getMultiplePagesFailureUri(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMultiplePagesFailureUriOperationSpec
     ) as Promise<PagingGetMultiplePagesFailureUriResponse>;
   }
@@ -295,11 +297,13 @@ export class Paging {
     tenant: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      apiVersion,
+      tenant,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, options: operationOptions },
+      operationArguments,
       getMultiplePagesFragmentNextLinkOperationSpec
     ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
   }
@@ -313,11 +317,12 @@ export class Paging {
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      customParameterGroup,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { customParameterGroup, options: operationOptions },
+      operationArguments,
       getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
     ) as Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
   }
@@ -329,11 +334,9 @@ export class Paging {
   async getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<LROPoller<PagingGetMultiplePagesLROResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -342,12 +345,11 @@ export class Paging {
         PagingGetMultiplePagesLROResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getMultiplePagesLROOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getMultiplePagesLROOperationSpec,
       initialOperationResult,
       sendOperation
@@ -367,11 +369,14 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      apiVersion,
+      tenant,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, nextLink, options: operationOptions },
+      operationArguments,
       nextFragmentOperationSpec
     ) as Promise<PagingNextFragmentResponse>;
   }
@@ -387,11 +392,13 @@ export class Paging {
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentWithGroupingResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      customParameterGroup,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, customParameterGroup, options: operationOptions },
+      operationArguments,
       nextFragmentWithGroupingOperationSpec
     ) as Promise<PagingNextFragmentWithGroupingResponse>;
   }
@@ -404,11 +411,11 @@ export class Paging {
   getPagingModelWithItemNameWithXMSClientName(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getPagingModelWithItemNameWithXMSClientNameOperationSpec
     ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
   }
@@ -422,11 +429,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getNoItemNamePagesNextOperationSpec
     ) as Promise<PagingGetNoItemNamePagesNextResponse>;
   }
@@ -440,11 +448,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getSinglePagesNextOperationSpec
     ) as Promise<PagingGetSinglePagesNextResponse>;
   }
@@ -458,11 +467,12 @@ export class Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesNextOperationSpec
     ) as Promise<PagingGetMultiplePagesNextResponse>;
   }
@@ -476,11 +486,12 @@ export class Paging {
     nextLink: string,
     options?: PagingGetOdataMultiplePagesNextOptionalParams
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getOdataMultiplePagesNextOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
   }
@@ -497,15 +508,13 @@ export class Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pagingGetMultiplePagesWithOffsetOptions,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        pagingGetMultiplePagesWithOffsetOptions,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       getMultiplePagesWithOffsetNextOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   }
@@ -520,11 +529,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesRetryFirstNextOperationSpec
     ) as Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
   }
@@ -539,11 +549,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesRetrySecondNextOperationSpec
     ) as Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
   }
@@ -557,11 +568,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getSinglePagesFailureNextOperationSpec
     ) as Promise<PagingGetSinglePagesFailureNextResponse>;
   }
@@ -576,11 +588,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesFailureNextOperationSpec
     ) as Promise<PagingGetMultiplePagesFailureNextResponse>;
   }
@@ -595,11 +608,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesFailureUriNextOperationSpec
     ) as Promise<PagingGetMultiplePagesFailureUriNextResponse>;
   }
@@ -613,11 +627,12 @@ export class Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getMultiplePagesLRONextOperationSpec
     ) as Promise<PagingGetMultiplePagesLRONextResponse>;
   }
@@ -632,11 +647,12 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
     ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
   }

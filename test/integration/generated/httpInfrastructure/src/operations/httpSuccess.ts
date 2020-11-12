@@ -34,11 +34,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   head200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head200OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -50,11 +50,11 @@ export class HttpSuccess {
   get200(
     options?: coreHttp.OperationOptions
   ): Promise<HttpSuccessGet200Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200OperationSpec
     ) as Promise<HttpSuccessGet200Response>;
   }
@@ -66,11 +66,11 @@ export class HttpSuccess {
   options200(
     options?: coreHttp.OperationOptions
   ): Promise<HttpSuccessOptions200Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options200OperationSpec
     ) as Promise<HttpSuccessOptions200Response>;
   }
@@ -80,11 +80,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   put200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put200OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -96,11 +96,11 @@ export class HttpSuccess {
   patch200(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch200OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -110,11 +110,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   post200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post200OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -126,11 +126,11 @@ export class HttpSuccess {
   delete200(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete200OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -140,11 +140,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   put201(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put201OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -154,11 +154,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   post201(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post201OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -168,11 +168,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   put202(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put202OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -184,11 +184,11 @@ export class HttpSuccess {
   patch202(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch202OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -198,11 +198,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   post202(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post202OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -214,11 +214,11 @@ export class HttpSuccess {
   delete202(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete202OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -228,11 +228,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   head204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head204OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -242,11 +242,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   put204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put204OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -258,11 +258,11 @@ export class HttpSuccess {
   patch204(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch204OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -272,11 +272,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   post204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post204OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -288,11 +288,11 @@ export class HttpSuccess {
   delete204(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete204OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -302,11 +302,11 @@ export class HttpSuccess {
    * @param options The options parameters.
    */
   head404(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head404OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

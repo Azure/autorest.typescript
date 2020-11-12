@@ -39,11 +39,11 @@ export class Enum {
   getNotExpandable(
     options?: coreHttp.OperationOptions
   ): Promise<EnumGetNotExpandableResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNotExpandableOperationSpec
     ) as Promise<EnumGetNotExpandableResponse>;
   }
@@ -57,11 +57,12 @@ export class Enum {
     stringBody: Colors,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      stringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { stringBody, options: operationOptions },
+      operationArguments,
       putNotExpandableOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -73,11 +74,11 @@ export class Enum {
   getReferenced(
     options?: coreHttp.OperationOptions
   ): Promise<EnumGetReferencedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getReferencedOperationSpec
     ) as Promise<EnumGetReferencedResponse>;
   }
@@ -91,11 +92,12 @@ export class Enum {
     enumStringBody: Colors,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      enumStringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { enumStringBody, options: operationOptions },
+      operationArguments,
       putReferencedOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -107,11 +109,11 @@ export class Enum {
   getReferencedConstant(
     options?: coreHttp.OperationOptions
   ): Promise<EnumGetReferencedConstantResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getReferencedConstantOperationSpec
     ) as Promise<EnumGetReferencedConstantResponse>;
   }
@@ -125,11 +127,12 @@ export class Enum {
     enumStringBody: RefColorConstant,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      enumStringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { enumStringBody, options: operationOptions },
+      operationArguments,
       putReferencedConstantOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

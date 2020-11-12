@@ -41,11 +41,11 @@ export class Int {
    * @param options The options parameters.
    */
   getNull(options?: coreHttp.OperationOptions): Promise<IntGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<IntGetNullResponse>;
   }
@@ -57,11 +57,11 @@ export class Int {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetInvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidOperationSpec
     ) as Promise<IntGetInvalidResponse>;
   }
@@ -73,11 +73,11 @@ export class Int {
   getOverflowInt32(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetOverflowInt32Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOverflowInt32OperationSpec
     ) as Promise<IntGetOverflowInt32Response>;
   }
@@ -89,11 +89,11 @@ export class Int {
   getUnderflowInt32(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetUnderflowInt32Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getUnderflowInt32OperationSpec
     ) as Promise<IntGetUnderflowInt32Response>;
   }
@@ -105,11 +105,11 @@ export class Int {
   getOverflowInt64(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetOverflowInt64Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOverflowInt64OperationSpec
     ) as Promise<IntGetOverflowInt64Response>;
   }
@@ -121,11 +121,11 @@ export class Int {
   getUnderflowInt64(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetUnderflowInt64Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getUnderflowInt64OperationSpec
     ) as Promise<IntGetUnderflowInt64Response>;
   }
@@ -139,11 +139,12 @@ export class Int {
     intBody: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options: operationOptions },
+      operationArguments,
       putMax32OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -157,11 +158,12 @@ export class Int {
     intBody: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options: operationOptions },
+      operationArguments,
       putMax64OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -175,11 +177,12 @@ export class Int {
     intBody: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options: operationOptions },
+      operationArguments,
       putMin32OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -193,11 +196,12 @@ export class Int {
     intBody: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options: operationOptions },
+      operationArguments,
       putMin64OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -209,11 +213,11 @@ export class Int {
   getUnixTime(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetUnixTimeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getUnixTimeOperationSpec
     ) as Promise<IntGetUnixTimeResponse>;
   }
@@ -227,11 +231,12 @@ export class Int {
     intBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options: operationOptions },
+      operationArguments,
       putUnixTimeDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -243,11 +248,11 @@ export class Int {
   getInvalidUnixTime(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetInvalidUnixTimeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidUnixTimeOperationSpec
     ) as Promise<IntGetInvalidUnixTimeResponse>;
   }
@@ -259,11 +264,11 @@ export class Int {
   getNullUnixTime(
     options?: coreHttp.OperationOptions
   ): Promise<IntGetNullUnixTimeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullUnixTimeOperationSpec
     ) as Promise<IntGetNullUnixTimeResponse>;
   }

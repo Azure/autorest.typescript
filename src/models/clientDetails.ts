@@ -28,4 +28,5 @@ export interface ClientDetails {
   options: ClientOptions;
   endpoint: EndpointDetails;
   srcPath?: string;
+  enableTracing?: boolean;
 }

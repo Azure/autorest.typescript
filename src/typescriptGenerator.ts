@@ -22,6 +22,7 @@ import { generateRollupConfig } from "./generators/static/rollupConfigFileGenera
 import { generateOperations } from "./generators/operationGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLROFiles } from "./generators/LROGenerator";
+import { generateTracingFile } from "./generators/tracingFileGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -55,8 +56,10 @@ export async function generateTypeScriptLibrary(
   const srcPath =
     ((await host.GetValue("source-code-folder-path")) as string) || "src";
 
+  const enableTracing = (await host.GetValue("enable-tracing")) || false;
   const clientDetails = await transformCodeModel(codeModel, host);
   clientDetails.srcPath = srcPath;
+  clientDetails.enableTracing = enableTracing;
 
   const packageName =
     (await host.GetValue("package-name")) || clientDetails.name;
@@ -91,6 +94,7 @@ export async function generateTypeScriptLibrary(
   generateParameters(clientDetails, project);
   generateIndexFile(clientDetails, project);
   await generateLROFiles(clientDetails, project);
+  generateTracingFile(clientDetails, packageDetails, project);
 
   const licenseHeader = `
 /*
