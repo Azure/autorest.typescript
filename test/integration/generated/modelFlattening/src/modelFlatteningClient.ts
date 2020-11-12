@@ -194,6 +194,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
     options?: ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
   ): Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse> {
     const operationArguments: coreHttp.OperationArguments = {
+      productId,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.sendOperationRequest(
