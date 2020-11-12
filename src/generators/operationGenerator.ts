@@ -918,23 +918,29 @@ function writeNoOverloadsOperationBody(
 
   const operationSpecName = `${operation.name}OperationSpec`;
 
+  // Convert OperationOptions to RequestBaseOptions
+  // In LRO we have a couple extra properties to add that's why we use
+  // the private getOperationOptions function instead of the one in core-http
   const toOptionsBase = operation.isLRO
     ? `this.getOperationOptions(options, "${finalStateVia}")`
     : `coreHttp.operationOptionsToRequestOptionsBase(options || {})`;
 
-  let options = clientDetails.enableTracing ? "updatedOptions" : toOptionsBase;
+  let options = toOptionsBase;
+
+  if (clientDetails.enableTracing) {
+    const operationName = operationMethod.getName();
+    operationMethod.addStatements([
+      getTracingSpanStatement(clientDetails, operationName, toOptionsBase)
+    ]);
+    // Options from createSpan should be used as operation options, updating
+    options = "updatedOptions";
+  }
 
   const sendParams = parameterDeclarations
     .map(p => (p.name === "options" ? `options: ${options}` : p.name))
     .join(",");
 
-  if (clientDetails.enableTracing) {
-    const operationName = operationMethod.getName();
-    operationMethod.addStatements([
-      `const { span, updatedOptions } = createSpan("${clientDetails.className}-${operationName}", ${toOptionsBase});`
-    ]);
-  }
-
+  // Create an object to hold all the arguments for send request
   operationMethod.addStatements(
     `const operationArguments: coreHttp.OperationArguments = {${sendParams}}`
   );
@@ -957,6 +963,14 @@ function writeNoOverloadsOperationBody(
       isInline
     );
   }
+}
+
+function getTracingSpanStatement(
+  clientDetails: ClientDetails,
+  operationName: string,
+  options: string
+) {
+  return `const { span, updatedOptions } = createSpan("${clientDetails.className}-${operationName}", ${options});`;
 }
 
 function writeSendOperationRequest(
@@ -1111,7 +1125,7 @@ function writeMultiMediaTypeOperationBody(
   if (clientDetails.enableTracing) {
     const operationName = operationMethod.getName();
     operationMethod.addStatements([
-      `const { span, updatedOptions } = createSpan("${clientDetails.className}-${operationName}", ${toOptionsBase});`,
+      getTracingSpanStatement(clientDetails, operationName, toOptionsBase),
       `operationArguments.options = updatedOptions;`
     ]);
   } else {
