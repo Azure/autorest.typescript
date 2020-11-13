@@ -35,11 +35,11 @@ export class Domains {
    * @param options The options parameters.
    */
   list(options?: DomainsListOptionalParams): Promise<DomainsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DomainsListResponse>;
   }
@@ -53,11 +53,12 @@ export class Domains {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { domainName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DomainsGetResponse>;
   }

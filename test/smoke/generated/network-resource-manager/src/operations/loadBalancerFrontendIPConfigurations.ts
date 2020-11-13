@@ -41,11 +41,13 @@ export class LoadBalancerFrontendIPConfigurations {
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerFrontendIPConfigurationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, loadBalancerName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<LoadBalancerFrontendIPConfigurationsListResponse>;
   }
@@ -63,16 +65,14 @@ export class LoadBalancerFrontendIPConfigurations {
     frontendIPConfigurationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerFrontendIPConfigurationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      frontendIPConfigurationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        frontendIPConfigurationName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<LoadBalancerFrontendIPConfigurationsGetResponse>;
   }
@@ -90,16 +90,14 @@ export class LoadBalancerFrontendIPConfigurations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerFrontendIPConfigurationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<LoadBalancerFrontendIPConfigurationsListNextResponse>;
   }

@@ -49,11 +49,12 @@ export class ServicePrincipals {
     parameters: ServicePrincipalCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<ServicePrincipalsCreateResponse>;
   }
@@ -65,11 +66,11 @@ export class ServicePrincipals {
   list(
     options?: ServicePrincipalsListOptionalParams
   ): Promise<ServicePrincipalsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ServicePrincipalsListResponse>;
   }
@@ -85,11 +86,13 @@ export class ServicePrincipals {
     parameters: ServicePrincipalBase,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -103,11 +106,12 @@ export class ServicePrincipals {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -122,11 +126,12 @@ export class ServicePrincipals {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServicePrincipalsGetResponse>;
   }
@@ -140,11 +145,12 @@ export class ServicePrincipals {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListOwnersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       listOwnersOperationSpec
     ) as Promise<ServicePrincipalsListOwnersResponse>;
   }
@@ -158,11 +164,12 @@ export class ServicePrincipals {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListKeyCredentialsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       listKeyCredentialsOperationSpec
     ) as Promise<ServicePrincipalsListKeyCredentialsResponse>;
   }
@@ -178,11 +185,13 @@ export class ServicePrincipals {
     parameters: KeyCredentialsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       updateKeyCredentialsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -196,11 +205,12 @@ export class ServicePrincipals {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListPasswordCredentialsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       listPasswordCredentialsOperationSpec
     ) as Promise<ServicePrincipalsListPasswordCredentialsResponse>;
   }
@@ -216,11 +226,13 @@ export class ServicePrincipals {
     parameters: PasswordCredentialsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       updatePasswordCredentialsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -234,11 +246,12 @@ export class ServicePrincipals {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ServicePrincipalsListNextResponse>;
   }
@@ -254,11 +267,13 @@ export class ServicePrincipals {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListOwnersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, nextLink, options: operationOptions },
+      operationArguments,
       listOwnersNextOperationSpec
     ) as Promise<ServicePrincipalsListOwnersNextResponse>;
   }

@@ -22,6 +22,8 @@ import { generateRollupConfig } from "./generators/static/rollupConfigFileGenera
 import { generateOperations } from "./generators/operationGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLROFiles } from "./generators/LROGenerator";
+import { generateTracingFile } from "./generators/tracingFileGenerator";
+import { TracingInfo } from "./models/clientDetails";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -58,6 +60,8 @@ export async function generateTypeScriptLibrary(
   const clientDetails = await transformCodeModel(codeModel, host);
   clientDetails.srcPath = srcPath;
 
+  clientDetails.tracing = await getTracingInfo(host);
+
   const packageName =
     (await host.GetValue("package-name")) || clientDetails.name;
   const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
@@ -91,6 +95,7 @@ export async function generateTypeScriptLibrary(
   generateParameters(clientDetails, project);
   generateIndexFile(clientDetails, project);
   await generateLROFiles(clientDetails, project);
+  generateTracingFile(clientDetails, project);
 
   const licenseHeader = `
 /*
@@ -132,4 +137,33 @@ export async function generateTypeScriptLibrary(
       fileContents
     );
   }
+}
+
+async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
+  const tracing: TracingInfo | undefined =
+    (await host.GetValue("tracing-info")) || undefined;
+
+  if (tracing && tracing.namespace && tracing.packagePrefix) {
+    return tracing;
+  }
+
+  const namespace =
+    (await host.GetValue("tracing-info.namespace")) || undefined;
+  const packagePrefix =
+    (await host.GetValue("tracing-info.packagePrefix")) || undefined;
+
+  if (packagePrefix && namespace) {
+    return {
+      namespace,
+      packagePrefix
+    };
+  }
+
+  if (!tracing && !packagePrefix && !namespace) {
+    return undefined;
+  }
+
+  throw new Error(
+    "Invalid tracing-info. Make sure that namespace and packagePrefix are defined"
+  );
 }

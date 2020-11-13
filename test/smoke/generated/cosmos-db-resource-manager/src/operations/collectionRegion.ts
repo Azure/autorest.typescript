@@ -48,19 +48,17 @@ export class CollectionRegion {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<CollectionRegionListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      region,
+      databaseRid,
+      collectionRid,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        region,
-        databaseRid,
-        collectionRid,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<CollectionRegionListMetricsResponse>;
   }

@@ -33,11 +33,12 @@ export class RegexConstraint extends RegexConstraintContext {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RegexConstraintApiV1ValueGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { serverName, options: operationOptions },
+      operationArguments,
       apiV1ValueGetOperationSpec
     ) as Promise<RegexConstraintApiV1ValueGetResponse>;
   }

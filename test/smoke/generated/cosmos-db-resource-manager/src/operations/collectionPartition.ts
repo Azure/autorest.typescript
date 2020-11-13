@@ -49,18 +49,16 @@ export class CollectionPartition {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<CollectionPartitionListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<CollectionPartitionListMetricsResponse>;
   }
@@ -80,17 +78,15 @@ export class CollectionPartition {
     collectionRid: string,
     options?: CollectionPartitionListUsagesOptionalParams
   ): Promise<CollectionPartitionListUsagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        options: operationOptions
-      },
+      operationArguments,
       listUsagesOperationSpec
     ) as Promise<CollectionPartitionListUsagesResponse>;
   }

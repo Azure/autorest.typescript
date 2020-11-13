@@ -32,11 +32,11 @@ export class Flattencomplex {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<FlattencomplexGetValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getValidOperationSpec
     ) as Promise<FlattencomplexGetValidResponse>;
   }

@@ -53,18 +53,16 @@ export class JobSteps {
     jobVersion: number,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsListByVersionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobVersion,
-        options: operationOptions
-      },
+      operationArguments,
       listByVersionOperationSpec
     ) as Promise<JobStepsListByVersionResponse>;
   }
@@ -89,19 +87,17 @@ export class JobSteps {
     stepName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsGetByVersionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      stepName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobVersion,
-        stepName,
-        options: operationOptions
-      },
+      operationArguments,
       getByVersionOperationSpec
     ) as Promise<JobStepsGetByVersionResponse>;
   }
@@ -122,17 +118,15 @@ export class JobSteps {
     jobName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsListByJobResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobOperationSpec
     ) as Promise<JobStepsListByJobResponse>;
   }
@@ -155,18 +149,16 @@ export class JobSteps {
     stepName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      stepName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        stepName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<JobStepsGetResponse>;
   }
@@ -191,19 +183,17 @@ export class JobSteps {
     parameters: JobStep,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      stepName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        stepName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<JobStepsCreateOrUpdateResponse>;
   }
@@ -226,18 +216,16 @@ export class JobSteps {
     stepName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      stepName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        stepName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -262,19 +250,17 @@ export class JobSteps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsListByVersionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobVersion,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByVersionNextOperationSpec
     ) as Promise<JobStepsListByVersionNextResponse>;
   }
@@ -297,18 +283,16 @@ export class JobSteps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepsListByJobNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobNextOperationSpec
     ) as Promise<JobStepsListByJobNextResponse>;
   }

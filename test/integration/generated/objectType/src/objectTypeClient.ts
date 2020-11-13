@@ -31,11 +31,11 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   get(
     options?: coreHttp.OperationOptions
   ): Promise<ObjectTypeClientGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ObjectTypeClientGetResponse>;
   }
@@ -50,11 +50,12 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
     putObject: any,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      putObject,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { putObject, options: operationOptions },
+      operationArguments,
       putOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

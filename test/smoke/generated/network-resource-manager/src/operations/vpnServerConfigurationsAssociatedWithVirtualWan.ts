@@ -40,15 +40,10 @@ export class VpnServerConfigurationsAssociatedWithVirtualWan {
   ): Promise<
     LROPoller<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualWANName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -57,10 +52,12 @@ export class VpnServerConfigurationsAssociatedWithVirtualWan {
       this.client.sendOperationRequest(args, spec) as Promise<
         VpnServerConfigurationsAssociatedWithVirtualWanListResponse
       >;
-    const initialOperationResult = await sendOperation(args, listOperationSpec);
-
+    const initialOperationResult = await sendOperation(
+      operationArguments,
+      listOperationSpec
+    );
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listOperationSpec,
       initialOperationResult,
       sendOperation,

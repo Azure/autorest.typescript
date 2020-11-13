@@ -50,11 +50,13 @@ export class PolicyDefinitions {
     parameters: PolicyDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<PolicyDefinitionsCreateOrUpdateResponse>;
   }
@@ -68,11 +70,12 @@ export class PolicyDefinitions {
     policyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -86,11 +89,12 @@ export class PolicyDefinitions {
     policyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PolicyDefinitionsGetResponse>;
   }
@@ -104,11 +108,12 @@ export class PolicyDefinitions {
     policyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsGetBuiltInResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, options: operationOptions },
+      operationArguments,
       getBuiltInOperationSpec
     ) as Promise<PolicyDefinitionsGetBuiltInResponse>;
   }
@@ -127,16 +132,14 @@ export class PolicyDefinitions {
     parameters: PolicyDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      managementGroupId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        policyDefinitionName,
-        managementGroupId,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateAtManagementGroupOperationSpec
     ) as Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse>;
   }
@@ -152,11 +155,13 @@ export class PolicyDefinitions {
     managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      managementGroupId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, managementGroupId, options: operationOptions },
+      operationArguments,
       deleteAtManagementGroupOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -172,11 +177,13 @@ export class PolicyDefinitions {
     managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsGetAtManagementGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyDefinitionName,
+      managementGroupId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyDefinitionName, managementGroupId, options: operationOptions },
+      operationArguments,
       getAtManagementGroupOperationSpec
     ) as Promise<PolicyDefinitionsGetAtManagementGroupResponse>;
   }
@@ -188,11 +195,11 @@ export class PolicyDefinitions {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PolicyDefinitionsListResponse>;
   }
@@ -204,11 +211,11 @@ export class PolicyDefinitions {
   listBuiltIn(
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListBuiltInResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBuiltInOperationSpec
     ) as Promise<PolicyDefinitionsListBuiltInResponse>;
   }
@@ -222,11 +229,12 @@ export class PolicyDefinitions {
     managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListByManagementGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      managementGroupId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { managementGroupId, options: operationOptions },
+      operationArguments,
       listByManagementGroupOperationSpec
     ) as Promise<PolicyDefinitionsListByManagementGroupResponse>;
   }
@@ -240,11 +248,12 @@ export class PolicyDefinitions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PolicyDefinitionsListNextResponse>;
   }
@@ -258,11 +267,12 @@ export class PolicyDefinitions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListBuiltInNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBuiltInNextOperationSpec
     ) as Promise<PolicyDefinitionsListBuiltInNextResponse>;
   }
@@ -278,11 +288,13 @@ export class PolicyDefinitions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListByManagementGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      managementGroupId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { managementGroupId, nextLink, options: operationOptions },
+      operationArguments,
       listByManagementGroupNextOperationSpec
     ) as Promise<PolicyDefinitionsListByManagementGroupNextResponse>;
   }

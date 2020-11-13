@@ -53,16 +53,12 @@ export class GalleryApplications {
     galleryApplication: GalleryApplication,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
       galleryApplicationName,
       galleryApplication,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -72,12 +68,11 @@ export class GalleryApplications {
         GalleryApplicationsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -102,16 +97,12 @@ export class GalleryApplications {
     galleryApplication: GalleryApplicationUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
       galleryApplicationName,
       galleryApplication,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -121,12 +112,11 @@ export class GalleryApplications {
         GalleryApplicationsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -147,16 +137,14 @@ export class GalleryApplications {
     galleryApplicationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GalleryApplicationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        galleryName,
-        galleryApplicationName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<GalleryApplicationsGetResponse>;
   }
@@ -175,15 +163,11 @@ export class GalleryApplications {
     galleryApplicationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
       galleryApplicationName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -193,12 +177,11 @@ export class GalleryApplications {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -217,11 +200,13 @@ export class GalleryApplications {
     galleryName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GalleryApplicationsListByGalleryResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      galleryName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, options: operationOptions },
+      operationArguments,
       listByGalleryOperationSpec
     ) as Promise<GalleryApplicationsListByGalleryResponse>;
   }
@@ -240,11 +225,14 @@ export class GalleryApplications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GalleryApplicationsListByGalleryNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      galleryName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, nextLink, options: operationOptions },
+      operationArguments,
       listByGalleryNextOperationSpec
     ) as Promise<GalleryApplicationsListByGalleryNextResponse>;
   }

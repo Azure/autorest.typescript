@@ -69,11 +69,14 @@ export class ManagementLocks {
     parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      lockName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, lockName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateAtResourceGroupLevelOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
   }
@@ -91,11 +94,13 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, lockName, options: operationOptions },
+      operationArguments,
       deleteAtResourceGroupLevelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -111,11 +116,13 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetAtResourceGroupLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, lockName, options: operationOptions },
+      operationArguments,
       getAtResourceGroupLevelOperationSpec
     ) as Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
   }
@@ -137,11 +144,14 @@ export class ManagementLocks {
     parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      lockName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, lockName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateByScopeOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
   }
@@ -157,11 +167,13 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, lockName, options: operationOptions },
+      operationArguments,
       deleteByScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -177,11 +189,13 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetByScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, lockName, options: operationOptions },
+      operationArguments,
       getByScopeOperationSpec
     ) as Promise<ManagementLocksGetByScopeResponse>;
   }
@@ -211,20 +225,18 @@ export class ManagementLocks {
     parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      lockName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        lockName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateAtResourceLevelOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
   }
@@ -252,19 +264,17 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        lockName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteAtResourceLevelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -288,19 +298,17 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetAtResourceLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        lockName,
-        options: operationOptions
-      },
+      operationArguments,
       getAtResourceLevelOperationSpec
     ) as Promise<ManagementLocksGetAtResourceLevelResponse>;
   }
@@ -320,11 +328,13 @@ export class ManagementLocks {
     parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      lockName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { lockName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateAtSubscriptionLevelOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
   }
@@ -340,11 +350,12 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { lockName, options: operationOptions },
+      operationArguments,
       deleteAtSubscriptionLevelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -358,11 +369,12 @@ export class ManagementLocks {
     lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetAtSubscriptionLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      lockName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { lockName, options: operationOptions },
+      operationArguments,
       getAtSubscriptionLevelOperationSpec
     ) as Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
   }
@@ -376,11 +388,12 @@ export class ManagementLocks {
     resourceGroupName: string,
     options?: ManagementLocksListAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksListAtResourceGroupLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listAtResourceGroupLevelOperationSpec
     ) as Promise<ManagementLocksListAtResourceGroupLevelResponse>;
   }
@@ -403,18 +416,16 @@ export class ManagementLocks {
     resourceName: string,
     options?: ManagementLocksListAtResourceLevelOptionalParams
   ): Promise<ManagementLocksListAtResourceLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        options: operationOptions
-      },
+      operationArguments,
       listAtResourceLevelOperationSpec
     ) as Promise<ManagementLocksListAtResourceLevelResponse>;
   }
@@ -426,11 +437,11 @@ export class ManagementLocks {
   listAtSubscriptionLevel(
     options?: ManagementLocksListAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAtSubscriptionLevelOperationSpec
     ) as Promise<ManagementLocksListAtSubscriptionLevelResponse>;
   }
@@ -448,11 +459,12 @@ export class ManagementLocks {
     scope: string,
     options?: ManagementLocksListByScopeOptionalParams
   ): Promise<ManagementLocksListByScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, options: operationOptions },
+      operationArguments,
       listByScopeOperationSpec
     ) as Promise<ManagementLocksListByScopeResponse>;
   }
@@ -469,11 +481,13 @@ export class ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtResourceGroupLevelNextOptionalParams
   ): Promise<ManagementLocksListAtResourceGroupLevelNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listAtResourceGroupLevelNextOperationSpec
     ) as Promise<ManagementLocksListAtResourceGroupLevelNextResponse>;
   }
@@ -498,19 +512,17 @@ export class ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtResourceLevelNextOptionalParams
   ): Promise<ManagementLocksListAtResourceLevelNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listAtResourceLevelNextOperationSpec
     ) as Promise<ManagementLocksListAtResourceLevelNextResponse>;
   }
@@ -525,11 +537,12 @@ export class ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtSubscriptionLevelNextOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAtSubscriptionLevelNextOperationSpec
     ) as Promise<ManagementLocksListAtSubscriptionLevelNextResponse>;
   }
@@ -549,11 +562,13 @@ export class ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListByScopeNextOptionalParams
   ): Promise<ManagementLocksListByScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, nextLink, options: operationOptions },
+      operationArguments,
       listByScopeNextOperationSpec
     ) as Promise<ManagementLocksListByScopeNextResponse>;
   }

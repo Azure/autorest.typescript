@@ -41,11 +41,13 @@ export class NetworkInterfaceIPConfigurations {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceIPConfigurationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkInterfaceName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkInterfaceIPConfigurationsListResponse>;
   }
@@ -63,16 +65,14 @@ export class NetworkInterfaceIPConfigurations {
     ipConfigurationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceIPConfigurationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      ipConfigurationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        ipConfigurationName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkInterfaceIPConfigurationsGetResponse>;
   }
@@ -90,16 +90,14 @@ export class NetworkInterfaceIPConfigurations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceIPConfigurationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkInterfaceIPConfigurationsListNextResponse>;
   }

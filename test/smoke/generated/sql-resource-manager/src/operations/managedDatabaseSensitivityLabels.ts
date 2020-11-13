@@ -61,20 +61,18 @@ export class ManagedDatabaseSensitivityLabels {
     sensitivityLabelSource: SensitivityLabelSource,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSensitivityLabelsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      sensitivityLabelSource,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        sensitivityLabelSource,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
   }
@@ -101,20 +99,18 @@ export class ManagedDatabaseSensitivityLabels {
     parameters: SensitivityLabel,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
   }
@@ -139,19 +135,17 @@ export class ManagedDatabaseSensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -176,19 +170,17 @@ export class ManagedDatabaseSensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       disableRecommendationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -214,19 +206,17 @@ export class ManagedDatabaseSensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       enableRecommendationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -245,16 +235,14 @@ export class ManagedDatabaseSensitivityLabels {
     databaseName: string,
     options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listCurrentByDatabaseOperationSpec
     ) as Promise<ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse>;
   }
@@ -275,16 +263,14 @@ export class ManagedDatabaseSensitivityLabels {
   ): Promise<
     ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listRecommendedByDatabaseOperationSpec
     ) as Promise<
       ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse
@@ -309,17 +295,15 @@ export class ManagedDatabaseSensitivityLabels {
   ): Promise<
     ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listCurrentByDatabaseNextOperationSpec
     ) as Promise<
       ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse
@@ -345,17 +329,15 @@ export class ManagedDatabaseSensitivityLabels {
   ): Promise<
     ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listRecommendedByDatabaseNextOperationSpec
     ) as Promise<
       ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse

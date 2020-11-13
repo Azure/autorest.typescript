@@ -48,17 +48,15 @@ export class Database {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<DatabaseListMetricsResponse>;
   }
@@ -76,16 +74,14 @@ export class Database {
     databaseRid: string,
     options?: DatabaseListUsagesOptionalParams
   ): Promise<DatabaseListUsagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        options: operationOptions
-      },
+      operationArguments,
       listUsagesOperationSpec
     ) as Promise<DatabaseListUsagesResponse>;
   }
@@ -103,16 +99,14 @@ export class Database {
     databaseRid: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseListMetricDefinitionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricDefinitionsOperationSpec
     ) as Promise<DatabaseListMetricDefinitionsResponse>;
   }

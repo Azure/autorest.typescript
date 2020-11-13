@@ -36,11 +36,11 @@ export class NoMappersClient extends NoMappersClientContext {
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<NoMappersClientApiV1ValueGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       apiV1ValueGetOperationSpec
     ) as Promise<NoMappersClientApiV1ValueGetResponse>;
   }

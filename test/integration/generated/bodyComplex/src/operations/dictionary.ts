@@ -39,11 +39,11 @@ export class Dictionary {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<DictionaryGetValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getValidOperationSpec
     ) as Promise<DictionaryGetValidResponse>;
   }
@@ -58,11 +58,12 @@ export class Dictionary {
     complexBody: DictionaryWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -74,11 +75,11 @@ export class Dictionary {
   getEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<DictionaryGetEmptyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyOperationSpec
     ) as Promise<DictionaryGetEmptyResponse>;
   }
@@ -92,11 +93,12 @@ export class Dictionary {
     complexBody: DictionaryWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -108,11 +110,11 @@ export class Dictionary {
   getNull(
     options?: coreHttp.OperationOptions
   ): Promise<DictionaryGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<DictionaryGetNullResponse>;
   }
@@ -124,11 +126,11 @@ export class Dictionary {
   getNotProvided(
     options?: coreHttp.OperationOptions
   ): Promise<DictionaryGetNotProvidedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNotProvidedOperationSpec
     ) as Promise<DictionaryGetNotProvidedResponse>;
   }

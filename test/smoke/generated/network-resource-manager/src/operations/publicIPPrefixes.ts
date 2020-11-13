@@ -49,15 +49,10 @@ export class PublicIPPrefixes {
     publicIpPrefixName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpPrefixName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -67,12 +62,11 @@ export class PublicIPPrefixes {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,11 +85,13 @@ export class PublicIPPrefixes {
     publicIpPrefixName: string,
     options?: PublicIPPrefixesGetOptionalParams
   ): Promise<PublicIPPrefixesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      publicIpPrefixName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, publicIpPrefixName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PublicIPPrefixesGetResponse>;
   }
@@ -113,16 +109,11 @@ export class PublicIPPrefixes {
     parameters: PublicIPPrefix,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PublicIPPrefixesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpPrefixName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -132,12 +123,11 @@ export class PublicIPPrefixes {
         PublicIPPrefixesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -158,16 +148,14 @@ export class PublicIPPrefixes {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPPrefixesUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      publicIpPrefixName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        publicIpPrefixName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<PublicIPPrefixesUpdateTagsResponse>;
   }
@@ -179,11 +167,11 @@ export class PublicIPPrefixes {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPPrefixesListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<PublicIPPrefixesListAllResponse>;
   }
@@ -197,11 +185,12 @@ export class PublicIPPrefixes {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPPrefixesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PublicIPPrefixesListResponse>;
   }
@@ -215,11 +204,12 @@ export class PublicIPPrefixes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPPrefixesListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<PublicIPPrefixesListAllNextResponse>;
   }
@@ -235,11 +225,13 @@ export class PublicIPPrefixes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPPrefixesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PublicIPPrefixesListNextResponse>;
   }

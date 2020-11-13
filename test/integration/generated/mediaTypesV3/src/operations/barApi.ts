@@ -37,11 +37,12 @@ export class BarApi {
     data: string,
     options?: BarApiPostSendOnDefaultOptionalParams
   ): Promise<BarApiPostSendOnDefaultResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      data,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { data, options: operationOptions },
+      operationArguments,
       postSendOnDefaultOperationSpec
     ) as Promise<BarApiPostSendOnDefaultResponse>;
   }

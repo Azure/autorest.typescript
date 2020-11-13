@@ -43,16 +43,14 @@ export class ExpressRouteLinks {
     linkName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteLinksGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      expressRoutePortName,
+      linkName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        expressRoutePortName,
-        linkName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteLinksGetResponse>;
   }
@@ -68,11 +66,13 @@ export class ExpressRouteLinks {
     expressRoutePortName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteLinksListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      expressRoutePortName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, expressRoutePortName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteLinksListResponse>;
   }
@@ -90,16 +90,14 @@ export class ExpressRouteLinks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteLinksListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      expressRoutePortName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        expressRoutePortName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteLinksListNextResponse>;
   }

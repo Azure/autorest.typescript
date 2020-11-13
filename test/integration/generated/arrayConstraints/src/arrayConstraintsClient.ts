@@ -44,11 +44,12 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
     arrayBody: Product[],
     options?: ArrayConstraintsClientPostValueOptionalParams
   ): Promise<ArrayConstraintsClientPostValueResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { arrayBody, options: operationOptions },
+      operationArguments,
       postValueOperationSpec
     ) as Promise<ArrayConstraintsClientPostValueResponse>;
   }
@@ -59,11 +60,11 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
   apiV1ValueGet(
     options?: ArrayConstraintsClientApiV1ValueGetOptionalParams
   ): Promise<ArrayConstraintsClientApiV1ValueGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       apiV1ValueGetOperationSpec
     ) as Promise<ArrayConstraintsClientApiV1ValueGetResponse>;
   }

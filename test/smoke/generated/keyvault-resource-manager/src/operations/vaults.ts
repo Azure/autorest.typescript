@@ -66,15 +66,11 @@ export class Vaults {
     parameters: VaultCreateOrUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VaultsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vaultName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -84,12 +80,11 @@ export class Vaults {
         VaultsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -109,11 +104,14 @@ export class Vaults {
     parameters: VaultPatchParameters,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vaultName, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<VaultsUpdateResponse>;
   }
@@ -129,11 +127,13 @@ export class Vaults {
     vaultName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vaultName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -149,11 +149,13 @@ export class Vaults {
     vaultName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vaultName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<VaultsGetResponse>;
   }
@@ -173,17 +175,15 @@ export class Vaults {
     parameters: VaultAccessPolicyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsUpdateAccessPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      operationKind,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vaultName,
-        operationKind,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateAccessPolicyOperationSpec
     ) as Promise<VaultsUpdateAccessPolicyResponse>;
   }
@@ -198,11 +198,12 @@ export class Vaults {
     resourceGroupName: string,
     options?: VaultsListByResourceGroupOptionalParams
   ): Promise<VaultsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<VaultsListByResourceGroupResponse>;
   }
@@ -214,11 +215,11 @@ export class Vaults {
   listBySubscription(
     options?: VaultsListBySubscriptionOptionalParams
   ): Promise<VaultsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<VaultsListBySubscriptionResponse>;
   }
@@ -230,11 +231,11 @@ export class Vaults {
   listDeleted(
     options?: coreHttp.OperationOptions
   ): Promise<VaultsListDeletedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listDeletedOperationSpec
     ) as Promise<VaultsListDeletedResponse>;
   }
@@ -250,11 +251,13 @@ export class Vaults {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsGetDeletedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      vaultName,
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { vaultName, location, options: operationOptions },
+      operationArguments,
       getDeletedOperationSpec
     ) as Promise<VaultsGetDeletedResponse>;
   }
@@ -270,14 +273,10 @@ export class Vaults {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       vaultName,
       location,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -287,12 +286,11 @@ export class Vaults {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       purgeDeletedOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: purgeDeletedOperationSpec,
       initialOperationResult,
       sendOperation
@@ -304,11 +302,11 @@ export class Vaults {
    * @param options The options parameters.
    */
   list(options?: VaultsListOptionalParams): Promise<VaultsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VaultsListResponse>;
   }
@@ -322,11 +320,12 @@ export class Vaults {
     vaultName: VaultCheckNameAvailabilityParameters,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsCheckNameAvailabilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      vaultName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { vaultName, options: operationOptions },
+      operationArguments,
       checkNameAvailabilityOperationSpec
     ) as Promise<VaultsCheckNameAvailabilityResponse>;
   }
@@ -342,11 +341,13 @@ export class Vaults {
     nextLink: string,
     options?: VaultsListByResourceGroupNextOptionalParams
   ): Promise<VaultsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<VaultsListByResourceGroupNextResponse>;
   }
@@ -360,11 +361,12 @@ export class Vaults {
     nextLink: string,
     options?: VaultsListBySubscriptionNextOptionalParams
   ): Promise<VaultsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<VaultsListBySubscriptionNextResponse>;
   }
@@ -378,11 +380,12 @@ export class Vaults {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsListDeletedNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listDeletedNextOperationSpec
     ) as Promise<VaultsListDeletedNextResponse>;
   }
@@ -396,11 +399,12 @@ export class Vaults {
     nextLink: string,
     options?: VaultsListNextOptionalParams
   ): Promise<VaultsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VaultsListNextResponse>;
   }

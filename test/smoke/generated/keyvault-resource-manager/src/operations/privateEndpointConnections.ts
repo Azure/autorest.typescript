@@ -46,16 +46,14 @@ export class PrivateEndpointConnections {
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      privateEndpointConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vaultName,
-        privateEndpointConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateEndpointConnectionsGetResponse>;
   }
@@ -76,17 +74,15 @@ export class PrivateEndpointConnections {
     properties: PrivateEndpointConnection,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointConnectionsPutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      privateEndpointConnectionName,
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vaultName,
-        privateEndpointConnectionName,
-        properties,
-        options: operationOptions
-      },
+      operationArguments,
       putOperationSpec
     ) as Promise<PrivateEndpointConnectionsPutResponse>;
   }
@@ -105,15 +101,11 @@ export class PrivateEndpointConnections {
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PrivateEndpointConnectionsDeleteResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vaultName,
       privateEndpointConnectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -123,12 +115,11 @@ export class PrivateEndpointConnections {
         PrivateEndpointConnectionsDeleteResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation

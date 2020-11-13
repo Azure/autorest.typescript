@@ -41,11 +41,13 @@ export class LoadBalancerProbes {
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerProbesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, loadBalancerName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<LoadBalancerProbesListResponse>;
   }
@@ -63,16 +65,14 @@ export class LoadBalancerProbes {
     probeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerProbesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      probeName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        probeName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<LoadBalancerProbesGetResponse>;
   }
@@ -90,16 +90,14 @@ export class LoadBalancerProbes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerProbesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<LoadBalancerProbesListNextResponse>;
   }

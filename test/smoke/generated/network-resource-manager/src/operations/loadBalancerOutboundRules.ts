@@ -41,11 +41,13 @@ export class LoadBalancerOutboundRules {
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerOutboundRulesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, loadBalancerName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<LoadBalancerOutboundRulesListResponse>;
   }
@@ -63,16 +65,14 @@ export class LoadBalancerOutboundRules {
     outboundRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerOutboundRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      outboundRuleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        outboundRuleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<LoadBalancerOutboundRulesGetResponse>;
   }
@@ -90,16 +90,14 @@ export class LoadBalancerOutboundRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerOutboundRulesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<LoadBalancerOutboundRulesListNextResponse>;
   }

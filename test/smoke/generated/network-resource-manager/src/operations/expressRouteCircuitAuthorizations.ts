@@ -46,16 +46,11 @@ export class ExpressRouteCircuitAuthorizations {
     authorizationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
       authorizationName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class ExpressRouteCircuitAuthorizations {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class ExpressRouteCircuitAuthorizations {
     authorizationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitAuthorizationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      authorizationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        circuitName,
-        authorizationName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
   }
@@ -123,17 +115,12 @@ export class ExpressRouteCircuitAuthorizations {
   ): Promise<
     LROPoller<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
       authorizationName,
       authorizationParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +130,11 @@ export class ExpressRouteCircuitAuthorizations {
         ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -167,11 +153,13 @@ export class ExpressRouteCircuitAuthorizations {
     circuitName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitAuthorizationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, circuitName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteCircuitAuthorizationsListResponse>;
   }
@@ -189,11 +177,14 @@ export class ExpressRouteCircuitAuthorizations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitAuthorizationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, circuitName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteCircuitAuthorizationsListNextResponse>;
   }

@@ -45,11 +45,12 @@ export class Users {
     parameters: UserCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<UsersCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<UsersCreateResponse>;
   }
@@ -59,11 +60,11 @@ export class Users {
    * @param options The options parameters.
    */
   list(options?: UsersListOptionalParams): Promise<UsersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<UsersListResponse>;
   }
@@ -77,11 +78,12 @@ export class Users {
     upnOrObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      upnOrObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { upnOrObjectId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<UsersGetResponse>;
   }
@@ -97,11 +99,13 @@ export class Users {
     parameters: UserUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      upnOrObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { upnOrObjectId, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -115,11 +119,12 @@ export class Users {
     upnOrObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      upnOrObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { upnOrObjectId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -135,11 +140,13 @@ export class Users {
     parameters: UserGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<UsersGetMemberGroupsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       getMemberGroupsOperationSpec
     ) as Promise<UsersGetMemberGroupsResponse>;
   }
@@ -153,11 +160,12 @@ export class Users {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<UsersListNextResponse>;
   }

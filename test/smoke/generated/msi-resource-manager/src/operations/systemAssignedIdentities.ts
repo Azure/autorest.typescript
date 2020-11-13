@@ -36,11 +36,12 @@ export class SystemAssignedIdentities {
     scope: string,
     options?: coreHttp.OperationOptions
   ): Promise<SystemAssignedIdentitiesGetByScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, options: operationOptions },
+      operationArguments,
       getByScopeOperationSpec
     ) as Promise<SystemAssignedIdentitiesGetByScopeResponse>;
   }

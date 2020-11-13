@@ -5,8 +5,7 @@ import {
   Project,
   PropertyDeclarationStructure,
   ClassDeclaration,
-  SourceFile,
-  CodeBlockWriter
+  SourceFile
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import {
@@ -14,23 +13,17 @@ import {
   writeOperations,
   writeGetOperationOptions
 } from "./operationGenerator";
-import {
-  getModelsName,
-  getMappersName,
-  normalizeName,
-  NameType
-} from "../utils/nameUtils";
+import { normalizeName, NameType } from "../utils/nameUtils";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { formatJsDocParam } from "./utils/parameterUtils";
 import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
+import { addTracingOperationImports } from "./utils/tracingUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
-  const modelsName = getModelsName(clientDetails.className);
-  const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -95,6 +88,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   }
 
   if (hasInlineOperations && shouldImportParameters(clientDetails)) {
+    addTracingOperationImports(clientDetails, clientFile, ".");
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
       moduleSpecifier: "./models/parameters"
@@ -268,8 +262,8 @@ function writeClientOperations(
       topLevelGroup,
       classDeclaration,
       importedModels,
-      clientDetails.parameters,
       allModelsNames,
+      clientDetails,
       true // isInline,
     );
 

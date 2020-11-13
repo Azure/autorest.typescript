@@ -30,11 +30,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   head400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -44,11 +44,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -60,11 +60,11 @@ export class HttpClientFailure {
   options400(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -74,11 +74,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   put400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -90,11 +90,11 @@ export class HttpClientFailure {
   patch400(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -104,11 +104,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   post400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -120,11 +120,11 @@ export class HttpClientFailure {
   delete400(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete400OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -134,11 +134,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   head401(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head401OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -148,11 +148,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get402(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get402OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -164,11 +164,11 @@ export class HttpClientFailure {
   options403(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options403OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -178,11 +178,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get403(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get403OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -192,11 +192,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   put404(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put404OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -208,11 +208,11 @@ export class HttpClientFailure {
   patch405(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch405OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -222,11 +222,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   post406(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post406OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -238,11 +238,11 @@ export class HttpClientFailure {
   delete407(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete407OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -252,11 +252,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   put409(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put409OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -266,11 +266,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   head410(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head410OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -280,11 +280,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get411(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get411OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -296,11 +296,11 @@ export class HttpClientFailure {
   options412(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       options412OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -310,11 +310,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get412(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get412OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -324,11 +324,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   put413(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       put413OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -340,11 +340,11 @@ export class HttpClientFailure {
   patch414(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       patch414OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -354,11 +354,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   post415(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       post415OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -368,11 +368,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   get416(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get416OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -384,11 +384,11 @@ export class HttpClientFailure {
   delete417(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       delete417OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -398,11 +398,11 @@ export class HttpClientFailure {
    * @param options The options parameters.
    */
   head429(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       head429OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

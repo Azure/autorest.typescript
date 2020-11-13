@@ -36,11 +36,11 @@ export class Byte {
    * @param options The options parameters.
    */
   getNull(options?: coreHttp.OperationOptions): Promise<ByteGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<ByteGetNullResponse>;
   }
@@ -50,11 +50,11 @@ export class Byte {
    * @param options The options parameters.
    */
   getEmpty(options?: coreHttp.OperationOptions): Promise<ByteGetEmptyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyOperationSpec
     ) as Promise<ByteGetEmptyResponse>;
   }
@@ -66,11 +66,11 @@ export class Byte {
   getNonAscii(
     options?: coreHttp.OperationOptions
   ): Promise<ByteGetNonAsciiResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNonAsciiOperationSpec
     ) as Promise<ByteGetNonAsciiResponse>;
   }
@@ -84,11 +84,12 @@ export class Byte {
     byteBody: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      byteBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { byteBody, options: operationOptions },
+      operationArguments,
       putNonAsciiOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -100,11 +101,11 @@ export class Byte {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<ByteGetInvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidOperationSpec
     ) as Promise<ByteGetInvalidResponse>;
   }

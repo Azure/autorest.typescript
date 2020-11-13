@@ -44,11 +44,13 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options: operationOptions },
+      operationArguments,
       getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -66,11 +68,13 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options: operationOptions },
+      operationArguments,
       getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -88,11 +92,13 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options: operationOptions },
+      operationArguments,
       getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -110,11 +116,13 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options: operationOptions },
+      operationArguments,
       getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -40,11 +40,12 @@ export class Paging {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { accountName, options: operationOptions },
+      operationArguments,
       getPagesPartialUrlOperationSpec
     ) as Promise<PagingGetPagesPartialUrlResponse>;
   }
@@ -58,11 +59,12 @@ export class Paging {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlOperationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { accountName, options: operationOptions },
+      operationArguments,
       getPagesPartialUrlOperationOperationSpec
     ) as Promise<PagingGetPagesPartialUrlOperationResponse>;
   }
@@ -78,11 +80,13 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlOperationNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { accountName, nextLink, options: operationOptions },
+      operationArguments,
       getPagesPartialUrlOperationNextOperationSpec
     ) as Promise<PagingGetPagesPartialUrlOperationNextResponse>;
   }
@@ -98,11 +102,13 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { accountName, nextLink, options: operationOptions },
+      operationArguments,
       getPagesPartialUrlNextOperationSpec
     ) as Promise<PagingGetPagesPartialUrlNextResponse>;
   }

@@ -40,11 +40,13 @@ export class PrivateLinkResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesListByDatabaseAccountResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listByDatabaseAccountOperationSpec
     ) as Promise<PrivateLinkResourcesListByDatabaseAccountResponse>;
   }
@@ -62,11 +64,14 @@ export class PrivateLinkResources {
     groupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      groupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, groupName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateLinkResourcesGetResponse>;
   }

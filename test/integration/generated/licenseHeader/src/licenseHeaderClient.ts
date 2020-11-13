@@ -36,11 +36,11 @@ export class LicenseHeaderClient extends LicenseHeaderClientContext {
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<LicenseHeaderClientApiV1ValueGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       apiV1ValueGetOperationSpec
     ) as Promise<LicenseHeaderClientApiV1ValueGetResponse>;
   }

@@ -48,6 +48,8 @@ import {
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
 import { Mapper, ParameterPath } from "@azure/core-http";
+import { generateOperationJSDoc } from "./utils/docsUtils";
+import { addTracingOperationImports } from "./utils/tracingUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -531,8 +533,9 @@ function addClass(
     operationGroupDetails,
     operationGroupClass,
     importedModels,
-    clientDetails.parameters,
-    allModelsNames
+    allModelsNames,
+    clientDetails,
+    false /** isInline */
   );
 
   if (hasLROOperation(operationGroupDetails)) {
@@ -788,8 +791,8 @@ export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
   importedModels: Set<string>,
-  parameters: ParameterDetails[],
   modelNames: Set<string>,
+  clientDetails: ClientDetails,
   isInline = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
@@ -798,7 +801,7 @@ export function writeOperations(
       overloadParameterDeclarations
     } = getOperationParameterSignatures(
       operation,
-      parameters,
+      clientDetails.parameters,
       importedModels,
       operationGroupClass
     );
@@ -812,38 +815,94 @@ export function writeOperations(
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
       ],
-      isAsync: operation.isLRO
+      isAsync: operation.isLRO || Boolean(clientDetails.tracing)
     });
 
-    if (overloadParameterDeclarations.length === 1) {
-      writeNoOverloadsOperationBody(
-        operation,
-        responseName,
-        operationMethod,
-        overloadParameterDeclarations[0],
-        isInline
-      );
-      return;
-    }
-
-    for (const overload of overloadParameterDeclarations) {
-      operationMethod.addOverload({
-        parameters: overload,
-        returnType,
-        docs: [generateOperationJSDoc(overload, operation.description)]
-      });
-    }
-
-    // This condition implies that the user can specify a contentType,
-    // and this contentType can change how the request is serialized.
-    writeMultiMediaTypeOperationBody(
+    addOperationOverloads(
       operationMethod,
       operation,
       overloadParameterDeclarations,
+      returnType
+    );
+
+    writeOperationBody(
+      operationMethod,
+      operation,
+      overloadParameterDeclarations,
+      clientDetails,
       responseName,
       isInline
     );
   });
+}
+
+/**
+ * Writes the operation body
+ */
+function writeOperationBody(
+  generatedOperation: MethodDeclaration,
+  operationDetails: OperationDetails,
+  overloadDeclarations: OverloadDeclarations,
+  clientDetails: ClientDetails,
+  responseName: string,
+  isInline: boolean
+): void {
+  if (overloadDeclarations.length === 1) {
+    // No overloads
+    writeNoOverloadsOperationBody(
+      operationDetails,
+      responseName,
+      generatedOperation,
+      overloadDeclarations[0],
+      clientDetails,
+      isInline
+    );
+  } else {
+    // This condition implies that the user can specify a contentType,
+    // and this contentType can change how the request is serialized.
+    writeMultiMediaTypeOperationBody(
+      generatedOperation,
+      operationDetails,
+      overloadDeclarations,
+      responseName,
+      clientDetails,
+      isInline
+    );
+  }
+}
+
+type OverloadDeclarations = OptionalKind<
+  ParameterDeclarationStructure & {
+    description: string;
+    isContentType?: boolean | undefined;
+  }
+>[][];
+
+/**
+ * Adds any required overloads to a TSMorph method
+ * @param generatedOperation TsMorph method
+ * @param operationDetails  Operation Details extracted from the code model
+ * @param overloadDeclarations Available overloads
+ * @param returnType Return type for the generated operation
+ */
+function addOperationOverloads(
+  generatedOperation: MethodDeclaration,
+  operationDetails: OperationDetails,
+  overloadDeclarations: OverloadDeclarations,
+  returnType: string
+): void {
+  if (overloadDeclarations.length === 1) {
+    // We have a single method definition so no need for overloads
+    return;
+  }
+
+  for (const overload of overloadDeclarations) {
+    generatedOperation.addOverload({
+      parameters: overload,
+      returnType,
+      docs: [generateOperationJSDoc(overload, operationDetails.description)]
+    });
+  }
 }
 
 function writeNoOverloadsOperationBody(
@@ -851,27 +910,44 @@ function writeNoOverloadsOperationBody(
   responseName: string,
   operationMethod: MethodDeclaration,
   parameterDeclarations: ParameterWithDescription[],
+  clientDetails: ClientDetails,
   isInline: boolean
 ): void {
-  const sendParams = parameterDeclarations
-    .map(p => (p.name === "options" ? "options: operationOptions" : p.name))
-    .join(",");
-
   const finalStateVia =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
   const operationSpecName = `${operation.name}OperationSpec`;
 
-  const operationOptions = operation.isLRO
-    ? `const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options,
-      ${finalStateVia ? `"${finalStateVia}"` : ""});`
-    : `const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(options || {});`;
+  // Convert OperationOptions to RequestBaseOptions
+  // In LRO we have a couple extra properties to add that's why we use
+  // the private getOperationOptions function instead of the one in core-http
+  const toOptionsBase = operation.isLRO
+    ? `this.getOperationOptions(options, "${finalStateVia}")`
+    : `coreHttp.operationOptionsToRequestOptionsBase(options || {})`;
 
-  operationMethod.addStatements(operationOptions);
+  let options = toOptionsBase;
+
+  if (clientDetails.tracing) {
+    const operationName = operationMethod.getName();
+    operationMethod.addStatements([
+      getTracingSpanStatement(clientDetails, operationName, toOptionsBase)
+    ]);
+    // Options from createSpan should be used as operation options, updating
+    options = "updatedOptions";
+  }
+
+  const sendParams = parameterDeclarations
+    .map(p => (p.name === "options" ? `options: ${options}` : p.name))
+    .join(",");
+
+  // Create an object to hold all the arguments for send request
+  operationMethod.addStatements(
+    `const operationArguments: coreHttp.OperationArguments = {${sendParams}}`
+  );
 
   if (operation.isLRO) {
     writeLROOperationBody(
-      sendParams,
+      "operationArguments",
       responseName,
       operationSpecName,
       operationMethod,
@@ -879,46 +955,86 @@ function writeNoOverloadsOperationBody(
       isInline
     );
   } else {
+    writeSendOperationRequest(
+      responseName,
+      operationMethod,
+      operationSpecName,
+      clientDetails,
+      isInline
+    );
+  }
+}
+
+function getTracingSpanStatement(
+  clientDetails: ClientDetails,
+  operationName: string,
+  options: string
+) {
+  return `const { span, updatedOptions } = createSpan("${clientDetails.className}-${operationName}", ${options});`;
+}
+
+function writeSendOperationRequest(
+  responseName: string,
+  operationMethod: MethodDeclaration,
+  operationSpecName: string,
+  clientDetails: ClientDetails,
+  isInline = false
+) {
+  const client = isInline ? "" : ".client";
+  const sendRequestStatement = `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`;
+  if (!clientDetails.tracing) {
+    // If tracing is not enabled just return
     operationMethod.addStatements(
-      `return this${
-        isInline ? "" : ".client"
-      }.sendOperationRequest({${sendParams}${
-        !!sendParams ? "," : ""
-      }}, ${operationSpecName}) as Promise<${responseName}>`
+      `return ${sendRequestStatement} as Promise<${responseName}>`
+    );
+  } else {
+    // When tracing is enabled we want to report success and failures through OpenTelemetry
+    // so we create a span and mark it as succeeded or failed
+    operationMethod.addStatements(
+      `try {
+        const result = await ${sendRequestStatement}
+        return result as ${responseName};
+      } catch(error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+        throw error;
+      } finally {
+        span.end();
+      }`
     );
   }
 }
 
 function writeLROOperationBody(
-  sendParams: string,
+  operationParamsName: string,
   responseName: string,
   operationSpecName: string,
   methodDeclaration: MethodDeclaration,
   finalStateVia?: string,
   isInline?: boolean
 ) {
+  const client = isInline ? "" : ".client";
+  const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
+
   const finalStateStr = finalStateVia
     ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
     : "";
 
-  const operationBody = `
-  const args: coreHttp.OperationArguments  = {${sendParams}};
-  const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this${
-    isInline ? "" : ".client"
-  }.sendOperationRequest(args, spec) as Promise<${responseName}>;
-  const initialOperationResult = await sendOperation(args, ${operationSpecName});
-
-  return new LROPoller({
-    initialOperationArguments: args,
-    initialOperationSpec: ${operationSpecName},
-    initialOperationResult,
-    sendOperation,
-    ${finalStateStr}
-  });
-  `;
+  methodDeclaration.addStatements([
+    `const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => ${sendRequestStatement} as Promise<${responseName}>;`,
+    `const initialOperationResult = await sendOperation(${operationParamsName}, ${operationSpecName});`,
+    `return new LROPoller({
+      initialOperationArguments: ${operationParamsName},
+      initialOperationSpec: ${operationSpecName},
+      initialOperationResult,
+      sendOperation,
+      ${finalStateStr}
+    });`
+  ]);
 
   methodDeclaration.setReturnType(`Promise<LROPoller<${responseName}>>`);
-  methodDeclaration.addStatements(operationBody);
 }
 
 /**
@@ -931,14 +1047,15 @@ function writeMultiMediaTypeOperationBody(
   operation: OperationDetails,
   overloadParameterDeclarations: ParameterWithDescription[][],
   responseName: string,
+  clientDetails: ClientDetails,
   isInline = false
 ): void {
-  let statements = `
-  let operationSpec: coreHttp.OperationSpec;
-  let operationArguments: coreHttp.OperationArguments;
-  `;
+  operationMethod.addStatements([
+    "let operationSpec: coreHttp.OperationSpec;",
+    "let operationArguments: coreHttp.OperationArguments;"
+  ]);
+
   // We need to use the contentType parameter to determine which spec to use.
-  const conditionals: string[] = [];
   const requests = operation.requests;
   if (overloadParameterDeclarations.length !== requests.length) {
     throw new Error(
@@ -953,10 +1070,11 @@ function writeMultiMediaTypeOperationBody(
     const request = requests[i];
     const overloadParameters = overloadParameterDeclarations[i];
     const mediaType = request.mediaType!;
+    const contentTypeValues = getContentTypeInfo(request);
+
     contentTypePosition = overloadParameters.findIndex(param => {
       return param.isContentType;
     });
-    const contentTypeValues = getContentTypeInfo(request);
 
     // Ensure that a contentType exists, otherwise we won't be able to determine which operation spec to use.
     if (
@@ -969,62 +1087,74 @@ function writeMultiMediaTypeOperationBody(
       );
     }
 
-    const assignments = `
-      operationSpec = ${operation.name}$${mediaType}OperationSpec
-      operationArguments = {
-        ${overloadParameters
-          .map((param, index) => `${param.name}: args[${index}]`)
-          .join(",")}
-      };
-    `;
+    // Get parameters for current overload
+    const params = overloadParameters
+      .map((param, index) => `${param.name}: args[${index}]`)
+      .join(",");
 
-    conditionals.push(
-      `if (
-        ${contentTypeValues
-          .map(type => `args[${contentTypePosition}] === "${type}"`)
-          .join(" || ")}
-        ) {
-          ${assignments}
-      }`
-    );
+    // Get conditional to handle the current oveload
+    const conditional = contentTypeValues
+      .map(type => `args[${contentTypePosition}] === "${type}"`)
+      .join(" || ");
+
+    // Get the string for current overload assignments of operation spec and arguments
+    const assignments = [
+      `operationSpec = ${operation.name}$${mediaType}OperationSpec`,
+      `operationArguments = {${params}};`
+    ].join("\n");
+
+    const elseif = i === 0 ? "if" : "else if";
+
+    // Add conditional statement to handle the current overload
+    operationMethod.addStatements([
+      `${elseif} (${conditional}) {
+        ${assignments}
+       }`
+    ]);
   }
 
   // Add an else clause that throws an error. This should never happen as long as a contentType was provided by the user.
-  conditionals.push(`{
+  operationMethod.addStatements([
+    `else {
     throw new TypeError(\`"contentType" must be a valid value but instead was "\${args[${contentTypePosition}]}".\`);
-  }`);
+  }`
+  ]);
 
-  statements += conditionals.join(" else ");
+  const toOptionsBase = `coreHttp.operationOptionsToRequestOptionsBase(operationArguments.options || {})`;
+
+  if (clientDetails.tracing) {
+    const operationName = operationMethod.getName();
+    operationMethod.addStatements([
+      getTracingSpanStatement(clientDetails, operationName, toOptionsBase),
+      `operationArguments.options = updatedOptions;`
+    ]);
+  } else {
+    operationMethod.addStatements([
+      `operationArguments.options = ${toOptionsBase};`
+    ]);
+  }
 
   if (!operation.isLRO) {
-    statements += `return this${
-      isInline ? "" : ".client"
-    }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
+    writeSendOperationRequest(
+      responseName,
+      operationMethod,
+      "operationSpec",
+      clientDetails,
+      isInline
+    );
   } else {
     const finalStateVia =
       operation.lroOptions && operation.lroOptions["final-state-via"];
 
-    const finalStateStr = finalStateVia
-      ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
-      : "";
-
-    statements += `
-    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this${
-      isInline ? "" : ".client"
-    }.sendOperationRequest(args, spec) as Promise<${responseName}>;
-    const initialOperationResult = await sendOperation(operationArguments, operationSpec);
-
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: operationSpec,
-      initialOperationResult,
-      sendOperation,
-      ${finalStateStr}
-    });
-    `;
+    writeLROOperationBody(
+      "operationArguments",
+      responseName,
+      "operationSpec",
+      operationMethod,
+      finalStateVia,
+      isInline
+    );
   }
-
-  operationMethod.addStatements(statements);
 }
 
 function getContentTypeInfo(
@@ -1077,18 +1207,6 @@ function getResponseType(
   }
 
   return "coreHttp.RestResponse";
-}
-
-function generateOperationJSDoc(
-  params: ParameterWithDescription[] = [],
-  description: string = ""
-): string {
-  const paramJSDoc =
-    !params || !params.length ? "" : formatJsDocParam(params).join("\n");
-
-  return `${
-    description ? wrapString(description) + "\n" : description
-  }${paramJSDoc}`;
 }
 
 function hasMediaType(
@@ -1183,6 +1301,8 @@ function addImports(
   clientDetails: ClientDetails
 ) {
   const { className, sourceFileName, mappers } = clientDetails;
+
+  addTracingOperationImports(clientDetails, operationGroupFile);
 
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",

@@ -40,11 +40,11 @@ export class Basic {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<BasicGetValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getValidOperationSpec
     ) as Promise<BasicGetValidResponse>;
   }
@@ -58,11 +58,12 @@ export class Basic {
     complexBody: BasicModel,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -74,11 +75,11 @@ export class Basic {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<BasicGetInvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidOperationSpec
     ) as Promise<BasicGetInvalidResponse>;
   }
@@ -90,11 +91,11 @@ export class Basic {
   getEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<BasicGetEmptyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyOperationSpec
     ) as Promise<BasicGetEmptyResponse>;
   }
@@ -104,11 +105,11 @@ export class Basic {
    * @param options The options parameters.
    */
   getNull(options?: coreHttp.OperationOptions): Promise<BasicGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<BasicGetNullResponse>;
   }
@@ -120,11 +121,11 @@ export class Basic {
   getNotProvided(
     options?: coreHttp.OperationOptions
   ): Promise<BasicGetNotProvidedResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNotProvidedOperationSpec
     ) as Promise<BasicGetNotProvidedResponse>;
   }

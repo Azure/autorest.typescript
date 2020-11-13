@@ -45,11 +45,13 @@ export class PrivateEndpointConnections {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PrivateEndpointConnectionsListResponse>;
   }
@@ -71,16 +73,14 @@ export class PrivateEndpointConnections {
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      privateEndpointConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        privateEndpointConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateEndpointConnectionsGetResponse>;
   }
@@ -104,17 +104,15 @@ export class PrivateEndpointConnections {
     properties: PrivateEndpointConnection,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointConnectionsPutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      privateEndpointConnectionName,
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        privateEndpointConnectionName,
-        properties,
-        options: operationOptions
-      },
+      operationArguments,
       putOperationSpec
     ) as Promise<PrivateEndpointConnectionsPutResponse>;
   }
@@ -136,16 +134,14 @@ export class PrivateEndpointConnections {
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      privateEndpointConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        privateEndpointConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -37,11 +37,11 @@ export class DomainRegistrationProvider {
   listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<DomainRegistrationProviderListOperationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationsOperationSpec
     ) as Promise<DomainRegistrationProviderListOperationsResponse>;
   }
@@ -55,11 +55,12 @@ export class DomainRegistrationProvider {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainRegistrationProviderListOperationsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listOperationsNextOperationSpec
     ) as Promise<DomainRegistrationProviderListOperationsNextResponse>;
   }

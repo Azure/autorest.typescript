@@ -52,11 +52,13 @@ export class CassandraResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesListCassandraKeyspacesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listCassandraKeyspacesOperationSpec
     ) as Promise<CassandraResourcesListCassandraKeyspacesResponse>;
   }
@@ -75,16 +77,14 @@ export class CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraKeyspaceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        keyspaceName,
-        options: operationOptions
-      },
+      operationArguments,
       getCassandraKeyspaceOperationSpec
     ) as Promise<CassandraResourcesGetCassandraKeyspaceResponse>;
   }
@@ -107,16 +107,12 @@ export class CassandraResources {
   ): Promise<
     LROPoller<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
       createUpdateCassandraKeyspaceParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -126,12 +122,11 @@ export class CassandraResources {
         CassandraResourcesCreateUpdateCassandraKeyspaceResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateCassandraKeyspaceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateCassandraKeyspaceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -151,15 +146,11 @@ export class CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -169,12 +160,11 @@ export class CassandraResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteCassandraKeyspaceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteCassandraKeyspaceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -195,16 +185,14 @@ export class CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        keyspaceName,
-        options: operationOptions
-      },
+      operationArguments,
       getCassandraKeyspaceThroughputOperationSpec
     ) as Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse>;
   }
@@ -227,16 +215,12 @@ export class CassandraResources {
   ): Promise<
     LROPoller<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -246,12 +230,11 @@ export class CassandraResources {
         CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateCassandraKeyspaceThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateCassandraKeyspaceThroughputOperationSpec,
       initialOperationResult,
       sendOperation
@@ -271,16 +254,14 @@ export class CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesListCassandraTablesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        keyspaceName,
-        options: operationOptions
-      },
+      operationArguments,
       listCassandraTablesOperationSpec
     ) as Promise<CassandraResourcesListCassandraTablesResponse>;
   }
@@ -300,17 +281,15 @@ export class CassandraResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraTableResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      tableName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        keyspaceName,
-        tableName,
-        options: operationOptions
-      },
+      operationArguments,
       getCassandraTableOperationSpec
     ) as Promise<CassandraResourcesGetCassandraTableResponse>;
   }
@@ -333,17 +312,13 @@ export class CassandraResources {
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
       tableName,
       createUpdateCassandraTableParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -353,12 +328,11 @@ export class CassandraResources {
         CassandraResourcesCreateUpdateCassandraTableResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateCassandraTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateCassandraTableOperationSpec,
       initialOperationResult,
       sendOperation
@@ -380,16 +354,12 @@ export class CassandraResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
       tableName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -399,12 +369,11 @@ export class CassandraResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteCassandraTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteCassandraTableOperationSpec,
       initialOperationResult,
       sendOperation
@@ -427,17 +396,15 @@ export class CassandraResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraTableThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      tableName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        keyspaceName,
-        tableName,
-        options: operationOptions
-      },
+      operationArguments,
       getCassandraTableThroughputOperationSpec
     ) as Promise<CassandraResourcesGetCassandraTableThroughputResponse>;
   }
@@ -462,17 +429,13 @@ export class CassandraResources {
   ): Promise<
     LROPoller<CassandraResourcesUpdateCassandraTableThroughputResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       keyspaceName,
       tableName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -482,12 +445,11 @@ export class CassandraResources {
         CassandraResourcesUpdateCassandraTableThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateCassandraTableThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateCassandraTableThroughputOperationSpec,
       initialOperationResult,
       sendOperation

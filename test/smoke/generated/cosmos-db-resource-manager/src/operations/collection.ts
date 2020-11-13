@@ -50,18 +50,16 @@ export class Collection {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<CollectionListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<CollectionListMetricsResponse>;
   }
@@ -81,17 +79,15 @@ export class Collection {
     collectionRid: string,
     options?: CollectionListUsagesOptionalParams
   ): Promise<CollectionListUsagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        options: operationOptions
-      },
+      operationArguments,
       listUsagesOperationSpec
     ) as Promise<CollectionListUsagesResponse>;
   }
@@ -111,17 +107,15 @@ export class Collection {
     collectionRid: string,
     options?: coreHttp.OperationOptions
   ): Promise<CollectionListMetricDefinitionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricDefinitionsOperationSpec
     ) as Promise<CollectionListMetricDefinitionsResponse>;
   }

@@ -41,11 +41,13 @@ export class Formdata {
     fileName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FormdataUploadFileResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      fileName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, fileName, options: operationOptions },
+      operationArguments,
       uploadFileOperationSpec
     ) as Promise<FormdataUploadFileResponse>;
   }
@@ -59,11 +61,12 @@ export class Formdata {
     fileContent: coreHttp.HttpRequestBody,
     options?: coreHttp.OperationOptions
   ): Promise<FormdataUploadFileViaBodyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, options: operationOptions },
+      operationArguments,
       uploadFileViaBodyOperationSpec
     ) as Promise<FormdataUploadFileViaBodyResponse>;
   }
@@ -77,11 +80,12 @@ export class Formdata {
     fileContent: coreHttp.HttpRequestBody[],
     options?: coreHttp.OperationOptions
   ): Promise<FormdataUploadFilesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, options: operationOptions },
+      operationArguments,
       uploadFilesOperationSpec
     ) as Promise<FormdataUploadFilesResponse>;
   }

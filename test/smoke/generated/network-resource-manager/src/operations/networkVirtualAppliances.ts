@@ -49,15 +49,10 @@ export class NetworkVirtualAppliances {
     networkVirtualApplianceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkVirtualApplianceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -67,12 +62,11 @@ export class NetworkVirtualAppliances {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,15 +85,13 @@ export class NetworkVirtualAppliances {
     networkVirtualApplianceName: string,
     options?: NetworkVirtualAppliancesGetOptionalParams
   ): Promise<NetworkVirtualAppliancesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkVirtualApplianceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkVirtualApplianceName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkVirtualAppliancesGetResponse>;
   }
@@ -117,16 +109,14 @@ export class NetworkVirtualAppliances {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkVirtualApplianceName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkVirtualApplianceName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<NetworkVirtualAppliancesUpdateTagsResponse>;
   }
@@ -144,16 +134,11 @@ export class NetworkVirtualAppliances {
     parameters: NetworkVirtualAppliance,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkVirtualAppliancesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkVirtualApplianceName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -163,12 +148,11 @@ export class NetworkVirtualAppliances {
         NetworkVirtualAppliancesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -185,11 +169,12 @@ export class NetworkVirtualAppliances {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<NetworkVirtualAppliancesListByResourceGroupResponse>;
   }
@@ -201,11 +186,11 @@ export class NetworkVirtualAppliances {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkVirtualAppliancesListResponse>;
   }
@@ -221,11 +206,13 @@ export class NetworkVirtualAppliances {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<NetworkVirtualAppliancesListByResourceGroupNextResponse>;
   }
@@ -239,11 +226,12 @@ export class NetworkVirtualAppliances {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkVirtualAppliancesListNextResponse>;
   }

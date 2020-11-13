@@ -64,15 +64,11 @@ export class Databases {
     parameters: ImportRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesImportResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -82,12 +78,11 @@ export class Databases {
         DatabasesImportResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       importOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: importOperationSpec,
       initialOperationResult,
       sendOperation
@@ -113,17 +108,13 @@ export class Databases {
     parameters: ImportExtensionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesCreateImportOperationResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       extensionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -133,12 +124,11 @@ export class Databases {
         DatabasesCreateImportOperationResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createImportOperationOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createImportOperationOperationSpec,
       initialOperationResult,
       sendOperation
@@ -161,16 +151,12 @@ export class Databases {
     parameters: ExportRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesExportResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -180,12 +166,11 @@ export class Databases {
         DatabasesExportResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       exportOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: exportOperationSpec,
       initialOperationResult,
       sendOperation
@@ -208,17 +193,15 @@ export class Databases {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<DatabasesListMetricsResponse>;
   }
@@ -237,16 +220,14 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListMetricDefinitionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricDefinitionsOperationSpec
     ) as Promise<DatabasesListMetricDefinitionsResponse>;
   }
@@ -263,11 +244,13 @@ export class Databases {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<DatabasesListByServerResponse>;
   }
@@ -286,16 +269,14 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<DatabasesGetResponse>;
   }
@@ -316,16 +297,12 @@ export class Databases {
     parameters: Database,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -335,12 +312,11 @@ export class Databases {
         DatabasesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -361,15 +337,11 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -379,12 +351,11 @@ export class Databases {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -407,16 +378,12 @@ export class Databases {
     parameters: DatabaseUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -426,12 +393,11 @@ export class Databases {
         DatabasesUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -452,16 +418,14 @@ export class Databases {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListByElasticPoolResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       listByElasticPoolOperationSpec
     ) as Promise<DatabasesListByElasticPoolResponse>;
   }
@@ -480,15 +444,11 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesPauseResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -498,12 +458,11 @@ export class Databases {
         DatabasesPauseResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       pauseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: pauseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -524,15 +483,11 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesResumeResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -542,12 +497,11 @@ export class Databases {
         DatabasesResumeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       resumeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: resumeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -568,15 +522,11 @@ export class Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -586,12 +536,11 @@ export class Databases {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       upgradeDataWarehouseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: upgradeDataWarehouseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -614,17 +563,15 @@ export class Databases {
     parameters: ResourceMoveDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       renameOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -643,15 +590,11 @@ export class Databases {
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -661,12 +604,11 @@ export class Databases {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       failoverOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: failoverOperationSpec,
       initialOperationResult,
       sendOperation
@@ -687,11 +629,14 @@ export class Databases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<DatabasesListByServerNextResponse>;
   }
@@ -712,17 +657,15 @@ export class Databases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabasesListByElasticPoolNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByElasticPoolNextOperationSpec
     ) as Promise<DatabasesListByElasticPoolNextResponse>;
   }

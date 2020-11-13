@@ -36,11 +36,11 @@ export class AuthorizationOperations {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<AuthorizationOperationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AuthorizationOperationsListResponse>;
   }
@@ -54,11 +54,12 @@ export class AuthorizationOperations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AuthorizationOperationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AuthorizationOperationsListNextResponse>;
   }

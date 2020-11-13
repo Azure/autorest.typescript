@@ -43,16 +43,14 @@ export class HubVirtualNetworkConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<HubVirtualNetworkConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      connectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualHubName,
-        connectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<HubVirtualNetworkConnectionsGetResponse>;
   }
@@ -68,11 +66,13 @@ export class HubVirtualNetworkConnections {
     virtualHubName: string,
     options?: coreHttp.OperationOptions
   ): Promise<HubVirtualNetworkConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualHubName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<HubVirtualNetworkConnectionsListResponse>;
   }
@@ -90,16 +90,14 @@ export class HubVirtualNetworkConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<HubVirtualNetworkConnectionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualHubName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<HubVirtualNetworkConnectionsListNextResponse>;
   }

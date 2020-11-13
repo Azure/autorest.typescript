@@ -35,11 +35,12 @@ export class Usages {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsagesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<UsagesListResponse>;
   }
@@ -55,11 +56,13 @@ export class Usages {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsagesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<UsagesListNextResponse>;
   }

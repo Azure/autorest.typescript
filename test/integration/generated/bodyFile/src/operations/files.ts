@@ -35,11 +35,11 @@ export class Files {
    * @param options The options parameters.
    */
   getFile(options?: coreHttp.OperationOptions): Promise<FilesGetFileResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getFileOperationSpec
     ) as Promise<FilesGetFileResponse>;
   }
@@ -51,11 +51,11 @@ export class Files {
   getFileLarge(
     options?: coreHttp.OperationOptions
   ): Promise<FilesGetFileLargeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getFileLargeOperationSpec
     ) as Promise<FilesGetFileLargeResponse>;
   }
@@ -67,11 +67,11 @@ export class Files {
   getEmptyFile(
     options?: coreHttp.OperationOptions
   ): Promise<FilesGetEmptyFileResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyFileOperationSpec
     ) as Promise<FilesGetEmptyFileResponse>;
   }

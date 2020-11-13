@@ -40,11 +40,12 @@ export class Header {
     fooClientRequestId: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderCustomNamedRequestIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      fooClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fooClientRequestId, options: operationOptions },
+      operationArguments,
       customNamedRequestIdOperationSpec
     ) as Promise<HeaderCustomNamedRequestIdResponse>;
   }
@@ -59,14 +60,12 @@ export class Header {
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      headerCustomNamedRequestIdParamGroupingParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        headerCustomNamedRequestIdParamGroupingParameters,
-        options: operationOptions
-      },
+      operationArguments,
       customNamedRequestIdParamGroupingOperationSpec
     ) as Promise<HeaderCustomNamedRequestIdParamGroupingResponse>;
   }
@@ -80,11 +79,12 @@ export class Header {
     fooClientRequestId: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderCustomNamedRequestIdHeadResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      fooClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fooClientRequestId, options: operationOptions },
+      operationArguments,
       customNamedRequestIdHeadOperationSpec
     ) as Promise<HeaderCustomNamedRequestIdHeadResponse>;
   }

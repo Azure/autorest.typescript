@@ -59,11 +59,11 @@ export class Xml {
   getComplexTypeRefNoMeta(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetComplexTypeRefNoMetaResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getComplexTypeRefNoMetaOperationSpec
     ) as Promise<XmlGetComplexTypeRefNoMetaResponse>;
   }
@@ -77,11 +77,12 @@ export class Xml {
     model: RootWithRefAndNoMeta,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      model,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { model, options: operationOptions },
+      operationArguments,
       putComplexTypeRefNoMetaOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -93,11 +94,11 @@ export class Xml {
   getComplexTypeRefWithMeta(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetComplexTypeRefWithMetaResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getComplexTypeRefWithMetaOperationSpec
     ) as Promise<XmlGetComplexTypeRefWithMetaResponse>;
   }
@@ -111,11 +112,12 @@ export class Xml {
     model: RootWithRefAndMeta,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      model,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { model, options: operationOptions },
+      operationArguments,
       putComplexTypeRefWithMetaOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -127,11 +129,11 @@ export class Xml {
   getSimple(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetSimpleResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSimpleOperationSpec
     ) as Promise<XmlGetSimpleResponse>;
   }
@@ -145,11 +147,12 @@ export class Xml {
     slideshow: Slideshow,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      slideshow,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { slideshow, options: operationOptions },
+      operationArguments,
       putSimpleOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -161,11 +164,11 @@ export class Xml {
   getWrappedLists(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetWrappedListsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getWrappedListsOperationSpec
     ) as Promise<XmlGetWrappedListsResponse>;
   }
@@ -179,11 +182,12 @@ export class Xml {
     wrappedLists: AppleBarrel,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      wrappedLists,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { wrappedLists, options: operationOptions },
+      operationArguments,
       putWrappedListsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -195,11 +199,11 @@ export class Xml {
   getHeaders(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetHeadersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getHeadersOperationSpec
     ) as Promise<XmlGetHeadersResponse>;
   }
@@ -211,11 +215,11 @@ export class Xml {
   getEmptyList(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetEmptyListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyListOperationSpec
     ) as Promise<XmlGetEmptyListResponse>;
   }
@@ -229,11 +233,12 @@ export class Xml {
     slideshow: Slideshow,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      slideshow,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { slideshow, options: operationOptions },
+      operationArguments,
       putEmptyListOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -245,11 +250,11 @@ export class Xml {
   getEmptyWrappedLists(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetEmptyWrappedListsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyWrappedListsOperationSpec
     ) as Promise<XmlGetEmptyWrappedListsResponse>;
   }
@@ -263,11 +268,12 @@ export class Xml {
     appleBarrel: AppleBarrel,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      appleBarrel,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { appleBarrel, options: operationOptions },
+      operationArguments,
       putEmptyWrappedListsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -279,11 +285,11 @@ export class Xml {
   getRootList(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetRootListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getRootListOperationSpec
     ) as Promise<XmlGetRootListResponse>;
   }
@@ -297,11 +303,12 @@ export class Xml {
     bananas: Banana[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bananas,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bananas, options: operationOptions },
+      operationArguments,
       putRootListOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -313,11 +320,11 @@ export class Xml {
   getRootListSingleItem(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetRootListSingleItemResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getRootListSingleItemOperationSpec
     ) as Promise<XmlGetRootListSingleItemResponse>;
   }
@@ -331,11 +338,12 @@ export class Xml {
     bananas: Banana[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bananas,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bananas, options: operationOptions },
+      operationArguments,
       putRootListSingleItemOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -347,11 +355,11 @@ export class Xml {
   getEmptyRootList(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetEmptyRootListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyRootListOperationSpec
     ) as Promise<XmlGetEmptyRootListResponse>;
   }
@@ -365,11 +373,12 @@ export class Xml {
     bananas: Banana[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bananas,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bananas, options: operationOptions },
+      operationArguments,
       putEmptyRootListOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -381,11 +390,11 @@ export class Xml {
   getEmptyChildElement(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetEmptyChildElementResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyChildElementOperationSpec
     ) as Promise<XmlGetEmptyChildElementResponse>;
   }
@@ -399,11 +408,12 @@ export class Xml {
     banana: Banana,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      banana,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { banana, options: operationOptions },
+      operationArguments,
       putEmptyChildElementOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -415,11 +425,11 @@ export class Xml {
   listContainers(
     options?: coreHttp.OperationOptions
   ): Promise<XmlListContainersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listContainersOperationSpec
     ) as Promise<XmlListContainersResponse>;
   }
@@ -431,11 +441,11 @@ export class Xml {
   getServiceProperties(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetServicePropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getServicePropertiesOperationSpec
     ) as Promise<XmlGetServicePropertiesResponse>;
   }
@@ -449,11 +459,12 @@ export class Xml {
     properties: StorageServiceProperties,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { properties, options: operationOptions },
+      operationArguments,
       putServicePropertiesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -463,11 +474,11 @@ export class Xml {
    * @param options The options parameters.
    */
   getAcls(options?: coreHttp.OperationOptions): Promise<XmlGetAclsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getAclsOperationSpec
     ) as Promise<XmlGetAclsResponse>;
   }
@@ -481,11 +492,12 @@ export class Xml {
     properties: SignedIdentifier[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { properties, options: operationOptions },
+      operationArguments,
       putAclsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -497,11 +509,11 @@ export class Xml {
   listBlobs(
     options?: coreHttp.OperationOptions
   ): Promise<XmlListBlobsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBlobsOperationSpec
     ) as Promise<XmlListBlobsResponse>;
   }
@@ -516,11 +528,12 @@ export class Xml {
     properties: JsonInput,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { properties, options: operationOptions },
+      operationArguments,
       jsonInputOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -532,11 +545,11 @@ export class Xml {
   jsonOutput(
     options?: coreHttp.OperationOptions
   ): Promise<XmlJsonOutputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       jsonOutputOperationSpec
     ) as Promise<XmlJsonOutputResponse>;
   }
@@ -549,11 +562,11 @@ export class Xml {
   getXMsText(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetXMsTextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getXMsTextOperationSpec
     ) as Promise<XmlGetXMsTextResponse>;
   }

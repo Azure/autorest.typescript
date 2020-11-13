@@ -52,11 +52,13 @@ export class GremlinResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesListGremlinDatabasesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listGremlinDatabasesOperationSpec
     ) as Promise<GremlinResourcesListGremlinDatabasesResponse>;
   }
@@ -75,16 +77,14 @@ export class GremlinResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesGetGremlinDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getGremlinDatabaseOperationSpec
     ) as Promise<GremlinResourcesGetGremlinDatabaseResponse>;
   }
@@ -105,16 +105,12 @@ export class GremlinResources {
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinDatabaseResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       createUpdateGremlinDatabaseParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -124,12 +120,11 @@ export class GremlinResources {
         GremlinResourcesCreateUpdateGremlinDatabaseResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateGremlinDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateGremlinDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -149,15 +144,11 @@ export class GremlinResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -167,12 +158,11 @@ export class GremlinResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteGremlinDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteGremlinDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -193,16 +183,14 @@ export class GremlinResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getGremlinDatabaseThroughputOperationSpec
     ) as Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse>;
   }
@@ -225,16 +213,12 @@ export class GremlinResources {
   ): Promise<
     LROPoller<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -244,12 +228,11 @@ export class GremlinResources {
         GremlinResourcesUpdateGremlinDatabaseThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateGremlinDatabaseThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateGremlinDatabaseThroughputOperationSpec,
       initialOperationResult,
       sendOperation
@@ -269,16 +252,14 @@ export class GremlinResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesListGremlinGraphsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listGremlinGraphsOperationSpec
     ) as Promise<GremlinResourcesListGremlinGraphsResponse>;
   }
@@ -298,17 +279,15 @@ export class GremlinResources {
     graphName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesGetGremlinGraphResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        graphName,
-        options: operationOptions
-      },
+      operationArguments,
       getGremlinGraphOperationSpec
     ) as Promise<GremlinResourcesGetGremlinGraphResponse>;
   }
@@ -330,17 +309,13 @@ export class GremlinResources {
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinGraphResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
       createUpdateGremlinGraphParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -350,12 +325,11 @@ export class GremlinResources {
         GremlinResourcesCreateUpdateGremlinGraphResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateGremlinGraphOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateGremlinGraphOperationSpec,
       initialOperationResult,
       sendOperation
@@ -377,16 +351,12 @@ export class GremlinResources {
     graphName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -396,12 +366,11 @@ export class GremlinResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteGremlinGraphOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteGremlinGraphOperationSpec,
       initialOperationResult,
       sendOperation
@@ -424,17 +393,15 @@ export class GremlinResources {
     graphName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GremlinResourcesGetGremlinGraphThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        graphName,
-        options: operationOptions
-      },
+      operationArguments,
       getGremlinGraphThroughputOperationSpec
     ) as Promise<GremlinResourcesGetGremlinGraphThroughputResponse>;
   }
@@ -457,17 +424,13 @@ export class GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GremlinResourcesUpdateGremlinGraphThroughputResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -477,12 +440,11 @@ export class GremlinResources {
         GremlinResourcesUpdateGremlinGraphThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateGremlinGraphThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateGremlinGraphThroughputOperationSpec,
       initialOperationResult,
       sendOperation

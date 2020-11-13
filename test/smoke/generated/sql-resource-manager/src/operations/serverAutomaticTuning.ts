@@ -42,11 +42,13 @@ export class ServerAutomaticTuning {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAutomaticTuningGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServerAutomaticTuningGetResponse>;
   }
@@ -65,11 +67,14 @@ export class ServerAutomaticTuning {
     parameters: ServerAutomaticTuningModel,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAutomaticTuningUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<ServerAutomaticTuningUpdateResponse>;
   }

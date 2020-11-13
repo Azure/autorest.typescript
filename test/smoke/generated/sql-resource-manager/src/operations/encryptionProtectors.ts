@@ -48,15 +48,11 @@ export class EncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       encryptionProtectorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -66,12 +62,11 @@ export class EncryptionProtectors {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       revalidateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: revalidateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -90,11 +85,13 @@ export class EncryptionProtectors {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionProtectorsListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<EncryptionProtectorsListByServerResponse>;
   }
@@ -113,16 +110,14 @@ export class EncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionProtectorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      encryptionProtectorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        encryptionProtectorName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<EncryptionProtectorsGetResponse>;
   }
@@ -143,16 +138,12 @@ export class EncryptionProtectors {
     parameters: EncryptionProtector,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<EncryptionProtectorsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       encryptionProtectorName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -162,12 +153,11 @@ export class EncryptionProtectors {
         EncryptionProtectorsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -188,11 +178,14 @@ export class EncryptionProtectors {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionProtectorsListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<EncryptionProtectorsListByServerNextResponse>;
   }

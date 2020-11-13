@@ -44,16 +44,14 @@ export class DatabaseAutomaticTuning {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAutomaticTuningGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<DatabaseAutomaticTuningGetResponse>;
   }
@@ -74,17 +72,15 @@ export class DatabaseAutomaticTuning {
     parameters: DatabaseAutomaticTuningModel,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAutomaticTuningUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<DatabaseAutomaticTuningUpdateResponse>;
   }

@@ -48,17 +48,12 @@ export class PacketCaptures {
     parameters: PacketCapture,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PacketCapturesCreateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       packetCaptureName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -68,12 +63,11 @@ export class PacketCaptures {
         PacketCapturesCreateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -94,16 +88,14 @@ export class PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PacketCapturesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      packetCaptureName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        packetCaptureName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<PacketCapturesGetResponse>;
   }
@@ -121,16 +113,11 @@ export class PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       packetCaptureName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +127,11 @@ export class PacketCaptures {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -166,16 +152,11 @@ export class PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       packetCaptureName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -184,10 +165,12 @@ export class PacketCaptures {
       this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
-    const initialOperationResult = await sendOperation(args, stopOperationSpec);
-
+    const initialOperationResult = await sendOperation(
+      operationArguments,
+      stopOperationSpec
+    );
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: stopOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -208,16 +191,11 @@ export class PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PacketCapturesGetStatusResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       packetCaptureName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -227,12 +205,11 @@ export class PacketCaptures {
         PacketCapturesGetStatusResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getStatusOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getStatusOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -251,11 +228,13 @@ export class PacketCaptures {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PacketCapturesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkWatcherName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PacketCapturesListResponse>;
   }

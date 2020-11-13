@@ -53,17 +53,15 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      policyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        restorableDroppedDatabaseId,
-        policyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
@@ -92,17 +90,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
     >
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       restorableDroppedDatabaseId,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -112,12 +106,11 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -146,17 +139,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
     >
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       restorableDroppedDatabaseId,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -166,12 +155,11 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -194,16 +182,14 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        restorableDroppedDatabaseId,
-        options: operationOptions
-      },
+      operationArguments,
       listByRestorableDroppedDatabaseOperationSpec
     ) as Promise<
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse
@@ -229,17 +215,15 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        restorableDroppedDatabaseId,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByRestorableDroppedDatabaseNextOperationSpec
     ) as Promise<
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse

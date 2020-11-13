@@ -50,16 +50,14 @@ export class DedicatedHostGroups {
     parameters: DedicatedHostGroup,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        hostGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
   }
@@ -77,16 +75,14 @@ export class DedicatedHostGroups {
     parameters: DedicatedHostGroupUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        hostGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<DedicatedHostGroupsUpdateResponse>;
   }
@@ -102,11 +98,13 @@ export class DedicatedHostGroups {
     hostGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -122,11 +120,13 @@ export class DedicatedHostGroups {
     hostGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DedicatedHostGroupsGetResponse>;
   }
@@ -141,11 +141,12 @@ export class DedicatedHostGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DedicatedHostGroupsListByResourceGroupResponse>;
   }
@@ -158,11 +159,11 @@ export class DedicatedHostGroups {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<DedicatedHostGroupsListBySubscriptionResponse>;
   }
@@ -178,11 +179,13 @@ export class DedicatedHostGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DedicatedHostGroupsListByResourceGroupNextResponse>;
   }
@@ -196,11 +199,12 @@ export class DedicatedHostGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<DedicatedHostGroupsListBySubscriptionNextResponse>;
   }

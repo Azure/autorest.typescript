@@ -43,11 +43,13 @@ export class Usages {
     instancePoolName: string,
     options?: UsagesListByInstancePoolOptionalParams
   ): Promise<UsagesListByInstancePoolResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      instancePoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, instancePoolName, options: operationOptions },
+      operationArguments,
       listByInstancePoolOperationSpec
     ) as Promise<UsagesListByInstancePoolResponse>;
   }
@@ -66,16 +68,14 @@ export class Usages {
     nextLink: string,
     options?: UsagesListByInstancePoolNextOptionalParams
   ): Promise<UsagesListByInstancePoolNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      instancePoolName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        instancePoolName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByInstancePoolNextOperationSpec
     ) as Promise<UsagesListByInstancePoolNextResponse>;
   }

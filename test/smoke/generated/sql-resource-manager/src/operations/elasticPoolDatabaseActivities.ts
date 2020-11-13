@@ -40,16 +40,14 @@ export class ElasticPoolDatabaseActivities {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolDatabaseActivitiesListByElasticPoolResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       listByElasticPoolOperationSpec
     ) as Promise<ElasticPoolDatabaseActivitiesListByElasticPoolResponse>;
   }

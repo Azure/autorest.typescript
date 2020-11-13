@@ -33,11 +33,12 @@ export class Get {
     testUuid: string,
     options?: coreHttp.OperationOptions
   ): Promise<GetUuidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      testUuid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { testUuid, options: operationOptions },
+      operationArguments,
       uuidOperationSpec
     ) as Promise<GetUuidResponse>;
   }

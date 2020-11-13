@@ -53,11 +53,12 @@ export class Explicit {
     bodyParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredIntegerParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -69,11 +70,11 @@ export class Explicit {
   postOptionalIntegerParameter(
     options?: ExplicitPostOptionalIntegerParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalIntegerParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -88,11 +89,12 @@ export class Explicit {
     bodyParameter: IntWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredIntegerPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -104,11 +106,11 @@ export class Explicit {
   postOptionalIntegerProperty(
     options?: ExplicitPostOptionalIntegerPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalIntegerPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -123,11 +125,12 @@ export class Explicit {
     headerParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      headerParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { headerParameter, options: operationOptions },
+      operationArguments,
       postRequiredIntegerHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -139,11 +142,11 @@ export class Explicit {
   postOptionalIntegerHeader(
     options?: ExplicitPostOptionalIntegerHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalIntegerHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -158,11 +161,12 @@ export class Explicit {
     bodyParameter: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredStringParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -174,11 +178,11 @@ export class Explicit {
   postOptionalStringParameter(
     options?: ExplicitPostOptionalStringParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalStringParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -193,11 +197,12 @@ export class Explicit {
     bodyParameter: StringWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredStringPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -209,11 +214,11 @@ export class Explicit {
   postOptionalStringProperty(
     options?: ExplicitPostOptionalStringPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalStringPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -228,11 +233,12 @@ export class Explicit {
     headerParameter: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      headerParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { headerParameter, options: operationOptions },
+      operationArguments,
       postRequiredStringHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -244,11 +250,11 @@ export class Explicit {
   postOptionalStringHeader(
     options?: ExplicitPostOptionalStringHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalStringHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -263,11 +269,12 @@ export class Explicit {
     bodyParameter: Product,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredClassParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -279,11 +286,11 @@ export class Explicit {
   postOptionalClassParameter(
     options?: ExplicitPostOptionalClassParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalClassParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -298,11 +305,12 @@ export class Explicit {
     bodyParameter: ClassWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredClassPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -314,11 +322,11 @@ export class Explicit {
   postOptionalClassProperty(
     options?: ExplicitPostOptionalClassPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalClassPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -333,11 +341,12 @@ export class Explicit {
     bodyParameter: string[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredArrayParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -349,11 +358,11 @@ export class Explicit {
   postOptionalArrayParameter(
     options?: ExplicitPostOptionalArrayParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalArrayParameterOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -368,11 +377,12 @@ export class Explicit {
     bodyParameter: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      bodyParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { bodyParameter, options: operationOptions },
+      operationArguments,
       postRequiredArrayPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -384,11 +394,11 @@ export class Explicit {
   postOptionalArrayProperty(
     options?: ExplicitPostOptionalArrayPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalArrayPropertyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -403,11 +413,12 @@ export class Explicit {
     headerParameter: string[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      headerParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { headerParameter, options: operationOptions },
+      operationArguments,
       postRequiredArrayHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -419,11 +430,11 @@ export class Explicit {
   postOptionalArrayHeader(
     options?: ExplicitPostOptionalArrayHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalArrayHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

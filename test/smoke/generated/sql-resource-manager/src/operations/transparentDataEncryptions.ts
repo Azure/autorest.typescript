@@ -50,18 +50,16 @@ export class TransparentDataEncryptions {
     parameters: TransparentDataEncryption,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        transparentDataEncryptionName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
   }
@@ -82,17 +80,15 @@ export class TransparentDataEncryptions {
     transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        transparentDataEncryptionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<TransparentDataEncryptionsGetResponse>;
   }

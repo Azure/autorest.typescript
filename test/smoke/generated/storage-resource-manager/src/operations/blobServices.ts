@@ -45,11 +45,13 @@ export class BlobServices {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<BlobServicesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<BlobServicesListResponse>;
   }
@@ -72,11 +74,14 @@ export class BlobServices {
     parameters: BlobServiceProperties,
     options?: coreHttp.OperationOptions
   ): Promise<BlobServicesSetServicePropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, parameters, options: operationOptions },
+      operationArguments,
       setServicePropertiesOperationSpec
     ) as Promise<BlobServicesSetServicePropertiesResponse>;
   }
@@ -96,11 +101,13 @@ export class BlobServices {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<BlobServicesGetServicePropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       getServicePropertiesOperationSpec
     ) as Promise<BlobServicesGetServicePropertiesResponse>;
   }

@@ -31,11 +31,11 @@ export class Time {
    * @param options The options parameters.
    */
   get(options?: coreHttp.OperationOptions): Promise<TimeGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<TimeGetResponse>;
   }
@@ -51,11 +51,12 @@ export class Time {
     timeBody: string,
     options?: coreHttp.OperationOptions
   ): Promise<TimePutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      timeBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { timeBody, options: operationOptions },
+      operationArguments,
       putOperationSpec
     ) as Promise<TimePutResponse>;
   }

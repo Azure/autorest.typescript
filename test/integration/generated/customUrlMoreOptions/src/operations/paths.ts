@@ -39,11 +39,14 @@ export class Paths {
     keyName: string,
     options?: PathsGetEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      vault,
+      secret,
+      keyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { vault, secret, keyName, options: operationOptions },
+      operationArguments,
       getEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

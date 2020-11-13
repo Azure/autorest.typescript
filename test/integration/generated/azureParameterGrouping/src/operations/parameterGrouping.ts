@@ -40,11 +40,12 @@ export class ParameterGrouping {
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameterGroupingPostRequiredParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameterGroupingPostRequiredParameters, options: operationOptions },
+      operationArguments,
       postRequiredOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -56,11 +57,11 @@ export class ParameterGrouping {
   postOptional(
     options?: ParameterGroupingPostOptionalOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postOptionalOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -72,11 +73,11 @@ export class ParameterGrouping {
   postMultiParamGroups(
     options?: ParameterGroupingPostMultiParamGroupsOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postMultiParamGroupsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -88,11 +89,11 @@ export class ParameterGrouping {
   postSharedParameterGroupObject(
     options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postSharedParameterGroupObjectOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -46,16 +46,14 @@ export class ExtendedDatabaseBlobAuditingPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
   }
@@ -76,17 +74,15 @@ export class ExtendedDatabaseBlobAuditingPolicies {
     parameters: ExtendedDatabaseBlobAuditingPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
   }
@@ -105,16 +101,14 @@ export class ExtendedDatabaseBlobAuditingPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse>;
   }
@@ -135,17 +129,15 @@ export class ExtendedDatabaseBlobAuditingPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseNextOperationSpec
     ) as Promise<
       ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse

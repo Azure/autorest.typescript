@@ -39,11 +39,11 @@ export class DeletedWebApps {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<DeletedWebAppsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DeletedWebAppsListResponse>;
   }
@@ -57,11 +57,12 @@ export class DeletedWebApps {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedWebAppsListByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listByLocationOperationSpec
     ) as Promise<DeletedWebAppsListByLocationResponse>;
   }
@@ -77,11 +78,13 @@ export class DeletedWebApps {
     deletedSiteId: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      deletedSiteId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, deletedSiteId, options: operationOptions },
+      operationArguments,
       getDeletedWebAppByLocationOperationSpec
     ) as Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse>;
   }
@@ -95,11 +98,12 @@ export class DeletedWebApps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedWebAppsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DeletedWebAppsListNextResponse>;
   }
@@ -115,11 +119,13 @@ export class DeletedWebApps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedWebAppsListByLocationNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listByLocationNextOperationSpec
     ) as Promise<DeletedWebAppsListByLocationNextResponse>;
   }

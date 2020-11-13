@@ -35,11 +35,11 @@ export class SignedInUser {
    * @param options The options parameters.
    */
   get(options?: coreHttp.OperationOptions): Promise<SignedInUserGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<SignedInUserGetResponse>;
   }
@@ -51,11 +51,11 @@ export class SignedInUser {
   listOwnedObjects(
     options?: coreHttp.OperationOptions
   ): Promise<SignedInUserListOwnedObjectsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOwnedObjectsOperationSpec
     ) as Promise<SignedInUserListOwnedObjectsResponse>;
   }
@@ -69,11 +69,12 @@ export class SignedInUser {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SignedInUserListOwnedObjectsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listOwnedObjectsNextOperationSpec
     ) as Promise<SignedInUserListOwnedObjectsNextResponse>;
   }

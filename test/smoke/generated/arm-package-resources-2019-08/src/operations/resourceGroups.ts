@@ -48,11 +48,12 @@ export class ResourceGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       checkExistenceOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -70,11 +71,13 @@ export class ResourceGroups {
     parameters: ResourceGroup,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceGroupsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ResourceGroupsCreateOrUpdateResponse>;
   }
@@ -89,13 +92,9 @@ export class ResourceGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -105,12 +104,11 @@ export class ResourceGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -126,11 +124,12 @@ export class ResourceGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ResourceGroupsGetResponse>;
   }
@@ -148,11 +147,13 @@ export class ResourceGroups {
     parameters: ResourceGroupPatchable,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceGroupsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<ResourceGroupsUpdateResponse>;
   }
@@ -168,15 +169,10 @@ export class ResourceGroups {
     parameters: ExportTemplateRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ResourceGroupsExportTemplateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -186,12 +182,11 @@ export class ResourceGroups {
         ResourceGroupsExportTemplateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       exportTemplateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: exportTemplateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -206,11 +201,11 @@ export class ResourceGroups {
   list(
     options?: ResourceGroupsListOptionalParams
   ): Promise<ResourceGroupsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ResourceGroupsListResponse>;
   }
@@ -224,11 +219,12 @@ export class ResourceGroups {
     nextLink: string,
     options?: ResourceGroupsListNextOptionalParams
   ): Promise<ResourceGroupsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ResourceGroupsListNextResponse>;
   }

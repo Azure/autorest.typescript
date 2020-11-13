@@ -37,11 +37,11 @@ export class HttpFailure {
   getEmptyError(
     options?: coreHttp.OperationOptions
   ): Promise<HttpFailureGetEmptyErrorResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getEmptyErrorOperationSpec
     ) as Promise<HttpFailureGetEmptyErrorResponse>;
   }
@@ -53,11 +53,11 @@ export class HttpFailure {
   getNoModelError(
     options?: coreHttp.OperationOptions
   ): Promise<HttpFailureGetNoModelErrorResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNoModelErrorOperationSpec
     ) as Promise<HttpFailureGetNoModelErrorResponse>;
   }
@@ -69,11 +69,11 @@ export class HttpFailure {
   getNoModelEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<HttpFailureGetNoModelEmptyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNoModelEmptyOperationSpec
     ) as Promise<HttpFailureGetNoModelEmptyResponse>;
   }

@@ -55,15 +55,10 @@ export class PublicIPAddresses {
     publicIpAddressName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpAddressName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -73,12 +68,11 @@ export class PublicIPAddresses {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -97,11 +91,13 @@ export class PublicIPAddresses {
     publicIpAddressName: string,
     options?: PublicIPAddressesGetOptionalParams
   ): Promise<PublicIPAddressesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      publicIpAddressName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, publicIpAddressName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PublicIPAddressesGetResponse>;
   }
@@ -119,16 +115,11 @@ export class PublicIPAddresses {
     parameters: PublicIPAddress,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PublicIPAddressesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpAddressName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -138,12 +129,11 @@ export class PublicIPAddresses {
         PublicIPAddressesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -164,16 +154,14 @@ export class PublicIPAddresses {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      publicIpAddressName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        publicIpAddressName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<PublicIPAddressesUpdateTagsResponse>;
   }
@@ -185,11 +173,11 @@ export class PublicIPAddresses {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<PublicIPAddressesListAllResponse>;
   }
@@ -203,11 +191,12 @@ export class PublicIPAddresses {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PublicIPAddressesListResponse>;
   }
@@ -225,15 +214,13 @@ export class PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetPublicIPAddressesOperationSpec
     ) as Promise<
       PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
@@ -260,18 +247,16 @@ export class PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        ipConfigurationName,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec
     ) as Promise<
       PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse
@@ -299,19 +284,17 @@ export class PublicIPAddresses {
   ): Promise<
     PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      publicIpAddressName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        ipConfigurationName,
-        publicIpAddressName,
-        options: operationOptions
-      },
+      operationArguments,
       getVirtualMachineScaleSetPublicIPAddressOperationSpec
     ) as Promise<
       PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse
@@ -327,11 +310,12 @@ export class PublicIPAddresses {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<PublicIPAddressesListAllNextResponse>;
   }
@@ -347,11 +331,13 @@ export class PublicIPAddresses {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PublicIPAddressesListNextResponse>;
   }
@@ -372,16 +358,14 @@ export class PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec
     ) as Promise<
       PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse
@@ -410,19 +394,17 @@ export class PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        ipConfigurationName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec
     ) as Promise<
       PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse

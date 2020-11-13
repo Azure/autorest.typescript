@@ -46,16 +46,11 @@ export class PrivateDnsZoneGroups {
     privateDnsZoneGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,
       privateDnsZoneGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class PrivateDnsZoneGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class PrivateDnsZoneGroups {
     privateDnsZoneGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateDnsZoneGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      privateEndpointName,
+      privateDnsZoneGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        privateEndpointName,
-        privateDnsZoneGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateDnsZoneGroupsGetResponse>;
   }
@@ -120,17 +112,12 @@ export class PrivateDnsZoneGroups {
     parameters: PrivateDnsZoneGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PrivateDnsZoneGroupsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,
       privateDnsZoneGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +127,11 @@ export class PrivateDnsZoneGroups {
         PrivateDnsZoneGroupsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -164,11 +150,13 @@ export class PrivateDnsZoneGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateDnsZoneGroupsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      privateEndpointName,
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { privateEndpointName, resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PrivateDnsZoneGroupsListResponse>;
   }
@@ -186,16 +174,14 @@ export class PrivateDnsZoneGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateDnsZoneGroupsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      privateEndpointName,
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        privateEndpointName,
-        resourceGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PrivateDnsZoneGroupsListNextResponse>;
   }

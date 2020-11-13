@@ -63,15 +63,10 @@ export class NetworkInterfaces {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -81,12 +76,11 @@ export class NetworkInterfaces {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -105,11 +99,13 @@ export class NetworkInterfaces {
     networkInterfaceName: string,
     options?: NetworkInterfacesGetOptionalParams
   ): Promise<NetworkInterfacesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkInterfaceName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkInterfacesGetResponse>;
   }
@@ -127,16 +123,11 @@ export class NetworkInterfaces {
     parameters: NetworkInterface,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkInterfacesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -146,12 +137,11 @@ export class NetworkInterfaces {
         NetworkInterfacesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -172,16 +162,14 @@ export class NetworkInterfaces {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<NetworkInterfacesUpdateTagsResponse>;
   }
@@ -193,11 +181,11 @@ export class NetworkInterfaces {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<NetworkInterfacesListAllResponse>;
   }
@@ -211,11 +199,12 @@ export class NetworkInterfaces {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkInterfacesListResponse>;
   }
@@ -231,15 +220,10 @@ export class NetworkInterfaces {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkInterfacesGetEffectiveRouteTableResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -249,12 +233,11 @@ export class NetworkInterfaces {
         NetworkInterfacesGetEffectiveRouteTableResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getEffectiveRouteTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getEffectiveRouteTableOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -275,15 +258,10 @@ export class NetworkInterfaces {
   ): Promise<
     LROPoller<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -293,12 +271,11 @@ export class NetworkInterfaces {
         NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       listEffectiveNetworkSecurityGroupsOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listEffectiveNetworkSecurityGroupsOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -321,16 +298,14 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse
@@ -350,15 +325,13 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetNetworkInterfacesOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse
@@ -382,17 +355,15 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        options: operationOptions
-      },
+      operationArguments,
       getVirtualMachineScaleSetNetworkInterfaceOperationSpec
     ) as Promise<
       NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse
@@ -416,17 +387,15 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetIpConfigurationsOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse
@@ -452,18 +421,16 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        ipConfigurationName,
-        options: operationOptions
-      },
+      operationArguments,
       getVirtualMachineScaleSetIpConfigurationOperationSpec
     ) as Promise<
       NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse
@@ -479,11 +446,12 @@ export class NetworkInterfaces {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<NetworkInterfacesListAllNextResponse>;
   }
@@ -499,11 +467,13 @@ export class NetworkInterfaces {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkInterfacesListNextResponse>;
   }
@@ -526,17 +496,15 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse
@@ -559,16 +527,14 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse
@@ -595,18 +561,16 @@ export class NetworkInterfaces {
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualMachineScaleSetName,
-        virtualmachineIndex,
-        networkInterfaceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listVirtualMachineScaleSetIpConfigurationsNextOperationSpec
     ) as Promise<
       NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse

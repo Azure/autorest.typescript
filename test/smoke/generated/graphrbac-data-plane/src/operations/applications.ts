@@ -51,11 +51,12 @@ export class Applications {
     parameters: ApplicationCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<ApplicationsCreateResponse>;
   }
@@ -67,11 +68,11 @@ export class Applications {
   list(
     options?: ApplicationsListOptionalParams
   ): Promise<ApplicationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ApplicationsListResponse>;
   }
@@ -85,11 +86,12 @@ export class Applications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -103,11 +105,12 @@ export class Applications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ApplicationsGetResponse>;
   }
@@ -123,11 +126,13 @@ export class Applications {
     parameters: ApplicationUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options: operationOptions },
+      operationArguments,
       patchOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -141,11 +146,12 @@ export class Applications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListOwnersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       listOwnersOperationSpec
     ) as Promise<ApplicationsListOwnersResponse>;
   }
@@ -162,11 +168,13 @@ export class Applications {
     parameters: AddOwnerParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options: operationOptions },
+      operationArguments,
       addOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -182,11 +190,13 @@ export class Applications {
     ownerObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      ownerObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, ownerObjectId, options: operationOptions },
+      operationArguments,
       removeOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -200,11 +210,12 @@ export class Applications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListKeyCredentialsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       listKeyCredentialsOperationSpec
     ) as Promise<ApplicationsListKeyCredentialsResponse>;
   }
@@ -220,11 +231,13 @@ export class Applications {
     parameters: KeyCredentialsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options: operationOptions },
+      operationArguments,
       updateKeyCredentialsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -238,11 +251,12 @@ export class Applications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListPasswordCredentialsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       listPasswordCredentialsOperationSpec
     ) as Promise<ApplicationsListPasswordCredentialsResponse>;
   }
@@ -258,11 +272,13 @@ export class Applications {
     parameters: PasswordCredentialsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options: operationOptions },
+      operationArguments,
       updatePasswordCredentialsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -276,11 +292,12 @@ export class Applications {
     applicationID: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationID,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationID, options: operationOptions },
+      operationArguments,
       getServicePrincipalsIdByAppIdOperationSpec
     ) as Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
   }
@@ -294,11 +311,12 @@ export class Applications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ApplicationsListNextResponse>;
   }
@@ -314,11 +332,13 @@ export class Applications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListOwnersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, nextLink, options: operationOptions },
+      operationArguments,
       listOwnersNextOperationSpec
     ) as Promise<ApplicationsListOwnersNextResponse>;
   }

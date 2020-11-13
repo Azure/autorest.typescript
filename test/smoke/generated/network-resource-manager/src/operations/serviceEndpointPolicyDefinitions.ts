@@ -46,16 +46,11 @@ export class ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serviceEndpointPolicyName,
       serviceEndpointPolicyDefinitionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class ServiceEndpointPolicyDefinitions {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceEndpointPolicyDefinitionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      serviceEndpointPolicyDefinitionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serviceEndpointPolicyName,
-        serviceEndpointPolicyDefinitionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
   }
@@ -123,17 +115,12 @@ export class ServiceEndpointPolicyDefinitions {
   ): Promise<
     LROPoller<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serviceEndpointPolicyName,
       serviceEndpointPolicyDefinitionName,
       serviceEndpointPolicyDefinitions,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +130,11 @@ export class ServiceEndpointPolicyDefinitions {
         ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -167,15 +153,13 @@ export class ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceEndpointPolicyDefinitionsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serviceEndpointPolicyName,
-        options: operationOptions
-      },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ServiceEndpointPolicyDefinitionsListByResourceGroupResponse>;
   }
@@ -193,16 +177,14 @@ export class ServiceEndpointPolicyDefinitions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serviceEndpointPolicyName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<
       ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse

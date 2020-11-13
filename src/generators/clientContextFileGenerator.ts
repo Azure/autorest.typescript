@@ -175,7 +175,9 @@ const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
 
 function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
   const policies = ` 
-  const defaultPipelines = coreHttp.createPipelineFromOptions(options)
+  const defaultPipelines = Array.isArray(options.requestPolicyFactories)
+  ? options.requestPolicyFactories
+  : coreHttp.createPipelineFromOptions(options)
       .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
 
   options = {

@@ -1,4 +1,6 @@
 import { exec } from "child_process";
+import { json } from "express";
+import { TracingInfo } from "../../src/models/clientDetails";
 
 interface SwaggerConfig {
   swagger: string;
@@ -6,6 +8,7 @@ interface SwaggerConfig {
   packageName: string;
   addCredentials?: boolean;
   licenseHeader?: boolean;
+  tracing?: TracingInfo;
 }
 
 const package_version = "1.0.0-preview1";
@@ -72,6 +75,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyComplexClient",
     packageName: "body-complex",
     licenseHeader: true
+  },
+  bodyComplexWithTracing: {
+    swagger: "body-complex.json",
+    clientName: "bodyComplexWithTracing",
+    packageName: "body-complex-tracing",
+    licenseHeader: true,
+    tracing: {
+      namespace: "Microsoft.Body.Complex",
+      packagePrefix: "Azure.Body.Complex"
+    }
   },
   bodyDate: {
     swagger: "body-date.json",
@@ -180,6 +193,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypesClient",
     packageName: "media-types-service",
     licenseHeader: true
+  },
+  mediaTypesWithTracing: {
+    swagger: "media_types.json",
+    clientName: "mediaTypesWithTracingClient",
+    packageName: "media-types-service-tracing",
+    licenseHeader: true,
+    tracing: {
+      namespace: "Microsoft.Media.Types",
+      packagePrefix: "Azure.Media.Types"
+    }
   },
   mediaTypesV3: {
     swagger: "test/integration/swaggers/media-types-v3.json",
@@ -337,17 +360,22 @@ const generateSwaggers = async (
       clientName,
       swagger,
       packageName,
-      licenseHeader
+      licenseHeader,
+      tracing
     } = testSwaggers[name];
 
     let swaggerPath = swagger;
+
+    const tracingInfo = tracing
+      ? `--tracing-info.namespace=${tracing.namespace} --tracing-info.packagePrefix=${tracing.packagePrefix}`
+      : "";
 
     if (swagger.split("/").length === 1) {
       // When given a filename look for it in test server, otherwise use the path
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand = `autorest --clear-output-folder=true --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;
@@ -441,5 +469,6 @@ const run = async () => {
 };
 
 run().catch(error => {
+  console.error(error);
   process.exit(-1000);
 });

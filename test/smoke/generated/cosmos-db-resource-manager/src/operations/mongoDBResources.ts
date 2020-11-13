@@ -52,11 +52,13 @@ export class MongoDBResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesListMongoDBDatabasesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listMongoDBDatabasesOperationSpec
     ) as Promise<MongoDBResourcesListMongoDBDatabasesResponse>;
   }
@@ -75,16 +77,14 @@ export class MongoDBResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesGetMongoDBDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getMongoDBDatabaseOperationSpec
     ) as Promise<MongoDBResourcesGetMongoDBDatabaseResponse>;
   }
@@ -105,16 +105,12 @@ export class MongoDBResources {
     createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       createUpdateMongoDBDatabaseParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -124,12 +120,11 @@ export class MongoDBResources {
         MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateMongoDBDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateMongoDBDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -149,15 +144,11 @@ export class MongoDBResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -167,12 +158,11 @@ export class MongoDBResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteMongoDBDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteMongoDBDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -193,16 +183,14 @@ export class MongoDBResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getMongoDBDatabaseThroughputOperationSpec
     ) as Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse>;
   }
@@ -225,16 +213,12 @@ export class MongoDBResources {
   ): Promise<
     LROPoller<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -244,12 +228,11 @@ export class MongoDBResources {
         MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateMongoDBDatabaseThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateMongoDBDatabaseThroughputOperationSpec,
       initialOperationResult,
       sendOperation
@@ -269,16 +252,14 @@ export class MongoDBResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesListMongoDBCollectionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listMongoDBCollectionsOperationSpec
     ) as Promise<MongoDBResourcesListMongoDBCollectionsResponse>;
   }
@@ -298,17 +279,15 @@ export class MongoDBResources {
     collectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesGetMongoDBCollectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        collectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getMongoDBCollectionOperationSpec
     ) as Promise<MongoDBResourcesGetMongoDBCollectionResponse>;
   }
@@ -331,17 +310,13 @@ export class MongoDBResources {
     createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       collectionName,
       createUpdateMongoDBCollectionParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -351,12 +326,11 @@ export class MongoDBResources {
         MongoDBResourcesCreateUpdateMongoDBCollectionResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateMongoDBCollectionOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateMongoDBCollectionOperationSpec,
       initialOperationResult,
       sendOperation
@@ -378,16 +352,12 @@ export class MongoDBResources {
     collectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       collectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -397,12 +367,11 @@ export class MongoDBResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteMongoDBCollectionOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteMongoDBCollectionOperationSpec,
       initialOperationResult,
       sendOperation
@@ -425,17 +394,15 @@ export class MongoDBResources {
     collectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        collectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getMongoDBCollectionThroughputOperationSpec
     ) as Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse>;
   }
@@ -460,17 +427,13 @@ export class MongoDBResources {
   ): Promise<
     LROPoller<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       collectionName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -480,12 +443,11 @@ export class MongoDBResources {
         MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateMongoDBCollectionThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateMongoDBCollectionThroughputOperationSpec,
       initialOperationResult,
       sendOperation

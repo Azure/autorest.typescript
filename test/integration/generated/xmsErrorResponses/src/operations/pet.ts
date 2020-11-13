@@ -35,11 +35,12 @@ export class Pet {
     petId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PetGetPetByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      petId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { petId, options: operationOptions },
+      operationArguments,
       getPetByIdOperationSpec
     ) as Promise<PetGetPetByIdResponse>;
   }
@@ -53,11 +54,12 @@ export class Pet {
     whatAction: string,
     options?: coreHttp.OperationOptions
   ): Promise<PetDoSomethingResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      whatAction,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { whatAction, options: operationOptions },
+      operationArguments,
       doSomethingOperationSpec
     ) as Promise<PetDoSomethingResponse>;
   }

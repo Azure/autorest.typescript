@@ -15,6 +15,11 @@ export interface ClientOptions {
   mediaTypes?: Set<KnownMediaType>;
 }
 
+export interface TracingInfo {
+  namespace: string;
+  packagePrefix: string;
+}
+
 export interface ClientDetails {
   name: string;
   className: string;
@@ -28,4 +33,5 @@ export interface ClientDetails {
   options: ClientOptions;
   endpoint: EndpointDetails;
   srcPath?: string;
+  tracing?: TracingInfo;
 }

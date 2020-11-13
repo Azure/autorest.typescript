@@ -37,11 +37,13 @@ export class PrivateLinkResources {
     vaultName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesListByVaultResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vaultName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vaultName, options: operationOptions },
+      operationArguments,
       listByVaultOperationSpec
     ) as Promise<PrivateLinkResourcesListByVaultResponse>;
   }

@@ -57,11 +57,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model204NoModelDefaultError200ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse
@@ -77,11 +77,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model204NoModelDefaultError204ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse
@@ -97,11 +97,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model204NoModelDefaultError201InvalidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
@@ -117,11 +117,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model204NoModelDefaultError202NoneOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse
@@ -137,11 +137,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model204NoModelDefaultError400ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse
@@ -155,11 +155,11 @@ export class MultipleResponses {
   get200Model201ModelDefaultError200Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model201ModelDefaultError200ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model201ModelDefaultError200ValidResponse
@@ -173,11 +173,11 @@ export class MultipleResponses {
   get200Model201ModelDefaultError201Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model201ModelDefaultError201ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model201ModelDefaultError201ValidResponse
@@ -191,11 +191,11 @@ export class MultipleResponses {
   get200Model201ModelDefaultError400Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200Model201ModelDefaultError400ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200Model201ModelDefaultError400ValidResponse
@@ -211,11 +211,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse
@@ -231,11 +231,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse
@@ -251,11 +251,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse
@@ -271,11 +271,11 @@ export class MultipleResponses {
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec
     ) as Promise<
       MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse
@@ -289,11 +289,11 @@ export class MultipleResponses {
   get202None204NoneDefaultError202None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultError202NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -305,11 +305,11 @@ export class MultipleResponses {
   get202None204NoneDefaultError204None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultError204NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -321,11 +321,11 @@ export class MultipleResponses {
   get202None204NoneDefaultError400Valid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultError400ValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -337,11 +337,11 @@ export class MultipleResponses {
   get202None204NoneDefaultNone202Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultNone202InvalidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -353,11 +353,11 @@ export class MultipleResponses {
   get202None204NoneDefaultNone204None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultNone204NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -369,11 +369,11 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultNone400NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -385,11 +385,11 @@ export class MultipleResponses {
   get202None204NoneDefaultNone400Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get202None204NoneDefaultNone400InvalidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -401,11 +401,11 @@ export class MultipleResponses {
   getDefaultModelA200Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGetDefaultModelA200ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultModelA200ValidOperationSpec
     ) as Promise<MultipleResponsesGetDefaultModelA200ValidResponse>;
   }
@@ -417,11 +417,11 @@ export class MultipleResponses {
   getDefaultModelA200None(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGetDefaultModelA200NoneResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultModelA200NoneOperationSpec
     ) as Promise<MultipleResponsesGetDefaultModelA200NoneResponse>;
   }
@@ -433,11 +433,11 @@ export class MultipleResponses {
   getDefaultModelA400Valid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultModelA400ValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -449,11 +449,11 @@ export class MultipleResponses {
   getDefaultModelA400None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultModelA400NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -465,11 +465,11 @@ export class MultipleResponses {
   getDefaultNone200Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultNone200InvalidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -481,11 +481,11 @@ export class MultipleResponses {
   getDefaultNone200None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultNone200NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -497,11 +497,11 @@ export class MultipleResponses {
   getDefaultNone400Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultNone400InvalidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -513,11 +513,11 @@ export class MultipleResponses {
   getDefaultNone400None(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDefaultNone400NoneOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -530,11 +530,11 @@ export class MultipleResponses {
   get200ModelA200None(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA200NoneResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA200NoneOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA200NoneResponse>;
   }
@@ -546,11 +546,11 @@ export class MultipleResponses {
   get200ModelA200Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA200ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA200ValidOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA200ValidResponse>;
   }
@@ -562,11 +562,11 @@ export class MultipleResponses {
   get200ModelA200Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA200InvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA200InvalidOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA200InvalidResponse>;
   }
@@ -578,11 +578,11 @@ export class MultipleResponses {
   get200ModelA400None(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA400NoneResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA400NoneOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA400NoneResponse>;
   }
@@ -594,11 +594,11 @@ export class MultipleResponses {
   get200ModelA400Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA400ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA400ValidOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA400ValidResponse>;
   }
@@ -610,11 +610,11 @@ export class MultipleResponses {
   get200ModelA400Invalid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA400InvalidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA400InvalidOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA400InvalidResponse>;
   }
@@ -626,11 +626,11 @@ export class MultipleResponses {
   get200ModelA202Valid(
     options?: coreHttp.OperationOptions
   ): Promise<MultipleResponsesGet200ModelA202ValidResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       get200ModelA202ValidOperationSpec
     ) as Promise<MultipleResponsesGet200ModelA202ValidResponse>;
   }

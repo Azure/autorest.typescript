@@ -38,11 +38,11 @@ export class DateOperations {
    * @param options The options parameters.
    */
   getNull(options?: coreHttp.OperationOptions): Promise<DateGetNullResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getNullOperationSpec
     ) as Promise<DateGetNullResponse>;
   }
@@ -54,11 +54,11 @@ export class DateOperations {
   getInvalidDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateGetInvalidDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getInvalidDateOperationSpec
     ) as Promise<DateGetInvalidDateResponse>;
   }
@@ -70,11 +70,11 @@ export class DateOperations {
   getOverflowDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateGetOverflowDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOverflowDateOperationSpec
     ) as Promise<DateGetOverflowDateResponse>;
   }
@@ -86,11 +86,11 @@ export class DateOperations {
   getUnderflowDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateGetUnderflowDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getUnderflowDateOperationSpec
     ) as Promise<DateGetUnderflowDateResponse>;
   }
@@ -104,11 +104,12 @@ export class DateOperations {
     dateBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      dateBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { dateBody, options: operationOptions },
+      operationArguments,
       putMaxDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -120,11 +121,11 @@ export class DateOperations {
   getMaxDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateGetMaxDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMaxDateOperationSpec
     ) as Promise<DateGetMaxDateResponse>;
   }
@@ -138,11 +139,12 @@ export class DateOperations {
     dateBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      dateBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { dateBody, options: operationOptions },
+      operationArguments,
       putMinDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -154,11 +156,11 @@ export class DateOperations {
   getMinDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateGetMinDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMinDateOperationSpec
     ) as Promise<DateGetMinDateResponse>;
   }

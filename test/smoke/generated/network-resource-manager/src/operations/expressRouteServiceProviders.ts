@@ -36,11 +36,11 @@ export class ExpressRouteServiceProviders {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteServiceProvidersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteServiceProvidersListResponse>;
   }
@@ -54,11 +54,12 @@ export class ExpressRouteServiceProviders {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteServiceProvidersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteServiceProvidersListNextResponse>;
   }

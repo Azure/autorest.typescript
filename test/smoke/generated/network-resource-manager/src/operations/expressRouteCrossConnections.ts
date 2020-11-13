@@ -47,11 +47,11 @@ export class ExpressRouteCrossConnections {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsListResponse>;
   }
@@ -65,11 +65,12 @@ export class ExpressRouteCrossConnections {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsListByResourceGroupResponse>;
   }
@@ -85,11 +86,13 @@ export class ExpressRouteCrossConnections {
     crossConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      crossConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, crossConnectionName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsGetResponse>;
   }
@@ -107,16 +110,11 @@ export class ExpressRouteCrossConnections {
     parameters: ExpressRouteCrossConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -126,12 +124,11 @@ export class ExpressRouteCrossConnections {
         ExpressRouteCrossConnectionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -152,16 +149,14 @@ export class ExpressRouteCrossConnections {
     crossConnectionParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      crossConnectionName,
+      crossConnectionParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        crossConnectionName,
-        crossConnectionParameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsUpdateTagsResponse>;
   }
@@ -182,17 +177,12 @@ export class ExpressRouteCrossConnections {
     devicePath: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsListArpTableResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       peeringName,
       devicePath,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -202,12 +192,11 @@ export class ExpressRouteCrossConnections {
         ExpressRouteCrossConnectionsListArpTableResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       listArpTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listArpTableOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -232,17 +221,12 @@ export class ExpressRouteCrossConnections {
   ): Promise<
     LROPoller<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       peeringName,
       devicePath,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -252,12 +236,11 @@ export class ExpressRouteCrossConnections {
         ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       listRoutesTableSummaryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listRoutesTableSummaryOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -281,17 +264,12 @@ export class ExpressRouteCrossConnections {
     devicePath: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       peeringName,
       devicePath,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -301,12 +279,11 @@ export class ExpressRouteCrossConnections {
         ExpressRouteCrossConnectionsListRoutesTableResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       listRoutesTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listRoutesTableOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -323,11 +300,12 @@ export class ExpressRouteCrossConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsListNextResponse>;
   }
@@ -343,11 +321,13 @@ export class ExpressRouteCrossConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<ExpressRouteCrossConnectionsListByResourceGroupNextResponse>;
   }

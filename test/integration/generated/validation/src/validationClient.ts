@@ -43,11 +43,13 @@ export class ValidationClient extends ValidationClientContext {
     id: number,
     options?: coreHttp.OperationOptions
   ): Promise<ValidationClientValidationOfMethodParametersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      id,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { resourceGroupName, id, options: operationOptions },
+      operationArguments,
       validationOfMethodParametersOperationSpec
     ) as Promise<ValidationClientValidationOfMethodParametersResponse>;
   }
@@ -63,11 +65,13 @@ export class ValidationClient extends ValidationClientContext {
     id: number,
     options?: ValidationClientValidationOfBodyOptionalParams
   ): Promise<ValidationClientValidationOfBodyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      id,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { resourceGroupName, id, options: operationOptions },
+      operationArguments,
       validationOfBodyOperationSpec
     ) as Promise<ValidationClientValidationOfBodyResponse>;
   }
@@ -78,11 +82,11 @@ export class ValidationClient extends ValidationClientContext {
   getWithConstantInPath(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getWithConstantInPathOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -93,11 +97,11 @@ export class ValidationClient extends ValidationClientContext {
   postWithConstantInBody(
     options?: ValidationClientPostWithConstantInBodyOptionalParams
   ): Promise<ValidationClientPostWithConstantInBodyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       postWithConstantInBodyOperationSpec
     ) as Promise<ValidationClientPostWithConstantInBodyResponse>;
   }

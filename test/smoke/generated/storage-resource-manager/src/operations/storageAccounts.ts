@@ -59,11 +59,12 @@ export class StorageAccounts {
     accountName: StorageAccountCheckNameAvailabilityParameters,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsCheckNameAvailabilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { accountName, options: operationOptions },
+      operationArguments,
       checkNameAvailabilityOperationSpec
     ) as Promise<StorageAccountsCheckNameAvailabilityResponse>;
   }
@@ -87,15 +88,11 @@ export class StorageAccounts {
     parameters: StorageAccountCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<StorageAccountsCreateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -105,12 +102,11 @@ export class StorageAccounts {
         StorageAccountsCreateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOperationSpec,
       initialOperationResult,
       sendOperation
@@ -131,11 +127,13 @@ export class StorageAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -155,11 +153,13 @@ export class StorageAccounts {
     accountName: string,
     options?: StorageAccountsGetPropertiesOptionalParams
   ): Promise<StorageAccountsGetPropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       getPropertiesOperationSpec
     ) as Promise<StorageAccountsGetPropertiesResponse>;
   }
@@ -186,11 +186,14 @@ export class StorageAccounts {
     parameters: StorageAccountUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, parameters, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<StorageAccountsUpdateResponse>;
   }
@@ -203,11 +206,11 @@ export class StorageAccounts {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<StorageAccountsListResponse>;
   }
@@ -223,11 +226,12 @@ export class StorageAccounts {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<StorageAccountsListByResourceGroupResponse>;
   }
@@ -247,11 +251,13 @@ export class StorageAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListKeysResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listKeysOperationSpec
     ) as Promise<StorageAccountsListKeysResponse>;
   }
@@ -273,16 +279,14 @@ export class StorageAccounts {
     regenerateKey: StorageAccountRegenerateKeyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsRegenerateKeyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      regenerateKey,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        regenerateKey,
-        options: operationOptions
-      },
+      operationArguments,
       regenerateKeyOperationSpec
     ) as Promise<StorageAccountsRegenerateKeyResponse>;
   }
@@ -303,11 +307,14 @@ export class StorageAccounts {
     parameters: AccountSasParameters,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListAccountSASResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, parameters, options: operationOptions },
+      operationArguments,
       listAccountSASOperationSpec
     ) as Promise<StorageAccountsListAccountSASResponse>;
   }
@@ -328,11 +335,14 @@ export class StorageAccounts {
     parameters: ServiceSasParameters,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListServiceSASResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, parameters, options: operationOptions },
+      operationArguments,
       listServiceSASOperationSpec
     ) as Promise<StorageAccountsListServiceSASResponse>;
   }
@@ -353,15 +363,10 @@ export class StorageAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -371,12 +376,11 @@ export class StorageAccounts {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       failoverOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: failoverOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -400,16 +404,11 @@ export class StorageAccounts {
     parameters: BlobRestoreParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<StorageAccountsRestoreBlobRangesResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -419,12 +418,11 @@ export class StorageAccounts {
         StorageAccountsRestoreBlobRangesResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       restoreBlobRangesOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: restoreBlobRangesOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -446,11 +444,13 @@ export class StorageAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       revokeUserDelegationKeysOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -464,11 +464,12 @@ export class StorageAccounts {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<StorageAccountsListNextResponse>;
   }

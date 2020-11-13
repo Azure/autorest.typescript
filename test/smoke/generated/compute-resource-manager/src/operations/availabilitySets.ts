@@ -52,16 +52,14 @@ export class AvailabilitySets {
     parameters: AvailabilitySet,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      availabilitySetName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        availabilitySetName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<AvailabilitySetsCreateOrUpdateResponse>;
   }
@@ -79,16 +77,14 @@ export class AvailabilitySets {
     parameters: AvailabilitySetUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      availabilitySetName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        availabilitySetName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<AvailabilitySetsUpdateResponse>;
   }
@@ -104,11 +100,13 @@ export class AvailabilitySets {
     availabilitySetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      availabilitySetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -124,11 +122,13 @@ export class AvailabilitySets {
     availabilitySetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      availabilitySetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<AvailabilitySetsGetResponse>;
   }
@@ -140,11 +140,11 @@ export class AvailabilitySets {
   listBySubscription(
     options?: AvailabilitySetsListBySubscriptionOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<AvailabilitySetsListBySubscriptionResponse>;
   }
@@ -158,11 +158,12 @@ export class AvailabilitySets {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AvailabilitySetsListResponse>;
   }
@@ -179,11 +180,13 @@ export class AvailabilitySets {
     availabilitySetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsListAvailableSizesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      availabilitySetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options: operationOptions },
+      operationArguments,
       listAvailableSizesOperationSpec
     ) as Promise<AvailabilitySetsListAvailableSizesResponse>;
   }
@@ -197,11 +200,12 @@ export class AvailabilitySets {
     nextLink: string,
     options?: AvailabilitySetsListBySubscriptionNextOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<AvailabilitySetsListBySubscriptionNextResponse>;
   }
@@ -217,11 +221,13 @@ export class AvailabilitySets {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AvailabilitySetsListNextResponse>;
   }

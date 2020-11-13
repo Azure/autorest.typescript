@@ -36,11 +36,11 @@ export class BgpServiceCommunities {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<BgpServiceCommunitiesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<BgpServiceCommunitiesListResponse>;
   }
@@ -54,11 +54,12 @@ export class BgpServiceCommunities {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<BgpServiceCommunitiesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<BgpServiceCommunitiesListNextResponse>;
   }

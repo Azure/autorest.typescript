@@ -116,11 +116,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   getPublishingUser(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientGetPublishingUserResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getPublishingUserOperationSpec
     ) as Promise<WebSiteManagementClientGetPublishingUserResponse>;
   }
@@ -134,11 +134,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     userDetails: User,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientUpdatePublishingUserResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      userDetails,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { userDetails, options: operationOptions },
+      operationArguments,
       updatePublishingUserOperationSpec
     ) as Promise<WebSiteManagementClientUpdatePublishingUserResponse>;
   }
@@ -150,11 +151,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listSourceControls(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListSourceControlsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listSourceControlsOperationSpec
     ) as Promise<WebSiteManagementClientListSourceControlsResponse>;
   }
@@ -168,11 +169,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     sourceControlType: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientGetSourceControlResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      sourceControlType,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { sourceControlType, options: operationOptions },
+      operationArguments,
       getSourceControlOperationSpec
     ) as Promise<WebSiteManagementClientGetSourceControlResponse>;
   }
@@ -188,11 +190,13 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     requestMessage: SourceControl,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientUpdateSourceControlResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      sourceControlType,
+      requestMessage,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { sourceControlType, requestMessage, options: operationOptions },
+      operationArguments,
       updateSourceControlOperationSpec
     ) as Promise<WebSiteManagementClientUpdateSourceControlResponse>;
   }
@@ -204,11 +208,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listBillingMeters(
     options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBillingMetersOperationSpec
     ) as Promise<WebSiteManagementClientListBillingMetersResponse>;
   }
@@ -226,11 +230,14 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     typeParam: CheckNameResourceTypes,
     options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams
   ): Promise<WebSiteManagementClientCheckNameAvailabilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      request,
+      name,
+      typeParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { request, name, typeParam, options: operationOptions },
+      operationArguments,
       checkNameAvailabilityOperationSpec
     ) as Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
   }
@@ -244,11 +251,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSubscriptionDeploymentLocationsOperationSpec
     ) as Promise<
       WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse
@@ -262,11 +269,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listGeoRegions(
     options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listGeoRegionsOperationSpec
     ) as Promise<WebSiteManagementClientListGeoRegionsResponse>;
   }
@@ -282,11 +289,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nameIdentifier,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nameIdentifier, options: operationOptions },
+      operationArguments,
       listSiteIdentifiersAssignedToHostNameOperationSpec
     ) as Promise<
       WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
@@ -300,11 +308,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listPremierAddOnOffers(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListPremierAddOnOffersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listPremierAddOnOffersOperationSpec
     ) as Promise<WebSiteManagementClientListPremierAddOnOffersResponse>;
   }
@@ -316,11 +324,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listSkus(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListSkusResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listSkusOperationSpec
     ) as Promise<WebSiteManagementClientListSkusResponse>;
   }
@@ -335,11 +343,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     parameters: VnetParameters,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       verifyHostingEnvironmentVnetOperationSpec
     ) as Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse>;
   }
@@ -355,11 +364,13 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     moveResourceEnvelope: CsmMoveResourceEnvelope,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      moveResourceEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { resourceGroupName, moveResourceEnvelope, options: operationOptions },
+      operationArguments,
       moveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -375,11 +386,13 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     validateRequest: ValidateRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientValidateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      validateRequest,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { resourceGroupName, validateRequest, options: operationOptions },
+      operationArguments,
       validateOperationSpec
     ) as Promise<WebSiteManagementClientValidateResponse>;
   }
@@ -395,11 +408,13 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     moveResourceEnvelope: CsmMoveResourceEnvelope,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      moveResourceEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { resourceGroupName, moveResourceEnvelope, options: operationOptions },
+      operationArguments,
       validateMoveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -413,11 +428,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListSourceControlsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listSourceControlsNextOperationSpec
     ) as Promise<WebSiteManagementClientListSourceControlsNextResponse>;
   }
@@ -431,11 +447,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListBillingMetersNextOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBillingMetersNextOperationSpec
     ) as Promise<WebSiteManagementClientListBillingMetersNextResponse>;
   }
@@ -449,11 +466,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListGeoRegionsNextOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listGeoRegionsNextOperationSpec
     ) as Promise<WebSiteManagementClientListGeoRegionsNextResponse>;
   }
@@ -472,11 +490,13 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nameIdentifier,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nameIdentifier, nextLink, options: operationOptions },
+      operationArguments,
       listSiteIdentifiersAssignedToHostNameNextOperationSpec
     ) as Promise<
       WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse
@@ -492,11 +512,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listPremierAddOnOffersNextOperationSpec
     ) as Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse>;
   }

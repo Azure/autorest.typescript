@@ -38,11 +38,11 @@ export class ExpressRoutePortsLocations {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRoutePortsLocationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRoutePortsLocationsListResponse>;
   }
@@ -57,11 +57,12 @@ export class ExpressRoutePortsLocations {
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRoutePortsLocationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRoutePortsLocationsGetResponse>;
   }
@@ -75,11 +76,12 @@ export class ExpressRoutePortsLocations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRoutePortsLocationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRoutePortsLocationsListNextResponse>;
   }

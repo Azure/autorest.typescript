@@ -100,11 +100,9 @@ export class LROs {
   async put200Succeeded(
     options?: LROsPut200SucceededOptionalParams
   ): Promise<LROPoller<LROsPut200SucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -113,12 +111,11 @@ export class LROs {
         LROsPut200SucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put200SucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put200SucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -133,11 +130,9 @@ export class LROs {
   async put201Succeeded(
     options?: LROsPut201SucceededOptionalParams
   ): Promise<LROPoller<LROsPut201SucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -146,12 +141,11 @@ export class LROs {
         LROsPut201SucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put201SucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put201SucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -166,11 +160,9 @@ export class LROs {
   async post202List(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPost202ListResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -179,12 +171,11 @@ export class LROs {
         LROsPost202ListResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       post202ListOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: post202ListOperationSpec,
       initialOperationResult,
       sendOperation
@@ -199,11 +190,9 @@ export class LROs {
   async put200SucceededNoState(
     options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<LROPoller<LROsPut200SucceededNoStateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -212,12 +201,11 @@ export class LROs {
         LROsPut200SucceededNoStateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put200SucceededNoStateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put200SucceededNoStateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -232,11 +220,9 @@ export class LROs {
   async put202Retry200(
     options?: LROsPut202Retry200OptionalParams
   ): Promise<LROPoller<LROsPut202Retry200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -245,12 +231,11 @@ export class LROs {
         LROsPut202Retry200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put202Retry200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put202Retry200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -266,11 +251,9 @@ export class LROs {
   async put201CreatingSucceeded200(
     options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<LROPoller<LROsPut201CreatingSucceeded200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -279,12 +262,11 @@ export class LROs {
         LROsPut201CreatingSucceeded200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put201CreatingSucceeded200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put201CreatingSucceeded200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -300,11 +282,9 @@ export class LROs {
   async put200UpdatingSucceeded204(
     options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<LROPoller<LROsPut200UpdatingSucceeded204Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -313,12 +293,11 @@ export class LROs {
         LROsPut200UpdatingSucceeded204Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put200UpdatingSucceeded204OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put200UpdatingSucceeded204OperationSpec,
       initialOperationResult,
       sendOperation
@@ -334,11 +313,9 @@ export class LROs {
   async put201CreatingFailed200(
     options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<LROPoller<LROsPut201CreatingFailed200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -347,12 +324,11 @@ export class LROs {
         LROsPut201CreatingFailed200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put201CreatingFailed200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put201CreatingFailed200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -368,11 +344,9 @@ export class LROs {
   async put200Acceptedcanceled200(
     options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<LROPoller<LROsPut200Acceptedcanceled200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -381,12 +355,11 @@ export class LROs {
         LROsPut200Acceptedcanceled200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       put200Acceptedcanceled200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: put200Acceptedcanceled200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -401,11 +374,9 @@ export class LROs {
   async putNoHeaderInRetry(
     options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<LROPoller<LROsPutNoHeaderInRetryResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -414,12 +385,11 @@ export class LROs {
         LROsPutNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putNoHeaderInRetryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putNoHeaderInRetryOperationSpec,
       initialOperationResult,
       sendOperation
@@ -435,11 +405,9 @@ export class LROs {
   async putAsyncRetrySucceeded(
     options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPutAsyncRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -448,12 +416,11 @@ export class LROs {
         LROsPutAsyncRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -469,11 +436,9 @@ export class LROs {
   async putAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -482,12 +447,11 @@ export class LROs {
         LROsPutAsyncNoRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncNoRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncNoRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -503,11 +467,9 @@ export class LROs {
   async putAsyncRetryFailed(
     options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<LROPoller<LROsPutAsyncRetryFailedResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -516,12 +478,11 @@ export class LROs {
         LROsPutAsyncRetryFailedResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncRetryFailedOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncRetryFailedOperationSpec,
       initialOperationResult,
       sendOperation
@@ -537,11 +498,9 @@ export class LROs {
   async putAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoRetrycanceledResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -550,12 +509,11 @@ export class LROs {
         LROsPutAsyncNoRetrycanceledResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncNoRetrycanceledOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncNoRetrycanceledOperationSpec,
       initialOperationResult,
       sendOperation
@@ -570,11 +528,9 @@ export class LROs {
   async putAsyncNoHeaderInRetry(
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoHeaderInRetryResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -583,12 +539,11 @@ export class LROs {
         LROsPutAsyncNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncNoHeaderInRetryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncNoHeaderInRetryOperationSpec,
       initialOperationResult,
       sendOperation
@@ -602,11 +557,9 @@ export class LROs {
   async putNonResource(
     options?: LROsPutNonResourceOptionalParams
   ): Promise<LROPoller<LROsPutNonResourceResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -615,12 +568,11 @@ export class LROs {
         LROsPutNonResourceResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putNonResourceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putNonResourceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -634,11 +586,9 @@ export class LROs {
   async putAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNonResourceResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -647,12 +597,11 @@ export class LROs {
         LROsPutAsyncNonResourceResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncNonResourceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncNonResourceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -666,11 +615,9 @@ export class LROs {
   async putSubResource(
     options?: LROsPutSubResourceOptionalParams
   ): Promise<LROPoller<LROsPutSubResourceResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -679,12 +626,11 @@ export class LROs {
         LROsPutSubResourceResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putSubResourceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putSubResourceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -698,11 +644,9 @@ export class LROs {
   async putAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<LROPoller<LROsPutAsyncSubResourceResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -711,12 +655,11 @@ export class LROs {
         LROsPutAsyncSubResourceResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       putAsyncSubResourceOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: putAsyncSubResourceOperationSpec,
       initialOperationResult,
       sendOperation
@@ -732,11 +675,9 @@ export class LROs {
   async deleteProvisioning202Accepted200Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202Accepted200SucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -745,12 +686,11 @@ export class LROs {
         LROsDeleteProvisioning202Accepted200SucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteProvisioning202Accepted200SucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteProvisioning202Accepted200SucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -766,11 +706,9 @@ export class LROs {
   async deleteProvisioning202DeletingFailed200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202DeletingFailed200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -779,12 +717,11 @@ export class LROs {
         LROsDeleteProvisioning202DeletingFailed200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteProvisioning202DeletingFailed200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteProvisioning202DeletingFailed200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -800,11 +737,9 @@ export class LROs {
   async deleteProvisioning202Deletingcanceled200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202Deletingcanceled200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -813,12 +748,11 @@ export class LROs {
         LROsDeleteProvisioning202Deletingcanceled200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteProvisioning202Deletingcanceled200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteProvisioning202Deletingcanceled200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -832,11 +766,9 @@ export class LROs {
   async delete204Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -845,12 +777,11 @@ export class LROs {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       delete204SucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: delete204SucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -865,11 +796,9 @@ export class LROs {
   async delete202Retry200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDelete202Retry200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -878,12 +807,11 @@ export class LROs {
         LROsDelete202Retry200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       delete202Retry200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: delete202Retry200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -898,11 +826,9 @@ export class LROs {
   async delete202NoRetry204(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDelete202NoRetry204Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -911,12 +837,11 @@ export class LROs {
         LROsDelete202NoRetry204Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       delete202NoRetry204OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: delete202NoRetry204OperationSpec,
       initialOperationResult,
       sendOperation
@@ -931,11 +856,9 @@ export class LROs {
   async deleteNoHeaderInRetry(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteNoHeaderInRetryResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -944,12 +867,11 @@ export class LROs {
         LROsDeleteNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteNoHeaderInRetryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteNoHeaderInRetryOperationSpec,
       initialOperationResult,
       sendOperation
@@ -964,11 +886,9 @@ export class LROs {
   async deleteAsyncNoHeaderInRetry(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncNoHeaderInRetryResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -977,12 +897,11 @@ export class LROs {
         LROsDeleteAsyncNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAsyncNoHeaderInRetryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAsyncNoHeaderInRetryOperationSpec,
       initialOperationResult,
       sendOperation
@@ -997,11 +916,9 @@ export class LROs {
   async deleteAsyncRetrySucceeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1010,12 +927,11 @@ export class LROs {
         LROsDeleteAsyncRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAsyncRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAsyncRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1030,11 +946,9 @@ export class LROs {
   async deleteAsyncNoRetrySucceeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncNoRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1043,12 +957,11 @@ export class LROs {
         LROsDeleteAsyncNoRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAsyncNoRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAsyncNoRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1063,11 +976,9 @@ export class LROs {
   async deleteAsyncRetryFailed(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetryFailedResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1076,12 +987,11 @@ export class LROs {
         LROsDeleteAsyncRetryFailedResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAsyncRetryFailedOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAsyncRetryFailedOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1096,11 +1006,9 @@ export class LROs {
   async deleteAsyncRetrycanceled(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetrycanceledResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1109,12 +1017,11 @@ export class LROs {
         LROsDeleteAsyncRetrycanceledResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAsyncRetrycanceledOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAsyncRetrycanceledOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1129,11 +1036,9 @@ export class LROs {
   async post200WithPayload(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPost200WithPayloadResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1142,12 +1047,11 @@ export class LROs {
         LROsPost200WithPayloadResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       post200WithPayloadOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: post200WithPayloadOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1162,11 +1066,9 @@ export class LROs {
   async post202Retry200(
     options?: LROsPost202Retry200OptionalParams
   ): Promise<LROPoller<LROsPost202Retry200Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1175,12 +1077,11 @@ export class LROs {
         LROsPost202Retry200Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       post202Retry200OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: post202Retry200OperationSpec,
       initialOperationResult,
       sendOperation
@@ -1195,11 +1096,9 @@ export class LROs {
   async post202NoRetry204(
     options?: LROsPost202NoRetry204OptionalParams
   ): Promise<LROPoller<LROsPost202NoRetry204Response>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1208,12 +1107,11 @@ export class LROs {
         LROsPost202NoRetry204Response
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       post202NoRetry204OperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: post202NoRetry204OperationSpec,
       initialOperationResult,
       sendOperation
@@ -1228,12 +1126,9 @@ export class LROs {
   async postDoubleHeadersFinalLocationGet(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalLocationGetResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "location")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1242,12 +1137,11 @@ export class LROs {
         LROsPostDoubleHeadersFinalLocationGetResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postDoubleHeadersFinalLocationGetOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postDoubleHeadersFinalLocationGetOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -1264,12 +1158,9 @@ export class LROs {
   async postDoubleHeadersFinalAzureHeaderGet(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "azure-async-operation")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1278,12 +1169,11 @@ export class LROs {
         LROsPostDoubleHeadersFinalAzureHeaderGetResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postDoubleHeadersFinalAzureHeaderGetOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postDoubleHeadersFinalAzureHeaderGetOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -1302,11 +1192,9 @@ export class LROs {
   ): Promise<
     LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1315,12 +1203,11 @@ export class LROs {
         LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1336,11 +1223,9 @@ export class LROs {
   async postAsyncRetrySucceeded(
     options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1349,12 +1234,11 @@ export class LROs {
         LROsPostAsyncRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postAsyncRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postAsyncRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1370,11 +1254,9 @@ export class LROs {
   async postAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPostAsyncNoRetrySucceededResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1383,12 +1265,11 @@ export class LROs {
         LROsPostAsyncNoRetrySucceededResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postAsyncNoRetrySucceededOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postAsyncNoRetrySucceededOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1404,11 +1285,9 @@ export class LROs {
   async postAsyncRetryFailed(
     options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetryFailedResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1417,12 +1296,11 @@ export class LROs {
         LROsPostAsyncRetryFailedResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postAsyncRetryFailedOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postAsyncRetryFailedOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1438,11 +1316,9 @@ export class LROs {
   async postAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetrycanceledResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
+    };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1451,12 +1327,11 @@ export class LROs {
         LROsPostAsyncRetrycanceledResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       postAsyncRetrycanceledOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: postAsyncRetrycanceledOperationSpec,
       initialOperationResult,
       sendOperation

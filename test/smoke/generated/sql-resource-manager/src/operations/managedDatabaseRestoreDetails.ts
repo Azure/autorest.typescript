@@ -45,17 +45,15 @@ export class ManagedDatabaseRestoreDetails {
     restoreDetailsName: RestoreDetailsName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      restoreDetailsName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        restoreDetailsName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedDatabaseRestoreDetailsGetResponse>;
   }

@@ -49,16 +49,14 @@ export class ServerAzureADAdministrators {
     administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAzureADAdministratorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      administratorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        administratorName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServerAzureADAdministratorsGetResponse>;
   }
@@ -80,16 +78,12 @@ export class ServerAzureADAdministrators {
     parameters: ServerAzureADAdministrator,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ServerAzureADAdministratorsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       administratorName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -99,12 +93,11 @@ export class ServerAzureADAdministrators {
         ServerAzureADAdministratorsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -125,15 +118,11 @@ export class ServerAzureADAdministrators {
     administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       administratorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +132,11 @@ export class ServerAzureADAdministrators {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -167,11 +155,13 @@ export class ServerAzureADAdministrators {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAzureADAdministratorsListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<ServerAzureADAdministratorsListByServerResponse>;
   }
@@ -192,14 +182,10 @@ export class ServerAzureADAdministrators {
       ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
     >
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -209,12 +195,11 @@ export class ServerAzureADAdministrators {
         ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       disableAzureADOnlyAuthenticationOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: disableAzureADOnlyAuthenticationOperationSpec,
       initialOperationResult,
       sendOperation
@@ -235,11 +220,14 @@ export class ServerAzureADAdministrators {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAzureADAdministratorsListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<ServerAzureADAdministratorsListByServerNextResponse>;
   }

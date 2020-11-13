@@ -35,11 +35,12 @@ export class SkipUrlEncoding {
     unencodedPathParam: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      unencodedPathParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { unencodedPathParam, options: operationOptions },
+      operationArguments,
       getMethodPathValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -53,11 +54,12 @@ export class SkipUrlEncoding {
     unencodedPathParam: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      unencodedPathParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { unencodedPathParam, options: operationOptions },
+      operationArguments,
       getPathValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -69,11 +71,11 @@ export class SkipUrlEncoding {
   getSwaggerPathValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSwaggerPathValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -87,11 +89,12 @@ export class SkipUrlEncoding {
     q1: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      q1,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { q1, options: operationOptions },
+      operationArguments,
       getMethodQueryValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -103,11 +106,11 @@ export class SkipUrlEncoding {
   getMethodQueryNull(
     options?: SkipUrlEncodingGetMethodQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getMethodQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -121,11 +124,12 @@ export class SkipUrlEncoding {
     q1: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      q1,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { q1, options: operationOptions },
+      operationArguments,
       getPathQueryValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -137,11 +141,11 @@ export class SkipUrlEncoding {
   getSwaggerQueryValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getSwaggerQueryValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -53,16 +53,14 @@ export class JobExecutions {
     jobAgentName: string,
     options?: JobExecutionsListByAgentOptionalParams
   ): Promise<JobExecutionsListByAgentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentOperationSpec
     ) as Promise<JobExecutionsListByAgentResponse>;
   }
@@ -85,18 +83,16 @@ export class JobExecutions {
     jobExecutionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobExecutionId,
-        options: operationOptions
-      },
+      operationArguments,
       cancelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -117,16 +113,12 @@ export class JobExecutions {
     jobName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<JobExecutionsCreateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       jobAgentName,
       jobName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -136,12 +128,11 @@ export class JobExecutions {
         JobExecutionsCreateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOperationSpec,
       initialOperationResult,
       sendOperation
@@ -164,17 +155,15 @@ export class JobExecutions {
     jobName: string,
     options?: JobExecutionsListByJobOptionalParams
   ): Promise<JobExecutionsListByJobResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobOperationSpec
     ) as Promise<JobExecutionsListByJobResponse>;
   }
@@ -197,18 +186,16 @@ export class JobExecutions {
     jobExecutionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobExecutionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobExecutionId,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<JobExecutionsGetResponse>;
   }
@@ -231,17 +218,13 @@ export class JobExecutions {
     jobExecutionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<JobExecutionsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       jobAgentName,
       jobName,
       jobExecutionId,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -251,12 +234,11 @@ export class JobExecutions {
         JobExecutionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -279,17 +261,15 @@ export class JobExecutions {
     nextLink: string,
     options?: JobExecutionsListByAgentNextOptionalParams
   ): Promise<JobExecutionsListByAgentNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentNextOperationSpec
     ) as Promise<JobExecutionsListByAgentNextResponse>;
   }
@@ -312,18 +292,16 @@ export class JobExecutions {
     nextLink: string,
     options?: JobExecutionsListByJobNextOptionalParams
   ): Promise<JobExecutionsListByJobNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobNextOperationSpec
     ) as Promise<JobExecutionsListByJobNextResponse>;
   }

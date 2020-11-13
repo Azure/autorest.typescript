@@ -40,11 +40,12 @@ export class Objects {
     parameters: GetObjectsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       getObjectsByObjectIdsOperationSpec
     ) as Promise<ObjectsGetObjectsByObjectIdsResponse>;
   }
@@ -58,11 +59,12 @@ export class Objects {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectsGetObjectsByObjectIdsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getObjectsByObjectIdsNextOperationSpec
     ) as Promise<ObjectsGetObjectsByObjectIdsNextResponse>;
   }

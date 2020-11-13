@@ -40,11 +40,12 @@ export class DeletedApplications {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedApplicationsRestoreResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       restoreOperationSpec
     ) as Promise<DeletedApplicationsRestoreResponse>;
   }
@@ -56,11 +57,11 @@ export class DeletedApplications {
   list(
     options?: DeletedApplicationsListOptionalParams
   ): Promise<DeletedApplicationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DeletedApplicationsListResponse>;
   }
@@ -74,11 +75,12 @@ export class DeletedApplications {
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationObjectId, options: operationOptions },
+      operationArguments,
       hardDeleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -92,11 +94,12 @@ export class DeletedApplications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedApplicationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DeletedApplicationsListNextResponse>;
   }

@@ -48,11 +48,12 @@ export class Pets {
     createParameters: PetAPTrue,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateAPTrueResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createAPTrueOperationSpec
     ) as Promise<PetsCreateAPTrueResponse>;
   }
@@ -66,11 +67,12 @@ export class Pets {
     createParameters: CatAPTrue,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateCatAPTrueResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createCatAPTrueOperationSpec
     ) as Promise<PetsCreateCatAPTrueResponse>;
   }
@@ -84,11 +86,12 @@ export class Pets {
     createParameters: PetAPObject,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateAPObjectResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createAPObjectOperationSpec
     ) as Promise<PetsCreateAPObjectResponse>;
   }
@@ -102,11 +105,12 @@ export class Pets {
     createParameters: PetAPString,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateAPStringResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createAPStringOperationSpec
     ) as Promise<PetsCreateAPStringResponse>;
   }
@@ -120,11 +124,12 @@ export class Pets {
     createParameters: PetAPInProperties,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateAPInPropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createAPInPropertiesOperationSpec
     ) as Promise<PetsCreateAPInPropertiesResponse>;
   }
@@ -138,11 +143,12 @@ export class Pets {
     createParameters: PetAPInPropertiesWithAPString,
     options?: coreHttp.OperationOptions
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      createParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { createParameters, options: operationOptions },
+      operationArguments,
       createAPInPropertiesWithAPStringOperationSpec
     ) as Promise<PetsCreateAPInPropertiesWithAPStringResponse>;
   }

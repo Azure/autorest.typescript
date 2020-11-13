@@ -56,11 +56,11 @@ export class Primitive {
   getInt(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetIntResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getIntOperationSpec
     ) as Promise<PrimitiveGetIntResponse>;
   }
@@ -74,11 +74,12 @@ export class Primitive {
     complexBody: IntWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putIntOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -90,11 +91,11 @@ export class Primitive {
   getLong(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetLongResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getLongOperationSpec
     ) as Promise<PrimitiveGetLongResponse>;
   }
@@ -108,11 +109,12 @@ export class Primitive {
     complexBody: LongWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putLongOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -124,11 +126,11 @@ export class Primitive {
   getFloat(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetFloatResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getFloatOperationSpec
     ) as Promise<PrimitiveGetFloatResponse>;
   }
@@ -142,11 +144,12 @@ export class Primitive {
     complexBody: FloatWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putFloatOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -158,11 +161,11 @@ export class Primitive {
   getDouble(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetDoubleResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDoubleOperationSpec
     ) as Promise<PrimitiveGetDoubleResponse>;
   }
@@ -177,11 +180,12 @@ export class Primitive {
     complexBody: DoubleWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putDoubleOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -193,11 +197,11 @@ export class Primitive {
   getBool(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetBoolResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getBoolOperationSpec
     ) as Promise<PrimitiveGetBoolResponse>;
   }
@@ -211,11 +215,12 @@ export class Primitive {
     complexBody: BooleanWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putBoolOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -227,11 +232,11 @@ export class Primitive {
   getString(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetStringResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getStringOperationSpec
     ) as Promise<PrimitiveGetStringResponse>;
   }
@@ -245,11 +250,12 @@ export class Primitive {
     complexBody: StringWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putStringOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -261,11 +267,11 @@ export class Primitive {
   getDate(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetDateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDateOperationSpec
     ) as Promise<PrimitiveGetDateResponse>;
   }
@@ -279,11 +285,12 @@ export class Primitive {
     complexBody: DateWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -295,11 +302,11 @@ export class Primitive {
   getDateTime(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetDateTimeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDateTimeOperationSpec
     ) as Promise<PrimitiveGetDateTimeResponse>;
   }
@@ -313,11 +320,12 @@ export class Primitive {
     complexBody: DatetimeWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putDateTimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -329,11 +337,11 @@ export class Primitive {
   getDateTimeRfc1123(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDateTimeRfc1123OperationSpec
     ) as Promise<PrimitiveGetDateTimeRfc1123Response>;
   }
@@ -347,11 +355,12 @@ export class Primitive {
     complexBody: Datetimerfc1123Wrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putDateTimeRfc1123OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -363,11 +372,11 @@ export class Primitive {
   getDuration(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetDurationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getDurationOperationSpec
     ) as Promise<PrimitiveGetDurationResponse>;
   }
@@ -381,11 +390,12 @@ export class Primitive {
     complexBody: DurationWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -397,11 +407,11 @@ export class Primitive {
   getByte(
     options?: coreHttp.OperationOptions
   ): Promise<PrimitiveGetByteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getByteOperationSpec
     ) as Promise<PrimitiveGetByteResponse>;
   }
@@ -415,11 +425,12 @@ export class Primitive {
     complexBody: ByteWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options: operationOptions },
+      operationArguments,
       putByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

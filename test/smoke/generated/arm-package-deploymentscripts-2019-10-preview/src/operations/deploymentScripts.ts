@@ -53,15 +53,11 @@ export class DeploymentScripts {
     deploymentScript: DeploymentScriptUnion,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentScriptsCreateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       scriptName,
       deploymentScript,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -71,12 +67,11 @@ export class DeploymentScripts {
         DeploymentScriptsCreateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOperationSpec,
       initialOperationResult,
       sendOperation
@@ -94,11 +89,13 @@ export class DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsUpdateOptionalParams
   ): Promise<DeploymentScriptsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      scriptName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, scriptName, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<DeploymentScriptsUpdateResponse>;
   }
@@ -114,11 +111,13 @@ export class DeploymentScripts {
     scriptName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      scriptName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, scriptName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DeploymentScriptsGetResponse>;
   }
@@ -134,11 +133,13 @@ export class DeploymentScripts {
     scriptName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      scriptName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, scriptName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -150,11 +151,11 @@ export class DeploymentScripts {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<DeploymentScriptsListBySubscriptionResponse>;
   }
@@ -170,11 +171,13 @@ export class DeploymentScripts {
     scriptName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsGetLogsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      scriptName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, scriptName, options: operationOptions },
+      operationArguments,
       getLogsOperationSpec
     ) as Promise<DeploymentScriptsGetLogsResponse>;
   }
@@ -190,11 +193,13 @@ export class DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsGetLogsDefaultOptionalParams
   ): Promise<DeploymentScriptsGetLogsDefaultResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      scriptName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, scriptName, options: operationOptions },
+      operationArguments,
       getLogsDefaultOperationSpec
     ) as Promise<DeploymentScriptsGetLogsDefaultResponse>;
   }
@@ -208,11 +213,12 @@ export class DeploymentScripts {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DeploymentScriptsListByResourceGroupResponse>;
   }
@@ -226,11 +232,12 @@ export class DeploymentScripts {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<DeploymentScriptsListBySubscriptionNextResponse>;
   }
@@ -246,11 +253,13 @@ export class DeploymentScripts {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentScriptsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DeploymentScriptsListByResourceGroupNextResponse>;
   }

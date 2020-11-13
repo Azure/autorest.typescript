@@ -40,11 +40,12 @@ export class AvailableServiceAliases {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableServiceAliasesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AvailableServiceAliasesListResponse>;
   }
@@ -60,11 +61,13 @@ export class AvailableServiceAliases {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableServiceAliasesListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<AvailableServiceAliasesListByResourceGroupResponse>;
   }
@@ -80,11 +83,13 @@ export class AvailableServiceAliases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableServiceAliasesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AvailableServiceAliasesListNextResponse>;
   }
@@ -102,11 +107,14 @@ export class AvailableServiceAliases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableServiceAliasesListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<AvailableServiceAliasesListByResourceGroupNextResponse>;
   }

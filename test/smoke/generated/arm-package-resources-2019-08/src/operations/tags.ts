@@ -42,11 +42,13 @@ export class Tags {
     tagValue: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      tagName,
+      tagValue,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { tagName, tagValue, options: operationOptions },
+      operationArguments,
       deleteValueOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -62,11 +64,13 @@ export class Tags {
     tagValue: string,
     options?: coreHttp.OperationOptions
   ): Promise<TagsCreateOrUpdateValueResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      tagName,
+      tagValue,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { tagName, tagValue, options: operationOptions },
+      operationArguments,
       createOrUpdateValueOperationSpec
     ) as Promise<TagsCreateOrUpdateValueResponse>;
   }
@@ -82,11 +86,12 @@ export class Tags {
     tagName: string,
     options?: coreHttp.OperationOptions
   ): Promise<TagsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      tagName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { tagName, options: operationOptions },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<TagsCreateOrUpdateResponse>;
   }
@@ -100,11 +105,12 @@ export class Tags {
     tagName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      tagName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { tagName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -114,11 +120,11 @@ export class Tags {
    * @param options The options parameters.
    */
   list(options?: coreHttp.OperationOptions): Promise<TagsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<TagsListResponse>;
   }
@@ -132,11 +138,12 @@ export class Tags {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<TagsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<TagsListNextResponse>;
   }

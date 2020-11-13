@@ -45,11 +45,13 @@ export class ExtendedServerBlobAuditingPolicies {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
   }
@@ -70,15 +72,11 @@ export class ExtendedServerBlobAuditingPolicies {
   ): Promise<
     LROPoller<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -88,12 +86,11 @@ export class ExtendedServerBlobAuditingPolicies {
         ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -112,11 +109,13 @@ export class ExtendedServerBlobAuditingPolicies {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse>;
   }
@@ -135,11 +134,14 @@ export class ExtendedServerBlobAuditingPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse>;
   }

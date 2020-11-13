@@ -48,11 +48,12 @@ export class ResourceLinks {
     linkId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      linkId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { linkId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -71,11 +72,13 @@ export class ResourceLinks {
     parameters: ResourceLink,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceLinksCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      linkId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { linkId, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ResourceLinksCreateOrUpdateResponse>;
   }
@@ -90,11 +93,12 @@ export class ResourceLinks {
     linkId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceLinksGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      linkId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { linkId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ResourceLinksGetResponse>;
   }
@@ -106,11 +110,11 @@ export class ResourceLinks {
   listAtSubscription(
     options?: ResourceLinksListAtSubscriptionOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAtSubscriptionOperationSpec
     ) as Promise<ResourceLinksListAtSubscriptionResponse>;
   }
@@ -126,11 +130,12 @@ export class ResourceLinks {
     scope: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceLinksListAtSourceScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, options: operationOptions },
+      operationArguments,
       listAtSourceScopeOperationSpec
     ) as Promise<ResourceLinksListAtSourceScopeResponse>;
   }
@@ -144,11 +149,12 @@ export class ResourceLinks {
     nextLink: string,
     options?: ResourceLinksListAtSubscriptionNextOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAtSubscriptionNextOperationSpec
     ) as Promise<ResourceLinksListAtSubscriptionNextResponse>;
   }
@@ -166,11 +172,13 @@ export class ResourceLinks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceLinksListAtSourceScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, nextLink, options: operationOptions },
+      operationArguments,
       listAtSourceScopeNextOperationSpec
     ) as Promise<ResourceLinksListAtSourceScopeNextResponse>;
   }

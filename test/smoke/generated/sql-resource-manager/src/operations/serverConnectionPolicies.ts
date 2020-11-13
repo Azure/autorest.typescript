@@ -47,17 +47,15 @@ export class ServerConnectionPolicies {
     parameters: ServerConnectionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      connectionPolicyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        connectionPolicyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
   }
@@ -76,16 +74,14 @@ export class ServerConnectionPolicies {
     connectionPolicyName: ConnectionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ServerConnectionPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      connectionPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        connectionPolicyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServerConnectionPoliciesGetResponse>;
   }

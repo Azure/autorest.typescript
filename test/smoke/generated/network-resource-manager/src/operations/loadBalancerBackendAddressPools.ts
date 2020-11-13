@@ -44,11 +44,13 @@ export class LoadBalancerBackendAddressPools {
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerBackendAddressPoolsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, loadBalancerName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<LoadBalancerBackendAddressPoolsListResponse>;
   }
@@ -66,16 +68,14 @@ export class LoadBalancerBackendAddressPools {
     backendAddressPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerBackendAddressPoolsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      backendAddressPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        backendAddressPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<LoadBalancerBackendAddressPoolsGetResponse>;
   }
@@ -96,17 +96,12 @@ export class LoadBalancerBackendAddressPools {
     parameters: BackendAddressPool,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
       backendAddressPoolName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -116,12 +111,11 @@ export class LoadBalancerBackendAddressPools {
         LoadBalancerBackendAddressPoolsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -142,16 +136,11 @@ export class LoadBalancerBackendAddressPools {
     backendAddressPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
       backendAddressPoolName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -161,12 +150,11 @@ export class LoadBalancerBackendAddressPools {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -187,16 +175,14 @@ export class LoadBalancerBackendAddressPools {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerBackendAddressPoolsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<LoadBalancerBackendAddressPoolsListNextResponse>;
   }

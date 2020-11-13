@@ -43,16 +43,14 @@ export class VpnSiteLinks {
     vpnSiteLinkName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSiteLinksGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vpnSiteName,
+      vpnSiteLinkName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vpnSiteName,
-        vpnSiteLinkName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VpnSiteLinksGetResponse>;
   }
@@ -68,11 +66,13 @@ export class VpnSiteLinks {
     vpnSiteName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSiteLinksListByVpnSiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vpnSiteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vpnSiteName, options: operationOptions },
+      operationArguments,
       listByVpnSiteOperationSpec
     ) as Promise<VpnSiteLinksListByVpnSiteResponse>;
   }
@@ -90,11 +90,14 @@ export class VpnSiteLinks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSiteLinksListByVpnSiteNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vpnSiteName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vpnSiteName, nextLink, options: operationOptions },
+      operationArguments,
       listByVpnSiteNextOperationSpec
     ) as Promise<VpnSiteLinksListByVpnSiteNextResponse>;
   }

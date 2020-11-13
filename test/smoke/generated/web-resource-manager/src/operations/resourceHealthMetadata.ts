@@ -44,11 +44,11 @@ export class ResourceHealthMetadata {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ResourceHealthMetadataListResponse>;
   }
@@ -63,11 +63,12 @@ export class ResourceHealthMetadata {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ResourceHealthMetadataListByResourceGroupResponse>;
   }
@@ -84,11 +85,13 @@ export class ResourceHealthMetadata {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListBySiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listBySiteOperationSpec
     ) as Promise<ResourceHealthMetadataListBySiteResponse>;
   }
@@ -104,11 +107,13 @@ export class ResourceHealthMetadata {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataGetBySiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getBySiteOperationSpec
     ) as Promise<ResourceHealthMetadataGetBySiteResponse>;
   }
@@ -127,11 +132,14 @@ export class ResourceHealthMetadata {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListBySiteSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, slot, options: operationOptions },
+      operationArguments,
       listBySiteSlotOperationSpec
     ) as Promise<ResourceHealthMetadataListBySiteSlotResponse>;
   }
@@ -149,11 +157,14 @@ export class ResourceHealthMetadata {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataGetBySiteSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, slot, options: operationOptions },
+      operationArguments,
       getBySiteSlotOperationSpec
     ) as Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
   }
@@ -167,11 +178,12 @@ export class ResourceHealthMetadata {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ResourceHealthMetadataListNextResponse>;
   }
@@ -187,11 +199,13 @@ export class ResourceHealthMetadata {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<ResourceHealthMetadataListByResourceGroupNextResponse>;
   }
@@ -209,11 +223,14 @@ export class ResourceHealthMetadata {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListBySiteNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listBySiteNextOperationSpec
     ) as Promise<ResourceHealthMetadataListBySiteNextResponse>;
   }
@@ -233,11 +250,15 @@ export class ResourceHealthMetadata {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataListBySiteSlotNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      slot,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, slot, nextLink, options: operationOptions },
+      operationArguments,
       listBySiteSlotNextOperationSpec
     ) as Promise<ResourceHealthMetadataListBySiteSlotNextResponse>;
   }

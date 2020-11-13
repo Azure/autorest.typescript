@@ -35,11 +35,12 @@ export class Usages {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsagesListByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listByLocationOperationSpec
     ) as Promise<UsagesListByLocationResponse>;
   }

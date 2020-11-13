@@ -39,11 +39,12 @@ export class Implicit {
     pathParameter: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      pathParameter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathParameter, options: operationOptions },
+      operationArguments,
       getRequiredPathOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -55,11 +56,11 @@ export class Implicit {
   putOptionalQuery(
     options?: ImplicitPutOptionalQueryOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       putOptionalQueryOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -71,11 +72,11 @@ export class Implicit {
   putOptionalHeader(
     options?: ImplicitPutOptionalHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       putOptionalHeaderOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -87,11 +88,11 @@ export class Implicit {
   putOptionalBody(
     options?: ImplicitPutOptionalBodyOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       putOptionalBodyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -103,11 +104,11 @@ export class Implicit {
   getRequiredGlobalPath(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getRequiredGlobalPathOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -119,11 +120,11 @@ export class Implicit {
   getRequiredGlobalQuery(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getRequiredGlobalQueryOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -135,11 +136,11 @@ export class Implicit {
   getOptionalGlobalQuery(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOptionalGlobalQueryOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -41,11 +41,11 @@ export class Features {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<FeaturesListAllResponse>;
   }
@@ -60,11 +60,12 @@ export class Features {
     resourceProviderNamespace: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<FeaturesListResponse>;
   }
@@ -80,11 +81,13 @@ export class Features {
     featureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      featureName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, featureName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<FeaturesGetResponse>;
   }
@@ -100,11 +103,13 @@ export class Features {
     featureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesRegisterResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      featureName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, featureName, options: operationOptions },
+      operationArguments,
       registerOperationSpec
     ) as Promise<FeaturesRegisterResponse>;
   }
@@ -120,11 +125,13 @@ export class Features {
     featureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesUnregisterResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      featureName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, featureName, options: operationOptions },
+      operationArguments,
       unregisterOperationSpec
     ) as Promise<FeaturesUnregisterResponse>;
   }
@@ -138,11 +145,12 @@ export class Features {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<FeaturesListAllNextResponse>;
   }
@@ -158,11 +166,13 @@ export class Features {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<FeaturesListNextResponse>;
   }

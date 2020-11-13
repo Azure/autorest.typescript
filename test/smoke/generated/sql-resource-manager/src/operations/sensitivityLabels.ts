@@ -53,16 +53,14 @@ export class SensitivityLabels {
     databaseName: string,
     options?: SensitivityLabelsListCurrentByDatabaseOptionalParams
   ): Promise<SensitivityLabelsListCurrentByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listCurrentByDatabaseOperationSpec
     ) as Promise<SensitivityLabelsListCurrentByDatabaseResponse>;
   }
@@ -81,16 +79,14 @@ export class SensitivityLabels {
     databaseName: string,
     options?: SensitivityLabelsListRecommendedByDatabaseOptionalParams
   ): Promise<SensitivityLabelsListRecommendedByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listRecommendedByDatabaseOperationSpec
     ) as Promise<SensitivityLabelsListRecommendedByDatabaseResponse>;
   }
@@ -116,19 +112,17 @@ export class SensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       enableRecommendationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -153,19 +147,17 @@ export class SensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       disableRecommendationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -192,20 +184,18 @@ export class SensitivityLabels {
     sensitivityLabelSource: SensitivityLabelSource,
     options?: coreHttp.OperationOptions
   ): Promise<SensitivityLabelsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      sensitivityLabelSource,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        sensitivityLabelSource,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SensitivityLabelsGetResponse>;
   }
@@ -232,20 +222,18 @@ export class SensitivityLabels {
     parameters: SensitivityLabel,
     options?: coreHttp.OperationOptions
   ): Promise<SensitivityLabelsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<SensitivityLabelsCreateOrUpdateResponse>;
   }
@@ -270,19 +258,17 @@ export class SensitivityLabels {
     columnName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      schemaName,
+      tableName,
+      columnName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -303,17 +289,15 @@ export class SensitivityLabels {
     nextLink: string,
     options?: SensitivityLabelsListCurrentByDatabaseNextOptionalParams
   ): Promise<SensitivityLabelsListCurrentByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listCurrentByDatabaseNextOperationSpec
     ) as Promise<SensitivityLabelsListCurrentByDatabaseNextResponse>;
   }
@@ -335,17 +319,15 @@ export class SensitivityLabels {
     nextLink: string,
     options?: SensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   ): Promise<SensitivityLabelsListRecommendedByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listRecommendedByDatabaseNextOperationSpec
     ) as Promise<SensitivityLabelsListRecommendedByDatabaseNextResponse>;
   }

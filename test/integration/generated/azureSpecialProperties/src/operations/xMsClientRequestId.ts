@@ -31,11 +31,11 @@ export class XMsClientRequestId {
    * @param options The options parameters.
    */
   get(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -51,11 +51,12 @@ export class XMsClientRequestId {
     xMsClientRequestId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      xMsClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { xMsClientRequestId, options: operationOptions },
+      operationArguments,
       paramGetOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
