@@ -815,7 +815,7 @@ export function writeOperations(
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
       ],
-      isAsync: operation.isLRO || clientDetails.enableTracing
+      isAsync: operation.isLRO || Boolean(clientDetails.tracing)
     });
 
     addOperationOverloads(
@@ -927,7 +927,7 @@ function writeNoOverloadsOperationBody(
 
   let options = toOptionsBase;
 
-  if (clientDetails.enableTracing) {
+  if (clientDetails.tracing) {
     const operationName = operationMethod.getName();
     operationMethod.addStatements([
       getTracingSpanStatement(clientDetails, operationName, toOptionsBase)
@@ -982,7 +982,7 @@ function writeSendOperationRequest(
 ) {
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`;
-  if (!clientDetails.enableTracing) {
+  if (!clientDetails.tracing) {
     // If tracing is not enabled just return
     operationMethod.addStatements(
       `return ${sendRequestStatement} as Promise<${responseName}>`
@@ -1122,7 +1122,7 @@ function writeMultiMediaTypeOperationBody(
 
   const toOptionsBase = `coreHttp.operationOptionsToRequestOptionsBase(operationArguments.options || {})`;
 
-  if (clientDetails.enableTracing) {
+  if (clientDetails.tracing) {
     const operationName = operationMethod.getName();
     operationMethod.addStatements([
       getTracingSpanStatement(clientDetails, operationName, toOptionsBase),

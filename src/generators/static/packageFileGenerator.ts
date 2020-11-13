@@ -23,7 +23,7 @@ export function generatePackageJson(
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.1" }),
       "@azure/core-http": "^1.1.4",
-      ...(clientDetails.enableTracing && {
+      ...(clientDetails.tracing && {
         "@azure/core-tracing": "1.0.0-preview.9",
         "@opentelemetry/api": "^0.10.2"
       }),

@@ -7,11 +7,11 @@ import { ClientDetails } from "../../models/clientDetails";
  * @param sourceFile File to add imports to
  */
 export function addTracingOperationImports(
-  { enableTracing, srcPath }: ClientDetails,
+  { tracing }: ClientDetails,
   sourceFile: SourceFile,
   traverseToRoot = ".."
 ) {
-  if (enableTracing) {
+  if (tracing) {
     sourceFile.addImportDeclarations([
       {
         namedImports: ["CanonicalCode"],
