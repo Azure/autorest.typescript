@@ -76,11 +76,13 @@ export class Diagnostics {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listHostingEnvironmentDetectorResponsesOperationSpec
     ) as Promise<DiagnosticsListHostingEnvironmentDetectorResponsesResponse>;
   }
@@ -98,11 +100,14 @@ export class Diagnostics {
     detectorName: string,
     options?: DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams
   ): Promise<DiagnosticsGetHostingEnvironmentDetectorResponseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      detectorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, detectorName, options: operationOptions },
+      operationArguments,
       getHostingEnvironmentDetectorResponseOperationSpec
     ) as Promise<DiagnosticsGetHostingEnvironmentDetectorResponseResponse>;
   }
@@ -118,11 +123,13 @@ export class Diagnostics {
     siteName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorResponsesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       listSiteDetectorResponsesOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorResponsesResponse>;
   }
@@ -140,11 +147,14 @@ export class Diagnostics {
     detectorName: string,
     options?: DiagnosticsGetSiteDetectorResponseOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      detectorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, detectorName, options: operationOptions },
+      operationArguments,
       getSiteDetectorResponseOperationSpec
     ) as Promise<DiagnosticsGetSiteDetectorResponseResponse>;
   }
@@ -160,11 +170,13 @@ export class Diagnostics {
     siteName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       listSiteDiagnosticCategoriesOperationSpec
     ) as Promise<DiagnosticsListSiteDiagnosticCategoriesResponse>;
   }
@@ -182,16 +194,14 @@ export class Diagnostics {
     diagnosticCategory: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteDiagnosticCategoryResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteDiagnosticCategoryOperationSpec
     ) as Promise<DiagnosticsGetSiteDiagnosticCategoryResponse>;
   }
@@ -209,16 +219,14 @@ export class Diagnostics {
     diagnosticCategory: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteAnalysesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteAnalysesOperationSpec
     ) as Promise<DiagnosticsListSiteAnalysesResponse>;
   }
@@ -238,17 +246,15 @@ export class Diagnostics {
     analysisName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteAnalysisResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      analysisName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        analysisName,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteAnalysisOperationSpec
     ) as Promise<DiagnosticsGetSiteAnalysisResponse>;
   }
@@ -268,17 +274,15 @@ export class Diagnostics {
     analysisName: string,
     options?: DiagnosticsExecuteSiteAnalysisOptionalParams
   ): Promise<DiagnosticsExecuteSiteAnalysisResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      analysisName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        analysisName,
-        options: operationOptions
-      },
+      operationArguments,
       executeSiteAnalysisOperationSpec
     ) as Promise<DiagnosticsExecuteSiteAnalysisResponse>;
   }
@@ -296,16 +300,14 @@ export class Diagnostics {
     diagnosticCategory: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDetectorsOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorsResponse>;
   }
@@ -325,17 +327,15 @@ export class Diagnostics {
     detectorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteDetectorResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      detectorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        detectorName,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteDetectorOperationSpec
     ) as Promise<DiagnosticsGetSiteDetectorResponse>;
   }
@@ -355,17 +355,15 @@ export class Diagnostics {
     diagnosticCategory: string,
     options?: DiagnosticsExecuteSiteDetectorOptionalParams
   ): Promise<DiagnosticsExecuteSiteDetectorResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      detectorName,
+      diagnosticCategory,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        detectorName,
-        diagnosticCategory,
-        options: operationOptions
-      },
+      operationArguments,
       executeSiteDetectorOperationSpec
     ) as Promise<DiagnosticsExecuteSiteDetectorResponse>;
   }
@@ -383,11 +381,14 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, slot, options: operationOptions },
+      operationArguments,
       listSiteDetectorResponsesSlotOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorResponsesSlotResponse>;
   }
@@ -407,17 +408,15 @@ export class Diagnostics {
     slot: string,
     options?: DiagnosticsGetSiteDetectorResponseSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      detectorName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        detectorName,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteDetectorResponseSlotOperationSpec
     ) as Promise<DiagnosticsGetSiteDetectorResponseSlotResponse>;
   }
@@ -435,11 +434,14 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, slot, options: operationOptions },
+      operationArguments,
       listSiteDiagnosticCategoriesSlotOperationSpec
     ) as Promise<DiagnosticsListSiteDiagnosticCategoriesSlotResponse>;
   }
@@ -459,17 +461,15 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteDiagnosticCategorySlotOperationSpec
     ) as Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse>;
   }
@@ -489,17 +489,15 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteAnalysesSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteAnalysesSlotOperationSpec
     ) as Promise<DiagnosticsListSiteAnalysesSlotResponse>;
   }
@@ -521,18 +519,16 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteAnalysisSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      analysisName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        analysisName,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteAnalysisSlotOperationSpec
     ) as Promise<DiagnosticsGetSiteAnalysisSlotResponse>;
   }
@@ -554,18 +550,16 @@ export class Diagnostics {
     slot: string,
     options?: DiagnosticsExecuteSiteAnalysisSlotOptionalParams
   ): Promise<DiagnosticsExecuteSiteAnalysisSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      analysisName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        analysisName,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       executeSiteAnalysisSlotOperationSpec
     ) as Promise<DiagnosticsExecuteSiteAnalysisSlotResponse>;
   }
@@ -585,17 +579,15 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorsSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDetectorsSlotOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorsSlotResponse>;
   }
@@ -617,18 +609,16 @@ export class Diagnostics {
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsGetSiteDetectorSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      detectorName,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        detectorName,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       getSiteDetectorSlotOperationSpec
     ) as Promise<DiagnosticsGetSiteDetectorSlotResponse>;
   }
@@ -650,18 +640,16 @@ export class Diagnostics {
     slot: string,
     options?: DiagnosticsExecuteSiteDetectorSlotOptionalParams
   ): Promise<DiagnosticsExecuteSiteDetectorSlotResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      detectorName,
+      diagnosticCategory,
+      slot,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        detectorName,
-        diagnosticCategory,
-        slot,
-        options: operationOptions
-      },
+      operationArguments,
       executeSiteDetectorSlotOperationSpec
     ) as Promise<DiagnosticsExecuteSiteDetectorSlotResponse>;
   }
@@ -680,11 +668,14 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listHostingEnvironmentDetectorResponsesNextOperationSpec
     ) as Promise<
       DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse
@@ -705,11 +696,14 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorResponsesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, nextLink, options: operationOptions },
+      operationArguments,
       listSiteDetectorResponsesNextOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorResponsesNextResponse>;
   }
@@ -728,11 +722,14 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, nextLink, options: operationOptions },
+      operationArguments,
       listSiteDiagnosticCategoriesNextOperationSpec
     ) as Promise<DiagnosticsListSiteDiagnosticCategoriesNextResponse>;
   }
@@ -752,17 +749,15 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteAnalysesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteAnalysesNextOperationSpec
     ) as Promise<DiagnosticsListSiteAnalysesNextResponse>;
   }
@@ -782,17 +777,15 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDetectorsNextOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorsNextResponse>;
   }
@@ -813,17 +806,15 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      slot,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        slot,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDetectorResponsesSlotNextOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorResponsesSlotNextResponse>;
   }
@@ -844,17 +835,15 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      slot,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        slot,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDiagnosticCategoriesSlotNextOperationSpec
     ) as Promise<DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse>;
   }
@@ -876,18 +865,16 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteAnalysesSlotNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        slot,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteAnalysesSlotNextOperationSpec
     ) as Promise<DiagnosticsListSiteAnalysesSlotNextResponse>;
   }
@@ -909,18 +896,16 @@ export class Diagnostics {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiagnosticsListSiteDetectorsSlotNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        siteName,
-        diagnosticCategory,
-        slot,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listSiteDetectorsSlotNextOperationSpec
     ) as Promise<DiagnosticsListSiteDetectorsSlotNextResponse>;
   }

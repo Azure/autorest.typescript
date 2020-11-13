@@ -47,19 +47,17 @@ export class PartitionKeyRangeId {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<PartitionKeyRangeIdListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      partitionKeyRangeId,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseRid,
-        collectionRid,
-        partitionKeyRangeId,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<PartitionKeyRangeIdListMetricsResponse>;
   }

@@ -40,11 +40,13 @@ export class NetworkInterfaceLoadBalancers {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceLoadBalancersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkInterfaceName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkInterfaceLoadBalancersListResponse>;
   }
@@ -62,16 +64,14 @@ export class NetworkInterfaceLoadBalancers {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceLoadBalancersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkInterfaceLoadBalancersListNextResponse>;
   }

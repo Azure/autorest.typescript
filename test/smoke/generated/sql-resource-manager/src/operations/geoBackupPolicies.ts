@@ -50,18 +50,16 @@ export class GeoBackupPolicies {
     parameters: GeoBackupPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<GeoBackupPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      geoBackupPolicyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        geoBackupPolicyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
   }
@@ -82,17 +80,15 @@ export class GeoBackupPolicies {
     geoBackupPolicyName: GeoBackupPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<GeoBackupPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      geoBackupPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        geoBackupPolicyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<GeoBackupPoliciesGetResponse>;
   }
@@ -111,16 +107,14 @@ export class GeoBackupPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<GeoBackupPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<GeoBackupPoliciesListByDatabaseResponse>;
   }

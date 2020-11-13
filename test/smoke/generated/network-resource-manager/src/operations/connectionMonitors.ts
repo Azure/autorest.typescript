@@ -50,17 +50,12 @@ export class ConnectionMonitors {
     parameters: ConnectionMonitor,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ConnectionMonitorsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       connectionMonitorName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -70,12 +65,11 @@ export class ConnectionMonitors {
         ConnectionMonitorsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -96,16 +90,14 @@ export class ConnectionMonitors {
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ConnectionMonitorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        connectionMonitorName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ConnectionMonitorsGetResponse>;
   }
@@ -123,16 +115,11 @@ export class ConnectionMonitors {
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       connectionMonitorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -142,12 +129,11 @@ export class ConnectionMonitors {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -170,17 +156,15 @@ export class ConnectionMonitors {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<ConnectionMonitorsUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        connectionMonitorName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<ConnectionMonitorsUpdateTagsResponse>;
   }
@@ -198,16 +182,11 @@ export class ConnectionMonitors {
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       connectionMonitorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -216,10 +195,12 @@ export class ConnectionMonitors {
       this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
-    const initialOperationResult = await sendOperation(args, stopOperationSpec);
-
+    const initialOperationResult = await sendOperation(
+      operationArguments,
+      stopOperationSpec
+    );
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: stopOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -240,16 +221,11 @@ export class ConnectionMonitors {
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       connectionMonitorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -259,12 +235,11 @@ export class ConnectionMonitors {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       startOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: startOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -285,16 +260,11 @@ export class ConnectionMonitors {
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ConnectionMonitorsQueryResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       connectionMonitorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -304,12 +274,11 @@ export class ConnectionMonitors {
         ConnectionMonitorsQueryResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       queryOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: queryOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -328,11 +297,13 @@ export class ConnectionMonitors {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ConnectionMonitorsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkWatcherName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ConnectionMonitorsListResponse>;
   }

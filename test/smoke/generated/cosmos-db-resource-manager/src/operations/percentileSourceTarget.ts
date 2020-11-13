@@ -48,18 +48,16 @@ export class PercentileSourceTarget {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<PercentileSourceTargetListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      sourceRegion,
+      targetRegion,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        sourceRegion,
-        targetRegion,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<PercentileSourceTargetListMetricsResponse>;
   }

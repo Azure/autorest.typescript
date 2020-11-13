@@ -58,11 +58,11 @@ export class Recommendations {
   list(
     options?: RecommendationsListOptionalParams
   ): Promise<RecommendationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<RecommendationsListResponse>;
   }
@@ -74,11 +74,11 @@ export class Recommendations {
   resetAllFilters(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       resetAllFiltersOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -92,11 +92,12 @@ export class Recommendations {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { name, options: operationOptions },
+      operationArguments,
       disableRecommendationForSubscriptionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -112,11 +113,13 @@ export class Recommendations {
     hostingEnvironmentName: string,
     options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
   ): Promise<RecommendationsListHistoryForHostingEnvironmentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostingEnvironmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostingEnvironmentName, options: operationOptions },
+      operationArguments,
       listHistoryForHostingEnvironmentOperationSpec
     ) as Promise<RecommendationsListHistoryForHostingEnvironmentResponse>;
   }
@@ -132,11 +135,13 @@ export class Recommendations {
     hostingEnvironmentName: string,
     options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
   ): Promise<RecommendationsListRecommendedRulesForHostingEnvironmentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostingEnvironmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostingEnvironmentName, options: operationOptions },
+      operationArguments,
       listRecommendedRulesForHostingEnvironmentOperationSpec
     ) as Promise<
       RecommendationsListRecommendedRulesForHostingEnvironmentResponse
@@ -156,16 +161,14 @@ export class Recommendations {
     hostingEnvironmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      environmentName,
+      hostingEnvironmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        environmentName,
-        hostingEnvironmentName,
-        options: operationOptions
-      },
+      operationArguments,
       disableAllForHostingEnvironmentOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -183,16 +186,14 @@ export class Recommendations {
     hostingEnvironmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      environmentName,
+      hostingEnvironmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        environmentName,
-        hostingEnvironmentName,
-        options: operationOptions
-      },
+      operationArguments,
       resetAllFiltersForHostingEnvironmentOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -210,16 +211,14 @@ export class Recommendations {
     name: string,
     options?: RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams
   ): Promise<RecommendationsGetRuleDetailsByHostingEnvironmentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostingEnvironmentName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        hostingEnvironmentName,
-        name,
-        options: operationOptions
-      },
+      operationArguments,
       getRuleDetailsByHostingEnvironmentOperationSpec
     ) as Promise<RecommendationsGetRuleDetailsByHostingEnvironmentResponse>;
   }
@@ -239,17 +238,15 @@ export class Recommendations {
     hostingEnvironmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      environmentName,
+      name,
+      hostingEnvironmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        environmentName,
-        name,
-        hostingEnvironmentName,
-        options: operationOptions
-      },
+      operationArguments,
       disableRecommendationForHostingEnvironmentOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -265,11 +262,13 @@ export class Recommendations {
     siteName: string,
     options?: RecommendationsListHistoryForWebAppOptionalParams
   ): Promise<RecommendationsListHistoryForWebAppResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       listHistoryForWebAppOperationSpec
     ) as Promise<RecommendationsListHistoryForWebAppResponse>;
   }
@@ -285,11 +284,13 @@ export class Recommendations {
     siteName: string,
     options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
   ): Promise<RecommendationsListRecommendedRulesForWebAppResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       listRecommendedRulesForWebAppOperationSpec
     ) as Promise<RecommendationsListRecommendedRulesForWebAppResponse>;
   }
@@ -305,11 +306,13 @@ export class Recommendations {
     siteName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       disableAllForWebAppOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -325,11 +328,13 @@ export class Recommendations {
     siteName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, options: operationOptions },
+      operationArguments,
       resetAllFiltersForWebAppOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -347,11 +352,14 @@ export class Recommendations {
     name: string,
     options?: RecommendationsGetRuleDetailsByWebAppOptionalParams
   ): Promise<RecommendationsGetRuleDetailsByWebAppResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, name, options: operationOptions },
+      operationArguments,
       getRuleDetailsByWebAppOperationSpec
     ) as Promise<RecommendationsGetRuleDetailsByWebAppResponse>;
   }
@@ -369,11 +377,14 @@ export class Recommendations {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, name, options: operationOptions },
+      operationArguments,
       disableRecommendationForSiteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -387,11 +398,12 @@ export class Recommendations {
     nextLink: string,
     options?: RecommendationsListNextOptionalParams
   ): Promise<RecommendationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<RecommendationsListNextResponse>;
   }
@@ -410,16 +422,14 @@ export class Recommendations {
     nextLink: string,
     options?: RecommendationsListHistoryForHostingEnvironmentNextOptionalParams
   ): Promise<RecommendationsListHistoryForHostingEnvironmentNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostingEnvironmentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        hostingEnvironmentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listHistoryForHostingEnvironmentNextOperationSpec
     ) as Promise<RecommendationsListHistoryForHostingEnvironmentNextResponse>;
   }
@@ -440,16 +450,14 @@ export class Recommendations {
   ): Promise<
     RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostingEnvironmentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        hostingEnvironmentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listRecommendedRulesForHostingEnvironmentNextOperationSpec
     ) as Promise<
       RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse
@@ -469,11 +477,14 @@ export class Recommendations {
     nextLink: string,
     options?: RecommendationsListHistoryForWebAppNextOptionalParams
   ): Promise<RecommendationsListHistoryForWebAppNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, nextLink, options: operationOptions },
+      operationArguments,
       listHistoryForWebAppNextOperationSpec
     ) as Promise<RecommendationsListHistoryForWebAppNextResponse>;
   }
@@ -492,11 +503,14 @@ export class Recommendations {
     nextLink: string,
     options?: RecommendationsListRecommendedRulesForWebAppNextOptionalParams
   ): Promise<RecommendationsListRecommendedRulesForWebAppNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      siteName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, siteName, nextLink, options: operationOptions },
+      operationArguments,
       listRecommendedRulesForWebAppNextOperationSpec
     ) as Promise<RecommendationsListRecommendedRulesForWebAppNextResponse>;
   }

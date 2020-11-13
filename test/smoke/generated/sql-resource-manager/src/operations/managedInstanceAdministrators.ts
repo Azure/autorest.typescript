@@ -45,11 +45,13 @@ export class ManagedInstanceAdministrators {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceAdministratorsListByInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listByInstanceOperationSpec
     ) as Promise<ManagedInstanceAdministratorsListByInstanceResponse>;
   }
@@ -66,11 +68,13 @@ export class ManagedInstanceAdministrators {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceAdministratorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedInstanceAdministratorsGetResponse>;
   }
@@ -89,15 +93,11 @@ export class ManagedInstanceAdministrators {
     parameters: ManagedInstanceAdministrator,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedInstanceAdministratorsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -107,12 +107,11 @@ export class ManagedInstanceAdministrators {
         ManagedInstanceAdministratorsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -131,14 +130,10 @@ export class ManagedInstanceAdministrators {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -148,12 +143,11 @@ export class ManagedInstanceAdministrators {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -174,16 +168,14 @@ export class ManagedInstanceAdministrators {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceAdministratorsListByInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByInstanceNextOperationSpec
     ) as Promise<ManagedInstanceAdministratorsListByInstanceNextResponse>;
   }

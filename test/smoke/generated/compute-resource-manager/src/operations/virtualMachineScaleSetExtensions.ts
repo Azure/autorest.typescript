@@ -53,16 +53,12 @@ export class VirtualMachineScaleSetExtensions {
   ): Promise<
     LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
       vmssExtensionName,
       extensionParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -72,12 +68,11 @@ export class VirtualMachineScaleSetExtensions {
         VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -99,16 +94,12 @@ export class VirtualMachineScaleSetExtensions {
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
       vmssExtensionName,
       extensionParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -118,12 +109,11 @@ export class VirtualMachineScaleSetExtensions {
         VirtualMachineScaleSetExtensionsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -143,15 +133,11 @@ export class VirtualMachineScaleSetExtensions {
     vmssExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
       vmssExtensionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -161,12 +147,11 @@ export class VirtualMachineScaleSetExtensions {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -186,16 +171,14 @@ export class VirtualMachineScaleSetExtensions {
     vmssExtensionName: string,
     options?: VirtualMachineScaleSetExtensionsGetOptionalParams
   ): Promise<VirtualMachineScaleSetExtensionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vmScaleSetName,
+      vmssExtensionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vmScaleSetName,
-        vmssExtensionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualMachineScaleSetExtensionsGetResponse>;
   }
@@ -211,11 +194,13 @@ export class VirtualMachineScaleSetExtensions {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineScaleSetExtensionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vmScaleSetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vmScaleSetName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualMachineScaleSetExtensionsListResponse>;
   }
@@ -233,16 +218,14 @@ export class VirtualMachineScaleSetExtensions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineScaleSetExtensionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vmScaleSetName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        vmScaleSetName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualMachineScaleSetExtensionsListNextResponse>;
   }

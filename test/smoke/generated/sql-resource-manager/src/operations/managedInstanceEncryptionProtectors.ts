@@ -48,15 +48,11 @@ export class ManagedInstanceEncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       encryptionProtectorName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -66,12 +62,11 @@ export class ManagedInstanceEncryptionProtectors {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       revalidateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: revalidateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -90,11 +85,13 @@ export class ManagedInstanceEncryptionProtectors {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listByInstanceOperationSpec
     ) as Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse>;
   }
@@ -113,16 +110,14 @@ export class ManagedInstanceEncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      encryptionProtectorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        encryptionProtectorName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
   }
@@ -145,16 +140,12 @@ export class ManagedInstanceEncryptionProtectors {
   ): Promise<
     LROPoller<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       encryptionProtectorName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -164,12 +155,11 @@ export class ManagedInstanceEncryptionProtectors {
         ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -190,16 +180,14 @@ export class ManagedInstanceEncryptionProtectors {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByInstanceNextOperationSpec
     ) as Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse>;
   }

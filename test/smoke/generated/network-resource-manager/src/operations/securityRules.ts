@@ -46,16 +46,11 @@ export class SecurityRules {
     securityRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkSecurityGroupName,
       securityRuleName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class SecurityRules {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class SecurityRules {
     securityRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      securityRuleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        securityRuleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SecurityRulesGetResponse>;
   }
@@ -121,17 +113,12 @@ export class SecurityRules {
     securityRuleParameters: SecurityRule,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SecurityRulesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkSecurityGroupName,
       securityRuleName,
       securityRuleParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -141,12 +128,11 @@ export class SecurityRules {
         SecurityRulesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -165,15 +151,13 @@ export class SecurityRules {
     networkSecurityGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityRulesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       listOperationSpec
     ) as Promise<SecurityRulesListResponse>;
   }
@@ -191,16 +175,14 @@ export class SecurityRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityRulesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<SecurityRulesListNextResponse>;
   }

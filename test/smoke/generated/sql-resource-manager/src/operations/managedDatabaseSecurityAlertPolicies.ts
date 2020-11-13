@@ -49,17 +49,15 @@ export class ManagedDatabaseSecurityAlertPolicies {
     securityAlertPolicyName: SecurityAlertPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      securityAlertPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        securityAlertPolicyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
   }
@@ -82,18 +80,16 @@ export class ManagedDatabaseSecurityAlertPolicies {
     parameters: ManagedDatabaseSecurityAlertPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      securityAlertPolicyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        securityAlertPolicyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
   }
@@ -113,16 +109,14 @@ export class ManagedDatabaseSecurityAlertPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse>;
   }
@@ -144,17 +138,15 @@ export class ManagedDatabaseSecurityAlertPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseNextOperationSpec
     ) as Promise<
       ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse

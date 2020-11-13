@@ -40,11 +40,13 @@ export class AvailableResourceGroupDelegations {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableResourceGroupDelegationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AvailableResourceGroupDelegationsListResponse>;
   }
@@ -62,11 +64,14 @@ export class AvailableResourceGroupDelegations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableResourceGroupDelegationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AvailableResourceGroupDelegationsListNextResponse>;
   }

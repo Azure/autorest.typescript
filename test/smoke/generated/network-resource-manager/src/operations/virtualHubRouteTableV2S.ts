@@ -46,16 +46,14 @@ export class VirtualHubRouteTableV2S {
     routeTableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualHubRouteTableV2SGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualHubName,
-        routeTableName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualHubRouteTableV2SGetResponse>;
   }
@@ -77,17 +75,12 @@ export class VirtualHubRouteTableV2S {
     virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualHubRouteTableV2SCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualHubName,
       routeTableName,
       virtualHubRouteTableV2Parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -97,12 +90,11 @@ export class VirtualHubRouteTableV2S {
         VirtualHubRouteTableV2SCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -123,16 +115,11 @@ export class VirtualHubRouteTableV2S {
     routeTableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualHubName,
       routeTableName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -142,12 +129,11 @@ export class VirtualHubRouteTableV2S {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -166,11 +152,13 @@ export class VirtualHubRouteTableV2S {
     virtualHubName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualHubRouteTableV2SListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualHubName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualHubRouteTableV2SListResponse>;
   }
@@ -188,16 +176,14 @@ export class VirtualHubRouteTableV2S {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualHubRouteTableV2SListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualHubName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualHubName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualHubRouteTableV2SListNextResponse>;
   }

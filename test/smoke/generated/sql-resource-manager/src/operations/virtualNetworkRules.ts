@@ -47,16 +47,14 @@ export class VirtualNetworkRules {
     virtualNetworkRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      virtualNetworkRuleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        virtualNetworkRuleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualNetworkRulesGetResponse>;
   }
@@ -77,16 +75,12 @@ export class VirtualNetworkRules {
     parameters: VirtualNetworkRule,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkRulesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       virtualNetworkRuleName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -96,12 +90,11 @@ export class VirtualNetworkRules {
         VirtualNetworkRulesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -122,15 +115,11 @@ export class VirtualNetworkRules {
     virtualNetworkRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       virtualNetworkRuleName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +129,11 @@ export class VirtualNetworkRules {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -164,11 +152,13 @@ export class VirtualNetworkRules {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkRulesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<VirtualNetworkRulesListByServerResponse>;
   }
@@ -187,11 +177,14 @@ export class VirtualNetworkRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkRulesListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<VirtualNetworkRulesListByServerNextResponse>;
   }

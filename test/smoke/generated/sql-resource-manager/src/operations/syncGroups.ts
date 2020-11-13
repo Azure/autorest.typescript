@@ -52,11 +52,12 @@ export class SyncGroups {
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListSyncDatabaseIdsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, options: operationOptions },
+      operationArguments,
       listSyncDatabaseIdsOperationSpec
     ) as Promise<SyncGroupsListSyncDatabaseIdsResponse>;
   }
@@ -77,16 +78,12 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -96,12 +93,11 @@ export class SyncGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       refreshHubSchemaOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: refreshHubSchemaOperationSpec,
       initialOperationResult,
       sendOperation
@@ -124,17 +120,15 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListHubSchemasResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       listHubSchemasOperationSpec
     ) as Promise<SyncGroupsListHubSchemasResponse>;
   }
@@ -161,20 +155,18 @@ export class SyncGroups {
     typeParam: Enum21,
     options?: SyncGroupsListLogsOptionalParams
   ): Promise<SyncGroupsListLogsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      startTime,
+      endTime,
+      typeParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        startTime,
-        endTime,
-        typeParam,
-        options: operationOptions
-      },
+      operationArguments,
       listLogsOperationSpec
     ) as Promise<SyncGroupsListLogsResponse>;
   }
@@ -195,17 +187,15 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       cancelSyncOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -226,17 +216,15 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       triggerSyncOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -257,17 +245,15 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SyncGroupsGetResponse>;
   }
@@ -290,17 +276,13 @@ export class SyncGroups {
     parameters: SyncGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SyncGroupsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -310,12 +292,11 @@ export class SyncGroups {
         SyncGroupsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -338,16 +319,12 @@ export class SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -357,12 +334,11 @@ export class SyncGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -387,17 +363,13 @@ export class SyncGroups {
     parameters: SyncGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SyncGroupsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -407,12 +379,11 @@ export class SyncGroups {
         SyncGroupsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -433,16 +404,14 @@ export class SyncGroups {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<SyncGroupsListByDatabaseResponse>;
   }
@@ -458,11 +427,13 @@ export class SyncGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListSyncDatabaseIdsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, nextLink, options: operationOptions },
+      operationArguments,
       listSyncDatabaseIdsNextOperationSpec
     ) as Promise<SyncGroupsListSyncDatabaseIdsNextResponse>;
   }
@@ -485,18 +456,16 @@ export class SyncGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListHubSchemasNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listHubSchemasNextOperationSpec
     ) as Promise<SyncGroupsListHubSchemasNextResponse>;
   }
@@ -525,21 +494,19 @@ export class SyncGroups {
     typeParam: Enum21,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      startTime,
+      endTime,
+      nextLink,
+      typeParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        startTime,
-        endTime,
-        nextLink,
-        typeParam,
-        options: operationOptions
-      },
+      operationArguments,
       listLogsNextOperationSpec
     ) as Promise<SyncGroupsListLogsNextResponse>;
   }
@@ -560,17 +527,15 @@ export class SyncGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseNextOperationSpec
     ) as Promise<SyncGroupsListByDatabaseNextResponse>;
   }

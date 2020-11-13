@@ -48,15 +48,10 @@ export class SecurityPartnerProviders {
     securityPartnerProviderName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       securityPartnerProviderName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -66,12 +61,11 @@ export class SecurityPartnerProviders {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -90,15 +84,13 @@ export class SecurityPartnerProviders {
     securityPartnerProviderName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      securityPartnerProviderName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        securityPartnerProviderName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SecurityPartnerProvidersGetResponse>;
   }
@@ -116,16 +108,11 @@ export class SecurityPartnerProviders {
     parameters: SecurityPartnerProvider,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SecurityPartnerProvidersCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       securityPartnerProviderName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -135,12 +122,11 @@ export class SecurityPartnerProviders {
         SecurityPartnerProvidersCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -161,16 +147,14 @@ export class SecurityPartnerProviders {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      securityPartnerProviderName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        securityPartnerProviderName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<SecurityPartnerProvidersUpdateTagsResponse>;
   }
@@ -184,11 +168,12 @@ export class SecurityPartnerProviders {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<SecurityPartnerProvidersListByResourceGroupResponse>;
   }
@@ -200,11 +185,11 @@ export class SecurityPartnerProviders {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<SecurityPartnerProvidersListResponse>;
   }
@@ -220,11 +205,13 @@ export class SecurityPartnerProviders {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<SecurityPartnerProvidersListByResourceGroupNextResponse>;
   }
@@ -238,11 +225,12 @@ export class SecurityPartnerProviders {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SecurityPartnerProvidersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<SecurityPartnerProvidersListNextResponse>;
   }

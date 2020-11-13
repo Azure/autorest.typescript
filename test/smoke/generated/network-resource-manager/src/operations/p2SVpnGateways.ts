@@ -54,11 +54,13 @@ export class P2SVpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, gatewayName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<P2SVpnGatewaysGetResponse>;
   }
@@ -77,16 +79,11 @@ export class P2SVpnGateways {
     p2SVpnGatewayParameters: P2SVpnGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<P2SVpnGatewaysCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
       p2SVpnGatewayParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -96,12 +93,11 @@ export class P2SVpnGateways {
         P2SVpnGatewaysCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -122,16 +118,14 @@ export class P2SVpnGateways {
     p2SVpnGatewayParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      p2SVpnGatewayParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        gatewayName,
-        p2SVpnGatewayParameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<P2SVpnGatewaysUpdateTagsResponse>;
   }
@@ -147,15 +141,10 @@ export class P2SVpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -165,12 +154,11 @@ export class P2SVpnGateways {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -187,11 +175,12 @@ export class P2SVpnGateways {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<P2SVpnGatewaysListByResourceGroupResponse>;
   }
@@ -203,11 +192,11 @@ export class P2SVpnGateways {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<P2SVpnGatewaysListResponse>;
   }
@@ -225,16 +214,11 @@ export class P2SVpnGateways {
     parameters: P2SVpnProfileParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<P2SVpnGatewaysGenerateVpnProfileResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -244,12 +228,11 @@ export class P2SVpnGateways {
         P2SVpnGatewaysGenerateVpnProfileResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       generateVpnProfileOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: generateVpnProfileOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -269,15 +252,10 @@ export class P2SVpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -287,12 +265,11 @@ export class P2SVpnGateways {
         P2SVpnGatewaysGetP2SVpnConnectionHealthResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getP2SVpnConnectionHealthOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getP2SVpnConnectionHealthOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -316,16 +293,11 @@ export class P2SVpnGateways {
   ): Promise<
     LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
       request,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -335,12 +307,11 @@ export class P2SVpnGateways {
         P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getP2SVpnConnectionHealthDetailedOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getP2SVpnConnectionHealthDetailedOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -361,16 +332,11 @@ export class P2SVpnGateways {
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       p2SVpnGatewayName,
       request,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -380,12 +346,11 @@ export class P2SVpnGateways {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       disconnectP2SVpnConnectionsOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: disconnectP2SVpnConnectionsOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -404,11 +369,13 @@ export class P2SVpnGateways {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<P2SVpnGatewaysListByResourceGroupNextResponse>;
   }
@@ -422,11 +389,12 @@ export class P2SVpnGateways {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<P2SVpnGatewaysListNextResponse>;
   }

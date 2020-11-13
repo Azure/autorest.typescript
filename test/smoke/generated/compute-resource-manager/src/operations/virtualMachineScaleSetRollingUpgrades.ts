@@ -38,14 +38,10 @@ export class VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -55,12 +51,11 @@ export class VirtualMachineScaleSetRollingUpgrades {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       cancelOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: cancelOperationSpec,
       initialOperationResult,
       sendOperation
@@ -80,14 +75,10 @@ export class VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -97,12 +88,11 @@ export class VirtualMachineScaleSetRollingUpgrades {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       startOSUpgradeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: startOSUpgradeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -122,14 +112,10 @@ export class VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -139,12 +125,11 @@ export class VirtualMachineScaleSetRollingUpgrades {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       startExtensionUpgradeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: startExtensionUpgradeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -162,11 +147,13 @@ export class VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      vmScaleSetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, vmScaleSetName, options: operationOptions },
+      operationArguments,
       getLatestOperationSpec
     ) as Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
   }

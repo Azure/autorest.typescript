@@ -48,16 +48,11 @@ export class LocalNetworkGateways {
     parameters: LocalNetworkGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LocalNetworkGatewaysCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       localNetworkGatewayName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -67,12 +62,11 @@ export class LocalNetworkGateways {
         LocalNetworkGatewaysCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,11 +85,13 @@ export class LocalNetworkGateways {
     localNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LocalNetworkGatewaysGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      localNetworkGatewayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, localNetworkGatewayName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<LocalNetworkGatewaysGetResponse>;
   }
@@ -111,15 +107,10 @@ export class LocalNetworkGateways {
     localNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       localNetworkGatewayName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -129,12 +120,11 @@ export class LocalNetworkGateways {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -155,16 +145,14 @@ export class LocalNetworkGateways {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<LocalNetworkGatewaysUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      localNetworkGatewayName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        localNetworkGatewayName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<LocalNetworkGatewaysUpdateTagsResponse>;
   }
@@ -178,11 +166,12 @@ export class LocalNetworkGateways {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LocalNetworkGatewaysListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<LocalNetworkGatewaysListResponse>;
   }
@@ -198,11 +187,13 @@ export class LocalNetworkGateways {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LocalNetworkGatewaysListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<LocalNetworkGatewaysListNextResponse>;
   }

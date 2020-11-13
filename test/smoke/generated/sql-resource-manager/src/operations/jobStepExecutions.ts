@@ -50,18 +50,16 @@ export class JobStepExecutions {
     jobExecutionId: string,
     options?: JobStepExecutionsListByJobExecutionOptionalParams
   ): Promise<JobStepExecutionsListByJobExecutionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobExecutionId,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobExecutionOperationSpec
     ) as Promise<JobStepExecutionsListByJobExecutionResponse>;
   }
@@ -86,19 +84,17 @@ export class JobStepExecutions {
     stepName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobStepExecutionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      stepName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobExecutionId,
-        stepName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<JobStepExecutionsGetResponse>;
   }
@@ -123,19 +119,17 @@ export class JobStepExecutions {
     nextLink: string,
     options?: JobStepExecutionsListByJobExecutionNextOptionalParams
   ): Promise<JobStepExecutionsListByJobExecutionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        jobExecutionId,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByJobExecutionNextOperationSpec
     ) as Promise<JobStepExecutionsListByJobExecutionNextResponse>;
   }

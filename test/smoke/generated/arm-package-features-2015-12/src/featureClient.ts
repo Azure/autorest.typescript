@@ -40,11 +40,11 @@ export class FeatureClient extends FeatureClientContext {
   listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<FeatureClientListOperationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationsOperationSpec
     ) as Promise<FeatureClientListOperationsResponse>;
   }
@@ -58,11 +58,12 @@ export class FeatureClient extends FeatureClientContext {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeatureClientListOperationsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listOperationsNextOperationSpec
     ) as Promise<FeatureClientListOperationsNextResponse>;
   }

@@ -51,17 +51,15 @@ export class BackupShortTermRetentionPolicies {
     policyName: ShortTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<BackupShortTermRetentionPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      policyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        policyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<BackupShortTermRetentionPoliciesGetResponse>;
   }
@@ -86,17 +84,13 @@ export class BackupShortTermRetentionPolicies {
   ): Promise<
     LROPoller<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -106,12 +100,11 @@ export class BackupShortTermRetentionPolicies {
         BackupShortTermRetentionPoliciesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -136,17 +129,13 @@ export class BackupShortTermRetentionPolicies {
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<BackupShortTermRetentionPoliciesUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -156,12 +145,11 @@ export class BackupShortTermRetentionPolicies {
         BackupShortTermRetentionPoliciesUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -182,16 +170,14 @@ export class BackupShortTermRetentionPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<BackupShortTermRetentionPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<BackupShortTermRetentionPoliciesListByDatabaseResponse>;
   }
@@ -212,17 +198,15 @@ export class BackupShortTermRetentionPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<BackupShortTermRetentionPoliciesListByDatabaseNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseNextOperationSpec
     ) as Promise<BackupShortTermRetentionPoliciesListByDatabaseNextResponse>;
   }

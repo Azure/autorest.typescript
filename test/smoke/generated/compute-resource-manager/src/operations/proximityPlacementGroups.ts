@@ -50,16 +50,14 @@ export class ProximityPlacementGroups {
     parameters: ProximityPlacementGroup,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      proximityPlacementGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        proximityPlacementGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
   }
@@ -77,16 +75,14 @@ export class ProximityPlacementGroups {
     parameters: UpdateResource,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      proximityPlacementGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        proximityPlacementGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<ProximityPlacementGroupsUpdateResponse>;
   }
@@ -102,15 +98,13 @@ export class ProximityPlacementGroups {
     proximityPlacementGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      proximityPlacementGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        proximityPlacementGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -126,15 +120,13 @@ export class ProximityPlacementGroups {
     proximityPlacementGroupName: string,
     options?: ProximityPlacementGroupsGetOptionalParams
   ): Promise<ProximityPlacementGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      proximityPlacementGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        proximityPlacementGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ProximityPlacementGroupsGetResponse>;
   }
@@ -146,11 +138,11 @@ export class ProximityPlacementGroups {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<ProximityPlacementGroupsListBySubscriptionResponse>;
   }
@@ -164,11 +156,12 @@ export class ProximityPlacementGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ProximityPlacementGroupsListByResourceGroupResponse>;
   }
@@ -182,11 +175,12 @@ export class ProximityPlacementGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<ProximityPlacementGroupsListBySubscriptionNextResponse>;
   }
@@ -202,11 +196,13 @@ export class ProximityPlacementGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<ProximityPlacementGroupsListByResourceGroupNextResponse>;
   }

@@ -48,17 +48,12 @@ export class ExpressRouteConnections {
     putExpressRouteConnectionParameters: ExpressRouteConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteConnectionsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       expressRouteGatewayName,
       connectionName,
       putExpressRouteConnectionParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -68,12 +63,11 @@ export class ExpressRouteConnections {
         ExpressRouteConnectionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -94,16 +88,14 @@ export class ExpressRouteConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      expressRouteGatewayName,
+      connectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        expressRouteGatewayName,
-        connectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteConnectionsGetResponse>;
   }
@@ -121,16 +113,11 @@ export class ExpressRouteConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       expressRouteGatewayName,
       connectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +127,11 @@ export class ExpressRouteConnections {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -164,11 +150,13 @@ export class ExpressRouteConnections {
     expressRouteGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      expressRouteGatewayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, expressRouteGatewayName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteConnectionsListResponse>;
   }

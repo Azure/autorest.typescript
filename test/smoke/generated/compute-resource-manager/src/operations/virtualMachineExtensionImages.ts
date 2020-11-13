@@ -46,17 +46,15 @@ export class VirtualMachineExtensionImages {
     typeParam: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineExtensionImagesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      version,
+      typeParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        location,
-        publisherName,
-        version,
-        typeParam,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualMachineExtensionImagesGetResponse>;
   }
@@ -72,11 +70,13 @@ export class VirtualMachineExtensionImages {
     publisherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineExtensionImagesListTypesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, publisherName, options: operationOptions },
+      operationArguments,
       listTypesOperationSpec
     ) as Promise<VirtualMachineExtensionImagesListTypesResponse>;
   }
@@ -94,11 +94,14 @@ export class VirtualMachineExtensionImages {
     typeParam: string,
     options?: VirtualMachineExtensionImagesListVersionsOptionalParams
   ): Promise<VirtualMachineExtensionImagesListVersionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      typeParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, publisherName, typeParam, options: operationOptions },
+      operationArguments,
       listVersionsOperationSpec
     ) as Promise<VirtualMachineExtensionImagesListVersionsResponse>;
   }

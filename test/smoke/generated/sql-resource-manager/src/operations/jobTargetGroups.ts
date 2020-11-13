@@ -46,16 +46,14 @@ export class JobTargetGroups {
     jobAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobTargetGroupsListByAgentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentOperationSpec
     ) as Promise<JobTargetGroupsListByAgentResponse>;
   }
@@ -76,17 +74,15 @@ export class JobTargetGroups {
     targetGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobTargetGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      targetGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        targetGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<JobTargetGroupsGetResponse>;
   }
@@ -109,18 +105,16 @@ export class JobTargetGroups {
     parameters: JobTargetGroup,
     options?: coreHttp.OperationOptions
   ): Promise<JobTargetGroupsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      targetGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        targetGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<JobTargetGroupsCreateOrUpdateResponse>;
   }
@@ -141,17 +135,15 @@ export class JobTargetGroups {
     targetGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      targetGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        targetGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -172,17 +164,15 @@ export class JobTargetGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobTargetGroupsListByAgentNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentNextOperationSpec
     ) as Promise<JobTargetGroupsListByAgentNextResponse>;
   }

@@ -46,16 +46,11 @@ export class NetworkInterfaceTapConfigurations {
     tapConfigurationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
       tapConfigurationName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class NetworkInterfaceTapConfigurations {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class NetworkInterfaceTapConfigurations {
     tapConfigurationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceTapConfigurationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      tapConfigurationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        tapConfigurationName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkInterfaceTapConfigurationsGetResponse>;
   }
@@ -123,17 +115,12 @@ export class NetworkInterfaceTapConfigurations {
   ): Promise<
     LROPoller<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
       tapConfigurationName,
       tapConfigurationParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +130,11 @@ export class NetworkInterfaceTapConfigurations {
         NetworkInterfaceTapConfigurationsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -167,11 +153,13 @@ export class NetworkInterfaceTapConfigurations {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceTapConfigurationsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkInterfaceName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkInterfaceTapConfigurationsListResponse>;
   }
@@ -189,16 +177,14 @@ export class NetworkInterfaceTapConfigurations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceTapConfigurationsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkInterfaceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkInterfaceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkInterfaceTapConfigurationsListNextResponse>;
   }

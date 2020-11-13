@@ -50,16 +50,14 @@ export class SyncAgents {
     syncAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        syncAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SyncAgentsGetResponse>;
   }
@@ -80,16 +78,12 @@ export class SyncAgents {
     parameters: SyncAgent,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SyncAgentsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       syncAgentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -99,12 +93,11 @@ export class SyncAgents {
         SyncAgentsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -125,15 +118,11 @@ export class SyncAgents {
     syncAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       syncAgentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +132,11 @@ export class SyncAgents {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -167,11 +155,13 @@ export class SyncAgents {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<SyncAgentsListByServerResponse>;
   }
@@ -190,16 +180,14 @@ export class SyncAgents {
     syncAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsGenerateKeyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        syncAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       generateKeyOperationSpec
     ) as Promise<SyncAgentsGenerateKeyResponse>;
   }
@@ -218,16 +206,14 @@ export class SyncAgents {
     syncAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsListLinkedDatabasesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        syncAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       listLinkedDatabasesOperationSpec
     ) as Promise<SyncAgentsListLinkedDatabasesResponse>;
   }
@@ -246,11 +232,14 @@ export class SyncAgents {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<SyncAgentsListByServerNextResponse>;
   }
@@ -271,17 +260,15 @@ export class SyncAgents {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncAgentsListLinkedDatabasesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        syncAgentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listLinkedDatabasesNextOperationSpec
     ) as Promise<SyncAgentsListLinkedDatabasesNextResponse>;
   }

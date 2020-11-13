@@ -50,17 +50,15 @@ export class ManagedInstanceLongTermRetentionPolicies {
     policyName: ManagedInstanceLongTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      policyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        policyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse>;
   }
@@ -85,17 +83,13 @@ export class ManagedInstanceLongTermRetentionPolicies {
   ): Promise<
     LROPoller<ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       databaseName,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -105,12 +99,11 @@ export class ManagedInstanceLongTermRetentionPolicies {
         ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -131,16 +124,14 @@ export class ManagedInstanceLongTermRetentionPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<
       ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse
@@ -165,17 +156,15 @@ export class ManagedInstanceLongTermRetentionPolicies {
   ): Promise<
     ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseNextOperationSpec
     ) as Promise<
       ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse

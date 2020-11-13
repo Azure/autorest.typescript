@@ -49,15 +49,10 @@ export class NetworkSecurityGroups {
     networkSecurityGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkSecurityGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -67,12 +62,11 @@ export class NetworkSecurityGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,15 +85,13 @@ export class NetworkSecurityGroups {
     networkSecurityGroupName: string,
     options?: NetworkSecurityGroupsGetOptionalParams
   ): Promise<NetworkSecurityGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkSecurityGroupsGetResponse>;
   }
@@ -117,16 +109,11 @@ export class NetworkSecurityGroups {
     parameters: NetworkSecurityGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkSecurityGroupsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkSecurityGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -136,12 +123,11 @@ export class NetworkSecurityGroups {
         NetworkSecurityGroupsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -162,16 +148,14 @@ export class NetworkSecurityGroups {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkSecurityGroupsUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<NetworkSecurityGroupsUpdateTagsResponse>;
   }
@@ -183,11 +167,11 @@ export class NetworkSecurityGroups {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkSecurityGroupsListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<NetworkSecurityGroupsListAllResponse>;
   }
@@ -201,11 +185,12 @@ export class NetworkSecurityGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkSecurityGroupsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkSecurityGroupsListResponse>;
   }
@@ -219,11 +204,12 @@ export class NetworkSecurityGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkSecurityGroupsListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<NetworkSecurityGroupsListAllNextResponse>;
   }
@@ -239,11 +225,13 @@ export class NetworkSecurityGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkSecurityGroupsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<NetworkSecurityGroupsListNextResponse>;
   }

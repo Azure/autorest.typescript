@@ -46,17 +46,15 @@ export class DataMaskingPolicies {
     parameters: DataMaskingPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<DataMaskingPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<DataMaskingPoliciesCreateOrUpdateResponse>;
   }
@@ -75,16 +73,14 @@ export class DataMaskingPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DataMaskingPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<DataMaskingPoliciesGetResponse>;
   }

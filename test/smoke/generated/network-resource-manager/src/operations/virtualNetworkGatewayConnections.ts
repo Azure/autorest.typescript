@@ -60,16 +60,11 @@ export class VirtualNetworkGatewayConnections {
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -79,12 +74,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -103,15 +97,13 @@ export class VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewayConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkGatewayConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualNetworkGatewayConnectionsGetResponse>;
   }
@@ -127,15 +119,10 @@ export class VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -145,12 +132,11 @@ export class VirtualNetworkGatewayConnections {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -171,16 +157,11 @@ export class VirtualNetworkGatewayConnections {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkGatewayConnectionsUpdateTagsResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -190,12 +171,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsUpdateTagsResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateTagsOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateTagsOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -219,16 +199,11 @@ export class VirtualNetworkGatewayConnections {
     parameters: ConnectionSharedKey,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -238,12 +213,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsSetSharedKeyResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       setSharedKeyOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: setSharedKeyOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -263,15 +237,13 @@ export class VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkGatewayConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getSharedKeyOperationSpec
     ) as Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
   }
@@ -286,11 +258,12 @@ export class VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewayConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualNetworkGatewayConnectionsListResponse>;
   }
@@ -314,16 +287,11 @@ export class VirtualNetworkGatewayConnections {
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -333,12 +301,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsResetSharedKeyResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       resetSharedKeyOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: resetSharedKeyOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -359,15 +326,10 @@ export class VirtualNetworkGatewayConnections {
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -377,12 +339,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       startPacketCaptureOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: startPacketCaptureOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -406,16 +367,11 @@ export class VirtualNetworkGatewayConnections {
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -425,12 +381,11 @@ export class VirtualNetworkGatewayConnections {
         VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       stopPacketCaptureOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: stopPacketCaptureOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -449,11 +404,13 @@ export class VirtualNetworkGatewayConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewayConnectionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualNetworkGatewayConnectionsListNextResponse>;
   }

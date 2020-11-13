@@ -48,15 +48,10 @@ export class DdosProtectionPlans {
     ddosProtectionPlanName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ddosProtectionPlanName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -66,12 +61,11 @@ export class DdosProtectionPlans {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -90,11 +84,13 @@ export class DdosProtectionPlans {
     ddosProtectionPlanName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      ddosProtectionPlanName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, ddosProtectionPlanName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DdosProtectionPlansGetResponse>;
   }
@@ -112,16 +108,11 @@ export class DdosProtectionPlans {
     parameters: DdosProtectionPlan,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DdosProtectionPlansCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ddosProtectionPlanName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -131,12 +122,11 @@ export class DdosProtectionPlans {
         DdosProtectionPlansCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -157,16 +147,14 @@ export class DdosProtectionPlans {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      ddosProtectionPlanName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        ddosProtectionPlanName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<DdosProtectionPlansUpdateTagsResponse>;
   }
@@ -178,11 +166,11 @@ export class DdosProtectionPlans {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DdosProtectionPlansListResponse>;
   }
@@ -196,11 +184,12 @@ export class DdosProtectionPlans {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DdosProtectionPlansListByResourceGroupResponse>;
   }
@@ -214,11 +203,12 @@ export class DdosProtectionPlans {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DdosProtectionPlansListNextResponse>;
   }
@@ -234,11 +224,13 @@ export class DdosProtectionPlans {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DdosProtectionPlansListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DdosProtectionPlansListByResourceGroupNextResponse>;
   }

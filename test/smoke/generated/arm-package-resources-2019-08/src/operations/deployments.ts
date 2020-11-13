@@ -91,14 +91,10 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       scope,
       deploymentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -108,12 +104,11 @@ export class Deployments {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAtScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAtScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -131,11 +126,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, deploymentName, options: operationOptions },
+      operationArguments,
       checkExistenceAtScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -153,15 +150,11 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsCreateOrUpdateAtScopeResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       scope,
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -171,12 +164,11 @@ export class Deployments {
         DeploymentsCreateOrUpdateAtScopeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateAtScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateAtScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -194,11 +186,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetAtScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, deploymentName, options: operationOptions },
+      operationArguments,
       getAtScopeOperationSpec
     ) as Promise<DeploymentsGetAtScopeResponse>;
   }
@@ -216,11 +210,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, deploymentName, options: operationOptions },
+      operationArguments,
       cancelAtScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -239,11 +235,14 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateAtScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      deploymentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, deploymentName, parameters, options: operationOptions },
+      operationArguments,
       validateAtScopeOperationSpec
     ) as Promise<DeploymentsValidateAtScopeResponse>;
   }
@@ -259,11 +258,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateAtScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, deploymentName, options: operationOptions },
+      operationArguments,
       exportTemplateAtScopeOperationSpec
     ) as Promise<DeploymentsExportTemplateAtScopeResponse>;
   }
@@ -277,11 +278,12 @@ export class Deployments {
     scope: string,
     options?: DeploymentsListAtScopeOptionalParams
   ): Promise<DeploymentsListAtScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, options: operationOptions },
+      operationArguments,
       listAtScopeOperationSpec
     ) as Promise<DeploymentsListAtScopeResponse>;
   }
@@ -301,13 +303,9 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -317,12 +315,11 @@ export class Deployments {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAtTenantScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAtTenantScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -338,11 +335,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       checkExistenceAtTenantScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -358,14 +356,10 @@ export class Deployments {
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsCreateOrUpdateAtTenantScopeResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -375,12 +369,11 @@ export class Deployments {
         DeploymentsCreateOrUpdateAtTenantScopeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateAtTenantScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateAtTenantScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -396,11 +389,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       getAtTenantScopeOperationSpec
     ) as Promise<DeploymentsGetAtTenantScopeResponse>;
   }
@@ -416,11 +410,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       cancelAtTenantScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -437,11 +432,13 @@ export class Deployments {
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, parameters, options: operationOptions },
+      operationArguments,
       validateAtTenantScopeOperationSpec
     ) as Promise<DeploymentsValidateAtTenantScopeResponse>;
   }
@@ -455,11 +452,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       exportTemplateAtTenantScopeOperationSpec
     ) as Promise<DeploymentsExportTemplateAtTenantScopeResponse>;
   }
@@ -471,11 +469,11 @@ export class Deployments {
   listAtTenantScope(
     options?: DeploymentsListAtTenantScopeOptionalParams
   ): Promise<DeploymentsListAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAtTenantScopeOperationSpec
     ) as Promise<DeploymentsListAtTenantScopeResponse>;
   }
@@ -497,14 +495,10 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       groupId,
       deploymentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -514,12 +508,11 @@ export class Deployments {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAtManagementGroupScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAtManagementGroupScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -537,11 +530,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, options: operationOptions },
+      operationArguments,
       checkExistenceAtManagementGroupScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -561,15 +556,11 @@ export class Deployments {
   ): Promise<
     LROPoller<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       groupId,
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -579,12 +570,11 @@ export class Deployments {
         DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateAtManagementGroupScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateAtManagementGroupScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -602,11 +592,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetAtManagementGroupScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, options: operationOptions },
+      operationArguments,
       getAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsGetAtManagementGroupScopeResponse>;
   }
@@ -624,11 +616,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, options: operationOptions },
+      operationArguments,
       cancelAtManagementGroupScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -647,11 +641,14 @@ export class Deployments {
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateAtManagementGroupScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      deploymentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, parameters, options: operationOptions },
+      operationArguments,
       validateAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
   }
@@ -667,11 +664,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, options: operationOptions },
+      operationArguments,
       exportTemplateAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
   }
@@ -685,11 +684,12 @@ export class Deployments {
     groupId: string,
     options?: DeploymentsListAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentsListAtManagementGroupScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, options: operationOptions },
+      operationArguments,
       listAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsListAtManagementGroupScopeResponse>;
   }
@@ -709,13 +709,9 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -725,12 +721,11 @@ export class Deployments {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteAtSubscriptionScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteAtSubscriptionScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -746,11 +741,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       checkExistenceAtSubscriptionScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -766,14 +762,10 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -783,12 +775,11 @@ export class Deployments {
         DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateAtSubscriptionScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateAtSubscriptionScopeOperationSpec,
       initialOperationResult,
       sendOperation
@@ -804,11 +795,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetAtSubscriptionScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       getAtSubscriptionScopeOperationSpec
     ) as Promise<DeploymentsGetAtSubscriptionScopeResponse>;
   }
@@ -824,11 +816,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       cancelAtSubscriptionScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -845,11 +838,13 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateAtSubscriptionScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, parameters, options: operationOptions },
+      operationArguments,
       validateAtSubscriptionScopeOperationSpec
     ) as Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
   }
@@ -865,15 +860,10 @@ export class Deployments {
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsWhatIfAtSubscriptionScopeResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -883,12 +873,11 @@ export class Deployments {
         DeploymentsWhatIfAtSubscriptionScopeResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       whatIfAtSubscriptionScopeOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: whatIfAtSubscriptionScopeOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -905,11 +894,12 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { deploymentName, options: operationOptions },
+      operationArguments,
       exportTemplateAtSubscriptionScopeOperationSpec
     ) as Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse>;
   }
@@ -921,11 +911,11 @@ export class Deployments {
   listAtSubscriptionScope(
     options?: DeploymentsListAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentsListAtSubscriptionScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAtSubscriptionScopeOperationSpec
     ) as Promise<DeploymentsListAtSubscriptionScopeResponse>;
   }
@@ -949,14 +939,10 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -966,12 +952,11 @@ export class Deployments {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -990,11 +975,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options: operationOptions },
+      operationArguments,
       checkExistenceOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -1013,15 +1000,11 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -1031,12 +1014,11 @@ export class Deployments {
         DeploymentsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -1054,11 +1036,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DeploymentsGetResponse>;
   }
@@ -1076,11 +1060,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options: operationOptions },
+      operationArguments,
       cancelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -1100,16 +1086,14 @@ export class Deployments {
     parameters: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      deploymentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        deploymentName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       validateOperationSpec
     ) as Promise<DeploymentsValidateResponse>;
   }
@@ -1128,16 +1112,11 @@ export class Deployments {
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsWhatIfResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -1147,12 +1126,11 @@ export class Deployments {
         DeploymentsWhatIfResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       whatIfOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: whatIfOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -1171,11 +1149,13 @@ export class Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      deploymentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options: operationOptions },
+      operationArguments,
       exportTemplateOperationSpec
     ) as Promise<DeploymentsExportTemplateResponse>;
   }
@@ -1190,11 +1170,12 @@ export class Deployments {
     resourceGroupName: string,
     options?: DeploymentsListByResourceGroupOptionalParams
   ): Promise<DeploymentsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DeploymentsListByResourceGroupResponse>;
   }
@@ -1208,11 +1189,12 @@ export class Deployments {
     template: any,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsCalculateTemplateHashResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      template,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { template, options: operationOptions },
+      operationArguments,
       calculateTemplateHashOperationSpec
     ) as Promise<DeploymentsCalculateTemplateHashResponse>;
   }
@@ -1228,11 +1210,13 @@ export class Deployments {
     nextLink: string,
     options?: DeploymentsListAtScopeNextOptionalParams
   ): Promise<DeploymentsListAtScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, nextLink, options: operationOptions },
+      operationArguments,
       listAtScopeNextOperationSpec
     ) as Promise<DeploymentsListAtScopeNextResponse>;
   }
@@ -1246,11 +1230,12 @@ export class Deployments {
     nextLink: string,
     options?: DeploymentsListAtTenantScopeNextOptionalParams
   ): Promise<DeploymentsListAtTenantScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAtTenantScopeNextOperationSpec
     ) as Promise<DeploymentsListAtTenantScopeNextResponse>;
   }
@@ -1267,11 +1252,13 @@ export class Deployments {
     nextLink: string,
     options?: DeploymentsListAtManagementGroupScopeNextOptionalParams
   ): Promise<DeploymentsListAtManagementGroupScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupId, nextLink, options: operationOptions },
+      operationArguments,
       listAtManagementGroupScopeNextOperationSpec
     ) as Promise<DeploymentsListAtManagementGroupScopeNextResponse>;
   }
@@ -1286,11 +1273,12 @@ export class Deployments {
     nextLink: string,
     options?: DeploymentsListAtSubscriptionScopeNextOptionalParams
   ): Promise<DeploymentsListAtSubscriptionScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAtSubscriptionScopeNextOperationSpec
     ) as Promise<DeploymentsListAtSubscriptionScopeNextResponse>;
   }
@@ -1307,11 +1295,13 @@ export class Deployments {
     nextLink: string,
     options?: DeploymentsListByResourceGroupNextOptionalParams
   ): Promise<DeploymentsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DeploymentsListByResourceGroupNextResponse>;
   }

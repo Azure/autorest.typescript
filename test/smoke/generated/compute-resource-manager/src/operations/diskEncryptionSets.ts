@@ -53,15 +53,11 @@ export class DiskEncryptionSets {
     diskEncryptionSet: DiskEncryptionSet,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,
       diskEncryptionSet,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -71,12 +67,11 @@ export class DiskEncryptionSets {
         DiskEncryptionSetsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -99,15 +94,11 @@ export class DiskEncryptionSets {
     diskEncryptionSet: DiskEncryptionSetUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DiskEncryptionSetsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,
       diskEncryptionSet,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -117,12 +108,11 @@ export class DiskEncryptionSets {
         DiskEncryptionSetsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -142,11 +132,13 @@ export class DiskEncryptionSets {
     diskEncryptionSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiskEncryptionSetsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      diskEncryptionSetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, diskEncryptionSetName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DiskEncryptionSetsGetResponse>;
   }
@@ -164,14 +156,10 @@ export class DiskEncryptionSets {
     diskEncryptionSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -181,12 +169,11 @@ export class DiskEncryptionSets {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -202,11 +189,12 @@ export class DiskEncryptionSets {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiskEncryptionSetsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DiskEncryptionSetsListByResourceGroupResponse>;
   }
@@ -218,11 +206,11 @@ export class DiskEncryptionSets {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<DiskEncryptionSetsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DiskEncryptionSetsListResponse>;
   }
@@ -238,11 +226,13 @@ export class DiskEncryptionSets {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiskEncryptionSetsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DiskEncryptionSetsListByResourceGroupNextResponse>;
   }
@@ -256,11 +246,12 @@ export class DiskEncryptionSets {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DiskEncryptionSetsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DiskEncryptionSetsListNextResponse>;
   }

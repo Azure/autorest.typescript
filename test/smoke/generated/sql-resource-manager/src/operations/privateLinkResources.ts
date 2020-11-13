@@ -42,11 +42,13 @@ export class PrivateLinkResources {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<PrivateLinkResourcesListByServerResponse>;
   }
@@ -65,11 +67,14 @@ export class PrivateLinkResources {
     groupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      groupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, groupName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateLinkResourcesGetResponse>;
   }
@@ -88,11 +93,14 @@ export class PrivateLinkResources {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<PrivateLinkResourcesListByServerNextResponse>;
   }

@@ -74,11 +74,11 @@ export class AppServicePlans {
   list(
     options?: AppServicePlansListOptionalParams
   ): Promise<AppServicePlansListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AppServicePlansListResponse>;
   }
@@ -92,11 +92,12 @@ export class AppServicePlans {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<AppServicePlansListByResourceGroupResponse>;
   }
@@ -112,11 +113,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<AppServicePlansGetResponse>;
   }
@@ -134,15 +137,11 @@ export class AppServicePlans {
     appServicePlan: AppServicePlan,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<AppServicePlansCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
       appServicePlan,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -152,12 +151,11 @@ export class AppServicePlans {
         AppServicePlansCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -175,11 +173,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -197,11 +197,14 @@ export class AppServicePlans {
     appServicePlan: AppServicePlanPatchResource,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      appServicePlan,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, appServicePlan, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<AppServicePlansUpdateResponse>;
   }
@@ -217,11 +220,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListCapabilitiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listCapabilitiesOperationSpec
     ) as Promise<AppServicePlansListCapabilitiesResponse>;
   }
@@ -241,17 +246,15 @@ export class AppServicePlans {
     relayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetHybridConnectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        namespaceName,
-        relayName,
-        options: operationOptions
-      },
+      operationArguments,
       getHybridConnectionOperationSpec
     ) as Promise<AppServicePlansGetHybridConnectionResponse>;
   }
@@ -271,17 +274,15 @@ export class AppServicePlans {
     relayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        namespaceName,
-        relayName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteHybridConnectionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -301,17 +302,15 @@ export class AppServicePlans {
     relayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListHybridConnectionKeysResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        namespaceName,
-        relayName,
-        options: operationOptions
-      },
+      operationArguments,
       listHybridConnectionKeysOperationSpec
     ) as Promise<AppServicePlansListHybridConnectionKeysResponse>;
   }
@@ -331,17 +330,15 @@ export class AppServicePlans {
     relayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListWebAppsByHybridConnectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        namespaceName,
-        relayName,
-        options: operationOptions
-      },
+      operationArguments,
       listWebAppsByHybridConnectionOperationSpec
     ) as Promise<AppServicePlansListWebAppsByHybridConnectionResponse>;
   }
@@ -357,11 +354,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetHybridConnectionPlanLimitResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getHybridConnectionPlanLimitOperationSpec
     ) as Promise<AppServicePlansGetHybridConnectionPlanLimitResponse>;
   }
@@ -377,11 +376,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListHybridConnectionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listHybridConnectionsOperationSpec
     ) as Promise<AppServicePlansListHybridConnectionsResponse>;
   }
@@ -397,11 +398,13 @@ export class AppServicePlans {
     name: string,
     options?: AppServicePlansRestartWebAppsOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       restartWebAppsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -417,11 +420,13 @@ export class AppServicePlans {
     name: string,
     options?: AppServicePlansListWebAppsOptionalParams
   ): Promise<AppServicePlansListWebAppsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listWebAppsOperationSpec
     ) as Promise<AppServicePlansListWebAppsResponse>;
   }
@@ -437,11 +442,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetServerFarmSkusResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getServerFarmSkusOperationSpec
     ) as Promise<AppServicePlansGetServerFarmSkusResponse>;
   }
@@ -457,11 +464,13 @@ export class AppServicePlans {
     name: string,
     options?: AppServicePlansListUsagesOptionalParams
   ): Promise<AppServicePlansListUsagesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listUsagesOperationSpec
     ) as Promise<AppServicePlansListUsagesResponse>;
   }
@@ -477,11 +486,13 @@ export class AppServicePlans {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListVnetsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listVnetsOperationSpec
     ) as Promise<AppServicePlansListVnetsResponse>;
   }
@@ -499,11 +510,14 @@ export class AppServicePlans {
     vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetVnetFromServerFarmResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, vnetName, options: operationOptions },
+      operationArguments,
       getVnetFromServerFarmOperationSpec
     ) as Promise<AppServicePlansGetVnetFromServerFarmResponse>;
   }
@@ -523,17 +537,15 @@ export class AppServicePlans {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetVnetGatewayResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      gatewayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        gatewayName,
-        options: operationOptions
-      },
+      operationArguments,
       getVnetGatewayOperationSpec
     ) as Promise<AppServicePlansGetVnetGatewayResponse>;
   }
@@ -555,18 +567,16 @@ export class AppServicePlans {
     connectionEnvelope: VnetGateway,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansUpdateVnetGatewayResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      gatewayName,
+      connectionEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        gatewayName,
-        connectionEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       updateVnetGatewayOperationSpec
     ) as Promise<AppServicePlansUpdateVnetGatewayResponse>;
   }
@@ -584,11 +594,14 @@ export class AppServicePlans {
     vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListRoutesForVnetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, vnetName, options: operationOptions },
+      operationArguments,
       listRoutesForVnetOperationSpec
     ) as Promise<AppServicePlansListRoutesForVnetResponse>;
   }
@@ -608,17 +621,15 @@ export class AppServicePlans {
     routeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetRouteForVnetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      routeName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        routeName,
-        options: operationOptions
-      },
+      operationArguments,
       getRouteForVnetOperationSpec
     ) as Promise<AppServicePlansGetRouteForVnetResponse>;
   }
@@ -640,18 +651,16 @@ export class AppServicePlans {
     route: VnetRoute,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      routeName,
+      route,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        routeName,
-        route,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateVnetRouteOperationSpec
     ) as Promise<AppServicePlansCreateOrUpdateVnetRouteResponse>;
   }
@@ -671,17 +680,15 @@ export class AppServicePlans {
     routeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      routeName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        routeName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteVnetRouteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -703,18 +710,16 @@ export class AppServicePlans {
     route: VnetRoute,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansUpdateVnetRouteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      vnetName,
+      routeName,
+      route,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        vnetName,
-        routeName,
-        route,
-        options: operationOptions
-      },
+      operationArguments,
       updateVnetRouteOperationSpec
     ) as Promise<AppServicePlansUpdateVnetRouteResponse>;
   }
@@ -732,11 +737,14 @@ export class AppServicePlans {
     workerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      workerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, workerName, options: operationOptions },
+      operationArguments,
       rebootWorkerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -750,11 +758,12 @@ export class AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListNextOptionalParams
   ): Promise<AppServicePlansListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AppServicePlansListNextResponse>;
   }
@@ -770,11 +779,13 @@ export class AppServicePlans {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<AppServicePlansListByResourceGroupNextResponse>;
   }
@@ -797,18 +808,16 @@ export class AppServicePlans {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListWebAppsByHybridConnectionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        namespaceName,
-        relayName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listWebAppsByHybridConnectionNextOperationSpec
     ) as Promise<AppServicePlansListWebAppsByHybridConnectionNextResponse>;
   }
@@ -826,11 +835,14 @@ export class AppServicePlans {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListHybridConnectionsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listHybridConnectionsNextOperationSpec
     ) as Promise<AppServicePlansListHybridConnectionsNextResponse>;
   }
@@ -848,11 +860,14 @@ export class AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListWebAppsNextOptionalParams
   ): Promise<AppServicePlansListWebAppsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listWebAppsNextOperationSpec
     ) as Promise<AppServicePlansListWebAppsNextResponse>;
   }
@@ -870,11 +885,14 @@ export class AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListUsagesNextOptionalParams
   ): Promise<AppServicePlansListUsagesNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listUsagesNextOperationSpec
     ) as Promise<AppServicePlansListUsagesNextResponse>;
   }

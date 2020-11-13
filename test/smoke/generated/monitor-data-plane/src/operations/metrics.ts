@@ -52,22 +52,20 @@ export class Metrics {
     body: AzureMetricsDocument,
     options?: coreHttp.OperationOptions
   ): Promise<MetricsCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      contentType,
+      contentLength,
+      authorization,
+      subscriptionId,
+      resourceGroupName,
+      resourceProvider,
+      resourceTypeName,
+      resourceName,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        contentType,
-        contentLength,
-        authorization,
-        subscriptionId,
-        resourceGroupName,
-        resourceProvider,
-        resourceTypeName,
-        resourceName,
-        body,
-        options: operationOptions
-      },
+      operationArguments,
       createOperationSpec
     ) as Promise<MetricsCreateResponse>;
   }

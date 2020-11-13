@@ -38,11 +38,13 @@ export class ServerUsages {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServerUsagesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<ServerUsagesListByServerResponse>;
   }

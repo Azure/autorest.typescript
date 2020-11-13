@@ -51,18 +51,16 @@ export class WorkloadClassifiers {
     workloadClassifierName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WorkloadClassifiersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      workloadClassifierName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        workloadGroupName,
-        workloadClassifierName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<WorkloadClassifiersGetResponse>;
   }
@@ -87,18 +85,14 @@ export class WorkloadClassifiers {
     parameters: WorkloadClassifier,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WorkloadClassifiersCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       workloadGroupName,
       workloadClassifierName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -108,12 +102,11 @@ export class WorkloadClassifiers {
         WorkloadClassifiersCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -138,17 +131,13 @@ export class WorkloadClassifiers {
     workloadClassifierName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       workloadGroupName,
       workloadClassifierName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -158,12 +147,11 @@ export class WorkloadClassifiers {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -186,17 +174,15 @@ export class WorkloadClassifiers {
     workloadGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WorkloadClassifiersListByWorkloadGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        workloadGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       listByWorkloadGroupOperationSpec
     ) as Promise<WorkloadClassifiersListByWorkloadGroupResponse>;
   }
@@ -219,18 +205,16 @@ export class WorkloadClassifiers {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WorkloadClassifiersListByWorkloadGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        workloadGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByWorkloadGroupNextOperationSpec
     ) as Promise<WorkloadClassifiersListByWorkloadGroupNextResponse>;
   }

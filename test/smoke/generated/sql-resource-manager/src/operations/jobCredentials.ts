@@ -46,16 +46,14 @@ export class JobCredentials {
     jobAgentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobCredentialsListByAgentResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentOperationSpec
     ) as Promise<JobCredentialsListByAgentResponse>;
   }
@@ -76,17 +74,15 @@ export class JobCredentials {
     credentialName: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobCredentialsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      credentialName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        credentialName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<JobCredentialsGetResponse>;
   }
@@ -109,18 +105,16 @@ export class JobCredentials {
     parameters: JobCredential,
     options?: coreHttp.OperationOptions
   ): Promise<JobCredentialsCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      credentialName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        credentialName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<JobCredentialsCreateOrUpdateResponse>;
   }
@@ -141,17 +135,15 @@ export class JobCredentials {
     credentialName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      credentialName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        credentialName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -172,17 +164,15 @@ export class JobCredentials {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<JobCredentialsListByAgentNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByAgentNextOperationSpec
     ) as Promise<JobCredentialsListByAgentNextResponse>;
   }

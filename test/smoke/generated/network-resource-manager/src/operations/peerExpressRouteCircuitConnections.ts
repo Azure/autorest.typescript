@@ -45,17 +45,15 @@ export class PeerExpressRouteCircuitConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PeerExpressRouteCircuitConnectionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      connectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        circuitName,
-        peeringName,
-        connectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
   }
@@ -74,16 +72,14 @@ export class PeerExpressRouteCircuitConnections {
     peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PeerExpressRouteCircuitConnectionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        circuitName,
-        peeringName,
-        options: operationOptions
-      },
+      operationArguments,
       listOperationSpec
     ) as Promise<PeerExpressRouteCircuitConnectionsListResponse>;
   }
@@ -103,17 +99,15 @@ export class PeerExpressRouteCircuitConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PeerExpressRouteCircuitConnectionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        circuitName,
-        peeringName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PeerExpressRouteCircuitConnectionsListNextResponse>;
   }

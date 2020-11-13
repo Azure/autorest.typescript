@@ -46,15 +46,13 @@ export class ApplicationDefinitions {
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationDefinitionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      applicationDefinitionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        applicationDefinitionName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ApplicationDefinitionsGetResponse>;
   }
@@ -70,14 +68,10 @@ export class ApplicationDefinitions {
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationDefinitionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -87,12 +81,11 @@ export class ApplicationDefinitions {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -112,15 +105,11 @@ export class ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationDefinitionName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -130,12 +119,11 @@ export class ApplicationDefinitions {
         ApplicationDefinitionsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -151,11 +139,12 @@ export class ApplicationDefinitions {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationDefinitionsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ApplicationDefinitionsListByResourceGroupResponse>;
   }
@@ -172,11 +161,12 @@ export class ApplicationDefinitions {
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationDefinitionsGetByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationDefinitionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationDefinitionId, options: operationOptions },
+      operationArguments,
       getByIdOperationSpec
     ) as Promise<ApplicationDefinitionsGetByIdResponse>;
   }
@@ -193,13 +183,9 @@ export class ApplicationDefinitions {
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -209,12 +195,11 @@ export class ApplicationDefinitions {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteByIdOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteByIdOperationSpec,
       initialOperationResult,
       sendOperation
@@ -235,14 +220,10 @@ export class ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateByIdResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -252,12 +233,11 @@ export class ApplicationDefinitions {
         ApplicationDefinitionsCreateOrUpdateByIdResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateByIdOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateByIdOperationSpec,
       initialOperationResult,
       sendOperation
@@ -275,11 +255,13 @@ export class ApplicationDefinitions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationDefinitionsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<ApplicationDefinitionsListByResourceGroupNextResponse>;
   }

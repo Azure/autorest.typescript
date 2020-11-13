@@ -46,16 +46,11 @@ export class RouteFilterRules {
     ruleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeFilterName,
       ruleName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class RouteFilterRules {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class RouteFilterRules {
     ruleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RouteFilterRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      routeFilterName,
+      ruleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        routeFilterName,
-        ruleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<RouteFilterRulesGetResponse>;
   }
@@ -121,17 +113,12 @@ export class RouteFilterRules {
     routeFilterRuleParameters: RouteFilterRule,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<RouteFilterRulesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeFilterName,
       ruleName,
       routeFilterRuleParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -141,12 +128,11 @@ export class RouteFilterRules {
         RouteFilterRulesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -165,11 +151,13 @@ export class RouteFilterRules {
     routeFilterName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RouteFilterRulesListByRouteFilterResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      routeFilterName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, routeFilterName, options: operationOptions },
+      operationArguments,
       listByRouteFilterOperationSpec
     ) as Promise<RouteFilterRulesListByRouteFilterResponse>;
   }
@@ -187,16 +175,14 @@ export class RouteFilterRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<RouteFilterRulesListByRouteFilterNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      routeFilterName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        routeFilterName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByRouteFilterNextOperationSpec
     ) as Promise<RouteFilterRulesListByRouteFilterNextResponse>;
   }

@@ -38,11 +38,12 @@ export class AvailableEndpointServices {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableEndpointServicesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AvailableEndpointServicesListResponse>;
   }
@@ -58,11 +59,13 @@ export class AvailableEndpointServices {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableEndpointServicesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AvailableEndpointServicesListNextResponse>;
   }

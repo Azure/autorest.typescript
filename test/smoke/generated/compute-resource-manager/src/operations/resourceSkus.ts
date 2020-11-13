@@ -38,11 +38,11 @@ export class ResourceSkus {
   list(
     options?: ResourceSkusListOptionalParams
   ): Promise<ResourceSkusListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ResourceSkusListResponse>;
   }
@@ -56,11 +56,12 @@ export class ResourceSkus {
     nextLink: string,
     options?: ResourceSkusListNextOptionalParams
   ): Promise<ResourceSkusListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ResourceSkusListNextResponse>;
   }

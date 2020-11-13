@@ -56,17 +56,15 @@ export class EncryptionScopes {
     encryptionScope: EncryptionScope,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesPutResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      encryptionScopeName,
+      encryptionScope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        encryptionScopeName,
-        encryptionScope,
-        options: operationOptions
-      },
+      operationArguments,
       putOperationSpec
     ) as Promise<EncryptionScopesPutResponse>;
   }
@@ -93,17 +91,15 @@ export class EncryptionScopes {
     encryptionScope: EncryptionScope,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesPatchResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      encryptionScopeName,
+      encryptionScope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        encryptionScopeName,
-        encryptionScope,
-        options: operationOptions
-      },
+      operationArguments,
       patchOperationSpec
     ) as Promise<EncryptionScopesPatchResponse>;
   }
@@ -127,16 +123,14 @@ export class EncryptionScopes {
     encryptionScopeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      encryptionScopeName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        encryptionScopeName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<EncryptionScopesGetResponse>;
   }
@@ -155,11 +149,13 @@ export class EncryptionScopes {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<EncryptionScopesListResponse>;
   }
@@ -180,11 +176,14 @@ export class EncryptionScopes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<EncryptionScopesListNextResponse>;
   }

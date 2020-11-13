@@ -55,17 +55,15 @@ export class ElasticPools {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolsListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<ElasticPoolsListMetricsResponse>;
   }
@@ -84,16 +82,14 @@ export class ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolsListMetricDefinitionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricDefinitionsOperationSpec
     ) as Promise<ElasticPoolsListMetricDefinitionsResponse>;
   }
@@ -110,11 +106,13 @@ export class ElasticPools {
     serverName: string,
     options?: ElasticPoolsListByServerOptionalParams
   ): Promise<ElasticPoolsListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<ElasticPoolsListByServerResponse>;
   }
@@ -133,16 +131,14 @@ export class ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ElasticPoolsGetResponse>;
   }
@@ -163,16 +159,12 @@ export class ElasticPools {
     parameters: ElasticPool,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ElasticPoolsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       elasticPoolName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -182,12 +174,11 @@ export class ElasticPools {
         ElasticPoolsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -208,15 +199,11 @@ export class ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       elasticPoolName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -226,12 +213,11 @@ export class ElasticPools {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -254,16 +240,12 @@ export class ElasticPools {
     parameters: ElasticPoolUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ElasticPoolsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       elasticPoolName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -273,12 +255,11 @@ export class ElasticPools {
         ElasticPoolsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -299,15 +280,11 @@ export class ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       elasticPoolName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -317,12 +294,11 @@ export class ElasticPools {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       failoverOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: failoverOperationSpec,
       initialOperationResult,
       sendOperation
@@ -343,11 +319,14 @@ export class ElasticPools {
     nextLink: string,
     options?: ElasticPoolsListByServerNextOptionalParams
   ): Promise<ElasticPoolsListByServerNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options: operationOptions },
+      operationArguments,
       listByServerNextOperationSpec
     ) as Promise<ElasticPoolsListByServerNextResponse>;
   }

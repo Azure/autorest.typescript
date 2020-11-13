@@ -47,15 +47,10 @@ export class PrivateEndpoints {
     privateEndpointName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class PrivateEndpoints {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -89,11 +83,13 @@ export class PrivateEndpoints {
     privateEndpointName: string,
     options?: PrivateEndpointsGetOptionalParams
   ): Promise<PrivateEndpointsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      privateEndpointName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, privateEndpointName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateEndpointsGetResponse>;
   }
@@ -111,16 +107,11 @@ export class PrivateEndpoints {
     parameters: PrivateEndpoint,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PrivateEndpointsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -130,12 +121,11 @@ export class PrivateEndpoints {
         PrivateEndpointsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -152,11 +142,12 @@ export class PrivateEndpoints {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PrivateEndpointsListResponse>;
   }
@@ -168,11 +159,11 @@ export class PrivateEndpoints {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<PrivateEndpointsListBySubscriptionResponse>;
   }
@@ -188,11 +179,13 @@ export class PrivateEndpoints {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PrivateEndpointsListNextResponse>;
   }
@@ -206,11 +199,12 @@ export class PrivateEndpoints {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<PrivateEndpointsListBySubscriptionNextResponse>;
   }

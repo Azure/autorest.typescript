@@ -53,11 +53,12 @@ export class Groups {
     parameters: CheckGroupMembershipParameters,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsIsMemberOfResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       isMemberOfOperationSpec
     ) as Promise<GroupsIsMemberOfResponse>;
   }
@@ -73,11 +74,13 @@ export class Groups {
     memberObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupObjectId,
+      memberObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupObjectId, memberObjectId, options: operationOptions },
+      operationArguments,
       removeMemberOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -94,11 +97,13 @@ export class Groups {
     parameters: GroupAddMemberParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      groupObjectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { groupObjectId, parameters, options: operationOptions },
+      operationArguments,
       addMemberOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -112,11 +117,12 @@ export class Groups {
     parameters: GroupCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<GroupsCreateResponse>;
   }
@@ -126,11 +132,11 @@ export class Groups {
    * @param options The options parameters.
    */
   list(options?: GroupsListOptionalParams): Promise<GroupsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<GroupsListResponse>;
   }
@@ -144,11 +150,12 @@ export class Groups {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetGroupMembersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       getGroupMembersOperationSpec
     ) as Promise<GroupsGetGroupMembersResponse>;
   }
@@ -162,11 +169,12 @@ export class Groups {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<GroupsGetResponse>;
   }
@@ -180,11 +188,12 @@ export class Groups {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -200,11 +209,13 @@ export class Groups {
     parameters: GroupGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetMemberGroupsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       getMemberGroupsOperationSpec
     ) as Promise<GroupsGetMemberGroupsResponse>;
   }
@@ -218,11 +229,12 @@ export class Groups {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListOwnersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       listOwnersOperationSpec
     ) as Promise<GroupsListOwnersResponse>;
   }
@@ -239,11 +251,13 @@ export class Groups {
     parameters: AddOwnerParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, parameters, options: operationOptions },
+      operationArguments,
       addOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -259,11 +273,13 @@ export class Groups {
     ownerObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      ownerObjectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, ownerObjectId, options: operationOptions },
+      operationArguments,
       removeOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -277,11 +293,12 @@ export class Groups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<GroupsListNextResponse>;
   }
@@ -295,11 +312,12 @@ export class Groups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetGroupMembersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getGroupMembersNextOperationSpec
     ) as Promise<GroupsGetGroupMembersNextResponse>;
   }
@@ -315,11 +333,13 @@ export class Groups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListOwnersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, nextLink, options: operationOptions },
+      operationArguments,
       listOwnersNextOperationSpec
     ) as Promise<GroupsListOwnersNextResponse>;
   }

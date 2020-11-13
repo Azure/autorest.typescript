@@ -72,16 +72,14 @@ export class NetworkWatchers {
     parameters: NetworkWatcher,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<NetworkWatchersCreateOrUpdateResponse>;
   }
@@ -97,11 +95,13 @@ export class NetworkWatchers {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, networkWatcherName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<NetworkWatchersGetResponse>;
   }
@@ -117,15 +117,10 @@ export class NetworkWatchers {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -135,12 +130,11 @@ export class NetworkWatchers {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -161,16 +155,14 @@ export class NetworkWatchers {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<NetworkWatchersUpdateTagsResponse>;
   }
@@ -184,11 +176,12 @@ export class NetworkWatchers {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<NetworkWatchersListResponse>;
   }
@@ -200,11 +193,11 @@ export class NetworkWatchers {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<NetworkWatchersListAllResponse>;
   }
@@ -222,16 +215,14 @@ export class NetworkWatchers {
     parameters: TopologyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersGetTopologyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkWatcherName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       getTopologyOperationSpec
     ) as Promise<NetworkWatchersGetTopologyResponse>;
   }
@@ -249,16 +240,11 @@ export class NetworkWatchers {
     parameters: VerificationIPFlowParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersVerifyIPFlowResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -268,12 +254,11 @@ export class NetworkWatchers {
         NetworkWatchersVerifyIPFlowResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       verifyIPFlowOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: verifyIPFlowOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -294,16 +279,11 @@ export class NetworkWatchers {
     parameters: NextHopParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetNextHopResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -313,12 +293,11 @@ export class NetworkWatchers {
         NetworkWatchersGetNextHopResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getNextHopOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getNextHopOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -339,16 +318,11 @@ export class NetworkWatchers {
     parameters: SecurityGroupViewParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetVMSecurityRulesResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -358,12 +332,11 @@ export class NetworkWatchers {
         NetworkWatchersGetVMSecurityRulesResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getVMSecurityRulesOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getVMSecurityRulesOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -384,16 +357,11 @@ export class NetworkWatchers {
     parameters: TroubleshootingParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -403,12 +371,11 @@ export class NetworkWatchers {
         NetworkWatchersGetTroubleshootingResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getTroubleshootingOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getTroubleshootingOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -429,16 +396,11 @@ export class NetworkWatchers {
     parameters: QueryTroubleshootingParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResultResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -448,12 +410,11 @@ export class NetworkWatchers {
         NetworkWatchersGetTroubleshootingResultResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getTroubleshootingResultOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getTroubleshootingResultOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -474,16 +435,11 @@ export class NetworkWatchers {
     parameters: FlowLogInformation,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersSetFlowLogConfigurationResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -493,12 +449,11 @@ export class NetworkWatchers {
         NetworkWatchersSetFlowLogConfigurationResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       setFlowLogConfigurationOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: setFlowLogConfigurationOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -520,16 +475,11 @@ export class NetworkWatchers {
     parameters: FlowLogStatusParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetFlowLogStatusResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -539,12 +489,11 @@ export class NetworkWatchers {
         NetworkWatchersGetFlowLogStatusResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getFlowLogStatusOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getFlowLogStatusOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -566,16 +515,11 @@ export class NetworkWatchers {
     parameters: ConnectivityParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersCheckConnectivityResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -585,12 +529,11 @@ export class NetworkWatchers {
         NetworkWatchersCheckConnectivityResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       checkConnectivityOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: checkConnectivityOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -612,16 +555,11 @@ export class NetworkWatchers {
     parameters: AzureReachabilityReportParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetAzureReachabilityReportResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -631,12 +569,11 @@ export class NetworkWatchers {
         NetworkWatchersGetAzureReachabilityReportResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getAzureReachabilityReportOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getAzureReachabilityReportOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -658,16 +595,11 @@ export class NetworkWatchers {
     parameters: AvailableProvidersListParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersListAvailableProvidersResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -677,12 +609,11 @@ export class NetworkWatchers {
         NetworkWatchersListAvailableProvidersResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       listAvailableProvidersOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: listAvailableProvidersOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -709,16 +640,11 @@ export class NetworkWatchers {
   ): Promise<
     LROPoller<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -728,12 +654,11 @@ export class NetworkWatchers {
         NetworkWatchersGetNetworkConfigurationDiagnosticResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       getNetworkConfigurationDiagnosticOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: getNetworkConfigurationDiagnosticOperationSpec,
       initialOperationResult,
       sendOperation,

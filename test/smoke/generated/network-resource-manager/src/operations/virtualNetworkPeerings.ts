@@ -46,16 +46,11 @@ export class VirtualNetworkPeerings {
     virtualNetworkPeeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
       virtualNetworkPeeringName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class VirtualNetworkPeerings {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class VirtualNetworkPeerings {
     virtualNetworkPeeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkPeeringsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      virtualNetworkPeeringName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        virtualNetworkPeeringName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualNetworkPeeringsGetResponse>;
   }
@@ -121,17 +113,12 @@ export class VirtualNetworkPeerings {
     virtualNetworkPeeringParameters: VirtualNetworkPeering,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkPeeringsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
       virtualNetworkPeeringName,
       virtualNetworkPeeringParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -141,12 +128,11 @@ export class VirtualNetworkPeerings {
         VirtualNetworkPeeringsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -165,11 +151,13 @@ export class VirtualNetworkPeerings {
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkPeeringsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualNetworkName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualNetworkPeeringsListResponse>;
   }
@@ -187,16 +175,14 @@ export class VirtualNetworkPeerings {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkPeeringsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualNetworkPeeringsListNextResponse>;
   }

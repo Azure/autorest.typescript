@@ -46,16 +46,11 @@ export class ExpressRouteCircuitPeerings {
     peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
       peeringName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class ExpressRouteCircuitPeerings {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class ExpressRouteCircuitPeerings {
     peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitPeeringsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        circuitName,
-        peeringName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteCircuitPeeringsGetResponse>;
   }
@@ -121,17 +113,12 @@ export class ExpressRouteCircuitPeerings {
     peeringParameters: ExpressRouteCircuitPeering,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
       peeringName,
       peeringParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -141,12 +128,11 @@ export class ExpressRouteCircuitPeerings {
         ExpressRouteCircuitPeeringsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -165,11 +151,13 @@ export class ExpressRouteCircuitPeerings {
     circuitName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitPeeringsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, circuitName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteCircuitPeeringsListResponse>;
   }
@@ -187,11 +175,14 @@ export class ExpressRouteCircuitPeerings {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitPeeringsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      circuitName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, circuitName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteCircuitPeeringsListNextResponse>;
   }

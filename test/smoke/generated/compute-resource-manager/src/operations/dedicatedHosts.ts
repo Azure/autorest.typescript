@@ -50,16 +50,12 @@ export class DedicatedHosts {
     parameters: DedicatedHost,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
       hostName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -69,12 +65,11 @@ export class DedicatedHosts {
         DedicatedHostsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -96,16 +91,12 @@ export class DedicatedHosts {
     parameters: DedicatedHostUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DedicatedHostsUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
       hostName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -115,12 +106,11 @@ export class DedicatedHosts {
         DedicatedHostsUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -140,15 +130,11 @@ export class DedicatedHosts {
     hostName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
       hostName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -158,12 +144,11 @@ export class DedicatedHosts {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -183,11 +168,14 @@ export class DedicatedHosts {
     hostName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      hostName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, hostName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DedicatedHostsGetResponse>;
   }
@@ -204,11 +192,13 @@ export class DedicatedHosts {
     hostGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostsListByHostGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, options: operationOptions },
+      operationArguments,
       listByHostGroupOperationSpec
     ) as Promise<DedicatedHostsListByHostGroupResponse>;
   }
@@ -226,11 +216,14 @@ export class DedicatedHosts {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostsListByHostGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      hostGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByHostGroupNextOperationSpec
     ) as Promise<DedicatedHostsListByHostGroupNextResponse>;
   }

@@ -43,11 +43,11 @@ export class UserAssignedIdentities {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<UserAssignedIdentitiesListBySubscriptionResponse>;
   }
@@ -61,11 +61,12 @@ export class UserAssignedIdentities {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<UserAssignedIdentitiesListByResourceGroupResponse>;
   }
@@ -83,16 +84,14 @@ export class UserAssignedIdentities {
     parameters: Identity,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
   }
@@ -110,16 +109,14 @@ export class UserAssignedIdentities {
     parameters: IdentityUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<UserAssignedIdentitiesUpdateResponse>;
   }
@@ -135,11 +132,13 @@ export class UserAssignedIdentities {
     resourceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, resourceName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<UserAssignedIdentitiesGetResponse>;
   }
@@ -155,11 +154,13 @@ export class UserAssignedIdentities {
     resourceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, resourceName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -173,11 +174,12 @@ export class UserAssignedIdentities {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<UserAssignedIdentitiesListBySubscriptionNextResponse>;
   }
@@ -193,11 +195,13 @@ export class UserAssignedIdentities {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<UserAssignedIdentitiesListByResourceGroupNextResponse>;
   }

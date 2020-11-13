@@ -50,11 +50,13 @@ export class FileShares {
     accountName: string,
     options?: FileSharesListOptionalParams
   ): Promise<FileSharesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<FileSharesListResponse>;
   }
@@ -81,17 +83,15 @@ export class FileShares {
     fileShare: FileShare,
     options?: coreHttp.OperationOptions
   ): Promise<FileSharesCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      shareName,
+      fileShare,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        shareName,
-        fileShare,
-        options: operationOptions
-      },
+      operationArguments,
       createOperationSpec
     ) as Promise<FileSharesCreateResponse>;
   }
@@ -117,17 +117,15 @@ export class FileShares {
     fileShare: FileShare,
     options?: coreHttp.OperationOptions
   ): Promise<FileSharesUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      shareName,
+      fileShare,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        shareName,
-        fileShare,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<FileSharesUpdateResponse>;
   }
@@ -150,11 +148,14 @@ export class FileShares {
     shareName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FileSharesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      shareName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, shareName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<FileSharesGetResponse>;
   }
@@ -177,11 +178,14 @@ export class FileShares {
     shareName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      shareName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, shareName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -206,17 +210,15 @@ export class FileShares {
     deletedShare: DeletedShare,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      shareName,
+      deletedShare,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        shareName,
-        deletedShare,
-        options: operationOptions
-      },
+      operationArguments,
       restoreOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -237,11 +239,14 @@ export class FileShares {
     nextLink: string,
     options?: FileSharesListNextOptionalParams
   ): Promise<FileSharesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<FileSharesListNextResponse>;
   }

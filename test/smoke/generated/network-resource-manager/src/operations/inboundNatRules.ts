@@ -45,11 +45,13 @@ export class InboundNatRules {
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<InboundNatRulesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, loadBalancerName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<InboundNatRulesListResponse>;
   }
@@ -67,16 +69,11 @@ export class InboundNatRules {
     inboundNatRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
       inboundNatRuleName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -86,12 +83,11 @@ export class InboundNatRules {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -112,16 +108,14 @@ export class InboundNatRules {
     inboundNatRuleName: string,
     options?: InboundNatRulesGetOptionalParams
   ): Promise<InboundNatRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      inboundNatRuleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        inboundNatRuleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<InboundNatRulesGetResponse>;
   }
@@ -142,17 +136,12 @@ export class InboundNatRules {
     inboundNatRuleParameters: InboundNatRule,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InboundNatRulesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
       inboundNatRuleName,
       inboundNatRuleParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -162,12 +151,11 @@ export class InboundNatRules {
         InboundNatRulesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -188,16 +176,14 @@ export class InboundNatRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<InboundNatRulesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      loadBalancerName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        loadBalancerName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<InboundNatRulesListNextResponse>;
   }

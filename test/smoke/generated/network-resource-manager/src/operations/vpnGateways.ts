@@ -49,11 +49,13 @@ export class VpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, gatewayName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<VpnGatewaysGetResponse>;
   }
@@ -71,16 +73,11 @@ export class VpnGateways {
     vpnGatewayParameters: VpnGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VpnGatewaysCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
       vpnGatewayParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -90,12 +87,11 @@ export class VpnGateways {
         VpnGatewaysCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -116,16 +112,14 @@ export class VpnGateways {
     vpnGatewayParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      vpnGatewayParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        gatewayName,
-        vpnGatewayParameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<VpnGatewaysUpdateTagsResponse>;
   }
@@ -141,15 +135,10 @@ export class VpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -159,12 +148,11 @@ export class VpnGateways {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -183,15 +171,10 @@ export class VpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VpnGatewaysResetResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -201,12 +184,11 @@ export class VpnGateways {
         VpnGatewaysResetResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       resetOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: resetOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -223,11 +205,12 @@ export class VpnGateways {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<VpnGatewaysListByResourceGroupResponse>;
   }
@@ -237,11 +220,11 @@ export class VpnGateways {
    * @param options The options parameters.
    */
   list(options?: coreHttp.OperationOptions): Promise<VpnGatewaysListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VpnGatewaysListResponse>;
   }
@@ -257,11 +240,13 @@ export class VpnGateways {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<VpnGatewaysListByResourceGroupNextResponse>;
   }
@@ -275,11 +260,12 @@ export class VpnGateways {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VpnGatewaysListNextResponse>;
   }

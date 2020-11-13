@@ -44,15 +44,10 @@ export class LogAnalytics {
     parameters: RequestRateByIntervalInput,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LogAnalyticsExportRequestRateByIntervalResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       location,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -62,12 +57,11 @@ export class LogAnalytics {
         LogAnalyticsExportRequestRateByIntervalResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       exportRequestRateByIntervalOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: exportRequestRateByIntervalOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -86,15 +80,10 @@ export class LogAnalytics {
     parameters: LogAnalyticsInputBase,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       location,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -104,12 +93,11 @@ export class LogAnalytics {
         LogAnalyticsExportThrottledRequestsResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       exportThrottledRequestsOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: exportThrottledRequestsOperationSpec,
       initialOperationResult,
       sendOperation,

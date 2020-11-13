@@ -42,11 +42,14 @@ export class Percentile {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<PercentileListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, filter, options: operationOptions },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<PercentileListMetricsResponse>;
   }

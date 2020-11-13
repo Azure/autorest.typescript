@@ -44,16 +44,14 @@ export class ManagedInstanceOperations {
     operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      operationId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        operationId,
-        options: operationOptions
-      },
+      operationArguments,
       cancelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -70,11 +68,13 @@ export class ManagedInstanceOperations {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceOperationsListByManagedInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listByManagedInstanceOperationSpec
     ) as Promise<ManagedInstanceOperationsListByManagedInstanceResponse>;
   }
@@ -93,16 +93,14 @@ export class ManagedInstanceOperations {
     operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceOperationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      operationId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        operationId,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedInstanceOperationsGetResponse>;
   }
@@ -121,16 +119,14 @@ export class ManagedInstanceOperations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceOperationsListByManagedInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByManagedInstanceNextOperationSpec
     ) as Promise<ManagedInstanceOperationsListByManagedInstanceNextResponse>;
   }

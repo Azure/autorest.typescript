@@ -44,11 +44,12 @@ export class WebApplicationFirewallPolicies {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesListResponse>;
   }
@@ -60,11 +61,11 @@ export class WebApplicationFirewallPolicies {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesListAllResponse>;
   }
@@ -80,11 +81,13 @@ export class WebApplicationFirewallPolicies {
     policyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      policyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, policyName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesGetResponse>;
   }
@@ -102,11 +105,14 @@ export class WebApplicationFirewallPolicies {
     parameters: WebApplicationFirewallPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      policyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, policyName, parameters, options: operationOptions },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
   }
@@ -122,15 +128,10 @@ export class WebApplicationFirewallPolicies {
     policyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       policyName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +141,11 @@ export class WebApplicationFirewallPolicies {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -164,11 +164,13 @@ export class WebApplicationFirewallPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesListNextResponse>;
   }
@@ -182,11 +184,12 @@ export class WebApplicationFirewallPolicies {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebApplicationFirewallPoliciesListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<WebApplicationFirewallPoliciesListAllNextResponse>;
   }

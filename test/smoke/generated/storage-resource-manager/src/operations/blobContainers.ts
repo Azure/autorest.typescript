@@ -63,11 +63,13 @@ export class BlobContainers {
     accountName: string,
     options?: BlobContainersListOptionalParams
   ): Promise<BlobContainersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<BlobContainersListResponse>;
   }
@@ -95,17 +97,15 @@ export class BlobContainers {
     blobContainer: BlobContainer,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      blobContainer,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        blobContainer,
-        options: operationOptions
-      },
+      operationArguments,
       createOperationSpec
     ) as Promise<BlobContainersCreateResponse>;
   }
@@ -132,17 +132,15 @@ export class BlobContainers {
     blobContainer: BlobContainer,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      blobContainer,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        blobContainer,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<BlobContainersUpdateResponse>;
   }
@@ -166,16 +164,14 @@ export class BlobContainers {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<BlobContainersGetResponse>;
   }
@@ -199,16 +195,14 @@ export class BlobContainers {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -235,17 +229,15 @@ export class BlobContainers {
     legalHold: LegalHold,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersSetLegalHoldResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      legalHold,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        legalHold,
-        options: operationOptions
-      },
+      operationArguments,
       setLegalHoldOperationSpec
     ) as Promise<BlobContainersSetLegalHoldResponse>;
   }
@@ -272,17 +264,15 @@ export class BlobContainers {
     legalHold: LegalHold,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersClearLegalHoldResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      legalHold,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        legalHold,
-        options: operationOptions
-      },
+      operationArguments,
       clearLegalHoldOperationSpec
     ) as Promise<BlobContainersClearLegalHoldResponse>;
   }
@@ -307,16 +297,14 @@ export class BlobContainers {
     containerName: string,
     options?: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateImmutabilityPolicyOperationSpec
     ) as Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse>;
   }
@@ -341,16 +329,14 @@ export class BlobContainers {
     containerName: string,
     options?: BlobContainersGetImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersGetImmutabilityPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       getImmutabilityPolicyOperationSpec
     ) as Promise<BlobContainersGetImmutabilityPolicyResponse>;
   }
@@ -381,17 +367,15 @@ export class BlobContainers {
     ifMatch: string,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersDeleteImmutabilityPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      ifMatch,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        ifMatch,
-        options: operationOptions
-      },
+      operationArguments,
       deleteImmutabilityPolicyOperationSpec
     ) as Promise<BlobContainersDeleteImmutabilityPolicyResponse>;
   }
@@ -420,17 +404,15 @@ export class BlobContainers {
     ifMatch: string,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersLockImmutabilityPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      ifMatch,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        ifMatch,
-        options: operationOptions
-      },
+      operationArguments,
       lockImmutabilityPolicyOperationSpec
     ) as Promise<BlobContainersLockImmutabilityPolicyResponse>;
   }
@@ -459,17 +441,15 @@ export class BlobContainers {
     ifMatch: string,
     options?: BlobContainersExtendImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersExtendImmutabilityPolicyResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      ifMatch,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        ifMatch,
-        options: operationOptions
-      },
+      operationArguments,
       extendImmutabilityPolicyOperationSpec
     ) as Promise<BlobContainersExtendImmutabilityPolicyResponse>;
   }
@@ -494,16 +474,14 @@ export class BlobContainers {
     containerName: string,
     options?: BlobContainersLeaseOptionalParams
   ): Promise<BlobContainersLeaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       leaseOperationSpec
     ) as Promise<BlobContainersLeaseResponse>;
   }
@@ -524,11 +502,14 @@ export class BlobContainers {
     nextLink: string,
     options?: BlobContainersListNextOptionalParams
   ): Promise<BlobContainersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<BlobContainersListNextResponse>;
   }

@@ -45,11 +45,13 @@ export class NotebookWorkspaces {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NotebookWorkspacesListByDatabaseAccountResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listByDatabaseAccountOperationSpec
     ) as Promise<NotebookWorkspacesListByDatabaseAccountResponse>;
   }
@@ -67,16 +69,14 @@ export class NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<NotebookWorkspacesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        notebookWorkspaceName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<NotebookWorkspacesGetResponse>;
   }
@@ -97,16 +97,12 @@ export class NotebookWorkspaces {
     notebookCreateUpdateParameters: ARMProxyResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       notebookWorkspaceName,
       notebookCreateUpdateParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -116,12 +112,11 @@ export class NotebookWorkspaces {
         NotebookWorkspacesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -141,15 +136,11 @@ export class NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       notebookWorkspaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -159,12 +150,11 @@ export class NotebookWorkspaces {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -184,16 +174,14 @@ export class NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<NotebookWorkspacesListConnectionInfoResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        notebookWorkspaceName,
-        options: operationOptions
-      },
+      operationArguments,
       listConnectionInfoOperationSpec
     ) as Promise<NotebookWorkspacesListConnectionInfoResponse>;
   }
@@ -211,15 +199,11 @@ export class NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       notebookWorkspaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -229,12 +213,11 @@ export class NotebookWorkspaces {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       regenerateAuthTokenOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: regenerateAuthTokenOperationSpec,
       initialOperationResult,
       sendOperation
@@ -254,15 +237,11 @@ export class NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       notebookWorkspaceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -272,12 +251,11 @@ export class NotebookWorkspaces {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       startOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: startOperationSpec,
       initialOperationResult,
       sendOperation

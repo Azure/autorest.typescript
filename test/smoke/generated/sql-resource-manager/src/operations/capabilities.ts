@@ -38,11 +38,12 @@ export class Capabilities {
     locationName: string,
     options?: CapabilitiesListByLocationOptionalParams
   ): Promise<CapabilitiesListByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, options: operationOptions },
+      operationArguments,
       listByLocationOperationSpec
     ) as Promise<CapabilitiesListByLocationResponse>;
   }

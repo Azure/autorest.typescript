@@ -44,11 +44,13 @@ export class ExpressRouteCrossConnectionPeerings {
     crossConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionPeeringsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      crossConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, crossConnectionName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ExpressRouteCrossConnectionPeeringsListResponse>;
   }
@@ -66,16 +68,11 @@ export class ExpressRouteCrossConnectionPeerings {
     peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       peeringName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -85,12 +82,11 @@ export class ExpressRouteCrossConnectionPeerings {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -111,16 +107,14 @@ export class ExpressRouteCrossConnectionPeerings {
     peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionPeeringsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        crossConnectionName,
-        peeringName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
   }
@@ -143,17 +137,12 @@ export class ExpressRouteCrossConnectionPeerings {
   ): Promise<
     LROPoller<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
       peeringName,
       peeringParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -163,12 +152,11 @@ export class ExpressRouteCrossConnectionPeerings {
         ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -189,16 +177,14 @@ export class ExpressRouteCrossConnectionPeerings {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionPeeringsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      crossConnectionName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        crossConnectionName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ExpressRouteCrossConnectionPeeringsListNextResponse>;
   }

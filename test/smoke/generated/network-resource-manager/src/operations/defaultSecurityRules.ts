@@ -41,15 +41,13 @@ export class DefaultSecurityRules {
     networkSecurityGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DefaultSecurityRulesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       listOperationSpec
     ) as Promise<DefaultSecurityRulesListResponse>;
   }
@@ -67,16 +65,14 @@ export class DefaultSecurityRules {
     defaultSecurityRuleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DefaultSecurityRulesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      defaultSecurityRuleName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        defaultSecurityRuleName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<DefaultSecurityRulesGetResponse>;
   }
@@ -94,16 +90,14 @@ export class DefaultSecurityRules {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DefaultSecurityRulesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      networkSecurityGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        networkSecurityGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DefaultSecurityRulesListNextResponse>;
   }

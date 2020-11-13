@@ -40,11 +40,11 @@ export class TopLevelDomains {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<TopLevelDomainsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<TopLevelDomainsListResponse>;
   }
@@ -58,11 +58,12 @@ export class TopLevelDomains {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<TopLevelDomainsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { name, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<TopLevelDomainsGetResponse>;
   }
@@ -78,11 +79,13 @@ export class TopLevelDomains {
     agreementOption: TopLevelDomainAgreementOption,
     options?: coreHttp.OperationOptions
   ): Promise<TopLevelDomainsListAgreementsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      name,
+      agreementOption,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { name, agreementOption, options: operationOptions },
+      operationArguments,
       listAgreementsOperationSpec
     ) as Promise<TopLevelDomainsListAgreementsResponse>;
   }
@@ -96,11 +99,12 @@ export class TopLevelDomains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<TopLevelDomainsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<TopLevelDomainsListNextResponse>;
   }
@@ -118,11 +122,14 @@ export class TopLevelDomains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<TopLevelDomainsListAgreementsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      name,
+      agreementOption,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { name, agreementOption, nextLink, options: operationOptions },
+      operationArguments,
       listAgreementsNextOperationSpec
     ) as Promise<TopLevelDomainsListAgreementsNextResponse>;
   }

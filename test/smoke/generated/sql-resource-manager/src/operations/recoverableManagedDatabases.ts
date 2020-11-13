@@ -42,11 +42,13 @@ export class RecoverableManagedDatabases {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecoverableManagedDatabasesListByInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listByInstanceOperationSpec
     ) as Promise<RecoverableManagedDatabasesListByInstanceResponse>;
   }
@@ -65,16 +67,14 @@ export class RecoverableManagedDatabases {
     recoverableDatabaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecoverableManagedDatabasesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      recoverableDatabaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        recoverableDatabaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<RecoverableManagedDatabasesGetResponse>;
   }
@@ -93,16 +93,14 @@ export class RecoverableManagedDatabases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecoverableManagedDatabasesListByInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByInstanceNextOperationSpec
     ) as Promise<RecoverableManagedDatabasesListByInstanceNextResponse>;
   }

@@ -49,16 +49,14 @@ export class InstanceFailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<InstanceFailoverGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      locationName,
+      failoverGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        locationName,
-        failoverGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<InstanceFailoverGroupsGetResponse>;
   }
@@ -79,16 +77,12 @@ export class InstanceFailoverGroups {
     parameters: InstanceFailoverGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstanceFailoverGroupsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
       failoverGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -98,12 +92,11 @@ export class InstanceFailoverGroups {
         InstanceFailoverGroupsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -124,15 +117,11 @@ export class InstanceFailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -142,12 +131,11 @@ export class InstanceFailoverGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -166,11 +154,13 @@ export class InstanceFailoverGroups {
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<InstanceFailoverGroupsListByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      locationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, locationName, options: operationOptions },
+      operationArguments,
       listByLocationOperationSpec
     ) as Promise<InstanceFailoverGroupsListByLocationResponse>;
   }
@@ -189,15 +179,11 @@ export class InstanceFailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstanceFailoverGroupsFailoverResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -207,12 +193,11 @@ export class InstanceFailoverGroups {
         InstanceFailoverGroupsFailoverResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       failoverOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: failoverOperationSpec,
       initialOperationResult,
       sendOperation
@@ -236,15 +221,11 @@ export class InstanceFailoverGroups {
   ): Promise<
     LROPoller<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -254,12 +235,11 @@ export class InstanceFailoverGroups {
         InstanceFailoverGroupsForceFailoverAllowDataLossResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       forceFailoverAllowDataLossOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: forceFailoverAllowDataLossOperationSpec,
       initialOperationResult,
       sendOperation
@@ -280,11 +260,14 @@ export class InstanceFailoverGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<InstanceFailoverGroupsListByLocationNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      locationName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, locationName, nextLink, options: operationOptions },
+      operationArguments,
       listByLocationNextOperationSpec
     ) as Promise<InstanceFailoverGroupsListByLocationNextResponse>;
   }

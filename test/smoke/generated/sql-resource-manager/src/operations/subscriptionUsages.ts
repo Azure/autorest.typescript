@@ -39,11 +39,12 @@ export class SubscriptionUsages {
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionUsagesListByLocationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, options: operationOptions },
+      operationArguments,
       listByLocationOperationSpec
     ) as Promise<SubscriptionUsagesListByLocationResponse>;
   }
@@ -59,11 +60,13 @@ export class SubscriptionUsages {
     usageName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionUsagesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      usageName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, usageName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<SubscriptionUsagesGetResponse>;
   }
@@ -79,11 +82,13 @@ export class SubscriptionUsages {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionUsagesListByLocationNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      locationName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { locationName, nextLink, options: operationOptions },
+      operationArguments,
       listByLocationNextOperationSpec
     ) as Promise<SubscriptionUsagesListByLocationNextResponse>;
   }

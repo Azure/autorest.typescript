@@ -64,11 +64,13 @@ export class SqlResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesListSqlDatabasesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listSqlDatabasesOperationSpec
     ) as Promise<SqlResourcesListSqlDatabasesResponse>;
   }
@@ -86,16 +88,14 @@ export class SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlDatabaseOperationSpec
     ) as Promise<SqlResourcesGetSqlDatabaseResponse>;
   }
@@ -115,16 +115,12 @@ export class SqlResources {
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesCreateUpdateSqlDatabaseResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       createUpdateSqlDatabaseParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -134,12 +130,11 @@ export class SqlResources {
         SqlResourcesCreateUpdateSqlDatabaseResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateSqlDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateSqlDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -159,15 +154,11 @@ export class SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -177,12 +168,11 @@ export class SqlResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteSqlDatabaseOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteSqlDatabaseOperationSpec,
       initialOperationResult,
       sendOperation
@@ -203,16 +193,14 @@ export class SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlDatabaseThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlDatabaseThroughputOperationSpec
     ) as Promise<SqlResourcesGetSqlDatabaseThroughputResponse>;
   }
@@ -233,16 +221,12 @@ export class SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesUpdateSqlDatabaseThroughputResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -252,12 +236,11 @@ export class SqlResources {
         SqlResourcesUpdateSqlDatabaseThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateSqlDatabaseThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateSqlDatabaseThroughputOperationSpec,
       initialOperationResult,
       sendOperation
@@ -277,16 +260,14 @@ export class SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesListSqlContainersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listSqlContainersOperationSpec
     ) as Promise<SqlResourcesListSqlContainersResponse>;
   }
@@ -306,17 +287,15 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlContainerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlContainerOperationSpec
     ) as Promise<SqlResourcesGetSqlContainerResponse>;
   }
@@ -338,17 +317,13 @@ export class SqlResources {
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesCreateUpdateSqlContainerResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       createUpdateSqlContainerParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -358,12 +333,11 @@ export class SqlResources {
         SqlResourcesCreateUpdateSqlContainerResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateSqlContainerOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateSqlContainerOperationSpec,
       initialOperationResult,
       sendOperation
@@ -385,16 +359,12 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -404,12 +374,11 @@ export class SqlResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteSqlContainerOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteSqlContainerOperationSpec,
       initialOperationResult,
       sendOperation
@@ -431,17 +400,15 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlContainerThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlContainerThroughputOperationSpec
     ) as Promise<SqlResourcesGetSqlContainerThroughputResponse>;
   }
@@ -464,17 +431,13 @@ export class SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesUpdateSqlContainerThroughputResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -484,12 +447,11 @@ export class SqlResources {
         SqlResourcesUpdateSqlContainerThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateSqlContainerThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateSqlContainerThroughputOperationSpec,
       initialOperationResult,
       sendOperation
@@ -511,17 +473,15 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesListSqlStoredProceduresResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       listSqlStoredProceduresOperationSpec
     ) as Promise<SqlResourcesListSqlStoredProceduresResponse>;
   }
@@ -543,18 +503,16 @@ export class SqlResources {
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlStoredProcedureResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      storedProcedureName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        storedProcedureName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlStoredProcedureOperationSpec
     ) as Promise<SqlResourcesGetSqlStoredProcedureResponse>;
   }
@@ -579,18 +537,14 @@ export class SqlResources {
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesCreateUpdateSqlStoredProcedureResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       storedProcedureName,
       createUpdateSqlStoredProcedureParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -600,12 +554,11 @@ export class SqlResources {
         SqlResourcesCreateUpdateSqlStoredProcedureResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateSqlStoredProcedureOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateSqlStoredProcedureOperationSpec,
       initialOperationResult,
       sendOperation
@@ -629,17 +582,13 @@ export class SqlResources {
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       storedProcedureName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -649,12 +598,11 @@ export class SqlResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteSqlStoredProcedureOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteSqlStoredProcedureOperationSpec,
       initialOperationResult,
       sendOperation
@@ -676,17 +624,15 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesListSqlUserDefinedFunctionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       listSqlUserDefinedFunctionsOperationSpec
     ) as Promise<SqlResourcesListSqlUserDefinedFunctionsResponse>;
   }
@@ -708,18 +654,16 @@ export class SqlResources {
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlUserDefinedFunctionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      userDefinedFunctionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        userDefinedFunctionName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlUserDefinedFunctionOperationSpec
     ) as Promise<SqlResourcesGetSqlUserDefinedFunctionResponse>;
   }
@@ -746,18 +690,14 @@ export class SqlResources {
   ): Promise<
     LROPoller<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       userDefinedFunctionName,
       createUpdateSqlUserDefinedFunctionParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -767,12 +707,11 @@ export class SqlResources {
         SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateSqlUserDefinedFunctionOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateSqlUserDefinedFunctionOperationSpec,
       initialOperationResult,
       sendOperation
@@ -796,17 +735,13 @@ export class SqlResources {
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       userDefinedFunctionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -816,12 +751,11 @@ export class SqlResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteSqlUserDefinedFunctionOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteSqlUserDefinedFunctionOperationSpec,
       initialOperationResult,
       sendOperation
@@ -843,17 +777,15 @@ export class SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesListSqlTriggersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        options: operationOptions
-      },
+      operationArguments,
       listSqlTriggersOperationSpec
     ) as Promise<SqlResourcesListSqlTriggersResponse>;
   }
@@ -875,18 +807,16 @@ export class SqlResources {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SqlResourcesGetSqlTriggerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      triggerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        databaseName,
-        containerName,
-        triggerName,
-        options: operationOptions
-      },
+      operationArguments,
       getSqlTriggerOperationSpec
     ) as Promise<SqlResourcesGetSqlTriggerResponse>;
   }
@@ -910,18 +840,14 @@ export class SqlResources {
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SqlResourcesCreateUpdateSqlTriggerResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       triggerName,
       createUpdateSqlTriggerParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -931,12 +857,11 @@ export class SqlResources {
         SqlResourcesCreateUpdateSqlTriggerResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateSqlTriggerOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateSqlTriggerOperationSpec,
       initialOperationResult,
       sendOperation
@@ -960,17 +885,13 @@ export class SqlResources {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
       triggerName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -980,12 +901,11 @@ export class SqlResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteSqlTriggerOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteSqlTriggerOperationSpec,
       initialOperationResult,
       sendOperation

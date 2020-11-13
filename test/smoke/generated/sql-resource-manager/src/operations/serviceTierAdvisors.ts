@@ -45,17 +45,15 @@ export class ServiceTierAdvisors {
     serviceTierAdvisorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceTierAdvisorsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      serviceTierAdvisorName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        serviceTierAdvisorName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServiceTierAdvisorsGetResponse>;
   }
@@ -74,16 +72,14 @@ export class ServiceTierAdvisors {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceTierAdvisorsListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<ServiceTierAdvisorsListByDatabaseResponse>;
   }

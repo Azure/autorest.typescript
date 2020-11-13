@@ -36,11 +36,11 @@ export class AzureFirewallFqdnTags {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<AzureFirewallFqdnTagsListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<AzureFirewallFqdnTagsListAllResponse>;
   }
@@ -54,11 +54,12 @@ export class AzureFirewallFqdnTags {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AzureFirewallFqdnTagsListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<AzureFirewallFqdnTagsListAllNextResponse>;
   }

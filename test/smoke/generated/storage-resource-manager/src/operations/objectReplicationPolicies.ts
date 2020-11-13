@@ -45,11 +45,13 @@ export class ObjectReplicationPolicies {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectReplicationPoliciesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ObjectReplicationPoliciesListResponse>;
   }
@@ -71,16 +73,14 @@ export class ObjectReplicationPolicies {
     objectReplicationPolicyId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectReplicationPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        objectReplicationPolicyId,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ObjectReplicationPoliciesGetResponse>;
   }
@@ -105,17 +105,15 @@ export class ObjectReplicationPolicies {
     properties: ObjectReplicationPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      properties,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        objectReplicationPolicyId,
-        properties,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
   }
@@ -137,16 +135,14 @@ export class ObjectReplicationPolicies {
     objectReplicationPolicyId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        objectReplicationPolicyId,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

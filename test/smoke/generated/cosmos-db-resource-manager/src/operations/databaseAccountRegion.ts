@@ -43,17 +43,15 @@ export class DatabaseAccountRegion {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAccountRegionListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      region,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        accountName,
-        region,
-        filter,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<DatabaseAccountRegionListMetricsResponse>;
   }

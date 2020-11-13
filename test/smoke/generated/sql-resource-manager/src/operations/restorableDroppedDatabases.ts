@@ -44,16 +44,14 @@ export class RestorableDroppedDatabases {
     restorableDroppededDatabaseId: string,
     options?: coreHttp.OperationOptions
   ): Promise<RestorableDroppedDatabasesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      restorableDroppededDatabaseId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        restorableDroppededDatabaseId,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<RestorableDroppedDatabasesGetResponse>;
   }
@@ -70,11 +68,13 @@ export class RestorableDroppedDatabases {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RestorableDroppedDatabasesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<RestorableDroppedDatabasesListByServerResponse>;
   }

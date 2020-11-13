@@ -60,15 +60,10 @@ export class PrivateLinkServices {
     serviceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serviceName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -78,12 +73,11 @@ export class PrivateLinkServices {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -102,11 +96,13 @@ export class PrivateLinkServices {
     serviceName: string,
     options?: PrivateLinkServicesGetOptionalParams
   ): Promise<PrivateLinkServicesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serviceName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PrivateLinkServicesGetResponse>;
   }
@@ -124,16 +120,11 @@ export class PrivateLinkServices {
     parameters: PrivateLinkService,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PrivateLinkServicesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serviceName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -143,12 +134,11 @@ export class PrivateLinkServices {
         PrivateLinkServicesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -165,11 +155,12 @@ export class PrivateLinkServices {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PrivateLinkServicesListResponse>;
   }
@@ -181,11 +172,11 @@ export class PrivateLinkServices {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<PrivateLinkServicesListBySubscriptionResponse>;
   }
@@ -204,16 +195,14 @@ export class PrivateLinkServices {
     peConnectionName: string,
     options?: PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams
   ): Promise<PrivateLinkServicesGetPrivateEndpointConnectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceName,
+      peConnectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serviceName,
-        peConnectionName,
-        options: operationOptions
-      },
+      operationArguments,
       getPrivateEndpointConnectionOperationSpec
     ) as Promise<PrivateLinkServicesGetPrivateEndpointConnectionResponse>;
   }
@@ -233,17 +222,15 @@ export class PrivateLinkServices {
     parameters: PrivateEndpointConnection,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceName,
+      peConnectionName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serviceName,
-        peConnectionName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updatePrivateEndpointConnectionOperationSpec
     ) as Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse>;
   }
@@ -261,16 +248,11 @@ export class PrivateLinkServices {
     peConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serviceName,
       peConnectionName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -280,12 +262,11 @@ export class PrivateLinkServices {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deletePrivateEndpointConnectionOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deletePrivateEndpointConnectionOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -304,11 +285,13 @@ export class PrivateLinkServices {
     serviceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListPrivateEndpointConnectionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serviceName, options: operationOptions },
+      operationArguments,
       listPrivateEndpointConnectionsOperationSpec
     ) as Promise<PrivateLinkServicesListPrivateEndpointConnectionsResponse>;
   }
@@ -324,11 +307,13 @@ export class PrivateLinkServices {
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, parameters, options: operationOptions },
+      operationArguments,
       checkPrivateLinkServiceVisibilityOperationSpec
     ) as Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
   }
@@ -348,11 +333,14 @@ export class PrivateLinkServices {
   ): Promise<
     PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, parameters, options: operationOptions },
+      operationArguments,
       checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
     ) as Promise<
       PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
@@ -369,11 +357,12 @@ export class PrivateLinkServices {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listAutoApprovedPrivateLinkServicesOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse
@@ -394,11 +383,13 @@ export class PrivateLinkServices {
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, options: operationOptions },
+      operationArguments,
       listAutoApprovedPrivateLinkServicesByResourceGroupOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse
@@ -416,11 +407,13 @@ export class PrivateLinkServices {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PrivateLinkServicesListNextResponse>;
   }
@@ -434,11 +427,12 @@ export class PrivateLinkServices {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<PrivateLinkServicesListBySubscriptionNextResponse>;
   }
@@ -457,11 +451,14 @@ export class PrivateLinkServices {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListPrivateEndpointConnectionsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serviceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serviceName, nextLink, options: operationOptions },
+      operationArguments,
       listPrivateEndpointConnectionsNextOperationSpec
     ) as Promise<PrivateLinkServicesListPrivateEndpointConnectionsNextResponse>;
   }
@@ -480,11 +477,13 @@ export class PrivateLinkServices {
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listAutoApprovedPrivateLinkServicesNextOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse
@@ -507,11 +506,14 @@ export class PrivateLinkServices {
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse

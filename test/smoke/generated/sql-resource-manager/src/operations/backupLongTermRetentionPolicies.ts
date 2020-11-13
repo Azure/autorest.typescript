@@ -49,17 +49,15 @@ export class BackupLongTermRetentionPolicies {
     policyName: LongTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<BackupLongTermRetentionPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      policyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        policyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<BackupLongTermRetentionPoliciesGetResponse>;
   }
@@ -82,17 +80,13 @@ export class BackupLongTermRetentionPolicies {
     parameters: BackupLongTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       policyName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -102,12 +96,11 @@ export class BackupLongTermRetentionPolicies {
         BackupLongTermRetentionPoliciesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -128,16 +121,14 @@ export class BackupLongTermRetentionPolicies {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
   }

@@ -45,17 +45,15 @@ export class TransparentDataEncryptionActivities {
     transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionActivitiesListByConfigurationResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        transparentDataEncryptionName,
-        options: operationOptions
-      },
+      operationArguments,
       listByConfigurationOperationSpec
     ) as Promise<
       TransparentDataEncryptionActivitiesListByConfigurationResponse

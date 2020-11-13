@@ -37,11 +37,11 @@ export class CertificateRegistrationProvider {
   listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<CertificateRegistrationProviderListOperationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationsOperationSpec
     ) as Promise<CertificateRegistrationProviderListOperationsResponse>;
   }
@@ -55,11 +55,12 @@ export class CertificateRegistrationProvider {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<CertificateRegistrationProviderListOperationsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listOperationsNextOperationSpec
     ) as Promise<CertificateRegistrationProviderListOperationsNextResponse>;
   }

@@ -41,11 +41,12 @@ export class AvailablePrivateEndpointTypes {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListResponse>;
   }
@@ -62,11 +63,13 @@ export class AvailablePrivateEndpointTypes {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse>;
   }
@@ -82,11 +85,13 @@ export class AvailablePrivateEndpointTypes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListNextResponse>;
   }
@@ -104,11 +109,14 @@ export class AvailablePrivateEndpointTypes {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse>;
   }

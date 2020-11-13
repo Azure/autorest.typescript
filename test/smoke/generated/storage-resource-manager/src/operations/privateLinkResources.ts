@@ -40,11 +40,13 @@ export class PrivateLinkResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkResourcesListByStorageAccountResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listByStorageAccountOperationSpec
     ) as Promise<PrivateLinkResourcesListByStorageAccountResponse>;
   }

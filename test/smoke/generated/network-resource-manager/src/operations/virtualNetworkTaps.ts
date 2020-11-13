@@ -48,15 +48,10 @@ export class VirtualNetworkTaps {
     tapName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       tapName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -66,12 +61,11 @@ export class VirtualNetworkTaps {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -90,11 +84,13 @@ export class VirtualNetworkTaps {
     tapName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      tapName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, tapName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualNetworkTapsGetResponse>;
   }
@@ -112,16 +108,11 @@ export class VirtualNetworkTaps {
     parameters: VirtualNetworkTap,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkTapsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       tapName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -131,12 +122,11 @@ export class VirtualNetworkTaps {
         VirtualNetworkTapsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -157,11 +147,14 @@ export class VirtualNetworkTaps {
     tapParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      tapName,
+      tapParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, tapName, tapParameters, options: operationOptions },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<VirtualNetworkTapsUpdateTagsResponse>;
   }
@@ -173,11 +166,11 @@ export class VirtualNetworkTaps {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<VirtualNetworkTapsListAllResponse>;
   }
@@ -191,11 +184,12 @@ export class VirtualNetworkTaps {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<VirtualNetworkTapsListByResourceGroupResponse>;
   }
@@ -209,11 +203,12 @@ export class VirtualNetworkTaps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<VirtualNetworkTapsListAllNextResponse>;
   }
@@ -229,11 +224,13 @@ export class VirtualNetworkTaps {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<VirtualNetworkTapsListByResourceGroupNextResponse>;
   }

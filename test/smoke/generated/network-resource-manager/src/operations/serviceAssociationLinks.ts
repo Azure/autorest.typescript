@@ -39,16 +39,14 @@ export class ServiceAssociationLinks {
     subnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceAssociationLinksListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      subnetName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        subnetName,
-        options: operationOptions
-      },
+      operationArguments,
       listOperationSpec
     ) as Promise<ServiceAssociationLinksListResponse>;
   }

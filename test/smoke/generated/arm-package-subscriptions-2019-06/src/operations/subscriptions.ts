@@ -41,11 +41,12 @@ export class Subscriptions {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionsListLocationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       listLocationsOperationSpec
     ) as Promise<SubscriptionsListLocationsResponse>;
   }
@@ -59,11 +60,12 @@ export class Subscriptions {
     subscriptionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      subscriptionId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { subscriptionId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<SubscriptionsGetResponse>;
   }
@@ -75,11 +77,11 @@ export class Subscriptions {
   list(
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<SubscriptionsListResponse>;
   }
@@ -93,11 +95,12 @@ export class Subscriptions {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<SubscriptionsListNextResponse>;
   }

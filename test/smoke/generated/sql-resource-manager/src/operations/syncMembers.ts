@@ -54,18 +54,16 @@ export class SyncMembers {
     syncMemberName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncMembersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        syncMemberName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<SyncMembersGetResponse>;
   }
@@ -90,18 +88,14 @@ export class SyncMembers {
     parameters: SyncMember,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SyncMembersCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       syncMemberName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -111,12 +105,11 @@ export class SyncMembers {
         SyncMembersCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -141,17 +134,13 @@ export class SyncMembers {
     syncMemberName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       syncMemberName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -161,12 +150,11 @@ export class SyncMembers {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -193,18 +181,14 @@ export class SyncMembers {
     parameters: SyncMember,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SyncMembersUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       syncMemberName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -214,12 +198,11 @@ export class SyncMembers {
         SyncMembersUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -242,17 +225,15 @@ export class SyncMembers {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncMembersListBySyncGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       listBySyncGroupOperationSpec
     ) as Promise<SyncMembersListBySyncGroupResponse>;
   }
@@ -275,18 +256,16 @@ export class SyncMembers {
     syncMemberName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncMembersListMemberSchemasResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        syncMemberName,
-        options: operationOptions
-      },
+      operationArguments,
       listMemberSchemasOperationSpec
     ) as Promise<SyncMembersListMemberSchemasResponse>;
   }
@@ -309,17 +288,13 @@ export class SyncMembers {
     syncMemberName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       syncGroupName,
       syncMemberName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -329,12 +304,11 @@ export class SyncMembers {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       refreshMemberSchemaOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: refreshMemberSchemaOperationSpec,
       initialOperationResult,
       sendOperation
@@ -359,18 +333,16 @@ export class SyncMembers {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncMembersListBySyncGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listBySyncGroupNextOperationSpec
     ) as Promise<SyncMembersListBySyncGroupNextResponse>;
   }
@@ -395,19 +367,17 @@ export class SyncMembers {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncMembersListMemberSchemasNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        syncMemberName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listMemberSchemasNextOperationSpec
     ) as Promise<SyncMembersListMemberSchemasNextResponse>;
   }

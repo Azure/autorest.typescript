@@ -46,11 +46,13 @@ export class TableResources {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<TableResourcesListTablesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listTablesOperationSpec
     ) as Promise<TableResourcesListTablesResponse>;
   }
@@ -68,11 +70,14 @@ export class TableResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<TableResourcesGetTableResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      tableName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, tableName, options: operationOptions },
+      operationArguments,
       getTableOperationSpec
     ) as Promise<TableResourcesGetTableResponse>;
   }
@@ -92,16 +97,12 @@ export class TableResources {
     createUpdateTableParameters: TableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<TableResourcesCreateUpdateTableResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       tableName,
       createUpdateTableParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -111,12 +112,11 @@ export class TableResources {
         TableResourcesCreateUpdateTableResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createUpdateTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createUpdateTableOperationSpec,
       initialOperationResult,
       sendOperation
@@ -136,15 +136,11 @@ export class TableResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       tableName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -154,12 +150,11 @@ export class TableResources {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteTableOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteTableOperationSpec,
       initialOperationResult,
       sendOperation
@@ -180,11 +175,14 @@ export class TableResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<TableResourcesGetTableThroughputResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      tableName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, tableName, options: operationOptions },
+      operationArguments,
       getTableThroughputOperationSpec
     ) as Promise<TableResourcesGetTableThroughputResponse>;
   }
@@ -205,16 +203,12 @@ export class TableResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<TableResourcesUpdateTableThroughputResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
       tableName,
       updateThroughputParameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -224,12 +218,11 @@ export class TableResources {
         TableResourcesUpdateTableThroughputResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateTableThroughputOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateTableThroughputOperationSpec,
       initialOperationResult,
       sendOperation

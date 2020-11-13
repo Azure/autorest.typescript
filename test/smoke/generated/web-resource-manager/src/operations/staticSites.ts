@@ -64,11 +64,11 @@ export class StaticSites {
    * @param options The options parameters.
    */
   list(options?: coreHttp.OperationOptions): Promise<StaticSitesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<StaticSitesListResponse>;
   }
@@ -82,11 +82,12 @@ export class StaticSites {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSitesByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       getStaticSitesByResourceGroupOperationSpec
     ) as Promise<StaticSitesGetStaticSitesByResourceGroupResponse>;
   }
@@ -102,11 +103,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getStaticSiteOperationSpec
     ) as Promise<StaticSitesGetStaticSiteResponse>;
   }
@@ -125,16 +128,14 @@ export class StaticSites {
     staticSiteEnvelope: StaticSiteARMResource,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      staticSiteEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        staticSiteEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateStaticSiteOperationSpec
     ) as Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
   }
@@ -150,11 +151,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       deleteStaticSiteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -173,16 +176,14 @@ export class StaticSites {
     staticSiteEnvelope: StaticSitePatchResource,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesUpdateStaticSiteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      staticSiteEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        staticSiteEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       updateStaticSiteOperationSpec
     ) as Promise<StaticSitesUpdateStaticSiteResponse>;
   }
@@ -200,11 +201,14 @@ export class StaticSites {
     authprovider: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteUsersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      authprovider,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, authprovider, options: operationOptions },
+      operationArguments,
       listStaticSiteUsersOperationSpec
     ) as Promise<StaticSitesListStaticSiteUsersResponse>;
   }
@@ -224,17 +228,15 @@ export class StaticSites {
     userid: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      authprovider,
+      userid,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        authprovider,
-        userid,
-        options: operationOptions
-      },
+      operationArguments,
       deleteStaticSiteUserOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -256,18 +258,16 @@ export class StaticSites {
     staticSiteUserEnvelope: StaticSiteUserARMResource,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesUpdateStaticSiteUserResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      authprovider,
+      userid,
+      staticSiteUserEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        authprovider,
-        userid,
-        staticSiteUserEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       updateStaticSiteUserOperationSpec
     ) as Promise<StaticSitesUpdateStaticSiteUserResponse>;
   }
@@ -283,11 +283,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSiteBuildsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       getStaticSiteBuildsOperationSpec
     ) as Promise<StaticSitesGetStaticSiteBuildsResponse>;
   }
@@ -305,11 +307,14 @@ export class StaticSites {
     prId: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSiteBuildResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options: operationOptions },
+      operationArguments,
       getStaticSiteBuildOperationSpec
     ) as Promise<StaticSitesGetStaticSiteBuildResponse>;
   }
@@ -327,11 +332,14 @@ export class StaticSites {
     prId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options: operationOptions },
+      operationArguments,
       deleteStaticSiteBuildOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -353,11 +361,15 @@ export class StaticSites {
   ): Promise<
     StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
   > {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      appSettings,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, appSettings, options: operationOptions },
+      operationArguments,
       createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec
     ) as Promise<
       StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
@@ -377,11 +389,14 @@ export class StaticSites {
     prId: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteBuildFunctionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options: operationOptions },
+      operationArguments,
       listStaticSiteBuildFunctionsOperationSpec
     ) as Promise<StaticSitesListStaticSiteBuildFunctionsResponse>;
   }
@@ -399,11 +414,14 @@ export class StaticSites {
     prId: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options: operationOptions },
+      operationArguments,
       listStaticSiteBuildFunctionAppSettingsOperationSpec
     ) as Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
   }
@@ -421,11 +439,14 @@ export class StaticSites {
     appSettings: StringDictionary,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      appSettings,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, appSettings, options: operationOptions },
+      operationArguments,
       createOrUpdateStaticSiteFunctionAppSettingsOperationSpec
     ) as Promise<
       StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse
@@ -445,16 +466,14 @@ export class StaticSites {
     staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesCreateUserRolesInvitationLinkResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      staticSiteUserRolesInvitationEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        staticSiteUserRolesInvitationEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       createUserRolesInvitationLinkOperationSpec
     ) as Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
   }
@@ -470,11 +489,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteCustomDomainsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listStaticSiteCustomDomainsOperationSpec
     ) as Promise<StaticSitesListStaticSiteCustomDomainsResponse>;
   }
@@ -493,11 +514,14 @@ export class StaticSites {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options: operationOptions },
+      operationArguments,
       createOrUpdateStaticSiteCustomDomainOperationSpec
     ) as Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
   }
@@ -515,11 +539,14 @@ export class StaticSites {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options: operationOptions },
+      operationArguments,
       deleteStaticSiteCustomDomainOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -537,11 +564,14 @@ export class StaticSites {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options: operationOptions },
+      operationArguments,
       validateCustomDomainCanBeAddedToStaticSiteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -557,11 +587,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       detachStaticSiteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -577,11 +609,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteFunctionsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listStaticSiteFunctionsOperationSpec
     ) as Promise<StaticSitesListStaticSiteFunctionsResponse>;
   }
@@ -597,11 +631,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listStaticSiteFunctionAppSettingsOperationSpec
     ) as Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
   }
@@ -617,11 +653,13 @@ export class StaticSites {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteSecretsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options: operationOptions },
+      operationArguments,
       listStaticSiteSecretsOperationSpec
     ) as Promise<StaticSitesListStaticSiteSecretsResponse>;
   }
@@ -639,16 +677,14 @@ export class StaticSites {
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      resetPropertiesEnvelope,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        resetPropertiesEnvelope,
-        options: operationOptions
-      },
+      operationArguments,
       resetStaticSiteApiKeyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -662,11 +698,12 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<StaticSitesListNextResponse>;
   }
@@ -683,11 +720,13 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSitesByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       getStaticSitesByResourceGroupNextOperationSpec
     ) as Promise<StaticSitesGetStaticSitesByResourceGroupNextResponse>;
   }
@@ -707,17 +746,15 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteUsersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      authprovider,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        name,
-        authprovider,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listStaticSiteUsersNextOperationSpec
     ) as Promise<StaticSitesListStaticSiteUsersNextResponse>;
   }
@@ -735,11 +772,14 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSiteBuildsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       getStaticSiteBuildsNextOperationSpec
     ) as Promise<StaticSitesGetStaticSiteBuildsNextResponse>;
   }
@@ -760,11 +800,15 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      prId,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, nextLink, options: operationOptions },
+      operationArguments,
       listStaticSiteBuildFunctionsNextOperationSpec
     ) as Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse>;
   }
@@ -783,11 +827,14 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteCustomDomainsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listStaticSiteCustomDomainsNextOperationSpec
     ) as Promise<StaticSitesListStaticSiteCustomDomainsNextResponse>;
   }
@@ -806,11 +853,14 @@ export class StaticSites {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListStaticSiteFunctionsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      name,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, nextLink, options: operationOptions },
+      operationArguments,
       listStaticSiteFunctionsNextOperationSpec
     ) as Promise<StaticSitesListStaticSiteFunctionsNextResponse>;
   }

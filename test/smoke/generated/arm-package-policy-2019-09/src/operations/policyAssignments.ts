@@ -65,11 +65,13 @@ export class PolicyAssignments {
     policyAssignmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsDeleteResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      policyAssignmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<PolicyAssignmentsDeleteResponse>;
   }
@@ -93,11 +95,14 @@ export class PolicyAssignments {
     parameters: PolicyAssignment,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      policyAssignmentName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, parameters, options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<PolicyAssignmentsCreateResponse>;
   }
@@ -117,11 +122,13 @@ export class PolicyAssignments {
     policyAssignmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      scope,
+      policyAssignmentName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<PolicyAssignmentsGetResponse>;
   }
@@ -144,11 +151,12 @@ export class PolicyAssignments {
     resourceGroupName: string,
     options?: PolicyAssignmentsListForResourceGroupOptionalParams
   ): Promise<PolicyAssignmentsListForResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listForResourceGroupOperationSpec
     ) as Promise<PolicyAssignmentsListForResourceGroupResponse>;
   }
@@ -191,18 +199,16 @@ export class PolicyAssignments {
     resourceName: string,
     options?: PolicyAssignmentsListForResourceOptionalParams
   ): Promise<PolicyAssignmentsListForResourceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        options: operationOptions
-      },
+      operationArguments,
       listForResourceOperationSpec
     ) as Promise<PolicyAssignmentsListForResourceResponse>;
   }
@@ -225,11 +231,13 @@ export class PolicyAssignments {
     filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsListForManagementGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      managementGroupId,
+      filter,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { managementGroupId, filter, options: operationOptions },
+      operationArguments,
       listForManagementGroupOperationSpec
     ) as Promise<PolicyAssignmentsListForManagementGroupResponse>;
   }
@@ -250,11 +258,11 @@ export class PolicyAssignments {
   list(
     options?: PolicyAssignmentsListOptionalParams
   ): Promise<PolicyAssignmentsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<PolicyAssignmentsListResponse>;
   }
@@ -275,11 +283,12 @@ export class PolicyAssignments {
     policyAssignmentId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsDeleteByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyAssignmentId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyAssignmentId, options: operationOptions },
+      operationArguments,
       deleteByIdOperationSpec
     ) as Promise<PolicyAssignmentsDeleteByIdResponse>;
   }
@@ -304,11 +313,13 @@ export class PolicyAssignments {
     parameters: PolicyAssignment,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsCreateByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyAssignmentId,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyAssignmentId, parameters, options: operationOptions },
+      operationArguments,
       createByIdOperationSpec
     ) as Promise<PolicyAssignmentsCreateByIdResponse>;
   }
@@ -329,11 +340,12 @@ export class PolicyAssignments {
     policyAssignmentId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsGetByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      policyAssignmentId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { policyAssignmentId, options: operationOptions },
+      operationArguments,
       getByIdOperationSpec
     ) as Promise<PolicyAssignmentsGetByIdResponse>;
   }
@@ -349,11 +361,13 @@ export class PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listForResourceGroupNextOperationSpec
     ) as Promise<PolicyAssignmentsListForResourceGroupNextResponse>;
   }
@@ -379,19 +393,17 @@ export class PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListForResourceNextOptionalParams
   ): Promise<PolicyAssignmentsListForResourceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listForResourceNextOperationSpec
     ) as Promise<PolicyAssignmentsListForResourceNextResponse>;
   }
@@ -411,11 +423,14 @@ export class PolicyAssignments {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      managementGroupId,
+      filter,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { managementGroupId, filter, nextLink, options: operationOptions },
+      operationArguments,
       listForManagementGroupNextOperationSpec
     ) as Promise<PolicyAssignmentsListForManagementGroupNextResponse>;
   }
@@ -429,11 +444,12 @@ export class PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListNextOptionalParams
   ): Promise<PolicyAssignmentsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<PolicyAssignmentsListNextResponse>;
   }

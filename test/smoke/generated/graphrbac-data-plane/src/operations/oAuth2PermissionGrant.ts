@@ -39,11 +39,11 @@ export class OAuth2PermissionGrant {
   list(
     options?: OAuth2PermissionGrantListOptionalParams
   ): Promise<OAuth2PermissionGrantListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<OAuth2PermissionGrantListResponse>;
   }
@@ -55,11 +55,11 @@ export class OAuth2PermissionGrant {
   create(
     options?: OAuth2PermissionGrantCreateOptionalParams
   ): Promise<OAuth2PermissionGrantCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       createOperationSpec
     ) as Promise<OAuth2PermissionGrantCreateResponse>;
   }
@@ -73,11 +73,12 @@ export class OAuth2PermissionGrant {
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      objectId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { objectId, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -91,11 +92,12 @@ export class OAuth2PermissionGrant {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<OAuth2PermissionGrantListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<OAuth2PermissionGrantListNextResponse>;
   }

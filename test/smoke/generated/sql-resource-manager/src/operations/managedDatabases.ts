@@ -50,11 +50,13 @@ export class ManagedDatabases {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesListByInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listByInstanceOperationSpec
     ) as Promise<ManagedDatabasesListByInstanceResponse>;
   }
@@ -73,16 +75,14 @@ export class ManagedDatabases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ManagedDatabasesGetResponse>;
   }
@@ -103,16 +103,12 @@ export class ManagedDatabases {
     parameters: ManagedDatabase,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedDatabasesCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -122,12 +118,11 @@ export class ManagedDatabases {
         ManagedDatabasesCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -148,15 +143,11 @@ export class ManagedDatabases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       databaseName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -166,12 +157,11 @@ export class ManagedDatabases {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -194,16 +184,12 @@ export class ManagedDatabases {
     parameters: ManagedDatabaseUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedDatabasesUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -213,12 +199,11 @@ export class ManagedDatabases {
         ManagedDatabasesUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       updateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: updateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -237,11 +222,13 @@ export class ManagedDatabases {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesListInaccessibleByInstanceResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      operationArguments,
       listInaccessibleByInstanceOperationSpec
     ) as Promise<ManagedDatabasesListInaccessibleByInstanceResponse>;
   }
@@ -262,16 +249,12 @@ export class ManagedDatabases {
     parameters: CompleteDatabaseRestoreDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -281,12 +264,11 @@ export class ManagedDatabases {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       completeRestoreOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: completeRestoreOperationSpec,
       initialOperationResult,
       sendOperation
@@ -307,16 +289,14 @@ export class ManagedDatabases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesListByInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByInstanceNextOperationSpec
     ) as Promise<ManagedDatabasesListByInstanceNextResponse>;
   }
@@ -336,16 +316,14 @@ export class ManagedDatabases {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesListInaccessibleByInstanceNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      managedInstanceName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listInaccessibleByInstanceNextOperationSpec
     ) as Promise<ManagedDatabasesListInaccessibleByInstanceNextResponse>;
   }

@@ -52,15 +52,10 @@ export class VirtualNetworks {
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -70,12 +65,11 @@ export class VirtualNetworks {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -94,11 +88,13 @@ export class VirtualNetworks {
     virtualNetworkName: string,
     options?: VirtualNetworksGetOptionalParams
   ): Promise<VirtualNetworksGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualNetworkName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualNetworksGetResponse>;
   }
@@ -116,16 +112,11 @@ export class VirtualNetworks {
     parameters: VirtualNetwork,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworksCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -135,12 +126,11 @@ export class VirtualNetworks {
         VirtualNetworksCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -161,16 +151,14 @@ export class VirtualNetworks {
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateTagsOperationSpec
     ) as Promise<VirtualNetworksUpdateTagsResponse>;
   }
@@ -182,11 +170,11 @@ export class VirtualNetworks {
   listAll(
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListAllResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAllOperationSpec
     ) as Promise<VirtualNetworksListAllResponse>;
   }
@@ -200,11 +188,12 @@ export class VirtualNetworks {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualNetworksListResponse>;
   }
@@ -222,16 +211,14 @@ export class VirtualNetworks {
     ipAddress: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      ipAddress,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        ipAddress,
-        options: operationOptions
-      },
+      operationArguments,
       checkIPAddressAvailabilityOperationSpec
     ) as Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
   }
@@ -247,11 +234,13 @@ export class VirtualNetworks {
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListUsageResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualNetworkName, options: operationOptions },
+      operationArguments,
       listUsageOperationSpec
     ) as Promise<VirtualNetworksListUsageResponse>;
   }
@@ -265,11 +254,12 @@ export class VirtualNetworks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListAllNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAllNextOperationSpec
     ) as Promise<VirtualNetworksListAllNextResponse>;
   }
@@ -285,11 +275,13 @@ export class VirtualNetworks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualNetworksListNextResponse>;
   }
@@ -307,16 +299,14 @@ export class VirtualNetworks {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworksListUsageNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      virtualNetworkName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        virtualNetworkName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listUsageNextOperationSpec
     ) as Promise<VirtualNetworksListUsageNextResponse>;
   }

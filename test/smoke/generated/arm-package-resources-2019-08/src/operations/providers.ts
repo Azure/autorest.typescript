@@ -50,11 +50,12 @@ export class Providers {
     resourceProviderNamespace: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProvidersUnregisterResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options: operationOptions },
+      operationArguments,
       unregisterOperationSpec
     ) as Promise<ProvidersUnregisterResponse>;
   }
@@ -68,11 +69,12 @@ export class Providers {
     resourceProviderNamespace: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProvidersRegisterResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options: operationOptions },
+      operationArguments,
       registerOperationSpec
     ) as Promise<ProvidersRegisterResponse>;
   }
@@ -82,11 +84,11 @@ export class Providers {
    * @param options The options parameters.
    */
   list(options?: ProvidersListOptionalParams): Promise<ProvidersListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ProvidersListResponse>;
   }
@@ -98,11 +100,11 @@ export class Providers {
   listAtTenantScope(
     options?: ProvidersListAtTenantScopeOptionalParams
   ): Promise<ProvidersListAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listAtTenantScopeOperationSpec
     ) as Promise<ProvidersListAtTenantScopeResponse>;
   }
@@ -116,11 +118,12 @@ export class Providers {
     resourceProviderNamespace: string,
     options?: ProvidersGetOptionalParams
   ): Promise<ProvidersGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ProvidersGetResponse>;
   }
@@ -134,11 +137,12 @@ export class Providers {
     resourceProviderNamespace: string,
     options?: ProvidersGetAtTenantScopeOptionalParams
   ): Promise<ProvidersGetAtTenantScopeResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceProviderNamespace,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options: operationOptions },
+      operationArguments,
       getAtTenantScopeOperationSpec
     ) as Promise<ProvidersGetAtTenantScopeResponse>;
   }
@@ -152,11 +156,12 @@ export class Providers {
     nextLink: string,
     options?: ProvidersListNextOptionalParams
   ): Promise<ProvidersListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<ProvidersListNextResponse>;
   }
@@ -170,11 +175,12 @@ export class Providers {
     nextLink: string,
     options?: ProvidersListAtTenantScopeNextOptionalParams
   ): Promise<ProvidersListAtTenantScopeNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listAtTenantScopeNextOperationSpec
     ) as Promise<ProvidersListAtTenantScopeNextResponse>;
   }

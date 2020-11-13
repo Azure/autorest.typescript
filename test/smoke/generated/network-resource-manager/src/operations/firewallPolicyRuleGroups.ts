@@ -46,16 +46,11 @@ export class FirewallPolicyRuleGroups {
     ruleGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       firewallPolicyName,
       ruleGroupName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -65,12 +60,11 @@ export class FirewallPolicyRuleGroups {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -91,16 +85,14 @@ export class FirewallPolicyRuleGroups {
     ruleGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPolicyRuleGroupsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      firewallPolicyName,
+      ruleGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        firewallPolicyName,
-        ruleGroupName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<FirewallPolicyRuleGroupsGetResponse>;
   }
@@ -120,17 +112,12 @@ export class FirewallPolicyRuleGroups {
     parameters: FirewallPolicyRuleGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<FirewallPolicyRuleGroupsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "azure-async-operation"
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       firewallPolicyName,
       ruleGroupName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -140,12 +127,11 @@ export class FirewallPolicyRuleGroups {
         FirewallPolicyRuleGroupsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation,
@@ -164,11 +150,13 @@ export class FirewallPolicyRuleGroups {
     firewallPolicyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPolicyRuleGroupsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      firewallPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, firewallPolicyName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<FirewallPolicyRuleGroupsListResponse>;
   }
@@ -186,16 +174,14 @@ export class FirewallPolicyRuleGroups {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPolicyRuleGroupsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      firewallPolicyName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        firewallPolicyName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<FirewallPolicyRuleGroupsListNextResponse>;
   }

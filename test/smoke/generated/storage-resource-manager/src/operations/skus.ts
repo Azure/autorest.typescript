@@ -31,11 +31,11 @@ export class Skus {
    * @param options The options parameters.
    */
   list(options?: coreHttp.OperationOptions): Promise<SkusListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<SkusListResponse>;
   }

@@ -45,11 +45,11 @@ export class SshPublicKeys {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<SshPublicKeysListBySubscriptionResponse>;
   }
@@ -64,11 +64,12 @@ export class SshPublicKeys {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<SshPublicKeysListByResourceGroupResponse>;
   }
@@ -86,16 +87,14 @@ export class SshPublicKeys {
     parameters: SshPublicKeyResource,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysCreateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      sshPublicKeyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        sshPublicKeyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOperationSpec
     ) as Promise<SshPublicKeysCreateResponse>;
   }
@@ -113,16 +112,14 @@ export class SshPublicKeys {
     parameters: SshPublicKeyUpdateResource,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      sshPublicKeyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        sshPublicKeyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       updateOperationSpec
     ) as Promise<SshPublicKeysUpdateResponse>;
   }
@@ -138,11 +135,13 @@ export class SshPublicKeys {
     sshPublicKeyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      sshPublicKeyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, sshPublicKeyName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -158,11 +157,13 @@ export class SshPublicKeys {
     sshPublicKeyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      sshPublicKeyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, sshPublicKeyName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<SshPublicKeysGetResponse>;
   }
@@ -180,11 +181,13 @@ export class SshPublicKeys {
     sshPublicKeyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysGenerateKeyPairResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      sshPublicKeyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, sshPublicKeyName, options: operationOptions },
+      operationArguments,
       generateKeyPairOperationSpec
     ) as Promise<SshPublicKeysGenerateKeyPairResponse>;
   }
@@ -198,11 +201,12 @@ export class SshPublicKeys {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<SshPublicKeysListBySubscriptionNextResponse>;
   }
@@ -218,11 +222,13 @@ export class SshPublicKeys {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<SshPublicKeysListByResourceGroupNextResponse>;
   }

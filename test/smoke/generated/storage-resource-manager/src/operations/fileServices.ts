@@ -45,11 +45,13 @@ export class FileServices {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FileServicesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<FileServicesListResponse>;
   }
@@ -72,11 +74,14 @@ export class FileServices {
     parameters: FileServiceProperties,
     options?: coreHttp.OperationOptions
   ): Promise<FileServicesSetServicePropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, parameters, options: operationOptions },
+      operationArguments,
       setServicePropertiesOperationSpec
     ) as Promise<FileServicesSetServicePropertiesResponse>;
   }
@@ -96,11 +101,13 @@ export class FileServices {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FileServicesGetServicePropertiesResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      accountName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      operationArguments,
       getServicePropertiesOperationSpec
     ) as Promise<FileServicesGetServicePropertiesResponse>;
   }

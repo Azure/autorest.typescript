@@ -45,17 +45,15 @@ export class ElasticPoolOperations {
     operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      operationId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        operationId,
-        options: operationOptions
-      },
+      operationArguments,
       cancelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -74,16 +72,14 @@ export class ElasticPoolOperations {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolOperationsListByElasticPoolResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       listByElasticPoolOperationSpec
     ) as Promise<ElasticPoolOperationsListByElasticPoolResponse>;
   }
@@ -104,17 +100,15 @@ export class ElasticPoolOperations {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolOperationsListByElasticPoolNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByElasticPoolNextOperationSpec
     ) as Promise<ElasticPoolOperationsListByElasticPoolNextResponse>;
   }

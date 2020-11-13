@@ -39,11 +39,12 @@ export class VirtualMachineRunCommands {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineRunCommandsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualMachineRunCommandsListResponse>;
   }
@@ -59,11 +60,13 @@ export class VirtualMachineRunCommands {
     commandId: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineRunCommandsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      commandId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, commandId, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualMachineRunCommandsGetResponse>;
   }
@@ -79,11 +82,13 @@ export class VirtualMachineRunCommands {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineRunCommandsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<VirtualMachineRunCommandsListNextResponse>;
   }

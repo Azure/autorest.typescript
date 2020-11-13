@@ -44,11 +44,11 @@ export class Provider {
   getAvailableStacks(
     options?: ProviderGetAvailableStacksOptionalParams
   ): Promise<ProviderGetAvailableStacksResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getAvailableStacksOperationSpec
     ) as Promise<ProviderGetAvailableStacksResponse>;
   }
@@ -61,11 +61,11 @@ export class Provider {
   listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<ProviderListOperationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationsOperationSpec
     ) as Promise<ProviderListOperationsResponse>;
   }
@@ -77,11 +77,11 @@ export class Provider {
   getAvailableStacksOnPrem(
     options?: ProviderGetAvailableStacksOnPremOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getAvailableStacksOnPremOperationSpec
     ) as Promise<ProviderGetAvailableStacksOnPremResponse>;
   }
@@ -95,11 +95,12 @@ export class Provider {
     nextLink: string,
     options?: ProviderGetAvailableStacksNextOptionalParams
   ): Promise<ProviderGetAvailableStacksNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getAvailableStacksNextOperationSpec
     ) as Promise<ProviderGetAvailableStacksNextResponse>;
   }
@@ -113,11 +114,12 @@ export class Provider {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProviderListOperationsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listOperationsNextOperationSpec
     ) as Promise<ProviderListOperationsNextResponse>;
   }
@@ -132,11 +134,12 @@ export class Provider {
     nextLink: string,
     options?: ProviderGetAvailableStacksOnPremNextOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       getAvailableStacksOnPremNextOperationSpec
     ) as Promise<ProviderGetAvailableStacksOnPremNextResponse>;
   }

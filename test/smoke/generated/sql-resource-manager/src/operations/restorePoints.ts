@@ -46,16 +46,14 @@ export class RestorePoints {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RestorePointsListByDatabaseResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        options: operationOptions
-      },
+      operationArguments,
       listByDatabaseOperationSpec
     ) as Promise<RestorePointsListByDatabaseResponse>;
   }
@@ -76,16 +74,12 @@ export class RestorePoints {
     parameters: CreateDatabaseRestorePointDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<RestorePointsCreateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -95,12 +89,11 @@ export class RestorePoints {
         RestorePointsCreateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOperationSpec,
       initialOperationResult,
       sendOperation
@@ -123,17 +116,15 @@ export class RestorePoints {
     restorePointName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RestorePointsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      restorePointName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        restorePointName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<RestorePointsGetResponse>;
   }
@@ -154,17 +145,15 @@ export class RestorePoints {
     restorePointName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      restorePointName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        restorePointName,
-        options: operationOptions
-      },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

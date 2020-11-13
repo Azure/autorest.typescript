@@ -42,16 +42,14 @@ export class VpnLinkConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnLinkConnectionsListByVpnConnectionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        gatewayName,
-        connectionName,
-        options: operationOptions
-      },
+      operationArguments,
       listByVpnConnectionOperationSpec
     ) as Promise<VpnLinkConnectionsListByVpnConnectionResponse>;
   }
@@ -71,17 +69,15 @@ export class VpnLinkConnections {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnLinkConnectionsListByVpnConnectionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        gatewayName,
-        connectionName,
-        nextLink,
-        options: operationOptions
-      },
+      operationArguments,
       listByVpnConnectionNextOperationSpec
     ) as Promise<VpnLinkConnectionsListByVpnConnectionNextResponse>;
   }

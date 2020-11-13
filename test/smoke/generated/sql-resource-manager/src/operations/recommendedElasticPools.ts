@@ -44,16 +44,14 @@ export class RecommendedElasticPools {
     recommendedElasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecommendedElasticPoolsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      recommendedElasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        recommendedElasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<RecommendedElasticPoolsGetResponse>;
   }
@@ -70,11 +68,13 @@ export class RecommendedElasticPools {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecommendedElasticPoolsListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<RecommendedElasticPoolsListByServerResponse>;
   }
@@ -93,16 +93,14 @@ export class RecommendedElasticPools {
     recommendedElasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<RecommendedElasticPoolsListMetricsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      recommendedElasticPoolName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        recommendedElasticPoolName,
-        options: operationOptions
-      },
+      operationArguments,
       listMetricsOperationSpec
     ) as Promise<RecommendedElasticPoolsListMetricsResponse>;
   }

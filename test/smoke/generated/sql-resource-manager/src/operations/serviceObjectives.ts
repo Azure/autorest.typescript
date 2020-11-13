@@ -43,16 +43,14 @@ export class ServiceObjectives {
     serviceObjectiveName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceObjectivesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      serviceObjectiveName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        serviceObjectiveName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<ServiceObjectivesGetResponse>;
   }
@@ -69,11 +67,13 @@ export class ServiceObjectives {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceObjectivesListByServerResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      operationArguments,
       listByServerOperationSpec
     ) as Promise<ServiceObjectivesListByServerResponse>;
   }

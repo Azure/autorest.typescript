@@ -37,11 +37,12 @@ export class ServiceTags {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceTagsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<ServiceTagsListResponse>;
   }

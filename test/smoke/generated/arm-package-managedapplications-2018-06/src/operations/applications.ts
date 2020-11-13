@@ -52,11 +52,13 @@ export class Applications {
     applicationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      applicationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, applicationName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<ApplicationsGetResponse>;
   }
@@ -72,14 +74,10 @@ export class Applications {
     applicationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationName,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -89,12 +87,11 @@ export class Applications {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteOperationSpec,
       initialOperationResult,
       sendOperation
@@ -114,15 +111,11 @@ export class Applications {
     parameters: Application,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ApplicationsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationName,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -132,12 +125,11 @@ export class Applications {
         ApplicationsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -156,11 +148,13 @@ export class Applications {
     applicationName: string,
     options?: ApplicationsUpdateOptionalParams
   ): Promise<ApplicationsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      applicationName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, applicationName, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<ApplicationsUpdateResponse>;
   }
@@ -174,11 +168,12 @@ export class Applications {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<ApplicationsListByResourceGroupResponse>;
   }
@@ -190,11 +185,11 @@ export class Applications {
   listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListBySubscriptionResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listBySubscriptionOperationSpec
     ) as Promise<ApplicationsListBySubscriptionResponse>;
   }
@@ -210,11 +205,12 @@ export class Applications {
     applicationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsGetByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationId, options: operationOptions },
+      operationArguments,
       getByIdOperationSpec
     ) as Promise<ApplicationsGetByIdResponse>;
   }
@@ -230,13 +226,9 @@ export class Applications {
     applicationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       applicationId,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -246,12 +238,11 @@ export class Applications {
         coreHttp.RestResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       deleteByIdOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: deleteByIdOperationSpec,
       initialOperationResult,
       sendOperation
@@ -271,14 +262,10 @@ export class Applications {
     parameters: Application,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       applicationId,
       parameters,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -288,12 +275,11 @@ export class Applications {
         ApplicationsCreateOrUpdateByIdResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateByIdOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateByIdOperationSpec,
       initialOperationResult,
       sendOperation
@@ -312,11 +298,12 @@ export class Applications {
     applicationId: string,
     options?: ApplicationsUpdateByIdOptionalParams
   ): Promise<ApplicationsUpdateByIdResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      applicationId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { applicationId, options: operationOptions },
+      operationArguments,
       updateByIdOperationSpec
     ) as Promise<ApplicationsUpdateByIdResponse>;
   }
@@ -332,11 +319,13 @@ export class Applications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<ApplicationsListByResourceGroupNextResponse>;
   }
@@ -350,11 +339,12 @@ export class Applications {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListBySubscriptionNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listBySubscriptionNextOperationSpec
     ) as Promise<ApplicationsListBySubscriptionNextResponse>;
   }

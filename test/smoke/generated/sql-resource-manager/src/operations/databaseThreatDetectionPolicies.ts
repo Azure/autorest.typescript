@@ -47,17 +47,15 @@ export class DatabaseThreatDetectionPolicies {
     securityAlertPolicyName: SecurityAlertPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseThreatDetectionPoliciesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      securityAlertPolicyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        securityAlertPolicyName,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<DatabaseThreatDetectionPoliciesGetResponse>;
   }
@@ -80,18 +78,16 @@ export class DatabaseThreatDetectionPolicies {
     parameters: DatabaseSecurityAlertPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      serverName,
+      databaseName,
+      securityAlertPolicyName,
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        securityAlertPolicyName,
-        parameters,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOperationSpec
     ) as Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
   }

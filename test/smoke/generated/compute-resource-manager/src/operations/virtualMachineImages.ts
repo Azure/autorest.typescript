@@ -50,18 +50,16 @@ export class VirtualMachineImages {
     version: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineImagesGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      offer,
+      skus,
+      version,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        location,
-        publisherName,
-        offer,
-        skus,
-        version,
-        options: operationOptions
-      },
+      operationArguments,
       getOperationSpec
     ) as Promise<VirtualMachineImagesGetResponse>;
   }
@@ -82,11 +80,15 @@ export class VirtualMachineImages {
     skus: string,
     options?: VirtualMachineImagesListOptionalParams
   ): Promise<VirtualMachineImagesListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      offer,
+      skus,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, publisherName, offer, skus, options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<VirtualMachineImagesListResponse>;
   }
@@ -102,11 +104,13 @@ export class VirtualMachineImages {
     publisherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineImagesListOffersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, publisherName, options: operationOptions },
+      operationArguments,
       listOffersOperationSpec
     ) as Promise<VirtualMachineImagesListOffersResponse>;
   }
@@ -120,11 +124,12 @@ export class VirtualMachineImages {
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineImagesListPublishersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, options: operationOptions },
+      operationArguments,
       listPublishersOperationSpec
     ) as Promise<VirtualMachineImagesListPublishersResponse>;
   }
@@ -142,11 +147,14 @@ export class VirtualMachineImages {
     offer: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineImagesListSkusResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      location,
+      publisherName,
+      offer,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { location, publisherName, offer, options: operationOptions },
+      operationArguments,
       listSkusOperationSpec
     ) as Promise<VirtualMachineImagesListSkusResponse>;
   }

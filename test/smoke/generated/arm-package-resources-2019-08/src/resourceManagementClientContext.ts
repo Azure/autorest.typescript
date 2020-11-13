@@ -46,8 +46,10 @@ export class ResourceManagementClientContext extends coreHttp.ServiceClient {
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
-    const defaultPipelines = coreHttp.createPipelineFromOptions(options)
-      .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
+    const defaultPipelines = Array.isArray(options.requestPolicyFactories)
+      ? options.requestPolicyFactories
+      : (coreHttp.createPipelineFromOptions(options)
+          .requestPolicyFactories as coreHttp.RequestPolicyFactory[]);
 
     options = {
       ...options,

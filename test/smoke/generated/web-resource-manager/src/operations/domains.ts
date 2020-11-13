@@ -59,11 +59,12 @@ export class Domains {
     identifier: NameIdentifier,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsCheckAvailabilityResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      identifier,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { identifier, options: operationOptions },
+      operationArguments,
       checkAvailabilityOperationSpec
     ) as Promise<DomainsCheckAvailabilityResponse>;
   }
@@ -73,11 +74,11 @@ export class Domains {
    * @param options The options parameters.
    */
   list(options?: coreHttp.OperationOptions): Promise<DomainsListResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       listOperationSpec
     ) as Promise<DomainsListResponse>;
   }
@@ -89,11 +90,11 @@ export class Domains {
   getControlCenterSsoRequest(
     options?: coreHttp.OperationOptions
   ): Promise<DomainsGetControlCenterSsoRequestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options: operationOptions },
+      operationArguments,
       getControlCenterSsoRequestOperationSpec
     ) as Promise<DomainsGetControlCenterSsoRequestResponse>;
   }
@@ -107,11 +108,12 @@ export class Domains {
     parameters: DomainRecommendationSearchParameters,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListRecommendationsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, options: operationOptions },
+      operationArguments,
       listRecommendationsOperationSpec
     ) as Promise<DomainsListRecommendationsResponse>;
   }
@@ -125,11 +127,12 @@ export class Domains {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListByResourceGroupResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options: operationOptions },
+      operationArguments,
       listByResourceGroupOperationSpec
     ) as Promise<DomainsListByResourceGroupResponse>;
   }
@@ -145,11 +148,13 @@ export class Domains {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsGetResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, options: operationOptions },
+      operationArguments,
       getOperationSpec
     ) as Promise<DomainsGetResponse>;
   }
@@ -167,15 +172,11 @@ export class Domains {
     domain: Domain,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DomainsCreateOrUpdateResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
-
-    const args: coreHttp.OperationArguments = {
+    const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       domainName,
       domain,
-      options: operationOptions
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -185,12 +186,11 @@ export class Domains {
         DomainsCreateOrUpdateResponse
       >;
     const initialOperationResult = await sendOperation(
-      args,
+      operationArguments,
       createOrUpdateOperationSpec
     );
-
     return new LROPoller({
-      initialOperationArguments: args,
+      initialOperationArguments: operationArguments,
       initialOperationSpec: createOrUpdateOperationSpec,
       initialOperationResult,
       sendOperation
@@ -208,11 +208,13 @@ export class Domains {
     domainName: string,
     options?: DomainsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, options: operationOptions },
+      operationArguments,
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -230,11 +232,14 @@ export class Domains {
     domain: DomainPatchResource,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsUpdateResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      domain,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, domain, options: operationOptions },
+      operationArguments,
       updateOperationSpec
     ) as Promise<DomainsUpdateResponse>;
   }
@@ -250,11 +255,13 @@ export class Domains {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListOwnershipIdentifiersResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, options: operationOptions },
+      operationArguments,
       listOwnershipIdentifiersOperationSpec
     ) as Promise<DomainsListOwnershipIdentifiersResponse>;
   }
@@ -272,11 +279,14 @@ export class Domains {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsGetOwnershipIdentifierResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, name, options: operationOptions },
+      operationArguments,
       getOwnershipIdentifierOperationSpec
     ) as Promise<DomainsGetOwnershipIdentifierResponse>;
   }
@@ -297,17 +307,15 @@ export class Domains {
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      name,
+      domainOwnershipIdentifier,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        domainName,
-        name,
-        domainOwnershipIdentifier,
-        options: operationOptions
-      },
+      operationArguments,
       createOrUpdateOwnershipIdentifierOperationSpec
     ) as Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
   }
@@ -325,11 +333,14 @@ export class Domains {
     name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      name,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, name, options: operationOptions },
+      operationArguments,
       deleteOwnershipIdentifierOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -350,17 +361,15 @@ export class Domains {
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsUpdateOwnershipIdentifierResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      name,
+      domainOwnershipIdentifier,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        domainName,
-        name,
-        domainOwnershipIdentifier,
-        options: operationOptions
-      },
+      operationArguments,
       updateOwnershipIdentifierOperationSpec
     ) as Promise<DomainsUpdateOwnershipIdentifierResponse>;
   }
@@ -376,11 +385,13 @@ export class Domains {
     domainName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, options: operationOptions },
+      operationArguments,
       renewOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -394,11 +405,12 @@ export class Domains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { nextLink, options: operationOptions },
+      operationArguments,
       listNextOperationSpec
     ) as Promise<DomainsListNextResponse>;
   }
@@ -414,11 +426,13 @@ export class Domains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListRecommendationsNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      parameters,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { parameters, nextLink, options: operationOptions },
+      operationArguments,
       listRecommendationsNextOperationSpec
     ) as Promise<DomainsListRecommendationsNextResponse>;
   }
@@ -434,11 +448,13 @@ export class Domains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListByResourceGroupNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options: operationOptions },
+      operationArguments,
       listByResourceGroupNextOperationSpec
     ) as Promise<DomainsListByResourceGroupNextResponse>;
   }
@@ -457,11 +473,14 @@ export class Domains {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListOwnershipIdentifiersNextResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      domainName,
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, domainName, nextLink, options: operationOptions },
+      operationArguments,
       listOwnershipIdentifiersNextOperationSpec
     ) as Promise<DomainsListOwnershipIdentifiersNextResponse>;
   }
