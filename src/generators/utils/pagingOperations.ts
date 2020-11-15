@@ -131,7 +131,7 @@ function writePublicMethod(
   const method = operationGroupClass.addMethod({
     name: pagingMethodSettings.publicMethodName,
     parameters: pagingMethodSettings.baseMethodParameters,
-    scope: operation.scope,
+    scope: Scope.Public,
     returnType,
     docs: [
       generateOperationJSDoc(
@@ -167,6 +167,11 @@ function writeAllMethod(
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}>`;
+  const nextLinkProperty = normalizeName(
+    pagingMethodSettings.paginationDetails.nextLinkName!,
+    NameType.Property
+  );
+  const itemName = pagingMethodSettings.paginationDetails.itemName;
 
   const parameters = pagingMethodSettings.baseMethodParameters
     .map(p => p.name)
@@ -186,10 +191,26 @@ function writeAllMethod(
     isAsync: true
   });
 
+  let firstPageStatements = [
+    `const firstPage = await this.${pagingMethodSettings.initialMethodName}(${parameters});`
+  ];
+
+  if (operation.isLRO) {
+    firstPageStatements = [
+      `const poller = await this.${pagingMethodSettings.initialMethodName}(${parameters});`,
+      `const firstPage = await poller.pollUntilDone();`
+    ];
+  }
+
   method.addStatements([
-    `for await (const page of this.${pagingMethodSettings.nextMethodName}(${parameters})) {
-        yield* page;
-     }`
+    ...firstPageStatements,
+    `const {${nextLinkProperty}} = firstPage;`,
+    `yield* firstPage.${itemName}!;`,
+    `if (${nextLinkProperty}) {
+       for await (const page of this.${pagingMethodSettings.pageMethodName}(${parameters},${nextLinkProperty},)) {
+        yield* firstPage.${itemName}!
+      }
+    }`
   ]);
 }
 
@@ -199,15 +220,21 @@ function writePageMethod(
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}[]>`;
-  const itemName = "";
-  const nextLinkProperty = pagingMethodSettings.paginationDetails.nextLinkName;
+  const itemName = pagingMethodSettings.paginationDetails.itemName;
+  const nextLinkProperty = normalizeName(
+    pagingMethodSettings.paginationDetails.nextLinkName!,
+    NameType.Property
+  );
   const parameters = pagingMethodSettings.baseMethodParameters
     .map(p => p.name)
     .join(",");
 
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.pageMethodName}`,
-    parameters: pagingMethodSettings.baseMethodParameters,
+    parameters: [
+      ...pagingMethodSettings.baseMethodParameters,
+      { name: nextLinkProperty, type: "string", hasQuestionToken: true }
+    ],
     scope: Scope.Private,
     returnType,
     docs: [
@@ -219,21 +246,32 @@ function writePageMethod(
     isAsync: true
   });
 
+  let firstRequestStatements = [
+    `let result = await this.${pagingMethodSettings.initialMethodName}(${parameters});`
+  ];
+
   if (operation.isLRO) {
-    method.addStatements([
+    firstRequestStatements = [
       `const poller = await this.${pagingMethodSettings.initialMethodName}(${parameters});`,
       `let result = await poller.pollUntilDone();`
-    ]);
-  } else {
-    method.addStatements([
-      `let result = await this.${pagingMethodSettings.initialMethodName}(${parameters});`
-    ]);
+    ];
   }
 
   method.addStatements([
-    `yield result.${pagingMethodSettings.paginationDetails.itemName} || []`,
-    `while (result.${nextLinkProperty}) {
-        result = await this.${pagingMethodSettings.nextMethodName}(result.${nextLinkProperty}, ${parameters})
+    `let continuationToken = ${nextLinkProperty}`,
+    `let result;`,
+    `if (!continuationToken) {
+       ${firstRequestStatements.join("\n")}
+       continuationToken = result.${nextLinkProperty}
+       yield result.${itemName} || [];
+     }`
+  ]);
+
+  method.addStatements([
+    `while (continuationToken) {
+        result = await this.${pagingMethodSettings.nextMethodName}(continuationToken, ${parameters});
+        continuationToken = result.${nextLinkProperty}
+        yield result.${itemName} || [];
       }`
   ]);
 }
