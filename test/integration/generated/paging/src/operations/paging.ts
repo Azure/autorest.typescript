@@ -1246,7 +1246,7 @@ export class Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      yield result.indexes || [];
     }
     while (continuationToken) {
       result = await this._getPagingModelWithItemNameWithXMSClientNameNext(
@@ -1254,7 +1254,7 @@ export class Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      yield result.indexes || [];
     }
   }
 
@@ -1270,13 +1270,13 @@ export class Paging {
       options
     );
     const { nextLink } = firstPage;
-    yield* firstPage.values!;
+    yield* firstPage.indexes!;
     if (nextLink) {
       for await (const page of this.getPagingModelWithItemNameWithXMSClientNamePage(
         options,
         nextLink
       )) {
-        yield* firstPage.values!;
+        yield* firstPage.indexes!;
       }
     }
   }
@@ -2130,7 +2130,7 @@ export class Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      yield result.indexes || [];
     }
     while (continuationToken) {
       result = await this._getPagingModelWithItemNameWithXMSClientNameNextNext(
@@ -2139,7 +2139,7 @@ export class Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      yield result.indexes || [];
     }
   }
 
@@ -2158,14 +2158,14 @@ export class Paging {
       options
     );
     const { nextLink } = firstPage;
-    yield* firstPage.values!;
+    yield* firstPage.indexes!;
     if (nextLink) {
       for await (const page of this.getPagingModelWithItemNameWithXMSClientNameNextPage(
         nextLink,
         options,
         nextLink
       )) {
-        yield* firstPage.values!;
+        yield* firstPage.indexes!;
       }
     }
   }

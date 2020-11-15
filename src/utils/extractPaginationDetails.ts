@@ -42,7 +42,19 @@ export function extractPaginationDetails(
     nextLinkOperationName = `${languageMetadata.name}Next`;
   }
 
-  const itemName = paginationExtension.itemName ?? "value";
+  let itemName = paginationExtension.itemName ?? "value";
+
+  for (const response of operation.responses || []) {
+    if (isSchemaResponse(response)) {
+      const valuesProperty = (response.schema as ObjectSchema).properties?.find(
+        p => p.serializedName === itemName && p.schema.type === SchemaType.Array
+      );
+
+      itemName = valuesProperty
+        ? getLanguageMetadata(valuesProperty.language).name
+        : itemName;
+    }
+  }
 
   return {
     group: paginationExtension.group,
@@ -53,14 +65,6 @@ export function extractPaginationDetails(
     nextLinkOperationName,
     isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod)
   };
-}
-
-function isPaginationExtension(ext: any): ext is PaginationExtension {
-  if (!ext || typeof ext !== "object") {
-    return false;
-  }
-
-  return "nextLinkName" in ext;
 }
 
 /**
@@ -117,8 +121,10 @@ function getResponseItemType(
 
   // Find the 1st property containing the results to paginate over.
   const itemProperty = responseSchema.properties?.find(property => {
-    const propertyName = property.serializedName;
-    return propertyName === itemName;
+    const propertyName = getLanguageMetadata(property.language).name;
+    return (
+      propertyName === propertyName || itemName === property.serializedName
+    );
   });
 
   if (!itemProperty) {
