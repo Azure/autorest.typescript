@@ -13,7 +13,8 @@ import {
   OperationGroup,
   ParameterLocation,
   ConstantSchema,
-  CodeModel
+  CodeModel,
+  ObjectSchema
 } from "@azure-tools/codemodel";
 import {
   normalizeName,
@@ -262,7 +263,8 @@ export function transformOperationRequest(
  */
 export function transformOperationResponse(
   response: SchemaResponse | Response,
-  operationFullName: string
+  operationFullName: string,
+  paginationItemName?: string
 ): OperationResponseDetails {
   const httpInfo = response.protocol.http;
 
@@ -306,7 +308,8 @@ export function transformOperationResponse(
     bodyType: isSchemaResponse(response)
       ? getTypeForSchema(response.schema)
       : undefined,
-    headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined
+    headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined,
+    pagingValueType: getPagingItemType(response, paginationItemName)
   };
 
   return {
@@ -316,6 +319,28 @@ export function transformOperationResponse(
     types,
     isError: isError
   };
+}
+
+function getPagingItemType(
+  response: SchemaResponse | Response,
+  paginationItemName?: string
+): TypeDetails | undefined {
+  if (isSchemaResponse(response)) {
+    if (paginationItemName) {
+      const paginationValueType = (response.schema as ObjectSchema).properties?.find(
+        p => p.serializedName === paginationItemName
+      );
+
+      if (!paginationValueType) {
+        throw new Error(
+          "x-ms-pageable itemName is was not found in the result definition"
+        );
+      }
+      return getTypeForSchema(paginationValueType.schema);
+    }
+  }
+
+  return undefined;
 }
 
 export async function transformOperation(
@@ -368,9 +393,11 @@ export async function transformOperation(
     );
   }
 
+  const pagingValueProperty = metadata.paging?.itemName;
+
   const requests = codeModelRequests.map(transformOperationRequest);
   let responses = responsesAndErrors.map(response =>
-    transformOperationResponse(response, operationFullName)
+    transformOperationResponse(response, operationFullName, pagingValueProperty)
   );
   const hasMultipleResponses = responses.filter(r => !r.isError).length > 1;
 

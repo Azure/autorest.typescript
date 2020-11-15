@@ -13,6 +13,7 @@ export function generatePackageJson(
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
   );
+  const hasAsyncIterators = !clientDetails.options.disablePagingAsyncIterators;
   const packageJsonContents = {
     name: packageDetails.name,
     author: "Microsoft Corporation",
@@ -22,6 +23,7 @@ export function generatePackageJson(
     version: packageDetails.version,
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.1" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       "@azure/core-http": "^1.1.4",
       ...(clientDetails.tracing && {
         "@azure/core-tracing": "1.0.0-preview.9",

@@ -117,8 +117,19 @@ function addPageableMethods(codeModel: CodeModel) {
 
       if (nextLinkMethod) {
         // The operation to call to get subsequent pages already exists, so we don't need to create it.
-        const metadata = getLanguageMetadata(nextLinkMethod.language);
-        metadata.paging.isNextLinkMethod = true;
+        const nextMetadata = getLanguageMetadata(nextLinkMethod.language);
+        nextMetadata.paging = {
+          ...nextMetadata.paging,
+          isNextLinkMethod: true
+        };
+
+        // Populate original operation metadata
+        operationMetadata.paging = {
+          ...operationMetadata.paging,
+          nextLinkOperation: nextLinkMethod,
+          isNextLinkMethod: false
+        };
+
         continue;
       }
 
@@ -129,10 +140,21 @@ function addPageableMethods(codeModel: CodeModel) {
         operationDescription
       );
 
+      // Populate new Next operation metadata
       const nextLinkMethodMetadata = getLanguageMetadata(
         nextLinkMethod.language
       );
-      nextLinkMethodMetadata.paging.isNextLinkMethod = true;
+      nextLinkMethodMetadata.paging = {
+        ...nextLinkMethodMetadata.paging,
+        isNextLinkMethod: true
+      };
+
+      // Populate original operation metadata
+      operationMetadata.paging = {
+        ...operationMetadata.paging,
+        nextLinkOperation: nextLinkMethod,
+        isNextLinkMethod: false
+      };
 
       // Since this is a brand new operation, the nextLink will be a partial or absolute url.
       const nextLinkRequestProtocol =

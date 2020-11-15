@@ -6,39 +6,9 @@ import {
 } from "@azure-tools/codemodel";
 import { isEqual } from "lodash";
 import { PaginationDetails } from "../models/operationDetails";
-import { getLanguageMetadata } from "./languageHelpers";
+import { getLanguageMetadata, PaginationExtension } from "./languageHelpers";
 import { getTypeForSchema, isSchemaResponse } from "./schemaHelpers";
 import { TypeDetails } from "../models/modelDetails";
-
-interface PaginationExtension {
-  /**
-   * The name of the field in the response that can be paged over.
-   */
-  itemName?: string;
-  /**
-   * Name of the field containing the nextLink value.
-   * An empty object indicates a null value and that all results
-   * are returned in a single page.
-   */
-  nextLinkName?: string | {};
-  // 'nextLinkOperation', 'group', and 'member' are used together.
-  /**
-   * Reference to the operation to call to get the next page.
-   */
-  nextLinkOperation?: Operation;
-  /**
-   * The name of the operationGroup that nextLinkOperation resides in.
-   */
-  group?: string;
-  /**
-   * The name of the operation that nextLinkOperation references.
-   */
-  member?: string;
-  /**
-   * Indicates whether this operation is used by another operation to get pages.
-   */
-  isNextLinkMethod?: boolean;
-}
 
 /**
  * Extract pagination details from the pagination extension for an operation.
@@ -50,7 +20,7 @@ export function extractPaginationDetails(
   const languageMetadata = getLanguageMetadata(operation.language);
   const paginationExtension = languageMetadata.paging;
 
-  if (!isPaginationExtension(paginationExtension)) {
+  if (!paginationExtension || !paginationExtension.itemName) {
     return;
   }
 
@@ -59,8 +29,13 @@ export function extractPaginationDetails(
       ? paginationExtension.nextLinkName
       : undefined;
 
-  let nextLinkOperationName =
-    paginationExtension.nextLinkOperation && languageMetadata.name;
+  let nextLinkOperationName = "";
+  if (paginationExtension.nextLinkOperation) {
+    nextLinkOperationName = getLanguageMetadata(
+      paginationExtension.nextLinkOperation.language
+    ).name;
+  }
+
   // When nextLinkOperation is not defined, but nextLinkName is, default to <operationName>Next as the operation name.
   // Otherwise, since nextLinkName is not defined, we all iterable results are returned in a single page.
   if (!nextLinkOperationName && nextLinkName) {

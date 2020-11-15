@@ -12,6 +12,7 @@ import { KnownMediaType } from "@azure-tools/codegen";
 export interface ClientOptions {
   azureArm?: boolean;
   addCredentials?: boolean;
+  disablePagingAsyncIterators?: boolean;
   mediaTypes?: Set<KnownMediaType>;
 }
 
