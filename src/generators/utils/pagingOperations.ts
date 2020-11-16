@@ -22,14 +22,18 @@ type MethodParameter = OptionalKind<
   }
 >;
 
+interface MethodDetails {
+  name: string;
+  parameters: MethodParameter[];
+}
+
 interface PagingMethodSettings {
-  initialMethodName: string;
-  nextMethodName: string;
-  publicMethodName: string;
-  allMethodName: string;
-  pageMethodName: string;
+  initialMethod: MethodDetails;
+  nextMethod: MethodDetails;
+  publicMethod: MethodDetails;
+  allMethod: MethodDetails;
+  pageMethod: MethodDetails;
   bodyResponseType: string;
-  baseMethodParameters: MethodParameter[];
   paginationDetails: PaginationDetails;
 }
 
@@ -79,13 +83,30 @@ export function writeAsyncIterators(
   }
 
   operationGroupDetails.operations
-    .filter(o => o.pagination?.nextLinkName)
+    .filter(
+      o =>
+        o.pagination?.supportsAsyncIterators &&
+        !o.pagination?.isNextLinkMethod &&
+        o.pagination?.nextLinkName
+    )
     .forEach(operation => {
       const baseName = normalizeName(operation.name, NameType.Operation);
       const nextOperationName = normalizeName(
         operation.pagination?.nextLinkOperationName || baseName,
         NameType.Operation
       );
+
+      const nextLinkName = operation.pagination?.nextLinkName;
+
+      const nextOperation = operationGroupDetails.operations.find(
+        o =>
+          o.name.toLocaleLowerCase() ===
+          operation.pagination?.nextLinkOperationName?.toLocaleLowerCase()
+      );
+
+      if (!nextOperation) {
+        throw new Error(`Couldn't find next operation for ${operation.name}`);
+      }
 
       const bodyResponseType = getResponseBodyType(operation);
       const bodyResponseTypeName =
@@ -97,6 +118,14 @@ export function writeAsyncIterators(
 
       bodyResponseType?.usedModels.forEach(m => importedModels.add(m));
 
+      let {
+        baseMethodParameters: nextMethodParameters
+      } = getOperationParameterSignatures(
+        nextOperation,
+        clientDetails.parameters,
+        importedModels,
+        operationGroupClass
+      );
       const { baseMethodParameters } = getOperationParameterSignatures(
         operation,
         clientDetails.parameters,
@@ -104,14 +133,35 @@ export function writeAsyncIterators(
         operationGroupClass
       );
 
-      const pagingMethodSettings = {
-        initialMethodName: `${operation.namePrefix}${baseName}`,
-        nextMethodName: `${operation.namePrefix}${nextOperationName}`,
-        publicMethodName: baseName,
-        allMethodName: `${baseName}All`,
-        pageMethodName: `${baseName}Page`,
+      nextMethodParameters = nextMethodParameters.map(parameter => {
+        if (
+          parameter.name === nextLinkName ||
+          // TODO: HACK
+          parameter.name === "odata.nextLink" ||
+          parameter.name === "nextLink"
+        ) {
+          return { ...parameter, hasQuestionToken: true };
+        }
+
+        return parameter;
+      });
+
+      const pagingMethodSettings: PagingMethodSettings = {
+        initialMethod: {
+          name: `${operation.namePrefix}${baseName}`,
+          parameters: baseMethodParameters
+        },
+        nextMethod: {
+          name: `${operation.namePrefix}${nextOperationName}`,
+          parameters: nextMethodParameters
+        },
+        publicMethod: { name: baseName, parameters: baseMethodParameters },
+        allMethod: { name: `${baseName}All`, parameters: baseMethodParameters },
+        pageMethod: {
+          name: `${baseName}Page`,
+          parameters: baseMethodParameters
+        },
         bodyResponseType: bodyResponseTypeName,
-        baseMethodParameters,
         paginationDetails: operation.pagination! // We are checking for pagination not being undefined in the filter above
       };
 
@@ -129,24 +179,28 @@ function writePublicMethod(
   const returnType = `PagedAsyncIterableIterator<${pagingMethodSettings.bodyResponseType}, ${pagingMethodSettings.bodyResponseType}[]>`;
 
   const method = operationGroupClass.addMethod({
-    name: pagingMethodSettings.publicMethodName,
-    parameters: pagingMethodSettings.baseMethodParameters,
+    name: pagingMethodSettings.publicMethod.name,
+    parameters: pagingMethodSettings.publicMethod.parameters,
     scope: Scope.Public,
     returnType,
     docs: [
       generateOperationJSDoc(
-        pagingMethodSettings.baseMethodParameters,
+        pagingMethodSettings.publicMethod.parameters,
         operation.description
       )
     ]
   });
 
-  const parameters = pagingMethodSettings.baseMethodParameters
+  let parameters = pagingMethodSettings.publicMethod.parameters
+    .map(p => p.name)
+    .join(",");
+
+  const pageMethodNameParams = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
     .join(",");
 
   method.addStatements([
-    `const iter = this.${pagingMethodSettings.allMethodName}(${parameters});`,
+    `const iter = this.${pagingMethodSettings.allMethod.name}(${parameters});`,
     `return {
         next() {
           return iter.next();
@@ -155,7 +209,7 @@ function writePublicMethod(
           return this;
         },
         byPage: (settings) => {
-          return this.${pagingMethodSettings.pageMethodName}(${parameters});
+          return this.${pagingMethodSettings.pageMethod.name}(${pageMethodNameParams});
         }
       };`
   ]);
@@ -167,50 +221,29 @@ function writeAllMethod(
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}>`;
-  const nextLinkProperty = normalizeName(
-    pagingMethodSettings.paginationDetails.nextLinkName!,
-    NameType.Property
-  );
-  const itemName = pagingMethodSettings.paginationDetails.itemName;
 
-  const parameters = pagingMethodSettings.baseMethodParameters
+  const pageMethodParameters = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
     .join(",");
 
   const method = operationGroupClass.addMethod({
-    name: `*${pagingMethodSettings.allMethodName}`,
-    parameters: pagingMethodSettings.baseMethodParameters,
+    name: `*${pagingMethodSettings.allMethod.name}`,
+    parameters: pagingMethodSettings.initialMethod.parameters,
     scope: Scope.Private,
     returnType,
     docs: [
       generateOperationJSDoc(
-        pagingMethodSettings.baseMethodParameters,
+        pagingMethodSettings.initialMethod.parameters,
         operation.description
       )
     ],
     isAsync: true
   });
 
-  let firstPageStatements = [
-    `const firstPage = await this.${pagingMethodSettings.initialMethodName}(${parameters});`
-  ];
-
-  if (operation.isLRO) {
-    firstPageStatements = [
-      `const poller = await this.${pagingMethodSettings.initialMethodName}(${parameters});`,
-      `const firstPage = await poller.pollUntilDone();`
-    ];
-  }
-
   method.addStatements([
-    ...firstPageStatements,
-    `const {${nextLinkProperty}} = firstPage;`,
-    `yield* firstPage.${itemName}!;`,
-    `if (${nextLinkProperty}) {
-       for await (const page of this.${pagingMethodSettings.pageMethodName}(${parameters},${nextLinkProperty},)) {
-        yield* firstPage.${itemName}!
-      }
-    }`
+    `for await (const page of this.${pagingMethodSettings.pageMethod.name}(${pageMethodParameters})) {
+        yield *page
+     }`
   ]);
 }
 
@@ -225,21 +258,27 @@ function writePageMethod(
     pagingMethodSettings.paginationDetails.nextLinkName!,
     NameType.Property
   );
-  const parameters = pagingMethodSettings.baseMethodParameters
+  const parameters = pagingMethodSettings.initialMethod.parameters
     .map(p => p.name)
     .join(",");
 
+  const nextParameters = pagingMethodSettings.nextMethod.parameters
+    .map(p =>
+      p.name === pagingMethodSettings.paginationDetails.nextLinkName ||
+      p.name === "nextLink"
+        ? "continuationToken"
+        : p.name
+    )
+    .join(",");
+
   const method = operationGroupClass.addMethod({
-    name: `*${pagingMethodSettings.pageMethodName}`,
-    parameters: [
-      ...pagingMethodSettings.baseMethodParameters,
-      { name: nextLinkProperty, type: "string", hasQuestionToken: true }
-    ],
+    name: `*${pagingMethodSettings.pageMethod.name}`,
+    parameters: pagingMethodSettings.pageMethod.parameters,
     scope: Scope.Private,
     returnType,
     docs: [
       generateOperationJSDoc(
-        pagingMethodSettings.baseMethodParameters,
+        pagingMethodSettings.initialMethod.parameters,
         operation.description
       )
     ],
@@ -247,29 +286,26 @@ function writePageMethod(
   });
 
   let firstRequestStatements = [
-    `let result = await this.${pagingMethodSettings.initialMethodName}(${parameters});`
+    `let result = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`
   ];
 
   if (operation.isLRO) {
     firstRequestStatements = [
-      `const poller = await this.${pagingMethodSettings.initialMethodName}(${parameters});`,
-      `let result = await poller.pollUntilDone();`
+      `const poller = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`,
+      // TODO: Fix typing here, currently returning the original response type conflicts because the nextPage doesn't contain the LROSymbol. Maybe an union type is the correct type
+      `let result: any = await poller.pollUntilDone();`
     ];
   }
 
   method.addStatements([
-    `let continuationToken = ${nextLinkProperty}`,
-    `let result;`,
-    `if (!continuationToken) {
-       ${firstRequestStatements.join("\n")}
-       continuationToken = result.${nextLinkProperty}
-       yield result.${itemName} || [];
-     }`
+    ...firstRequestStatements,
+    `let continuationToken = result.${nextLinkProperty}`,
+    `yield result.${itemName} || [];`
   ]);
 
   method.addStatements([
     `while (continuationToken) {
-        result = await this.${pagingMethodSettings.nextMethodName}(continuationToken, ${parameters});
+        result = await this.${pagingMethodSettings.nextMethod.name}(${nextParameters});
         continuationToken = result.${nextLinkProperty}
         yield result.${itemName} || [];
       }`

@@ -56,6 +56,17 @@ export function extractPaginationDetails(
     }
   }
 
+  let supportsAsyncIterators: boolean = false;
+
+  if (paginationExtension.isNextLinkMethod) {
+    supportsAsyncIterators = Boolean(paginationExtension.nextLinkName);
+  } else if (paginationExtension.nextLinkOperation) {
+    const nextMetadata = getLanguageMetadata(
+      paginationExtension.nextLinkOperation.language
+    );
+    supportsAsyncIterators = Boolean(nextMetadata.paging?.nextLinkName);
+  }
+
   return {
     group: paginationExtension.group,
     member: paginationExtension.member,
@@ -63,7 +74,8 @@ export function extractPaginationDetails(
     itemName,
     itemTypes: getItemTypes(operation, itemName),
     nextLinkOperationName,
-    isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod)
+    isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod),
+    supportsAsyncIterators
   };
 }
 
