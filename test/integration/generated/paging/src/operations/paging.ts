@@ -1001,7 +1001,7 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  undefinedgetNoItemNamePages(
+  getNoItemNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {

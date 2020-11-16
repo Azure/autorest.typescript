@@ -495,7 +495,7 @@ export function writeOperations(
     );
     const responseName = getResponseType(operation, importedModels, modelNames);
     const returnType = getReturnType(operation, importedModels, modelNames);
-    const name = `${operation.namePrefix}${normalizeName(
+    const name = `${operation.namePrefix || ""}${normalizeName(
       operation.name,
       NameType.Property
     )}`;
