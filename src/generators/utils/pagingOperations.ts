@@ -56,6 +56,18 @@ export function addPagingImports(
   }
 }
 
+function isSupportedWithAsyncIterators(operation: OperationDetails) {
+  if (!operation.pagination?.supportsAsyncIterators) {
+    return false;
+  }
+
+  if (!operation.pagination.nextLinkName) {
+    return false;
+  }
+
+  return true;
+}
+
 export function preparePageableOperations(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
@@ -65,7 +77,7 @@ export function preparePageableOperations(
   }
 
   operationGroupDetails.operations
-    .filter(o => o.pagination)
+    .filter(o => isSupportedWithAsyncIterators(o))
     .forEach(operation => {
       operation.scope = Scope.Private;
       operation.namePrefix = "_";
@@ -84,10 +96,7 @@ export function writeAsyncIterators(
 
   operationGroupDetails.operations
     .filter(
-      o =>
-        o.pagination?.supportsAsyncIterators &&
-        !o.pagination?.isNextLinkMethod &&
-        o.pagination?.nextLinkName
+      o => isSupportedWithAsyncIterators(o) && !o.pagination?.isNextLinkMethod
     )
     .forEach(operation => {
       const baseName = normalizeName(operation.name, NameType.Operation);

@@ -1017,7 +1017,7 @@ export class Paging {
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  private _getNullNextLinkNamePages(
+  getNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -1067,7 +1067,7 @@ export class Paging {
    * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
    * @param options The options parameters.
    */
-  private _getWithQueryParams(
+  getWithQueryParams(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetWithQueryParamsResponse> {
@@ -1085,7 +1085,7 @@ export class Paging {
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
    */
-  private _nextOperationWithQueryParams(
+  nextOperationWithQueryParams(
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
