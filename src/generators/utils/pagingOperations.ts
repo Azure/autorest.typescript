@@ -28,7 +28,7 @@ interface MethodDetails {
 
 interface PagingMethodSettings {
   initialMethod: MethodDetails;
-  nextMethod: MethodDetails;
+  nextMethod?: MethodDetails;
   publicMethod: MethodDetails;
   allMethod: MethodDetails;
   pageMethod: MethodDetails;
@@ -69,10 +69,6 @@ export function hasAsyncIteratorOperations(
 
 function isSupportedWithAsyncIterators(operation: OperationDetails) {
   if (!operation.pagination?.supportsAsyncIterators) {
-    return false;
-  }
-
-  if (!operation.pagination.nextLinkName) {
     return false;
   }
 
@@ -122,10 +118,6 @@ export function writeAsyncIterators(
           operation.pagination?.nextLinkOperationName?.toLocaleLowerCase()
       );
 
-      if (!nextOperation) {
-        throw new Error(`Couldn't find next operation for ${operation.name}`);
-      }
-
       const bodyResponseType = getResponseBodyType(operation);
       const bodyResponseTypeName =
         bodyResponseType?.typeName.replace("[]", "") || "";
@@ -136,14 +128,23 @@ export function writeAsyncIterators(
 
       bodyResponseType?.usedModels.forEach(m => importedModels.add(m));
 
-      let {
-        baseMethodParameters: nextMethodParameters
-      } = getOperationParameterSignatures(
-        nextOperation,
-        clientDetails.parameters,
-        importedModels,
-        operationGroupClass
-      );
+      let nextMethodParameters: MethodParameter[] | null = null;
+
+      if (nextOperation) {
+        nextMethodParameters = getOperationParameterSignatures(
+          nextOperation,
+          clientDetails.parameters,
+          importedModels,
+          operationGroupClass
+        ).baseMethodParameters.map(parameter => {
+          if (parameter.name === "nextLink") {
+            return { ...parameter, hasQuestionToken: true };
+          }
+
+          return parameter;
+        });
+      }
+
       const { baseMethodParameters } = getOperationParameterSignatures(
         operation,
         clientDetails.parameters,
@@ -151,23 +152,17 @@ export function writeAsyncIterators(
         operationGroupClass
       );
 
-      nextMethodParameters = nextMethodParameters.map(parameter => {
-        if (parameter.name === "nextLink") {
-          return { ...parameter, hasQuestionToken: true };
-        }
-
-        return parameter;
-      });
-
       const pagingMethodSettings: PagingMethodSettings = {
         initialMethod: {
           name: `${operation.namePrefix}${baseName}`,
           parameters: baseMethodParameters
         },
-        nextMethod: {
-          name: `${operation.namePrefix}${nextOperationName}`,
-          parameters: nextMethodParameters
-        },
+        nextMethod: nextMethodParameters
+          ? {
+              name: `${operation.namePrefix}${nextOperationName}`,
+              parameters: nextMethodParameters
+            }
+          : undefined,
         publicMethod: { name: baseName, parameters: baseMethodParameters },
         allMethod: { name: `${baseName}All`, parameters: baseMethodParameters },
         pageMethod: {
@@ -276,10 +271,6 @@ function writePageMethod(
     .map(p => p.name)
     .join(",");
 
-  const nextParameters = pagingMethodSettings.nextMethod.parameters
-    .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
-    .join(",");
-
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.pageMethod.name}`,
     parameters: pagingMethodSettings.pageMethod.parameters,
@@ -295,28 +286,36 @@ function writePageMethod(
   });
 
   let firstRequestStatements = [
-    `let result = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`
+    `let result = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`,
+    `yield result.${itemName} || [];`
   ];
 
   if (operation.isLRO) {
     firstRequestStatements = [
       `const poller = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`,
       // TODO: Fix typing here, currently returning the original response type conflicts because the nextPage doesn't contain the LROSymbol. Maybe an union type is the correct type
-      `let result: any = await poller.pollUntilDone();`
+      `let result: any = await poller.pollUntilDone();`,
+      `yield result.${itemName} || [];`
     ];
   }
 
-  method.addStatements([
-    ...firstRequestStatements,
-    `let continuationToken = result.${nextLinkProperty}`,
-    `yield result.${itemName} || [];`
-  ]);
+  method.addStatements(firstRequestStatements);
 
-  method.addStatements([
-    `while (continuationToken) {
+  if (pagingMethodSettings.nextMethod) {
+    const nextParameters = pagingMethodSettings.nextMethod.parameters
+      .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
+      .join(",");
+
+    method.addStatements([
+      `let continuationToken = result.${nextLinkProperty}`
+    ]);
+
+    method.addStatements([
+      `while (continuationToken) {
         result = await this.${pagingMethodSettings.nextMethod.name}(${nextParameters});
         continuationToken = result.${nextLinkProperty}
         yield result.${itemName} || [];
       }`
-  ]);
+    ]);
+  }
 }

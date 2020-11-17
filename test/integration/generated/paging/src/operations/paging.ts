@@ -100,8 +100,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getNoItemNamePages(options);
-    let continuationToken = result.nextLink;
     yield result.value || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getNoItemNamePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
@@ -117,6 +117,50 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getNoItemNamePagesPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+   * @param options The options parameters.
+   */
+  public getNullNextLinkNamePages(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product, Product[]> {
+    const iter = this.getNullNextLinkNamePagesAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: (settings) => {
+        return this.getNullNextLinkNamePagesPage(options);
+      }
+    };
+  }
+
+  /**
+   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+   * @param options The options parameters.
+   */
+  private async *getNullNextLinkNamePagesPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getNullNextLinkNamePages(options);
+    yield result.values || [];
+  }
+
+  /**
+   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+   * @param options The options parameters.
+   */
+  private async *getNullNextLinkNamePagesAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getNullNextLinkNamePagesPage(options)) {
       yield* page;
     }
   }
@@ -150,8 +194,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getSinglePages(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getSinglePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
@@ -200,8 +244,8 @@ export class Paging {
     options?: PagingGetMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getMultiplePages(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
@@ -217,6 +261,71 @@ export class Paging {
     options?: PagingGetMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that includes a next operation. It has a different query parameter from it's next
+   * operation nextOperationWithQueryParams. Returns a ProductResult
+   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
+   * @param options The options parameters.
+   */
+  public getWithQueryParams(
+    requiredQueryParameter: number,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product, Product[]> {
+    const iter = this.getWithQueryParamsAll(requiredQueryParameter, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: (settings) => {
+        return this.getWithQueryParamsPage(requiredQueryParameter, options);
+      }
+    };
+  }
+
+  /**
+   * A paging operation that includes a next operation. It has a different query parameter from it's next
+   * operation nextOperationWithQueryParams. Returns a ProductResult
+   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
+   * @param options The options parameters.
+   */
+  private async *getWithQueryParamsPage(
+    requiredQueryParameter: number,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getWithQueryParams(
+      requiredQueryParameter,
+      options
+    );
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._nextOperationWithQueryParams(options);
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  /**
+   * A paging operation that includes a next operation. It has a different query parameter from it's next
+   * operation nextOperationWithQueryParams. Returns a ProductResult
+   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
+   * @param options The options parameters.
+   */
+  private async *getWithQueryParamsAll(
+    requiredQueryParameter: number,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getWithQueryParamsPage(
+      requiredQueryParameter,
+      options
+    )) {
       yield* page;
     }
   }
@@ -250,8 +359,8 @@ export class Paging {
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getOdataMultiplePages(options);
-    let continuationToken = result.odataNextLink;
     yield result.values || [];
+    let continuationToken = result.odataNextLink;
     while (continuationToken) {
       result = await this._getOdataMultiplePagesNext(
         continuationToken,
@@ -316,8 +425,8 @@ export class Paging {
       pagingGetMultiplePagesWithOffsetOptions,
       options
     );
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesWithOffsetNext(
         pagingGetMultiplePagesWithOffsetOptions,
@@ -377,8 +486,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getMultiplePagesRetryFirst(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesRetryFirstNext(
         continuationToken,
@@ -433,8 +542,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getMultiplePagesRetrySecond(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesRetrySecondNext(
         continuationToken,
@@ -487,8 +596,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getSinglePagesFailure(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getSinglePagesFailureNext(
         continuationToken,
@@ -540,8 +649,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getMultiplePagesFailure(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesFailureNext(
         continuationToken,
@@ -593,8 +702,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getMultiplePagesFailureUri(options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesFailureUriNext(
         continuationToken,
@@ -666,8 +775,8 @@ export class Paging {
       tenant,
       options
     );
-    let continuationToken = result.odataNextLink;
     yield result.values || [];
+    let continuationToken = result.odataNextLink;
     while (continuationToken) {
       result = await this._nextFragment(
         apiVersion,
@@ -742,8 +851,8 @@ export class Paging {
       customParameterGroup,
       options
     );
-    let continuationToken = result.odataNextLink;
     yield result.values || [];
+    let continuationToken = result.odataNextLink;
     while (continuationToken) {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
@@ -802,8 +911,8 @@ export class Paging {
   ): AsyncIterableIterator<Product[]> {
     const poller = await this._getMultiplePagesLRO(options);
     let result: any = await poller.pollUntilDone();
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getMultiplePagesLRONext(continuationToken, options);
       continuationToken = result.nextLink;
@@ -869,8 +978,8 @@ export class Paging {
       nextLink,
       options
     );
-    let continuationToken = result.odataNextLink;
     yield result.values || [];
+    let continuationToken = result.odataNextLink;
     while (continuationToken) {
       result = await this._nextFragment(
         apiVersion,
@@ -955,8 +1064,8 @@ export class Paging {
       customParameterGroup,
       options
     );
-    let continuationToken = result.odataNextLink;
     yield result.values || [];
+    let continuationToken = result.odataNextLink;
     while (continuationToken) {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
@@ -1021,8 +1130,8 @@ export class Paging {
     let result = await this._getPagingModelWithItemNameWithXMSClientName(
       options
     );
-    let continuationToken = result.nextLink;
     yield result.indexes || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getPagingModelWithItemNameWithXMSClientNameNext(
         continuationToken,
@@ -1068,7 +1177,7 @@ export class Paging {
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  getNullNextLinkNamePages(
+  private _getNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -1118,7 +1227,7 @@ export class Paging {
    * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
    * @param options The options parameters.
    */
-  getWithQueryParams(
+  private _getWithQueryParams(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetWithQueryParamsResponse> {
@@ -1136,7 +1245,7 @@ export class Paging {
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
    */
-  nextOperationWithQueryParams(
+  private _nextOperationWithQueryParams(
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     const operationArguments: coreHttp.OperationArguments = {

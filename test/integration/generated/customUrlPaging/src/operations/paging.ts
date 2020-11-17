@@ -66,8 +66,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getPagesPartialUrl(accountName, options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getPagesPartialUrlNext(
         accountName,
@@ -129,8 +129,8 @@ export class Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
     let result = await this._getPagesPartialUrlOperation(accountName, options);
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getPagesPartialUrlOperationNext(
         accountName,
@@ -208,8 +208,8 @@ export class Paging {
       nextLink,
       options
     );
-    let continuationToken = result.nextLink;
     yield result.values || [];
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getPagesPartialUrlOperationNext(
         accountName,

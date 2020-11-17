@@ -98,18 +98,22 @@ describe("Integration tests for Paging", () => {
     });
   });
 
-  // TODO
   describe("#getNoItemNamePages", () => {
     it("should return result of the default 'value' node", async () => {
-      const response = await client.paging.getNoItemNamePages();
-      assert.lengthOf(response.value!, 1);
-      assert.deepEqual(response.value && response.value[0], {
-        properties: { id: 1, name: "Product" }
-      });
+      const iter = client.paging.getNoItemNamePages();
+      const items: Product[] = [];
+      for await (const item of iter) {
+        items.push(item);
+      }
+      assert.lengthOf(items, 1);
+      assert.deepEqual(items, [
+        {
+          properties: { id: 1, name: "Product" }
+        }
+      ]);
     });
   });
 
-  // TODO
   describe("#getNullNextLinkNamePages", () => {
     it("should ignore any kind of nextLink, and stop after page 1", async () => {
       const expected: Product[] = [
@@ -120,16 +124,15 @@ describe("Integration tests for Paging", () => {
           }
         }
       ];
-      const response = await client.paging.getNullNextLinkNamePages();
-
-      assert.deepEqual(response.values, expected);
-
-      // Azure/autorest.typescript/issues/648
-      // assert.deepEqual(response, expected);
+      const response = client.paging.getNullNextLinkNamePages();
+      const items: Product[] = [];
+      for await (const item of response) {
+        items.push(item);
+      }
+      assert.deepEqual(items, expected);
     });
   });
 
-  // TODO
   describe("#getWithQueryParams", () => {
     it("should return a ProductResult", async () => {
       const expected: Product[] = [
@@ -138,17 +141,7 @@ describe("Integration tests for Paging", () => {
             id: 1,
             name: "Product"
           }
-        }
-      ];
-      const response = await client.paging.getWithQueryParams(100);
-      assert.deepEqual(response.values, expected);
-    });
-  });
-
-  // TODO
-  describe("#nextOperationWithQueryParams", () => {
-    it("should return a ProductResult", async () => {
-      const expected: Product[] = [
+        },
         {
           properties: {
             id: 2,
@@ -156,8 +149,14 @@ describe("Integration tests for Paging", () => {
           }
         }
       ];
-      const response = await client.paging.nextOperationWithQueryParams();
-      assert.deepEqual(response.values, expected);
+      const items: Product[] = [];
+      const result = client.paging.getWithQueryParams(100);
+
+      for await (const item of result) {
+        items.push(item);
+      }
+
+      assert.deepEqual(items, expected);
     });
   });
 

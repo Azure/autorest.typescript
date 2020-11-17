@@ -132,7 +132,7 @@ export interface PaginationDetails {
    * Name of the field containing the nextLink value.
    * If missing, all results are returned in a single page.
    */
-  nextLinkName?: string;
+  nextLinkName?: string | null;
   /**
    * The name of the operation to call with the nextLink.
    */

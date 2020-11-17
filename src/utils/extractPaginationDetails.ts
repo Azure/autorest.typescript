@@ -28,7 +28,7 @@ export function extractPaginationDetails(
   const nextLinkName =
     typeof paginationExtension.nextLinkName === "string"
       ? paginationExtension.nextLinkName
-      : undefined;
+      : null;
 
   let nextLinkOperationName = "";
   if (paginationExtension.nextLinkOperation) {
@@ -57,16 +57,18 @@ export function extractPaginationDetails(
     }
   }
 
-  let supportsAsyncIterators: boolean = false;
+  let supportsAsyncIterators: boolean = true;
 
-  if (paginationExtension.isNextLinkMethod) {
-    supportsAsyncIterators = Boolean(paginationExtension.nextLinkName);
-  } else if (paginationExtension.nextLinkOperation) {
-    const nextMetadata = getLanguageMetadata(
-      paginationExtension.nextLinkOperation.language
-    );
-    supportsAsyncIterators = Boolean(nextMetadata.paging?.nextLinkName);
-  }
+  // if (!nextLinkName) {
+  //   supportsAsyncIterators = Boolean(paginationExtension.isNextLinkMethod);
+  // }
+
+  //  if (paginationExtension.nextLinkOperation) {
+  //   const nextMetadata = getLanguageMetadata(
+  //     paginationExtension.nextLinkOperation.language
+  //   );
+  //   supportsAsyncIterators = Boolean(nextMetadata.paging?.nextLinkName);
+  // }
 
   return {
     group: paginationExtension.group,
