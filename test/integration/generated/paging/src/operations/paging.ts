@@ -92,10 +92,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that must return result of the default 'value' node.
-   * @param options The options parameters.
-   */
   private async *getNoItemNamePagesPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -109,10 +105,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that must return result of the default 'value' node.
-   * @param options The options parameters.
-   */
   private async *getNoItemNamePagesPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -142,10 +134,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
-   * @param options The options parameters.
-   */
   private async *getNullNextLinkNamePagesPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -153,10 +141,6 @@ export class Paging {
     yield result.values || [];
   }
 
-  /**
-   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
-   * @param options The options parameters.
-   */
   private async *getNullNextLinkNamePagesPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -186,10 +170,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that finishes on the first call without a nextlink
-   * @param options The options parameters.
-   */
   private async *getSinglePagesPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -203,10 +183,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that finishes on the first call without a nextlink
-   * @param options The options parameters.
-   */
   private async *getSinglePagesPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -236,10 +212,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesPagingPage(
     options?: PagingGetMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product[]> {
@@ -253,10 +225,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesPagingAll(
     options?: PagingGetMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product> {
@@ -295,12 +263,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that includes a next operation. It has a different query parameter from it's next
-   * operation nextOperationWithQueryParams. Returns a ProductResult
-   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
-   * @param options The options parameters.
-   */
   private async *getWithQueryParamsPagingPage(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
@@ -318,12 +280,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that includes a next operation. It has a different query parameter from it's next
-   * operation nextOperationWithQueryParams. Returns a ProductResult
-   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
-   * @param options The options parameters.
-   */
   private async *getWithQueryParamsPagingAll(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
@@ -357,10 +313,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that includes a nextLink in odata format that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getOdataMultiplePagesPagingPage(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product[]> {
@@ -377,10 +329,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that includes a nextLink in odata format that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getOdataMultiplePagesPagingAll(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): AsyncIterableIterator<Product> {
@@ -418,11 +366,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages
-   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesWithOffsetPagingPage(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
@@ -444,11 +387,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages
-   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesWithOffsetPagingAll(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
@@ -483,11 +421,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that fails on the first call with 500 and then retries and then get a response
-   * including a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesRetryFirstPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -504,11 +437,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that fails on the first call with 500 and then retries and then get a response
-   * including a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesRetryFirstPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -541,11 +469,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
-   * with 500. The client should retry and finish all 10 pages eventually.
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesRetrySecondPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -562,11 +485,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
-   * with 500. The client should retry and finish all 10 pages eventually.
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesRetrySecondPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -598,10 +516,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that receives a 400 on the first call
-   * @param options The options parameters.
-   */
   private async *getSinglePagesFailurePagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -618,10 +532,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that receives a 400 on the first call
-   * @param options The options parameters.
-   */
   private async *getSinglePagesFailurePagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -651,10 +561,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that receives a 400 on the second call
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFailurePagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -671,10 +577,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that receives a 400 on the second call
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFailurePagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -704,10 +606,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that receives an invalid nextLink
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFailureUriPagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -724,10 +622,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that receives an invalid nextLink
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFailureUriPagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
@@ -771,12 +665,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFragmentNextLinkPagingPage(
     apiVersion: string,
     tenant: string,
@@ -801,12 +689,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFragmentNextLinkPagingAll(
     apiVersion: string,
     tenant: string,
@@ -850,11 +732,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
-   * @param customParameterGroup Parameter group
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
@@ -876,11 +753,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
-   * @param customParameterGroup Parameter group
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesFragmentWithGroupingNextLinkPagingAll(
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
@@ -914,10 +786,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesLROPagingPage(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): AsyncIterableIterator<Product[]> {
@@ -932,10 +800,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A long-running paging operation that includes a nextLink that has 10 pages
-   * @param options The options parameters.
-   */
   private async *getMultiplePagesLROPagingAll(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): AsyncIterableIterator<Product> {
@@ -981,13 +845,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
-   * @param nextLink Next link for list operation.
-   * @param options The options parameters.
-   */
   private async *nextFragmentPagingPage(
     apiVersion: string,
     tenant: string,
@@ -1014,13 +871,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
-   * @param nextLink Next link for list operation.
-   * @param options The options parameters.
-   */
   private async *nextFragmentPagingAll(
     apiVersion: string,
     tenant: string,
@@ -1070,12 +920,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param nextLink Next link for list operation.
-   * @param customParameterGroup Parameter group
-   * @param options The options parameters.
-   */
   private async *nextFragmentWithGroupingPagingPage(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
@@ -1099,12 +943,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that doesn't return a full URL, just a fragment
-   * @param nextLink Next link for list operation.
-   * @param customParameterGroup Parameter group
-   * @param options The options parameters.
-   */
   private async *nextFragmentWithGroupingPagingAll(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
@@ -1145,11 +983,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name
-   * 'indexes'.
-   * @param options The options parameters.
-   */
   private async *getPagingModelWithItemNameWithXMSClientNamePagingPage(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -1168,11 +1001,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name
-   * 'indexes'.
-   * @param options The options parameters.
-   */
   private async *getPagingModelWithItemNameWithXMSClientNamePagingAll(
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {

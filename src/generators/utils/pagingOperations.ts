@@ -326,7 +326,7 @@ function writePageMethod(
     // Since this is also an LRO operation, we need to poll until done to get the result
     firstRequestStatements = [
       `const poller = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`,
-      `let result = await poller.pollUntilDone();`
+      `let result: any = await poller.pollUntilDone();`
     ];
   }
 
