@@ -309,7 +309,9 @@ export function transformOperationResponse(
       ? getTypeForSchema(response.schema)
       : undefined,
     headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined,
-    pagingValueType: getPagingItemType(response, paginationItemName)
+    pagingValueType: isError
+      ? undefined
+      : getPagingItemType(response, paginationItemName)
   };
 
   return {
@@ -328,7 +330,13 @@ function getPagingItemType(
   if (isSchemaResponse(response)) {
     if (paginationItemName) {
       const paginationValueType = (response.schema as ObjectSchema).properties?.find(
-        p => p.serializedName === paginationItemName
+        p => {
+          const name = getLanguageMetadata(p.language).name;
+          return (
+            name === paginationItemName ||
+            p.serializedName === paginationItemName
+          );
+        }
       );
 
       if (!paginationValueType) {

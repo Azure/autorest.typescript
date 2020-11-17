@@ -42,7 +42,7 @@ export class Paging {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
-    const iter = this.getPagesPartialUrlAll(accountName, options);
+    const iter = this.getPagesPartialUrlPagingAll(accountName, options);
     return {
       next() {
         return iter.next();
@@ -50,8 +50,8 @@ export class Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: (settings) => {
-        return this.getPagesPartialUrlPage(accountName, options);
+      byPage: () => {
+        return this.getPagesPartialUrlPagingPage(accountName, options);
       }
     };
   }
@@ -61,7 +61,7 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlPage(
+  private async *getPagesPartialUrlPagingPage(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -84,11 +84,11 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlAll(
+  private async *getPagesPartialUrlPagingAll(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
-    for await (const page of this.getPagesPartialUrlPage(
+    for await (const page of this.getPagesPartialUrlPagingPage(
       accountName,
       options
     )) {
@@ -105,7 +105,10 @@ export class Paging {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
-    const iter = this.getPagesPartialUrlOperationAll(accountName, options);
+    const iter = this.getPagesPartialUrlOperationPagingAll(
+      accountName,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -113,8 +116,8 @@ export class Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: (settings) => {
-        return this.getPagesPartialUrlOperationPage(accountName, options);
+      byPage: () => {
+        return this.getPagesPartialUrlOperationPagingPage(accountName, options);
       }
     };
   }
@@ -124,7 +127,7 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlOperationPage(
+  private async *getPagesPartialUrlOperationPagingPage(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product[]> {
@@ -147,11 +150,11 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlOperationAll(
+  private async *getPagesPartialUrlOperationPagingAll(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
-    for await (const page of this.getPagesPartialUrlOperationPage(
+    for await (const page of this.getPagesPartialUrlOperationPagingPage(
       accountName,
       options
     )) {
@@ -170,7 +173,7 @@ export class Paging {
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
-    const iter = this.getPagesPartialUrlOperationNextAll(
+    const iter = this.getPagesPartialUrlOperationNextPagingAll(
       accountName,
       nextLink,
       options
@@ -182,8 +185,8 @@ export class Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: (settings) => {
-        return this.getPagesPartialUrlOperationNextPage(
+      byPage: () => {
+        return this.getPagesPartialUrlOperationNextPagingPage(
           accountName,
           nextLink,
           options
@@ -198,7 +201,7 @@ export class Paging {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlOperationNextPage(
+  private async *getPagesPartialUrlOperationNextPagingPage(
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -227,12 +230,12 @@ export class Paging {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  private async *getPagesPartialUrlOperationNextAll(
+  private async *getPagesPartialUrlOperationNextPagingAll(
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
-    for await (const page of this.getPagesPartialUrlOperationNextPage(
+    for await (const page of this.getPagesPartialUrlOperationNextPagingPage(
       accountName,
       nextLink,
       options

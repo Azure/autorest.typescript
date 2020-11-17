@@ -119,8 +119,12 @@ export function writeAsyncIterators(
       );
 
       const bodyResponseType = getResponseBodyType(operation);
-      const bodyResponseTypeName =
+      let bodyResponseTypeName =
         bodyResponseType?.typeName.replace("[]", "") || "";
+
+      if (bodyResponseTypeName === operationGroupDetails.name) {
+        bodyResponseTypeName = `${bodyResponseTypeName}Model`;
+      }
 
       if (!bodyResponseType) {
         throw new Error(`Pageable operation ${baseName} has no return values`);
@@ -164,9 +168,12 @@ export function writeAsyncIterators(
             }
           : undefined,
         publicMethod: { name: baseName, parameters: baseMethodParameters },
-        allMethod: { name: `${baseName}All`, parameters: baseMethodParameters },
+        allMethod: {
+          name: `${baseName}PagingAll`,
+          parameters: baseMethodParameters
+        },
         pageMethod: {
-          name: `${baseName}Page`,
+          name: `${baseName}PagingPage`,
           parameters: baseMethodParameters
         },
         bodyResponseType: bodyResponseTypeName,
@@ -217,7 +224,7 @@ function writePublicMethod(
         [Symbol.asyncIterator]() {
           return this;
         },
-        byPage: (settings) => {
+        byPage: () => {
           return this.${pagingMethodSettings.pageMethod.name}(${pageMethodNameParams});
         }
       };`
