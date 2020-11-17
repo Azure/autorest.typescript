@@ -573,6 +573,26 @@ export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductR
 };
 
 /**
+ * Contains response data for the getNoItemNamePagesNext operation.
+ */
+export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResultValue;
+  };
+};
+
+/**
  * Contains response data for the getSinglePagesNext operation.
  */
 export type PagingGetSinglePagesNextResponse = ProductResult & {

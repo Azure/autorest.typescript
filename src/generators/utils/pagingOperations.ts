@@ -116,8 +116,6 @@ export function writeAsyncIterators(
         NameType.Operation
       );
 
-      const nextLinkName = operation.pagination?.nextLinkName;
-
       const nextOperation = operationGroupDetails.operations.find(
         o =>
           o.name.toLocaleLowerCase() ===
@@ -154,12 +152,7 @@ export function writeAsyncIterators(
       );
 
       nextMethodParameters = nextMethodParameters.map(parameter => {
-        if (
-          parameter.name === nextLinkName ||
-          // TODO: HACK
-          parameter.name === "odata.nextLink" ||
-          parameter.name === "nextLink"
-        ) {
+        if (parameter.name === "nextLink") {
           return { ...parameter, hasQuestionToken: true };
         }
 
@@ -183,7 +176,7 @@ export function writeAsyncIterators(
         },
         bodyResponseType: bodyResponseTypeName,
         nextLinkName: operation.pagination?.nextLinkName || "nextLink",
-        itemName: operation.pagination?.itemName || "values"
+        itemName: operation.pagination?.itemName || "value"
       };
 
       writePublicMethod(operation, operationGroupClass, pagingMethodSettings);

@@ -19,10 +19,11 @@ export function extractPaginationDetails(
 ): PaginationDetails | undefined {
   const languageMetadata = getLanguageMetadata(operation.language);
   const paginationExtension = languageMetadata.paging;
-
-  if (!paginationExtension || !paginationExtension.itemName) {
+  if (!paginationExtension) {
     return;
   }
+
+  paginationExtension.itemName = paginationExtension.itemName || "value";
 
   const nextLinkName =
     typeof paginationExtension.nextLinkName === "string"

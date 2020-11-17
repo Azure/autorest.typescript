@@ -43,6 +43,7 @@ import {
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
   PagingGetMultiplePagesNextResponse,
   PagingGetOdataMultiplePagesNextResponse,
@@ -68,6 +69,56 @@ export class Paging {
    */
   constructor(client: PagingClient) {
     this.client = client;
+  }
+
+  /**
+   * A paging operation that must return result of the default 'value' node.
+   * @param options The options parameters.
+   */
+  public getNoItemNamePages(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product, Product[]> {
+    const iter = this.getNoItemNamePagesAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: (settings) => {
+        return this.getNoItemNamePagesPage(options);
+      }
+    };
+  }
+
+  /**
+   * A paging operation that must return result of the default 'value' node.
+   * @param options The options parameters.
+   */
+  private async *getNoItemNamePagesPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getNoItemNamePages(options);
+    let continuationToken = result.nextLink;
+    yield result.value || [];
+    while (continuationToken) {
+      result = await this._getNoItemNamePagesNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  /**
+   * A paging operation that must return result of the default 'value' node.
+   * @param options The options parameters.
+   */
+  private async *getNoItemNamePagesAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getNoItemNamePagesPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -1001,7 +1052,7 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  getNoItemNamePages(
+  private _getNoItemNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -1346,6 +1397,25 @@ export class Paging {
       operationArguments,
       getPagingModelWithItemNameWithXMSClientNameOperationSpec
     ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
+  }
+
+  /**
+   * GetNoItemNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
+   * @param options The options parameters.
+   */
+  private _getNoItemNamePagesNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingGetNoItemNamePagesNextResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getNoItemNamePagesNextOperationSpec
+    ) as Promise<PagingGetNoItemNamePagesNextResponse>;
   }
 
   /**
@@ -1864,6 +1934,19 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.Operati
     default: {}
   },
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
