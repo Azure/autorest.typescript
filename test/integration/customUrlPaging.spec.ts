@@ -1,6 +1,7 @@
 import {
   CustomUrlPagingClient,
-  CustomUrlPagingClientOptionalParams
+  CustomUrlPagingClientOptionalParams,
+  Product
 } from "./generated/customUrlPaging/src";
 import { assert } from "chai";
 
@@ -21,40 +22,22 @@ describe("Custom URL + Paging", () => {
       { properties: { id: 2, name: "Product" } }
     ];
     it("getPagesPartialUrl", async () => {
-      let values: any[] = [];
-      let result = await client.paging.getPagesPartialUrl(account);
-      if (result.values) {
-        values.push(...result.values);
-      }
+      let values: Product[] = [];
+      let result = client.paging.getPagesPartialUrl(account);
 
-      while (result.nextLink) {
-        result = await client.paging.getPagesPartialUrlNext(
-          account,
-          result.nextLink
-        );
-        if (result.values) {
-          values.push(...result.values);
-        }
+      for await (const item of result) {
+        values.push(item);
       }
 
       assert.deepEqual(values, expected);
     });
 
     it("getPagesPartialUrlOperation", async () => {
-      let values: any[] = [];
-      let result = await client.paging.getPagesPartialUrlOperation(account);
-      if (result.values) {
-        values.push(...result.values);
-      }
+      let values: Product[] = [];
+      let result = client.paging.getPagesPartialUrlOperation(account);
 
-      while (result.nextLink) {
-        result = await client.paging.getPagesPartialUrlOperationNext(
-          account,
-          result.nextLink
-        );
-        if (result.values) {
-          values.push(...result.values);
-        }
+      for await (const item of result) {
+        values.push(item);
       }
 
       assert.deepEqual(values, expected);

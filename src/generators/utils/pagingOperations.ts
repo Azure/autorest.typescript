@@ -1,7 +1,6 @@
 import {
   OperationDetails,
-  OperationGroupDetails,
-  PaginationDetails
+  OperationGroupDetails
 } from "../../models/operationDetails";
 import { ClientDetails } from "../../models/clientDetails";
 import {
@@ -34,7 +33,8 @@ interface PagingMethodSettings {
   allMethod: MethodDetails;
   pageMethod: MethodDetails;
   bodyResponseType: string;
-  paginationDetails: PaginationDetails;
+  nextLinkName?: string;
+  itemName: string;
 }
 
 /**
@@ -43,10 +43,13 @@ interface PagingMethodSettings {
  * @param sourceFile File to add imports to
  */
 export function addPagingImports(
-  { options }: ClientDetails,
+  { options, operationGroups }: ClientDetails,
   sourceFile: SourceFile
 ) {
-  if (!options.disablePagingAsyncIterators) {
+  if (
+    !options.disablePagingAsyncIterators &&
+    operationGroups.some(og => hasAsyncIteratorOperations(og))
+  ) {
     sourceFile.addImportDeclarations([
       {
         namedImports: ["PagedAsyncIterableIterator"],
@@ -54,6 +57,14 @@ export function addPagingImports(
       }
     ]);
   }
+}
+
+export function hasAsyncIteratorOperations(
+  operationGroupDetails: OperationGroupDetails
+) {
+  return operationGroupDetails.operations.some(o =>
+    isSupportedWithAsyncIterators(o)
+  );
 }
 
 function isSupportedWithAsyncIterators(operation: OperationDetails) {
@@ -171,7 +182,8 @@ export function writeAsyncIterators(
           parameters: baseMethodParameters
         },
         bodyResponseType: bodyResponseTypeName,
-        paginationDetails: operation.pagination! // We are checking for pagination not being undefined in the filter above
+        nextLinkName: operation.pagination?.nextLinkName || "nextLink",
+        itemName: operation.pagination?.itemName || "values"
       };
 
       writePublicMethod(operation, operationGroupClass, pagingMethodSettings);
@@ -262,9 +274,9 @@ function writePageMethod(
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}[]>`;
-  const itemName = pagingMethodSettings.paginationDetails.itemName;
+  const itemName = pagingMethodSettings.itemName;
   const nextLinkProperty = normalizeName(
-    pagingMethodSettings.paginationDetails.nextLinkName!,
+    pagingMethodSettings.nextLinkName!,
     NameType.Property
   );
   const parameters = pagingMethodSettings.initialMethod.parameters
@@ -272,12 +284,7 @@ function writePageMethod(
     .join(",");
 
   const nextParameters = pagingMethodSettings.nextMethod.parameters
-    .map(p =>
-      p.name === pagingMethodSettings.paginationDetails.nextLinkName ||
-      p.name === "nextLink"
-        ? "continuationToken"
-        : p.name
-    )
+    .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
     .join(",");
 
   const method = operationGroupClass.addMethod({

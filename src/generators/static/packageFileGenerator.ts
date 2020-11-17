@@ -4,6 +4,7 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
+import { hasAsyncIteratorOperations } from "../utils/pagingOperations";
 
 export function generatePackageJson(
   clientDetails: ClientDetails,
@@ -13,7 +14,10 @@ export function generatePackageJson(
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
   );
-  const hasAsyncIterators = !clientDetails.options.disablePagingAsyncIterators;
+  const hasAsyncIterators =
+    !clientDetails.options.disablePagingAsyncIterators &&
+    clientDetails.operationGroups.some(og => hasAsyncIteratorOperations(og));
+
   const packageJsonContents = {
     name: packageDetails.name,
     author: "Microsoft Corporation",

@@ -315,7 +315,7 @@ describe("Integration tests for Paging", () => {
         items.push(item);
       }
       assert.equal(items.length, 10);
-    });
+    }).timeout(5000);
   });
 
   describe("#getMultiplePagesFragmentNextLink", () => {
