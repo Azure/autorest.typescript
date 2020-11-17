@@ -101,11 +101,11 @@ export function formatJsDocParam(parameters: Partial<ParameterDetails>[]) {
   );
 }
 
-export /**
+/**
  * Gets a list of parameter declarations for each overload the operation supports,
  * and the list of parameter declarations for the base operation.
  */
-function getOperationParameterSignatures(
+export function getOperationParameterSignatures(
   operation: OperationDetails,
   parameters: ParameterDetails[],
   importedModels: Set<string>,

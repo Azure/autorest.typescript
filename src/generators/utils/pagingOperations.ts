@@ -13,7 +13,7 @@ import {
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getOperationParameterSignatures } from "./parameterUtils";
 import { generateOperationJSDoc } from "./docsUtils";
-import { getResponseBodyType } from "./responseTypeUtils";
+import { getPagingResponseBodyType } from "./responseTypeUtils";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -59,22 +59,21 @@ export function addPagingImports(
   }
 }
 
+/**
+ * Checks whether or not an operation group contains any pageable operations
+ * that would need AsyncIterators
+ */
 export function hasAsyncIteratorOperations(
   operationGroupDetails: OperationGroupDetails
 ) {
-  return operationGroupDetails.operations.some(o =>
-    isSupportedWithAsyncIterators(o)
-  );
+  return operationGroupDetails.operations.some(o => o.pagination);
 }
 
-function isSupportedWithAsyncIterators(operation: OperationDetails) {
-  if (!operation.pagination?.supportsAsyncIterators) {
-    return false;
-  }
+/**
+ * This function prepares the initial and next operations to be generated using
+ * AsyncIterators, adding some extra metadata sunc as scope and prefix
 
-  return true;
-}
-
+ */
 export function preparePageableOperations(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
@@ -84,13 +83,19 @@ export function preparePageableOperations(
   }
 
   operationGroupDetails.operations
-    .filter(o => isSupportedWithAsyncIterators(o))
+    .filter(o => o.pagination)
     .forEach(operation => {
       operation.scope = Scope.Private;
       operation.namePrefix = "_";
     });
 }
 
+/**
+ * This function generates all the required methods for the pageable operation
+ * using AsyncIterators. It generates 3 extra methods on top of the initial and next operations
+ * One public method, one private page method whcih gets results per page, and an All method that
+ * iterates throug pages, returning all results in a single collection
+ */
 export function writeAsyncIterators(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
@@ -102,13 +107,16 @@ export function writeAsyncIterators(
   }
 
   operationGroupDetails.operations
-    .filter(
-      o => isSupportedWithAsyncIterators(o) && !o.pagination?.isNextLinkMethod
-    )
+    // We can skip "next" operations since covering the original is enough. Otherwise we'll end up with duplicate methods.
+    .filter(o => o.pagination && !o.pagination?.isNextLinkMethod)
     .forEach(operation => {
-      const baseName = normalizeName(operation.name, NameType.Operation);
+      const initialOperationName = normalizeName(
+        operation.name,
+        NameType.Operation
+      );
+
       const nextOperationName = normalizeName(
-        operation.pagination?.nextLinkOperationName || baseName,
+        operation.pagination?.nextLinkOperationName || initialOperationName,
         NameType.Operation
       );
 
@@ -118,18 +126,26 @@ export function writeAsyncIterators(
           operation.pagination?.nextLinkOperationName?.toLocaleLowerCase()
       );
 
-      const bodyResponseType = getResponseBodyType(operation);
+      // We need to figure out the body response type to be able to set the return types properly
+      const bodyResponseType = getPagingResponseBodyType(operation);
+
+      // Since we'll be using this type name for importing, we need to make sure that it is not in
+      // the form of array [], just need the name.
       let bodyResponseTypeName =
         bodyResponseType?.typeName.replace("[]", "") || "";
 
+      // In case the type name collides with the operation group class we need to append Model to the name
       if (bodyResponseTypeName === operationGroupDetails.name) {
         bodyResponseTypeName = `${bodyResponseTypeName}Model`;
       }
 
       if (!bodyResponseType) {
-        throw new Error(`Pageable operation ${baseName} has no return values`);
+        throw new Error(
+          `Pageable operation ${initialOperationName} has no return values`
+        );
       }
 
+      // Keep track of the models we'll need to import
       bodyResponseType?.usedModels.forEach(m => importedModels.add(m));
 
       let nextMethodParameters: MethodParameter[] | null = null;
@@ -149,17 +165,22 @@ export function writeAsyncIterators(
         });
       }
 
-      const { baseMethodParameters } = getOperationParameterSignatures(
+      const {
+        baseMethodParameters: initialMethodParameters
+      } = getOperationParameterSignatures(
         operation,
         clientDetails.parameters,
         importedModels,
         operationGroupClass
       );
 
+      // Build an object with all the information about the paging methods
+      // while generating each of the paging methods, this will help up access
+      // information about the other methdos.
       const pagingMethodSettings: PagingMethodSettings = {
         initialMethod: {
-          name: `${operation.namePrefix}${baseName}`,
-          parameters: baseMethodParameters
+          name: `${operation.namePrefix}${initialOperationName}`,
+          parameters: initialMethodParameters
         },
         nextMethod: nextMethodParameters
           ? {
@@ -167,14 +188,17 @@ export function writeAsyncIterators(
               parameters: nextMethodParameters
             }
           : undefined,
-        publicMethod: { name: baseName, parameters: baseMethodParameters },
+        publicMethod: {
+          name: initialOperationName,
+          parameters: initialMethodParameters
+        },
         allMethod: {
-          name: `${baseName}PagingAll`,
-          parameters: baseMethodParameters
+          name: `${initialOperationName}PagingAll`,
+          parameters: initialMethodParameters
         },
         pageMethod: {
-          name: `${baseName}PagingPage`,
-          parameters: baseMethodParameters
+          name: `${initialOperationName}PagingPage`,
+          parameters: initialMethodParameters
         },
         bodyResponseType: bodyResponseTypeName,
         nextLinkName: operation.pagination?.nextLinkName || "nextLink",
@@ -183,10 +207,13 @@ export function writeAsyncIterators(
 
       writePublicMethod(operation, operationGroupClass, pagingMethodSettings);
       writePageMethod(operation, operationGroupClass, pagingMethodSettings);
-      writeAllMethod(operation, operationGroupClass, pagingMethodSettings);
+      writeAllMethod(operationGroupClass, pagingMethodSettings);
     });
 }
 
+/**
+ * Generates the content of the public method, here we reference the other 2 methods All and Page
+ */
 function writePublicMethod(
   operation: OperationDetails,
   operationGroupClass: ClassDeclaration,
@@ -207,16 +234,18 @@ function writePublicMethod(
     ]
   });
 
-  let parameters = pagingMethodSettings.publicMethod.parameters
+  // Extract the parameter names for the All method to call it
+  let allMethodParameters = pagingMethodSettings.allMethod.parameters
     .map(p => p.name)
     .join(",");
 
+  // Extract the parameter names for the page method to call it
   const pageMethodNameParams = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
     .join(",");
 
   method.addStatements([
-    `const iter = this.${pagingMethodSettings.allMethod.name}(${parameters});`,
+    `const iter = this.${pagingMethodSettings.allMethod.name}(${allMethodParameters});`,
     `return {
         next() {
           return iter.next();
@@ -231,13 +260,16 @@ function writePublicMethod(
   ]);
 }
 
+/**
+ * Generates the All method which loops through all the pages and returns a single array with all the results
+ */
 function writeAllMethod(
-  operation: OperationDetails,
   operationGroupClass: ClassDeclaration,
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}>`;
 
+  // Gets the page method parameters to use when calling it.
   const pageMethodParameters = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
     .join(",");
@@ -247,12 +279,6 @@ function writeAllMethod(
     parameters: pagingMethodSettings.initialMethod.parameters,
     scope: Scope.Private,
     returnType,
-    docs: [
-      generateOperationJSDoc(
-        pagingMethodSettings.initialMethod.parameters,
-        operation.description
-      )
-    ],
     isAsync: true
   });
 
@@ -269,12 +295,18 @@ function writePageMethod(
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `AsyncIterableIterator<${pagingMethodSettings.bodyResponseType}[]>`;
+
+  // Name of the property that contains the page value
   const itemName = pagingMethodSettings.itemName;
+
+  // Name of the property that contains the nextLink
   const nextLinkProperty = normalizeName(
     pagingMethodSettings.nextLinkName!,
     NameType.Property
   );
-  const parameters = pagingMethodSettings.initialMethod.parameters
+
+  // Extract the names for the initial method parameters
+  const initialMethodParameters = pagingMethodSettings.initialMethod.parameters
     .map(p => p.name)
     .join(",");
 
@@ -283,33 +315,34 @@ function writePageMethod(
     parameters: pagingMethodSettings.pageMethod.parameters,
     scope: Scope.Private,
     returnType,
-    docs: [
-      generateOperationJSDoc(
-        pagingMethodSettings.initialMethod.parameters,
-        operation.description
-      )
-    ],
     isAsync: true
   });
 
   let firstRequestStatements = [
-    `let result = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`,
-    `yield result.${itemName} || [];`
+    `let result = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`
   ];
 
   if (operation.isLRO) {
+    // Since this is also an LRO operation, we need to poll until done to get the result
     firstRequestStatements = [
-      `const poller = await this.${pagingMethodSettings.initialMethod.name}(${parameters});`,
-      // TODO: Fix typing here, currently returning the original response type conflicts because the nextPage doesn't contain the LROSymbol. Maybe an union type is the correct type
-      `let result: any = await poller.pollUntilDone();`,
-      `yield result.${itemName} || [];`
+      `const poller = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`,
+      `let result = await poller.pollUntilDone();`
     ];
   }
 
-  method.addStatements(firstRequestStatements);
+  method.addStatements([
+    ...firstRequestStatements,
+    `yield result.${itemName} || [];`
+  ]);
 
+  // There is a scenario where there is no nextMethod, just the initial one, in that case we don't need to loop
+  // until we no longer have a continuationToken, we just stop there.
+  // Otherwise we generate the below code to loop
   if (pagingMethodSettings.nextMethod) {
+    // Extract the parameters to send to the nextMethod
     const nextParameters = pagingMethodSettings.nextMethod.parameters
+      // renaming nextLink to continuationToken sice it is the name we are using below and to avoid collisions with the
+      // nextLink parameter that this (page method) takes.
       .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
       .join(",");
 

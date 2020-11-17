@@ -13,7 +13,7 @@ import {
   MethodDeclaration,
   CodeBlockWriter
 } from "ts-morph";
-import { normalizeName, NameType, normalizeTypeName } from "../utils/nameUtils";
+import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
 import {
@@ -35,7 +35,10 @@ import {
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { shouldImportParameters } from "./utils/importUtils";
-import { getAllModelsNames, getResponseType } from "./utils/responseTypeUtils";
+import {
+  getAllModelsNames,
+  getOperationResponseType
+} from "./utils/responseTypeUtils";
 import { Mapper, ParameterPath } from "@azure/core-http";
 import { generateOperationJSDoc } from "./utils/docsUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
@@ -377,7 +380,11 @@ function getReturnType(
   importedModels: Set<string>,
   modelNames: Set<string>
 ) {
-  const responseName = getResponseType(operation, importedModels, modelNames);
+  const responseName = getOperationResponseType(
+    operation,
+    importedModels,
+    modelNames
+  );
 
   return operation.isLRO
     ? `Promise<LROPoller<${responseName}>>`
@@ -493,7 +500,11 @@ export function writeOperations(
       importedModels,
       operationGroupClass
     );
-    const responseName = getResponseType(operation, importedModels, modelNames);
+    const responseName = getOperationResponseType(
+      operation,
+      importedModels,
+      modelNames
+    );
     const returnType = getReturnType(operation, importedModels, modelNames);
     const name = `${operation.namePrefix || ""}${normalizeName(
       operation.name,

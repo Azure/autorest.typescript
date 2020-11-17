@@ -149,5 +149,4 @@ export interface PaginationDetails {
    * Indicates whether this operation is used by another operation to get pages.
    */
   isNextLinkMethod: boolean;
-  supportsAsyncIterators: boolean;
 }

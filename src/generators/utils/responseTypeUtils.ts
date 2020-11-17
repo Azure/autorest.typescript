@@ -37,7 +37,11 @@ export function getResponseTypeName(
     : typeName;
 }
 
-export function getResponseType(
+/**
+ * Given an Operation, this function finds the response type name and adds it to the imported models.
+ * This function checks for a possible model name, or returns the default "RestResponse" type from core-http.
+ */
+export function getOperationResponseType(
   operation: OperationDetails,
   importedModels: Set<string>,
   modelNames: Set<string>
@@ -58,7 +62,12 @@ export function getResponseType(
   return "coreHttp.RestResponse";
 }
 
-export function getResponseBodyType(operation: OperationDetails) {
+/**
+ * This function extracts the body type for pageable operations. This is used to later on
+ * be able to return an array of items, instead of the Response objects. This will get the type
+ * of the "value" property from the response on a pageable operation.
+ */
+export function getPagingResponseBodyType(operation: OperationDetails) {
   const responses = operation.responses
     // Filter responses that are not marked as errors and that have either body or headers
     .filter(

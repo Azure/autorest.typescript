@@ -323,6 +323,9 @@ export function transformOperationResponse(
   };
 }
 
+/**
+ * This function extracts the type of the value property in the response of a pageable operation
+ */
 function getPagingItemType(
   response: SchemaResponse | Response,
   paginationItemName?: string

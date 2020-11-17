@@ -43,8 +43,27 @@ export function extractPaginationDetails(
     nextLinkOperationName = `${languageMetadata.name}Next`;
   }
 
-  let itemName = paginationExtension.itemName ?? "value";
+  let itemName = getItemName(paginationExtension, operation);
 
+  return {
+    group: paginationExtension.group,
+    member: paginationExtension.member,
+    nextLinkName,
+    itemName,
+    itemTypes: getItemTypes(operation, itemName),
+    nextLinkOperationName,
+    isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod)
+  };
+}
+
+// This function finds the true name of "itemName", it is possible that it has changed
+// if x-ms-client-name was used when defining the response object in swagger.
+// So this function searches the serialized name which shouldn't change and gets the "true" name
+function getItemName(
+  paginationExtension: PaginationExtension,
+  operation: Operation
+) {
+  let itemName = paginationExtension.itemName ?? "value";
   for (const response of operation.responses || []) {
     if (isSchemaResponse(response)) {
       const valuesProperty = (response.schema as ObjectSchema).properties?.find(
@@ -57,29 +76,7 @@ export function extractPaginationDetails(
     }
   }
 
-  let supportsAsyncIterators: boolean = true;
-
-  // if (!nextLinkName) {
-  //   supportsAsyncIterators = Boolean(paginationExtension.isNextLinkMethod);
-  // }
-
-  //  if (paginationExtension.nextLinkOperation) {
-  //   const nextMetadata = getLanguageMetadata(
-  //     paginationExtension.nextLinkOperation.language
-  //   );
-  //   supportsAsyncIterators = Boolean(nextMetadata.paging?.nextLinkName);
-  // }
-
-  return {
-    group: paginationExtension.group,
-    member: paginationExtension.member,
-    nextLinkName,
-    itemName,
-    itemTypes: getItemTypes(operation, itemName),
-    nextLinkOperationName,
-    isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod),
-    supportsAsyncIterators
-  };
+  return itemName;
 }
 
 /**
