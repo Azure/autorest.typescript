@@ -23,7 +23,7 @@ describe("Custom URL + Paging", () => {
     ];
     it("getPagesPartialUrl", async () => {
       let values: Product[] = [];
-      let result = client.paging.getPagesPartialUrl(account);
+      let result = client.paging.listPagesPartialUrl(account);
 
       for await (const item of result) {
         values.push(item);
@@ -34,7 +34,7 @@ describe("Custom URL + Paging", () => {
 
     it("getPagesPartialUrlOperation", async () => {
       let values: Product[] = [];
-      let result = client.paging.getPagesPartialUrlOperation(account);
+      let result = client.paging.listPagesPartialUrlOperation(account);
 
       for await (const item of result) {
         values.push(item);
