@@ -38,7 +38,7 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  public getPagesPartialUrl(
+  public listPagesPartialUrl(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
@@ -56,11 +56,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL and expect to concat after host
-   * @param accountName Account Name
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlPagingPage(
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -79,11 +74,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL and expect to concat after host
-   * @param accountName Account Name
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlPagingAll(
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -101,7 +91,7 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  public getPagesPartialUrlOperation(
+  public listPagesPartialUrlOperation(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
@@ -122,11 +112,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL with next operation
-   * @param accountName Account Name
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlOperationPagingPage(
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -145,11 +130,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL with next operation
-   * @param accountName Account Name
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlOperationPagingAll(
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -168,7 +148,7 @@ export class Paging {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  public getPagesPartialUrlOperationNext(
+  public listPagesPartialUrlOperationNext(
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -195,12 +175,6 @@ export class Paging {
     };
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL
-   * @param accountName Account Name
-   * @param nextLink Next link for the list operation.
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlOperationNextPagingPage(
     accountName: string,
     nextLink: string,
@@ -224,12 +198,6 @@ export class Paging {
     }
   }
 
-  /**
-   * A paging operation that combines custom url, paging and partial URL
-   * @param accountName Account Name
-   * @param nextLink Next link for the list operation.
-   * @param options The options parameters.
-   */
   private async *getPagesPartialUrlOperationNextPagingAll(
     accountName: string,
     nextLink: string,

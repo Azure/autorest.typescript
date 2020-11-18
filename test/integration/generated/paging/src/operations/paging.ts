@@ -77,7 +77,7 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  public getNoItemNamePages(
+  public listNoItemNamePages(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getNoItemNamePagesPagingAll(options);
@@ -119,7 +119,7 @@ export class Paging {
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  public getNullNextLinkNamePages(
+  public listNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getNullNextLinkNamePagesPagingAll(options);
@@ -155,7 +155,7 @@ export class Paging {
    * A paging operation that finishes on the first call without a nextlink
    * @param options The options parameters.
    */
-  public getSinglePages(
+  public listSinglePages(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getSinglePagesPagingAll(options);
@@ -197,7 +197,7 @@ export class Paging {
    * A paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public getMultiplePages(
+  public listMultiplePages(
     options?: PagingGetMultiplePagesOptionalParams
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesPagingAll(options);
@@ -241,7 +241,7 @@ export class Paging {
    * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
    * @param options The options parameters.
    */
-  public getWithQueryParams(
+  public listWithQueryParams(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
@@ -298,7 +298,7 @@ export class Paging {
    * A paging operation that includes a nextLink in odata format that has 10 pages
    * @param options The options parameters.
    */
-  public getOdataMultiplePages(
+  public listOdataMultiplePages(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getOdataMultiplePagesPagingAll(options);
@@ -344,7 +344,7 @@ export class Paging {
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param options The options parameters.
    */
-  public getMultiplePagesWithOffset(
+  public listMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): PagedAsyncIterableIterator<Product, Product[]> {
@@ -406,7 +406,7 @@ export class Paging {
    * including a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public getMultiplePagesRetryFirst(
+  public listMultiplePagesRetryFirst(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesRetryFirstPagingAll(options);
@@ -454,7 +454,7 @@ export class Paging {
    * with 500. The client should retry and finish all 10 pages eventually.
    * @param options The options parameters.
    */
-  public getMultiplePagesRetrySecond(
+  public listMultiplePagesRetrySecond(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesRetrySecondPagingAll(options);
@@ -501,7 +501,7 @@ export class Paging {
    * A paging operation that receives a 400 on the first call
    * @param options The options parameters.
    */
-  public getSinglePagesFailure(
+  public listSinglePagesFailure(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getSinglePagesFailurePagingAll(options);
@@ -546,7 +546,7 @@ export class Paging {
    * A paging operation that receives a 400 on the second call
    * @param options The options parameters.
    */
-  public getMultiplePagesFailure(
+  public listMultiplePagesFailure(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesFailurePagingAll(options);
@@ -591,7 +591,7 @@ export class Paging {
    * A paging operation that receives an invalid nextLink
    * @param options The options parameters.
    */
-  public getMultiplePagesFailureUri(
+  public listMultiplePagesFailureUri(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesFailureUriPagingAll(options);
@@ -640,7 +640,7 @@ export class Paging {
    * @param tenant Sets the tenant to use.
    * @param options The options parameters.
    */
-  public getMultiplePagesFragmentNextLink(
+  public listMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
     options?: coreHttp.OperationOptions
@@ -710,7 +710,7 @@ export class Paging {
    * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
-  public getMultiplePagesFragmentWithGroupingNextLink(
+  public listMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
@@ -771,7 +771,7 @@ export class Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public getMultiplePagesLRO(
+  public listMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getMultiplePagesLROPagingAll(options);
@@ -817,7 +817,7 @@ export class Paging {
    * @param nextLink Next link for list operation.
    * @param options The options parameters.
    */
-  public nextFragment(
+  public listNextFragment(
     apiVersion: string,
     tenant: string,
     nextLink: string,
@@ -895,7 +895,7 @@ export class Paging {
    * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
-  public nextFragmentWithGrouping(
+  public listNextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
@@ -964,7 +964,7 @@ export class Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  public getPagingModelWithItemNameWithXMSClientName(
+  public listPagingModelWithItemNameWithXMSClientName(
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product, Product[]> {
     const iter = this.getPagingModelWithItemNameWithXMSClientNamePagingAll(
