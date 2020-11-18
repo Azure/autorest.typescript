@@ -108,7 +108,7 @@ export function writeAsyncIterators(
 
   operationGroupDetails.operations
     // We can skip "next" operations since covering the original is enough. Otherwise we'll end up with duplicate methods.
-    .filter(o => o.pagination && !o.pagination?.isNextLinkMethod)
+    .filter(o => o.pagination && !o.pagination.isNextLinkMethod)
     .forEach(operation => {
       const initialOperationName = normalizeName(
         operation.name,
