@@ -16,7 +16,7 @@ describe("Integration tests for Paging", () => {
 
   describe("getMultiplePagesRetrySecond", () => {
     it("should retry and succeed the second time calling the next operation", async () => {
-      const iter = client.paging.getPagingModelWithItemNameWithXMSClientName();
+      const iter = client.paging.listPagingModelWithItemNameWithXMSClientName();
 
       let result: Product[] = [];
       for await (const item of iter) {
@@ -26,7 +26,7 @@ describe("Integration tests for Paging", () => {
     });
 
     it("should retry and succeed the second time calling the next operation", async () => {
-      let pages = client.paging.getMultiplePagesRetrySecond();
+      let pages = client.paging.listMultiplePagesRetrySecond();
       let values: Product[] = [];
 
       for await (const page of pages) {
@@ -100,7 +100,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getNoItemNamePages", () => {
     it("should return result of the default 'value' node", async () => {
-      const iter = client.paging.getNoItemNamePages();
+      const iter = client.paging.listNoItemNamePages();
       const items: Product[] = [];
       for await (const item of iter) {
         items.push(item);
@@ -124,7 +124,7 @@ describe("Integration tests for Paging", () => {
           }
         }
       ];
-      const response = client.paging.getNullNextLinkNamePages();
+      const response = client.paging.listNullNextLinkNamePages();
       const items: Product[] = [];
       for await (const item of response) {
         items.push(item);
@@ -150,7 +150,7 @@ describe("Integration tests for Paging", () => {
         }
       ];
       const items: Product[] = [];
-      const result = client.paging.getWithQueryParams(100);
+      const result = client.paging.listWithQueryParams(100);
 
       for await (const item of result) {
         items.push(item);
@@ -162,7 +162,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getOdataMultiplePages", () => {
     it("should return a ProductResult", async () => {
-      let response = client.paging.getOdataMultiplePages();
+      let response = client.paging.listOdataMultiplePages();
       let index = 1;
       let items: Product[] = [];
 
@@ -178,7 +178,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesRetryFirst", () => {
     it("should retry first failed request and then get the next 10 pages", async () => {
-      let response = client.paging.getMultiplePagesRetryFirst();
+      let response = client.paging.listMultiplePagesRetryFirst();
       let index = 1;
       let items: Product[] = [];
 
@@ -194,7 +194,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getSinglePages", () => {
     it("succeeds", async () => {
-      const response = client.paging.getSinglePages();
+      const response = client.paging.listSinglePages();
       let pages = 0;
       for await (const page of response.byPage()) {
         assert.deepEqual(page, [
@@ -214,7 +214,7 @@ describe("Integration tests for Paging", () => {
   describe("#getSinglePagesFailure", () => {
     it("throws an error", async () => {
       try {
-        const iter = client.paging.getSinglePagesFailure();
+        const iter = client.paging.listSinglePagesFailure();
         let index = 0;
         for await (const item of iter) {
           assert.isDefined(item);
@@ -230,7 +230,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePages", () => {
     it("succeeds", async () => {
-      const response = client.paging.getMultiplePages();
+      const response = client.paging.listMultiplePages();
       let index = 1;
       let items: Product[] = [];
 
@@ -246,7 +246,7 @@ describe("Integration tests for Paging", () => {
     it("should fail on 400 multiple pages", async () => {
       let index = 0;
       try {
-        const iter = client.paging.getMultiplePagesFailure();
+        const iter = client.paging.listMultiplePagesFailure();
         for await (const page of iter.byPage()) {
           assert.isDefined(page);
           index++;
@@ -262,7 +262,7 @@ describe("Integration tests for Paging", () => {
     it("should fail on invalid next link URL in multiple pages", async () => {
       let index = 0;
       try {
-        const iter = client.paging.getMultiplePagesFailureUri();
+        const iter = client.paging.listMultiplePagesFailureUri();
         for await (const page of iter.byPage()) {
           assert.isDefined(page);
           index++;
@@ -276,7 +276,7 @@ describe("Integration tests for Paging", () => {
     });
 
     it("should get multiple pages with fragmented nextLink", async () => {
-      const iter = client.paging.getMultiplePagesFragmentNextLink(
+      const iter = client.paging.listMultiplePagesFragmentNextLink(
         "1.6",
         "test_user"
       );
@@ -293,7 +293,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesWithOffset", () => {
     it("succeeds", async () => {
-      const iter = client.paging.getMultiplePagesWithOffset({ offset: 100 });
+      const iter = client.paging.listMultiplePagesWithOffset({ offset: 100 });
       let items: Product[] = [];
       for await (const item of iter) {
         items.push(item);
@@ -305,7 +305,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesLRO", () => {
     it("succeeds and gets 10 pages", async () => {
-      const iter = client.paging.getMultiplePagesLRO();
+      const iter = client.paging.listMultiplePagesLRO();
       let index = 0;
       let items: Product[] = [];
       for await (const item of iter) {
@@ -319,7 +319,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesFragmentNextLink", () => {
     it("succeeds", async () => {
-      const iter = client.paging.getMultiplePagesFragmentNextLink(
+      const iter = client.paging.listMultiplePagesFragmentNextLink(
         "1.6",
         "test_user"
       );
