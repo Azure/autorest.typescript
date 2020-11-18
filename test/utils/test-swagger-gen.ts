@@ -1,5 +1,4 @@
 import { exec } from "child_process";
-import { json } from "express";
 import { TracingInfo } from "../../src/models/clientDetails";
 
 interface SwaggerConfig {
@@ -9,6 +8,7 @@ interface SwaggerConfig {
   addCredentials?: boolean;
   licenseHeader?: boolean;
   tracing?: TracingInfo;
+  disableAsyncIterators?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -250,7 +250,18 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swagger: "paging.json",
     clientName: "PagingClient",
     packageName: "paging-service",
-    licenseHeader: true
+    licenseHeader: true,
+    tracing: {
+      namespace: "Microsoft.Media.Types",
+      packagePrefix: "Azure.Media.Types"
+    }
+  },
+  pagingNoIterators: {
+    swagger: "paging.json",
+    clientName: "PagingNoIteratorsClient",
+    packageName: "paging-no-iterators",
+    licenseHeader: true,
+    disableAsyncIterators: true
   },
   requiredOptional: {
     swagger: "required-optional.json",
@@ -361,7 +372,8 @@ const generateSwaggers = async (
       swagger,
       packageName,
       licenseHeader,
-      tracing
+      tracing,
+      disableAsyncIterators
     } = testSwaggers[name];
 
     let swaggerPath = swagger;
@@ -370,12 +382,16 @@ const generateSwaggers = async (
       ? `--tracing-info.namespace=${tracing.namespace} --tracing-info.packagePrefix=${tracing.packagePrefix}`
       : "";
 
+    const disableIterators = disableAsyncIterators
+      ? "--disable-async-iterators=true"
+      : "";
+
     if (swagger.split("/").length === 1) {
       // When given a filename look for it in test server, otherwise use the path
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;
