@@ -6,6 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { CanonicalCode } from "@opentelemetry/api";
+import { createSpan } from "../tracing";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
@@ -1015,64 +1017,124 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  private _getNoItemNamePages(
+  private async _getNoItemNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getNoItemNamePages",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNoItemNamePagesOperationSpec
-    ) as Promise<PagingGetNoItemNamePagesResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getNoItemNamePagesOperationSpec
+      );
+      return result as PagingGetNoItemNamePagesResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  private _getNullNextLinkNamePages(
+  private async _getNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getNullNextLinkNamePages",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNullNextLinkNamePagesOperationSpec
-    ) as Promise<PagingGetNullNextLinkNamePagesResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getNullNextLinkNamePagesOperationSpec
+      );
+      return result as PagingGetNullNextLinkNamePagesResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that finishes on the first call without a nextlink
    * @param options The options parameters.
    */
-  private _getSinglePages(
+  private async _getSinglePages(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getSinglePages",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getSinglePagesOperationSpec
-    ) as Promise<PagingGetSinglePagesResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getSinglePagesOperationSpec
+      );
+      return result as PagingGetSinglePagesResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  private _getMultiplePages(
+  private async _getMultiplePages(
     options?: PagingGetMultiplePagesOptionalParams
   ): Promise<PagingGetMultiplePagesResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePages",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesOperationSpec
-    ) as Promise<PagingGetMultiplePagesResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesOperationSpec
+      );
+      return result as PagingGetMultiplePagesResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1081,50 +1143,95 @@ export class Paging {
    * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
    * @param options The options parameters.
    */
-  private _getWithQueryParams(
+  private async _getWithQueryParams(
     requiredQueryParameter: number,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetWithQueryParamsResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getWithQueryParams",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       requiredQueryParameter,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getWithQueryParamsOperationSpec
-    ) as Promise<PagingGetWithQueryParamsResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getWithQueryParamsOperationSpec
+      );
+      return result as PagingGetWithQueryParamsResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
    */
-  private _nextOperationWithQueryParams(
+  private async _nextOperationWithQueryParams(
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_nextOperationWithQueryParams",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      nextOperationWithQueryParamsOperationSpec
-    ) as Promise<PagingNextOperationWithQueryParamsResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        nextOperationWithQueryParamsOperationSpec
+      );
+      return result as PagingNextOperationWithQueryParamsResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    * @param options The options parameters.
    */
-  private _getOdataMultiplePages(
+  private async _getOdataMultiplePages(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): Promise<PagingGetOdataMultiplePagesResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getOdataMultiplePages",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getOdataMultiplePagesOperationSpec
-    ) as Promise<PagingGetOdataMultiplePagesResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getOdataMultiplePagesOperationSpec
+      );
+      return result as PagingGetOdataMultiplePagesResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1132,18 +1239,33 @@ export class Paging {
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param options The options parameters.
    */
-  private _getMultiplePagesWithOffset(
+  private async _getMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesWithOffset",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       pagingGetMultiplePagesWithOffsetOptions,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesWithOffsetOperationSpec
-    ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesWithOffsetOperationSpec
+      );
+      return result as PagingGetMultiplePagesWithOffsetResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1151,16 +1273,31 @@ export class Paging {
    * including a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  private _getMultiplePagesRetryFirst(
+  private async _getMultiplePagesRetryFirst(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesRetryFirst",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesRetryFirstOperationSpec
-    ) as Promise<PagingGetMultiplePagesRetryFirstResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesRetryFirstOperationSpec
+      );
+      return result as PagingGetMultiplePagesRetryFirstResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1168,64 +1305,124 @@ export class Paging {
    * with 500. The client should retry and finish all 10 pages eventually.
    * @param options The options parameters.
    */
-  private _getMultiplePagesRetrySecond(
+  private async _getMultiplePagesRetrySecond(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesRetrySecond",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesRetrySecondOperationSpec
-    ) as Promise<PagingGetMultiplePagesRetrySecondResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesRetrySecondOperationSpec
+      );
+      return result as PagingGetMultiplePagesRetrySecondResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that receives a 400 on the first call
    * @param options The options parameters.
    */
-  private _getSinglePagesFailure(
+  private async _getSinglePagesFailure(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesFailureResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getSinglePagesFailure",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getSinglePagesFailureOperationSpec
-    ) as Promise<PagingGetSinglePagesFailureResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getSinglePagesFailureOperationSpec
+      );
+      return result as PagingGetSinglePagesFailureResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that receives a 400 on the second call
    * @param options The options parameters.
    */
-  private _getMultiplePagesFailure(
+  private async _getMultiplePagesFailure(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFailure",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFailureOperationSpec
-    ) as Promise<PagingGetMultiplePagesFailureResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFailureOperationSpec
+      );
+      return result as PagingGetMultiplePagesFailureResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
    * A paging operation that receives an invalid nextLink
    * @param options The options parameters.
    */
-  private _getMultiplePagesFailureUri(
+  private async _getMultiplePagesFailureUri(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFailureUri",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFailureUriOperationSpec
-    ) as Promise<PagingGetMultiplePagesFailureUriResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFailureUriOperationSpec
+      );
+      return result as PagingGetMultiplePagesFailureUriResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1234,20 +1431,35 @@ export class Paging {
    * @param tenant Sets the tenant to use.
    * @param options The options parameters.
    */
-  private _getMultiplePagesFragmentNextLink(
+  private async _getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFragmentNextLink",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       apiVersion,
       tenant,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFragmentNextLinkOperationSpec
-    ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFragmentNextLinkOperationSpec
+      );
+      return result as PagingGetMultiplePagesFragmentNextLinkResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1255,18 +1467,33 @@ export class Paging {
    * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
-  private _getMultiplePagesFragmentWithGroupingNextLink(
+  private async _getMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFragmentWithGroupingNextLink",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       customParameterGroup,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
-    ) as Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
+      );
+      return result as PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1276,8 +1503,12 @@ export class Paging {
   private async _getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<LROPoller<PagingGetMultiplePagesLROResponse>> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesLRO",
+      this.getOperationOptions(options, "undefined")
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: this.getOperationOptions(options, "undefined")
+      options: updatedOptions
     };
     const sendOperation = (
       args: coreHttp.OperationArguments,
@@ -1305,22 +1536,37 @@ export class Paging {
    * @param nextLink Next link for list operation.
    * @param options The options parameters.
    */
-  private _nextFragment(
+  private async _nextFragment(
     apiVersion: string,
     tenant: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_nextFragment",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       apiVersion,
       tenant,
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      nextFragmentOperationSpec
-    ) as Promise<PagingNextFragmentResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        nextFragmentOperationSpec
+      );
+      return result as PagingNextFragmentResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1329,20 +1575,35 @@ export class Paging {
    * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
-  private _nextFragmentWithGrouping(
+  private async _nextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentWithGroupingResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_nextFragmentWithGrouping",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
       customParameterGroup,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      nextFragmentWithGroupingOperationSpec
-    ) as Promise<PagingNextFragmentWithGroupingResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        nextFragmentWithGroupingOperationSpec
+      );
+      return result as PagingNextFragmentWithGroupingResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1350,16 +1611,31 @@ export class Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  private _getPagingModelWithItemNameWithXMSClientName(
+  private async _getPagingModelWithItemNameWithXMSClientName(
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getPagingModelWithItemNameWithXMSClientName",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getPagingModelWithItemNameWithXMSClientNameOperationSpec
-    ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getPagingModelWithItemNameWithXMSClientNameOperationSpec
+      );
+      return result as PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1367,18 +1643,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
    * @param options The options parameters.
    */
-  private _getNoItemNamePagesNext(
+  private async _getNoItemNamePagesNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getNoItemNamePagesNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNoItemNamePagesNextOperationSpec
-    ) as Promise<PagingGetNoItemNamePagesNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getNoItemNamePagesNextOperationSpec
+      );
+      return result as PagingGetNoItemNamePagesNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1386,18 +1677,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
    */
-  private _getSinglePagesNext(
+  private async _getSinglePagesNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getSinglePagesNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getSinglePagesNextOperationSpec
-    ) as Promise<PagingGetSinglePagesNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getSinglePagesNextOperationSpec
+      );
+      return result as PagingGetSinglePagesNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1405,18 +1711,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesNext(
+  private async _getMultiplePagesNext(
     nextLink: string,
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1424,18 +1745,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param options The options parameters.
    */
-  private _getOdataMultiplePagesNext(
+  private async _getOdataMultiplePagesNext(
     nextLink: string,
     options?: PagingGetOdataMultiplePagesNextOptionalParams
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getOdataMultiplePagesNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getOdataMultiplePagesNextOperationSpec
-    ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getOdataMultiplePagesNextOperationSpec
+      );
+      return result as PagingGetOdataMultiplePagesNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1445,20 +1781,35 @@ export class Paging {
    *                 method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesWithOffsetNext(
+  private async _getMultiplePagesWithOffsetNext(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     nextLink: string,
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesWithOffsetNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       pagingGetMultiplePagesWithOffsetOptions,
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesWithOffsetNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesWithOffsetNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesWithOffsetNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1467,18 +1818,33 @@ export class Paging {
    *                 method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesRetryFirstNext(
+  private async _getMultiplePagesRetryFirstNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesRetryFirstNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesRetryFirstNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesRetryFirstNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesRetryFirstNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1487,18 +1853,33 @@ export class Paging {
    *                 method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesRetrySecondNext(
+  private async _getMultiplePagesRetrySecondNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesRetrySecondNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesRetrySecondNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesRetrySecondNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesRetrySecondNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1506,18 +1887,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetSinglePagesFailure method.
    * @param options The options parameters.
    */
-  private _getSinglePagesFailureNext(
+  private async _getSinglePagesFailureNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getSinglePagesFailureNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getSinglePagesFailureNextOperationSpec
-    ) as Promise<PagingGetSinglePagesFailureNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getSinglePagesFailureNextOperationSpec
+      );
+      return result as PagingGetSinglePagesFailureNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1526,18 +1922,33 @@ export class Paging {
    *                 method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesFailureNext(
+  private async _getMultiplePagesFailureNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFailureNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFailureNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesFailureNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFailureNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesFailureNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1546,18 +1957,33 @@ export class Paging {
    *                 method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesFailureUriNext(
+  private async _getMultiplePagesFailureUriNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesFailureUriNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesFailureUriNextOperationSpec
-    ) as Promise<PagingGetMultiplePagesFailureUriNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesFailureUriNextOperationSpec
+      );
+      return result as PagingGetMultiplePagesFailureUriNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1565,18 +1991,33 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  private _getMultiplePagesLRONext(
+  private async _getMultiplePagesLRONext(
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getMultiplePagesLRONext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMultiplePagesLRONextOperationSpec
-    ) as Promise<PagingGetMultiplePagesLRONextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getMultiplePagesLRONextOperationSpec
+      );
+      return result as PagingGetMultiplePagesLRONextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   /**
@@ -1585,18 +2026,33 @@ export class Paging {
    *                 GetPagingModelWithItemNameWithXMSClientName method.
    * @param options The options parameters.
    */
-  private _getPagingModelWithItemNameWithXMSClientNameNext(
+  private async _getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_getPagingModelWithItemNameWithXMSClientNameNext",
+      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    );
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options: updatedOptions
     };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
-    ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
+      );
+      return result as PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
