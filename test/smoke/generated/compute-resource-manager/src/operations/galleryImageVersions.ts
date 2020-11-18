@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -34,6 +35,87 @@ export class GalleryImageVersions {
    */
   constructor(client: ComputeManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * List gallery Image Versions in a gallery Image Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the Shared Image Gallery Image Definition from which the Image
+   *                         Versions are to be listed.
+   * @param options The options parameters.
+   */
+  public listByGalleryImage(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<GalleryImageVersion, GalleryImageVersion[]> {
+    const iter = this.listByGalleryImagePagingAll(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByGalleryImagePagingPage(
+          resourceGroupName,
+          galleryName,
+          galleryImageName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByGalleryImagePagingPage(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryImageVersion[]> {
+    let result = await this._listByGalleryImage(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByGalleryImageNext(
+        resourceGroupName,
+        galleryName,
+        galleryImageName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByGalleryImagePagingAll(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryImageVersion> {
+    for await (const page of this.listByGalleryImagePagingPage(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -68,10 +150,12 @@ export class GalleryImageVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryImageVersionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -115,10 +199,12 @@ export class GalleryImageVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryImageVersionsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -184,10 +270,12 @@ export class GalleryImageVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -208,7 +296,7 @@ export class GalleryImageVersions {
    *                         Versions are to be listed.
    * @param options The options parameters.
    */
-  listByGalleryImage(
+  private _listByGalleryImage(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -235,7 +323,7 @@ export class GalleryImageVersions {
    * @param nextLink The nextLink from the previous successful call to the ListByGalleryImage method.
    * @param options The options parameters.
    */
-  listByGalleryImageNext(
+  private _listByGalleryImageNext(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,

@@ -6,11 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { ElasticPoolActivitiesListByElasticPoolResponse } from "../models";
+import {
+  ElasticPoolActivity,
+  ElasticPoolActivitiesListByElasticPoolResponse
+} from "../models";
 
 /**
  * Class representing a ElasticPoolActivities.
@@ -34,7 +38,76 @@ export class ElasticPoolActivities {
    * @param elasticPoolName The name of the elastic pool for which to get the current activity.
    * @param options The options parameters.
    */
-  listByElasticPool(
+  public listByElasticPool(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ElasticPoolActivity, ElasticPoolActivity[]> {
+    const iter = this.listByElasticPoolPagingAll(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByElasticPoolPagingPage(
+          resourceGroupName,
+          serverName,
+          elasticPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByElasticPoolPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ElasticPoolActivity[]> {
+    let result = await this._listByElasticPool(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listByElasticPoolPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ElasticPoolActivity> {
+    for await (const page of this.listByElasticPoolPagingPage(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns elastic pool activities.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool for which to get the current activity.
+   * @param options The options parameters.
+   */
+  private _listByElasticPool(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,

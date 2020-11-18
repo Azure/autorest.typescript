@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  ManagedInstanceOperation,
   ManagedInstanceOperationsListByManagedInstanceResponse,
   ManagedInstanceOperationsGetResponse,
   ManagedInstanceOperationsListByManagedInstanceNextResponse
@@ -28,6 +30,81 @@ export class ManagedInstanceOperations {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a list of operations performed on the managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  public listByManagedInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ManagedInstanceOperation,
+    ManagedInstanceOperation[]
+  > {
+    const iter = this.listByManagedInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByManagedInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByManagedInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceOperation[]> {
+    let result = await this._listByManagedInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByManagedInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByManagedInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceOperation> {
+    for await (const page of this.listByManagedInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -63,7 +140,7 @@ export class ManagedInstanceOperations {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByManagedInstance(
+  private _listByManagedInstance(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
@@ -113,7 +190,7 @@ export class ManagedInstanceOperations {
    * @param nextLink The nextLink from the previous successful call to the ListByManagedInstance method.
    * @param options The options parameters.
    */
-  listByManagedInstanceNext(
+  private _listByManagedInstanceNext(
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,

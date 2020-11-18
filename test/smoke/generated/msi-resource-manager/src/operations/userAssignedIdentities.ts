@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClient } from "../managedServiceIdentityClient";
 import {
+  Identity,
   UserAssignedIdentitiesListBySubscriptionResponse,
   UserAssignedIdentitiesListByResourceGroupResponse,
-  Identity,
   UserAssignedIdentitiesCreateOrUpdateResponse,
   IdentityUpdate,
   UserAssignedIdentitiesUpdateResponse,
@@ -40,7 +41,102 @@ export class UserAssignedIdentities {
    * Lists all the userAssignedIdentities available under the specified subscription.
    * @param options The options parameters.
    */
-  listBySubscription(
+  public listBySubscription(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Identity, Identity[]> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identity[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identity> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all the userAssignedIdentities available under the specified ResourceGroup.
+   * @param resourceGroupName The name of the Resource Group to which the identity belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Identity, Identity[]> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identity[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identity> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all the userAssignedIdentities available under the specified subscription.
+   * @param options The options parameters.
+   */
+  private _listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -57,7 +153,7 @@ export class UserAssignedIdentities {
    * @param resourceGroupName The name of the Resource Group to which the identity belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListByResourceGroupResponse> {
@@ -170,7 +266,7 @@ export class UserAssignedIdentities {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesListBySubscriptionNextResponse> {
@@ -190,7 +286,7 @@ export class UserAssignedIdentities {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

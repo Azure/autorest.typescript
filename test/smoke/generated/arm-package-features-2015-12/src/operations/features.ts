@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { FeatureClient } from "../featureClient";
 import {
+  FeatureResult,
   FeaturesListAllResponse,
   FeaturesListResponse,
   FeaturesGetResponse,
@@ -38,7 +40,103 @@ export class Features {
    * Gets all the preview features that are available through AFEC for the subscription.
    * @param options The options parameters.
    */
-  listAll(
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FeatureResult, FeatureResult[]> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FeatureResult[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FeatureResult> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the preview features in a provider namespace that are available through AFEC for the
+   * subscription.
+   * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceProviderNamespace: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FeatureResult, FeatureResult[]> {
+    const iter = this.listPagingAll(resourceProviderNamespace, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceProviderNamespace, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceProviderNamespace: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FeatureResult[]> {
+    let result = await this._list(resourceProviderNamespace, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceProviderNamespace,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceProviderNamespace: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FeatureResult> {
+    for await (const page of this.listPagingPage(
+      resourceProviderNamespace,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the preview features that are available through AFEC for the subscription.
+   * @param options The options parameters.
+   */
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -56,7 +154,7 @@ export class Features {
    * @param resourceProviderNamespace The namespace of the resource provider for getting features.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceProviderNamespace: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListResponse> {
@@ -141,7 +239,7 @@ export class Features {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeaturesListAllNextResponse> {
@@ -161,7 +259,7 @@ export class Features {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceProviderNamespace: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

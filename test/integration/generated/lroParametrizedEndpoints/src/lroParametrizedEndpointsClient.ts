@@ -57,10 +57,12 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
         LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       pollWithParameterizedEndpointsOperationSpec

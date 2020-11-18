@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ServiceEndpointPolicyDefinitionsGetResponse,
   ServiceEndpointPolicyDefinition,
+  ServiceEndpointPolicyDefinitionsGetResponse,
   ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse,
   ServiceEndpointPolicyDefinitionsListByResourceGroupResponse,
   ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse
@@ -31,6 +32,80 @@ export class ServiceEndpointPolicyDefinitions {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all service endpoint policy definitions in a service end point policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy name.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ServiceEndpointPolicyDefinition,
+    ServiceEndpointPolicyDefinition[]
+  > {
+    const iter = this.listByResourceGroupPagingAll(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          serviceEndpointPolicyName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServiceEndpointPolicyDefinition[]> {
+    let result = await this._listByResourceGroup(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        serviceEndpointPolicyName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServiceEndpointPolicyDefinition> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +130,12 @@ export class ServiceEndpointPolicyDefinitions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -125,10 +202,12 @@ export class ServiceEndpointPolicyDefinitions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -148,7 +227,7 @@ export class ServiceEndpointPolicyDefinitions {
    * @param serviceEndpointPolicyName The name of the service endpoint policy name.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     options?: coreHttp.OperationOptions
@@ -171,7 +250,7 @@ export class ServiceEndpointPolicyDefinitions {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     nextLink: string,

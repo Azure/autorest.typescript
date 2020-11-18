@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  SubscriptionUsage,
   SubscriptionUsagesListByLocationResponse,
   SubscriptionUsagesGetResponse,
   SubscriptionUsagesListByLocationNextResponse
@@ -35,7 +37,60 @@ export class SubscriptionUsages {
    * @param locationName The name of the region where the resource is located.
    * @param options The options parameters.
    */
-  listByLocation(
+  public listByLocation(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SubscriptionUsage, SubscriptionUsage[]> {
+    const iter = this.listByLocationPagingAll(locationName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(locationName, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SubscriptionUsage[]> {
+    let result = await this._listByLocation(locationName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SubscriptionUsage> {
+    for await (const page of this.listByLocationPagingPage(
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all subscription usage metrics in a given location.
+   * @param locationName The name of the region where the resource is located.
+   * @param options The options parameters.
+   */
+  private _listByLocation(
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubscriptionUsagesListByLocationResponse> {
@@ -77,7 +132,7 @@ export class SubscriptionUsages {
    * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
-  listByLocationNext(
+  private _listByLocationNext(
     locationName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

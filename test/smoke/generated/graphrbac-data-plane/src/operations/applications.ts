@@ -6,14 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  Application,
+  ApplicationsListOptionalParams,
+  DirectoryObjectUnion,
+  KeyCredential,
+  PasswordCredential,
   ApplicationCreateParameters,
   ApplicationsCreateResponse,
-  ApplicationsListOptionalParams,
   ApplicationsListResponse,
   ApplicationsGetResponse,
   ApplicationUpdateParameters,
@@ -43,6 +48,242 @@ export class Applications {
   }
 
   /**
+   * Lists applications by filter parameters.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: ApplicationsListOptionalParams
+  ): PagedAsyncIterableIterator<Application, Application[]> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ApplicationsListOptionalParams
+  ): AsyncIterableIterator<Application[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ApplicationsListOptionalParams
+  ): AsyncIterableIterator<Application> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The owners are a set of non-admin users who are allowed to modify this object.
+   * @param applicationObjectId The object ID of the application for which to get owners.
+   * @param options The options parameters.
+   */
+  public listOwners(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+    const iter = this.listOwnersPagingAll(applicationObjectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnersPagingPage(applicationObjectId, options);
+      }
+    };
+  }
+
+  private async *listOwnersPagingPage(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._listOwners(applicationObjectId, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listOwnersNext(
+        applicationObjectId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnersPagingAll(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.listOwnersPagingPage(
+      applicationObjectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Get the keyCredentials associated with an application.
+   * @param applicationObjectId Application object ID.
+   * @param options The options parameters.
+   */
+  public listKeyCredentials(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<KeyCredential, KeyCredential[]> {
+    const iter = this.listKeyCredentialsPagingAll(applicationObjectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listKeyCredentialsPagingPage(applicationObjectId, options);
+      }
+    };
+  }
+
+  private async *listKeyCredentialsPagingPage(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<KeyCredential[]> {
+    let result = await this._listKeyCredentials(applicationObjectId, options);
+    yield result.value || [];
+  }
+
+  private async *listKeyCredentialsPagingAll(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<KeyCredential> {
+    for await (const page of this.listKeyCredentialsPagingPage(
+      applicationObjectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Get the passwordCredentials associated with an application.
+   * @param applicationObjectId Application object ID.
+   * @param options The options parameters.
+   */
+  public listPasswordCredentials(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PasswordCredential, PasswordCredential[]> {
+    const iter = this.listPasswordCredentialsPagingAll(
+      applicationObjectId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPasswordCredentialsPagingPage(
+          applicationObjectId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPasswordCredentialsPagingPage(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PasswordCredential[]> {
+    let result = await this._listPasswordCredentials(
+      applicationObjectId,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listPasswordCredentialsPagingAll(
+    applicationObjectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PasswordCredential> {
+    for await (const page of this.listPasswordCredentialsPagingPage(
+      applicationObjectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of applications from the current tenant.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Application, Application[]> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Application[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Application> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Create a new application.
    * @param parameters The parameters for creating an application.
    * @param options The options parameters.
@@ -65,7 +306,7 @@ export class Applications {
    * Lists applications by filter parameters.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: ApplicationsListOptionalParams
   ): Promise<ApplicationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -142,7 +383,7 @@ export class Applications {
    * @param applicationObjectId The object ID of the application for which to get owners.
    * @param options The options parameters.
    */
-  listOwners(
+  private _listOwners(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListOwnersResponse> {
@@ -206,7 +447,7 @@ export class Applications {
    * @param applicationObjectId Application object ID.
    * @param options The options parameters.
    */
-  listKeyCredentials(
+  private _listKeyCredentials(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListKeyCredentialsResponse> {
@@ -247,7 +488,7 @@ export class Applications {
    * @param applicationObjectId Application object ID.
    * @param options The options parameters.
    */
-  listPasswordCredentials(
+  private _listPasswordCredentials(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListPasswordCredentialsResponse> {
@@ -307,7 +548,7 @@ export class Applications {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationsListNextResponse> {
@@ -327,7 +568,7 @@ export class Applications {
    * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param options The options parameters.
    */
-  listOwnersNext(
+  private _listOwnersNext(
     applicationObjectId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

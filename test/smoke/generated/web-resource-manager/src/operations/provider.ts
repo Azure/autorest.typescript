@@ -6,20 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
+  ApplicationStackResource,
+  ProviderGetAvailableStacksNextOptionalParams,
   ProviderGetAvailableStacksOptionalParams,
+  CsmOperationDescription,
+  ProviderGetAvailableStacksOnPremNextOptionalParams,
+  ProviderGetAvailableStacksOnPremOptionalParams,
   ProviderGetAvailableStacksResponse,
   ProviderListOperationsResponse,
-  ProviderGetAvailableStacksOnPremOptionalParams,
   ProviderGetAvailableStacksOnPremResponse,
-  ProviderGetAvailableStacksNextOptionalParams,
   ProviderGetAvailableStacksNextResponse,
   ProviderListOperationsNextResponse,
-  ProviderGetAvailableStacksOnPremNextOptionalParams,
   ProviderGetAvailableStacksOnPremNextResponse
 } from "../models";
 
@@ -41,7 +44,146 @@ export class Provider {
    * Description for Get available application frameworks and their versions
    * @param options The options parameters.
    */
-  getAvailableStacks(
+  public listAvailableStacks(
+    options?: ProviderGetAvailableStacksOptionalParams
+  ): PagedAsyncIterableIterator<
+    ApplicationStackResource,
+    ApplicationStackResource[]
+  > {
+    const iter = this.getAvailableStacksPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getAvailableStacksPagingPage(options);
+      }
+    };
+  }
+
+  private async *getAvailableStacksPagingPage(
+    options?: ProviderGetAvailableStacksOptionalParams
+  ): AsyncIterableIterator<ApplicationStackResource[]> {
+    let result = await this._getAvailableStacks(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getAvailableStacksNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getAvailableStacksPagingAll(
+    options?: ProviderGetAvailableStacksOptionalParams
+  ): AsyncIterableIterator<ApplicationStackResource> {
+    for await (const page of this.getAvailableStacksPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes
+   * resource metric definitions
+   * @param options The options parameters.
+   */
+  public listOperations(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    CsmOperationDescription,
+    CsmOperationDescription[]
+  > {
+    const iter = this.listOperationsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOperationsPagingPage(options);
+      }
+    };
+  }
+
+  private async *listOperationsPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CsmOperationDescription[]> {
+    let result = await this._listOperations(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listOperationsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOperationsPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CsmOperationDescription> {
+    for await (const page of this.listOperationsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get available application frameworks and their versions
+   * @param options The options parameters.
+   */
+  public listAvailableStacksOnPrem(
+    options?: ProviderGetAvailableStacksOnPremOptionalParams
+  ): PagedAsyncIterableIterator<
+    ApplicationStackResource,
+    ApplicationStackResource[]
+  > {
+    const iter = this.getAvailableStacksOnPremPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getAvailableStacksOnPremPagingPage(options);
+      }
+    };
+  }
+
+  private async *getAvailableStacksOnPremPagingPage(
+    options?: ProviderGetAvailableStacksOnPremOptionalParams
+  ): AsyncIterableIterator<ApplicationStackResource[]> {
+    let result = await this._getAvailableStacksOnPrem(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getAvailableStacksOnPremNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getAvailableStacksOnPremPagingAll(
+    options?: ProviderGetAvailableStacksOnPremOptionalParams
+  ): AsyncIterableIterator<ApplicationStackResource> {
+    for await (const page of this.getAvailableStacksOnPremPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get available application frameworks and their versions
+   * @param options The options parameters.
+   */
+  private _getAvailableStacks(
     options?: ProviderGetAvailableStacksOptionalParams
   ): Promise<ProviderGetAvailableStacksResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -58,7 +200,7 @@ export class Provider {
    * resource metric definitions
    * @param options The options parameters.
    */
-  listOperations(
+  private _listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<ProviderListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -74,7 +216,7 @@ export class Provider {
    * Description for Get available application frameworks and their versions
    * @param options The options parameters.
    */
-  getAvailableStacksOnPrem(
+  private _getAvailableStacksOnPrem(
     options?: ProviderGetAvailableStacksOnPremOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -91,7 +233,7 @@ export class Provider {
    * @param nextLink The nextLink from the previous successful call to the GetAvailableStacks method.
    * @param options The options parameters.
    */
-  getAvailableStacksNext(
+  private _getAvailableStacksNext(
     nextLink: string,
     options?: ProviderGetAvailableStacksNextOptionalParams
   ): Promise<ProviderGetAvailableStacksNextResponse> {
@@ -110,7 +252,7 @@ export class Provider {
    * @param nextLink The nextLink from the previous successful call to the ListOperations method.
    * @param options The options parameters.
    */
-  listOperationsNext(
+  private _listOperationsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ProviderListOperationsNextResponse> {
@@ -130,7 +272,7 @@ export class Provider {
    *                 method.
    * @param options The options parameters.
    */
-  getAvailableStacksOnPremNext(
+  private _getAvailableStacksOnPremNext(
     nextLink: string,
     options?: ProviderGetAvailableStacksOnPremNextOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremNextResponse> {

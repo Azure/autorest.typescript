@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -45,6 +46,60 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
+   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
+   * connections created.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    VirtualNetworkGatewayConnection,
+    VirtualNetworkGatewayConnection[]
+  > {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualNetworkGatewayConnection[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualNetworkGatewayConnection> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Creates or updates a virtual network gateway connection in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
@@ -69,10 +124,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -127,10 +184,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -166,10 +225,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsUpdateTagsResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateTagsOperationSpec
@@ -208,10 +269,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsSetSharedKeyResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       setSharedKeyOperationSpec
@@ -254,7 +317,7 @@ export class VirtualNetworkGatewayConnections {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewayConnectionsListResponse> {
@@ -296,10 +359,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsResetSharedKeyResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       resetSharedKeyOperationSpec
@@ -334,10 +399,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startPacketCaptureOperationSpec
@@ -376,10 +443,12 @@ export class VirtualNetworkGatewayConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       stopPacketCaptureOperationSpec
@@ -399,7 +468,7 @@ export class VirtualNetworkGatewayConnections {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

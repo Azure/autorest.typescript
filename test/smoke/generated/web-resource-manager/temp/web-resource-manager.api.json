@@ -62134,8 +62134,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -62143,12 +62143,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "WebSiteManagementClientListBillingMetersResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListBillingMetersResponse:type"
+                  "text": "BillingMeter",
+                  "canonicalReference": "web-resource-manager!BillingMeter:type"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BillingMeter",
+                  "canonicalReference": "web-resource-manager!BillingMeter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -62158,7 +62167,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
-                "endIndex": 7
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62172,80 +62181,6 @@
                 }
               ],
               "name": "listBillingMeters"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "web-resource-manager!WebSiteManagementClient#listBillingMetersNext:member(1)",
-              "docComment": "/**\n * ListBillingMetersNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBillingMeters method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listBillingMetersNext(nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListBillingMetersNextOptionalParams",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListBillingMetersNextOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListBillingMetersNextResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListBillingMetersNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                }
-              ],
-              "name": "listBillingMetersNext"
             },
             {
               "kind": "Method",
@@ -62267,8 +62202,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -62276,12 +62211,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "WebSiteManagementClientListGeoRegionsResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListGeoRegionsResponse:type"
+                  "text": "GeoRegion",
+                  "canonicalReference": "web-resource-manager!GeoRegion:type"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GeoRegion",
+                  "canonicalReference": "web-resource-manager!GeoRegion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -62291,7 +62235,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
-                "endIndex": 7
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62305,80 +62249,6 @@
                 }
               ],
               "name": "listGeoRegions"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "web-resource-manager!WebSiteManagementClient#listGeoRegionsNext:member(1)",
-              "docComment": "/**\n * ListGeoRegionsNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListGeoRegions method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listGeoRegionsNext(nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListGeoRegionsNextOptionalParams",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListGeoRegionsNextOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListGeoRegionsNextResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListGeoRegionsNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                }
-              ],
-              "name": "listGeoRegionsNext"
             },
             {
               "kind": "Method",
@@ -62404,8 +62274,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -62413,12 +62283,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "WebSiteManagementClientListPremierAddOnOffersResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListPremierAddOnOffersResponse:type"
+                  "text": "PremierAddOnOffer",
+                  "canonicalReference": "web-resource-manager!PremierAddOnOffer:type"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PremierAddOnOffer",
+                  "canonicalReference": "web-resource-manager!PremierAddOnOffer:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -62428,7 +62307,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 8
+                "endIndex": 10
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62442,84 +62321,6 @@
                 }
               ],
               "name": "listPremierAddOnOffers"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "web-resource-manager!WebSiteManagementClient#listPremierAddOnOffersNext:member(1)",
-              "docComment": "/**\n * ListPremierAddOnOffersNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListPremierAddOnOffers method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listPremierAddOnOffersNext(nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListPremierAddOnOffersNextResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListPremierAddOnOffersNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 5
-                  }
-                }
-              ],
-              "name": "listPremierAddOnOffersNext"
             },
             {
               "kind": "Method",
@@ -62554,8 +62355,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -62563,12 +62364,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse:type"
+                  "text": "Identifier",
+                  "canonicalReference": "web-resource-manager!Identifier:type"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Identifier",
+                  "canonicalReference": "web-resource-manager!Identifier:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -62578,7 +62388,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 6,
-                "endIndex": 10
+                "endIndex": 12
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62599,100 +62409,6 @@
                 }
               ],
               "name": "listSiteIdentifiersAssignedToHostName"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "web-resource-manager!WebSiteManagementClient#listSiteIdentifiersAssignedToHostNameNext:member(1)",
-              "docComment": "/**\n * ListSiteIdentifiersAssignedToHostNameNext\n *\n * @param nameIdentifier - Hostname information.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListSiteIdentifiersAssignedToHostName method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listSiteIdentifiersAssignedToHostNameNext(nameIdentifier: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NameIdentifier",
-                  "canonicalReference": "web-resource-manager!NameIdentifier:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nameIdentifier",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 7
-                  }
-                }
-              ],
-              "name": "listSiteIdentifiersAssignedToHostNameNext"
             },
             {
               "kind": "Method",
@@ -62781,8 +62497,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -62790,12 +62506,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "WebSiteManagementClientListSourceControlsResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListSourceControlsResponse:type"
+                  "text": "SourceControl",
+                  "canonicalReference": "web-resource-manager!SourceControl:type"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SourceControl",
+                  "canonicalReference": "web-resource-manager!SourceControl:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -62805,7 +62530,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 8
+                "endIndex": 10
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62819,84 +62544,6 @@
                 }
               ],
               "name": "listSourceControls"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "web-resource-manager!WebSiteManagementClient#listSourceControlsNext:member(1)",
-              "docComment": "/**\n * ListSourceControlsNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListSourceControls method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listSourceControlsNext(nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "WebSiteManagementClientListSourceControlsNextResponse",
-                  "canonicalReference": "web-resource-manager!WebSiteManagementClientListSourceControlsNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 5
-                  }
-                }
-              ],
-              "name": "listSourceControlsNext"
             },
             {
               "kind": "Method",

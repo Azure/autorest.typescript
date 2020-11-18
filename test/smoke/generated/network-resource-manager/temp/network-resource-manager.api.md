@@ -9,6 +9,7 @@ import { HttpMethods } from '@azure/core-http';
 import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { Poller } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
@@ -4848,9 +4849,8 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     //
     // (undocumented)
     defaultSecurityRules: DefaultSecurityRules;
+    // Warning: (ae-forgotten-export) The symbol "LROPoller" needs to be exported by the entry point index.d.ts
     deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    disconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientDisconnectActiveSessionsResponse>;
-    disconnectActiveSessionsNext(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, nextLink: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientDisconnectActiveSessionsNextResponse>;
     // Warning: (ae-forgotten-export) The symbol "ExpressRouteCircuitAuthorizations" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
@@ -4912,10 +4912,6 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     // (undocumented)
     flowLogs: FlowLogs;
     generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
-    getActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkManagementClientGetActiveSessionsResponse>>;
-    getActiveSessionsNext(resourceGroupName: string, bastionHostName: string, nextLink: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientGetActiveSessionsNextResponse>;
-    getBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientGetBastionShareableLinkResponse>;
-    getBastionShareableLinkNext(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, nextLink: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientGetBastionShareableLinkNextResponse>;
     // Warning: (ae-forgotten-export) The symbol "HubRouteTables" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
@@ -4936,6 +4932,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     //
     // (undocumented)
     ipGroups: IpGroups;
+    listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionActiveSession, BastionActiveSession[]>;
+    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]>;
+    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionSessionState, BastionSessionState[]>;
+    listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]>;
     // Warning: (ae-forgotten-export) The symbol "LoadBalancerBackendAddressPools" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
@@ -5040,9 +5040,6 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     //
     // (undocumented)
     publicIPPrefixes: PublicIPPrefixes;
-    // Warning: (ae-forgotten-export) The symbol "LROPoller" needs to be exported by the entry point index.d.ts
-    putBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkManagementClientPutBastionShareableLinkResponse>>;
-    putBastionShareableLinkNext(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, nextLink: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientPutBastionShareableLinkNextResponse>;
     // Warning: (ae-forgotten-export) The symbol "ResourceNavigationLinks" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)

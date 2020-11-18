@@ -6,25 +6,29 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  SyncDatabaseIdProperties,
+  SyncFullSchemaProperties,
+  SyncGroupLogProperties,
+  Enum21,
+  SyncGroupsListLogsNextOptionalParams,
+  SyncGroupsListLogsOptionalParams,
+  SyncGroup,
   SyncGroupsListSyncDatabaseIdsResponse,
   SyncGroupsListHubSchemasResponse,
-  Enum21,
-  SyncGroupsListLogsOptionalParams,
   SyncGroupsListLogsResponse,
   SyncGroupsGetResponse,
-  SyncGroup,
   SyncGroupsCreateOrUpdateResponse,
   SyncGroupsUpdateResponse,
   SyncGroupsListByDatabaseResponse,
   SyncGroupsListSyncDatabaseIdsNextResponse,
   SyncGroupsListHubSchemasNextResponse,
-  SyncGroupsListLogsNextOptionalParams,
   SyncGroupsListLogsNextResponse,
   SyncGroupsListByDatabaseNextResponse
 } from "../models";
@@ -48,7 +52,357 @@ export class SyncGroups {
    * @param locationName The name of the region where the resource is located.
    * @param options The options parameters.
    */
-  listSyncDatabaseIds(
+  public listSyncDatabaseIds(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    SyncDatabaseIdProperties,
+    SyncDatabaseIdProperties[]
+  > {
+    const iter = this.listSyncDatabaseIdsPagingAll(locationName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSyncDatabaseIdsPagingPage(locationName, options);
+      }
+    };
+  }
+
+  private async *listSyncDatabaseIdsPagingPage(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncDatabaseIdProperties[]> {
+    let result = await this._listSyncDatabaseIds(locationName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSyncDatabaseIdsNext(
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSyncDatabaseIdsPagingAll(
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncDatabaseIdProperties> {
+    for await (const page of this.listSyncDatabaseIdsPagingPage(
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a collection of hub database schemas.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param options The options parameters.
+   */
+  public listHubSchemas(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    SyncFullSchemaProperties,
+    SyncFullSchemaProperties[]
+  > {
+    const iter = this.listHubSchemasPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHubSchemasPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          syncGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHubSchemasPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
+    let result = await this._listHubSchemas(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHubSchemasNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHubSchemasPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncFullSchemaProperties> {
+    for await (const page of this.listHubSchemasPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a collection of sync group logs.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param startTime Get logs generated after this time.
+   * @param endTime Get logs generated before this time.
+   * @param typeParam The types of logs to retrieve.
+   * @param options The options parameters.
+   */
+  public listLogs(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    startTime: string,
+    endTime: string,
+    typeParam: Enum21,
+    options?: SyncGroupsListLogsOptionalParams
+  ): PagedAsyncIterableIterator<
+    SyncGroupLogProperties,
+    SyncGroupLogProperties[]
+  > {
+    const iter = this.listLogsPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      startTime,
+      endTime,
+      typeParam,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listLogsPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          syncGroupName,
+          startTime,
+          endTime,
+          typeParam,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listLogsPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    startTime: string,
+    endTime: string,
+    typeParam: Enum21,
+    options?: SyncGroupsListLogsOptionalParams
+  ): AsyncIterableIterator<SyncGroupLogProperties[]> {
+    let result = await this._listLogs(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      startTime,
+      endTime,
+      typeParam,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listLogsNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        startTime,
+        endTime,
+        continuationToken,
+        typeParam,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listLogsPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    startTime: string,
+    endTime: string,
+    typeParam: Enum21,
+    options?: SyncGroupsListLogsOptionalParams
+  ): AsyncIterableIterator<SyncGroupLogProperties> {
+    for await (const page of this.listLogsPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      startTime,
+      endTime,
+      typeParam,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists sync groups under a hub database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param options The options parameters.
+   */
+  public listByDatabase(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SyncGroup, SyncGroup[]> {
+    const iter = this.listByDatabasePagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabasePagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabasePagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncGroup[]> {
+    let result = await this._listByDatabase(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByDatabasePagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncGroup> {
+    for await (const page of this.listByDatabasePagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a collection of sync database ids.
+   * @param locationName The name of the region where the resource is located.
+   * @param options The options parameters.
+   */
+  private _listSyncDatabaseIds(
     locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SyncGroupsListSyncDatabaseIdsResponse> {
@@ -88,10 +442,12 @@ export class SyncGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       refreshHubSchemaOperationSpec
@@ -113,7 +469,7 @@ export class SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  listHubSchemas(
+  private _listHubSchemas(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -145,7 +501,7 @@ export class SyncGroups {
    * @param typeParam The types of logs to retrieve.
    * @param options The options parameters.
    */
-  listLogs(
+  private _listLogs(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -287,10 +643,12 @@ export class SyncGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SyncGroupsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -329,10 +687,12 @@ export class SyncGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -374,10 +734,12 @@ export class SyncGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SyncGroupsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -398,7 +760,7 @@ export class SyncGroups {
    * @param databaseName The name of the database on which the sync group is hosted.
    * @param options The options parameters.
    */
-  listByDatabase(
+  private _listByDatabase(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -422,7 +784,7 @@ export class SyncGroups {
    * @param nextLink The nextLink from the previous successful call to the ListSyncDatabaseIds method.
    * @param options The options parameters.
    */
-  listSyncDatabaseIdsNext(
+  private _listSyncDatabaseIdsNext(
     locationName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -448,7 +810,7 @@ export class SyncGroups {
    * @param nextLink The nextLink from the previous successful call to the ListHubSchemas method.
    * @param options The options parameters.
    */
-  listHubSchemasNext(
+  private _listHubSchemasNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -483,7 +845,7 @@ export class SyncGroups {
    * @param typeParam The types of logs to retrieve.
    * @param options The options parameters.
    */
-  listLogsNext(
+  private _listLogsNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -520,7 +882,7 @@ export class SyncGroups {
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
-  listByDatabaseNext(
+  private _listByDatabaseNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  PacketCaptureResult,
   PacketCapture,
   PacketCapturesCreateResponse,
   PacketCapturesGetResponse,
@@ -31,6 +33,66 @@ export class PacketCaptures {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all packet capture sessions within the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PacketCaptureResult, PacketCaptureResult[]> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          networkWatcherName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PacketCaptureResult[]> {
+    let result = await this._list(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PacketCaptureResult> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -58,10 +120,12 @@ export class PacketCaptures {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PacketCapturesCreateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOperationSpec
@@ -122,10 +186,12 @@ export class PacketCaptures {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -161,10 +227,12 @@ export class PacketCaptures {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       stopOperationSpec
@@ -200,10 +268,12 @@ export class PacketCaptures {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PacketCapturesGetStatusResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getStatusOperationSpec
@@ -223,7 +293,7 @@ export class PacketCaptures {
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions

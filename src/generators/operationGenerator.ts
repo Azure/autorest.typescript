@@ -656,7 +656,8 @@ function writeNoOverloadsOperationBody(
       operationSpecName,
       operationMethod,
       finalStateVia,
-      isInline
+      isInline,
+      !!clientDetails.tracing
     );
   } else {
     writeSendOperationRequest(
@@ -686,28 +687,38 @@ function writeSendOperationRequest(
 ) {
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`;
-  if (!clientDetails.tracing) {
-    // If tracing is not enabled just return
-    operationMethod.addStatements(
-      `return ${sendRequestStatement} as Promise<${responseName}>`
-    );
+
+  // When tracing is enabled we want to report success and failures through OpenTelemetry
+  // so we create a span and mark it as succeeded or failed
+  operationMethod.addStatements(
+    getTracingTryCatchStatement(
+      sendRequestStatement,
+      responseName,
+      !!clientDetails.tracing
+    )
+  );
+}
+
+function getTracingTryCatchStatement(
+  sendRequestStatement: string,
+  responseName: string,
+  isTracingEnabled: boolean
+) {
+  if (isTracingEnabled) {
+    return `try {
+      const result = await ${sendRequestStatement}
+      return result as ${responseName};
+    } catch(error) {
+    span.setStatus({
+      code: CanonicalCode.UNKNOWN,
+      message: error.message
+    });
+      throw error;
+    } finally {
+      span.end();
+    }`;
   } else {
-    // When tracing is enabled we want to report success and failures through OpenTelemetry
-    // so we create a span and mark it as succeeded or failed
-    operationMethod.addStatements(
-      `try {
-        const result = await ${sendRequestStatement}
-        return result as ${responseName};
-      } catch(error) {
-      span.setStatus({
-        code: CanonicalCode.UNKNOWN,
-        message: error.message
-      });
-        throw error;
-      } finally {
-        span.end();
-      }`
-    );
+    return `return ${sendRequestStatement} as Promise<${responseName}>`;
   }
 }
 
@@ -717,7 +728,8 @@ function writeLROOperationBody(
   operationSpecName: string,
   methodDeclaration: MethodDeclaration,
   finalStateVia?: string,
-  isInline?: boolean
+  isInline?: boolean,
+  isTracingEnabled = false
 ) {
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
@@ -725,9 +737,17 @@ function writeLROOperationBody(
   const finalStateStr = finalStateVia
     ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
     : "";
+  const asyncKeyword = isTracingEnabled ? "async" : "";
+  let sendOperationStatement = `const sendOperation = ${asyncKeyword} (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
+    ${getTracingTryCatchStatement(
+      sendRequestStatement,
+      responseName,
+      isTracingEnabled
+    )}
+  }`;
 
   methodDeclaration.addStatements([
-    `const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => ${sendRequestStatement} as Promise<${responseName}>;`,
+    sendOperationStatement,
     `const initialOperationResult = await sendOperation(${operationParamsName}, ${operationSpecName});`,
     `return new LROPoller({
       initialOperationArguments: ${operationParamsName},
@@ -856,7 +876,8 @@ function writeMultiMediaTypeOperationBody(
       "operationSpec",
       operationMethod,
       finalStateVia,
-      isInline
+      isInline,
+      !!clientDetails.tracing
     );
   }
 }

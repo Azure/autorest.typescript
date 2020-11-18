@@ -42559,239 +42559,6 @@
               "name": "deleteBastionShareableLink"
             },
             {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#disconnectActiveSessions:member(1)",
-              "docComment": "/**\n * Returns the list of currently active sessions on the Bastion.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param sessionIds - The list of sessionids to disconnect.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "disconnectActiveSessions(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", sessionIds: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "SessionIds",
-                  "canonicalReference": "network-resource-manager!SessionIds:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientDisconnectActiveSessionsResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientDisconnectActiveSessionsResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "sessionIds",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 9
-                  }
-                }
-              ],
-              "name": "disconnectActiveSessions"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#disconnectActiveSessionsNext:member(1)",
-              "docComment": "/**\n * DisconnectActiveSessionsNext\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param sessionIds - The list of sessionids to disconnect.\n *\n * @param nextLink - The nextLink from the previous successful call to the DisconnectActiveSessions method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "disconnectActiveSessionsNext(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", sessionIds: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "SessionIds",
-                  "canonicalReference": "network-resource-manager!SessionIds:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientDisconnectActiveSessionsNextResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientDisconnectActiveSessionsNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 12,
-                "endIndex": 16
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "sessionIds",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 9,
-                    "endIndex": 11
-                  }
-                }
-              ],
-              "name": "disconnectActiveSessionsNext"
-            },
-            {
               "kind": "Property",
               "canonicalReference": "network-resource-manager!NetworkManagementClient#expressRouteCircuitAuthorizations:member",
               "docComment": "",
@@ -43315,449 +43082,6 @@
               "name": "generatevirtualwanvpnserverconfigurationvpnprofile"
             },
             {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#getActiveSessions:member(1)",
-              "docComment": "/**\n * Returns the list of currently active sessions on the Bastion.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "getActiveSessions(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "network-resource-manager!LROPoller:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientGetActiveSessionsResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientGetActiveSessionsResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 14
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 7
-                  }
-                }
-              ],
-              "name": "getActiveSessions"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#getActiveSessionsNext:member(1)",
-              "docComment": "/**\n * GetActiveSessionsNext\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param nextLink - The nextLink from the previous successful call to the GetActiveSessions method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "getActiveSessionsNext(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientGetActiveSessionsNextResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientGetActiveSessionsNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 9
-                  }
-                }
-              ],
-              "name": "getActiveSessionsNext"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#getBastionShareableLink:member(1)",
-              "docComment": "/**\n * Return the Bastion Shareable Links for all the VMs specified in the request.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "getBastionShareableLink(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bslRequest: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLinkListRequest",
-                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientGetBastionShareableLinkResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientGetBastionShareableLinkResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "bslRequest",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 9
-                  }
-                }
-              ],
-              "name": "getBastionShareableLink"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#getBastionShareableLinkNext:member(1)",
-              "docComment": "/**\n * GetBastionShareableLinkNext\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param nextLink - The nextLink from the previous successful call to the GetBastionShareableLink method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "getBastionShareableLinkNext(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bslRequest: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLinkListRequest",
-                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientGetBastionShareableLinkNextResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientGetBastionShareableLinkNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 12,
-                "endIndex": 16
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "bslRequest",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 9,
-                    "endIndex": 11
-                  }
-                }
-              ],
-              "name": "getBastionShareableLinkNext"
-            },
-            {
               "kind": "Property",
               "canonicalReference": "network-resource-manager!NetworkManagementClient#hubRouteTables:member",
               "docComment": "",
@@ -43891,6 +43215,462 @@
                 "endIndex": 2
               },
               "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "network-resource-manager!NetworkManagementClient#listActiveSessions:member(1)",
+              "docComment": "/**\n * Returns the list of currently active sessions on the Bastion.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listActiveSessions(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bastionHostName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionActiveSession",
+                  "canonicalReference": "network-resource-manager!BastionActiveSession:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionActiveSession",
+                  "canonicalReference": "network-resource-manager!BastionActiveSession:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 8,
+                "endIndex": 14
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "bastionHostName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 7
+                  }
+                }
+              ],
+              "name": "listActiveSessions"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "network-resource-manager!NetworkManagementClient#listBastionShareableLink:member(1)",
+              "docComment": "/**\n * Return the Bastion Shareable Links for all the VMs specified in the request.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBastionShareableLink(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bastionHostName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bslRequest: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLinkListRequest",
+                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLink",
+                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLink",
+                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 10,
+                "endIndex": 16
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "bastionHostName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "bslRequest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 9
+                  }
+                }
+              ],
+              "name": "listBastionShareableLink"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "network-resource-manager!NetworkManagementClient#listDisconnectActiveSessions:member(1)",
+              "docComment": "/**\n * Returns the list of currently active sessions on the Bastion.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param sessionIds - The list of sessionids to disconnect.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listDisconnectActiveSessions(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bastionHostName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", sessionIds: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SessionIds",
+                  "canonicalReference": "network-resource-manager!SessionIds:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionSessionState",
+                  "canonicalReference": "network-resource-manager!BastionSessionState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionSessionState",
+                  "canonicalReference": "network-resource-manager!BastionSessionState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 10,
+                "endIndex": 16
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "bastionHostName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "sessionIds",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 9
+                  }
+                }
+              ],
+              "name": "listDisconnectActiveSessions"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "network-resource-manager!NetworkManagementClient#listPutBastionShareableLink:member(1)",
+              "docComment": "/**\n * Creates a Bastion Shareable Links for all the VMs specified in the request.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listPutBastionShareableLink(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bastionHostName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", bslRequest: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLinkListRequest",
+                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLink",
+                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BastionShareableLink",
+                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 10,
+                "endIndex": 16
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "bastionHostName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "bslRequest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 9
+                  }
+                }
+              ],
+              "name": "listPutBastionShareableLink"
             },
             {
               "kind": "Property",
@@ -44593,248 +44373,6 @@
                 "endIndex": 2
               },
               "isStatic": false
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#putBastionShareableLink:member(1)",
-              "docComment": "/**\n * Creates a Bastion Shareable Links for all the VMs specified in the request.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "putBastionShareableLink(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bslRequest: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLinkListRequest",
-                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "network-resource-manager!LROPoller:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientPutBastionShareableLinkResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientPutBastionShareableLinkResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 16
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "bslRequest",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 9
-                  }
-                }
-              ],
-              "name": "putBastionShareableLink"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "network-resource-manager!NetworkManagementClient#putBastionShareableLinkNext:member(1)",
-              "docComment": "/**\n * PutBastionShareableLinkNext\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param bastionHostName - The name of the Bastion Host.\n *\n * @param bslRequest - Post request for all the Bastion Shareable Link endpoints.\n *\n * @param nextLink - The nextLink from the previous successful call to the PutBastionShareableLink method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "putBastionShareableLinkNext(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bastionHostName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", bslRequest: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLinkListRequest",
-                  "canonicalReference": "network-resource-manager!BastionShareableLinkListRequest:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NetworkManagementClientPutBastionShareableLinkNextResponse",
-                  "canonicalReference": "network-resource-manager!NetworkManagementClientPutBastionShareableLinkNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 12,
-                "endIndex": 16
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "bastionHostName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "bslRequest",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 9,
-                    "endIndex": 11
-                  }
-                }
-              ],
-              "name": "putBastionShareableLinkNext"
             },
             {
               "kind": "Property",

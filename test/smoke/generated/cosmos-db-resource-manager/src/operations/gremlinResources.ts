@@ -6,12 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  GremlinDatabaseGetResults,
+  GremlinGraphGetResults,
   GremlinResourcesListGremlinDatabasesResponse,
   GremlinResourcesGetGremlinDatabaseResponse,
   GremlinDatabaseCreateUpdateParameters,
@@ -47,7 +50,141 @@ export class GremlinResources {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listGremlinDatabases(
+  public listGremlinDatabases(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    GremlinDatabaseGetResults,
+    GremlinDatabaseGetResults[]
+  > {
+    const iter = this.listGremlinDatabasesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listGremlinDatabasesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listGremlinDatabasesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GremlinDatabaseGetResults[]> {
+    let result = await this._listGremlinDatabases(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listGremlinDatabasesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GremlinDatabaseGetResults> {
+    for await (const page of this.listGremlinDatabasesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the Gremlin graph under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  public listGremlinGraphs(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    GremlinGraphGetResults,
+    GremlinGraphGetResults[]
+  > {
+    const iter = this.listGremlinGraphsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listGremlinGraphsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listGremlinGraphsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GremlinGraphGetResults[]> {
+    let result = await this._listGremlinGraphs(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listGremlinGraphsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GremlinGraphGetResults> {
+    for await (const page of this.listGremlinGraphsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the Gremlin databases under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listGremlinDatabases(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -115,10 +252,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GremlinResourcesCreateUpdateGremlinDatabaseResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateGremlinDatabaseOperationSpec
@@ -153,10 +292,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteGremlinDatabaseOperationSpec
@@ -223,10 +364,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GremlinResourcesUpdateGremlinDatabaseThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateGremlinDatabaseThroughputOperationSpec
@@ -246,7 +389,7 @@ export class GremlinResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  listGremlinGraphs(
+  private _listGremlinGraphs(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -320,10 +463,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GremlinResourcesCreateUpdateGremlinGraphResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateGremlinGraphOperationSpec
@@ -361,10 +506,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteGremlinGraphOperationSpec
@@ -435,10 +582,12 @@ export class GremlinResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GremlinResourcesUpdateGremlinGraphThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateGremlinGraphThroughputOperationSpec

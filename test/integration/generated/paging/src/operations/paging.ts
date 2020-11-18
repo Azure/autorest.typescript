@@ -1510,13 +1510,24 @@ export class Paging {
     const operationArguments: coreHttp.OperationArguments = {
       options: updatedOptions
     };
-    const sendOperation = (
+    const sendOperation = async (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        PagingGetMultiplePagesLROResponse
-      >;
+    ) => {
+      try {
+        const result = await this.client.sendOperationRequest(args, spec);
+        return result as PagingGetMultiplePagesLROResponse;
+      } catch (error) {
+        span.setStatus({
+          code: CanonicalCode.UNKNOWN,
+          message: error.message
+        });
+        throw error;
+      } finally {
+        span.end();
+      }
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getMultiplePagesLROOperationSpec

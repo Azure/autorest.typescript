@@ -6,16 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  InboundNatRule,
   InboundNatRulesListResponse,
   InboundNatRulesGetOptionalParams,
   InboundNatRulesGetResponse,
-  InboundNatRule,
   InboundNatRulesCreateOrUpdateResponse,
   InboundNatRulesListNextResponse
 } from "../models";
@@ -40,7 +41,74 @@ export class InboundNatRules {
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<InboundNatRule, InboundNatRule[]> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      loadBalancerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          loadBalancerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InboundNatRule[]> {
+    let result = await this._list(resourceGroupName, loadBalancerName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        loadBalancerName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InboundNatRule> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      loadBalancerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the inbound nat rules in a load balancer.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param options The options parameters.
+   */
+  private _list(
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
@@ -78,10 +146,12 @@ export class InboundNatRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -146,10 +216,12 @@ export class InboundNatRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         InboundNatRulesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -170,7 +242,7 @@ export class InboundNatRules {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,

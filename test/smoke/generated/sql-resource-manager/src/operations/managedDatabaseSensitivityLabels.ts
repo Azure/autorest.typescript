@@ -6,22 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  SensitivityLabel,
+  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams,
+  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams,
+  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
+  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams,
   SensitivityLabelSource,
   ManagedDatabaseSensitivityLabelsGetResponse,
-  SensitivityLabel,
   ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse,
-  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse,
-  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse,
-  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse,
-  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
 } from "../models";
 
@@ -37,6 +38,168 @@ export class ManagedDatabaseSensitivityLabels {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets the sensitivity labels of a given database
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  public listCurrentByDatabase(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<SensitivityLabel, SensitivityLabel[]> {
+    const iter = this.listCurrentByDatabasePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCurrentByDatabasePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCurrentByDatabasePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
+  ): AsyncIterableIterator<SensitivityLabel[]> {
+    let result = await this._listCurrentByDatabase(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCurrentByDatabaseNext(
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCurrentByDatabasePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
+  ): AsyncIterableIterator<SensitivityLabel> {
+    for await (const page of this.listCurrentByDatabasePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the sensitivity labels of a given database
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  public listRecommendedByDatabase(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<SensitivityLabel, SensitivityLabel[]> {
+    const iter = this.listRecommendedByDatabasePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listRecommendedByDatabasePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listRecommendedByDatabasePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
+  ): AsyncIterableIterator<SensitivityLabel[]> {
+    let result = await this._listRecommendedByDatabase(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listRecommendedByDatabaseNext(
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listRecommendedByDatabasePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
+  ): AsyncIterableIterator<SensitivityLabel> {
+    for await (const page of this.listRecommendedByDatabasePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -229,7 +392,7 @@ export class ManagedDatabaseSensitivityLabels {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  listCurrentByDatabase(
+  private _listCurrentByDatabase(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -255,7 +418,7 @@ export class ManagedDatabaseSensitivityLabels {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  listRecommendedByDatabase(
+  private _listRecommendedByDatabase(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -286,7 +449,7 @@ export class ManagedDatabaseSensitivityLabels {
    * @param nextLink The nextLink from the previous successful call to the ListCurrentByDatabase method.
    * @param options The options parameters.
    */
-  listCurrentByDatabaseNext(
+  private _listCurrentByDatabaseNext(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -320,7 +483,7 @@ export class ManagedDatabaseSensitivityLabels {
    *                 method.
    * @param options The options parameters.
    */
-  listRecommendedByDatabaseNext(
+  private _listRecommendedByDatabaseNext(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

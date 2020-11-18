@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ManagedBackupShortTermRetentionPolicy,
   ManagedShortTermRetentionPolicyName,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse,
-  ManagedBackupShortTermRetentionPolicy,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse,
@@ -33,6 +34,90 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a dropped database's short term retention policy list.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param restorableDroppedDatabaseId
+   * @param options The options parameters.
+   */
+  public listByRestorableDroppedDatabase(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    restorableDroppedDatabaseId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ManagedBackupShortTermRetentionPolicy,
+    ManagedBackupShortTermRetentionPolicy[]
+  > {
+    const iter = this.listByRestorableDroppedDatabasePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByRestorableDroppedDatabasePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          restorableDroppedDatabaseId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByRestorableDroppedDatabasePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    restorableDroppedDatabaseId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy[]> {
+    let result = await this._listByRestorableDroppedDatabase(
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByRestorableDroppedDatabaseNext(
+        resourceGroupName,
+        managedInstanceName,
+        restorableDroppedDatabaseId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByRestorableDroppedDatabasePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    restorableDroppedDatabaseId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
+    for await (const page of this.listByRestorableDroppedDatabasePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -101,10 +186,12 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -150,10 +237,12 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -174,7 +263,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    * @param restorableDroppedDatabaseId
    * @param options The options parameters.
    */
-  listByRestorableDroppedDatabase(
+  private _listByRestorableDroppedDatabase(
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
@@ -206,7 +295,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    *                 ListByRestorableDroppedDatabase method.
    * @param options The options parameters.
    */
-  listByRestorableDroppedDatabaseNext(
+  private _listByRestorableDroppedDatabaseNext(
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,

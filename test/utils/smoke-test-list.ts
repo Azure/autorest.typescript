@@ -1,4 +1,4 @@
-type BuildTag = "ci_1" | "ci_2" | "ci_3";
+type BuildTag = "ci_1" | "ci_2" | "ci_3" | "debug";
 
 export interface SpecDefinition {
   path: string;
@@ -27,7 +27,7 @@ const getArmReadmes = (): SpecDefinition[] => {
     path: "./.tmp/specs/specification/resources/resource-manager/readme.md",
     params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
-    buildTag: "ci_1"
+    buildTag: "debug"
   }));
 };
 

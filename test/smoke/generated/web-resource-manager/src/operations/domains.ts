@@ -6,28 +6,29 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  Domain,
   NameIdentifier,
+  DomainRecommendationSearchParameters,
+  DomainOwnershipIdentifier,
   DomainsCheckAvailabilityResponse,
   DomainsListResponse,
   DomainsGetControlCenterSsoRequestResponse,
-  DomainRecommendationSearchParameters,
   DomainsListRecommendationsResponse,
   DomainsListByResourceGroupResponse,
   DomainsGetResponse,
-  Domain,
   DomainsCreateOrUpdateResponse,
   DomainsDeleteOptionalParams,
   DomainPatchResource,
   DomainsUpdateResponse,
   DomainsListOwnershipIdentifiersResponse,
   DomainsGetOwnershipIdentifierResponse,
-  DomainOwnershipIdentifier,
   DomainsCreateOrUpdateOwnershipIdentifierResponse,
   DomainsUpdateOwnershipIdentifierResponse,
   DomainsListNextResponse,
@@ -48,6 +49,228 @@ export class Domains {
    */
   constructor(client: WebSiteManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Description for Get all domains in a subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Domain, Domain[]> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Domain[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Domain> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get domain name recommendations based on keywords.
+   * @param parameters Search parameters for domain name recommendations.
+   * @param options The options parameters.
+   */
+  public listRecommendations(
+    parameters: DomainRecommendationSearchParameters,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NameIdentifier, NameIdentifier[]> {
+    const iter = this.listRecommendationsPagingAll(parameters, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listRecommendationsPagingPage(parameters, options);
+      }
+    };
+  }
+
+  private async *listRecommendationsPagingPage(
+    parameters: DomainRecommendationSearchParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NameIdentifier[]> {
+    let result = await this._listRecommendations(parameters, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listRecommendationsNext(
+        parameters,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listRecommendationsPagingAll(
+    parameters: DomainRecommendationSearchParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NameIdentifier> {
+    for await (const page of this.listRecommendationsPagingPage(
+      parameters,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all domains in a resource group.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Domain, Domain[]> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Domain[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Domain> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Lists domain ownership identifiers.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param domainName Name of domain.
+   * @param options The options parameters.
+   */
+  public listOwnershipIdentifiers(
+    resourceGroupName: string,
+    domainName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    DomainOwnershipIdentifier,
+    DomainOwnershipIdentifier[]
+  > {
+    const iter = this.listOwnershipIdentifiersPagingAll(
+      resourceGroupName,
+      domainName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnershipIdentifiersPagingPage(
+          resourceGroupName,
+          domainName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listOwnershipIdentifiersPagingPage(
+    resourceGroupName: string,
+    domainName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DomainOwnershipIdentifier[]> {
+    let result = await this._listOwnershipIdentifiers(
+      resourceGroupName,
+      domainName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listOwnershipIdentifiersNext(
+        resourceGroupName,
+        domainName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnershipIdentifiersPagingAll(
+    resourceGroupName: string,
+    domainName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DomainOwnershipIdentifier> {
+    for await (const page of this.listOwnershipIdentifiersPagingPage(
+      resourceGroupName,
+      domainName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -73,7 +296,9 @@ export class Domains {
    * Description for Get all domains in a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): Promise<DomainsListResponse> {
+  private _list(
+    options?: coreHttp.OperationOptions
+  ): Promise<DomainsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -104,7 +329,7 @@ export class Domains {
    * @param parameters Search parameters for domain name recommendations.
    * @param options The options parameters.
    */
-  listRecommendations(
+  private _listRecommendations(
     parameters: DomainRecommendationSearchParameters,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListRecommendationsResponse> {
@@ -123,7 +348,7 @@ export class Domains {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListByResourceGroupResponse> {
@@ -181,10 +406,12 @@ export class Domains {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DomainsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -250,7 +477,7 @@ export class Domains {
    * @param domainName Name of domain.
    * @param options The options parameters.
    */
-  listOwnershipIdentifiers(
+  private _listOwnershipIdentifiers(
     resourceGroupName: string,
     domainName: string,
     options?: coreHttp.OperationOptions
@@ -401,7 +628,7 @@ export class Domains {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainsListNextResponse> {
@@ -421,7 +648,7 @@ export class Domains {
    * @param nextLink The nextLink from the previous successful call to the ListRecommendations method.
    * @param options The options parameters.
    */
-  listRecommendationsNext(
+  private _listRecommendationsNext(
     parameters: DomainRecommendationSearchParameters,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -443,7 +670,7 @@ export class Domains {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -467,7 +694,7 @@ export class Domains {
    *                 method.
    * @param options The options parameters.
    */
-  listOwnershipIdentifiersNext(
+  private _listOwnershipIdentifiersNext(
     resourceGroupName: string,
     domainName: string,
     nextLink: string,

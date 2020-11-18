@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  AvailableServiceAlias,
   AvailableServiceAliasesListResponse,
   AvailableServiceAliasesListByResourceGroupResponse,
   AvailableServiceAliasesListNextResponse,
@@ -36,7 +38,130 @@ export class AvailableServiceAliases {
    * @param location The location.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    AvailableServiceAlias,
+    AvailableServiceAlias[]
+  > {
+    const iter = this.listPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableServiceAlias[]> {
+    let result = await this._list(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(location, continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableServiceAlias> {
+    for await (const page of this.listPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all available service aliases for this resource group in this region.
+   * @param resourceGroupName The name of the resource group.
+   * @param location The location.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    AvailableServiceAlias,
+    AvailableServiceAlias[]
+  > {
+    const iter = this.listByResourceGroupPagingAll(
+      resourceGroupName,
+      location,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          location,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableServiceAlias[]> {
+    let result = await this._listByResourceGroup(
+      resourceGroupName,
+      location,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        location,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableServiceAlias> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      location,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all available service aliases for this subscription in this region.
+   * @param location The location.
+   * @param options The options parameters.
+   */
+  private _list(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableServiceAliasesListResponse> {
@@ -56,7 +181,7 @@ export class AvailableServiceAliases {
    * @param location The location.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     location: string,
     options?: coreHttp.OperationOptions
@@ -78,7 +203,7 @@ export class AvailableServiceAliases {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -101,7 +226,7 @@ export class AvailableServiceAliases {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     location: string,
     nextLink: string,

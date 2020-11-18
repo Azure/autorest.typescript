@@ -6,21 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  PrivateLinkService,
+  PrivateEndpointConnection,
+  AutoApprovedPrivateLinkService,
   PrivateLinkServicesGetOptionalParams,
   PrivateLinkServicesGetResponse,
-  PrivateLinkService,
   PrivateLinkServicesCreateOrUpdateResponse,
   PrivateLinkServicesListResponse,
   PrivateLinkServicesListBySubscriptionResponse,
   PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesGetPrivateEndpointConnectionResponse,
-  PrivateEndpointConnection,
   PrivateLinkServicesUpdatePrivateEndpointConnectionResponse,
   PrivateLinkServicesListPrivateEndpointConnectionsResponse,
   CheckPrivateLinkServiceVisibilityRequest,
@@ -50,6 +52,313 @@ export class PrivateLinkServices {
   }
 
   /**
+   * Gets all private link services in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PrivateLinkService, PrivateLinkService[]> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateLinkService[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateLinkService> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all private link service in a subscription.
+   * @param options The options parameters.
+   */
+  public listBySubscription(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PrivateLinkService, PrivateLinkService[]> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateLinkService[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateLinkService> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all private end point connections for a specific private link service.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param options The options parameters.
+   */
+  public listPrivateEndpointConnections(
+    resourceGroupName: string,
+    serviceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    PrivateEndpointConnection,
+    PrivateEndpointConnection[]
+  > {
+    const iter = this.listPrivateEndpointConnectionsPagingAll(
+      resourceGroupName,
+      serviceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPrivateEndpointConnectionsPagingPage(
+          resourceGroupName,
+          serviceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPrivateEndpointConnectionsPagingPage(
+    resourceGroupName: string,
+    serviceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpointConnection[]> {
+    let result = await this._listPrivateEndpointConnections(
+      resourceGroupName,
+      serviceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPrivateEndpointConnectionsNext(
+        resourceGroupName,
+        serviceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPrivateEndpointConnectionsPagingAll(
+    resourceGroupName: string,
+    serviceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpointConnection> {
+    for await (const page of this.listPrivateEndpointConnectionsPagingPage(
+      resourceGroupName,
+      serviceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns all of the private link service ids that can be linked to a Private Endpoint with auto
+   * approved in this subscription in this region.
+   * @param location The location of the domain name.
+   * @param options The options parameters.
+   */
+  public listAutoApprovedPrivateLinkServices(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    AutoApprovedPrivateLinkService,
+    AutoApprovedPrivateLinkService[]
+  > {
+    const iter = this.listAutoApprovedPrivateLinkServicesPagingAll(
+      location,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAutoApprovedPrivateLinkServicesPagingPage(
+          location,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAutoApprovedPrivateLinkServicesPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
+    let result = await this._listAutoApprovedPrivateLinkServices(
+      location,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAutoApprovedPrivateLinkServicesNext(
+        location,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAutoApprovedPrivateLinkServicesPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AutoApprovedPrivateLinkService> {
+    for await (const page of this.listAutoApprovedPrivateLinkServicesPagingPage(
+      location,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns all of the private link service ids that can be linked to a Private Endpoint with auto
+   * approved in this subscription in this region.
+   * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public listAutoApprovedPrivateLinkServicesByResourceGroup(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    AutoApprovedPrivateLinkService,
+    AutoApprovedPrivateLinkService[]
+  > {
+    const iter = this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingAll(
+      location,
+      resourceGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
+          location,
+          resourceGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
+    let result = await this._listAutoApprovedPrivateLinkServicesByResourceGroup(
+      location,
+      resourceGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAutoApprovedPrivateLinkServicesByResourceGroupNext(
+        location,
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAutoApprovedPrivateLinkServicesByResourceGroupPagingAll(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AutoApprovedPrivateLinkService> {
+    for await (const page of this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
+      location,
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Deletes the specified private link service.
    * @param resourceGroupName The name of the resource group.
    * @param serviceName The name of the private link service.
@@ -68,10 +377,12 @@ export class PrivateLinkServices {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -129,10 +440,12 @@ export class PrivateLinkServices {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PrivateLinkServicesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -151,7 +464,7 @@ export class PrivateLinkServices {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListResponse> {
@@ -169,7 +482,7 @@ export class PrivateLinkServices {
    * Gets all private link service in a subscription.
    * @param options The options parameters.
    */
-  listBySubscription(
+  private _listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -257,10 +570,12 @@ export class PrivateLinkServices {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deletePrivateEndpointConnectionOperationSpec
@@ -280,7 +595,7 @@ export class PrivateLinkServices {
    * @param serviceName The name of the private link service.
    * @param options The options parameters.
    */
-  listPrivateEndpointConnections(
+  private _listPrivateEndpointConnections(
     resourceGroupName: string,
     serviceName: string,
     options?: coreHttp.OperationOptions
@@ -353,7 +668,7 @@ export class PrivateLinkServices {
    * @param location The location of the domain name.
    * @param options The options parameters.
    */
-  listAutoApprovedPrivateLinkServices(
+  private _listAutoApprovedPrivateLinkServices(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse> {
@@ -376,7 +691,7 @@ export class PrivateLinkServices {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  listAutoApprovedPrivateLinkServicesByResourceGroup(
+  private _listAutoApprovedPrivateLinkServicesByResourceGroup(
     location: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
@@ -402,7 +717,7 @@ export class PrivateLinkServices {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -423,7 +738,7 @@ export class PrivateLinkServices {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateLinkServicesListBySubscriptionNextResponse> {
@@ -445,7 +760,7 @@ export class PrivateLinkServices {
    *                 method.
    * @param options The options parameters.
    */
-  listPrivateEndpointConnectionsNext(
+  private _listPrivateEndpointConnectionsNext(
     resourceGroupName: string,
     serviceName: string,
     nextLink: string,
@@ -470,7 +785,7 @@ export class PrivateLinkServices {
    *                 ListAutoApprovedPrivateLinkServices method.
    * @param options The options parameters.
    */
-  listAutoApprovedPrivateLinkServicesNext(
+  private _listAutoApprovedPrivateLinkServicesNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -498,7 +813,7 @@ export class PrivateLinkServices {
    *                 ListAutoApprovedPrivateLinkServicesByResourceGroup method.
    * @param options The options parameters.
    */
-  listAutoApprovedPrivateLinkServicesByResourceGroupNext(
+  private _listAutoApprovedPrivateLinkServicesByResourceGroupNext(
     location: string,
     resourceGroupName: string,
     nextLink: string,

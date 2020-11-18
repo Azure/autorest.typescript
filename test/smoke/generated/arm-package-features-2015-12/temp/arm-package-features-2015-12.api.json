@@ -163,8 +163,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
                 },
                 {
                   "kind": "Content",
@@ -172,12 +172,21 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "FeatureClientListOperationsResponse",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsResponse:type"
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-features-2015-12!Operation:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": ">"
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
                 },
                 {
                   "kind": "Content",
@@ -187,7 +196,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 8
+                "endIndex": 10
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -201,84 +210,6 @@
                 }
               ],
               "name": "listOperations"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClient#listOperationsNext:member(1)",
-              "docComment": "/**\n * ListOperationsNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperations method.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "listOperationsNext(nextLink: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FeatureClientListOperationsNextResponse",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsNextResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "nextLink",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 5
-                  }
-                }
-              ],
-              "name": "listOperationsNext"
             }
           ],
           "extendsTokenRange": {

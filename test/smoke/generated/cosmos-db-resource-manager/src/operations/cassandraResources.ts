@@ -6,12 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  CassandraKeyspaceGetResults,
+  CassandraTableGetResults,
   CassandraResourcesListCassandraKeyspacesResponse,
   CassandraResourcesGetCassandraKeyspaceResponse,
   CassandraKeyspaceCreateUpdateParameters,
@@ -47,7 +50,141 @@ export class CassandraResources {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listCassandraKeyspaces(
+  public listCassandraKeyspaces(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    CassandraKeyspaceGetResults,
+    CassandraKeyspaceGetResults[]
+  > {
+    const iter = this.listCassandraKeyspacesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCassandraKeyspacesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCassandraKeyspacesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CassandraKeyspaceGetResults[]> {
+    let result = await this._listCassandraKeyspaces(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listCassandraKeyspacesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CassandraKeyspaceGetResults> {
+    for await (const page of this.listCassandraKeyspacesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the Cassandra table under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  public listCassandraTables(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    CassandraTableGetResults,
+    CassandraTableGetResults[]
+  > {
+    const iter = this.listCassandraTablesPagingAll(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCassandraTablesPagingPage(
+          resourceGroupName,
+          accountName,
+          keyspaceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCassandraTablesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CassandraTableGetResults[]> {
+    let result = await this._listCassandraTables(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listCassandraTablesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CassandraTableGetResults> {
+    for await (const page of this.listCassandraTablesPagingPage(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the Cassandra keyspaces under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listCassandraKeyspaces(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -117,10 +254,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         CassandraResourcesCreateUpdateCassandraKeyspaceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateCassandraKeyspaceOperationSpec
@@ -155,10 +294,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteCassandraKeyspaceOperationSpec
@@ -225,10 +366,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateCassandraKeyspaceThroughputOperationSpec
@@ -248,7 +391,7 @@ export class CassandraResources {
    * @param keyspaceName Cosmos DB keyspace name.
    * @param options The options parameters.
    */
-  listCassandraTables(
+  private _listCassandraTables(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -323,10 +466,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         CassandraResourcesCreateUpdateCassandraTableResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateCassandraTableOperationSpec
@@ -364,10 +509,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteCassandraTableOperationSpec
@@ -440,10 +587,12 @@ export class CassandraResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         CassandraResourcesUpdateCassandraTableThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateCassandraTableThroughputOperationSpec

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -36,6 +37,78 @@ export class GalleryImages {
   }
 
   /**
+   * List gallery Image Definitions in a gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
+   *                    listed.
+   * @param options The options parameters.
+   */
+  public listByGallery(
+    resourceGroupName: string,
+    galleryName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<GalleryImage, GalleryImage[]> {
+    const iter = this.listByGalleryPagingAll(
+      resourceGroupName,
+      galleryName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByGalleryPagingPage(
+          resourceGroupName,
+          galleryName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByGalleryPagingPage(
+    resourceGroupName: string,
+    galleryName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryImage[]> {
+    let result = await this._listByGallery(
+      resourceGroupName,
+      galleryName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByGalleryNext(
+        resourceGroupName,
+        galleryName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByGalleryPagingAll(
+    resourceGroupName: string,
+    galleryName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryImage> {
+    for await (const page of this.listByGalleryPagingPage(
+      resourceGroupName,
+      galleryName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Create or update a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
@@ -63,10 +136,12 @@ export class GalleryImages {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryImagesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -107,10 +182,12 @@ export class GalleryImages {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryImagesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -172,10 +249,12 @@ export class GalleryImages {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -195,7 +274,7 @@ export class GalleryImages {
    *                    listed.
    * @param options The options parameters.
    */
-  listByGallery(
+  private _listByGallery(
     resourceGroupName: string,
     galleryName: string,
     options?: coreHttp.OperationOptions
@@ -219,7 +298,7 @@ export class GalleryImages {
    * @param nextLink The nextLink from the previous successful call to the ListByGallery method.
    * @param options The options parameters.
    */
-  listByGalleryNext(
+  private _listByGalleryNext(
     resourceGroupName: string,
     galleryName: string,
     nextLink: string,

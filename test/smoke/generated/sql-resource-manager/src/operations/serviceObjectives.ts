@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  ServiceObjective,
   ServiceObjectivesGetResponse,
   ServiceObjectivesListByServerResponse
 } from "../models";
@@ -27,6 +29,67 @@ export class ServiceObjectives {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Returns database service objectives.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  public listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ServiceObjective, ServiceObjective[]> {
+    const iter = this.listByServerPagingAll(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          resourceGroupName,
+          serverName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServiceObjective[]> {
+    let result = await this._listByServer(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listByServerPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServiceObjective> {
+    for await (const page of this.listByServerPagingPage(
+      resourceGroupName,
+      serverName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -62,7 +125,7 @@ export class ServiceObjectives {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  listByServer(
+  private _listByServer(
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions

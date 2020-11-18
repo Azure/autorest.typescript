@@ -6,16 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  JobStep,
   JobStepsListByVersionResponse,
   JobStepsGetByVersionResponse,
   JobStepsListByJobResponse,
   JobStepsGetResponse,
-  JobStep,
   JobStepsCreateOrUpdateResponse,
   JobStepsListByVersionNextResponse,
   JobStepsListByJobNextResponse
@@ -45,7 +46,196 @@ export class JobSteps {
    * @param jobVersion The version of the job to get.
    * @param options The options parameters.
    */
-  listByVersion(
+  public listByVersion(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    jobVersion: number,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<JobStep, JobStep[]> {
+    const iter = this.listByVersionPagingAll(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByVersionPagingPage(
+          resourceGroupName,
+          serverName,
+          jobAgentName,
+          jobName,
+          jobVersion,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByVersionPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    jobVersion: number,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<JobStep[]> {
+    let result = await this._listByVersion(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByVersionNext(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobVersion,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByVersionPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    jobVersion: number,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<JobStep> {
+    for await (const page of this.listByVersionPagingPage(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobVersion,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all job steps for a job's current version.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param options The options parameters.
+   */
+  public listByJob(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<JobStep, JobStep[]> {
+    const iter = this.listByJobPagingAll(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByJobPagingPage(
+          resourceGroupName,
+          serverName,
+          jobAgentName,
+          jobName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByJobPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<JobStep[]> {
+    let result = await this._listByJob(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByJobNext(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByJobPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<JobStep> {
+    for await (const page of this.listByJobPagingPage(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all job steps in the specified job version.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param jobVersion The version of the job to get.
+   * @param options The options parameters.
+   */
+  private _listByVersion(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -111,7 +301,7 @@ export class JobSteps {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  listByJob(
+  private _listByJob(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -241,7 +431,7 @@ export class JobSteps {
    * @param nextLink The nextLink from the previous successful call to the ListByVersion method.
    * @param options The options parameters.
    */
-  listByVersionNext(
+  private _listByVersionNext(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -275,7 +465,7 @@ export class JobSteps {
    * @param nextLink The nextLink from the previous successful call to the ListByJob method.
    * @param options The options parameters.
    */
-  listByJobNext(
+  private _listByJobNext(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

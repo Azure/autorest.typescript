@@ -6,12 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  Metric,
+  MetricDefinition,
+  Database,
   ImportRequest,
   DatabasesImportResponse,
   ImportExtensionRequest,
@@ -23,7 +27,6 @@ import {
   DatabasesListMetricDefinitionsResponse,
   DatabasesListByServerResponse,
   DatabasesGetResponse,
-  Database,
   DatabasesCreateOrUpdateResponse,
   DatabaseUpdate,
   DatabasesUpdateResponse,
@@ -51,6 +54,305 @@ export class Databases {
   }
 
   /**
+   * Returns database metrics.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param filter An OData filter expression that describes a subset of metrics to return.
+   * @param options The options parameters.
+   */
+  public listMetrics(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+    const iter = this.listMetricsPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      filter,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricsPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          filter,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricsPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric[]> {
+    let result = await this._listMetrics(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      filter,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricsPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric> {
+    for await (const page of this.listMetricsPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      filter,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns database metric definitions.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  public listMetricDefinitions(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+    const iter = this.listMetricDefinitionsPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricDefinitionsPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition[]> {
+    let result = await this._listMetricDefinitions(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition> {
+    for await (const page of this.listMetricDefinitionsPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of databases.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  public listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Database, Database[]> {
+    const iter = this.listByServerPagingAll(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          resourceGroupName,
+          serverName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Database[]> {
+    let result = await this._listByServer(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByServerPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Database> {
+    for await (const page of this.listByServerPagingPage(
+      resourceGroupName,
+      serverName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of databases in an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param options The options parameters.
+   */
+  public listByElasticPool(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Database, Database[]> {
+    const iter = this.listByElasticPoolPagingAll(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByElasticPoolPagingPage(
+          resourceGroupName,
+          serverName,
+          elasticPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByElasticPoolPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Database[]> {
+    let result = await this._listByElasticPool(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByElasticPoolNext(
+        resourceGroupName,
+        serverName,
+        elasticPoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByElasticPoolPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Database> {
+    for await (const page of this.listByElasticPoolPagingPage(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Imports a bacpac into a new database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -73,10 +375,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesImportResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       importOperationSpec
@@ -119,10 +423,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesCreateImportOperationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createImportOperationOperationSpec
@@ -161,10 +467,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesExportResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       exportOperationSpec
@@ -186,7 +494,7 @@ export class Databases {
    * @param filter An OData filter expression that describes a subset of metrics to return.
    * @param options The options parameters.
    */
-  listMetrics(
+  private _listMetrics(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -214,7 +522,7 @@ export class Databases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  listMetricDefinitions(
+  private _listMetricDefinitions(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -239,7 +547,7 @@ export class Databases {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  listByServer(
+  private _listByServer(
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
@@ -307,10 +615,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -346,10 +656,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -388,10 +700,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -412,7 +726,7 @@ export class Databases {
    * @param elasticPoolName The name of the elastic pool.
    * @param options The options parameters.
    */
-  listByElasticPool(
+  private _listByElasticPool(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -453,10 +767,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesPauseResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       pauseOperationSpec
@@ -492,10 +808,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabasesResumeResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       resumeOperationSpec
@@ -531,10 +849,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       upgradeDataWarehouseOperationSpec
@@ -599,10 +919,12 @@ export class Databases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverOperationSpec
@@ -623,7 +945,7 @@ export class Databases {
    * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
-  listByServerNext(
+  private _listByServerNext(
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
@@ -650,7 +972,7 @@ export class Databases {
    * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
    * @param options The options parameters.
    */
-  listByElasticPoolNext(
+  private _listByElasticPoolNext(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,

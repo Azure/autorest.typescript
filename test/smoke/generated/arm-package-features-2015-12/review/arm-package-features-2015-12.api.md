@@ -5,6 +5,7 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public (undocumented)
 export class FeatureClient extends FeatureClientContext {
@@ -13,9 +14,8 @@ export class FeatureClient extends FeatureClientContext {
     //
     // (undocumented)
     features: Features;
-    listOperations(options?: coreHttp.OperationOptions): Promise<FeatureClientListOperationsResponse>;
-    listOperationsNext(nextLink: string, options?: coreHttp.OperationOptions): Promise<FeatureClientListOperationsNextResponse>;
-}
+    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation, Operation[]>;
+    }
 
 // @public (undocumented)
 export class FeatureClientContext extends coreHttp.ServiceClient {

@@ -6,11 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { VirtualMachineSizesListResponse } from "../models";
+import { VirtualMachineSize, VirtualMachineSizesListResponse } from "../models";
 
 /**
  * Class representing a VirtualMachineSizes.
@@ -32,7 +33,48 @@ export class VirtualMachineSizes {
    * @param location The location upon which virtual-machine-sizes is queried.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualMachineSize, VirtualMachineSize[]> {
+    const iter = this.listPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize[]> {
+    let result = await this._list(location, options);
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize> {
+    for await (const page of this.listPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * This API is deprecated. Use [Resources
+   * Skus](https://docs.microsoft.com/en-us/rest/api/compute/resourceskus/list)
+   * @param location The location upon which virtual-machine-sizes is queried.
+   * @param options The options parameters.
+   */
+  private _list(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineSizesListResponse> {

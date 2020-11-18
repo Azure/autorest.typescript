@@ -54,10 +54,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysPut201CreatingSucceeded200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put201CreatingSucceeded200OperationSpec
@@ -85,10 +87,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysPutAsyncRelativeRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetrySucceededOperationSpec
@@ -118,10 +122,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysDeleteProvisioning202Accepted200SucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteProvisioning202Accepted200SucceededOperationSpec
@@ -148,10 +154,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysDelete202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete202Retry200OperationSpec
@@ -178,10 +186,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysDeleteAsyncRelativeRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRelativeRetrySucceededOperationSpec
@@ -208,10 +218,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysPost202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202Retry200OperationSpec
@@ -239,10 +251,12 @@ export class LRORetrys {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LRORetrysPostAsyncRelativeRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRelativeRetrySucceededOperationSpec

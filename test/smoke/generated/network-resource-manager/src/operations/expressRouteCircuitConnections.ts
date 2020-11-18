@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ExpressRouteCircuitConnectionsGetResponse,
   ExpressRouteCircuitConnection,
+  ExpressRouteCircuitConnectionsGetResponse,
   ExpressRouteCircuitConnectionsCreateOrUpdateResponse,
   ExpressRouteCircuitConnectionsListResponse,
   ExpressRouteCircuitConnectionsListNextResponse
@@ -31,6 +32,89 @@ export class ExpressRouteCircuitConnections {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all global reach connections associated with a private peering in an express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the circuit.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ExpressRouteCircuitConnection,
+    ExpressRouteCircuitConnection[]
+  > {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          circuitName,
+          peeringName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCircuitConnection[]> {
+    let result = await this._list(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        circuitName,
+        peeringName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCircuitConnection> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -58,10 +142,12 @@ export class ExpressRouteCircuitConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -132,10 +218,12 @@ export class ExpressRouteCircuitConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ExpressRouteCircuitConnectionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -156,7 +244,7 @@ export class ExpressRouteCircuitConnections {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -182,7 +270,7 @@ export class ExpressRouteCircuitConnections {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

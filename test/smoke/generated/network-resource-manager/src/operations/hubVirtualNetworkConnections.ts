@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  HubVirtualNetworkConnection,
   HubVirtualNetworkConnectionsGetResponse,
   HubVirtualNetworkConnectionsListResponse,
   HubVirtualNetworkConnectionsListNextResponse
@@ -28,6 +30,68 @@ export class HubVirtualNetworkConnections {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Retrieves the details of all HubVirtualNetworkConnections.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    HubVirtualNetworkConnection,
+    HubVirtualNetworkConnection[]
+  > {
+    const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, virtualHubName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HubVirtualNetworkConnection[]> {
+    let result = await this._list(resourceGroupName, virtualHubName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        virtualHubName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HubVirtualNetworkConnection> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      virtualHubName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -61,7 +125,7 @@ export class HubVirtualNetworkConnections {
    * @param virtualHubName The name of the VirtualHub.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     virtualHubName: string,
     options?: coreHttp.OperationOptions
@@ -84,7 +148,7 @@ export class HubVirtualNetworkConnections {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,

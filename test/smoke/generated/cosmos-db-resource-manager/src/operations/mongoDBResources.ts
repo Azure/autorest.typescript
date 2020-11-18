@@ -6,12 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  MongoDBDatabaseGetResults,
+  MongoDBCollectionGetResults,
   MongoDBResourcesListMongoDBDatabasesResponse,
   MongoDBResourcesGetMongoDBDatabaseResponse,
   MongoDBDatabaseCreateUpdateParameters,
@@ -47,7 +50,141 @@ export class MongoDBResources {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listMongoDBDatabases(
+  public listMongoDBDatabases(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    MongoDBDatabaseGetResults,
+    MongoDBDatabaseGetResults[]
+  > {
+    const iter = this.listMongoDBDatabasesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMongoDBDatabasesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMongoDBDatabasesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MongoDBDatabaseGetResults[]> {
+    let result = await this._listMongoDBDatabases(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMongoDBDatabasesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MongoDBDatabaseGetResults> {
+    for await (const page of this.listMongoDBDatabasesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the MongoDB collection under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  public listMongoDBCollections(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    MongoDBCollectionGetResults,
+    MongoDBCollectionGetResults[]
+  > {
+    const iter = this.listMongoDBCollectionsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMongoDBCollectionsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMongoDBCollectionsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MongoDBCollectionGetResults[]> {
+    let result = await this._listMongoDBCollections(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMongoDBCollectionsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MongoDBCollectionGetResults> {
+    for await (const page of this.listMongoDBCollectionsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the MongoDB databases under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listMongoDBDatabases(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -115,10 +252,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateMongoDBDatabaseOperationSpec
@@ -153,10 +292,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteMongoDBDatabaseOperationSpec
@@ -223,10 +364,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateMongoDBDatabaseThroughputOperationSpec
@@ -246,7 +389,7 @@ export class MongoDBResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  listMongoDBCollections(
+  private _listMongoDBCollections(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -321,10 +464,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         MongoDBResourcesCreateUpdateMongoDBCollectionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateMongoDBCollectionOperationSpec
@@ -362,10 +507,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteMongoDBCollectionOperationSpec
@@ -438,10 +585,12 @@ export class MongoDBResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateMongoDBCollectionThroughputOperationSpec

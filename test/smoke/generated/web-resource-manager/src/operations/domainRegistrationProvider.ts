@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
+  CsmOperationDescription,
   DomainRegistrationProviderListOperationsResponse,
   DomainRegistrationProviderListOperationsNextResponse
 } from "../models";
@@ -34,7 +36,53 @@ export class DomainRegistrationProvider {
    * resource provider
    * @param options The options parameters.
    */
-  listOperations(
+  public listOperations(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    CsmOperationDescription,
+    CsmOperationDescription[]
+  > {
+    const iter = this.listOperationsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOperationsPagingPage(options);
+      }
+    };
+  }
+
+  private async *listOperationsPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CsmOperationDescription[]> {
+    let result = await this._listOperations(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listOperationsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOperationsPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<CsmOperationDescription> {
+    for await (const page of this.listOperationsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Implements Csm operations Api to exposes the list of available Csm Apis under the
+   * resource provider
+   * @param options The options parameters.
+   */
+  private _listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<DomainRegistrationProviderListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -51,7 +99,7 @@ export class DomainRegistrationProvider {
    * @param nextLink The nextLink from the previous successful call to the ListOperations method.
    * @param options The options parameters.
    */
-  listOperationsNext(
+  private _listOperationsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DomainRegistrationProviderListOperationsNextResponse> {

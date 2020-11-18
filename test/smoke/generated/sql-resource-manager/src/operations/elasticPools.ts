@@ -6,22 +6,25 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  Metric,
+  MetricDefinition,
+  ElasticPool,
+  ElasticPoolsListByServerNextOptionalParams,
+  ElasticPoolsListByServerOptionalParams,
   ElasticPoolsListMetricsResponse,
   ElasticPoolsListMetricDefinitionsResponse,
-  ElasticPoolsListByServerOptionalParams,
   ElasticPoolsListByServerResponse,
   ElasticPoolsGetResponse,
-  ElasticPool,
   ElasticPoolsCreateOrUpdateResponse,
   ElasticPoolUpdate,
   ElasticPoolsUpdateResponse,
-  ElasticPoolsListByServerNextOptionalParams,
   ElasticPoolsListByServerNextResponse
 } from "../models";
 
@@ -48,7 +51,225 @@ export class ElasticPools {
    * @param filter An OData filter expression that describes a subset of metrics to return.
    * @param options The options parameters.
    */
-  listMetrics(
+  public listMetrics(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+    const iter = this.listMetricsPagingAll(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      filter,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricsPagingPage(
+          resourceGroupName,
+          serverName,
+          elasticPoolName,
+          filter,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricsPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric[]> {
+    let result = await this._listMetrics(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      filter,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricsPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric> {
+    for await (const page of this.listMetricsPagingPage(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      filter,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns elastic pool metric definitions.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param options The options parameters.
+   */
+  public listMetricDefinitions(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+    const iter = this.listMetricDefinitionsPagingAll(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricDefinitionsPagingPage(
+          resourceGroupName,
+          serverName,
+          elasticPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition[]> {
+    let result = await this._listMetricDefinitions(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition> {
+    for await (const page of this.listMetricDefinitionsPagingPage(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all elastic pools in a server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  public listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ElasticPoolsListByServerOptionalParams
+  ): PagedAsyncIterableIterator<ElasticPool, ElasticPool[]> {
+    const iter = this.listByServerPagingAll(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          resourceGroupName,
+          serverName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ElasticPoolsListByServerOptionalParams
+  ): AsyncIterableIterator<ElasticPool[]> {
+    let result = await this._listByServer(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByServerPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ElasticPoolsListByServerOptionalParams
+  ): AsyncIterableIterator<ElasticPool> {
+    for await (const page of this.listByServerPagingPage(
+      resourceGroupName,
+      serverName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns elastic pool  metrics.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param filter An OData filter expression that describes a subset of metrics to return.
+   * @param options The options parameters.
+   */
+  private _listMetrics(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -76,7 +297,7 @@ export class ElasticPools {
    * @param elasticPoolName The name of the elastic pool.
    * @param options The options parameters.
    */
-  listMetricDefinitions(
+  private _listMetricDefinitions(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -101,7 +322,7 @@ export class ElasticPools {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  listByServer(
+  private _listByServer(
     resourceGroupName: string,
     serverName: string,
     options?: ElasticPoolsListByServerOptionalParams
@@ -169,10 +390,12 @@ export class ElasticPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ElasticPoolsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -208,10 +431,12 @@ export class ElasticPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -250,10 +475,12 @@ export class ElasticPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ElasticPoolsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -289,10 +516,12 @@ export class ElasticPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverOperationSpec
@@ -313,7 +542,7 @@ export class ElasticPools {
    * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
-  listByServerNext(
+  private _listByServerNext(
     resourceGroupName: string,
     serverName: string,
     nextLink: string,

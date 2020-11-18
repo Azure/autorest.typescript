@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ManagedBackupShortTermRetentionPolicy,
   ManagedShortTermRetentionPolicyName,
   ManagedBackupShortTermRetentionPoliciesGetResponse,
-  ManagedBackupShortTermRetentionPolicy,
   ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
   ManagedBackupShortTermRetentionPoliciesUpdateResponse,
   ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse,
@@ -33,6 +34,90 @@ export class ManagedBackupShortTermRetentionPolicies {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a managed database's short term retention policy list.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  public listByDatabase(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ManagedBackupShortTermRetentionPolicy,
+    ManagedBackupShortTermRetentionPolicy[]
+  > {
+    const iter = this.listByDatabasePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabasePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabasePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy[]> {
+    let result = await this._listByDatabase(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByDatabasePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
+    for await (const page of this.listByDatabasePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -95,10 +180,12 @@ export class ManagedBackupShortTermRetentionPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -140,10 +227,12 @@ export class ManagedBackupShortTermRetentionPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedBackupShortTermRetentionPoliciesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -164,7 +253,7 @@ export class ManagedBackupShortTermRetentionPolicies {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  listByDatabase(
+  private _listByDatabase(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -191,7 +280,7 @@ export class ManagedBackupShortTermRetentionPolicies {
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
-  listByDatabaseNext(
+  private _listByDatabaseNext(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

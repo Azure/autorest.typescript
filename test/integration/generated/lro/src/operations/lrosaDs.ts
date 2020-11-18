@@ -84,10 +84,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutNonRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putNonRetry400OperationSpec
@@ -114,10 +116,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutNonRetry201Creating400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putNonRetry201Creating400OperationSpec
@@ -144,10 +148,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutNonRetry201Creating400InvalidJsonResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putNonRetry201Creating400InvalidJsonOperationSpec
@@ -174,10 +180,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutAsyncRelativeRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetry400OperationSpec
@@ -203,10 +211,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDeleteNonRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteNonRetry400OperationSpec
@@ -232,10 +242,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDelete202NonRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete202NonRetry400OperationSpec
@@ -262,10 +274,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDeleteAsyncRelativeRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRelativeRetry400OperationSpec
@@ -291,10 +305,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPostNonRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postNonRetry400OperationSpec
@@ -320,10 +336,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPost202NonRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202NonRetry400OperationSpec
@@ -350,10 +368,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPostAsyncRelativeRetry400Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRelativeRetry400OperationSpec
@@ -379,10 +399,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutError201NoProvisioningStatePayloadResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putError201NoProvisioningStatePayloadOperationSpec
@@ -410,10 +432,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutAsyncRelativeRetryNoStatusResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetryNoStatusOperationSpec
@@ -441,10 +465,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
@@ -470,10 +496,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete204SucceededOperationSpec
@@ -500,10 +528,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRelativeRetryNoStatusOperationSpec
@@ -529,10 +559,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPost202NoLocationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202NoLocationOperationSpec
@@ -560,10 +592,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPostAsyncRelativeRetryNoPayloadResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRelativeRetryNoPayloadOperationSpec
@@ -590,10 +624,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPut200InvalidJsonResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put200InvalidJsonOperationSpec
@@ -620,10 +656,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -653,10 +691,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
@@ -683,10 +723,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDelete202RetryInvalidHeaderResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete202RetryInvalidHeaderOperationSpec
@@ -713,10 +755,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -745,10 +789,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
@@ -775,10 +821,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPost202RetryInvalidHeaderResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202RetryInvalidHeaderOperationSpec
@@ -806,10 +854,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -839,10 +889,12 @@ export class LrosaDs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec

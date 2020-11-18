@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  BackendAddressPool,
   LoadBalancerBackendAddressPoolsListResponse,
   LoadBalancerBackendAddressPoolsGetResponse,
-  BackendAddressPool,
   LoadBalancerBackendAddressPoolsCreateOrUpdateResponse,
   LoadBalancerBackendAddressPoolsListNextResponse
 } from "../models";
@@ -39,7 +40,74 @@ export class LoadBalancerBackendAddressPools {
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BackendAddressPool, BackendAddressPool[]> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      loadBalancerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          loadBalancerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackendAddressPool[]> {
+    let result = await this._list(resourceGroupName, loadBalancerName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        loadBalancerName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackendAddressPool> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      loadBalancerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the load balancer backed address pools.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param options The options parameters.
+   */
+  private _list(
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
@@ -106,10 +174,12 @@ export class LoadBalancerBackendAddressPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LoadBalancerBackendAddressPoolsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -145,10 +215,12 @@ export class LoadBalancerBackendAddressPools {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -169,7 +241,7 @@ export class LoadBalancerBackendAddressPools {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,

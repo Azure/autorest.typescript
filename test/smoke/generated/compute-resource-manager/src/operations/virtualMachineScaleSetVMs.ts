@@ -6,23 +6,24 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  VirtualMachineScaleSetVMsReimageOptionalParams,
   VirtualMachineScaleSetVM,
+  VirtualMachineScaleSetVMsListNextOptionalParams,
+  VirtualMachineScaleSetVMsListOptionalParams,
+  VirtualMachineScaleSetVMsReimageOptionalParams,
   VirtualMachineScaleSetVMsUpdateResponse,
   VirtualMachineScaleSetVMsGetResponse,
   VirtualMachineScaleSetVMsGetInstanceViewResponse,
-  VirtualMachineScaleSetVMsListOptionalParams,
   VirtualMachineScaleSetVMsListResponse,
   VirtualMachineScaleSetVMsPowerOffOptionalParams,
   RunCommandInput,
   VirtualMachineScaleSetVMsRunCommandResponse,
-  VirtualMachineScaleSetVMsListNextOptionalParams,
   VirtualMachineScaleSetVMsListNextResponse
 } from "../models";
 
@@ -38,6 +39,80 @@ export class VirtualMachineScaleSetVMs {
    */
   constructor(client: ComputeManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a list of all virtual machines in a VM scale sets.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the VM scale set.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: VirtualMachineScaleSetVMsListOptionalParams
+  ): PagedAsyncIterableIterator<
+    VirtualMachineScaleSetVM,
+    VirtualMachineScaleSetVM[]
+  > {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: VirtualMachineScaleSetVMsListOptionalParams
+  ): AsyncIterableIterator<VirtualMachineScaleSetVM[]> {
+    let result = await this._list(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: VirtualMachineScaleSetVMsListOptionalParams
+  ): AsyncIterableIterator<VirtualMachineScaleSetVM> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -62,10 +137,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       reimageOperationSpec
@@ -101,10 +178,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       reimageAllOperationSpec
@@ -141,10 +220,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deallocateOperationSpec
@@ -182,10 +263,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachineScaleSetVMsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -220,10 +303,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -292,7 +377,7 @@ export class VirtualMachineScaleSetVMs {
    * @param virtualMachineScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: VirtualMachineScaleSetVMsListOptionalParams
@@ -332,10 +417,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       powerOffOperationSpec
@@ -370,10 +457,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restartOperationSpec
@@ -408,10 +497,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startOperationSpec
@@ -447,10 +538,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       redeployOperationSpec
@@ -485,10 +578,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       performMaintenanceOperationSpec
@@ -552,10 +647,12 @@ export class VirtualMachineScaleSetVMs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachineScaleSetVMsRunCommandResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       runCommandOperationSpec
@@ -576,7 +673,7 @@ export class VirtualMachineScaleSetVMs {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     nextLink: string,

@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ExpressRouteCrossConnectionPeering,
   ExpressRouteCrossConnectionPeeringsListResponse,
   ExpressRouteCrossConnectionPeeringsGetResponse,
-  ExpressRouteCrossConnectionPeering,
   ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse,
   ExpressRouteCrossConnectionPeeringsListNextResponse
 } from "../models";
@@ -39,7 +40,81 @@ export class ExpressRouteCrossConnectionPeerings {
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    ExpressRouteCrossConnectionPeering,
+    ExpressRouteCrossConnectionPeering[]
+  > {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      crossConnectionName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          crossConnectionName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCrossConnectionPeering[]> {
+    let result = await this._list(
+      resourceGroupName,
+      crossConnectionName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        crossConnectionName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCrossConnectionPeering> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      crossConnectionName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all peerings in a specified ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param options The options parameters.
+   */
+  private _list(
     resourceGroupName: string,
     crossConnectionName: string,
     options?: coreHttp.OperationOptions
@@ -77,10 +152,12 @@ export class ExpressRouteCrossConnectionPeerings {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -147,10 +224,12 @@ export class ExpressRouteCrossConnectionPeerings {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -171,7 +250,7 @@ export class ExpressRouteCrossConnectionPeerings {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     crossConnectionName: string,
     nextLink: string,

@@ -6,13 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import {
-  DatabaseListMetricsResponse,
+  Metric,
+  Usage,
   DatabaseListUsagesOptionalParams,
+  MetricDefinition,
+  DatabaseListMetricsResponse,
   DatabaseListUsagesResponse,
   DatabaseListMetricDefinitionsResponse
 } from "../models";
@@ -41,7 +45,221 @@ export class Database {
    *               names), startTime, endTime, and timeGrain. The supported operator is eq.
    * @param options The options parameters.
    */
-  listMetrics(
+  public listMetrics(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+    const iter = this.listMetricsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      filter,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseRid,
+          filter,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric[]> {
+    let result = await this._listMetrics(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      filter,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric> {
+    for await (const page of this.listMetricsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      filter,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the usages (most recent data) for the given database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseRid Cosmos DB database rid.
+   * @param options The options parameters.
+   */
+  public listUsages(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: DatabaseListUsagesOptionalParams
+  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+    const iter = this.listUsagesPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseRid,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listUsagesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: DatabaseListUsagesOptionalParams
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listUsages(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listUsagesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: DatabaseListUsagesOptionalParams
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listUsagesPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves metric definitions for the given database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseRid Cosmos DB database rid.
+   * @param options The options parameters.
+   */
+  public listMetricDefinitions(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+    const iter = this.listMetricDefinitionsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricDefinitionsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseRid,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition[]> {
+    let result = await this._listMetricDefinitions(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition> {
+    for await (const page of this.listMetricDefinitionsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the metrics determined by the given filter for the given database account and database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseRid Cosmos DB database rid.
+   * @param filter An OData filter expression that describes a subset of metrics to return. The
+   *               parameters that can be filtered are name.value (name of the metric, can have an or of multiple
+   *               names), startTime, endTime, and timeGrain. The supported operator is eq.
+   * @param options The options parameters.
+   */
+  private _listMetrics(
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
@@ -68,7 +286,7 @@ export class Database {
    * @param databaseRid Cosmos DB database rid.
    * @param options The options parameters.
    */
-  listUsages(
+  private _listUsages(
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
@@ -93,7 +311,7 @@ export class Database {
    * @param databaseRid Cosmos DB database rid.
    * @param options The options parameters.
    */
-  listMetricDefinitions(
+  private _listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,

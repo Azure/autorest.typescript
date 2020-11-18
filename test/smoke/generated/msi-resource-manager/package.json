@@ -4,6 +4,7 @@
   "description": "The Managed Service Identity Client.",
   "version": "1.0.0",
   "dependencies": {
+    "@azure/core-paging": "^1.1.1",
     "@azure/core-http": "^1.1.4",
     "tslib": "^1.9.3"
   },

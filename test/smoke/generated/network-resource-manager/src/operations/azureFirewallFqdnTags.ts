@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  AzureFirewallFqdnTag,
   AzureFirewallFqdnTagsListAllResponse,
   AzureFirewallFqdnTagsListAllNextResponse
 } from "../models";
@@ -33,7 +35,49 @@ export class AzureFirewallFqdnTags {
    * Gets all the Azure Firewall FQDN Tags in a subscription.
    * @param options The options parameters.
    */
-  listAll(
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AzureFirewallFqdnTag, AzureFirewallFqdnTag[]> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AzureFirewallFqdnTag[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AzureFirewallFqdnTag> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the Azure Firewall FQDN Tags in a subscription.
+   * @param options The options parameters.
+   */
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<AzureFirewallFqdnTagsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -50,7 +94,7 @@ export class AzureFirewallFqdnTags {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AzureFirewallFqdnTagsListAllNextResponse> {

@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ReplicationLink,
   ReplicationLinksGetResponse,
   UnlinkParameters,
   ReplicationLinksListByDatabaseResponse
@@ -29,6 +31,75 @@ export class ReplicationLinks {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists a database's replication links.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to retrieve links for.
+   * @param options The options parameters.
+   */
+  public listByDatabase(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ReplicationLink, ReplicationLink[]> {
+    const iter = this.listByDatabasePagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabasePagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabasePagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ReplicationLink[]> {
+    let result = await this._listByDatabase(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listByDatabasePagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ReplicationLink> {
+    for await (const page of this.listByDatabasePagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -115,10 +186,12 @@ export class ReplicationLinks {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverOperationSpec
@@ -158,10 +231,12 @@ export class ReplicationLinks {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverAllowDataLossOperationSpec
@@ -203,10 +278,12 @@ export class ReplicationLinks {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       unlinkOperationSpec
@@ -227,7 +304,7 @@ export class ReplicationLinks {
    * @param databaseName The name of the database to retrieve links for.
    * @param options The options parameters.
    */
-  listByDatabase(
+  private _listByDatabase(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

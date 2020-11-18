@@ -6,11 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PartitionKeyRangeIdListMetricsResponse } from "../models";
+import {
+  PartitionMetric,
+  PartitionKeyRangeIdListMetricsResponse
+} from "../models";
 
 /**
  * Class representing a PartitionKeyRangeId.
@@ -38,7 +42,101 @@ export class PartitionKeyRangeId {
    *               names), startTime, endTime, and timeGrain. The supported operator is eq.
    * @param options The options parameters.
    */
-  listMetrics(
+  public listMetrics(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    collectionRid: string,
+    partitionKeyRangeId: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PartitionMetric, PartitionMetric[]> {
+    const iter = this.listMetricsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      partitionKeyRangeId,
+      filter,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseRid,
+          collectionRid,
+          partitionKeyRangeId,
+          filter,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    collectionRid: string,
+    partitionKeyRangeId: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PartitionMetric[]> {
+    let result = await this._listMetrics(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      partitionKeyRangeId,
+      filter,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseRid: string,
+    collectionRid: string,
+    partitionKeyRangeId: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PartitionMetric> {
+    for await (const page of this.listMetricsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseRid,
+      collectionRid,
+      partitionKeyRangeId,
+      filter,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the metrics determined by the given filter for the given partition key range id.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseRid Cosmos DB database rid.
+   * @param collectionRid Cosmos DB collection rid.
+   * @param partitionKeyRangeId Partition Key Range Id for which to get data.
+   * @param filter An OData filter expression that describes a subset of metrics to return. The
+   *               parameters that can be filtered are name.value (name of the metric, can have an or of multiple
+   *               names), startTime, endTime, and timeGrain. The supported operator is eq.
+   * @param options The options parameters.
+   */
+  private _listMetrics(
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,

@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  ExpressRouteLink,
   ExpressRouteLinksGetResponse,
   ExpressRouteLinksListResponse,
   ExpressRouteLinksListNextResponse
@@ -28,6 +30,77 @@ export class ExpressRouteLinks {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Retrieve the ExpressRouteLink sub-resources of the specified ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ExpressRouteLink, ExpressRouteLink[]> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      expressRoutePortName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          expressRoutePortName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteLink[]> {
+    let result = await this._list(
+      resourceGroupName,
+      expressRoutePortName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        expressRoutePortName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteLink> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      expressRoutePortName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -61,7 +134,7 @@ export class ExpressRouteLinks {
    * @param expressRoutePortName The name of the ExpressRoutePort resource.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: coreHttp.OperationOptions
@@ -84,7 +157,7 @@ export class ExpressRouteLinks {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     expressRoutePortName: string,
     nextLink: string,

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -34,6 +35,77 @@ export class FlowLogs {
   }
 
   /**
+   * Lists all flow log resources for the specified Network Watcher.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FlowLog, FlowLog[]> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          networkWatcherName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FlowLog[]> {
+    let result = await this._list(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        networkWatcherName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FlowLog> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Create or update a flow log for the specified network security group.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
@@ -58,10 +130,12 @@ export class FlowLogs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         FlowLogsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -122,10 +196,12 @@ export class FlowLogs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -145,7 +221,7 @@ export class FlowLogs {
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
@@ -168,7 +244,7 @@ export class FlowLogs {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     networkWatcherName: string,
     nextLink: string,

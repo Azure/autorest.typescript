@@ -6,14 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  Usage,
+  UsagesListByInstancePoolNextOptionalParams,
   UsagesListByInstancePoolOptionalParams,
   UsagesListByInstancePoolResponse,
-  UsagesListByInstancePoolNextOptionalParams,
   UsagesListByInstancePoolNextResponse
 } from "../models";
 
@@ -38,7 +40,79 @@ export class Usages {
    * @param instancePoolName The name of the instance pool to be retrieved.
    * @param options The options parameters.
    */
-  listByInstancePool(
+  public listByInstancePool(
+    resourceGroupName: string,
+    instancePoolName: string,
+    options?: UsagesListByInstancePoolOptionalParams
+  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+    const iter = this.listByInstancePoolPagingAll(
+      resourceGroupName,
+      instancePoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByInstancePoolPagingPage(
+          resourceGroupName,
+          instancePoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByInstancePoolPagingPage(
+    resourceGroupName: string,
+    instancePoolName: string,
+    options?: UsagesListByInstancePoolOptionalParams
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listByInstancePool(
+      resourceGroupName,
+      instancePoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByInstancePoolNext(
+        resourceGroupName,
+        instancePoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByInstancePoolPagingAll(
+    resourceGroupName: string,
+    instancePoolName: string,
+    options?: UsagesListByInstancePoolOptionalParams
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listByInstancePoolPagingPage(
+      resourceGroupName,
+      instancePoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all instance pool usage metrics
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be retrieved.
+   * @param options The options parameters.
+   */
+  private _listByInstancePool(
     resourceGroupName: string,
     instancePoolName: string,
     options?: UsagesListByInstancePoolOptionalParams
@@ -62,7 +136,7 @@ export class Usages {
    * @param nextLink The nextLink from the previous successful call to the ListByInstancePool method.
    * @param options The options parameters.
    */
-  listByInstancePoolNext(
+  private _listByInstancePoolNext(
     resourceGroupName: string,
     instancePoolName: string,
     nextLink: string,

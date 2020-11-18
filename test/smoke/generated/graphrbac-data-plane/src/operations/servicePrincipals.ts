@@ -6,14 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  ServicePrincipal,
+  ServicePrincipalsListOptionalParams,
+  DirectoryObjectUnion,
+  KeyCredential,
+  PasswordCredential,
   ServicePrincipalCreateParameters,
   ServicePrincipalsCreateResponse,
-  ServicePrincipalsListOptionalParams,
   ServicePrincipalsListResponse,
   ServicePrincipalBase,
   ServicePrincipalsGetResponse,
@@ -41,6 +46,226 @@ export class ServicePrincipals {
   }
 
   /**
+   * Gets a list of service principals from the current tenant.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: ServicePrincipalsListOptionalParams
+  ): PagedAsyncIterableIterator<ServicePrincipal, ServicePrincipal[]> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ServicePrincipalsListOptionalParams
+  ): AsyncIterableIterator<ServicePrincipal[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ServicePrincipalsListOptionalParams
+  ): AsyncIterableIterator<ServicePrincipal> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The owners are a set of non-admin users who are allowed to modify this object.
+   * @param objectId The object ID of the service principal for which to get owners.
+   * @param options The options parameters.
+   */
+  public listOwners(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+    const iter = this.listOwnersPagingAll(objectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnersPagingPage(objectId, options);
+      }
+    };
+  }
+
+  private async *listOwnersPagingPage(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._listOwners(objectId, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listOwnersNext(objectId, continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnersPagingAll(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.listOwnersPagingPage(objectId, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Get the keyCredentials associated with the specified service principal.
+   * @param objectId The object ID of the service principal for which to get keyCredentials.
+   * @param options The options parameters.
+   */
+  public listKeyCredentials(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<KeyCredential, KeyCredential[]> {
+    const iter = this.listKeyCredentialsPagingAll(objectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listKeyCredentialsPagingPage(objectId, options);
+      }
+    };
+  }
+
+  private async *listKeyCredentialsPagingPage(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<KeyCredential[]> {
+    let result = await this._listKeyCredentials(objectId, options);
+    yield result.value || [];
+  }
+
+  private async *listKeyCredentialsPagingAll(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<KeyCredential> {
+    for await (const page of this.listKeyCredentialsPagingPage(
+      objectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the passwordCredentials associated with a service principal.
+   * @param objectId The object ID of the service principal.
+   * @param options The options parameters.
+   */
+  public listPasswordCredentials(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PasswordCredential, PasswordCredential[]> {
+    const iter = this.listPasswordCredentialsPagingAll(objectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPasswordCredentialsPagingPage(objectId, options);
+      }
+    };
+  }
+
+  private async *listPasswordCredentialsPagingPage(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PasswordCredential[]> {
+    let result = await this._listPasswordCredentials(objectId, options);
+    yield result.value || [];
+  }
+
+  private async *listPasswordCredentialsPagingAll(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PasswordCredential> {
+    for await (const page of this.listPasswordCredentialsPagingPage(
+      objectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of service principals from the current tenant.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ServicePrincipal, ServicePrincipal[]> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServicePrincipal[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServicePrincipal> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Creates a service principal in the directory.
    * @param parameters Parameters to create a service principal.
    * @param options The options parameters.
@@ -63,7 +288,7 @@ export class ServicePrincipals {
    * Gets a list of service principals from the current tenant.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: ServicePrincipalsListOptionalParams
   ): Promise<ServicePrincipalsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -141,7 +366,7 @@ export class ServicePrincipals {
    * @param objectId The object ID of the service principal for which to get owners.
    * @param options The options parameters.
    */
-  listOwners(
+  private _listOwners(
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListOwnersResponse> {
@@ -160,7 +385,7 @@ export class ServicePrincipals {
    * @param objectId The object ID of the service principal for which to get keyCredentials.
    * @param options The options parameters.
    */
-  listKeyCredentials(
+  private _listKeyCredentials(
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListKeyCredentialsResponse> {
@@ -201,7 +426,7 @@ export class ServicePrincipals {
    * @param objectId The object ID of the service principal.
    * @param options The options parameters.
    */
-  listPasswordCredentials(
+  private _listPasswordCredentials(
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListPasswordCredentialsResponse> {
@@ -242,7 +467,7 @@ export class ServicePrincipals {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListNextResponse> {
@@ -262,7 +487,7 @@ export class ServicePrincipals {
    * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param options The options parameters.
    */
-  listOwnersNext(
+  private _listOwnersNext(
     objectId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

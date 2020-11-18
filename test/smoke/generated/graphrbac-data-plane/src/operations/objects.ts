@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  DirectoryObjectUnion,
   GetObjectsParameters,
   ObjectsGetObjectsByObjectIdsResponse,
   ObjectsGetObjectsByObjectIdsNextResponse
@@ -36,7 +38,112 @@ export class Objects {
    * @param parameters Objects filtering parameters.
    * @param options The options parameters.
    */
-  getObjectsByObjectIds(
+  public listObjectsByObjectIds(
+    parameters: GetObjectsParameters,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+    const iter = this.getObjectsByObjectIdsPagingAll(parameters, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getObjectsByObjectIdsPagingPage(parameters, options);
+      }
+    };
+  }
+
+  private async *getObjectsByObjectIdsPagingPage(
+    parameters: GetObjectsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._getObjectsByObjectIds(parameters, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._getObjectsByObjectIdsNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getObjectsByObjectIdsPagingAll(
+    parameters: GetObjectsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.getObjectsByObjectIdsPagingPage(
+      parameters,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets AD group membership for the specified AD object IDs.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listObjectsByObjectIdsNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+    const iter = this.getObjectsByObjectIdsNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getObjectsByObjectIdsNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *getObjectsByObjectIdsNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._getObjectsByObjectIdsNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._getObjectsByObjectIdsNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getObjectsByObjectIdsNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.getObjectsByObjectIdsNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the directory objects specified in a list of object IDs. You can also specify which resource
+   * collections (users, groups, etc.) should be searched by specifying the optional types parameter.
+   * @param parameters Objects filtering parameters.
+   * @param options The options parameters.
+   */
+  private _getObjectsByObjectIds(
     parameters: GetObjectsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
@@ -55,7 +162,7 @@ export class Objects {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  getObjectsByObjectIdsNext(
+  private _getObjectsByObjectIdsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ObjectsGetObjectsByObjectIdsNextResponse> {

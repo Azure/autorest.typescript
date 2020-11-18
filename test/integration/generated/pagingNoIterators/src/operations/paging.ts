@@ -340,10 +340,12 @@ export class Paging {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PagingGetMultiplePagesLROResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getMultiplePagesLROOperationSpec

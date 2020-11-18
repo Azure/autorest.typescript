@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -37,6 +38,68 @@ export class VirtualMachineScaleSetExtensions {
   }
 
   /**
+   * Gets a list of all extensions in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set containing the extension.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<
+    VirtualMachineScaleSetExtension,
+    VirtualMachineScaleSetExtension[]
+  > {
+    const iter = this.listPagingAll(resourceGroupName, vmScaleSetName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, vmScaleSetName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineScaleSetExtension[]> {
+    let result = await this._list(resourceGroupName, vmScaleSetName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        vmScaleSetName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineScaleSetExtension> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      vmScaleSetName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * The operation to create or update an extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set where the extension should be create or updated.
@@ -63,10 +126,12 @@ export class VirtualMachineScaleSetExtensions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -104,10 +169,12 @@ export class VirtualMachineScaleSetExtensions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachineScaleSetExtensionsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -142,10 +209,12 @@ export class VirtualMachineScaleSetExtensions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -189,7 +258,7 @@ export class VirtualMachineScaleSetExtensions {
    * @param vmScaleSetName The name of the VM scale set containing the extension.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
@@ -212,7 +281,7 @@ export class VirtualMachineScaleSetExtensions {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     vmScaleSetName: string,
     nextLink: string,

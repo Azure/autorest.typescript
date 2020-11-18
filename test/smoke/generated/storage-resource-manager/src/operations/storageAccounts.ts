@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  StorageAccount,
   StorageAccountCheckNameAvailabilityParameters,
   StorageAccountsCheckNameAvailabilityResponse,
   StorageAccountCreateParameters,
@@ -46,6 +48,94 @@ export class StorageAccounts {
    */
   constructor(client: StorageManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all the storage accounts available under the subscription. Note that storage keys are not
+   * returned; use the ListKeys operation for this.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StorageAccount, StorageAccount[]> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StorageAccount[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StorageAccount> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all the storage accounts available under the given resource group. Note that storage keys are
+   * not returned; use the ListKeys operation for this.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StorageAccount, StorageAccount[]> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StorageAccount[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StorageAccount> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -97,10 +187,12 @@ export class StorageAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         StorageAccountsCreateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOperationSpec
@@ -203,7 +295,7 @@ export class StorageAccounts {
    * returned; use the ListKeys operation for this.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -222,7 +314,7 @@ export class StorageAccounts {
    *                          case insensitive.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListByResourceGroupResponse> {
@@ -371,10 +463,12 @@ export class StorageAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverOperationSpec
@@ -413,10 +507,12 @@ export class StorageAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         StorageAccountsRestoreBlobRangesResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreBlobRangesOperationSpec
@@ -460,7 +556,7 @@ export class StorageAccounts {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StorageAccountsListNextResponse> {
