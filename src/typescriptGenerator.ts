@@ -81,7 +81,7 @@ export async function generateTypeScriptLibrary(
     generatePackageJson(clientDetails, packageDetails, project);
     generateLicenseFile(project, shouldGenerateLicense);
     generateReadmeFile(clientDetails, packageDetails, project);
-    generateTsConfig(project);
+    generateTsConfig(project, clientDetails);
     generateRollupConfig(clientDetails, packageDetails, project);
     generateApiExtractorConfig(clientDetails, project);
   }

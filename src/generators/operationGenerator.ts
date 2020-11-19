@@ -1007,7 +1007,11 @@ function addImports(
   const { className, sourceFileName, mappers } = clientDetails;
 
   addTracingOperationImports(clientDetails, operationGroupFile);
-  addPagingImports(clientDetails, operationGroupFile);
+  addPagingImports(
+    operationGroupDetails.operations,
+    clientDetails,
+    operationGroupFile
+  );
 
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",

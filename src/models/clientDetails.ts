@@ -14,6 +14,7 @@ export interface ClientOptions {
   addCredentials?: boolean;
   disablePagingAsyncIterators?: boolean;
   mediaTypes?: Set<KnownMediaType>;
+  hasPaging?: boolean;
 }
 
 export interface TracingInfo {

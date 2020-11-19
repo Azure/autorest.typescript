@@ -2,8 +2,18 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
+import { ClientDetails } from "../../models/clientDetails";
 
-export function generateTsConfig(project: Project) {
+export function generateTsConfig(
+  project: Project,
+  clientDetails: ClientDetails
+) {
+  const esNext =
+    !clientDetails.options.disablePagingAsyncIterators &&
+    clientDetails.options.hasPaging
+      ? ["esnext"]
+      : [];
+
   const tsConfigContents = {
     compilerOptions: {
       module: "es6",
@@ -15,7 +25,7 @@ export function generateTsConfig(project: Project) {
       esModuleInterop: true,
       allowSyntheticDefaultImports: true,
       forceConsistentCasingInFileNames: true,
-      lib: ["es6", "dom"],
+      lib: ["es6", "dom", ...esNext],
       declaration: true,
       outDir: "./esm",
       importHelpers: true

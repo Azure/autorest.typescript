@@ -15,7 +15,10 @@ import {
 } from "./operationGenerator";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { OperationGroupDetails } from "../models/operationDetails";
+import {
+  OperationDetails,
+  OperationGroupDetails
+} from "../models/operationDetails";
 import { formatJsDocParam } from "./utils/parameterUtils";
 import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
@@ -68,13 +71,12 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-http"
     });
 
-  const hasPageableOperation =
-    hasInlineOperations &&
-    inlineOperations.some(og => og.operations.some(o => o.pagination));
+  const flattenedInlineOperations = inlineOperations.reduce<OperationDetails[]>(
+    (acc, curr) => (acc = [...acc, ...curr.operations]),
+    []
+  );
 
-  if (hasPageableOperation) {
-    addPagingImports(clientDetails, clientFile);
-  }
+  addPagingImports(flattenedInlineOperations, clientDetails, clientFile);
 
   const hasLRO = inlineOperations.some(og => og.operations.some(o => o.isLRO));
 
