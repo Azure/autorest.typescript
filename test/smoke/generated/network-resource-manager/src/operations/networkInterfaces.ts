@@ -6,15 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  NetworkInterface,
+  NetworkInterfaceIPConfiguration,
+  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
   NetworkInterfacesGetOptionalParams,
   NetworkInterfacesGetResponse,
-  NetworkInterface,
   NetworkInterfacesCreateOrUpdateResponse,
   TagsObject,
   NetworkInterfacesUpdateTagsResponse,
@@ -26,7 +30,6 @@ import {
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse,
-  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse,
@@ -34,7 +37,6 @@ import {
   NetworkInterfacesListNextResponse,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse,
-  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse
 } from "../models";
 
@@ -50,6 +52,338 @@ export class NetworkInterfaces {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all network interfaces in a subscription.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all network interfaces in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets information about all network interfaces in a virtual machine in a virtual machine scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the virtual machine scale set.
+   * @param virtualmachineIndex The virtual machine index.
+   * @param options The options parameters.
+   */
+  public listVirtualMachineScaleSetVMNetworkInterfaces(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listVirtualMachineScaleSetVMNetworkInterfacesPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          virtualmachineIndex,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._listVirtualMachineScaleSetVMNetworkInterfaces(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listVirtualMachineScaleSetVMNetworkInterfacesNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listVirtualMachineScaleSetVMNetworkInterfacesPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all network interfaces in a virtual machine scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the virtual machine scale set.
+   * @param options The options parameters.
+   */
+  public listVirtualMachineScaleSetNetworkInterfaces(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listVirtualMachineScaleSetNetworkInterfacesPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listVirtualMachineScaleSetNetworkInterfacesPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listVirtualMachineScaleSetNetworkInterfacesPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._listVirtualMachineScaleSetNetworkInterfaces(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listVirtualMachineScaleSetNetworkInterfacesNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listVirtualMachineScaleSetNetworkInterfacesPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listVirtualMachineScaleSetNetworkInterfacesPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Get the specified network interface ip configuration in a virtual machine scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the virtual machine scale set.
+   * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  public listVirtualMachineScaleSetIpConfigurations(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
+  ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration> {
+    const iter = this.listVirtualMachineScaleSetIpConfigurationsPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listVirtualMachineScaleSetIpConfigurationsPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          virtualmachineIndex,
+          networkInterfaceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listVirtualMachineScaleSetIpConfigurationsPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
+  ): AsyncIterableIterator<NetworkInterfaceIPConfiguration[]> {
+    let result = await this._listVirtualMachineScaleSetIpConfigurations(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listVirtualMachineScaleSetIpConfigurationsNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listVirtualMachineScaleSetIpConfigurationsPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
+  ): AsyncIterableIterator<NetworkInterfaceIPConfiguration> {
+    for await (const page of this.listVirtualMachineScaleSetIpConfigurationsPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -71,10 +405,12 @@ export class NetworkInterfaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -132,10 +468,12 @@ export class NetworkInterfaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkInterfacesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -178,7 +516,7 @@ export class NetworkInterfaces {
    * Gets all network interfaces in a subscription.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -195,7 +533,7 @@ export class NetworkInterfaces {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListResponse> {
@@ -228,10 +566,12 @@ export class NetworkInterfaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkInterfacesGetEffectiveRouteTableResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getEffectiveRouteTableOperationSpec
@@ -266,10 +606,12 @@ export class NetworkInterfaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       listEffectiveNetworkSecurityGroupsOperationSpec
@@ -290,7 +632,7 @@ export class NetworkInterfaces {
    * @param virtualmachineIndex The virtual machine index.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetVMNetworkInterfaces(
+  private _listVirtualMachineScaleSetVMNetworkInterfaces(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
@@ -318,7 +660,7 @@ export class NetworkInterfaces {
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetNetworkInterfaces(
+  private _listVirtualMachineScaleSetNetworkInterfaces(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: coreHttp.OperationOptions
@@ -378,7 +720,7 @@ export class NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetIpConfigurations(
+  private _listVirtualMachineScaleSetIpConfigurations(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
@@ -442,7 +784,7 @@ export class NetworkInterfaces {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfacesListAllNextResponse> {
@@ -462,7 +804,7 @@ export class NetworkInterfaces {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -487,7 +829,7 @@ export class NetworkInterfaces {
    *                 ListVirtualMachineScaleSetVMNetworkInterfaces method.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(
+  private _listVirtualMachineScaleSetVMNetworkInterfacesNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
@@ -519,7 +861,7 @@ export class NetworkInterfaces {
    *                 ListVirtualMachineScaleSetNetworkInterfaces method.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetNetworkInterfacesNext(
+  private _listVirtualMachineScaleSetNetworkInterfacesNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     nextLink: string,
@@ -551,7 +893,7 @@ export class NetworkInterfaces {
    *                 ListVirtualMachineScaleSetIpConfigurations method.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetIpConfigurationsNext(
+  private _listVirtualMachineScaleSetIpConfigurationsNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,

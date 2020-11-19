@@ -1098,14 +1098,14 @@ export const FailoverGroupUpdate: coreHttp.CompositeMapper = {
         }
       },
       readWriteEndpoint: {
-        serializedName: "readWriteEndpoint",
+        serializedName: "properties.readWriteEndpoint",
         type: {
           name: "Composite",
           className: "FailoverGroupReadWriteEndpoint"
         }
       },
       readOnlyEndpoint: {
-        serializedName: "readOnlyEndpoint",
+        serializedName: "properties.readOnlyEndpoint",
         type: {
           name: "Composite",
           className: "FailoverGroupReadOnlyEndpoint"
@@ -3274,7 +3274,7 @@ export const DatabaseUpdate: coreHttp.CompositeMapper = {
         }
       },
       currentSku: {
-        serializedName: "currentSku",
+        serializedName: "properties.currentSku",
         type: {
           name: "Composite",
           className: "Sku"
@@ -3402,7 +3402,7 @@ export const ElasticPoolUpdate: coreHttp.CompositeMapper = {
         }
       },
       perDatabaseSettings: {
-        serializedName: "perDatabaseSettings",
+        serializedName: "properties.perDatabaseSettings",
         type: {
           name: "Composite",
           className: "ElasticPoolPerDatabaseSettings"
@@ -7485,14 +7485,14 @@ export const FailoverGroup: coreHttp.CompositeMapper = {
         }
       },
       readWriteEndpoint: {
-        serializedName: "readWriteEndpoint",
+        serializedName: "properties.readWriteEndpoint",
         type: {
           name: "Composite",
           className: "FailoverGroupReadWriteEndpoint"
         }
       },
       readOnlyEndpoint: {
-        serializedName: "readOnlyEndpoint",
+        serializedName: "properties.readOnlyEndpoint",
         type: {
           name: "Composite",
           className: "FailoverGroupReadOnlyEndpoint"
@@ -7754,7 +7754,7 @@ export const SyncGroup: coreHttp.CompositeMapper = {
         }
       },
       schema: {
-        serializedName: "schema",
+        serializedName: "properties.schema",
         type: {
           name: "Composite",
           className: "SyncGroupSchema"
@@ -8242,7 +8242,7 @@ export const DatabaseVulnerabilityAssessment: coreHttp.CompositeMapper = {
         }
       },
       recurringScans: {
-        serializedName: "recurringScans",
+        serializedName: "properties.recurringScans",
         type: {
           name: "Composite",
           className: "VulnerabilityAssessmentRecurringScansProperties"
@@ -8364,7 +8364,7 @@ export const JobExecution: coreHttp.CompositeMapper = {
         }
       },
       target: {
-        serializedName: "target",
+        serializedName: "properties.target",
         type: {
           name: "Composite",
           className: "JobExecutionTarget"
@@ -8394,7 +8394,7 @@ export const Job: coreHttp.CompositeMapper = {
         }
       },
       schedule: {
-        serializedName: "schedule",
+        serializedName: "properties.schedule",
         type: {
           name: "Composite",
           className: "JobSchedule"
@@ -8429,21 +8429,21 @@ export const JobStep: coreHttp.CompositeMapper = {
         }
       },
       action: {
-        serializedName: "action",
+        serializedName: "properties.action",
         type: {
           name: "Composite",
           className: "JobStepAction"
         }
       },
       output: {
-        serializedName: "output",
+        serializedName: "properties.output",
         type: {
           name: "Composite",
           className: "JobStepOutput"
         }
       },
       executionOptions: {
-        serializedName: "executionOptions",
+        serializedName: "properties.executionOptions",
         type: {
           name: "Composite",
           className: "JobStepExecutionOptions"
@@ -9281,14 +9281,14 @@ export const InstanceFailoverGroup: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       readWriteEndpoint: {
-        serializedName: "readWriteEndpoint",
+        serializedName: "properties.readWriteEndpoint",
         type: {
           name: "Composite",
           className: "InstanceFailoverGroupReadWriteEndpoint"
         }
       },
       readOnlyEndpoint: {
-        serializedName: "readOnlyEndpoint",
+        serializedName: "properties.readOnlyEndpoint",
         type: {
           name: "Composite",
           className: "InstanceFailoverGroupReadOnlyEndpoint"
@@ -9502,7 +9502,7 @@ export const ManagedInstanceVulnerabilityAssessment: coreHttp.CompositeMapper = 
         }
       },
       recurringScans: {
-        serializedName: "recurringScans",
+        serializedName: "properties.recurringScans",
         type: {
           name: "Composite",
           className: "VulnerabilityAssessmentRecurringScansProperties"
@@ -9537,7 +9537,7 @@ export const ServerVulnerabilityAssessment: coreHttp.CompositeMapper = {
         }
       },
       recurringScans: {
-        serializedName: "recurringScans",
+        serializedName: "properties.recurringScans",
         type: {
           name: "Composite",
           className: "VulnerabilityAssessmentRecurringScansProperties"
@@ -9554,14 +9554,14 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpointProperty"
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionStateProperty"
@@ -10507,7 +10507,7 @@ export const Database: coreHttp.CompositeMapper = {
         }
       },
       currentSku: {
-        serializedName: "currentSku",
+        serializedName: "properties.currentSku",
         type: {
           name: "Composite",
           className: "Sku"
@@ -10584,7 +10584,7 @@ export const ElasticPool: coreHttp.CompositeMapper = {
         }
       },
       perDatabaseSettings: {
-        serializedName: "perDatabaseSettings",
+        serializedName: "properties.perDatabaseSettings",
         type: {
           name: "Composite",
           className: "ElasticPoolPerDatabaseSettings"

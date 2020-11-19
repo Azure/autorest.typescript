@@ -6,22 +6,24 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  JobExecution,
+  JobExecutionsListByAgentNextOptionalParams,
   JobExecutionsListByAgentOptionalParams,
+  JobExecutionsListByJobNextOptionalParams,
+  JobExecutionsListByJobOptionalParams,
   JobExecutionsListByAgentResponse,
   JobExecutionsCreateResponse,
-  JobExecutionsListByJobOptionalParams,
   JobExecutionsListByJobResponse,
   JobExecutionsGetResponse,
   JobExecutionsCreateOrUpdateResponse,
-  JobExecutionsListByAgentNextOptionalParams,
   JobExecutionsListByAgentNextResponse,
-  JobExecutionsListByJobNextOptionalParams,
   JobExecutionsListByJobNextResponse
 } from "../models";
 
@@ -47,7 +49,178 @@ export class JobExecutions {
    * @param jobAgentName The name of the job agent.
    * @param options The options parameters.
    */
-  listByAgent(
+  public listByAgent(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    options?: JobExecutionsListByAgentOptionalParams
+  ): PagedAsyncIterableIterator<JobExecution> {
+    const iter = this.listByAgentPagingAll(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByAgentPagingPage(
+          resourceGroupName,
+          serverName,
+          jobAgentName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByAgentPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    options?: JobExecutionsListByAgentOptionalParams
+  ): AsyncIterableIterator<JobExecution[]> {
+    let result = await this._listByAgent(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByAgentNext(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByAgentPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    options?: JobExecutionsListByAgentOptionalParams
+  ): AsyncIterableIterator<JobExecution> {
+    for await (const page of this.listByAgentPagingPage(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists a job's executions.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param options The options parameters.
+   */
+  public listByJob(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: JobExecutionsListByJobOptionalParams
+  ): PagedAsyncIterableIterator<JobExecution> {
+    const iter = this.listByJobPagingAll(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByJobPagingPage(
+          resourceGroupName,
+          serverName,
+          jobAgentName,
+          jobName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByJobPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: JobExecutionsListByJobOptionalParams
+  ): AsyncIterableIterator<JobExecution[]> {
+    let result = await this._listByJob(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByJobNext(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByJobPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: JobExecutionsListByJobOptionalParams
+  ): AsyncIterableIterator<JobExecution> {
+    for await (const page of this.listByJobPagingPage(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all executions in a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param options The options parameters.
+   */
+  private _listByAgent(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -123,10 +296,12 @@ export class JobExecutions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         JobExecutionsCreateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOperationSpec
@@ -148,7 +323,7 @@ export class JobExecutions {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  listByJob(
+  private _listByJob(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -229,10 +404,12 @@ export class JobExecutions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         JobExecutionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -254,7 +431,7 @@ export class JobExecutions {
    * @param nextLink The nextLink from the previous successful call to the ListByAgent method.
    * @param options The options parameters.
    */
-  listByAgentNext(
+  private _listByAgentNext(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -284,7 +461,7 @@ export class JobExecutions {
    * @param nextLink The nextLink from the previous successful call to the ListByJob method.
    * @param options The options parameters.
    */
-  listByJobNext(
+  private _listByJobNext(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

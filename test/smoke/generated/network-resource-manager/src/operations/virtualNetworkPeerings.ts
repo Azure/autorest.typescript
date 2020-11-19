@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  VirtualNetworkPeeringsGetResponse,
   VirtualNetworkPeering,
+  VirtualNetworkPeeringsGetResponse,
   VirtualNetworkPeeringsCreateOrUpdateResponse,
   VirtualNetworkPeeringsListResponse,
   VirtualNetworkPeeringsListNextResponse
@@ -31,6 +32,77 @@ export class VirtualNetworkPeerings {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all virtual network peerings in a virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualNetworkPeering> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      virtualNetworkName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          virtualNetworkName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualNetworkPeering[]> {
+    let result = await this._list(
+      resourceGroupName,
+      virtualNetworkName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        virtualNetworkName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualNetworkPeering> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      virtualNetworkName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +127,12 @@ export class VirtualNetworkPeerings {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -123,10 +197,12 @@ export class VirtualNetworkPeerings {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualNetworkPeeringsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -146,7 +222,7 @@ export class VirtualNetworkPeerings {
    * @param virtualNetworkName The name of the virtual network.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
@@ -169,7 +245,7 @@ export class VirtualNetworkPeerings {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     virtualNetworkName: string,
     nextLink: string,

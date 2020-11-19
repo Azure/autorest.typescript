@@ -7,12 +7,14 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Features } from "./operations";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { FeatureClientContext } from "./featureClientContext";
 import {
   FeatureClientOptionalParams,
+  Operation,
   FeatureClientListOperationsResponse,
   FeatureClientListOperationsNextResponse
 } from "./models";
@@ -37,7 +39,49 @@ export class FeatureClient extends FeatureClientContext {
    * Lists all of the available Microsoft.Features REST API operations.
    * @param options The options parameters.
    */
-  listOperations(
+  public listOperations(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Operation> {
+    const iter = this.listOperationsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOperationsPagingPage(options);
+      }
+    };
+  }
+
+  private async *listOperationsPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Operation[]> {
+    let result = await this._listOperations(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listOperationsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOperationsPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Operation> {
+    for await (const page of this.listOperationsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the available Microsoft.Features REST API operations.
+   * @param options The options parameters.
+   */
+  private _listOperations(
     options?: coreHttp.OperationOptions
   ): Promise<FeatureClientListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -54,7 +98,7 @@ export class FeatureClient extends FeatureClientContext {
    * @param nextLink The nextLink from the previous successful call to the ListOperations method.
    * @param options The options parameters.
    */
-  listOperationsNext(
+  private _listOperationsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FeatureClientListOperationsNextResponse> {

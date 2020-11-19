@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ExpressRouteCircuitAuthorizationsGetResponse,
   ExpressRouteCircuitAuthorization,
+  ExpressRouteCircuitAuthorizationsGetResponse,
   ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse,
   ExpressRouteCircuitAuthorizationsListResponse,
   ExpressRouteCircuitAuthorizationsListNextResponse
@@ -31,6 +32,65 @@ export class ExpressRouteCircuitAuthorizations {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all authorizations in an express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the circuit.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    circuitName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization> {
+    const iter = this.listPagingAll(resourceGroupName, circuitName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, circuitName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    circuitName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCircuitAuthorization[]> {
+    let result = await this._list(resourceGroupName, circuitName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        circuitName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    circuitName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ExpressRouteCircuitAuthorization> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      circuitName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +115,12 @@ export class ExpressRouteCircuitAuthorizations {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -125,10 +187,12 @@ export class ExpressRouteCircuitAuthorizations {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -148,7 +212,7 @@ export class ExpressRouteCircuitAuthorizations {
    * @param circuitName The name of the circuit.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     circuitName: string,
     options?: coreHttp.OperationOptions
@@ -171,7 +235,7 @@ export class ExpressRouteCircuitAuthorizations {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     circuitName: string,
     nextLink: string,

@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  ElasticPoolOperation,
   ElasticPoolOperationsListByElasticPoolResponse,
   ElasticPoolOperationsListByElasticPoolNextResponse
 } from "../models";
@@ -27,6 +29,87 @@ export class ElasticPoolOperations {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a list of operations performed on the elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName
+   * @param options The options parameters.
+   */
+  public listByElasticPool(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ElasticPoolOperation> {
+    const iter = this.listByElasticPoolPagingAll(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByElasticPoolPagingPage(
+          resourceGroupName,
+          serverName,
+          elasticPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByElasticPoolPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ElasticPoolOperation[]> {
+    let result = await this._listByElasticPool(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByElasticPoolNext(
+        resourceGroupName,
+        serverName,
+        elasticPoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByElasticPoolPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ElasticPoolOperation> {
+    for await (const page of this.listByElasticPoolPagingPage(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -66,7 +149,7 @@ export class ElasticPoolOperations {
    * @param elasticPoolName
    * @param options The options parameters.
    */
-  listByElasticPool(
+  private _listByElasticPool(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -93,7 +176,7 @@ export class ElasticPoolOperations {
    * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
    * @param options The options parameters.
    */
-  listByElasticPoolNext(
+  private _listByElasticPoolNext(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,

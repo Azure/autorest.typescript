@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -36,6 +37,78 @@ export class DedicatedHosts {
   }
 
   /**
+   * Lists all of the dedicated hosts in the specified dedicated host group. Use the nextLink property in
+   * the response to get the next page of dedicated hosts.
+   * @param resourceGroupName The name of the resource group.
+   * @param hostGroupName The name of the dedicated host group.
+   * @param options The options parameters.
+   */
+  public listByHostGroup(
+    resourceGroupName: string,
+    hostGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DedicatedHost> {
+    const iter = this.listByHostGroupPagingAll(
+      resourceGroupName,
+      hostGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByHostGroupPagingPage(
+          resourceGroupName,
+          hostGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByHostGroupPagingPage(
+    resourceGroupName: string,
+    hostGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DedicatedHost[]> {
+    let result = await this._listByHostGroup(
+      resourceGroupName,
+      hostGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByHostGroupNext(
+        resourceGroupName,
+        hostGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByHostGroupPagingAll(
+    resourceGroupName: string,
+    hostGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DedicatedHost> {
+    for await (const page of this.listByHostGroupPagingPage(
+      resourceGroupName,
+      hostGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Create or update a dedicated host .
    * @param resourceGroupName The name of the resource group.
    * @param hostGroupName The name of the dedicated host group.
@@ -60,10 +133,12 @@ export class DedicatedHosts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DedicatedHostsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -101,10 +176,12 @@ export class DedicatedHosts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DedicatedHostsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -139,10 +216,12 @@ export class DedicatedHosts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -187,7 +266,7 @@ export class DedicatedHosts {
    * @param hostGroupName The name of the dedicated host group.
    * @param options The options parameters.
    */
-  listByHostGroup(
+  private _listByHostGroup(
     resourceGroupName: string,
     hostGroupName: string,
     options?: coreHttp.OperationOptions
@@ -210,7 +289,7 @@ export class DedicatedHosts {
    * @param nextLink The nextLink from the previous successful call to the ListByHostGroup method.
    * @param options The options parameters.
    */
-  listByHostGroupNext(
+  private _listByHostGroupNext(
     resourceGroupName: string,
     hostGroupName: string,
     nextLink: string,

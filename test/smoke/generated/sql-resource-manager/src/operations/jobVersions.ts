@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  Resource,
   JobVersionsListByJobResponse,
   JobVersionsGetResponse,
   JobVersionsListByJobNextResponse
@@ -39,7 +41,97 @@ export class JobVersions {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  listByJob(
+  public listByJob(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Resource> {
+    const iter = this.listByJobPagingAll(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByJobPagingPage(
+          resourceGroupName,
+          serverName,
+          jobAgentName,
+          jobName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByJobPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Resource[]> {
+    let result = await this._listByJob(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByJobNext(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByJobPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Resource> {
+    for await (const page of this.listByJobPagingPage(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all versions of a job.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param options The options parameters.
+   */
+  private _listByJob(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -101,7 +193,7 @@ export class JobVersions {
    * @param nextLink The nextLink from the previous successful call to the ListByJob method.
    * @param options The options parameters.
    */
-  listByJobNext(
+  private _listByJobNext(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

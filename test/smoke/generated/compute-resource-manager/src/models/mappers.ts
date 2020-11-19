@@ -2772,7 +2772,7 @@ export const VirtualMachineScaleSetPublicIPAddressConfiguration: coreHttp.Compos
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className:
@@ -2792,7 +2792,7 @@ export const VirtualMachineScaleSetPublicIPAddressConfiguration: coreHttp.Compos
         }
       },
       publicIPPrefix: {
-        serializedName: "publicIPPrefix",
+        serializedName: "properties.publicIPPrefix",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -3234,7 +3234,7 @@ export const VirtualMachineScaleSetUpdatePublicIPAddressConfiguration: coreHttp.
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className:
@@ -5077,7 +5077,7 @@ export const DiskUpdate: coreHttp.CompositeMapper = {
         }
       },
       encryptionSettingsCollection: {
-        serializedName: "encryptionSettingsCollection",
+        serializedName: "properties.encryptionSettingsCollection",
         type: {
           name: "Composite",
           className: "EncryptionSettingsCollection"
@@ -5114,7 +5114,7 @@ export const DiskUpdate: coreHttp.CompositeMapper = {
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -5246,14 +5246,14 @@ export const SnapshotUpdate: coreHttp.CompositeMapper = {
         }
       },
       encryptionSettingsCollection: {
-        serializedName: "encryptionSettingsCollection",
+        serializedName: "properties.encryptionSettingsCollection",
         type: {
           name: "Composite",
           className: "EncryptionSettingsCollection"
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -5333,7 +5333,7 @@ export const DiskEncryptionSetUpdate: coreHttp.CompositeMapper = {
         }
       },
       activeKey: {
-        serializedName: "activeKey",
+        serializedName: "properties.activeKey",
         type: {
           name: "Composite",
           className: "KeyVaultAndKeyReference"
@@ -6497,7 +6497,7 @@ export const VirtualMachineScaleSetIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "ApiEntityReference"
@@ -6510,7 +6510,7 @@ export const VirtualMachineScaleSetIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       publicIPAddressConfiguration: {
-        serializedName: "publicIPAddressConfiguration",
+        serializedName: "properties.publicIPAddressConfiguration",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetPublicIPAddressConfiguration"
@@ -6600,14 +6600,14 @@ export const VirtualMachineScaleSetNetworkConfiguration: coreHttp.CompositeMappe
         }
       },
       networkSecurityGroup: {
-        serializedName: "networkSecurityGroup",
+        serializedName: "properties.networkSecurityGroup",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetNetworkConfigurationDnsSettings"
@@ -6648,7 +6648,7 @@ export const VirtualMachineScaleSetUpdateIPConfiguration: coreHttp.CompositeMapp
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "ApiEntityReference"
@@ -6661,7 +6661,7 @@ export const VirtualMachineScaleSetUpdateIPConfiguration: coreHttp.CompositeMapp
         }
       },
       publicIPAddressConfiguration: {
-        serializedName: "publicIPAddressConfiguration",
+        serializedName: "properties.publicIPAddressConfiguration",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetUpdatePublicIPAddressConfiguration"
@@ -6750,14 +6750,14 @@ export const VirtualMachineScaleSetUpdateNetworkConfiguration: coreHttp.Composit
         }
       },
       networkSecurityGroup: {
-        serializedName: "networkSecurityGroup",
+        serializedName: "properties.networkSecurityGroup",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetNetworkConfigurationDnsSettings"
@@ -6833,7 +6833,7 @@ export const AvailabilitySet: coreHttp.CompositeMapper = {
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -6908,7 +6908,7 @@ export const ProximityPlacementGroup: coreHttp.CompositeMapper = {
         }
       },
       colocationStatus: {
-        serializedName: "colocationStatus",
+        serializedName: "properties.colocationStatus",
         type: {
           name: "Composite",
           className: "InstanceViewStatus"
@@ -7037,7 +7037,7 @@ export const DedicatedHost: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "DedicatedHostInstanceView"
@@ -7159,7 +7159,7 @@ export const VirtualMachineExtension: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "VirtualMachineExtensionInstanceView"
@@ -7214,63 +7214,63 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
         }
       },
       hardwareProfile: {
-        serializedName: "hardwareProfile",
+        serializedName: "properties.hardwareProfile",
         type: {
           name: "Composite",
           className: "HardwareProfile"
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "StorageProfile"
         }
       },
       additionalCapabilities: {
-        serializedName: "additionalCapabilities",
+        serializedName: "properties.additionalCapabilities",
         type: {
           name: "Composite",
           className: "AdditionalCapabilities"
         }
       },
       osProfile: {
-        serializedName: "osProfile",
+        serializedName: "properties.osProfile",
         type: {
           name: "Composite",
           className: "OSProfile"
         }
       },
       networkProfile: {
-        serializedName: "networkProfile",
+        serializedName: "properties.networkProfile",
         type: {
           name: "Composite",
           className: "NetworkProfile"
         }
       },
       diagnosticsProfile: {
-        serializedName: "diagnosticsProfile",
+        serializedName: "properties.diagnosticsProfile",
         type: {
           name: "Composite",
           className: "DiagnosticsProfile"
         }
       },
       availabilitySet: {
-        serializedName: "availabilitySet",
+        serializedName: "properties.availabilitySet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       virtualMachineScaleSet: {
-        serializedName: "virtualMachineScaleSet",
+        serializedName: "properties.virtualMachineScaleSet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -7289,14 +7289,14 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
         }
       },
       billingProfile: {
-        serializedName: "billingProfile",
+        serializedName: "properties.billingProfile",
         type: {
           name: "Composite",
           className: "BillingProfile"
         }
       },
       host: {
-        serializedName: "host",
+        serializedName: "properties.host",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -7310,7 +7310,7 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "VirtualMachineInstanceView"
@@ -7340,14 +7340,14 @@ export const Image: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       sourceVirtualMachine: {
-        serializedName: "sourceVirtualMachine",
+        serializedName: "properties.sourceVirtualMachine",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "ImageStorageProfile"
@@ -7409,21 +7409,21 @@ export const VirtualMachineScaleSet: coreHttp.CompositeMapper = {
         }
       },
       upgradePolicy: {
-        serializedName: "upgradePolicy",
+        serializedName: "properties.upgradePolicy",
         type: {
           name: "Composite",
           className: "UpgradePolicy"
         }
       },
       automaticRepairsPolicy: {
-        serializedName: "automaticRepairsPolicy",
+        serializedName: "properties.automaticRepairsPolicy",
         type: {
           name: "Composite",
           className: "AutomaticRepairsPolicy"
         }
       },
       virtualMachineProfile: {
-        serializedName: "virtualMachineProfile",
+        serializedName: "properties.virtualMachineProfile",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetVMProfile"
@@ -7474,21 +7474,21 @@ export const VirtualMachineScaleSet: coreHttp.CompositeMapper = {
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       additionalCapabilities: {
-        serializedName: "additionalCapabilities",
+        serializedName: "properties.additionalCapabilities",
         type: {
           name: "Composite",
           className: "AdditionalCapabilities"
         }
       },
       scaleInPolicy: {
-        serializedName: "scaleInPolicy",
+        serializedName: "properties.scaleInPolicy",
         type: {
           name: "Composite",
           className: "ScaleInPolicy"
@@ -7505,28 +7505,28 @@ export const RollingUpgradeStatusInfo: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       policy: {
-        serializedName: "policy",
+        serializedName: "properties.policy",
         type: {
           name: "Composite",
           className: "RollingUpgradePolicy"
         }
       },
       runningStatus: {
-        serializedName: "runningStatus",
+        serializedName: "properties.runningStatus",
         type: {
           name: "Composite",
           className: "RollingUpgradeRunningStatus"
         }
       },
       progress: {
-        serializedName: "progress",
+        serializedName: "properties.progress",
         type: {
           name: "Composite",
           className: "RollingUpgradeProgressInfo"
         }
       },
       error: {
-        serializedName: "error",
+        serializedName: "properties.error",
         type: {
           name: "Composite",
           className: "ApiError"
@@ -7603,63 +7603,63 @@ export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetVMInstanceView"
         }
       },
       hardwareProfile: {
-        serializedName: "hardwareProfile",
+        serializedName: "properties.hardwareProfile",
         type: {
           name: "Composite",
           className: "HardwareProfile"
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "StorageProfile"
         }
       },
       additionalCapabilities: {
-        serializedName: "additionalCapabilities",
+        serializedName: "properties.additionalCapabilities",
         type: {
           name: "Composite",
           className: "AdditionalCapabilities"
         }
       },
       osProfile: {
-        serializedName: "osProfile",
+        serializedName: "properties.osProfile",
         type: {
           name: "Composite",
           className: "OSProfile"
         }
       },
       networkProfile: {
-        serializedName: "networkProfile",
+        serializedName: "properties.networkProfile",
         type: {
           name: "Composite",
           className: "NetworkProfile"
         }
       },
       networkProfileConfiguration: {
-        serializedName: "networkProfileConfiguration",
+        serializedName: "properties.networkProfileConfiguration",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetVMNetworkProfileConfiguration"
         }
       },
       diagnosticsProfile: {
-        serializedName: "diagnosticsProfile",
+        serializedName: "properties.diagnosticsProfile",
         type: {
           name: "Composite",
           className: "DiagnosticsProfile"
         }
       },
       availabilitySet: {
-        serializedName: "availabilitySet",
+        serializedName: "properties.availabilitySet",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -7686,7 +7686,7 @@ export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
         }
       },
       protectionPolicy: {
-        serializedName: "protectionPolicy",
+        serializedName: "properties.protectionPolicy",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetVMProtectionPolicy"
@@ -7760,7 +7760,7 @@ export const Disk: coreHttp.CompositeMapper = {
         }
       },
       creationData: {
-        serializedName: "creationData",
+        serializedName: "properties.creationData",
         type: {
           name: "Composite",
           className: "CreationData"
@@ -7787,7 +7787,7 @@ export const Disk: coreHttp.CompositeMapper = {
         }
       },
       encryptionSettingsCollection: {
-        serializedName: "encryptionSettingsCollection",
+        serializedName: "properties.encryptionSettingsCollection",
         type: {
           name: "Composite",
           className: "EncryptionSettingsCollection"
@@ -7832,7 +7832,7 @@ export const Disk: coreHttp.CompositeMapper = {
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -7902,7 +7902,7 @@ export const Snapshot: coreHttp.CompositeMapper = {
         }
       },
       creationData: {
-        serializedName: "creationData",
+        serializedName: "properties.creationData",
         type: {
           name: "Composite",
           className: "CreationData"
@@ -7929,7 +7929,7 @@ export const Snapshot: coreHttp.CompositeMapper = {
         }
       },
       encryptionSettingsCollection: {
-        serializedName: "encryptionSettingsCollection",
+        serializedName: "properties.encryptionSettingsCollection",
         type: {
           name: "Composite",
           className: "EncryptionSettingsCollection"
@@ -7949,7 +7949,7 @@ export const Snapshot: coreHttp.CompositeMapper = {
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -7973,7 +7973,7 @@ export const DiskEncryptionSet: coreHttp.CompositeMapper = {
         }
       },
       activeKey: {
-        serializedName: "activeKey",
+        serializedName: "properties.activeKey",
         type: {
           name: "Composite",
           className: "KeyVaultAndKeyReference"
@@ -8016,7 +8016,7 @@ export const Gallery: coreHttp.CompositeMapper = {
         }
       },
       identifier: {
-        serializedName: "identifier",
+        serializedName: "properties.identifier",
         type: {
           name: "Composite",
           className: "GalleryIdentifier"
@@ -8090,28 +8090,28 @@ export const GalleryImage: coreHttp.CompositeMapper = {
         }
       },
       identifier: {
-        serializedName: "identifier",
+        serializedName: "properties.identifier",
         type: {
           name: "Composite",
           className: "GalleryImageIdentifier"
         }
       },
       recommended: {
-        serializedName: "recommended",
+        serializedName: "properties.recommended",
         type: {
           name: "Composite",
           className: "RecommendedMachineConfiguration"
         }
       },
       disallowed: {
-        serializedName: "disallowed",
+        serializedName: "properties.disallowed",
         type: {
           name: "Composite",
           className: "Disallowed"
         }
       },
       purchasePlan: {
-        serializedName: "purchasePlan",
+        serializedName: "properties.purchasePlan",
         type: {
           name: "Composite",
           className: "ImagePurchasePlan"
@@ -8135,7 +8135,7 @@ export const GalleryImageVersion: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       publishingProfile: {
-        serializedName: "publishingProfile",
+        serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
           className: "GalleryArtifactPublishingProfileBase"
@@ -8149,14 +8149,14 @@ export const GalleryImageVersion: coreHttp.CompositeMapper = {
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "GalleryImageVersionStorageProfile"
         }
       },
       replicationStatus: {
-        serializedName: "replicationStatus",
+        serializedName: "properties.replicationStatus",
         type: {
           name: "Composite",
           className: "ReplicationStatus"
@@ -8220,7 +8220,7 @@ export const GalleryApplicationVersion: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       publishingProfile: {
-        serializedName: "publishingProfile",
+        serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
           className: "GalleryApplicationVersionPublishingProfile"
@@ -8234,7 +8234,7 @@ export const GalleryApplicationVersion: coreHttp.CompositeMapper = {
         }
       },
       replicationStatus: {
-        serializedName: "replicationStatus",
+        serializedName: "properties.replicationStatus",
         type: {
           name: "Composite",
           className: "ReplicationStatus"
@@ -8258,28 +8258,28 @@ export const ContainerService: coreHttp.CompositeMapper = {
         }
       },
       orchestratorProfile: {
-        serializedName: "orchestratorProfile",
+        serializedName: "properties.orchestratorProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceOrchestratorProfile"
         }
       },
       customProfile: {
-        serializedName: "customProfile",
+        serializedName: "properties.customProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceCustomProfile"
         }
       },
       servicePrincipalProfile: {
-        serializedName: "servicePrincipalProfile",
+        serializedName: "properties.servicePrincipalProfile",
         type: {
           name: "Composite",
           className: "ContainerServicePrincipalProfile"
         }
       },
       masterProfile: {
-        serializedName: "masterProfile",
+        serializedName: "properties.masterProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceMasterProfile"
@@ -8298,21 +8298,21 @@ export const ContainerService: coreHttp.CompositeMapper = {
         }
       },
       windowsProfile: {
-        serializedName: "windowsProfile",
+        serializedName: "properties.windowsProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceWindowsProfile"
         }
       },
       linuxProfile: {
-        serializedName: "linuxProfile",
+        serializedName: "properties.linuxProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceLinuxProfile"
         }
       },
       diagnosticsProfile: {
-        serializedName: "diagnosticsProfile",
+        serializedName: "properties.diagnosticsProfile",
         type: {
           name: "Composite",
           className: "ContainerServiceDiagnosticsProfile"
@@ -8360,7 +8360,7 @@ export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -8495,7 +8495,7 @@ export const DedicatedHostUpdate: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "DedicatedHostInstanceView"
@@ -8580,14 +8580,14 @@ export const ImageUpdate: coreHttp.CompositeMapper = {
     modelProperties: {
       ...UpdateResource.type.modelProperties,
       sourceVirtualMachine: {
-        serializedName: "sourceVirtualMachine",
+        serializedName: "properties.sourceVirtualMachine",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "ImageStorageProfile"
@@ -8642,63 +8642,63 @@ export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
         }
       },
       hardwareProfile: {
-        serializedName: "hardwareProfile",
+        serializedName: "properties.hardwareProfile",
         type: {
           name: "Composite",
           className: "HardwareProfile"
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "StorageProfile"
         }
       },
       additionalCapabilities: {
-        serializedName: "additionalCapabilities",
+        serializedName: "properties.additionalCapabilities",
         type: {
           name: "Composite",
           className: "AdditionalCapabilities"
         }
       },
       osProfile: {
-        serializedName: "osProfile",
+        serializedName: "properties.osProfile",
         type: {
           name: "Composite",
           className: "OSProfile"
         }
       },
       networkProfile: {
-        serializedName: "networkProfile",
+        serializedName: "properties.networkProfile",
         type: {
           name: "Composite",
           className: "NetworkProfile"
         }
       },
       diagnosticsProfile: {
-        serializedName: "diagnosticsProfile",
+        serializedName: "properties.diagnosticsProfile",
         type: {
           name: "Composite",
           className: "DiagnosticsProfile"
         }
       },
       availabilitySet: {
-        serializedName: "availabilitySet",
+        serializedName: "properties.availabilitySet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       virtualMachineScaleSet: {
-        serializedName: "virtualMachineScaleSet",
+        serializedName: "properties.virtualMachineScaleSet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -8717,14 +8717,14 @@ export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
         }
       },
       billingProfile: {
-        serializedName: "billingProfile",
+        serializedName: "properties.billingProfile",
         type: {
           name: "Composite",
           className: "BillingProfile"
         }
       },
       host: {
-        serializedName: "host",
+        serializedName: "properties.host",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -8738,7 +8738,7 @@ export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
         }
       },
       instanceView: {
-        serializedName: "instanceView",
+        serializedName: "properties.instanceView",
         type: {
           name: "Composite",
           className: "VirtualMachineInstanceView"
@@ -8789,21 +8789,21 @@ export const VirtualMachineScaleSetUpdate: coreHttp.CompositeMapper = {
         }
       },
       upgradePolicy: {
-        serializedName: "upgradePolicy",
+        serializedName: "properties.upgradePolicy",
         type: {
           name: "Composite",
           className: "UpgradePolicy"
         }
       },
       automaticRepairsPolicy: {
-        serializedName: "automaticRepairsPolicy",
+        serializedName: "properties.automaticRepairsPolicy",
         type: {
           name: "Composite",
           className: "AutomaticRepairsPolicy"
         }
       },
       virtualMachineProfile: {
-        serializedName: "virtualMachineProfile",
+        serializedName: "properties.virtualMachineProfile",
         type: {
           name: "Composite",
           className: "VirtualMachineScaleSetUpdateVMProfile"
@@ -8828,21 +8828,21 @@ export const VirtualMachineScaleSetUpdate: coreHttp.CompositeMapper = {
         }
       },
       additionalCapabilities: {
-        serializedName: "additionalCapabilities",
+        serializedName: "properties.additionalCapabilities",
         type: {
           name: "Composite",
           className: "AdditionalCapabilities"
         }
       },
       scaleInPolicy: {
-        serializedName: "scaleInPolicy",
+        serializedName: "properties.scaleInPolicy",
         type: {
           name: "Composite",
           className: "ScaleInPolicy"
         }
       },
       proximityPlacementGroup: {
-        serializedName: "proximityPlacementGroup",
+        serializedName: "properties.proximityPlacementGroup",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -9178,7 +9178,7 @@ export const GalleryUpdate: coreHttp.CompositeMapper = {
         }
       },
       identifier: {
-        serializedName: "identifier",
+        serializedName: "properties.identifier",
         type: {
           name: "Composite",
           className: "GalleryIdentifier"
@@ -9252,28 +9252,28 @@ export const GalleryImageUpdate: coreHttp.CompositeMapper = {
         }
       },
       identifier: {
-        serializedName: "identifier",
+        serializedName: "properties.identifier",
         type: {
           name: "Composite",
           className: "GalleryImageIdentifier"
         }
       },
       recommended: {
-        serializedName: "recommended",
+        serializedName: "properties.recommended",
         type: {
           name: "Composite",
           className: "RecommendedMachineConfiguration"
         }
       },
       disallowed: {
-        serializedName: "disallowed",
+        serializedName: "properties.disallowed",
         type: {
           name: "Composite",
           className: "Disallowed"
         }
       },
       purchasePlan: {
-        serializedName: "purchasePlan",
+        serializedName: "properties.purchasePlan",
         type: {
           name: "Composite",
           className: "ImagePurchasePlan"
@@ -9297,7 +9297,7 @@ export const GalleryImageVersionUpdate: coreHttp.CompositeMapper = {
     modelProperties: {
       ...UpdateResourceDefinition.type.modelProperties,
       publishingProfile: {
-        serializedName: "publishingProfile",
+        serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
           className: "GalleryArtifactPublishingProfileBase"
@@ -9311,14 +9311,14 @@ export const GalleryImageVersionUpdate: coreHttp.CompositeMapper = {
         }
       },
       storageProfile: {
-        serializedName: "storageProfile",
+        serializedName: "properties.storageProfile",
         type: {
           name: "Composite",
           className: "GalleryImageVersionStorageProfile"
         }
       },
       replicationStatus: {
-        serializedName: "replicationStatus",
+        serializedName: "properties.replicationStatus",
         type: {
           name: "Composite",
           className: "ReplicationStatus"
@@ -9382,7 +9382,7 @@ export const GalleryApplicationVersionUpdate: coreHttp.CompositeMapper = {
     modelProperties: {
       ...UpdateResourceDefinition.type.modelProperties,
       publishingProfile: {
-        serializedName: "publishingProfile",
+        serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
           className: "GalleryApplicationVersionPublishingProfile"
@@ -9396,7 +9396,7 @@ export const GalleryApplicationVersionUpdate: coreHttp.CompositeMapper = {
         }
       },
       replicationStatus: {
-        serializedName: "replicationStatus",
+        serializedName: "properties.replicationStatus",
         type: {
           name: "Composite",
           className: "ReplicationStatus"
@@ -9506,14 +9506,14 @@ export const VirtualMachineImage: coreHttp.CompositeMapper = {
     modelProperties: {
       ...VirtualMachineImageResource.type.modelProperties,
       plan: {
-        serializedName: "plan",
+        serializedName: "properties.plan",
         type: {
           name: "Composite",
           className: "PurchasePlan"
         }
       },
       osDiskImage: {
-        serializedName: "osDiskImage",
+        serializedName: "properties.osDiskImage",
         type: {
           name: "Composite",
           className: "OSDiskImage"
@@ -9532,7 +9532,7 @@ export const VirtualMachineImage: coreHttp.CompositeMapper = {
         }
       },
       automaticOSUpgradeProperties: {
-        serializedName: "automaticOSUpgradeProperties",
+        serializedName: "properties.automaticOSUpgradeProperties",
         type: {
           name: "Composite",
           className: "AutomaticOSUpgradeProperties"

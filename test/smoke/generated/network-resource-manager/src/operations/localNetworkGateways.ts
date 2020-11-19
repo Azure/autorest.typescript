@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -36,6 +37,56 @@ export class LocalNetworkGateways {
   }
 
   /**
+   * Gets all the local network gateways in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<LocalNetworkGateway> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<LocalNetworkGateway[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<LocalNetworkGateway> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Creates or updates a local network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param localNetworkGatewayName The name of the local network gateway.
@@ -57,10 +108,12 @@ export class LocalNetworkGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LocalNetworkGatewaysCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -115,10 +168,12 @@ export class LocalNetworkGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -162,7 +217,7 @@ export class LocalNetworkGateways {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LocalNetworkGatewaysListResponse> {
@@ -182,7 +237,7 @@ export class LocalNetworkGateways {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

@@ -6,37 +6,39 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  LongTermRetentionManagedInstanceBackupsGetResponse,
+  ManagedInstanceLongTermRetentionBackup,
+  LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams,
-  LongTermRetentionManagedInstanceBackupsListByDatabaseResponse,
+  LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams,
-  LongTermRetentionManagedInstanceBackupsListByInstanceResponse,
+  LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams,
+  LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams,
+  LongTermRetentionManagedInstanceBackupsGetResponse,
+  LongTermRetentionManagedInstanceBackupsListByDatabaseResponse,
+  LongTermRetentionManagedInstanceBackupsListByInstanceResponse,
   LongTermRetentionManagedInstanceBackupsListByLocationResponse,
   LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse,
-  LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse,
-  LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByInstanceNextResponse,
-  LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByLocationNextResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextResponse,
-  LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse
 } from "../models";
 
@@ -52,6 +54,453 @@ export class LongTermRetentionManagedInstanceBackups {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all long term retention backups for a managed database.
+   * @param locationName The location of the database.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param options The options parameters.
+   */
+  public listByDatabase(
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByDatabasePagingAll(
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabasePagingPage(
+          locationName,
+          managedInstanceName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabasePagingPage(
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByDatabase(
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        locationName,
+        managedInstanceName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByDatabasePagingAll(
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByDatabasePagingPage(
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given managed instance.
+   * @param locationName The location of the database
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  public listByInstance(
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByInstancePagingAll(
+      locationName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByInstancePagingPage(
+          locationName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByInstancePagingPage(
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByInstance(
+      locationName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByInstanceNext(
+        locationName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByInstancePagingAll(
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByInstancePagingPage(
+      locationName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for managed databases in a given location.
+   * @param locationName The location of the database.
+   * @param options The options parameters.
+   */
+  public listByLocation(
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByLocationPagingAll(locationName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(locationName, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByLocation(locationName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByLocationPagingPage(
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all long term retention backups for a managed database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupDatabase(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByResourceGroupDatabasePagingAll(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupDatabasePagingPage(
+          resourceGroupName,
+          locationName,
+          managedInstanceName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupDatabasePagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupDatabase(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupDatabaseNext(
+        resourceGroupName,
+        locationName,
+        managedInstanceName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupDatabasePagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupDatabasePagingPage(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupInstance(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByResourceGroupInstancePagingAll(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupInstancePagingPage(
+          resourceGroupName,
+          locationName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupInstancePagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupInstance(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupInstanceNext(
+        resourceGroupName,
+        locationName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupInstancePagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupInstancePagingPage(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for managed databases in a given location.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupLocation(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    const iter = this.listByResourceGroupLocationPagingAll(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupLocationPagingPage(
+          resourceGroupName,
+          locationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupLocationPagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupLocation(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupLocationNext(
+        resourceGroupName,
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupLocationPagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
+  ): AsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupLocationPagingPage(
+      resourceGroupName,
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -107,10 +556,12 @@ export class LongTermRetentionManagedInstanceBackups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -130,7 +581,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param databaseName The name of the managed database.
    * @param options The options parameters.
    */
-  listByDatabase(
+  private _listByDatabase(
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -154,7 +605,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByInstance(
+  private _listByInstance(
     locationName: string,
     managedInstanceName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
@@ -175,7 +626,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param locationName The location of the database.
    * @param options The options parameters.
    */
-  listByLocation(
+  private _listByLocation(
     locationName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
   ): Promise<LongTermRetentionManagedInstanceBackupsListByLocationResponse> {
@@ -254,10 +705,12 @@ export class LongTermRetentionManagedInstanceBackups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteByResourceGroupOperationSpec
@@ -279,7 +732,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param databaseName The name of the managed database.
    * @param options The options parameters.
    */
-  listByResourceGroupDatabase(
+  private _listByResourceGroupDatabase(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,
@@ -311,7 +764,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByResourceGroupInstance(
+  private _listByResourceGroupInstance(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,
@@ -340,7 +793,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param locationName The location of the database.
    * @param options The options parameters.
    */
-  listByResourceGroupLocation(
+  private _listByResourceGroupLocation(
     resourceGroupName: string,
     locationName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
@@ -368,7 +821,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
-  listByDatabaseNext(
+  private _listByDatabaseNext(
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -399,7 +852,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
    * @param options The options parameters.
    */
-  listByInstanceNext(
+  private _listByInstanceNext(
     locationName: string,
     managedInstanceName: string,
     nextLink: string,
@@ -427,7 +880,7 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
-  listByLocationNext(
+  private _listByLocationNext(
     locationName: string,
     nextLink: string,
     options?: LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams
@@ -458,7 +911,7 @@ export class LongTermRetentionManagedInstanceBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupDatabaseNext(
+  private _listByResourceGroupDatabaseNext(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,
@@ -494,7 +947,7 @@ export class LongTermRetentionManagedInstanceBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupInstanceNext(
+  private _listByResourceGroupInstanceNext(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,
@@ -527,7 +980,7 @@ export class LongTermRetentionManagedInstanceBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupLocationNext(
+  private _listByResourceGroupLocationNext(
     resourceGroupName: string,
     locationName: string,
     nextLink: string,

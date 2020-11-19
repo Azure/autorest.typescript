@@ -6,11 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
+  DetectorResponse,
+  DiagnosticCategory,
+  AnalysisDefinition,
+  DetectorDefinition,
   DiagnosticsListHostingEnvironmentDetectorResponsesResponse,
   DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseResponse,
@@ -71,7 +76,718 @@ export class Diagnostics {
    * @param name Site Name
    * @param options The options parameters.
    */
-  listHostingEnvironmentDetectorResponses(
+  public listHostingEnvironmentDetectorResponses(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DetectorResponse> {
+    const iter = this.listHostingEnvironmentDetectorResponsesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHostingEnvironmentDetectorResponsesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHostingEnvironmentDetectorResponsesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse[]> {
+    let result = await this._listHostingEnvironmentDetectorResponses(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHostingEnvironmentDetectorResponsesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHostingEnvironmentDetectorResponsesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse> {
+    for await (const page of this.listHostingEnvironmentDetectorResponsesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List Site Detector Responses
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param options The options parameters.
+   */
+  public listSiteDetectorResponses(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DetectorResponse> {
+    const iter = this.listSiteDetectorResponsesPagingAll(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDetectorResponsesPagingPage(
+          resourceGroupName,
+          siteName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDetectorResponsesPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse[]> {
+    let result = await this._listSiteDetectorResponses(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDetectorResponsesNext(
+        resourceGroupName,
+        siteName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDetectorResponsesPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse> {
+    for await (const page of this.listSiteDetectorResponsesPagingPage(
+      resourceGroupName,
+      siteName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Diagnostics Categories
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param options The options parameters.
+   */
+  public listSiteDiagnosticCategories(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DiagnosticCategory> {
+    const iter = this.listSiteDiagnosticCategoriesPagingAll(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDiagnosticCategoriesPagingPage(
+          resourceGroupName,
+          siteName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDiagnosticCategoriesPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DiagnosticCategory[]> {
+    let result = await this._listSiteDiagnosticCategories(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDiagnosticCategoriesNext(
+        resourceGroupName,
+        siteName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDiagnosticCategoriesPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DiagnosticCategory> {
+    for await (const page of this.listSiteDiagnosticCategoriesPagingPage(
+      resourceGroupName,
+      siteName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Site Analyses
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param diagnosticCategory Diagnostic Category
+   * @param options The options parameters.
+   */
+  public listSiteAnalyses(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AnalysisDefinition> {
+    const iter = this.listSiteAnalysesPagingAll(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteAnalysesPagingPage(
+          resourceGroupName,
+          siteName,
+          diagnosticCategory,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteAnalysesPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AnalysisDefinition[]> {
+    let result = await this._listSiteAnalyses(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteAnalysesNext(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteAnalysesPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AnalysisDefinition> {
+    for await (const page of this.listSiteAnalysesPagingPage(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Detectors
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param diagnosticCategory Diagnostic Category
+   * @param options The options parameters.
+   */
+  public listSiteDetectors(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DetectorDefinition> {
+    const iter = this.listSiteDetectorsPagingAll(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDetectorsPagingPage(
+          resourceGroupName,
+          siteName,
+          diagnosticCategory,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDetectorsPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorDefinition[]> {
+    let result = await this._listSiteDetectors(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDetectorsNext(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDetectorsPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorDefinition> {
+    for await (const page of this.listSiteDetectorsPagingPage(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List Site Detector Responses
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param slot Slot Name
+   * @param options The options parameters.
+   */
+  public listSiteDetectorResponsesSlot(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DetectorResponse> {
+    const iter = this.listSiteDetectorResponsesSlotPagingAll(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDetectorResponsesSlotPagingPage(
+          resourceGroupName,
+          siteName,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDetectorResponsesSlotPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse[]> {
+    let result = await this._listSiteDetectorResponsesSlot(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDetectorResponsesSlotNext(
+        resourceGroupName,
+        siteName,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDetectorResponsesSlotPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorResponse> {
+    for await (const page of this.listSiteDetectorResponsesSlotPagingPage(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Diagnostics Categories
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param slot Slot Name
+   * @param options The options parameters.
+   */
+  public listSiteDiagnosticCategoriesSlot(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DiagnosticCategory> {
+    const iter = this.listSiteDiagnosticCategoriesSlotPagingAll(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDiagnosticCategoriesSlotPagingPage(
+          resourceGroupName,
+          siteName,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDiagnosticCategoriesSlotPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DiagnosticCategory[]> {
+    let result = await this._listSiteDiagnosticCategoriesSlot(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDiagnosticCategoriesSlotNext(
+        resourceGroupName,
+        siteName,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDiagnosticCategoriesSlotPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DiagnosticCategory> {
+    for await (const page of this.listSiteDiagnosticCategoriesSlotPagingPage(
+      resourceGroupName,
+      siteName,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Site Analyses
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param diagnosticCategory Diagnostic Category
+   * @param slot Slot Name
+   * @param options The options parameters.
+   */
+  public listSiteAnalysesSlot(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AnalysisDefinition> {
+    const iter = this.listSiteAnalysesSlotPagingAll(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteAnalysesSlotPagingPage(
+          resourceGroupName,
+          siteName,
+          diagnosticCategory,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteAnalysesSlotPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AnalysisDefinition[]> {
+    let result = await this._listSiteAnalysesSlot(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteAnalysesSlotNext(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteAnalysesSlotPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AnalysisDefinition> {
+    for await (const page of this.listSiteAnalysesSlotPagingPage(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get Detectors
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Site Name
+   * @param diagnosticCategory Diagnostic Category
+   * @param slot Slot Name
+   * @param options The options parameters.
+   */
+  public listSiteDetectorsSlot(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DetectorDefinition> {
+    const iter = this.listSiteDetectorsSlotPagingAll(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteDetectorsSlotPagingPage(
+          resourceGroupName,
+          siteName,
+          diagnosticCategory,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteDetectorsSlotPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorDefinition[]> {
+    let result = await this._listSiteDetectorsSlot(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteDetectorsSlotNext(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteDetectorsSlotPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    diagnosticCategory: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DetectorDefinition> {
+    for await (const page of this.listSiteDetectorsSlotPagingPage(
+      resourceGroupName,
+      siteName,
+      diagnosticCategory,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List Hosting Environment Detector Responses
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site Name
+   * @param options The options parameters.
+   */
+  private _listHostingEnvironmentDetectorResponses(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -118,7 +834,7 @@ export class Diagnostics {
    * @param siteName Site Name
    * @param options The options parameters.
    */
-  listSiteDetectorResponses(
+  private _listSiteDetectorResponses(
     resourceGroupName: string,
     siteName: string,
     options?: coreHttp.OperationOptions
@@ -165,7 +881,7 @@ export class Diagnostics {
    * @param siteName Site Name
    * @param options The options parameters.
    */
-  listSiteDiagnosticCategories(
+  private _listSiteDiagnosticCategories(
     resourceGroupName: string,
     siteName: string,
     options?: coreHttp.OperationOptions
@@ -213,7 +929,7 @@ export class Diagnostics {
    * @param diagnosticCategory Diagnostic Category
    * @param options The options parameters.
    */
-  listSiteAnalyses(
+  private _listSiteAnalyses(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -294,7 +1010,7 @@ export class Diagnostics {
    * @param diagnosticCategory Diagnostic Category
    * @param options The options parameters.
    */
-  listSiteDetectors(
+  private _listSiteDetectors(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -375,7 +1091,7 @@ export class Diagnostics {
    * @param slot Slot Name
    * @param options The options parameters.
    */
-  listSiteDetectorResponsesSlot(
+  private _listSiteDetectorResponsesSlot(
     resourceGroupName: string,
     siteName: string,
     slot: string,
@@ -428,7 +1144,7 @@ export class Diagnostics {
    * @param slot Slot Name
    * @param options The options parameters.
    */
-  listSiteDiagnosticCategoriesSlot(
+  private _listSiteDiagnosticCategoriesSlot(
     resourceGroupName: string,
     siteName: string,
     slot: string,
@@ -482,7 +1198,7 @@ export class Diagnostics {
    * @param slot Slot Name
    * @param options The options parameters.
    */
-  listSiteAnalysesSlot(
+  private _listSiteAnalysesSlot(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -572,7 +1288,7 @@ export class Diagnostics {
    * @param slot Slot Name
    * @param options The options parameters.
    */
-  listSiteDetectorsSlot(
+  private _listSiteDetectorsSlot(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -662,7 +1378,7 @@ export class Diagnostics {
    *                 ListHostingEnvironmentDetectorResponses method.
    * @param options The options parameters.
    */
-  listHostingEnvironmentDetectorResponsesNext(
+  private _listHostingEnvironmentDetectorResponsesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -690,7 +1406,7 @@ export class Diagnostics {
    *                 method.
    * @param options The options parameters.
    */
-  listSiteDetectorResponsesNext(
+  private _listSiteDetectorResponsesNext(
     resourceGroupName: string,
     siteName: string,
     nextLink: string,
@@ -716,7 +1432,7 @@ export class Diagnostics {
    *                 method.
    * @param options The options parameters.
    */
-  listSiteDiagnosticCategoriesNext(
+  private _listSiteDiagnosticCategoriesNext(
     resourceGroupName: string,
     siteName: string,
     nextLink: string,
@@ -742,7 +1458,7 @@ export class Diagnostics {
    * @param nextLink The nextLink from the previous successful call to the ListSiteAnalyses method.
    * @param options The options parameters.
    */
-  listSiteAnalysesNext(
+  private _listSiteAnalysesNext(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -770,7 +1486,7 @@ export class Diagnostics {
    * @param nextLink The nextLink from the previous successful call to the ListSiteDetectors method.
    * @param options The options parameters.
    */
-  listSiteDetectorsNext(
+  private _listSiteDetectorsNext(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -799,7 +1515,7 @@ export class Diagnostics {
    *                 method.
    * @param options The options parameters.
    */
-  listSiteDetectorResponsesSlotNext(
+  private _listSiteDetectorResponsesSlotNext(
     resourceGroupName: string,
     siteName: string,
     slot: string,
@@ -828,7 +1544,7 @@ export class Diagnostics {
    *                 ListSiteDiagnosticCategoriesSlot method.
    * @param options The options parameters.
    */
-  listSiteDiagnosticCategoriesSlotNext(
+  private _listSiteDiagnosticCategoriesSlotNext(
     resourceGroupName: string,
     siteName: string,
     slot: string,
@@ -857,7 +1573,7 @@ export class Diagnostics {
    * @param nextLink The nextLink from the previous successful call to the ListSiteAnalysesSlot method.
    * @param options The options parameters.
    */
-  listSiteAnalysesSlotNext(
+  private _listSiteAnalysesSlotNext(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
@@ -888,7 +1604,7 @@ export class Diagnostics {
    * @param nextLink The nextLink from the previous successful call to the ListSiteDetectorsSlot method.
    * @param options The options parameters.
    */
-  listSiteDetectorsSlotNext(
+  private _listSiteDetectorsSlotNext(
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,

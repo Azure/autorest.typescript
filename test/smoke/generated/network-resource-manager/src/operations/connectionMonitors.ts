@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ConnectionMonitorResult,
   ConnectionMonitor,
   ConnectionMonitorsCreateOrUpdateResponse,
   ConnectionMonitorsGetResponse,
@@ -33,6 +35,66 @@ export class ConnectionMonitors {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all connection monitors for the specified Network Watcher.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ConnectionMonitorResult> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          networkWatcherName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ConnectionMonitorResult[]> {
+    let result = await this._list(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ConnectionMonitorResult> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      networkWatcherName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -60,10 +122,12 @@ export class ConnectionMonitors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ConnectionMonitorsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -124,10 +188,12 @@ export class ConnectionMonitors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -191,10 +257,12 @@ export class ConnectionMonitors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       stopOperationSpec
@@ -230,10 +298,12 @@ export class ConnectionMonitors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startOperationSpec
@@ -269,10 +339,12 @@ export class ConnectionMonitors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ConnectionMonitorsQueryResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       queryOperationSpec
@@ -292,7 +364,7 @@ export class ConnectionMonitors {
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions

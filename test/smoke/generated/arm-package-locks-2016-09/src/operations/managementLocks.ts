@@ -6,12 +6,21 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagementLockClient } from "../managementLockClient";
 import {
   ManagementLockObject,
+  ManagementLocksListAtResourceGroupLevelNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelOptionalParams,
+  ManagementLocksListAtResourceLevelNextOptionalParams,
+  ManagementLocksListAtResourceLevelOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelOptionalParams,
+  ManagementLocksListByScopeNextOptionalParams,
+  ManagementLocksListByScopeOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse,
   ManagementLocksGetAtResourceGroupLevelResponse,
   ManagementLocksCreateOrUpdateByScopeResponse,
@@ -20,21 +29,13 @@ import {
   ManagementLocksGetAtResourceLevelResponse,
   ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse,
   ManagementLocksGetAtSubscriptionLevelResponse,
-  ManagementLocksListAtResourceGroupLevelOptionalParams,
   ManagementLocksListAtResourceGroupLevelResponse,
-  ManagementLocksListAtResourceLevelOptionalParams,
   ManagementLocksListAtResourceLevelResponse,
-  ManagementLocksListAtSubscriptionLevelOptionalParams,
   ManagementLocksListAtSubscriptionLevelResponse,
-  ManagementLocksListByScopeOptionalParams,
   ManagementLocksListByScopeResponse,
-  ManagementLocksListAtResourceGroupLevelNextOptionalParams,
   ManagementLocksListAtResourceGroupLevelNextResponse,
-  ManagementLocksListAtResourceLevelNextOptionalParams,
   ManagementLocksListAtResourceLevelNextResponse,
-  ManagementLocksListAtSubscriptionLevelNextOptionalParams,
   ManagementLocksListAtSubscriptionLevelNextResponse,
-  ManagementLocksListByScopeNextOptionalParams,
   ManagementLocksListByScopeNextResponse
 } from "../models";
 
@@ -50,6 +51,262 @@ export class ManagementLocks {
    */
   constructor(client: ManagementLockClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all the management locks for a resource group.
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param options The options parameters.
+   */
+  public listAtResourceGroupLevel(
+    resourceGroupName: string,
+    options?: ManagementLocksListAtResourceGroupLevelOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
+    const iter = this.listAtResourceGroupLevelPagingAll(
+      resourceGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtResourceGroupLevelPagingPage(
+          resourceGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtResourceGroupLevelPagingPage(
+    resourceGroupName: string,
+    options?: ManagementLocksListAtResourceGroupLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject[]> {
+    let result = await this._listAtResourceGroupLevel(
+      resourceGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtResourceGroupLevelNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtResourceGroupLevelPagingAll(
+    resourceGroupName: string,
+    options?: ManagementLocksListAtResourceGroupLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject> {
+    for await (const page of this.listAtResourceGroupLevelPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the management locks for a resource or any level below resource.
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param options The options parameters.
+   */
+  public listAtResourceLevel(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    options?: ManagementLocksListAtResourceLevelOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
+    const iter = this.listAtResourceLevelPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtResourceLevelPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtResourceLevelPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    options?: ManagementLocksListAtResourceLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject[]> {
+    let result = await this._listAtResourceLevel(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtResourceLevelNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtResourceLevelPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    options?: ManagementLocksListAtResourceLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject> {
+    for await (const page of this.listAtResourceLevelPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the management locks for a subscription.
+   * @param options The options parameters.
+   */
+  public listAtSubscriptionLevel(
+    options?: ManagementLocksListAtSubscriptionLevelOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
+    const iter = this.listAtSubscriptionLevelPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtSubscriptionLevelPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAtSubscriptionLevelPagingPage(
+    options?: ManagementLocksListAtSubscriptionLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject[]> {
+    let result = await this._listAtSubscriptionLevel(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtSubscriptionLevelNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtSubscriptionLevelPagingAll(
+    options?: ManagementLocksListAtSubscriptionLevelOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject> {
+    for await (const page of this.listAtSubscriptionLevelPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the management locks for a scope.
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param options The options parameters.
+   */
+  public listByScope(
+    scope: string,
+    options?: ManagementLocksListByScopeOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
+    const iter = this.listByScopePagingAll(scope, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByScopePagingPage(scope, options);
+      }
+    };
+  }
+
+  private async *listByScopePagingPage(
+    scope: string,
+    options?: ManagementLocksListByScopeOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject[]> {
+    let result = await this._listByScope(scope, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByScopeNext(scope, continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByScopePagingAll(
+    scope: string,
+    options?: ManagementLocksListByScopeOptionalParams
+  ): AsyncIterableIterator<ManagementLockObject> {
+    for await (const page of this.listByScopePagingPage(scope, options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -384,7 +641,7 @@ export class ManagementLocks {
    * @param resourceGroupName The name of the resource group containing the locks to get.
    * @param options The options parameters.
    */
-  listAtResourceGroupLevel(
+  private _listAtResourceGroupLevel(
     resourceGroupName: string,
     options?: ManagementLocksListAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksListAtResourceGroupLevelResponse> {
@@ -408,7 +665,7 @@ export class ManagementLocks {
    * @param resourceName The name of the locked resource.
    * @param options The options parameters.
    */
-  listAtResourceLevel(
+  private _listAtResourceLevel(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -434,7 +691,7 @@ export class ManagementLocks {
    * Gets all the management locks for a subscription.
    * @param options The options parameters.
    */
-  listAtSubscriptionLevel(
+  private _listAtSubscriptionLevel(
     options?: ManagementLocksListAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -455,7 +712,7 @@ export class ManagementLocks {
    *              for resources.
    * @param options The options parameters.
    */
-  listByScope(
+  private _listByScope(
     scope: string,
     options?: ManagementLocksListByScopeOptionalParams
   ): Promise<ManagementLocksListByScopeResponse> {
@@ -476,7 +733,7 @@ export class ManagementLocks {
    *                 method.
    * @param options The options parameters.
    */
-  listAtResourceGroupLevelNext(
+  private _listAtResourceGroupLevelNext(
     resourceGroupName: string,
     nextLink: string,
     options?: ManagementLocksListAtResourceGroupLevelNextOptionalParams
@@ -503,7 +760,7 @@ export class ManagementLocks {
    * @param nextLink The nextLink from the previous successful call to the ListAtResourceLevel method.
    * @param options The options parameters.
    */
-  listAtResourceLevelNext(
+  private _listAtResourceLevelNext(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -533,7 +790,7 @@ export class ManagementLocks {
    *                 method.
    * @param options The options parameters.
    */
-  listAtSubscriptionLevelNext(
+  private _listAtSubscriptionLevelNext(
     nextLink: string,
     options?: ManagementLocksListAtSubscriptionLevelNextOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelNextResponse> {
@@ -557,7 +814,7 @@ export class ManagementLocks {
    * @param nextLink The nextLink from the previous successful call to the ListByScope method.
    * @param options The options parameters.
    */
-  listByScopeNext(
+  private _listByScopeNext(
     scope: string,
     nextLink: string,
     options?: ManagementLocksListByScopeNextOptionalParams

@@ -6,12 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  SqlDatabaseGetResults,
+  SqlContainerGetResults,
+  SqlStoredProcedureGetResults,
+  SqlUserDefinedFunctionGetResults,
+  SqlTriggerGetResults,
   SqlResourcesListSqlDatabasesResponse,
   SqlResourcesGetSqlDatabaseResponse,
   SqlDatabaseCreateUpdateParameters,
@@ -59,7 +65,363 @@ export class SqlResources {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listSqlDatabases(
+  public listSqlDatabases(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SqlDatabaseGetResults> {
+    const iter = this.listSqlDatabasesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlDatabasesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlDatabasesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlDatabaseGetResults[]> {
+    let result = await this._listSqlDatabases(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlDatabasesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlDatabaseGetResults> {
+    for await (const page of this.listSqlDatabasesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the SQL container under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  public listSqlContainers(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SqlContainerGetResults> {
+    const iter = this.listSqlContainersPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlContainersPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlContainersPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlContainerGetResults[]> {
+    let result = await this._listSqlContainers(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlContainersPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlContainerGetResults> {
+    for await (const page of this.listSqlContainersPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the SQL storedProcedure under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  public listSqlStoredProcedures(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SqlStoredProcedureGetResults> {
+    const iter = this.listSqlStoredProceduresPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlStoredProceduresPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          containerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlStoredProceduresPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlStoredProcedureGetResults[]> {
+    let result = await this._listSqlStoredProcedures(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlStoredProceduresPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlStoredProcedureGetResults> {
+    for await (const page of this.listSqlStoredProceduresPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the SQL userDefinedFunction under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  public listSqlUserDefinedFunctions(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
+    const iter = this.listSqlUserDefinedFunctionsPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlUserDefinedFunctionsPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          containerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlUserDefinedFunctionsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults[]> {
+    let result = await this._listSqlUserDefinedFunctions(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlUserDefinedFunctionsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
+    for await (const page of this.listSqlUserDefinedFunctionsPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the SQL trigger under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  public listSqlTriggers(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SqlTriggerGetResults> {
+    const iter = this.listSqlTriggersPagingAll(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlTriggersPagingPage(
+          resourceGroupName,
+          accountName,
+          databaseName,
+          containerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlTriggersPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlTriggerGetResults[]> {
+    let result = await this._listSqlTriggers(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlTriggersPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SqlTriggerGetResults> {
+    for await (const page of this.listSqlTriggersPagingPage(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the SQL databases under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -125,10 +487,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesCreateUpdateSqlDatabaseResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateSqlDatabaseOperationSpec
@@ -163,10 +527,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteSqlDatabaseOperationSpec
@@ -231,10 +597,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesUpdateSqlDatabaseThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateSqlDatabaseThroughputOperationSpec
@@ -254,7 +622,7 @@ export class SqlResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  listSqlContainers(
+  private _listSqlContainers(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -328,10 +696,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesCreateUpdateSqlContainerResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateSqlContainerOperationSpec
@@ -369,10 +739,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteSqlContainerOperationSpec
@@ -442,10 +814,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesUpdateSqlContainerThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateSqlContainerThroughputOperationSpec
@@ -466,7 +840,7 @@ export class SqlResources {
    * @param containerName Cosmos DB container name.
    * @param options The options parameters.
    */
-  listSqlStoredProcedures(
+  private _listSqlStoredProcedures(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -549,10 +923,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesCreateUpdateSqlStoredProcedureResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateSqlStoredProcedureOperationSpec
@@ -593,10 +969,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteSqlStoredProcedureOperationSpec
@@ -617,7 +995,7 @@ export class SqlResources {
    * @param containerName Cosmos DB container name.
    * @param options The options parameters.
    */
-  listSqlUserDefinedFunctions(
+  private _listSqlUserDefinedFunctions(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -702,10 +1080,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateSqlUserDefinedFunctionOperationSpec
@@ -746,10 +1126,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteSqlUserDefinedFunctionOperationSpec
@@ -770,7 +1152,7 @@ export class SqlResources {
    * @param containerName Cosmos DB container name.
    * @param options The options parameters.
    */
-  listSqlTriggers(
+  private _listSqlTriggers(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -852,10 +1234,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SqlResourcesCreateUpdateSqlTriggerResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateSqlTriggerOperationSpec
@@ -896,10 +1280,12 @@ export class SqlResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteSqlTriggerOperationSpec

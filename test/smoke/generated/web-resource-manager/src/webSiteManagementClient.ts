@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   AppServiceCertificateOrders,
   CertificateRegistrationProvider,
@@ -30,23 +30,29 @@ import * as Mappers from "./models/mappers";
 import { WebSiteManagementClientContext } from "./webSiteManagementClientContext";
 import {
   WebSiteManagementClientOptionalParams,
+  SourceControl,
+  BillingMeter,
+  WebSiteManagementClientListBillingMetersNextOptionalParams,
+  WebSiteManagementClientListBillingMetersOptionalParams,
+  GeoRegion,
+  WebSiteManagementClientListGeoRegionsNextOptionalParams,
+  WebSiteManagementClientListGeoRegionsOptionalParams,
+  Identifier,
+  NameIdentifier,
+  PremierAddOnOffer,
   WebSiteManagementClientGetPublishingUserResponse,
   User,
   WebSiteManagementClientUpdatePublishingUserResponse,
   WebSiteManagementClientListSourceControlsResponse,
   WebSiteManagementClientGetSourceControlResponse,
-  SourceControl,
   WebSiteManagementClientUpdateSourceControlResponse,
-  WebSiteManagementClientListBillingMetersOptionalParams,
   WebSiteManagementClientListBillingMetersResponse,
   ResourceNameAvailabilityRequest,
   CheckNameResourceTypes,
   WebSiteManagementClientCheckNameAvailabilityOptionalParams,
   WebSiteManagementClientCheckNameAvailabilityResponse,
   WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse,
-  WebSiteManagementClientListGeoRegionsOptionalParams,
   WebSiteManagementClientListGeoRegionsResponse,
-  NameIdentifier,
   WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse,
   WebSiteManagementClientListPremierAddOnOffersResponse,
   WebSiteManagementClientListSkusResponse,
@@ -56,9 +62,7 @@ import {
   ValidateRequest,
   WebSiteManagementClientValidateResponse,
   WebSiteManagementClientListSourceControlsNextResponse,
-  WebSiteManagementClientListBillingMetersNextOptionalParams,
   WebSiteManagementClientListBillingMetersNextResponse,
-  WebSiteManagementClientListGeoRegionsNextOptionalParams,
   WebSiteManagementClientListGeoRegionsNextResponse,
   WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse,
   WebSiteManagementClientListPremierAddOnOffersNextResponse
@@ -97,16 +101,237 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     this.resourceHealthMetadata = new ResourceHealthMetadata(this);
   }
 
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+  /**
+   * Description for Gets the source controls available for Azure websites.
+   * @param options The options parameters.
+   */
+  public listSourceControls(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SourceControl> {
+    const iter = this.listSourceControlsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSourceControlsPagingPage(options);
+      }
     };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
+
+  private async *listSourceControlsPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SourceControl[]> {
+    let result = await this._listSourceControls(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSourceControlsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSourceControlsPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SourceControl> {
+    for await (const page of this.listSourceControlsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets a list of meters for a given location.
+   * @param options The options parameters.
+   */
+  public listBillingMeters(
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
+  ): PagedAsyncIterableIterator<BillingMeter> {
+    const iter = this.listBillingMetersPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBillingMetersPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBillingMetersPagingPage(
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
+  ): AsyncIterableIterator<BillingMeter[]> {
+    let result = await this._listBillingMeters(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBillingMetersNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBillingMetersPagingAll(
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
+  ): AsyncIterableIterator<BillingMeter> {
+    for await (const page of this.listBillingMetersPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get a list of available geographical regions.
+   * @param options The options parameters.
+   */
+  public listGeoRegions(
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
+  ): PagedAsyncIterableIterator<GeoRegion> {
+    const iter = this.listGeoRegionsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listGeoRegionsPagingPage(options);
+      }
+    };
+  }
+
+  private async *listGeoRegionsPagingPage(
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
+  ): AsyncIterableIterator<GeoRegion[]> {
+    let result = await this._listGeoRegions(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listGeoRegionsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listGeoRegionsPagingAll(
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
+  ): AsyncIterableIterator<GeoRegion> {
+    for await (const page of this.listGeoRegionsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List all apps that are assigned to a hostname.
+   * @param nameIdentifier Hostname information.
+   * @param options The options parameters.
+   */
+  public listSiteIdentifiersAssignedToHostName(
+    nameIdentifier: NameIdentifier,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Identifier> {
+    const iter = this.listSiteIdentifiersAssignedToHostNamePagingAll(
+      nameIdentifier,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteIdentifiersAssignedToHostNamePagingPage(
+          nameIdentifier,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteIdentifiersAssignedToHostNamePagingPage(
+    nameIdentifier: NameIdentifier,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier[]> {
+    let result = await this._listSiteIdentifiersAssignedToHostName(
+      nameIdentifier,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteIdentifiersAssignedToHostNameNext(
+        nameIdentifier,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteIdentifiersAssignedToHostNamePagingAll(
+    nameIdentifier: NameIdentifier,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier> {
+    for await (const page of this.listSiteIdentifiersAssignedToHostNamePagingPage(
+      nameIdentifier,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List all premier add-on offers.
+   * @param options The options parameters.
+   */
+  public listPremierAddOnOffers(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PremierAddOnOffer> {
+    const iter = this.listPremierAddOnOffersPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPremierAddOnOffersPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPremierAddOnOffersPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PremierAddOnOffer[]> {
+    let result = await this._listPremierAddOnOffers(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPremierAddOnOffersNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPremierAddOnOffersPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PremierAddOnOffer> {
+    for await (const page of this.listPremierAddOnOffersPagingPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -148,7 +373,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * Description for Gets the source controls available for Azure websites.
    * @param options The options parameters.
    */
-  listSourceControls(
+  private _listSourceControls(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListSourceControlsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -205,7 +430,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * Description for Gets a list of meters for a given location.
    * @param options The options parameters.
    */
-  listBillingMeters(
+  private _listBillingMeters(
     options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -266,7 +491,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * Description for Get a list of available geographical regions.
    * @param options The options parameters.
    */
-  listGeoRegions(
+  private _listGeoRegions(
     options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -283,7 +508,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param nameIdentifier Hostname information.
    * @param options The options parameters.
    */
-  listSiteIdentifiersAssignedToHostName(
+  private _listSiteIdentifiersAssignedToHostName(
     nameIdentifier: NameIdentifier,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -305,7 +530,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * Description for List all premier add-on offers.
    * @param options The options parameters.
    */
-  listPremierAddOnOffers(
+  private _listPremierAddOnOffers(
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListPremierAddOnOffersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -424,7 +649,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the ListSourceControls method.
    * @param options The options parameters.
    */
-  listSourceControlsNext(
+  private _listSourceControlsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListSourceControlsNextResponse> {
@@ -443,7 +668,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the ListBillingMeters method.
    * @param options The options parameters.
    */
-  listBillingMetersNext(
+  private _listBillingMetersNext(
     nextLink: string,
     options?: WebSiteManagementClientListBillingMetersNextOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersNextResponse> {
@@ -462,7 +687,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the ListGeoRegions method.
    * @param options The options parameters.
    */
-  listGeoRegionsNext(
+  private _listGeoRegionsNext(
     nextLink: string,
     options?: WebSiteManagementClientListGeoRegionsNextOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsNextResponse> {
@@ -483,7 +708,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    *                 ListSiteIdentifiersAssignedToHostName method.
    * @param options The options parameters.
    */
-  listSiteIdentifiersAssignedToHostNameNext(
+  private _listSiteIdentifiersAssignedToHostNameNext(
     nameIdentifier: NameIdentifier,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -508,7 +733,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the ListPremierAddOnOffers method.
    * @param options The options parameters.
    */
-  listPremierAddOnOffersNext(
+  private _listPremierAddOnOffersNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse> {

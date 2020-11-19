@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  RouteFilterRulesGetResponse,
   RouteFilterRule,
+  RouteFilterRulesGetResponse,
   RouteFilterRulesCreateOrUpdateResponse,
   RouteFilterRulesListByRouteFilterResponse,
   RouteFilterRulesListByRouteFilterNextResponse
@@ -31,6 +32,77 @@ export class RouteFilterRules {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all RouteFilterRules in a route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param options The options parameters.
+   */
+  public listByRouteFilter(
+    resourceGroupName: string,
+    routeFilterName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<RouteFilterRule> {
+    const iter = this.listByRouteFilterPagingAll(
+      resourceGroupName,
+      routeFilterName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByRouteFilterPagingPage(
+          resourceGroupName,
+          routeFilterName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByRouteFilterPagingPage(
+    resourceGroupName: string,
+    routeFilterName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<RouteFilterRule[]> {
+    let result = await this._listByRouteFilter(
+      resourceGroupName,
+      routeFilterName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByRouteFilterNext(
+        resourceGroupName,
+        routeFilterName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByRouteFilterPagingAll(
+    resourceGroupName: string,
+    routeFilterName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<RouteFilterRule> {
+    for await (const page of this.listByRouteFilterPagingPage(
+      resourceGroupName,
+      routeFilterName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +127,12 @@ export class RouteFilterRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -123,10 +197,12 @@ export class RouteFilterRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         RouteFilterRulesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -146,7 +222,7 @@ export class RouteFilterRules {
    * @param routeFilterName The name of the route filter.
    * @param options The options parameters.
    */
-  listByRouteFilter(
+  private _listByRouteFilter(
     resourceGroupName: string,
     routeFilterName: string,
     options?: coreHttp.OperationOptions
@@ -169,7 +245,7 @@ export class RouteFilterRules {
    * @param nextLink The nextLink from the previous successful call to the ListByRouteFilter method.
    * @param options The options parameters.
    */
-  listByRouteFilterNext(
+  private _listByRouteFilterNext(
     resourceGroupName: string,
     routeFilterName: string,
     nextLink: string,

@@ -6,21 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   AvailabilitySet,
+  AvailabilitySetsListBySubscriptionNextOptionalParams,
+  AvailabilitySetsListBySubscriptionOptionalParams,
+  VirtualMachineSize,
   AvailabilitySetsCreateOrUpdateResponse,
   AvailabilitySetUpdate,
   AvailabilitySetsUpdateResponse,
   AvailabilitySetsGetResponse,
-  AvailabilitySetsListBySubscriptionOptionalParams,
   AvailabilitySetsListBySubscriptionResponse,
   AvailabilitySetsListResponse,
   AvailabilitySetsListAvailableSizesResponse,
-  AvailabilitySetsListBySubscriptionNextOptionalParams,
   AvailabilitySetsListBySubscriptionNextResponse,
   AvailabilitySetsListNextResponse
 } from "../models";
@@ -37,6 +39,159 @@ export class AvailabilitySets {
    */
   constructor(client: ComputeManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all availability sets in a subscription.
+   * @param options The options parameters.
+   */
+  public listBySubscription(
+    options?: AvailabilitySetsListBySubscriptionOptionalParams
+  ): PagedAsyncIterableIterator<AvailabilitySet> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: AvailabilitySetsListBySubscriptionOptionalParams
+  ): AsyncIterableIterator<AvailabilitySet[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: AvailabilitySetsListBySubscriptionOptionalParams
+  ): AsyncIterableIterator<AvailabilitySet> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all availability sets in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AvailabilitySet> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailabilitySet[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailabilitySet> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all available virtual machine sizes that can be used to create a new virtual machine in an
+   * existing availability set.
+   * @param resourceGroupName The name of the resource group.
+   * @param availabilitySetName The name of the availability set.
+   * @param options The options parameters.
+   */
+  public listAvailableSizes(
+    resourceGroupName: string,
+    availabilitySetName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualMachineSize> {
+    const iter = this.listAvailableSizesPagingAll(
+      resourceGroupName,
+      availabilitySetName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAvailableSizesPagingPage(
+          resourceGroupName,
+          availabilitySetName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAvailableSizesPagingPage(
+    resourceGroupName: string,
+    availabilitySetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize[]> {
+    let result = await this._listAvailableSizes(
+      resourceGroupName,
+      availabilitySetName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listAvailableSizesPagingAll(
+    resourceGroupName: string,
+    availabilitySetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize> {
+    for await (const page of this.listAvailableSizesPagingPage(
+      resourceGroupName,
+      availabilitySetName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -137,7 +292,7 @@ export class AvailabilitySets {
    * Lists all availability sets in a subscription.
    * @param options The options parameters.
    */
-  listBySubscription(
+  private _listBySubscription(
     options?: AvailabilitySetsListBySubscriptionOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -154,7 +309,7 @@ export class AvailabilitySets {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsListResponse> {
@@ -175,7 +330,7 @@ export class AvailabilitySets {
    * @param availabilitySetName The name of the availability set.
    * @param options The options parameters.
    */
-  listAvailableSizes(
+  private _listAvailableSizes(
     resourceGroupName: string,
     availabilitySetName: string,
     options?: coreHttp.OperationOptions
@@ -196,7 +351,7 @@ export class AvailabilitySets {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: AvailabilitySetsListBySubscriptionNextOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionNextResponse> {
@@ -216,7 +371,7 @@ export class AvailabilitySets {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

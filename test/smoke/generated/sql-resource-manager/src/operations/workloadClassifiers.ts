@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  WorkloadClassifiersGetResponse,
   WorkloadClassifier,
+  WorkloadClassifiersGetResponse,
   WorkloadClassifiersCreateOrUpdateResponse,
   WorkloadClassifiersListByWorkloadGroupResponse,
   WorkloadClassifiersListByWorkloadGroupNextResponse
@@ -31,6 +32,96 @@ export class WorkloadClassifiers {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets the list of workload classifiers for a workload group
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group from which to receive the classifiers from.
+   * @param options The options parameters.
+   */
+  public listByWorkloadGroup(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<WorkloadClassifier> {
+    const iter = this.listByWorkloadGroupPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByWorkloadGroupPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          workloadGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByWorkloadGroupPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkloadClassifier[]> {
+    let result = await this._listByWorkloadGroup(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByWorkloadGroupNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        workloadGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByWorkloadGroupPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkloadClassifier> {
+    for await (const page of this.listByWorkloadGroupPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -97,10 +188,12 @@ export class WorkloadClassifiers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WorkloadClassifiersCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -142,10 +235,12 @@ export class WorkloadClassifiers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -167,7 +262,7 @@ export class WorkloadClassifiers {
    * @param workloadGroupName The name of the workload group from which to receive the classifiers from.
    * @param options The options parameters.
    */
-  listByWorkloadGroup(
+  private _listByWorkloadGroup(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -197,7 +292,7 @@ export class WorkloadClassifiers {
    * @param nextLink The nextLink from the previous successful call to the ListByWorkloadGroup method.
    * @param options The options parameters.
    */
-  listByWorkloadGroupNext(
+  private _listByWorkloadGroupNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

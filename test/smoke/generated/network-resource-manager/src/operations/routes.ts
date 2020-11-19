@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  RoutesGetResponse,
   Route,
+  RoutesGetResponse,
   RoutesCreateOrUpdateResponse,
   RoutesListResponse,
   RoutesListNextResponse
@@ -31,6 +32,65 @@ export class Routes {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all routes in a route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    routeTableName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Route> {
+    const iter = this.listPagingAll(resourceGroupName, routeTableName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, routeTableName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    routeTableName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Route[]> {
+    let result = await this._list(resourceGroupName, routeTableName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        routeTableName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    routeTableName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Route> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      routeTableName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +115,12 @@ export class Routes {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -122,10 +184,12 @@ export class Routes {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         RoutesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -145,7 +209,7 @@ export class Routes {
    * @param routeTableName The name of the route table.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
@@ -168,7 +232,7 @@ export class Routes {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     routeTableName: string,
     nextLink: string,

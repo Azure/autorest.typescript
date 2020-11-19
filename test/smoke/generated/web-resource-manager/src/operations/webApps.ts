@@ -6,24 +6,55 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  WebAppsListResponse,
+  Site,
+  WebAppsListByResourceGroupNextOptionalParams,
   WebAppsListByResourceGroupOptionalParams,
+  BackupItem,
+  SiteConfigResource,
+  SiteConfigurationSnapshotInfo,
+  ContinuousWebJob,
+  Deployment,
+  Identifier,
+  FunctionEnvelope,
+  HostNameBinding,
+  SiteInstance,
+  ProcessInfo,
+  ProcessModuleInfo,
+  ProcessThreadInfo,
+  PerfMonResponse,
+  WebAppsListPerfMonCountersNextOptionalParams,
+  WebAppsListPerfMonCountersOptionalParams,
+  PublicCertificate,
+  SiteExtensionInfo,
+  WebAppsListPerfMonCountersSlotNextOptionalParams,
+  WebAppsListPerfMonCountersSlotOptionalParams,
+  SlotDifference,
+  CsmSlotEntity,
+  Snapshot,
+  TriggeredWebJob,
+  TriggeredJobHistory,
+  CsmUsageQuota,
+  WebAppsListUsagesSlotNextOptionalParams,
+  WebAppsListUsagesSlotOptionalParams,
+  WebJob,
+  WebAppsListUsagesNextOptionalParams,
+  WebAppsListUsagesOptionalParams,
+  WebAppsListResponse,
   WebAppsListByResourceGroupResponse,
   WebAppsGetResponse,
-  Site,
   WebAppsCreateOrUpdateResponse,
   WebAppsDeleteOptionalParams,
   SitePatchResource,
   WebAppsUpdateResponse,
   WebAppsAnalyzeCustomHostnameOptionalParams,
   WebAppsAnalyzeCustomHostnameResponse,
-  CsmSlotEntity,
   BackupRequest,
   WebAppsBackupResponse,
   WebAppsListBackupsResponse,
@@ -60,7 +91,6 @@ import {
   SlotConfigNamesResource,
   WebAppsUpdateSlotConfigurationNamesResponse,
   WebAppsGetConfigurationResponse,
-  SiteConfigResource,
   WebAppsCreateOrUpdateConfigurationResponse,
   WebAppsUpdateConfigurationResponse,
   WebAppsListConfigurationSnapshotInfoResponse,
@@ -71,13 +101,11 @@ import {
   WebAppsGetContinuousWebJobResponse,
   WebAppsListDeploymentsResponse,
   WebAppsGetDeploymentResponse,
-  Deployment,
   WebAppsCreateDeploymentResponse,
   WebAppsListDeploymentLogResponse,
   WebAppsDiscoverBackupResponse,
   WebAppsListDomainOwnershipIdentifiersResponse,
   WebAppsGetDomainOwnershipIdentifierResponse,
-  Identifier,
   WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse,
   WebAppsUpdateDomainOwnershipIdentifierResponse,
   WebAppsGetMSDeployStatusResponse,
@@ -87,7 +115,6 @@ import {
   WebAppsListFunctionsResponse,
   WebAppsGetFunctionsAdminTokenResponse,
   WebAppsGetFunctionResponse,
-  FunctionEnvelope,
   WebAppsCreateFunctionResponse,
   KeyInfo,
   WebAppsCreateOrUpdateFunctionSecretResponse,
@@ -97,7 +124,6 @@ import {
   WebAppsCreateOrUpdateHostSecretResponse,
   WebAppsListHostNameBindingsResponse,
   WebAppsGetHostNameBindingResponse,
-  HostNameBinding,
   WebAppsCreateOrUpdateHostNameBindingResponse,
   WebAppsGetHybridConnectionResponse,
   HybridConnection,
@@ -141,7 +167,6 @@ import {
   WebAppsGetNetworkTracesResponse,
   WebAppsGetNetworkTraceOperationV2Response,
   WebAppsGetNetworkTracesV2Response,
-  WebAppsListPerfMonCountersOptionalParams,
   WebAppsListPerfMonCountersResponse,
   WebAppsGetSitePhpErrorLogFlagResponse,
   WebAppsListPremierAddOnsResponse,
@@ -161,7 +186,6 @@ import {
   WebAppsListProcessThreadsResponse,
   WebAppsListPublicCertificatesResponse,
   WebAppsGetPublicCertificateResponse,
-  PublicCertificate,
   WebAppsCreateOrUpdatePublicCertificateResponse,
   CsmPublishingProfileOptions,
   WebAppsListPublishingProfileXmlWithSecretsResponse,
@@ -269,7 +293,6 @@ import {
   WebAppsGetNetworkTracesSlotResponse,
   WebAppsGetNetworkTraceOperationSlotV2Response,
   WebAppsGetNetworkTracesSlotV2Response,
-  WebAppsListPerfMonCountersSlotOptionalParams,
   WebAppsListPerfMonCountersSlotResponse,
   WebAppsGetSitePhpErrorLogFlagSlotResponse,
   WebAppsListPremierAddOnsSlotResponse,
@@ -310,7 +333,6 @@ import {
   WebAppsGetTriggeredWebJobSlotResponse,
   WebAppsListTriggeredWebJobHistorySlotResponse,
   WebAppsGetTriggeredWebJobHistorySlotResponse,
-  WebAppsListUsagesSlotOptionalParams,
   WebAppsListUsagesSlotResponse,
   WebAppsListVnetConnectionsSlotResponse,
   WebAppsGetVnetConnectionSlotResponse,
@@ -335,7 +357,6 @@ import {
   WebAppsGetTriggeredWebJobResponse,
   WebAppsListTriggeredWebJobHistoryResponse,
   WebAppsGetTriggeredWebJobHistoryResponse,
-  WebAppsListUsagesOptionalParams,
   WebAppsListUsagesResponse,
   WebAppsListVnetConnectionsResponse,
   WebAppsGetVnetConnectionResponse,
@@ -347,7 +368,6 @@ import {
   WebAppsListWebJobsResponse,
   WebAppsGetWebJobResponse,
   WebAppsListNextResponse,
-  WebAppsListByResourceGroupNextOptionalParams,
   WebAppsListByResourceGroupNextResponse,
   WebAppsListBackupsNextResponse,
   WebAppsListConfigurationsNextResponse,
@@ -362,7 +382,6 @@ import {
   WebAppsListInstanceProcessModulesNextResponse,
   WebAppsListInstanceProcessThreadsNextResponse,
   WebAppsListSiteBackupsNextResponse,
-  WebAppsListPerfMonCountersNextOptionalParams,
   WebAppsListPerfMonCountersNextResponse,
   WebAppsListProcessesNextResponse,
   WebAppsListProcessModulesNextResponse,
@@ -383,7 +402,6 @@ import {
   WebAppsListInstanceProcessModulesSlotNextResponse,
   WebAppsListInstanceProcessThreadsSlotNextResponse,
   WebAppsListSiteBackupsSlotNextResponse,
-  WebAppsListPerfMonCountersSlotNextOptionalParams,
   WebAppsListPerfMonCountersSlotNextResponse,
   WebAppsListProcessesSlotNextResponse,
   WebAppsListProcessModulesSlotNextResponse,
@@ -395,7 +413,6 @@ import {
   WebAppsListSnapshotsFromDRSecondarySlotNextResponse,
   WebAppsListTriggeredWebJobsSlotNextResponse,
   WebAppsListTriggeredWebJobHistorySlotNextResponse,
-  WebAppsListUsagesSlotNextOptionalParams,
   WebAppsListUsagesSlotNextResponse,
   WebAppsListWebJobsSlotNextResponse,
   WebAppsListSlotDifferencesFromProductionNextResponse,
@@ -403,7 +420,6 @@ import {
   WebAppsListSnapshotsFromDRSecondaryNextResponse,
   WebAppsListTriggeredWebJobsNextResponse,
   WebAppsListTriggeredWebJobHistoryNextResponse,
-  WebAppsListUsagesNextOptionalParams,
   WebAppsListUsagesNextResponse,
   WebAppsListWebJobsNextResponse
 } from "../models";
@@ -426,7 +442,4205 @@ export class WebApps {
    * Description for Get all apps for a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): Promise<WebAppsListResponse> {
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all web, mobile, and API apps in the specified resource group.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: WebAppsListByResourceGroupOptionalParams
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: WebAppsListByResourceGroupOptionalParams
+  ): AsyncIterableIterator<Site[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: WebAppsListByResourceGroupOptionalParams
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets existing backups of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listBackups(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BackupItem> {
+    const iter = this.listBackupsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBackupsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listBackupsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem[]> {
+    let result = await this._listBackups(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBackupsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBackupsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem> {
+    for await (const page of this.listBackupsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the configurations of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listConfigurations(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteConfigResource> {
+    const iter = this.listConfigurationsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listConfigurationsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listConfigurationsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigResource[]> {
+    let result = await this._listConfigurations(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listConfigurationsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listConfigurationsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigResource> {
+    for await (const page of this.listConfigurationsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
+   * contains a timestamp and the ID of the snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listConfigurationSnapshotInfo(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
+    const iter = this.listConfigurationSnapshotInfoPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listConfigurationSnapshotInfoPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listConfigurationSnapshotInfoPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigurationSnapshotInfo[]> {
+    let result = await this._listConfigurationSnapshotInfo(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listConfigurationSnapshotInfoNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listConfigurationSnapshotInfoPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigurationSnapshotInfo> {
+    for await (const page of this.listConfigurationSnapshotInfoPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List continuous web jobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listContinuousWebJobs(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ContinuousWebJob> {
+    const iter = this.listContinuousWebJobsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listContinuousWebJobsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listContinuousWebJobsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContinuousWebJob[]> {
+    let result = await this._listContinuousWebJobs(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listContinuousWebJobsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listContinuousWebJobsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContinuousWebJob> {
+    for await (const page of this.listContinuousWebJobsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List deployments for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listDeployments(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Deployment> {
+    const iter = this.listDeploymentsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listDeploymentsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listDeploymentsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Deployment[]> {
+    let result = await this._listDeployments(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listDeploymentsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listDeploymentsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Deployment> {
+    for await (const page of this.listDeploymentsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Lists ownership identifiers for domain associated with web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listDomainOwnershipIdentifiers(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Identifier> {
+    const iter = this.listDomainOwnershipIdentifiersPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listDomainOwnershipIdentifiersPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listDomainOwnershipIdentifiersPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier[]> {
+    let result = await this._listDomainOwnershipIdentifiers(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listDomainOwnershipIdentifiersNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listDomainOwnershipIdentifiersPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier> {
+    for await (const page of this.listDomainOwnershipIdentifiersPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the functions for a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listFunctions(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FunctionEnvelope> {
+    const iter = this.listFunctionsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listFunctionsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listFunctionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FunctionEnvelope[]> {
+    let result = await this._listFunctions(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listFunctionsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listFunctionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FunctionEnvelope> {
+    for await (const page of this.listFunctionsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get hostname bindings for an app or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listHostNameBindings(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<HostNameBinding> {
+    const iter = this.listHostNameBindingsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHostNameBindingsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHostNameBindingsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HostNameBinding[]> {
+    let result = await this._listHostNameBindings(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHostNameBindingsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHostNameBindingsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HostNameBinding> {
+    for await (const page of this.listHostNameBindingsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all scale-out instances of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listInstanceIdentifiers(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteInstance> {
+    const iter = this.listInstanceIdentifiersPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceIdentifiersPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceIdentifiersPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteInstance[]> {
+    let result = await this._listInstanceIdentifiers(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceIdentifiersNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceIdentifiersPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteInstance> {
+    for await (const page of this.listInstanceIdentifiersPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of processes for a web site, or a deployment slot, or for a specific
+   * scaled-out instance in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcesses(
+    resourceGroupName: string,
+    name: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessInfo> {
+    const iter = this.listInstanceProcessesPagingAll(
+      resourceGroupName,
+      name,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessesPagingPage(
+          resourceGroupName,
+          name,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo[]> {
+    let result = await this._listInstanceProcesses(
+      resourceGroupName,
+      name,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessesNext(
+        resourceGroupName,
+        name,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo> {
+    for await (const page of this.listInstanceProcessesPagingPage(
+      resourceGroupName,
+      name,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List module information for a process by its ID for a specific scaled-out instance
+   * in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcessModules(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
+    const iter = this.listInstanceProcessModulesPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessModulesPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessModulesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo[]> {
+    let result = await this._listInstanceProcessModules(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessModulesNext(
+        resourceGroupName,
+        name,
+        processId,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessModulesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo> {
+    for await (const page of this.listInstanceProcessModulesPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcessThreads(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
+    const iter = this.listInstanceProcessThreadsPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessThreadsPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessThreadsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo[]> {
+    let result = await this._listInstanceProcessThreads(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessThreadsNext(
+        resourceGroupName,
+        name,
+        processId,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessThreadsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo> {
+    for await (const page of this.listInstanceProcessThreadsPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets existing backups of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listSiteBackups(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BackupItem> {
+    const iter = this.listSiteBackupsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteBackupsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listSiteBackupsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem[]> {
+    let result = await this._listSiteBackups(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteBackupsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteBackupsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem> {
+    for await (const page of this.listSiteBackupsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets perfmon counters for web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param options The options parameters.
+   */
+  public listPerfMonCounters(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListPerfMonCountersOptionalParams
+  ): PagedAsyncIterableIterator<PerfMonResponse> {
+    const iter = this.listPerfMonCountersPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPerfMonCountersPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPerfMonCountersPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListPerfMonCountersOptionalParams
+  ): AsyncIterableIterator<PerfMonResponse[]> {
+    let result = await this._listPerfMonCounters(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPerfMonCountersNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPerfMonCountersPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListPerfMonCountersOptionalParams
+  ): AsyncIterableIterator<PerfMonResponse> {
+    for await (const page of this.listPerfMonCountersPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of processes for a web site, or a deployment slot, or for a specific
+   * scaled-out instance in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listProcesses(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessInfo> {
+    const iter = this.listProcessesPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessesPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listProcessesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo[]> {
+    let result = await this._listProcesses(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo> {
+    for await (const page of this.listProcessesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List module information for a process by its ID for a specific scaled-out instance
+   * in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param options The options parameters.
+   */
+  public listProcessModules(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
+    const iter = this.listProcessModulesPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessModulesPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listProcessModulesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo[]> {
+    let result = await this._listProcessModules(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessModulesNext(
+        resourceGroupName,
+        name,
+        processId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessModulesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo> {
+    for await (const page of this.listProcessModulesPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param options The options parameters.
+   */
+  public listProcessThreads(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
+    const iter = this.listProcessThreadsPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessThreadsPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listProcessThreadsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo[]> {
+    let result = await this._listProcessThreads(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessThreadsNext(
+        resourceGroupName,
+        name,
+        processId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessThreadsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo> {
+    for await (const page of this.listProcessThreadsPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get public certificates for an app or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listPublicCertificates(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicCertificate> {
+    const iter = this.listPublicCertificatesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPublicCertificatesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPublicCertificatesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicCertificate[]> {
+    let result = await this._listPublicCertificates(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPublicCertificatesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPublicCertificatesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicCertificate> {
+    for await (const page of this.listPublicCertificatesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of siteextensions for a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listSiteExtensions(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteExtensionInfo> {
+    const iter = this.listSiteExtensionsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteExtensionsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteExtensionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteExtensionInfo[]> {
+    let result = await this._listSiteExtensions(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteExtensionsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteExtensionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteExtensionInfo> {
+    for await (const page of this.listSiteExtensionsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets an app's deployment slots.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listSlots(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.listSlotsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSlotsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listSlotsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site[]> {
+    let result = await this._listSlots(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSlotsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSlotsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.listSlotsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets existing backups of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get backups of the
+   *             production slot.
+   * @param options The options parameters.
+   */
+  public listBackupsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BackupItem> {
+    const iter = this.listBackupsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBackupsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBackupsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem[]> {
+    let result = await this._listBackupsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBackupsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBackupsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem> {
+    for await (const page of this.listBackupsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the configurations of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will return
+   *             configuration for the production slot.
+   * @param options The options parameters.
+   */
+  public listConfigurationsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteConfigResource> {
+    const iter = this.listConfigurationsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listConfigurationsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listConfigurationsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigResource[]> {
+    let result = await this._listConfigurationsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listConfigurationsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listConfigurationsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigResource> {
+    for await (const page of this.listConfigurationsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
+   * contains a timestamp and the ID of the snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will return
+   *             configuration for the production slot.
+   * @param options The options parameters.
+   */
+  public listConfigurationSnapshotInfoSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
+    const iter = this.listConfigurationSnapshotInfoSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listConfigurationSnapshotInfoSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listConfigurationSnapshotInfoSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigurationSnapshotInfo[]> {
+    let result = await this._listConfigurationSnapshotInfoSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listConfigurationSnapshotInfoSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listConfigurationSnapshotInfoSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteConfigurationSnapshotInfo> {
+    for await (const page of this.listConfigurationSnapshotInfoSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List continuous web jobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API deletes a deployment
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  public listContinuousWebJobsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ContinuousWebJob> {
+    const iter = this.listContinuousWebJobsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listContinuousWebJobsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listContinuousWebJobsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContinuousWebJob[]> {
+    let result = await this._listContinuousWebJobsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listContinuousWebJobsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listContinuousWebJobsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContinuousWebJob> {
+    for await (const page of this.listContinuousWebJobsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List deployments for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param options The options parameters.
+   */
+  public listDeploymentsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Deployment> {
+    const iter = this.listDeploymentsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listDeploymentsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listDeploymentsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Deployment[]> {
+    let result = await this._listDeploymentsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listDeploymentsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listDeploymentsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Deployment> {
+    for await (const page of this.listDeploymentsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Lists ownership identifiers for domain associated with web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the binding
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  public listDomainOwnershipIdentifiersSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Identifier> {
+    const iter = this.listDomainOwnershipIdentifiersSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listDomainOwnershipIdentifiersSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listDomainOwnershipIdentifiersSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier[]> {
+    let result = await this._listDomainOwnershipIdentifiersSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listDomainOwnershipIdentifiersSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listDomainOwnershipIdentifiersSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Identifier> {
+    for await (const page of this.listDomainOwnershipIdentifiersSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the functions for a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot.
+   * @param options The options parameters.
+   */
+  public listInstanceFunctionsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FunctionEnvelope> {
+    const iter = this.listInstanceFunctionsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceFunctionsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceFunctionsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FunctionEnvelope[]> {
+    let result = await this._listInstanceFunctionsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceFunctionsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceFunctionsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FunctionEnvelope> {
+    for await (const page of this.listInstanceFunctionsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get hostname bindings for an app or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API gets hostname bindings
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  public listHostNameBindingsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<HostNameBinding> {
+    const iter = this.listHostNameBindingsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHostNameBindingsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHostNameBindingsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HostNameBinding[]> {
+    let result = await this._listHostNameBindingsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHostNameBindingsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHostNameBindingsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HostNameBinding> {
+    for await (const page of this.listHostNameBindingsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all scale-out instances of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API gets the production
+   *             slot instances.
+   * @param options The options parameters.
+   */
+  public listInstanceIdentifiersSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteInstance> {
+    const iter = this.listInstanceIdentifiersSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceIdentifiersSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceIdentifiersSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteInstance[]> {
+    let result = await this._listInstanceIdentifiersSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceIdentifiersSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceIdentifiersSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteInstance> {
+    for await (const page of this.listInstanceIdentifiersSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of processes for a web site, or a deployment slot, or for a specific
+   * scaled-out instance in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcessesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessInfo> {
+    const iter = this.listInstanceProcessesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo[]> {
+    let result = await this._listInstanceProcessesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo> {
+    for await (const page of this.listInstanceProcessesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List module information for a process by its ID for a specific scaled-out instance
+   * in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcessModulesSlot(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
+    const iter = this.listInstanceProcessModulesSlotPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessModulesSlotPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          slot,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessModulesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo[]> {
+    let result = await this._listInstanceProcessModulesSlot(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessModulesSlotNext(
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessModulesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo> {
+    for await (const page of this.listInstanceProcessModulesSlotPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
+   * @param options The options parameters.
+   */
+  public listInstanceProcessThreadsSlot(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
+    const iter = this.listInstanceProcessThreadsSlotPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInstanceProcessThreadsSlotPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          slot,
+          instanceId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInstanceProcessThreadsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo[]> {
+    let result = await this._listInstanceProcessThreadsSlot(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInstanceProcessThreadsSlotNext(
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        instanceId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInstanceProcessThreadsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    instanceId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo> {
+    for await (const page of this.listInstanceProcessThreadsSlotPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      instanceId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets existing backups of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get backups of the
+   *             production slot.
+   * @param options The options parameters.
+   */
+  public listSiteBackupsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BackupItem> {
+    const iter = this.listSiteBackupsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteBackupsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteBackupsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem[]> {
+    let result = await this._listSiteBackupsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteBackupsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteBackupsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BackupItem> {
+    for await (const page of this.listSiteBackupsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets perfmon counters for web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param options The options parameters.
+   */
+  public listPerfMonCountersSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListPerfMonCountersSlotOptionalParams
+  ): PagedAsyncIterableIterator<PerfMonResponse> {
+    const iter = this.listPerfMonCountersSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPerfMonCountersSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPerfMonCountersSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListPerfMonCountersSlotOptionalParams
+  ): AsyncIterableIterator<PerfMonResponse[]> {
+    let result = await this._listPerfMonCountersSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPerfMonCountersSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPerfMonCountersSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListPerfMonCountersSlotOptionalParams
+  ): AsyncIterableIterator<PerfMonResponse> {
+    for await (const page of this.listPerfMonCountersSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of processes for a web site, or a deployment slot, or for a specific
+   * scaled-out instance in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param options The options parameters.
+   */
+  public listProcessesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessInfo> {
+    const iter = this.listProcessesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listProcessesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo[]> {
+    let result = await this._listProcessesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessInfo> {
+    for await (const page of this.listProcessesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List module information for a process by its ID for a specific scaled-out instance
+   * in a web site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param options The options parameters.
+   */
+  public listProcessModulesSlot(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
+    const iter = this.listProcessModulesSlotPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessModulesSlotPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listProcessModulesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo[]> {
+    let result = await this._listProcessModulesSlot(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessModulesSlotNext(
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessModulesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessModuleInfo> {
+    for await (const page of this.listProcessModulesSlotPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param processId PID.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param options The options parameters.
+   */
+  public listProcessThreadsSlot(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
+    const iter = this.listProcessThreadsSlotPagingAll(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listProcessThreadsSlotPagingPage(
+          resourceGroupName,
+          name,
+          processId,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listProcessThreadsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo[]> {
+    let result = await this._listProcessThreadsSlot(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listProcessThreadsSlotNext(
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listProcessThreadsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    processId: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ProcessThreadInfo> {
+    for await (const page of this.listProcessThreadsSlotPagingPage(
+      resourceGroupName,
+      name,
+      processId,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get public certificates for an app or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API gets hostname bindings
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  public listPublicCertificatesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicCertificate> {
+    const iter = this.listPublicCertificatesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPublicCertificatesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPublicCertificatesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicCertificate[]> {
+    let result = await this._listPublicCertificatesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listPublicCertificatesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPublicCertificatesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicCertificate> {
+    for await (const page of this.listPublicCertificatesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get list of siteextensions for a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API uses the production
+   *             slot.
+   * @param options The options parameters.
+   */
+  public listSiteExtensionsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SiteExtensionInfo> {
+    const iter = this.listSiteExtensionsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSiteExtensionsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSiteExtensionsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteExtensionInfo[]> {
+    let result = await this._listSiteExtensionsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSiteExtensionsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSiteExtensionsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SiteExtensionInfo> {
+    for await (const page of this.listSiteExtensionsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get the difference in configuration settings between two web app slots.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
+   *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  public listSlotDifferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SlotDifference> {
+    const iter = this.listSlotDifferencesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      slotSwapEntity,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSlotDifferencesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          slotSwapEntity,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSlotDifferencesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SlotDifference[]> {
+    let result = await this._listSlotDifferencesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      slotSwapEntity,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSlotDifferencesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        slotSwapEntity,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSlotDifferencesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SlotDifference> {
+    for await (const page of this.listSlotDifferencesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      slotSwapEntity,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Returns all Snapshots to the user.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Website Name.
+   * @param slot Website Slot.
+   * @param options The options parameters.
+   */
+  public listSnapshotsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Snapshot> {
+    const iter = this.listSnapshotsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSnapshotsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSnapshotsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot[]> {
+    let result = await this._listSnapshotsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSnapshotsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSnapshotsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot> {
+    for await (const page of this.listSnapshotsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Returns all Snapshots to the user from DRSecondary endpoint.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Website Name.
+   * @param slot Website Slot.
+   * @param options The options parameters.
+   */
+  public listSnapshotsFromDRSecondarySlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Snapshot> {
+    const iter = this.listSnapshotsFromDRSecondarySlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSnapshotsFromDRSecondarySlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSnapshotsFromDRSecondarySlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot[]> {
+    let result = await this._listSnapshotsFromDRSecondarySlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSnapshotsFromDRSecondarySlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSnapshotsFromDRSecondarySlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot> {
+    for await (const page of this.listSnapshotsFromDRSecondarySlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List triggered web jobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API deletes a deployment
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  public listTriggeredWebJobsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TriggeredWebJob> {
+    const iter = this.listTriggeredWebJobsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listTriggeredWebJobsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listTriggeredWebJobsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredWebJob[]> {
+    let result = await this._listTriggeredWebJobsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listTriggeredWebJobsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listTriggeredWebJobsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredWebJob> {
+    for await (const page of this.listTriggeredWebJobsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List a triggered web job's history for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param webJobName Name of Web Job.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API uses the production
+   *             slot.
+   * @param options The options parameters.
+   */
+  public listTriggeredWebJobHistorySlot(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TriggeredJobHistory> {
+    const iter = this.listTriggeredWebJobHistorySlotPagingAll(
+      resourceGroupName,
+      name,
+      webJobName,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listTriggeredWebJobHistorySlotPagingPage(
+          resourceGroupName,
+          name,
+          webJobName,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listTriggeredWebJobHistorySlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredJobHistory[]> {
+    let result = await this._listTriggeredWebJobHistorySlot(
+      resourceGroupName,
+      name,
+      webJobName,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listTriggeredWebJobHistorySlotNext(
+        resourceGroupName,
+        name,
+        webJobName,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listTriggeredWebJobHistorySlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredJobHistory> {
+    for await (const page of this.listTriggeredWebJobHistorySlotPagingPage(
+      resourceGroupName,
+      name,
+      webJobName,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the quota usage information of an app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get quota
+   *             information of the production slot.
+   * @param options The options parameters.
+   */
+  public listUsagesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListUsagesSlotOptionalParams
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
+    const iter = this.listUsagesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listUsagesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListUsagesSlotOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota[]> {
+    let result = await this._listUsagesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listUsagesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listUsagesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListUsagesSlotOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota> {
+    for await (const page of this.listUsagesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List webjobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
+   *             the production slot.
+   * @param options The options parameters.
+   */
+  public listWebJobsSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<WebJob> {
+    const iter = this.listWebJobsSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebJobsSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWebJobsSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WebJob[]> {
+    let result = await this._listWebJobsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebJobsSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebJobsSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WebJob> {
+    for await (const page of this.listWebJobsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get the difference in configuration settings between two web app slots.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  public listSlotDifferencesFromProduction(
+    resourceGroupName: string,
+    name: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SlotDifference> {
+    const iter = this.listSlotDifferencesFromProductionPagingAll(
+      resourceGroupName,
+      name,
+      slotSwapEntity,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSlotDifferencesFromProductionPagingPage(
+          resourceGroupName,
+          name,
+          slotSwapEntity,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSlotDifferencesFromProductionPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SlotDifference[]> {
+    let result = await this._listSlotDifferencesFromProduction(
+      resourceGroupName,
+      name,
+      slotSwapEntity,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSlotDifferencesFromProductionNext(
+        resourceGroupName,
+        name,
+        slotSwapEntity,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSlotDifferencesFromProductionPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SlotDifference> {
+    for await (const page of this.listSlotDifferencesFromProductionPagingPage(
+      resourceGroupName,
+      name,
+      slotSwapEntity,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Returns all Snapshots to the user.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Website Name.
+   * @param options The options parameters.
+   */
+  public listSnapshots(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Snapshot> {
+    const iter = this.listSnapshotsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSnapshotsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listSnapshotsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot[]> {
+    let result = await this._listSnapshots(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSnapshotsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSnapshotsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot> {
+    for await (const page of this.listSnapshotsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Returns all Snapshots to the user from DRSecondary endpoint.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Website Name.
+   * @param options The options parameters.
+   */
+  public listSnapshotsFromDRSecondary(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Snapshot> {
+    const iter = this.listSnapshotsFromDRSecondaryPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSnapshotsFromDRSecondaryPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSnapshotsFromDRSecondaryPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot[]> {
+    let result = await this._listSnapshotsFromDRSecondary(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listSnapshotsFromDRSecondaryNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listSnapshotsFromDRSecondaryPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Snapshot> {
+    for await (const page of this.listSnapshotsFromDRSecondaryPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List triggered web jobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listTriggeredWebJobs(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TriggeredWebJob> {
+    const iter = this.listTriggeredWebJobsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listTriggeredWebJobsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listTriggeredWebJobsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredWebJob[]> {
+    let result = await this._listTriggeredWebJobs(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listTriggeredWebJobsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listTriggeredWebJobsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredWebJob> {
+    for await (const page of this.listTriggeredWebJobsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List a triggered web job's history for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param webJobName Name of Web Job.
+   * @param options The options parameters.
+   */
+  public listTriggeredWebJobHistory(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TriggeredJobHistory> {
+    const iter = this.listTriggeredWebJobHistoryPagingAll(
+      resourceGroupName,
+      name,
+      webJobName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listTriggeredWebJobHistoryPagingPage(
+          resourceGroupName,
+          name,
+          webJobName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listTriggeredWebJobHistoryPagingPage(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredJobHistory[]> {
+    let result = await this._listTriggeredWebJobHistory(
+      resourceGroupName,
+      name,
+      webJobName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listTriggeredWebJobHistoryNext(
+        resourceGroupName,
+        name,
+        webJobName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listTriggeredWebJobHistoryPagingAll(
+    resourceGroupName: string,
+    name: string,
+    webJobName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TriggeredJobHistory> {
+    for await (const page of this.listTriggeredWebJobHistoryPagingPage(
+      resourceGroupName,
+      name,
+      webJobName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the quota usage information of an app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listUsages(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListUsagesOptionalParams
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
+    const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listUsagesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota[]> {
+    let result = await this._listUsages(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listUsagesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listUsagesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota> {
+    for await (const page of this.listUsagesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List webjobs for an app, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param options The options parameters.
+   */
+  public listWebJobs(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<WebJob> {
+    const iter = this.listWebJobsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebJobsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listWebJobsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WebJob[]> {
+    let result = await this._listWebJobs(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebJobsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebJobsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WebJob> {
+    for await (const page of this.listWebJobsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all apps for a subscription.
+   * @param options The options parameters.
+   */
+  private _list(
+    options?: coreHttp.OperationOptions
+  ): Promise<WebAppsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -441,7 +4655,7 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: WebAppsListByResourceGroupOptionalParams
   ): Promise<WebAppsListByResourceGroupResponse> {
@@ -501,10 +4715,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -645,7 +4861,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listBackups(
+  private _listBackups(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -766,10 +4982,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreOperationSpec
@@ -788,7 +5006,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listConfigurations(
+  private _listConfigurations(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -1222,10 +5440,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsListPublishingCredentialsResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       listPublishingCredentialsOperationSpec
@@ -1414,7 +5634,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listConfigurationSnapshotInfo(
+  private _listConfigurationSnapshotInfo(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -1530,7 +5750,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listContinuousWebJobs(
+  private _listContinuousWebJobs(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -1652,7 +5872,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listDeployments(
+  private _listDeployments(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -1805,7 +6025,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listDomainOwnershipIdentifiers(
+  private _listDomainOwnershipIdentifiers(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -1973,10 +6193,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateMSDeployOperationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createMSDeployOperationOperationSpec
@@ -2017,7 +6239,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listFunctions(
+  private _listFunctions(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -2105,10 +6327,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateFunctionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createFunctionOperationSpec
@@ -2386,7 +6610,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listHostNameBindings(
+  private _listHostNameBindings(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -2756,7 +6980,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listInstanceIdentifiers(
+  private _listInstanceIdentifiers(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -2847,10 +7071,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateInstanceMSDeployOperationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createInstanceMSDeployOperationOperationSpec
@@ -2897,7 +7123,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcesses(
+  private _listInstanceProcesses(
     resourceGroupName: string,
     name: string,
     instanceId: string,
@@ -3014,7 +7240,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcessModules(
+  private _listInstanceProcessModules(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -3076,7 +7302,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcessThreads(
+  private _listInstanceProcessThreads(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -3124,7 +7350,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listSiteBackups(
+  private _listSiteBackups(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -3187,10 +7413,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsMigrateStorageResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       migrateStorageOperationSpec
@@ -3225,10 +7453,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsMigrateMySqlResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       migrateMySqlOperationSpec
@@ -3456,10 +7686,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsStartWebSiteNetworkTraceOperationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startWebSiteNetworkTraceOperationOperationSpec
@@ -3600,7 +7832,7 @@ export class WebApps {
    * @param name Name of web app.
    * @param options The options parameters.
    */
-  listPerfMonCounters(
+  private _listPerfMonCounters(
     resourceGroupName: string,
     name: string,
     options?: WebAppsListPerfMonCountersOptionalParams
@@ -3822,7 +8054,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listProcesses(
+  private _listProcesses(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -3923,7 +8155,7 @@ export class WebApps {
    * @param processId PID.
    * @param options The options parameters.
    */
-  listProcessModules(
+  private _listProcessModules(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -3977,7 +8209,7 @@ export class WebApps {
    * @param processId PID.
    * @param options The options parameters.
    */
-  listProcessThreads(
+  private _listProcessThreads(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -4001,7 +8233,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listPublicCertificates(
+  private _listPublicCertificates(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -4189,10 +8421,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreFromBackupBlobOperationSpec
@@ -4227,10 +8461,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreFromDeletedAppOperationSpec
@@ -4266,10 +8502,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreSnapshotOperationSpec
@@ -4288,7 +8526,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listSiteExtensions(
+  private _listSiteExtensions(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -4351,10 +8589,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsInstallSiteExtensionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       installSiteExtensionOperationSpec
@@ -4415,10 +8655,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       copyProductionSlotOperationSpec
@@ -4437,7 +8679,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listSlots(
+  private _listSlots(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -4506,10 +8748,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateOrUpdateSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateSlotOperationSpec
@@ -4670,7 +8914,7 @@ export class WebApps {
    *             production slot.
    * @param options The options parameters.
    */
-  listBackupsSlot(
+  private _listBackupsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -4808,10 +9052,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreSlotOperationSpec
@@ -4832,7 +9078,7 @@ export class WebApps {
    *             configuration for the production slot.
    * @param options The options parameters.
    */
-  listConfigurationsSlot(
+  private _listConfigurationsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5284,10 +9530,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsListPublishingCredentialsSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       listPublishingCredentialsSlotOperationSpec
@@ -5447,7 +9695,7 @@ export class WebApps {
    *             configuration for the production slot.
    * @param options The options parameters.
    */
-  listConfigurationSnapshotInfoSlot(
+  private _listConfigurationSnapshotInfoSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5581,7 +9829,7 @@ export class WebApps {
    *             for the production slot.
    * @param options The options parameters.
    */
-  listContinuousWebJobsSlot(
+  private _listContinuousWebJobsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5723,7 +9971,7 @@ export class WebApps {
    *             the production slot.
    * @param options The options parameters.
    */
-  listDeploymentsSlot(
+  private _listDeploymentsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5900,7 +10148,7 @@ export class WebApps {
    *             for the production slot.
    * @param options The options parameters.
    */
-  listDomainOwnershipIdentifiersSlot(
+  private _listDomainOwnershipIdentifiersSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -6092,10 +10340,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateMSDeployOperationSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createMSDeployOperationSlotOperationSpec
@@ -6140,7 +10390,7 @@ export class WebApps {
    * @param slot Name of the deployment slot.
    * @param options The options parameters.
    */
-  listInstanceFunctionsSlot(
+  private _listInstanceFunctionsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -6239,10 +10489,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateInstanceFunctionSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createInstanceFunctionSlotOperationSpec
@@ -6552,7 +10804,7 @@ export class WebApps {
    *             for the production slot.
    * @param options The options parameters.
    */
-  listHostNameBindingsSlot(
+  private _listHostNameBindingsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -6973,7 +11225,7 @@ export class WebApps {
    *             slot instances.
    * @param options The options parameters.
    */
-  listInstanceIdentifiersSlot(
+  private _listInstanceIdentifiersSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -7076,10 +11328,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateInstanceMSDeployOperationSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createInstanceMSDeployOperationSlotOperationSpec
@@ -7131,7 +11385,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcessesSlot(
+  private _listInstanceProcessesSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -7264,7 +11518,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcessModulesSlot(
+  private _listInstanceProcessModulesSlot(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -7334,7 +11588,7 @@ export class WebApps {
    *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
-  listInstanceProcessThreadsSlot(
+  private _listInstanceProcessThreadsSlot(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -7390,7 +11644,7 @@ export class WebApps {
    *             production slot.
    * @param options The options parameters.
    */
-  listSiteBackupsSlot(
+  private _listSiteBackupsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -7683,10 +11937,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsStartWebSiteNetworkTraceOperationSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startWebSiteNetworkTraceOperationSlotOperationSpec
@@ -7847,7 +12103,7 @@ export class WebApps {
    * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param options The options parameters.
    */
-  listPerfMonCountersSlot(
+  private _listPerfMonCountersSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -8145,10 +12401,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsApproveOrRejectPrivateEndpointConnectionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       approveOrRejectPrivateEndpointConnectionOperationSpec
@@ -8183,10 +12441,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsDeletePrivateEndpointConnectionResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deletePrivateEndpointConnectionOperationSpec
@@ -8230,7 +12490,7 @@ export class WebApps {
    *             the production slot.
    * @param options The options parameters.
    */
-  listProcessesSlot(
+  private _listProcessesSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -8347,7 +12607,7 @@ export class WebApps {
    *             the production slot.
    * @param options The options parameters.
    */
-  listProcessModulesSlot(
+  private _listProcessModulesSlot(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -8409,7 +12669,7 @@ export class WebApps {
    *             the production slot.
    * @param options The options parameters.
    */
-  listProcessThreadsSlot(
+  private _listProcessThreadsSlot(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -8437,7 +12697,7 @@ export class WebApps {
    *             for the production slot.
    * @param options The options parameters.
    */
-  listPublicCertificatesSlot(
+  private _listPublicCertificatesSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -8655,10 +12915,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreFromBackupBlobSlotOperationSpec
@@ -8696,10 +12958,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreFromDeletedAppSlotOperationSpec
@@ -8738,10 +13002,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restoreSnapshotSlotOperationSpec
@@ -8762,7 +13028,7 @@ export class WebApps {
    *             slot.
    * @param options The options parameters.
    */
-  listSiteExtensionsSlot(
+  private _listSiteExtensionsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -8835,10 +13101,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsInstallSiteExtensionSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       installSiteExtensionSlotOperationSpec
@@ -8907,10 +13175,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       copySlotOperationSpec
@@ -8932,7 +13202,7 @@ export class WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  listSlotDifferencesSlot(
+  private _listSlotDifferencesSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -8978,10 +13248,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       swapSlotOperationSpec
@@ -9001,7 +13273,7 @@ export class WebApps {
    * @param slot Website Slot.
    * @param options The options parameters.
    */
-  listSnapshotsSlot(
+  private _listSnapshotsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9026,7 +13298,7 @@ export class WebApps {
    * @param slot Website Slot.
    * @param options The options parameters.
    */
-  listSnapshotsFromDRSecondarySlot(
+  private _listSnapshotsFromDRSecondarySlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9096,10 +13368,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateOrUpdateSourceControlSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateSourceControlSlotOperationSpec
@@ -9215,10 +13489,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsStartNetworkTraceSlotResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startNetworkTraceSlotOperationSpec
@@ -9340,7 +13616,7 @@ export class WebApps {
    *             for the production slot.
    * @param options The options parameters.
    */
-  listTriggeredWebJobsSlot(
+  private _listTriggeredWebJobsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9425,7 +13701,7 @@ export class WebApps {
    *             slot.
    * @param options The options parameters.
    */
-  listTriggeredWebJobHistorySlot(
+  private _listTriggeredWebJobHistorySlot(
     resourceGroupName: string,
     name: string,
     webJobName: string,
@@ -9514,7 +13790,7 @@ export class WebApps {
    *             information of the production slot.
    * @param options The options parameters.
    */
-  listUsagesSlot(
+  private _listUsagesSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9792,7 +14068,7 @@ export class WebApps {
    *             the production slot.
    * @param options The options parameters.
    */
-  listWebJobsSlot(
+  private _listWebJobsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9846,7 +14122,7 @@ export class WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  listSlotDifferencesFromProduction(
+  private _listSlotDifferencesFromProduction(
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
@@ -9886,10 +14162,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       swapSlotWithProductionOperationSpec
@@ -9908,7 +14186,7 @@ export class WebApps {
    * @param name Website Name.
    * @param options The options parameters.
    */
-  listSnapshots(
+  private _listSnapshots(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -9930,7 +14208,7 @@ export class WebApps {
    * @param name Website Name.
    * @param options The options parameters.
    */
-  listSnapshotsFromDRSecondary(
+  private _listSnapshotsFromDRSecondary(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -9990,10 +14268,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsCreateOrUpdateSourceControlResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateSourceControlOperationSpec
@@ -10094,10 +14374,12 @@ export class WebApps {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         WebAppsStartNetworkTraceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startNetworkTraceOperationSpec
@@ -10204,7 +14486,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listTriggeredWebJobs(
+  private _listTriggeredWebJobs(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -10277,7 +14559,7 @@ export class WebApps {
    * @param webJobName Name of Web Job.
    * @param options The options parameters.
    */
-  listTriggeredWebJobHistory(
+  private _listTriggeredWebJobHistory(
     resourceGroupName: string,
     name: string,
     webJobName: string,
@@ -10354,7 +14636,7 @@ export class WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listUsages(
+  private _listUsages(
     resourceGroupName: string,
     name: string,
     options?: WebAppsListUsagesOptionalParams
@@ -10596,7 +14878,7 @@ export class WebApps {
    * @param name Site name.
    * @param options The options parameters.
    */
-  listWebJobs(
+  private _listWebJobs(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -10642,7 +14924,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListNextResponse> {
@@ -10662,7 +14944,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: WebAppsListByResourceGroupNextOptionalParams
@@ -10685,7 +14967,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListBackups method.
    * @param options The options parameters.
    */
-  listBackupsNext(
+  private _listBackupsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10710,7 +14992,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListConfigurations method.
    * @param options The options parameters.
    */
-  listConfigurationsNext(
+  private _listConfigurationsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10736,7 +15018,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listConfigurationSnapshotInfoNext(
+  private _listConfigurationSnapshotInfoNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10761,7 +15043,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListContinuousWebJobs method.
    * @param options The options parameters.
    */
-  listContinuousWebJobsNext(
+  private _listContinuousWebJobsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10786,7 +15068,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListDeployments method.
    * @param options The options parameters.
    */
-  listDeploymentsNext(
+  private _listDeploymentsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10812,7 +15094,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listDomainOwnershipIdentifiersNext(
+  private _listDomainOwnershipIdentifiersNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10837,7 +15119,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListFunctions method.
    * @param options The options parameters.
    */
-  listFunctionsNext(
+  private _listFunctionsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10862,7 +15144,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListHostNameBindings method.
    * @param options The options parameters.
    */
-  listHostNameBindingsNext(
+  private _listHostNameBindingsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10888,7 +15170,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceIdentifiersNext(
+  private _listInstanceIdentifiersNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -10915,7 +15197,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcesses method.
    * @param options The options parameters.
    */
-  listInstanceProcessesNext(
+  private _listInstanceProcessesNext(
     resourceGroupName: string,
     name: string,
     instanceId: string,
@@ -10946,7 +15228,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceProcessModulesNext(
+  private _listInstanceProcessModulesNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -10979,7 +15261,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceProcessThreadsNext(
+  private _listInstanceProcessThreadsNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11008,7 +15290,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSiteBackups method.
    * @param options The options parameters.
    */
-  listSiteBackupsNext(
+  private _listSiteBackupsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11033,7 +15315,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListPerfMonCounters method.
    * @param options The options parameters.
    */
-  listPerfMonCountersNext(
+  private _listPerfMonCountersNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11058,7 +15340,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcesses method.
    * @param options The options parameters.
    */
-  listProcessesNext(
+  private _listProcessesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11084,7 +15366,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcessModules method.
    * @param options The options parameters.
    */
-  listProcessModulesNext(
+  private _listProcessModulesNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11112,7 +15394,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcessThreads method.
    * @param options The options parameters.
    */
-  listProcessThreadsNext(
+  private _listProcessThreadsNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11139,7 +15421,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListPublicCertificates method.
    * @param options The options parameters.
    */
-  listPublicCertificatesNext(
+  private _listPublicCertificatesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11164,7 +15446,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSiteExtensions method.
    * @param options The options parameters.
    */
-  listSiteExtensionsNext(
+  private _listSiteExtensionsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11189,7 +15471,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSlots method.
    * @param options The options parameters.
    */
-  listSlotsNext(
+  private _listSlotsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -11216,7 +15498,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListBackupsSlot method.
    * @param options The options parameters.
    */
-  listBackupsSlotNext(
+  private _listBackupsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11245,7 +15527,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListConfigurationsSlot method.
    * @param options The options parameters.
    */
-  listConfigurationsSlotNext(
+  private _listConfigurationsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11275,7 +15557,7 @@ export class WebApps {
    *                 ListConfigurationSnapshotInfoSlot method.
    * @param options The options parameters.
    */
-  listConfigurationSnapshotInfoSlotNext(
+  private _listConfigurationSnapshotInfoSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11305,7 +15587,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listContinuousWebJobsSlotNext(
+  private _listContinuousWebJobsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11334,7 +15616,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListDeploymentsSlot method.
    * @param options The options parameters.
    */
-  listDeploymentsSlotNext(
+  private _listDeploymentsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11364,7 +15646,7 @@ export class WebApps {
    *                 ListDomainOwnershipIdentifiersSlot method.
    * @param options The options parameters.
    */
-  listDomainOwnershipIdentifiersSlotNext(
+  private _listDomainOwnershipIdentifiersSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11393,7 +15675,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceFunctionsSlotNext(
+  private _listInstanceFunctionsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11423,7 +15705,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listHostNameBindingsSlotNext(
+  private _listHostNameBindingsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11453,7 +15735,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceIdentifiersSlotNext(
+  private _listInstanceIdentifiersSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11485,7 +15767,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceProcessesSlotNext(
+  private _listInstanceProcessesSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11520,7 +15802,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceProcessModulesSlotNext(
+  private _listInstanceProcessModulesSlotNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11557,7 +15839,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listInstanceProcessThreadsSlotNext(
+  private _listInstanceProcessThreadsSlotNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11590,7 +15872,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSiteBackupsSlot method.
    * @param options The options parameters.
    */
-  listSiteBackupsSlotNext(
+  private _listSiteBackupsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11619,7 +15901,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listPerfMonCountersSlotNext(
+  private _listPerfMonCountersSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11648,7 +15930,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcessesSlot method.
    * @param options The options parameters.
    */
-  listProcessesSlotNext(
+  private _listProcessesSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11678,7 +15960,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcessModulesSlot method.
    * @param options The options parameters.
    */
-  listProcessModulesSlotNext(
+  private _listProcessModulesSlotNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11710,7 +15992,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListProcessThreadsSlot method.
    * @param options The options parameters.
    */
-  listProcessThreadsSlotNext(
+  private _listProcessThreadsSlotNext(
     resourceGroupName: string,
     name: string,
     processId: string,
@@ -11742,7 +16024,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listPublicCertificatesSlotNext(
+  private _listPublicCertificatesSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11771,7 +16053,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSiteExtensionsSlot method.
    * @param options The options parameters.
    */
-  listSiteExtensionsSlotNext(
+  private _listSiteExtensionsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11802,7 +16084,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listSlotDifferencesSlotNext(
+  private _listSlotDifferencesSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11832,7 +16114,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSnapshotsSlot method.
    * @param options The options parameters.
    */
-  listSnapshotsSlotNext(
+  private _listSnapshotsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11861,7 +16143,7 @@ export class WebApps {
    *                 ListSnapshotsFromDRSecondarySlot method.
    * @param options The options parameters.
    */
-  listSnapshotsFromDRSecondarySlotNext(
+  private _listSnapshotsFromDRSecondarySlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11891,7 +16173,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listTriggeredWebJobsSlotNext(
+  private _listTriggeredWebJobsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11922,7 +16204,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listTriggeredWebJobHistorySlotNext(
+  private _listTriggeredWebJobHistorySlotNext(
     resourceGroupName: string,
     name: string,
     webJobName: string,
@@ -11953,7 +16235,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListUsagesSlot method.
    * @param options The options parameters.
    */
-  listUsagesSlotNext(
+  private _listUsagesSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11982,7 +16264,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListWebJobsSlot method.
    * @param options The options parameters.
    */
-  listWebJobsSlotNext(
+  private _listWebJobsSlotNext(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -12011,7 +16293,7 @@ export class WebApps {
    *                 ListSlotDifferencesFromProduction method.
    * @param options The options parameters.
    */
-  listSlotDifferencesFromProductionNext(
+  private _listSlotDifferencesFromProductionNext(
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
@@ -12038,7 +16320,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListSnapshots method.
    * @param options The options parameters.
    */
-  listSnapshotsNext(
+  private _listSnapshotsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -12064,7 +16346,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listSnapshotsFromDRSecondaryNext(
+  private _listSnapshotsFromDRSecondaryNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -12089,7 +16371,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListTriggeredWebJobs method.
    * @param options The options parameters.
    */
-  listTriggeredWebJobsNext(
+  private _listTriggeredWebJobsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -12116,7 +16398,7 @@ export class WebApps {
    *                 method.
    * @param options The options parameters.
    */
-  listTriggeredWebJobHistoryNext(
+  private _listTriggeredWebJobHistoryNext(
     resourceGroupName: string,
     name: string,
     webJobName: string,
@@ -12143,7 +16425,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param options The options parameters.
    */
-  listUsagesNext(
+  private _listUsagesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -12168,7 +16450,7 @@ export class WebApps {
    * @param nextLink The nextLink from the previous successful call to the ListWebJobs method.
    * @param options The options parameters.
    */
-  listWebJobsNext(
+  private _listWebJobsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,

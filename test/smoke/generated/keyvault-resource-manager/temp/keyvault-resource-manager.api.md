@@ -9,6 +9,7 @@ import { HttpMethods } from '@azure/core-http';
 import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { Poller } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';

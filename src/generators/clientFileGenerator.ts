@@ -20,6 +20,7 @@ import { formatJsDocParam } from "./utils/parameterUtils";
 import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
+import { addPagingImports } from "./utils/pagingOperations";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -67,9 +68,15 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-http"
     });
 
-  const hasLRO = clientDetails.operationGroups.some(og =>
-    og.operations.some(o => o.isLRO)
-  );
+  const hasPageableOperation =
+    hasInlineOperations &&
+    inlineOperations.some(og => og.operations.some(o => o.pagination));
+
+  if (hasPageableOperation) {
+    addPagingImports(clientDetails, clientFile);
+  }
+
+  const hasLRO = inlineOperations.some(og => og.operations.some(o => o.isLRO));
 
   if (hasInlineOperations && hasLRO) {
     clientFile.addImportDeclaration({

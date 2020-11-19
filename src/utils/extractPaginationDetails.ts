@@ -6,39 +6,9 @@ import {
 } from "@azure-tools/codemodel";
 import { isEqual } from "lodash";
 import { PaginationDetails } from "../models/operationDetails";
-import { getLanguageMetadata } from "./languageHelpers";
+import { getLanguageMetadata, PaginationExtension } from "./languageHelpers";
 import { getTypeForSchema, isSchemaResponse } from "./schemaHelpers";
 import { TypeDetails } from "../models/modelDetails";
-
-interface PaginationExtension {
-  /**
-   * The name of the field in the response that can be paged over.
-   */
-  itemName?: string;
-  /**
-   * Name of the field containing the nextLink value.
-   * An empty object indicates a null value and that all results
-   * are returned in a single page.
-   */
-  nextLinkName?: string | {};
-  // 'nextLinkOperation', 'group', and 'member' are used together.
-  /**
-   * Reference to the operation to call to get the next page.
-   */
-  nextLinkOperation?: Operation;
-  /**
-   * The name of the operationGroup that nextLinkOperation resides in.
-   */
-  group?: string;
-  /**
-   * The name of the operation that nextLinkOperation references.
-   */
-  member?: string;
-  /**
-   * Indicates whether this operation is used by another operation to get pages.
-   */
-  isNextLinkMethod?: boolean;
-}
 
 /**
  * Extract pagination details from the pagination extension for an operation.
@@ -49,25 +19,31 @@ export function extractPaginationDetails(
 ): PaginationDetails | undefined {
   const languageMetadata = getLanguageMetadata(operation.language);
   const paginationExtension = languageMetadata.paging;
-
-  if (!isPaginationExtension(paginationExtension)) {
+  if (!paginationExtension) {
     return;
   }
+
+  paginationExtension.itemName = paginationExtension.itemName || "value";
 
   const nextLinkName =
     typeof paginationExtension.nextLinkName === "string"
       ? paginationExtension.nextLinkName
-      : undefined;
+      : null;
 
-  let nextLinkOperationName =
-    paginationExtension.nextLinkOperation && languageMetadata.name;
+  let nextLinkOperationName = "";
+  if (paginationExtension.nextLinkOperation) {
+    nextLinkOperationName = getLanguageMetadata(
+      paginationExtension.nextLinkOperation.language
+    ).name;
+  }
+
   // When nextLinkOperation is not defined, but nextLinkName is, default to <operationName>Next as the operation name.
   // Otherwise, since nextLinkName is not defined, we all iterable results are returned in a single page.
   if (!nextLinkOperationName && nextLinkName) {
     nextLinkOperationName = `${languageMetadata.name}Next`;
   }
 
-  const itemName = paginationExtension.itemName ?? "value";
+  let itemName = getItemName(paginationExtension, operation);
 
   return {
     group: paginationExtension.group,
@@ -80,12 +56,27 @@ export function extractPaginationDetails(
   };
 }
 
-function isPaginationExtension(ext: any): ext is PaginationExtension {
-  if (!ext || typeof ext !== "object") {
-    return false;
+// This function finds the true name of "itemName", it is possible that it has changed
+// if x-ms-client-name was used when defining the response object in swagger.
+// So this function searches the serialized name which shouldn't change and gets the "true" name
+function getItemName(
+  paginationExtension: PaginationExtension,
+  operation: Operation
+) {
+  let itemName = paginationExtension.itemName ?? "value";
+  for (const response of operation.responses || []) {
+    if (isSchemaResponse(response)) {
+      const valuesProperty = (response.schema as ObjectSchema).properties?.find(
+        p => p.serializedName === itemName && p.schema.type === SchemaType.Array
+      );
+
+      itemName = valuesProperty
+        ? getLanguageMetadata(valuesProperty.language).name
+        : itemName;
+    }
   }
 
-  return "nextLinkName" in ext;
+  return itemName;
 }
 
 /**
@@ -142,8 +133,10 @@ function getResponseItemType(
 
   // Find the 1st property containing the results to paginate over.
   const itemProperty = responseSchema.properties?.find(property => {
-    const propertyName = property.serializedName;
-    return propertyName === itemName;
+    const propertyName = getLanguageMetadata(property.language).name;
+    return (
+      propertyName === propertyName || itemName === property.serializedName
+    );
   });
 
   if (!itemProperty) {

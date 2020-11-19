@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CustomUrlPagingClient } from "../customUrlPagingClient";
 import {
+  Product,
   PagingGetPagesPartialUrlResponse,
   PagingGetPagesPartialUrlOperationResponse,
   PagingGetPagesPartialUrlOperationNextResponse,
@@ -36,7 +38,186 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  getPagesPartialUrl(
+  public listPagesPartialUrl(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getPagesPartialUrlPagingAll(accountName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPagesPartialUrlPagingPage(accountName, options);
+      }
+    };
+  }
+
+  private async *getPagesPartialUrlPagingPage(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getPagesPartialUrl(accountName, options);
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPagesPartialUrlNext(
+        accountName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  private async *getPagesPartialUrlPagingAll(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getPagesPartialUrlPagingPage(
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that combines custom url, paging and partial URL with next operation
+   * @param accountName Account Name
+   * @param options The options parameters.
+   */
+  public listPagesPartialUrlOperation(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getPagesPartialUrlOperationPagingAll(
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPagesPartialUrlOperationPagingPage(accountName, options);
+      }
+    };
+  }
+
+  private async *getPagesPartialUrlOperationPagingPage(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getPagesPartialUrlOperation(accountName, options);
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPagesPartialUrlOperationNext(
+        accountName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  private async *getPagesPartialUrlOperationPagingAll(
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getPagesPartialUrlOperationPagingPage(
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that combines custom url, paging and partial URL
+   * @param accountName Account Name
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listPagesPartialUrlOperationNext(
+    accountName: string,
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getPagesPartialUrlOperationNextPagingAll(
+      accountName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPagesPartialUrlOperationNextPagingPage(
+          accountName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getPagesPartialUrlOperationNextPagingPage(
+    accountName: string,
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getPagesPartialUrlOperationNext(
+      accountName,
+      nextLink,
+      options
+    );
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPagesPartialUrlOperationNext(
+        accountName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  private async *getPagesPartialUrlOperationNextPagingAll(
+    accountName: string,
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getPagesPartialUrlOperationNextPagingPage(
+      accountName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that combines custom url, paging and partial URL and expect to concat after host
+   * @param accountName Account Name
+   * @param options The options parameters.
+   */
+  private _getPagesPartialUrl(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlResponse> {
@@ -55,7 +236,7 @@ export class Paging {
    * @param accountName Account Name
    * @param options The options parameters.
    */
-  getPagesPartialUrlOperation(
+  private _getPagesPartialUrlOperation(
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetPagesPartialUrlOperationResponse> {
@@ -75,7 +256,7 @@ export class Paging {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  getPagesPartialUrlOperationNext(
+  private _getPagesPartialUrlOperationNext(
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -97,7 +278,7 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetPagesPartialUrl method.
    * @param options The options parameters.
    */
-  getPagesPartialUrlNext(
+  private _getPagesPartialUrlNext(
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

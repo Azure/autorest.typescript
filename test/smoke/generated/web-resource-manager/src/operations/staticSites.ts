@@ -6,20 +6,24 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
+  StaticSiteARMResource,
+  StaticSiteUserARMResource,
+  StaticSiteBuildARMResource,
+  StaticSiteFunctionOverviewARMResource,
+  StaticSiteCustomDomainOverviewARMResource,
   StaticSitesListResponse,
   StaticSitesGetStaticSitesByResourceGroupResponse,
   StaticSitesGetStaticSiteResponse,
-  StaticSiteARMResource,
   StaticSitesCreateOrUpdateStaticSiteResponse,
   StaticSitePatchResource,
   StaticSitesUpdateStaticSiteResponse,
   StaticSitesListStaticSiteUsersResponse,
-  StaticSiteUserARMResource,
   StaticSitesUpdateStaticSiteUserResponse,
   StaticSitesGetStaticSiteBuildsResponse,
   StaticSitesGetStaticSiteBuildResponse,
@@ -63,7 +67,486 @@ export class StaticSites {
    * Description for Get all Static Sites for a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): Promise<StaticSitesListResponse> {
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteARMResource> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteARMResource[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteARMResource> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all static sites in the specified resource group.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param options The options parameters.
+   */
+  public listStaticSitesByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteARMResource> {
+    const iter = this.getStaticSitesByResourceGroupPagingAll(
+      resourceGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getStaticSitesByResourceGroupPagingPage(
+          resourceGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getStaticSitesByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteARMResource[]> {
+    let result = await this._getStaticSitesByResourceGroup(
+      resourceGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getStaticSitesByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getStaticSitesByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteARMResource> {
+    for await (const page of this.getStaticSitesByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the list of users of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param authprovider The auth provider for the users.
+   * @param options The options parameters.
+   */
+  public listStaticSiteUsers(
+    resourceGroupName: string,
+    name: string,
+    authprovider: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteUserARMResource> {
+    const iter = this.listStaticSiteUsersPagingAll(
+      resourceGroupName,
+      name,
+      authprovider,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listStaticSiteUsersPagingPage(
+          resourceGroupName,
+          name,
+          authprovider,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listStaticSiteUsersPagingPage(
+    resourceGroupName: string,
+    name: string,
+    authprovider: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteUserARMResource[]> {
+    let result = await this._listStaticSiteUsers(
+      resourceGroupName,
+      name,
+      authprovider,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listStaticSiteUsersNext(
+        resourceGroupName,
+        name,
+        authprovider,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listStaticSiteUsersPagingAll(
+    resourceGroupName: string,
+    name: string,
+    authprovider: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteUserARMResource> {
+    for await (const page of this.listStaticSiteUsersPagingPage(
+      resourceGroupName,
+      name,
+      authprovider,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all static site builds for a particular static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  public listStaticSiteBuilds(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteBuildARMResource> {
+    const iter = this.getStaticSiteBuildsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getStaticSiteBuildsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getStaticSiteBuildsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteBuildARMResource[]> {
+    let result = await this._getStaticSiteBuilds(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getStaticSiteBuildsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getStaticSiteBuildsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteBuildARMResource> {
+    for await (const page of this.getStaticSiteBuildsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the functions of a particular static site build.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param prId The stage site identifier.
+   * @param options The options parameters.
+   */
+  public listStaticSiteBuildFunctions(
+    resourceGroupName: string,
+    name: string,
+    prId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
+    const iter = this.listStaticSiteBuildFunctionsPagingAll(
+      resourceGroupName,
+      name,
+      prId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listStaticSiteBuildFunctionsPagingPage(
+          resourceGroupName,
+          name,
+          prId,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listStaticSiteBuildFunctionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    prId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
+    let result = await this._listStaticSiteBuildFunctions(
+      resourceGroupName,
+      name,
+      prId,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listStaticSiteBuildFunctionsNext(
+        resourceGroupName,
+        name,
+        prId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listStaticSiteBuildFunctionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    prId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
+    for await (const page of this.listStaticSiteBuildFunctionsPagingPage(
+      resourceGroupName,
+      name,
+      prId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets all static site custom domains for a particular static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site resource to search in.
+   * @param options The options parameters.
+   */
+  public listStaticSiteCustomDomains(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource> {
+    const iter = this.listStaticSiteCustomDomainsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listStaticSiteCustomDomainsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listStaticSiteCustomDomainsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource[]> {
+    let result = await this._listStaticSiteCustomDomains(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listStaticSiteCustomDomainsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listStaticSiteCustomDomainsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource> {
+    for await (const page of this.listStaticSiteCustomDomainsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the functions of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  public listStaticSiteFunctions(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
+    const iter = this.listStaticSiteFunctionsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listStaticSiteFunctionsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listStaticSiteFunctionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
+    let result = await this._listStaticSiteFunctions(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listStaticSiteFunctionsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listStaticSiteFunctionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
+    for await (const page of this.listStaticSiteFunctionsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all Static Sites for a subscription.
+   * @param options The options parameters.
+   */
+  private _list(
+    options?: coreHttp.OperationOptions
+  ): Promise<StaticSitesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -78,7 +561,7 @@ export class StaticSites {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param options The options parameters.
    */
-  getStaticSitesByResourceGroup(
+  private _getStaticSitesByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesGetStaticSitesByResourceGroupResponse> {
@@ -195,7 +678,7 @@ export class StaticSites {
    * @param authprovider The auth provider for the users.
    * @param options The options parameters.
    */
-  listStaticSiteUsers(
+  private _listStaticSiteUsers(
     resourceGroupName: string,
     name: string,
     authprovider: string,
@@ -278,7 +761,7 @@ export class StaticSites {
    * @param name Name of the static site.
    * @param options The options parameters.
    */
-  getStaticSiteBuilds(
+  private _getStaticSiteBuilds(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -383,7 +866,7 @@ export class StaticSites {
    * @param prId The stage site identifier.
    * @param options The options parameters.
    */
-  listStaticSiteBuildFunctions(
+  private _listStaticSiteBuildFunctions(
     resourceGroupName: string,
     name: string,
     prId: string,
@@ -484,7 +967,7 @@ export class StaticSites {
    * @param name Name of the static site resource to search in.
    * @param options The options parameters.
    */
-  listStaticSiteCustomDomains(
+  private _listStaticSiteCustomDomains(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -604,7 +1087,7 @@ export class StaticSites {
    * @param name Name of the static site.
    * @param options The options parameters.
    */
-  listStaticSiteFunctions(
+  private _listStaticSiteFunctions(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -694,7 +1177,7 @@ export class StaticSites {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesListNextResponse> {
@@ -715,7 +1198,7 @@ export class StaticSites {
    *                 method.
    * @param options The options parameters.
    */
-  getStaticSitesByResourceGroupNext(
+  private _getStaticSitesByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -739,7 +1222,7 @@ export class StaticSites {
    * @param nextLink The nextLink from the previous successful call to the ListStaticSiteUsers method.
    * @param options The options parameters.
    */
-  listStaticSiteUsersNext(
+  private _listStaticSiteUsersNext(
     resourceGroupName: string,
     name: string,
     authprovider: string,
@@ -766,7 +1249,7 @@ export class StaticSites {
    * @param nextLink The nextLink from the previous successful call to the GetStaticSiteBuilds method.
    * @param options The options parameters.
    */
-  getStaticSiteBuildsNext(
+  private _getStaticSiteBuildsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -793,7 +1276,7 @@ export class StaticSites {
    *                 method.
    * @param options The options parameters.
    */
-  listStaticSiteBuildFunctionsNext(
+  private _listStaticSiteBuildFunctionsNext(
     resourceGroupName: string,
     name: string,
     prId: string,
@@ -821,7 +1304,7 @@ export class StaticSites {
    *                 method.
    * @param options The options parameters.
    */
-  listStaticSiteCustomDomainsNext(
+  private _listStaticSiteCustomDomainsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -847,7 +1330,7 @@ export class StaticSites {
    *                 method.
    * @param options The options parameters.
    */
-  listStaticSiteFunctionsNext(
+  private _listStaticSiteFunctionsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,

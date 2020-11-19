@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
+  SshPublicKeyResource,
   SshPublicKeysListBySubscriptionResponse,
   SshPublicKeysListByResourceGroupResponse,
-  SshPublicKeyResource,
   SshPublicKeysCreateResponse,
   SshPublicKeyUpdateResource,
   SshPublicKeysUpdateResponse,
@@ -42,7 +43,104 @@ export class SshPublicKeys {
    * get the next page of SSH public keys.
    * @param options The options parameters.
    */
-  listBySubscription(
+  public listBySubscription(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SshPublicKeyResource> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SshPublicKeyResource[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SshPublicKeyResource> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the SSH public keys in the specified resource group. Use the nextLink property in the
+   * response to get the next page of SSH public keys.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SshPublicKeyResource> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SshPublicKeyResource[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SshPublicKeyResource> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the SSH public keys in the subscription. Use the nextLink property in the response to
+   * get the next page of SSH public keys.
+   * @param options The options parameters.
+   */
+  private _listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -60,7 +158,7 @@ export class SshPublicKeys {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListByResourceGroupResponse> {
@@ -197,7 +295,7 @@ export class SshPublicKeys {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysListBySubscriptionNextResponse> {
@@ -217,7 +315,7 @@ export class SshPublicKeys {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

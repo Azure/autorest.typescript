@@ -54,7 +54,7 @@ export const Operation: coreHttp.CompositeMapper = {
         }
       },
       serviceSpecification: {
-        serializedName: "serviceSpecification",
+        serializedName: "properties.serviceSpecification",
         type: {
           name: "Composite",
           className: "ServiceSpecification"
@@ -458,21 +458,21 @@ export const StorageAccountCreateParameters: coreHttp.CompositeMapper = {
         }
       },
       customDomain: {
-        serializedName: "customDomain",
+        serializedName: "properties.customDomain",
         type: {
           name: "Composite",
           className: "CustomDomain"
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
         }
       },
       networkRuleSet: {
-        serializedName: "networkAcls",
+        serializedName: "properties.networkAcls",
         type: {
           name: "Composite",
           className: "NetworkRuleSet"
@@ -486,7 +486,7 @@ export const StorageAccountCreateParameters: coreHttp.CompositeMapper = {
         }
       },
       azureFilesIdentityBasedAuthentication: {
-        serializedName: "azureFilesIdentityBasedAuthentication",
+        serializedName: "properties.azureFilesIdentityBasedAuthentication",
         type: {
           name: "Composite",
           className: "AzureFilesIdentityBasedAuthentication"
@@ -511,7 +511,7 @@ export const StorageAccountCreateParameters: coreHttp.CompositeMapper = {
         }
       },
       routingPreference: {
-        serializedName: "routingPreference",
+        serializedName: "properties.routingPreference",
         type: {
           name: "Composite",
           className: "RoutingPreference"
@@ -1324,14 +1324,14 @@ export const StorageAccountUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       customDomain: {
-        serializedName: "customDomain",
+        serializedName: "properties.customDomain",
         type: {
           name: "Composite",
           className: "CustomDomain"
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -1345,7 +1345,7 @@ export const StorageAccountUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       azureFilesIdentityBasedAuthentication: {
-        serializedName: "azureFilesIdentityBasedAuthentication",
+        serializedName: "properties.azureFilesIdentityBasedAuthentication",
         type: {
           name: "Composite",
           className: "AzureFilesIdentityBasedAuthentication"
@@ -1358,7 +1358,7 @@ export const StorageAccountUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       networkRuleSet: {
-        serializedName: "networkAcls",
+        serializedName: "properties.networkAcls",
         type: {
           name: "Composite",
           className: "NetworkRuleSet"
@@ -1371,7 +1371,7 @@ export const StorageAccountUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       routingPreference: {
-        serializedName: "routingPreference",
+        serializedName: "properties.routingPreference",
         type: {
           name: "Composite",
           className: "RoutingPreference"
@@ -2854,14 +2854,14 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpoint"
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionState"
@@ -2916,7 +2916,7 @@ export const ManagementPolicy: coreHttp.CompositeMapper = {
         }
       },
       policy: {
-        serializedName: "policy",
+        serializedName: "properties.policy",
         type: {
           name: "Composite",
           className: "ManagementPolicySchema"
@@ -3047,7 +3047,7 @@ export const EncryptionScope: coreHttp.CompositeMapper = {
         }
       },
       keyVaultProperties: {
-        serializedName: "keyVaultProperties",
+        serializedName: "properties.keyVaultProperties",
         type: {
           name: "Composite",
           className: "EncryptionScopeKeyVaultProperties"
@@ -3071,7 +3071,7 @@ export const BlobServiceProperties: coreHttp.CompositeMapper = {
         }
       },
       cors: {
-        serializedName: "cors",
+        serializedName: "properties.cors",
         type: {
           name: "Composite",
           className: "CorsRules"
@@ -3084,7 +3084,7 @@ export const BlobServiceProperties: coreHttp.CompositeMapper = {
         }
       },
       deleteRetentionPolicy: {
-        serializedName: "deleteRetentionPolicy",
+        serializedName: "properties.deleteRetentionPolicy",
         type: {
           name: "Composite",
           className: "DeleteRetentionPolicy"
@@ -3103,21 +3103,21 @@ export const BlobServiceProperties: coreHttp.CompositeMapper = {
         }
       },
       changeFeed: {
-        serializedName: "changeFeed",
+        serializedName: "properties.changeFeed",
         type: {
           name: "Composite",
           className: "ChangeFeed"
         }
       },
       restorePolicy: {
-        serializedName: "restorePolicy",
+        serializedName: "properties.restorePolicy",
         type: {
           name: "Composite",
           className: "RestorePolicyProperties"
         }
       },
       containerDeleteRetentionPolicy: {
-        serializedName: "containerDeleteRetentionPolicy",
+        serializedName: "properties.containerDeleteRetentionPolicy",
         type: {
           name: "Composite",
           className: "DeleteRetentionPolicy"
@@ -3158,14 +3158,14 @@ export const FileServiceProperties: coreHttp.CompositeMapper = {
         }
       },
       cors: {
-        serializedName: "cors",
+        serializedName: "properties.cors",
         type: {
           name: "Composite",
           className: "CorsRules"
         }
       },
       shareDeleteRetentionPolicy: {
-        serializedName: "shareDeleteRetentionPolicy",
+        serializedName: "properties.shareDeleteRetentionPolicy",
         type: {
           name: "Composite",
           className: "DeleteRetentionPolicy"
@@ -3211,7 +3211,7 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       primaryEndpoints: {
-        serializedName: "primaryEndpoints",
+        serializedName: "properties.primaryEndpoints",
         type: {
           name: "Composite",
           className: "Endpoints"
@@ -3262,21 +3262,21 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       customDomain: {
-        serializedName: "customDomain",
+        serializedName: "properties.customDomain",
         type: {
           name: "Composite",
           className: "CustomDomain"
         }
       },
       secondaryEndpoints: {
-        serializedName: "secondaryEndpoints",
+        serializedName: "properties.secondaryEndpoints",
         type: {
           name: "Composite",
           className: "Endpoints"
         }
       },
       encryption: {
-        serializedName: "encryption",
+        serializedName: "properties.encryption",
         type: {
           name: "Composite",
           className: "Encryption"
@@ -3291,7 +3291,7 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       azureFilesIdentityBasedAuthentication: {
-        serializedName: "azureFilesIdentityBasedAuthentication",
+        serializedName: "properties.azureFilesIdentityBasedAuthentication",
         type: {
           name: "Composite",
           className: "AzureFilesIdentityBasedAuthentication"
@@ -3304,7 +3304,7 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       networkRuleSet: {
-        serializedName: "networkAcls",
+        serializedName: "properties.networkAcls",
         type: {
           name: "Composite",
           className: "NetworkRuleSet"
@@ -3317,7 +3317,7 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       geoReplicationStats: {
-        serializedName: "geoReplicationStats",
+        serializedName: "properties.geoReplicationStats",
         type: {
           name: "Composite",
           className: "GeoReplicationStats"
@@ -3350,14 +3350,14 @@ export const StorageAccount: coreHttp.CompositeMapper = {
         }
       },
       routingPreference: {
-        serializedName: "routingPreference",
+        serializedName: "properties.routingPreference",
         type: {
           name: "Composite",
           className: "RoutingPreference"
         }
       },
       blobRestoreStatus: {
-        serializedName: "blobRestoreStatus",
+        serializedName: "properties.blobRestoreStatus",
         type: {
           name: "Composite",
           className: "BlobRestoreStatus"
@@ -3428,14 +3428,14 @@ export const ListContainerItem: coreHttp.CompositeMapper = {
         }
       },
       immutabilityPolicy: {
-        serializedName: "immutabilityPolicy",
+        serializedName: "properties.immutabilityPolicy",
         type: {
           name: "Composite",
           className: "ImmutabilityPolicyProperties"
         }
       },
       legalHold: {
-        serializedName: "legalHold",
+        serializedName: "properties.legalHold",
         type: {
           name: "Composite",
           className: "LegalHoldProperties"
@@ -3520,14 +3520,14 @@ export const BlobContainer: coreHttp.CompositeMapper = {
         }
       },
       immutabilityPolicy: {
-        serializedName: "immutabilityPolicy",
+        serializedName: "properties.immutabilityPolicy",
         type: {
           name: "Composite",
           className: "ImmutabilityPolicyProperties"
         }
       },
       legalHold: {
-        serializedName: "legalHold",
+        serializedName: "properties.legalHold",
         type: {
           name: "Composite",
           className: "LegalHoldProperties"

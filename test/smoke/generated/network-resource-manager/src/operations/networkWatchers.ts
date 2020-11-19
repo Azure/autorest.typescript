@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -57,6 +58,82 @@ export class NetworkWatchers {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all network watchers by resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkWatcher> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkWatcher[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkWatcher> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all network watchers by subscription.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NetworkWatcher> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkWatcher[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NetworkWatcher> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -125,10 +202,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -172,7 +251,7 @@ export class NetworkWatchers {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersListResponse> {
@@ -190,7 +269,7 @@ export class NetworkWatchers {
    * Gets all network watchers by subscription.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -249,10 +328,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersVerifyIPFlowResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       verifyIPFlowOperationSpec
@@ -288,10 +369,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetNextHopResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getNextHopOperationSpec
@@ -327,10 +410,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetVMSecurityRulesResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getVMSecurityRulesOperationSpec
@@ -366,10 +451,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetTroubleshootingResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getTroubleshootingOperationSpec
@@ -405,10 +492,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetTroubleshootingResultResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getTroubleshootingResultOperationSpec
@@ -444,10 +533,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersSetFlowLogConfigurationResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       setFlowLogConfigurationOperationSpec
@@ -484,10 +575,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetFlowLogStatusResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getFlowLogStatusOperationSpec
@@ -524,10 +617,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersCheckConnectivityResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       checkConnectivityOperationSpec
@@ -564,10 +659,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetAzureReachabilityReportResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getAzureReachabilityReportOperationSpec
@@ -604,10 +701,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersListAvailableProvidersResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       listAvailableProvidersOperationSpec
@@ -649,10 +748,12 @@ export class NetworkWatchers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NetworkWatchersGetNetworkConfigurationDiagnosticResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getNetworkConfigurationDiagnosticOperationSpec

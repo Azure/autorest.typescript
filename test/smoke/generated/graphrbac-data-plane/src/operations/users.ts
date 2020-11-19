@@ -6,18 +6,20 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  User,
+  UsersListOptionalParams,
+  UserGetMemberGroupsParameters,
   UserCreateParameters,
   UsersCreateResponse,
-  UsersListOptionalParams,
   UsersListResponse,
   UsersGetResponse,
   UserUpdateParameters,
-  UserGetMemberGroupsParameters,
   UsersGetMemberGroupsResponse,
   UsersListNextResponse
 } from "../models";
@@ -34,6 +36,142 @@ export class Users {
    */
   constructor(client: GraphRbacManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets list of users for the current tenant.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: UsersListOptionalParams
+  ): PagedAsyncIterableIterator<User> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: UsersListOptionalParams
+  ): AsyncIterableIterator<User[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: UsersListOptionalParams
+  ): AsyncIterableIterator<User> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a collection that contains the object IDs of the groups of which the user is a member.
+   * @param objectId The object ID of the user for which to get group membership.
+   * @param parameters User filtering parameters.
+   * @param options The options parameters.
+   */
+  public listMemberGroups(
+    objectId: string,
+    parameters: UserGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<string> {
+    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+      }
+    };
+  }
+
+  private async *getMemberGroupsPagingPage(
+    objectId: string,
+    parameters: UserGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string[]> {
+    let result = await this._getMemberGroups(objectId, parameters, options);
+    yield result.value || [];
+  }
+
+  private async *getMemberGroupsPagingAll(
+    objectId: string,
+    parameters: UserGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string> {
+    for await (const page of this.getMemberGroupsPagingPage(
+      objectId,
+      parameters,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of users for the current tenant.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<User> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<User[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<User> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -59,7 +197,7 @@ export class Users {
    * Gets list of users for the current tenant.
    * @param options The options parameters.
    */
-  list(options?: UsersListOptionalParams): Promise<UsersListResponse> {
+  private _list(options?: UsersListOptionalParams): Promise<UsersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -135,7 +273,7 @@ export class Users {
    * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
-  getMemberGroups(
+  private _getMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
@@ -156,7 +294,7 @@ export class Users {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsersListNextResponse> {

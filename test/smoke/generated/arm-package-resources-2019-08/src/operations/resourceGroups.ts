@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,15 +14,15 @@ import { ResourceManagementClient } from "../resourceManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   ResourceGroup,
+  ResourceGroupsListNextOptionalParams,
+  ResourceGroupsListOptionalParams,
   ResourceGroupsCreateOrUpdateResponse,
   ResourceGroupsGetResponse,
   ResourceGroupPatchable,
   ResourceGroupsUpdateResponse,
   ExportTemplateRequest,
   ResourceGroupsExportTemplateResponse,
-  ResourceGroupsListOptionalParams,
   ResourceGroupsListResponse,
-  ResourceGroupsListNextOptionalParams,
   ResourceGroupsListNextResponse
 } from "../models";
 
@@ -37,6 +38,48 @@ export class ResourceGroups {
    */
   constructor(client: ResourceManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all the resource groups for a subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: ResourceGroupsListOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ResourceGroupsListOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ResourceGroupsListOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -99,10 +142,12 @@ export class ResourceGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -177,10 +222,12 @@ export class ResourceGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ResourceGroupsExportTemplateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       exportTemplateOperationSpec
@@ -198,7 +245,7 @@ export class ResourceGroups {
    * Gets all the resource groups for a subscription.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: ResourceGroupsListOptionalParams
   ): Promise<ResourceGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -215,7 +262,7 @@ export class ResourceGroups {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: ResourceGroupsListNextOptionalParams
   ): Promise<ResourceGroupsListNextResponse> {

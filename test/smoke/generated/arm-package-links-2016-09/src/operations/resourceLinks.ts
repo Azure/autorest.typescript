@@ -6,18 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagementLinkClient } from "../managementLinkClient";
 import {
   ResourceLink,
+  ResourceLinksListAtSubscriptionNextOptionalParams,
+  ResourceLinksListAtSubscriptionOptionalParams,
   ResourceLinksCreateOrUpdateResponse,
   ResourceLinksGetResponse,
-  ResourceLinksListAtSubscriptionOptionalParams,
   ResourceLinksListAtSubscriptionResponse,
   ResourceLinksListAtSourceScopeResponse,
-  ResourceLinksListAtSubscriptionNextOptionalParams,
   ResourceLinksListAtSubscriptionNextResponse,
   ResourceLinksListAtSourceScopeNextResponse
 } from "../models";
@@ -34,6 +35,100 @@ export class ResourceLinks {
    */
   constructor(client: ManagementLinkClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all the linked resources for the subscription.
+   * @param options The options parameters.
+   */
+  public listAtSubscription(
+    options?: ResourceLinksListAtSubscriptionOptionalParams
+  ): PagedAsyncIterableIterator<ResourceLink> {
+    const iter = this.listAtSubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtSubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAtSubscriptionPagingPage(
+    options?: ResourceLinksListAtSubscriptionOptionalParams
+  ): AsyncIterableIterator<ResourceLink[]> {
+    let result = await this._listAtSubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtSubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtSubscriptionPagingAll(
+    options?: ResourceLinksListAtSubscriptionOptionalParams
+  ): AsyncIterableIterator<ResourceLink> {
+    for await (const page of this.listAtSubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of resource links at and below the specified source scope.
+   * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+   *              list resource links at and under a resource group, set the scope to
+   *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+   * @param options The options parameters.
+   */
+  public listAtSourceScope(
+    scope: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ResourceLink> {
+    const iter = this.listAtSourceScopePagingAll(scope, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtSourceScopePagingPage(scope, options);
+      }
+    };
+  }
+
+  private async *listAtSourceScopePagingPage(
+    scope: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceLink[]> {
+    let result = await this._listAtSourceScope(scope, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtSourceScopeNext(
+        scope,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtSourceScopePagingAll(
+    scope: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceLink> {
+    for await (const page of this.listAtSourceScopePagingPage(scope, options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -107,7 +202,7 @@ export class ResourceLinks {
    * Gets all the linked resources for the subscription.
    * @param options The options parameters.
    */
-  listAtSubscription(
+  private _listAtSubscription(
     options?: ResourceLinksListAtSubscriptionOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -126,7 +221,7 @@ export class ResourceLinks {
    *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
    * @param options The options parameters.
    */
-  listAtSourceScope(
+  private _listAtSourceScope(
     scope: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceLinksListAtSourceScopeResponse> {
@@ -145,7 +240,7 @@ export class ResourceLinks {
    * @param nextLink The nextLink from the previous successful call to the ListAtSubscription method.
    * @param options The options parameters.
    */
-  listAtSubscriptionNext(
+  private _listAtSubscriptionNext(
     nextLink: string,
     options?: ResourceLinksListAtSubscriptionNextOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionNextResponse> {
@@ -167,7 +262,7 @@ export class ResourceLinks {
    * @param nextLink The nextLink from the previous successful call to the ListAtSourceScope method.
    * @param options The options parameters.
    */
-  listAtSourceScopeNext(
+  private _listAtSourceScopeNext(
     scope: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

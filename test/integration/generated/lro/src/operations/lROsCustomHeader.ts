@@ -52,10 +52,12 @@ export class LROsCustomHeader {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsCustomHeaderPutAsyncRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRetrySucceededOperationSpec
@@ -84,10 +86,12 @@ export class LROsCustomHeader {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsCustomHeaderPut201CreatingSucceeded200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put201CreatingSucceeded200OperationSpec
@@ -115,10 +119,12 @@ export class LROsCustomHeader {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsCustomHeaderPost202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202Retry200OperationSpec
@@ -147,10 +153,12 @@ export class LROsCustomHeader {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsCustomHeaderPostAsyncRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRetrySucceededOperationSpec

@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  SecurityRulesGetResponse,
   SecurityRule,
+  SecurityRulesGetResponse,
   SecurityRulesCreateOrUpdateResponse,
   SecurityRulesListResponse,
   SecurityRulesListNextResponse
@@ -31,6 +32,77 @@ export class SecurityRules {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all security rules in a network security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SecurityRule> {
+    const iter = this.listPagingAll(
+      resourceGroupName,
+      networkSecurityGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(
+          resourceGroupName,
+          networkSecurityGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SecurityRule[]> {
+    let result = await this._list(
+      resourceGroupName,
+      networkSecurityGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        networkSecurityGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SecurityRule> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      networkSecurityGroupName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -55,10 +127,12 @@ export class SecurityRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -123,10 +197,12 @@ export class SecurityRules {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SecurityRulesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -146,7 +222,7 @@ export class SecurityRules {
    * @param networkSecurityGroupName The name of the network security group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     options?: coreHttp.OperationOptions
@@ -169,7 +245,7 @@ export class SecurityRules {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     nextLink: string,

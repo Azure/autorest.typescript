@@ -9,10 +9,13 @@ export async function transformOptions(
 ): Promise<ClientOptions> {
   const mediaTypes = getMediaTypesStyles(operationGroups);
   const addCredentials = !((await host.GetValue("add-credentials")) === false);
+  const disablePagingAsyncIterators =
+    (await host.GetValue("disable-async-iterators")) === true;
 
   return {
     addCredentials,
-    mediaTypes
+    mediaTypes,
+    disablePagingAsyncIterators
   };
 }
 

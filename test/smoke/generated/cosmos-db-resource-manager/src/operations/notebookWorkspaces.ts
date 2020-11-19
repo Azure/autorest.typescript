@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  NotebookWorkspace,
   NotebookWorkspacesListByDatabaseAccountResponse,
   NotebookWorkspaceName,
   NotebookWorkspacesGetResponse,
@@ -40,7 +42,67 @@ export class NotebookWorkspaces {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listByDatabaseAccount(
+  public listByDatabaseAccount(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<NotebookWorkspace> {
+    const iter = this.listByDatabaseAccountPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabaseAccountPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabaseAccountPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NotebookWorkspace[]> {
+    let result = await this._listByDatabaseAccount(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listByDatabaseAccountPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<NotebookWorkspace> {
+    for await (const page of this.listByDatabaseAccountPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the notebook workspace resources of an existing Cosmos DB account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -107,10 +169,12 @@ export class NotebookWorkspaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         NotebookWorkspacesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -145,10 +209,12 @@ export class NotebookWorkspaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -208,10 +274,12 @@ export class NotebookWorkspaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       regenerateAuthTokenOperationSpec
@@ -246,10 +314,12 @@ export class NotebookWorkspaces {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startOperationSpec

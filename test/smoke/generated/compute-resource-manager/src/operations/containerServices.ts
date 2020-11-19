@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ContainerServicesListResponse,
   ContainerService,
+  ContainerServicesListResponse,
   ContainerServicesCreateOrUpdateResponse,
   ContainerServicesGetResponse,
   ContainerServicesListByResourceGroupResponse,
@@ -41,7 +42,106 @@ export class ContainerServices {
    * masters and agents.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ContainerService> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContainerService[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContainerService> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of container services in the specified subscription and resource group. The operation
+   * returns properties of each container service including state, orchestrator, number of masters and
+   * agents, and FQDNs of masters and agents.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ContainerService> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContainerService[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ContainerService> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of container services in the specified subscription. The operation returns properties of
+   * each container service including state, orchestrator, number of masters and agents, and FQDNs of
+   * masters and agents.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<ContainerServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -77,10 +177,12 @@ export class ContainerServices {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ContainerServicesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -141,10 +243,12 @@ export class ContainerServices {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -164,7 +268,7 @@ export class ContainerServices {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ContainerServicesListByResourceGroupResponse> {
@@ -183,7 +287,7 @@ export class ContainerServices {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ContainerServicesListNextResponse> {
@@ -203,7 +307,7 @@ export class ContainerServices {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

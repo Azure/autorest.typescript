@@ -5,6 +5,7 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
 export interface CloudError {

@@ -6,14 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
+  ResourceSku,
+  ResourceSkusListNextOptionalParams,
   ResourceSkusListOptionalParams,
   ResourceSkusListResponse,
-  ResourceSkusListNextOptionalParams,
   ResourceSkusListNextResponse
 } from "../models";
 
@@ -35,7 +37,49 @@ export class ResourceSkus {
    * Gets the list of Microsoft.Compute SKUs available for your Subscription.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: ResourceSkusListOptionalParams
+  ): PagedAsyncIterableIterator<ResourceSku> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ResourceSkusListOptionalParams
+  ): AsyncIterableIterator<ResourceSku[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ResourceSkusListOptionalParams
+  ): AsyncIterableIterator<ResourceSku> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the list of Microsoft.Compute SKUs available for your Subscription.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: ResourceSkusListOptionalParams
   ): Promise<ResourceSkusListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -52,7 +96,7 @@ export class ResourceSkus {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: ResourceSkusListNextOptionalParams
   ): Promise<ResourceSkusListNextResponse> {

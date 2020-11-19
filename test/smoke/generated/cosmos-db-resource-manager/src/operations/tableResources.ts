@@ -6,12 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  TableGetResults,
   TableResourcesListTablesResponse,
   TableResourcesGetTableResponse,
   TableCreateUpdateParameters,
@@ -41,7 +43,67 @@ export class TableResources {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listTables(
+  public listTables(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TableGetResults> {
+    const iter = this.listTablesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listTablesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listTablesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TableGetResults[]> {
+    let result = await this._listTables(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listTablesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TableGetResults> {
+    for await (const page of this.listTablesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the Tables under an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listTables(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -107,10 +169,12 @@ export class TableResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         TableResourcesCreateUpdateTableResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createUpdateTableOperationSpec
@@ -145,10 +209,12 @@ export class TableResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteTableOperationSpec
@@ -213,10 +279,12 @@ export class TableResources {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         TableResourcesUpdateTableThroughputResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateTableThroughputOperationSpec

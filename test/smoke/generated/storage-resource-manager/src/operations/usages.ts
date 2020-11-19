@@ -6,11 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
-import { UsagesListByLocationResponse } from "../models";
+import { Usage, UsagesListByLocationResponse } from "../models";
 
 /**
  * Class representing a Usages.
@@ -31,7 +32,47 @@ export class Usages {
    * @param location The location of the Azure Storage resource.
    * @param options The options parameters.
    */
-  listByLocation(
+  public listByLocation(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listByLocationPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listByLocation(location, options);
+    yield result.value || [];
+  }
+
+  private async *listByLocationPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listByLocationPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the current usage count and the limit for the resources of the location under the subscription.
+   * @param location The location of the Azure Storage resource.
+   * @param options The options parameters.
+   */
+  private _listByLocation(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsagesListByLocationResponse> {

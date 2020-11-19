@@ -6,14 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ApplicationGatewaysGetResponse,
   ApplicationGateway,
+  ApplicationGatewaySslPredefinedPolicy,
+  ApplicationGatewaysGetResponse,
   ApplicationGatewaysCreateOrUpdateResponse,
   TagsObject,
   ApplicationGatewaysUpdateTagsResponse,
@@ -51,6 +53,145 @@ export class ApplicationGateways {
   }
 
   /**
+   * Lists all application gateways in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ApplicationGateway> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGateway[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGateway> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the application gateways in a subscription.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ApplicationGateway> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGateway[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGateway> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all SSL predefined policies for configuring Ssl policy.
+   * @param options The options parameters.
+   */
+  public listAvailableSslPredefinedPolicies(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy> {
+    const iter = this.listAvailableSslPredefinedPoliciesPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAvailableSslPredefinedPoliciesPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAvailableSslPredefinedPoliciesPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy[]> {
+    let result = await this._listAvailableSslPredefinedPolicies(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAvailableSslPredefinedPoliciesNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAvailableSslPredefinedPoliciesPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy> {
+    for await (const page of this.listAvailableSslPredefinedPoliciesPagingPage(
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Deletes the specified application gateway.
    * @param resourceGroupName The name of the resource group.
    * @param applicationGatewayName The name of the application gateway.
@@ -69,10 +210,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -130,10 +273,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ApplicationGatewaysCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -177,7 +322,7 @@ export class ApplicationGateways {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationGatewaysListResponse> {
@@ -195,7 +340,7 @@ export class ApplicationGateways {
    * Gets all the application gateways in a subscription.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationGatewaysListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -226,10 +371,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startOperationSpec
@@ -262,10 +409,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       stopOperationSpec
@@ -298,10 +447,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ApplicationGatewaysBackendHealthResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       backendHealthOperationSpec
@@ -338,10 +489,12 @@ export class ApplicationGateways {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ApplicationGatewaysBackendHealthOnDemandResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       backendHealthOnDemandOperationSpec
@@ -439,7 +592,7 @@ export class ApplicationGateways {
    * Lists all SSL predefined policies for configuring Ssl policy.
    * @param options The options parameters.
    */
-  listAvailableSslPredefinedPolicies(
+  private _listAvailableSslPredefinedPolicies(
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -476,7 +629,7 @@ export class ApplicationGateways {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -497,7 +650,7 @@ export class ApplicationGateways {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ApplicationGatewaysListAllNextResponse> {
@@ -517,7 +670,7 @@ export class ApplicationGateways {
    *                 ListAvailableSslPredefinedPolicies method.
    * @param options The options parameters.
    */
-  listAvailableSslPredefinedPoliciesNext(
+  private _listAvailableSslPredefinedPoliciesNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<

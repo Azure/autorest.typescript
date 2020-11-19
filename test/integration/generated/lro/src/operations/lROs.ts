@@ -106,10 +106,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut200SucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put200SucceededOperationSpec
@@ -136,10 +138,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut201SucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put201SucceededOperationSpec
@@ -166,10 +170,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPost202ListResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202ListOperationSpec
@@ -196,10 +202,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut200SucceededNoStateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put200SucceededNoStateOperationSpec
@@ -226,10 +234,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put202Retry200OperationSpec
@@ -257,10 +267,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut201CreatingSucceeded200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put201CreatingSucceeded200OperationSpec
@@ -288,10 +300,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut200UpdatingSucceeded204Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put200UpdatingSucceeded204OperationSpec
@@ -319,10 +333,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut201CreatingFailed200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put201CreatingFailed200OperationSpec
@@ -350,10 +366,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPut200Acceptedcanceled200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       put200Acceptedcanceled200OperationSpec
@@ -380,10 +398,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutNoHeaderInRetryResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putNoHeaderInRetryOperationSpec
@@ -411,10 +431,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRetrySucceededOperationSpec
@@ -442,10 +464,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncNoRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncNoRetrySucceededOperationSpec
@@ -473,10 +497,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncRetryFailedResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncRetryFailedOperationSpec
@@ -504,10 +530,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncNoRetrycanceledResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncNoRetrycanceledOperationSpec
@@ -534,10 +562,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncNoHeaderInRetryResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncNoHeaderInRetryOperationSpec
@@ -563,10 +593,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutNonResourceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putNonResourceOperationSpec
@@ -592,10 +624,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncNonResourceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncNonResourceOperationSpec
@@ -621,10 +655,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutSubResourceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putSubResourceOperationSpec
@@ -650,10 +686,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPutAsyncSubResourceResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putAsyncSubResourceOperationSpec
@@ -681,10 +719,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteProvisioning202Accepted200SucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteProvisioning202Accepted200SucceededOperationSpec
@@ -712,10 +752,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteProvisioning202DeletingFailed200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteProvisioning202DeletingFailed200OperationSpec
@@ -743,10 +785,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteProvisioning202Deletingcanceled200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteProvisioning202Deletingcanceled200OperationSpec
@@ -772,10 +816,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete204SucceededOperationSpec
@@ -802,10 +848,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDelete202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete202Retry200OperationSpec
@@ -832,10 +880,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDelete202NoRetry204Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       delete202NoRetry204OperationSpec
@@ -862,10 +912,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteNoHeaderInRetryResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteNoHeaderInRetryOperationSpec
@@ -892,10 +944,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteAsyncNoHeaderInRetryResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncNoHeaderInRetryOperationSpec
@@ -922,10 +976,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteAsyncRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRetrySucceededOperationSpec
@@ -952,10 +1008,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteAsyncNoRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncNoRetrySucceededOperationSpec
@@ -982,10 +1040,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteAsyncRetryFailedResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRetryFailedOperationSpec
@@ -1012,10 +1072,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsDeleteAsyncRetrycanceledResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteAsyncRetrycanceledOperationSpec
@@ -1042,10 +1104,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPost200WithPayloadResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post200WithPayloadOperationSpec
@@ -1072,10 +1136,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPost202Retry200Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202Retry200OperationSpec
@@ -1102,10 +1168,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPost202NoRetry204Response
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       post202NoRetry204OperationSpec
@@ -1132,10 +1200,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostDoubleHeadersFinalLocationGetResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postDoubleHeadersFinalLocationGetOperationSpec
@@ -1164,10 +1234,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostDoubleHeadersFinalAzureHeaderGetResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postDoubleHeadersFinalAzureHeaderGetOperationSpec
@@ -1198,10 +1270,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
@@ -1229,10 +1303,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostAsyncRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRetrySucceededOperationSpec
@@ -1260,10 +1336,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostAsyncNoRetrySucceededResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncNoRetrySucceededOperationSpec
@@ -1291,10 +1369,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostAsyncRetryFailedResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRetryFailedOperationSpec
@@ -1322,10 +1402,12 @@ export class LROs {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         LROsPostAsyncRetrycanceledResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       postAsyncRetrycanceledOperationSpec

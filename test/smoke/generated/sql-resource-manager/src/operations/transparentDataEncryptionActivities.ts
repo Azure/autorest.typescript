@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  TransparentDataEncryptionActivity,
   TransparentDataEncryptionName,
   TransparentDataEncryptionActivitiesListByConfigurationResponse
 } from "../models";
@@ -38,7 +40,84 @@ export class TransparentDataEncryptionActivities {
    * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
    * @param options The options parameters.
    */
-  listByConfiguration(
+  public listByConfiguration(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<TransparentDataEncryptionActivity> {
+    const iter = this.listByConfigurationPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByConfigurationPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          transparentDataEncryptionName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByConfigurationPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TransparentDataEncryptionActivity[]> {
+    let result = await this._listByConfiguration(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listByConfigurationPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<TransparentDataEncryptionActivity> {
+    for await (const page of this.listByConfigurationPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      transparentDataEncryptionName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns a database's transparent data encryption operation result.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database for which the transparent data encryption applies.
+   * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
+   * @param options The options parameters.
+   */
+  private _listByConfiguration(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

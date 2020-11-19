@@ -6,30 +6,44 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  AppServiceEnvironmentResource,
+  StampCapacity,
+  Site,
+  VirtualNetworkProfile,
+  InboundEnvironmentEndpoint,
+  WorkerPoolResource,
+  ResourceMetricDefinition,
+  SkuInfo,
+  Usage,
+  OutboundEnvironmentEndpoint,
+  AppServicePlan,
+  AppServiceEnvironmentsListWebAppsNextOptionalParams,
+  AppServiceEnvironmentsListWebAppsOptionalParams,
+  CsmUsageQuota,
+  AppServiceEnvironmentsListUsagesNextOptionalParams,
+  AppServiceEnvironmentsListUsagesOptionalParams,
   AppServiceEnvironmentsListResponse,
   AppServiceEnvironmentsListByResourceGroupResponse,
   AppServiceEnvironmentsGetResponse,
-  AppServiceEnvironmentResource,
   AppServiceEnvironmentsCreateOrUpdateResponse,
   AppServiceEnvironmentsDeleteOptionalParams,
   AppServiceEnvironmentPatchResource,
   AppServiceEnvironmentsUpdateResponse,
   AppServiceEnvironmentsListCapacitiesResponse,
   AppServiceEnvironmentsGetVipInfoResponse,
-  VirtualNetworkProfile,
   AppServiceEnvironmentsChangeVnetResponse,
   AppServiceEnvironmentsListDiagnosticsResponse,
   AppServiceEnvironmentsGetDiagnosticsItemResponse,
   AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse,
   AppServiceEnvironmentsListMultiRolePoolsResponse,
   AppServiceEnvironmentsGetMultiRolePoolResponse,
-  WorkerPoolResource,
   AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse,
   AppServiceEnvironmentsUpdateMultiRolePoolResponse,
   AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse,
@@ -40,10 +54,8 @@ import {
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse,
   AppServiceEnvironmentsResumeResponse,
   AppServiceEnvironmentsListAppServicePlansResponse,
-  AppServiceEnvironmentsListWebAppsOptionalParams,
   AppServiceEnvironmentsListWebAppsResponse,
   AppServiceEnvironmentsSuspendResponse,
-  AppServiceEnvironmentsListUsagesOptionalParams,
   AppServiceEnvironmentsListUsagesResponse,
   AppServiceEnvironmentsListWorkerPoolsResponse,
   AppServiceEnvironmentsGetWorkerPoolResponse,
@@ -66,10 +78,8 @@ import {
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse,
   AppServiceEnvironmentsResumeNextResponse,
   AppServiceEnvironmentsListAppServicePlansNextResponse,
-  AppServiceEnvironmentsListWebAppsNextOptionalParams,
   AppServiceEnvironmentsListWebAppsNextResponse,
   AppServiceEnvironmentsSuspendNextResponse,
-  AppServiceEnvironmentsListUsagesNextOptionalParams,
   AppServiceEnvironmentsListUsagesNextResponse,
   AppServiceEnvironmentsListWorkerPoolsNextResponse,
   AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse,
@@ -96,7 +106,1452 @@ export class AppServiceEnvironments {
    * Description for Get all App Service Environments for a subscription.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServiceEnvironmentResource[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServiceEnvironmentResource> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all App Service Environments in a resource group.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServiceEnvironmentResource[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServiceEnvironmentResource> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get the used, available, and total worker capacity an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listCapacities(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<StampCapacity> {
+    const iter = this.listCapacitiesPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCapacitiesPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listCapacitiesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StampCapacity[]> {
+    let result = await this._listCapacities(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCapacitiesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCapacitiesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<StampCapacity> {
+    for await (const page of this.listCapacitiesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Move an App Service Environment to a different VNET.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param vnetInfo Details for the new virtual network.
+   * @param options The options parameters.
+   */
+  public listChangeVnet(
+    resourceGroupName: string,
+    name: string,
+    vnetInfo: VirtualNetworkProfile,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.changeVnetPagingAll(
+      resourceGroupName,
+      name,
+      vnetInfo,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.changeVnetPagingPage(
+          resourceGroupName,
+          name,
+          vnetInfo,
+          options
+        );
+      }
+    };
+  }
+
+  private async *changeVnetPagingPage(
+    resourceGroupName: string,
+    name: string,
+    vnetInfo: VirtualNetworkProfile,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site[]> {
+    const poller = await this._changeVnet(
+      resourceGroupName,
+      name,
+      vnetInfo,
+      options
+    );
+    let result: any = await poller.pollUntilDone();
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._changeVnetNext(
+        resourceGroupName,
+        name,
+        vnetInfo,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *changeVnetPagingAll(
+    resourceGroupName: string,
+    name: string,
+    vnetInfo: VirtualNetworkProfile,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.changeVnetPagingPage(
+      resourceGroupName,
+      name,
+      vnetInfo,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get the network endpoints of all inbound dependencies of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listInboundNetworkDependenciesEndpoints(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<InboundEnvironmentEndpoint> {
+    const iter = this.getInboundNetworkDependenciesEndpointsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getInboundNetworkDependenciesEndpointsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getInboundNetworkDependenciesEndpointsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InboundEnvironmentEndpoint[]> {
+    let result = await this._getInboundNetworkDependenciesEndpoints(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getInboundNetworkDependenciesEndpointsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getInboundNetworkDependenciesEndpointsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InboundEnvironmentEndpoint> {
+    for await (const page of this.getInboundNetworkDependenciesEndpointsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all multi-role pools.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listMultiRolePools(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<WorkerPoolResource> {
+    const iter = this.listMultiRolePoolsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMultiRolePoolsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMultiRolePoolsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkerPoolResource[]> {
+    let result = await this._listMultiRolePools(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMultiRolePoolsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMultiRolePoolsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkerPoolResource> {
+    for await (const page of this.listMultiRolePoolsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get metric definitions for a specific instance of a multi-role pool of an App
+   * Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param instance Name of the instance in the multi-role pool.
+   * @param options The options parameters.
+   */
+  public listMultiRolePoolInstanceMetricDefinitions(
+    resourceGroupName: string,
+    name: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
+    const iter = this.listMultiRolePoolInstanceMetricDefinitionsPagingAll(
+      resourceGroupName,
+      name,
+      instance,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMultiRolePoolInstanceMetricDefinitionsPagingPage(
+          resourceGroupName,
+          name,
+          instance,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMultiRolePoolInstanceMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition[]> {
+    let result = await this._listMultiRolePoolInstanceMetricDefinitions(
+      resourceGroupName,
+      name,
+      instance,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMultiRolePoolInstanceMetricDefinitionsNext(
+        resourceGroupName,
+        name,
+        instance,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMultiRolePoolInstanceMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition> {
+    for await (const page of this.listMultiRolePoolInstanceMetricDefinitionsPagingPage(
+      resourceGroupName,
+      name,
+      instance,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get metric definitions for a multi-role pool of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listMultiRoleMetricDefinitions(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
+    const iter = this.listMultiRoleMetricDefinitionsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMultiRoleMetricDefinitionsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMultiRoleMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition[]> {
+    let result = await this._listMultiRoleMetricDefinitions(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMultiRoleMetricDefinitionsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMultiRoleMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition> {
+    for await (const page of this.listMultiRoleMetricDefinitionsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get available SKUs for scaling a multi-role pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listMultiRolePoolSkus(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SkuInfo> {
+    const iter = this.listMultiRolePoolSkusPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMultiRolePoolSkusPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMultiRolePoolSkusPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SkuInfo[]> {
+    let result = await this._listMultiRolePoolSkus(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMultiRolePoolSkusNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMultiRolePoolSkusPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SkuInfo> {
+    for await (const page of this.listMultiRolePoolSkusPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get usage metrics for a multi-role pool of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listMultiRoleUsages(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listMultiRoleUsagesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMultiRoleUsagesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMultiRoleUsagesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listMultiRoleUsages(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMultiRoleUsagesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMultiRoleUsagesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listMultiRoleUsagesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get the network endpoints of all outbound dependencies of an App Service
+   * Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listOutboundNetworkDependenciesEndpoints(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint> {
+    const iter = this.getOutboundNetworkDependenciesEndpointsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getOutboundNetworkDependenciesEndpointsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getOutboundNetworkDependenciesEndpointsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<OutboundEnvironmentEndpoint[]> {
+    let result = await this._getOutboundNetworkDependenciesEndpoints(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getOutboundNetworkDependenciesEndpointsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getOutboundNetworkDependenciesEndpointsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<OutboundEnvironmentEndpoint> {
+    for await (const page of this.getOutboundNetworkDependenciesEndpointsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Resume an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listResume(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.resumePagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.resumePagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *resumePagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site[]> {
+    const poller = await this._resume(resourceGroupName, name, options);
+    let result: any = await poller.pollUntilDone();
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._resumeNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *resumePagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.resumePagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all App Service plans in an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listAppServicePlans(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AppServicePlan> {
+    const iter = this.listAppServicePlansPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAppServicePlansPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAppServicePlansPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServicePlan[]> {
+    let result = await this._listAppServicePlans(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAppServicePlansNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAppServicePlansPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServicePlan> {
+    for await (const page of this.listAppServicePlansPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all apps in an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listWebApps(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListWebAppsOptionalParams
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.listWebAppsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebAppsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listWebAppsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListWebAppsOptionalParams
+  ): AsyncIterableIterator<Site[]> {
+    let result = await this._listWebApps(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebAppsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebAppsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListWebAppsOptionalParams
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.listWebAppsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Suspend an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listSuspend(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.suspendPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.suspendPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *suspendPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site[]> {
+    const poller = await this._suspend(resourceGroupName, name, options);
+    let result: any = await poller.pollUntilDone();
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._suspendNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *suspendPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.suspendPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get global usage metrics of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listUsages(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListUsagesOptionalParams
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
+    const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listUsagesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota[]> {
+    let result = await this._listUsages(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listUsagesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listUsagesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota> {
+    for await (const page of this.listUsagesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all worker pools of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listWorkerPools(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<WorkerPoolResource> {
+    const iter = this.listWorkerPoolsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWorkerPoolsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listWorkerPoolsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkerPoolResource[]> {
+    let result = await this._listWorkerPools(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWorkerPoolsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWorkerPoolsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<WorkerPoolResource> {
+    for await (const page of this.listWorkerPoolsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get metric definitions for a specific instance of a worker pool of an App Service
+   * Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param instance Name of the instance in the worker pool.
+   * @param options The options parameters.
+   */
+  public listWorkerPoolInstanceMetricDefinitions(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
+    const iter = this.listWorkerPoolInstanceMetricDefinitionsPagingAll(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      instance,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWorkerPoolInstanceMetricDefinitionsPagingPage(
+          resourceGroupName,
+          name,
+          workerPoolName,
+          instance,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWorkerPoolInstanceMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition[]> {
+    let result = await this._listWorkerPoolInstanceMetricDefinitions(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      instance,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWorkerPoolInstanceMetricDefinitionsNext(
+        resourceGroupName,
+        name,
+        workerPoolName,
+        instance,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWorkerPoolInstanceMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    instance: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition> {
+    for await (const page of this.listWorkerPoolInstanceMetricDefinitionsPagingPage(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      instance,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get metric definitions for a worker pool of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param options The options parameters.
+   */
+  public listWebWorkerMetricDefinitions(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
+    const iter = this.listWebWorkerMetricDefinitionsPagingAll(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebWorkerMetricDefinitionsPagingPage(
+          resourceGroupName,
+          name,
+          workerPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWebWorkerMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition[]> {
+    let result = await this._listWebWorkerMetricDefinitions(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebWorkerMetricDefinitionsNext(
+        resourceGroupName,
+        name,
+        workerPoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebWorkerMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ResourceMetricDefinition> {
+    for await (const page of this.listWebWorkerMetricDefinitionsPagingPage(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get available SKUs for scaling a worker pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param options The options parameters.
+   */
+  public listWorkerPoolSkus(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SkuInfo> {
+    const iter = this.listWorkerPoolSkusPagingAll(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWorkerPoolSkusPagingPage(
+          resourceGroupName,
+          name,
+          workerPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWorkerPoolSkusPagingPage(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SkuInfo[]> {
+    let result = await this._listWorkerPoolSkus(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWorkerPoolSkusNext(
+        resourceGroupName,
+        name,
+        workerPoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWorkerPoolSkusPagingAll(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SkuInfo> {
+    for await (const page of this.listWorkerPoolSkusPagingPage(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get usage metrics for a worker pool of an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param options The options parameters.
+   */
+  public listWebWorkerUsages(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listWebWorkerUsagesPagingAll(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebWorkerUsagesPagingPage(
+          resourceGroupName,
+          name,
+          workerPoolName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWebWorkerUsagesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listWebWorkerUsages(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebWorkerUsagesNext(
+        resourceGroupName,
+        name,
+        workerPoolName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebWorkerUsagesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listWebWorkerUsagesPagingPage(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all App Service Environments for a subscription.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<AppServiceEnvironmentsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -113,7 +1568,7 @@ export class AppServiceEnvironments {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServiceEnvironmentsListByResourceGroupResponse> {
@@ -171,10 +1626,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -206,10 +1663,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -253,7 +1712,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listCapacities(
+  private _listCapacities(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -298,7 +1757,7 @@ export class AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  async changeVnet(
+  private async _changeVnet(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -313,10 +1772,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsChangeVnetResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       changeVnetOperationSpec
@@ -382,7 +1843,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  getInboundNetworkDependenciesEndpoints(
+  private _getInboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -408,7 +1869,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listMultiRolePools(
+  private _listMultiRolePools(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -470,10 +1931,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateMultiRolePoolOperationSpec
@@ -519,7 +1982,7 @@ export class AppServiceEnvironments {
    * @param instance Name of the instance in the multi-role pool.
    * @param options The options parameters.
    */
-  listMultiRolePoolInstanceMetricDefinitions(
+  private _listMultiRolePoolInstanceMetricDefinitions(
     resourceGroupName: string,
     name: string,
     instance: string,
@@ -547,7 +2010,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listMultiRoleMetricDefinitions(
+  private _listMultiRoleMetricDefinitions(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -569,7 +2032,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listMultiRolePoolSkus(
+  private _listMultiRolePoolSkus(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -591,7 +2054,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listMultiRoleUsages(
+  private _listMultiRoleUsages(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -636,7 +2099,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  getOutboundNetworkDependenciesEndpoints(
+  private _getOutboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -684,7 +2147,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  async resume(
+  private async _resume(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -697,10 +2160,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsResumeResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       resumeOperationSpec
@@ -719,7 +2184,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listAppServicePlans(
+  private _listAppServicePlans(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -741,7 +2206,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listWebApps(
+  private _listWebApps(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsListWebAppsOptionalParams
@@ -763,7 +2228,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  async suspend(
+  private async _suspend(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -776,10 +2241,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsSuspendResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       suspendOperationSpec
@@ -798,7 +2265,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listUsages(
+  private _listUsages(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsListUsagesOptionalParams
@@ -820,7 +2287,7 @@ export class AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listWorkerPools(
+  private _listWorkerPools(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -888,10 +2355,12 @@ export class AppServiceEnvironments {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateWorkerPoolOperationSpec
@@ -941,7 +2410,7 @@ export class AppServiceEnvironments {
    * @param instance Name of the instance in the worker pool.
    * @param options The options parameters.
    */
-  listWorkerPoolInstanceMetricDefinitions(
+  private _listWorkerPoolInstanceMetricDefinitions(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -972,7 +2441,7 @@ export class AppServiceEnvironments {
    * @param workerPoolName Name of the worker pool.
    * @param options The options parameters.
    */
-  listWebWorkerMetricDefinitions(
+  private _listWebWorkerMetricDefinitions(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -997,7 +2466,7 @@ export class AppServiceEnvironments {
    * @param workerPoolName Name of the worker pool.
    * @param options The options parameters.
    */
-  listWorkerPoolSkus(
+  private _listWorkerPoolSkus(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -1022,7 +2491,7 @@ export class AppServiceEnvironments {
    * @param workerPoolName Name of the worker pool.
    * @param options The options parameters.
    */
-  listWebWorkerUsages(
+  private _listWebWorkerUsages(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -1045,7 +2514,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServiceEnvironmentsListNextResponse> {
@@ -1065,7 +2534,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -1088,7 +2557,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListCapacities method.
    * @param options The options parameters.
    */
-  listCapacitiesNext(
+  private _listCapacitiesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1114,7 +2583,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ChangeVnet method.
    * @param options The options parameters.
    */
-  changeVnetNext(
+  private _changeVnetNext(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -1142,7 +2611,7 @@ export class AppServiceEnvironments {
    *                 GetInboundNetworkDependenciesEndpoints method.
    * @param options The options parameters.
    */
-  getInboundNetworkDependenciesEndpointsNext(
+  private _getInboundNetworkDependenciesEndpointsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1171,7 +2640,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListMultiRolePools method.
    * @param options The options parameters.
    */
-  listMultiRolePoolsNext(
+  private _listMultiRolePoolsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1198,7 +2667,7 @@ export class AppServiceEnvironments {
    *                 ListMultiRolePoolInstanceMetricDefinitions method.
    * @param options The options parameters.
    */
-  listMultiRolePoolInstanceMetricDefinitionsNext(
+  private _listMultiRolePoolInstanceMetricDefinitionsNext(
     resourceGroupName: string,
     name: string,
     instance: string,
@@ -1230,7 +2699,7 @@ export class AppServiceEnvironments {
    *                 method.
    * @param options The options parameters.
    */
-  listMultiRoleMetricDefinitionsNext(
+  private _listMultiRoleMetricDefinitionsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1257,7 +2726,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListMultiRolePoolSkus method.
    * @param options The options parameters.
    */
-  listMultiRolePoolSkusNext(
+  private _listMultiRolePoolSkusNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1282,7 +2751,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListMultiRoleUsages method.
    * @param options The options parameters.
    */
-  listMultiRoleUsagesNext(
+  private _listMultiRoleUsagesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1308,7 +2777,7 @@ export class AppServiceEnvironments {
    *                 GetOutboundNetworkDependenciesEndpoints method.
    * @param options The options parameters.
    */
-  getOutboundNetworkDependenciesEndpointsNext(
+  private _getOutboundNetworkDependenciesEndpointsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1337,7 +2806,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the Resume method.
    * @param options The options parameters.
    */
-  resumeNext(
+  private _resumeNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1362,7 +2831,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListAppServicePlans method.
    * @param options The options parameters.
    */
-  listAppServicePlansNext(
+  private _listAppServicePlansNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1387,7 +2856,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListWebApps method.
    * @param options The options parameters.
    */
-  listWebAppsNext(
+  private _listWebAppsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1412,7 +2881,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the Suspend method.
    * @param options The options parameters.
    */
-  suspendNext(
+  private _suspendNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1437,7 +2906,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param options The options parameters.
    */
-  listUsagesNext(
+  private _listUsagesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1462,7 +2931,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListWorkerPools method.
    * @param options The options parameters.
    */
-  listWorkerPoolsNext(
+  private _listWorkerPoolsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -1490,7 +2959,7 @@ export class AppServiceEnvironments {
    *                 ListWorkerPoolInstanceMetricDefinitions method.
    * @param options The options parameters.
    */
-  listWorkerPoolInstanceMetricDefinitionsNext(
+  private _listWorkerPoolInstanceMetricDefinitionsNext(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -1525,7 +2994,7 @@ export class AppServiceEnvironments {
    *                 method.
    * @param options The options parameters.
    */
-  listWebWorkerMetricDefinitionsNext(
+  private _listWebWorkerMetricDefinitionsNext(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -1555,7 +3024,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListWorkerPoolSkus method.
    * @param options The options parameters.
    */
-  listWorkerPoolSkusNext(
+  private _listWorkerPoolSkusNext(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -1583,7 +3052,7 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ListWebWorkerUsages method.
    * @param options The options parameters.
    */
-  listWebWorkerUsagesNext(
+  private _listWebWorkerUsagesNext(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,

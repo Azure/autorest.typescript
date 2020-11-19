@@ -6,23 +6,26 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  VirtualMachine,
+  VirtualMachinesListAllNextOptionalParams,
+  VirtualMachinesListAllOptionalParams,
+  VirtualMachineSize,
   VirtualMachinesListByLocationResponse,
   VirtualMachineCaptureParameters,
   VirtualMachinesCaptureResponse,
-  VirtualMachine,
   VirtualMachinesCreateOrUpdateResponse,
   VirtualMachineUpdate,
   VirtualMachinesUpdateResponse,
   VirtualMachinesGetResponse,
   VirtualMachinesInstanceViewResponse,
   VirtualMachinesListResponse,
-  VirtualMachinesListAllOptionalParams,
   VirtualMachinesListAllResponse,
   VirtualMachinesListAvailableSizesResponse,
   VirtualMachinesPowerOffOptionalParams,
@@ -31,7 +34,6 @@ import {
   VirtualMachinesRunCommandResponse,
   VirtualMachinesListByLocationNextResponse,
   VirtualMachinesListNextResponse,
-  VirtualMachinesListAllNextOptionalParams,
   VirtualMachinesListAllNextResponse
 } from "../models";
 
@@ -54,7 +56,211 @@ export class VirtualMachines {
    * @param location The location for which virtual machines under the subscription are queried.
    * @param options The options parameters.
    */
-  listByLocation(
+  public listByLocation(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualMachine> {
+    const iter = this.listByLocationPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachine[]> {
+    let result = await this._listByLocation(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        location,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachine> {
+    for await (const page of this.listByLocationPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the virtual machines in the specified resource group. Use the nextLink property in the
+   * response to get the next page of virtual machines.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualMachine> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachine[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachine> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the virtual machines in the specified subscription. Use the nextLink property in the
+   * response to get the next page of virtual machines.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: VirtualMachinesListAllOptionalParams
+  ): PagedAsyncIterableIterator<VirtualMachine> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: VirtualMachinesListAllOptionalParams
+  ): AsyncIterableIterator<VirtualMachine[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: VirtualMachinesListAllOptionalParams
+  ): AsyncIterableIterator<VirtualMachine> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all available virtual machine sizes to which the specified virtual machine can be resized.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  public listAvailableSizes(
+    resourceGroupName: string,
+    vmName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualMachineSize> {
+    const iter = this.listAvailableSizesPagingAll(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAvailableSizesPagingPage(
+          resourceGroupName,
+          vmName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAvailableSizesPagingPage(
+    resourceGroupName: string,
+    vmName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize[]> {
+    let result = await this._listAvailableSizes(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listAvailableSizesPagingAll(
+    resourceGroupName: string,
+    vmName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualMachineSize> {
+    for await (const page of this.listAvailableSizesPagingPage(
+      resourceGroupName,
+      vmName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the virtual machines under the specified subscription for the specified location.
+   * @param location The location for which virtual machines under the subscription are queried.
+   * @param options The options parameters.
+   */
+  private _listByLocation(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachinesListByLocationResponse> {
@@ -91,10 +297,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachinesCaptureResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       captureOperationSpec
@@ -131,10 +339,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachinesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -169,10 +379,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachinesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -204,10 +416,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -284,10 +498,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       convertToManagedDisksOperationSpec
@@ -320,10 +536,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deallocateOperationSpec
@@ -369,7 +587,7 @@ export class VirtualMachines {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachinesListResponse> {
@@ -388,7 +606,7 @@ export class VirtualMachines {
    * response to get the next page of virtual machines.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: VirtualMachinesListAllOptionalParams
   ): Promise<VirtualMachinesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -406,7 +624,7 @@ export class VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  listAvailableSizes(
+  private _listAvailableSizes(
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
@@ -442,10 +660,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       powerOffOperationSpec
@@ -477,10 +697,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       reapplyOperationSpec
@@ -512,10 +734,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       restartOperationSpec
@@ -547,10 +771,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       startOperationSpec
@@ -582,10 +808,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       redeployOperationSpec
@@ -617,10 +845,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       reimageOperationSpec
@@ -652,10 +882,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       performMaintenanceOperationSpec
@@ -713,10 +945,12 @@ export class VirtualMachines {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualMachinesRunCommandResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       runCommandOperationSpec
@@ -736,7 +970,7 @@ export class VirtualMachines {
    * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
-  listByLocationNext(
+  private _listByLocationNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -758,7 +992,7 @@ export class VirtualMachines {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -779,7 +1013,7 @@ export class VirtualMachines {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: VirtualMachinesListAllNextOptionalParams
   ): Promise<VirtualMachinesListAllNextResponse> {

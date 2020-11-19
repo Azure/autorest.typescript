@@ -6,14 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  SyncMembersGetResponse,
   SyncMember,
+  SyncFullSchemaProperties,
+  SyncMembersGetResponse,
   SyncMembersCreateOrUpdateResponse,
   SyncMembersUpdateResponse,
   SyncMembersListBySyncGroupResponse,
@@ -34,6 +36,195 @@ export class SyncMembers {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists sync members in the given sync group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param options The options parameters.
+   */
+  public listBySyncGroup(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SyncMember> {
+    const iter = this.listBySyncGroupPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySyncGroupPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          syncGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBySyncGroupPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncMember[]> {
+    let result = await this._listBySyncGroup(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySyncGroupNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySyncGroupPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncMember> {
+    for await (const page of this.listBySyncGroupPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a sync member database schema.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group on which the sync member is hosted.
+   * @param syncMemberName The name of the sync member.
+   * @param options The options parameters.
+   */
+  public listMemberSchemas(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
+    const iter = this.listMemberSchemasPagingAll(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMemberSchemasPagingPage(
+          resourceGroupName,
+          serverName,
+          databaseName,
+          syncGroupName,
+          syncMemberName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMemberSchemasPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
+    let result = await this._listMemberSchemas(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listMemberSchemasNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        syncMemberName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listMemberSchemasPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<SyncFullSchemaProperties> {
+    for await (const page of this.listMemberSchemasPagingPage(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -100,10 +291,12 @@ export class SyncMembers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SyncMembersCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -145,10 +338,12 @@ export class SyncMembers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -193,10 +388,12 @@ export class SyncMembers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         SyncMembersUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -218,7 +415,7 @@ export class SyncMembers {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  listBySyncGroup(
+  private _listBySyncGroup(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -248,7 +445,7 @@ export class SyncMembers {
    * @param syncMemberName The name of the sync member.
    * @param options The options parameters.
    */
-  listMemberSchemas(
+  private _listMemberSchemas(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -299,10 +496,12 @@ export class SyncMembers {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       refreshMemberSchemaOperationSpec
@@ -325,7 +524,7 @@ export class SyncMembers {
    * @param nextLink The nextLink from the previous successful call to the ListBySyncGroup method.
    * @param options The options parameters.
    */
-  listBySyncGroupNext(
+  private _listBySyncGroupNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -358,7 +557,7 @@ export class SyncMembers {
    * @param nextLink The nextLink from the previous successful call to the ListMemberSchemas method.
    * @param options The options parameters.
    */
-  listMemberSchemasNext(
+  private _listMemberSchemasNext(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

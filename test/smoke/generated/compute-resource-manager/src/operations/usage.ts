@@ -6,11 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { UsageListResponse, UsageListNextResponse } from "../models";
+import {
+  Usage as UsageModel,
+  UsageListResponse,
+  UsageListNextResponse
+} from "../models";
 
 /**
  * Class representing a Usage.
@@ -32,7 +37,54 @@ export class Usage {
    * @param location The location for which resource usage is queried.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<UsageModel> {
+    const iter = this.listPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<UsageModel[]> {
+    let result = await this._list(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(location, continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<UsageModel> {
+    for await (const page of this.listPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets, for the specified location, the current compute resource usage information as well as the
+   * limits for compute resources under the subscription.
+   * @param location The location for which resource usage is queried.
+   * @param options The options parameters.
+   */
+  private _list(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<UsageListResponse> {
@@ -52,7 +104,7 @@ export class Usage {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

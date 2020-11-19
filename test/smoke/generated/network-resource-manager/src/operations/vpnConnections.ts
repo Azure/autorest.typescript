@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  VpnConnectionsGetResponse,
   VpnConnection,
+  VpnConnectionsGetResponse,
   VpnConnectionsCreateOrUpdateResponse,
   VpnConnectionsListByVpnGatewayResponse,
   VpnConnectionsListByVpnGatewayNextResponse
@@ -31,6 +32,77 @@ export class VpnConnections {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Retrieves all vpn connections for a particular virtual wan vpn gateway.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  public listByVpnGateway(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VpnConnection> {
+    const iter = this.listByVpnGatewayPagingAll(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByVpnGatewayPagingPage(
+          resourceGroupName,
+          gatewayName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByVpnGatewayPagingPage(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VpnConnection[]> {
+    let result = await this._listByVpnGateway(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByVpnGatewayNext(
+        resourceGroupName,
+        gatewayName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByVpnGatewayPagingAll(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VpnConnection> {
+    for await (const page of this.listByVpnGatewayPagingPage(
+      resourceGroupName,
+      gatewayName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -84,10 +156,12 @@ export class VpnConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VpnConnectionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -123,10 +197,12 @@ export class VpnConnections {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -146,7 +222,7 @@ export class VpnConnections {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  listByVpnGateway(
+  private _listByVpnGateway(
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
@@ -169,7 +245,7 @@ export class VpnConnections {
    * @param nextLink The nextLink from the previous successful call to the ListByVpnGateway method.
    * @param options The options parameters.
    */
-  listByVpnGatewayNext(
+  private _listByVpnGatewayNext(
     resourceGroupName: string,
     gatewayName: string,
     nextLink: string,

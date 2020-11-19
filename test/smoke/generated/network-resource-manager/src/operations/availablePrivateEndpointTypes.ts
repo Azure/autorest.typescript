@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  AvailablePrivateEndpointType,
   AvailablePrivateEndpointTypesListResponse,
   AvailablePrivateEndpointTypesListByResourceGroupResponse,
   AvailablePrivateEndpointTypesListNextResponse,
@@ -37,7 +39,126 @@ export class AvailablePrivateEndpointTypes {
    * @param location The location of the domain name.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
+    const iter = this.listPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailablePrivateEndpointType[]> {
+    let result = await this._list(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(location, continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailablePrivateEndpointType> {
+    for await (const page of this.listPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns all of the resource types that can be linked to a Private Endpoint in this subscription in
+   * this region.
+   * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
+    const iter = this.listByResourceGroupPagingAll(
+      location,
+      resourceGroupName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(
+          location,
+          resourceGroupName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailablePrivateEndpointType[]> {
+    let result = await this._listByResourceGroup(
+      location,
+      resourceGroupName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        location,
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    location: string,
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailablePrivateEndpointType> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      location,
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns all of the resource types that can be linked to a Private Endpoint in this subscription in
+   * this region.
+   * @param location The location of the domain name.
+   * @param options The options parameters.
+   */
+  private _list(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListResponse> {
@@ -58,7 +179,7 @@ export class AvailablePrivateEndpointTypes {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     location: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
@@ -80,7 +201,7 @@ export class AvailablePrivateEndpointTypes {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -103,7 +224,7 @@ export class AvailablePrivateEndpointTypes {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     location: string,
     resourceGroupName: string,
     nextLink: string,

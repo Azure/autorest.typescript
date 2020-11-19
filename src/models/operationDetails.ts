@@ -3,6 +3,7 @@
 
 import {
   HttpMethod,
+  Language as ModelerLanguage,
   Parameter,
   VirtualParameter
 } from "@azure-tools/codemodel";
@@ -10,6 +11,7 @@ import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { TypeDetails } from "./modelDetails";
+import { Scope } from "ts-morph";
 
 /**
  * Details of an operation request, transformed from Request.
@@ -40,6 +42,7 @@ export interface OperationResponseMappers {
 export interface OperationResponseTypes {
   bodyType?: TypeDetails;
   headersType?: TypeDetails;
+  pagingValueType?: TypeDetails;
 }
 
 /**
@@ -72,6 +75,8 @@ export interface OperationDetails {
   pagination?: PaginationDetails;
   isLRO: boolean;
   lroOptions: { "final-state-via": string };
+  scope?: Scope;
+  namePrefix?: string;
 }
 
 /**
@@ -127,7 +132,7 @@ export interface PaginationDetails {
    * Name of the field containing the nextLink value.
    * If missing, all results are returned in a single page.
    */
-  nextLinkName?: string;
+  nextLinkName?: string | null;
   /**
    * The name of the operation to call with the nextLink.
    */

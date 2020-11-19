@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagementLockClient } from "../managementLockClient";
 import {
+  Operation,
   AuthorizationOperationsListResponse,
   AuthorizationOperationsListNextResponse
 } from "../models";
@@ -33,7 +35,49 @@ export class AuthorizationOperations {
    * Lists all of the available Microsoft.Authorization REST API operations.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Operation> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Operation[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Operation> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all of the available Microsoft.Authorization REST API operations.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<AuthorizationOperationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -50,7 +94,7 @@ export class AuthorizationOperations {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AuthorizationOperationsListNextResponse> {

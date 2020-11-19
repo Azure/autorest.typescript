@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  Domain,
   DomainsListOptionalParams,
   DomainsListResponse,
   DomainsGetResponse
@@ -34,7 +36,45 @@ export class Domains {
    * Gets a list of domains for the current tenant.
    * @param options The options parameters.
    */
-  list(options?: DomainsListOptionalParams): Promise<DomainsListResponse> {
+  public list(
+    options?: DomainsListOptionalParams
+  ): PagedAsyncIterableIterator<Domain> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: DomainsListOptionalParams
+  ): AsyncIterableIterator<Domain[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    options?: DomainsListOptionalParams
+  ): AsyncIterableIterator<Domain> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of domains for the current tenant.
+   * @param options The options parameters.
+   */
+  private _list(
+    options?: DomainsListOptionalParams
+  ): Promise<DomainsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };

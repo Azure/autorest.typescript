@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ManagedInstanceAdministrator,
   ManagedInstanceAdministratorsListByInstanceResponse,
   ManagedInstanceAdministratorsGetResponse,
-  ManagedInstanceAdministrator,
   ManagedInstanceAdministratorsCreateOrUpdateResponse,
   ManagedInstanceAdministratorsListByInstanceNextResponse
 } from "../models";
@@ -40,7 +41,79 @@ export class ManagedInstanceAdministrators {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByInstance(
+  public listByInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ManagedInstanceAdministrator> {
+    const iter = this.listByInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceAdministrator[]> {
+    let result = await this._listByInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceAdministrator> {
+    for await (const page of this.listByInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of managed instance administrators.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
@@ -102,10 +175,12 @@ export class ManagedInstanceAdministrators {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedInstanceAdministratorsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -138,10 +213,12 @@ export class ManagedInstanceAdministrators {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -162,7 +239,7 @@ export class ManagedInstanceAdministrators {
    * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
    * @param options The options parameters.
    */
-  listByInstanceNext(
+  private _listByInstanceNext(
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,

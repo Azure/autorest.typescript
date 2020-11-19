@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  VpnSiteLinkConnection,
   VpnLinkConnectionsListByVpnConnectionResponse,
   VpnLinkConnectionsListByVpnConnectionNextResponse
 } from "../models";
@@ -36,7 +38,87 @@ export class VpnLinkConnections {
    * @param connectionName The name of the vpn connection.
    * @param options The options parameters.
    */
-  listByVpnConnection(
+  public listByVpnConnection(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VpnSiteLinkConnection> {
+    const iter = this.listByVpnConnectionPagingAll(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByVpnConnectionPagingPage(
+          resourceGroupName,
+          gatewayName,
+          connectionName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByVpnConnectionPagingPage(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VpnSiteLinkConnection[]> {
+    let result = await this._listByVpnConnection(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByVpnConnectionNext(
+        resourceGroupName,
+        gatewayName,
+        connectionName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByVpnConnectionPagingAll(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VpnSiteLinkConnection> {
+    for await (const page of this.listByVpnConnectionPagingPage(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
+   * @param options The options parameters.
+   */
+  private _listByVpnConnection(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
@@ -62,7 +144,7 @@ export class VpnLinkConnections {
    * @param nextLink The nextLink from the previous successful call to the ListByVpnConnection method.
    * @param options The options parameters.
    */
-  listByVpnConnectionNext(
+  private _listByVpnConnectionNext(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,

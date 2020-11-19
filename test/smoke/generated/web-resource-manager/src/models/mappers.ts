@@ -8623,7 +8623,7 @@ export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
         }
       },
       signedCertificate: {
-        serializedName: "signedCertificate",
+        serializedName: "properties.signedCertificate",
         xmlName: "properties.signedCertificate",
         type: {
           name: "Composite",
@@ -8638,7 +8638,7 @@ export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
         }
       },
       intermediate: {
-        serializedName: "intermediate",
+        serializedName: "properties.intermediate",
         xmlName: "properties.intermediate",
         type: {
           name: "Composite",
@@ -8646,7 +8646,7 @@ export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
         }
       },
       root: {
-        serializedName: "root",
+        serializedName: "properties.root",
         xmlName: "properties.root",
         type: {
           name: "Composite",
@@ -8766,7 +8766,7 @@ export const Domain: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       contactAdmin: {
-        serializedName: "contactAdmin",
+        serializedName: "properties.contactAdmin",
         xmlName: "properties.contactAdmin",
         type: {
           name: "Composite",
@@ -8774,7 +8774,7 @@ export const Domain: coreHttp.CompositeMapper = {
         }
       },
       contactBilling: {
-        serializedName: "contactBilling",
+        serializedName: "properties.contactBilling",
         xmlName: "properties.contactBilling",
         type: {
           name: "Composite",
@@ -8782,7 +8782,7 @@ export const Domain: coreHttp.CompositeMapper = {
         }
       },
       contactRegistrant: {
-        serializedName: "contactRegistrant",
+        serializedName: "properties.contactRegistrant",
         xmlName: "properties.contactRegistrant",
         type: {
           name: "Composite",
@@ -8790,7 +8790,7 @@ export const Domain: coreHttp.CompositeMapper = {
         }
       },
       contactTech: {
-        serializedName: "contactTech",
+        serializedName: "properties.contactTech",
         xmlName: "properties.contactTech",
         type: {
           name: "Composite",
@@ -8920,7 +8920,7 @@ export const Domain: coreHttp.CompositeMapper = {
         }
       },
       consent: {
-        serializedName: "consent",
+        serializedName: "properties.consent",
         xmlName: "properties.consent",
         type: {
           name: "Composite",
@@ -9098,7 +9098,7 @@ export const Certificate: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",
@@ -9293,7 +9293,7 @@ export const Site: coreHttp.CompositeMapper = {
         }
       },
       siteConfig: {
-        serializedName: "siteConfig",
+        serializedName: "properties.siteConfig",
         xmlName: "properties.siteConfig",
         type: {
           name: "Composite",
@@ -9330,7 +9330,7 @@ export const Site: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",
@@ -9412,7 +9412,7 @@ export const Site: coreHttp.CompositeMapper = {
         }
       },
       cloningInfo: {
-        serializedName: "cloningInfo",
+        serializedName: "properties.cloningInfo",
         xmlName: "properties.cloningInfo",
         type: {
           name: "Composite",
@@ -9444,7 +9444,7 @@ export const Site: coreHttp.CompositeMapper = {
         }
       },
       slotSwapStatus: {
-        serializedName: "slotSwapStatus",
+        serializedName: "properties.slotSwapStatus",
         xmlName: "properties.slotSwapStatus",
         type: {
           name: "Composite",
@@ -9589,7 +9589,7 @@ export const StaticSiteARMResource: coreHttp.CompositeMapper = {
         }
       },
       buildProperties: {
-        serializedName: "buildProperties",
+        serializedName: "properties.buildProperties",
         xmlName: "properties.buildProperties",
         type: {
           name: "Composite",
@@ -9667,7 +9667,7 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
         }
       },
       virtualNetwork: {
-        serializedName: "virtualNetwork",
+        serializedName: "properties.virtualNetwork",
         xmlName: "properties.virtualNetwork",
         type: {
           name: "Composite",
@@ -9992,7 +9992,7 @@ export const AppServicePlan: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",
@@ -10227,7 +10227,7 @@ export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper =
         }
       },
       signedCertificate: {
-        serializedName: "signedCertificate",
+        serializedName: "properties.signedCertificate",
         xmlName: "properties.signedCertificate",
         type: {
           name: "Composite",
@@ -10242,7 +10242,7 @@ export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper =
         }
       },
       intermediate: {
-        serializedName: "intermediate",
+        serializedName: "properties.intermediate",
         xmlName: "properties.intermediate",
         type: {
           name: "Composite",
@@ -10250,7 +10250,7 @@ export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper =
         }
       },
       root: {
-        serializedName: "root",
+        serializedName: "properties.root",
         xmlName: "properties.root",
         type: {
           name: "Composite",
@@ -10509,7 +10509,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       contactAdmin: {
-        serializedName: "contactAdmin",
+        serializedName: "properties.contactAdmin",
         xmlName: "properties.contactAdmin",
         type: {
           name: "Composite",
@@ -10517,7 +10517,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         }
       },
       contactBilling: {
-        serializedName: "contactBilling",
+        serializedName: "properties.contactBilling",
         xmlName: "properties.contactBilling",
         type: {
           name: "Composite",
@@ -10525,7 +10525,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         }
       },
       contactRegistrant: {
-        serializedName: "contactRegistrant",
+        serializedName: "properties.contactRegistrant",
         xmlName: "properties.contactRegistrant",
         type: {
           name: "Composite",
@@ -10533,7 +10533,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         }
       },
       contactTech: {
-        serializedName: "contactTech",
+        serializedName: "properties.contactTech",
         xmlName: "properties.contactTech",
         type: {
           name: "Composite",
@@ -10663,7 +10663,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
         }
       },
       consent: {
-        serializedName: "consent",
+        serializedName: "properties.consent",
         xmlName: "properties.consent",
         type: {
           name: "Composite",
@@ -10878,7 +10878,7 @@ export const CertificatePatchResource: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",
@@ -11021,7 +11021,7 @@ export const DetectorResponse: coreHttp.CompositeMapper = {
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       metadata: {
-        serializedName: "metadata",
+        serializedName: "properties.metadata",
         xmlName: "properties.metadata",
         type: {
           name: "Composite",
@@ -11223,7 +11223,7 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
         }
       },
       detectorDefinition: {
-        serializedName: "detectorDefinition",
+        serializedName: "properties.detectorDefinition",
         xmlName: "properties.detectorDefinition",
         type: {
           name: "Composite",
@@ -11278,7 +11278,7 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
         }
       },
       responseMetaData: {
-        serializedName: "responseMetaData",
+        serializedName: "properties.responseMetaData",
         xmlName: "properties.responseMetaData",
         type: {
           name: "Composite",
@@ -12200,7 +12200,7 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         }
       },
       siteConfig: {
-        serializedName: "siteConfig",
+        serializedName: "properties.siteConfig",
         xmlName: "properties.siteConfig",
         type: {
           name: "Composite",
@@ -12238,7 +12238,7 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",
@@ -12320,7 +12320,7 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         }
       },
       cloningInfo: {
-        serializedName: "cloningInfo",
+        serializedName: "properties.cloningInfo",
         xmlName: "properties.cloningInfo",
         type: {
           name: "Composite",
@@ -12352,7 +12352,7 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
         }
       },
       slotSwapStatus: {
-        serializedName: "slotSwapStatus",
+        serializedName: "properties.slotSwapStatus",
         xmlName: "properties.slotSwapStatus",
         type: {
           name: "Composite",
@@ -12417,7 +12417,7 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
         }
       },
       customDomainVerificationFailureInfo: {
-        serializedName: "customDomainVerificationFailureInfo",
+        serializedName: "properties.customDomainVerificationFailureInfo",
         xmlName: "properties.customDomainVerificationFailureInfo",
         type: {
           name: "Composite",
@@ -12549,7 +12549,7 @@ export const BackupRequest: coreHttp.CompositeMapper = {
         }
       },
       backupSchedule: {
-        serializedName: "backupSchedule",
+        serializedName: "properties.backupSchedule",
         xmlName: "properties.backupSchedule",
         type: {
           name: "Composite",
@@ -12981,7 +12981,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       machineKey: {
-        serializedName: "machineKey",
+        serializedName: "properties.machineKey",
         xmlName: "properties.machineKey",
         type: {
           name: "Composite",
@@ -13102,7 +13102,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       experiments: {
-        serializedName: "experiments",
+        serializedName: "properties.experiments",
         xmlName: "properties.experiments",
         type: {
           name: "Composite",
@@ -13110,7 +13110,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       limits: {
-        serializedName: "limits",
+        serializedName: "properties.limits",
         xmlName: "properties.limits",
         type: {
           name: "Composite",
@@ -13125,7 +13125,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       autoHealRules: {
-        serializedName: "autoHealRules",
+        serializedName: "properties.autoHealRules",
         xmlName: "properties.autoHealRules",
         type: {
           name: "Composite",
@@ -13147,7 +13147,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       cors: {
-        serializedName: "cors",
+        serializedName: "properties.cors",
         xmlName: "properties.cors",
         type: {
           name: "Composite",
@@ -13155,7 +13155,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       push: {
-        serializedName: "push",
+        serializedName: "properties.push",
         xmlName: "properties.push",
         type: {
           name: "Composite",
@@ -13163,7 +13163,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       apiDefinition: {
-        serializedName: "apiDefinition",
+        serializedName: "properties.apiDefinition",
         xmlName: "properties.apiDefinition",
         type: {
           name: "Composite",
@@ -13171,7 +13171,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
         }
       },
       apiManagementConfig: {
-        serializedName: "apiManagementConfig",
+        serializedName: "properties.apiManagementConfig",
         xmlName: "properties.apiManagementConfig",
         type: {
           name: "Composite",
@@ -13693,7 +13693,7 @@ export const SiteLogsConfig: coreHttp.CompositeMapper = {
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       applicationLogs: {
-        serializedName: "applicationLogs",
+        serializedName: "properties.applicationLogs",
         xmlName: "properties.applicationLogs",
         type: {
           name: "Composite",
@@ -13701,7 +13701,7 @@ export const SiteLogsConfig: coreHttp.CompositeMapper = {
         }
       },
       httpLogs: {
-        serializedName: "httpLogs",
+        serializedName: "properties.httpLogs",
         xmlName: "properties.httpLogs",
         type: {
           name: "Composite",
@@ -13709,7 +13709,7 @@ export const SiteLogsConfig: coreHttp.CompositeMapper = {
         }
       },
       failedRequestsTracing: {
-        serializedName: "failedRequestsTracing",
+        serializedName: "properties.failedRequestsTracing",
         xmlName: "properties.failedRequestsTracing",
         type: {
           name: "Composite",
@@ -13717,7 +13717,7 @@ export const SiteLogsConfig: coreHttp.CompositeMapper = {
         }
       },
       detailedErrorMessages: {
-        serializedName: "detailedErrorMessages",
+        serializedName: "properties.detailedErrorMessages",
         xmlName: "properties.detailedErrorMessages",
         type: {
           name: "Composite",
@@ -15259,7 +15259,7 @@ export const NetworkFeatures: coreHttp.CompositeMapper = {
         }
       },
       virtualNetworkConnection: {
-        serializedName: "virtualNetworkConnection",
+        serializedName: "properties.virtualNetworkConnection",
         xmlName: "properties.virtualNetworkConnection",
         type: {
           name: "Composite",
@@ -15505,7 +15505,7 @@ export const SnapshotRestoreRequest: coreHttp.CompositeMapper = {
         }
       },
       recoverySource: {
-        serializedName: "recoverySource",
+        serializedName: "properties.recoverySource",
         xmlName: "properties.recoverySource",
         type: {
           name: "Composite",
@@ -15718,7 +15718,7 @@ export const PrivateEndpointConnectionResource: coreHttp.CompositeMapper = {
         }
       },
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         xmlName: "properties.privateEndpoint",
         type: {
           name: "Composite",
@@ -15726,7 +15726,7 @@ export const PrivateEndpointConnectionResource: coreHttp.CompositeMapper = {
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         xmlName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
@@ -15745,7 +15745,7 @@ export const PrivateLinkConnectionApprovalRequestResource: coreHttp.CompositeMap
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         xmlName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
@@ -15985,7 +15985,7 @@ export const TriggeredWebJob: coreHttp.CompositeMapper = {
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       latestRun: {
-        serializedName: "latest_run",
+        serializedName: "properties.latest_run",
         xmlName: "properties.latest_run",
         type: {
           name: "Composite",
@@ -16224,7 +16224,7 @@ export const StaticSitePatchResource: coreHttp.CompositeMapper = {
         }
       },
       buildProperties: {
-        serializedName: "buildProperties",
+        serializedName: "properties.buildProperties",
         xmlName: "properties.buildProperties",
         type: {
           name: "Composite",
@@ -16563,7 +16563,7 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
         }
       },
       virtualNetwork: {
-        serializedName: "virtualNetwork",
+        serializedName: "properties.virtualNetwork",
         xmlName: "properties.virtualNetwork",
         type: {
           name: "Composite",
@@ -17129,7 +17129,7 @@ export const AppServicePlanPatchResource: coreHttp.CompositeMapper = {
         }
       },
       hostingEnvironmentProfile: {
-        serializedName: "hostingEnvironmentProfile",
+        serializedName: "properties.hostingEnvironmentProfile",
         xmlName: "properties.hostingEnvironmentProfile",
         type: {
           name: "Composite",

@@ -6,16 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ManagedInstanceEncryptionProtector,
   EncryptionProtectorName,
   ManagedInstanceEncryptionProtectorsListByInstanceResponse,
   ManagedInstanceEncryptionProtectorsGetResponse,
-  ManagedInstanceEncryptionProtector,
   ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse,
   ManagedInstanceEncryptionProtectorsListByInstanceNextResponse
 } from "../models";
@@ -32,6 +33,78 @@ export class ManagedInstanceEncryptionProtectors {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a list of managed instance encryption protectors
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  public listByInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector> {
+    const iter = this.listByInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceEncryptionProtector[]> {
+    let result = await this._listByInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedInstanceEncryptionProtector> {
+    for await (const page of this.listByInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -57,10 +130,12 @@ export class ManagedInstanceEncryptionProtectors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       revalidateOperationSpec
@@ -80,7 +155,7 @@ export class ManagedInstanceEncryptionProtectors {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByInstance(
+  private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
@@ -150,10 +225,12 @@ export class ManagedInstanceEncryptionProtectors {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -174,7 +251,7 @@ export class ManagedInstanceEncryptionProtectors {
    * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
    * @param options The options parameters.
    */
-  listByInstanceNext(
+  private _listByInstanceNext(
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,

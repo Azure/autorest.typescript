@@ -560,7 +560,7 @@ export const LoadBalancerBackendAddress: coreHttp.CompositeMapper = {
         }
       },
       virtualNetwork: {
-        serializedName: "virtualNetwork",
+        serializedName: "properties.virtualNetwork",
         type: {
           name: "Composite",
           className: "VirtualNetwork"
@@ -573,7 +573,7 @@ export const LoadBalancerBackendAddress: coreHttp.CompositeMapper = {
         }
       },
       networkInterfaceIPConfiguration: {
-        serializedName: "networkInterfaceIPConfiguration",
+        serializedName: "properties.networkInterfaceIPConfiguration",
         type: {
           name: "Composite",
           className: "NetworkInterfaceIPConfiguration"
@@ -5196,7 +5196,7 @@ export const PacketCapture: coreHttp.CompositeMapper = {
         }
       },
       storageLocation: {
-        serializedName: "storageLocation",
+        serializedName: "properties.storageLocation",
         type: {
           name: "Composite",
           className: "PacketCaptureStorageLocation"
@@ -5393,7 +5393,7 @@ export const PacketCaptureResult: coreHttp.CompositeMapper = {
         }
       },
       storageLocation: {
-        serializedName: "storageLocation",
+        serializedName: "properties.storageLocation",
         type: {
           name: "Composite",
           className: "PacketCaptureStorageLocation"
@@ -5690,14 +5690,14 @@ export const FlowLogInformation: coreHttp.CompositeMapper = {
         }
       },
       retentionPolicy: {
-        serializedName: "retentionPolicy",
+        serializedName: "properties.retentionPolicy",
         type: {
           name: "Composite",
           className: "RetentionPolicyParameters"
         }
       },
       format: {
-        serializedName: "format",
+        serializedName: "properties.format",
         type: {
           name: "Composite",
           className: "FlowLogFormatParameters"
@@ -6672,14 +6672,14 @@ export const ConnectionMonitor: coreHttp.CompositeMapper = {
         }
       },
       source: {
-        serializedName: "source",
+        serializedName: "properties.source",
         type: {
           name: "Composite",
           className: "ConnectionMonitorSource"
         }
       },
       destination: {
-        serializedName: "destination",
+        serializedName: "properties.destination",
         type: {
           name: "Composite",
           className: "ConnectionMonitorDestination"
@@ -7298,14 +7298,14 @@ export const ConnectionMonitorResult: coreHttp.CompositeMapper = {
         }
       },
       source: {
-        serializedName: "source",
+        serializedName: "properties.source",
         type: {
           name: "Composite",
           className: "ConnectionMonitorSource"
         }
       },
       destination: {
-        serializedName: "destination",
+        serializedName: "properties.destination",
         type: {
           name: "Composite",
           className: "ConnectionMonitorDestination"
@@ -7615,7 +7615,7 @@ export const Operation: coreHttp.CompositeMapper = {
         }
       },
       serviceSpecification: {
-        serializedName: "serviceSpecification",
+        serializedName: "properties.serviceSpecification",
         type: {
           name: "Composite",
           className: "OperationPropertiesFormatServiceSpecification"
@@ -11821,7 +11821,7 @@ export const ApplicationGatewayIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -12031,14 +12031,14 @@ export const ApplicationGatewayFrontendIPConfiguration: coreHttp.CompositeMapper
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -12173,7 +12173,7 @@ export const ApplicationGatewayProbe: coreHttp.CompositeMapper = {
         }
       },
       match: {
-        serializedName: "match",
+        serializedName: "properties.match",
         type: {
           name: "Composite",
           className: "ApplicationGatewayProbeHealthResponseMatch"
@@ -12227,7 +12227,7 @@ export const NetworkInterfaceTapConfiguration: coreHttp.CompositeMapper = {
         }
       },
       virtualNetworkTap: {
-        serializedName: "virtualNetworkTap",
+        serializedName: "properties.virtualNetworkTap",
         type: {
           name: "Composite",
           className: "VirtualNetworkTap"
@@ -12453,7 +12453,7 @@ export const PrivateLinkServiceConnection: coreHttp.CompositeMapper = {
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionState"
@@ -12596,14 +12596,14 @@ export const IPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "PublicIPAddress"
@@ -12647,7 +12647,7 @@ export const IPConfigurationProfile: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
@@ -12864,21 +12864,21 @@ export const Subnet: coreHttp.CompositeMapper = {
         }
       },
       networkSecurityGroup: {
-        serializedName: "networkSecurityGroup",
+        serializedName: "properties.networkSecurityGroup",
         type: {
           name: "Composite",
           className: "NetworkSecurityGroup"
         }
       },
       routeTable: {
-        serializedName: "routeTable",
+        serializedName: "properties.routeTable",
         type: {
           name: "Composite",
           className: "RouteTable"
         }
       },
       natGateway: {
-        serializedName: "natGateway",
+        serializedName: "properties.natGateway",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13135,21 +13135,21 @@ export const FrontendIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "PublicIPAddress"
         }
       },
       publicIPPrefix: {
-        serializedName: "publicIPPrefix",
+        serializedName: "properties.publicIPPrefix",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13210,14 +13210,14 @@ export const VirtualNetworkPeering: coreHttp.CompositeMapper = {
         }
       },
       remoteVirtualNetwork: {
-        serializedName: "remoteVirtualNetwork",
+        serializedName: "properties.remoteVirtualNetwork",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       remoteAddressSpace: {
-        serializedName: "remoteAddressSpace",
+        serializedName: "properties.remoteAddressSpace",
         type: {
           name: "Composite",
           className: "AddressSpace"
@@ -13305,7 +13305,7 @@ export const BackendAddressPool: coreHttp.CompositeMapper = {
         }
       },
       outboundRule: {
-        serializedName: "outboundRule",
+        serializedName: "properties.outboundRule",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13362,14 +13362,14 @@ export const InboundNatRule: coreHttp.CompositeMapper = {
         }
       },
       frontendIPConfiguration: {
-        serializedName: "frontendIPConfiguration",
+        serializedName: "properties.frontendIPConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       backendIPConfiguration: {
-        serializedName: "backendIPConfiguration",
+        serializedName: "properties.backendIPConfiguration",
         type: {
           name: "Composite",
           className: "NetworkInterfaceIPConfiguration"
@@ -13508,7 +13508,7 @@ export const NetworkInterfaceIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
@@ -13521,7 +13521,7 @@ export const NetworkInterfaceIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "PublicIPAddress"
@@ -13547,7 +13547,7 @@ export const NetworkInterfaceIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       privateLinkConnectionProperties: {
-        serializedName: "privateLinkConnectionProperties",
+        serializedName: "properties.privateLinkConnectionProperties",
         type: {
           name: "Composite",
           className:
@@ -13671,7 +13671,7 @@ export const ApplicationGatewayBackendHttpSettings: coreHttp.CompositeMapper = {
         }
       },
       probe: {
-        serializedName: "probe",
+        serializedName: "properties.probe",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13702,7 +13702,7 @@ export const ApplicationGatewayBackendHttpSettings: coreHttp.CompositeMapper = {
         }
       },
       connectionDraining: {
-        serializedName: "connectionDraining",
+        serializedName: "properties.connectionDraining",
         type: {
           name: "Composite",
           className: "ApplicationGatewayConnectionDraining"
@@ -13776,14 +13776,14 @@ export const ApplicationGatewayHttpListener: coreHttp.CompositeMapper = {
         }
       },
       frontendIPConfiguration: {
-        serializedName: "frontendIPConfiguration",
+        serializedName: "properties.frontendIPConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       frontendPort: {
-        serializedName: "frontendPort",
+        serializedName: "properties.frontendPort",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13802,7 +13802,7 @@ export const ApplicationGatewayHttpListener: coreHttp.CompositeMapper = {
         }
       },
       sslCertificate: {
-        serializedName: "sslCertificate",
+        serializedName: "properties.sslCertificate",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13834,7 +13834,7 @@ export const ApplicationGatewayHttpListener: coreHttp.CompositeMapper = {
         }
       },
       firewallPolicy: {
-        serializedName: "firewallPolicy",
+        serializedName: "properties.firewallPolicy",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13893,28 +13893,28 @@ export const ApplicationGatewayPathRule: coreHttp.CompositeMapper = {
         }
       },
       backendAddressPool: {
-        serializedName: "backendAddressPool",
+        serializedName: "properties.backendAddressPool",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       backendHttpSettings: {
-        serializedName: "backendHttpSettings",
+        serializedName: "properties.backendHttpSettings",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       redirectConfiguration: {
-        serializedName: "redirectConfiguration",
+        serializedName: "properties.redirectConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       rewriteRuleSet: {
-        serializedName: "rewriteRuleSet",
+        serializedName: "properties.rewriteRuleSet",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13928,7 +13928,7 @@ export const ApplicationGatewayPathRule: coreHttp.CompositeMapper = {
         }
       },
       firewallPolicy: {
-        serializedName: "firewallPolicy",
+        serializedName: "properties.firewallPolicy",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -13965,28 +13965,28 @@ export const ApplicationGatewayUrlPathMap: coreHttp.CompositeMapper = {
         }
       },
       defaultBackendAddressPool: {
-        serializedName: "defaultBackendAddressPool",
+        serializedName: "properties.defaultBackendAddressPool",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       defaultBackendHttpSettings: {
-        serializedName: "defaultBackendHttpSettings",
+        serializedName: "properties.defaultBackendHttpSettings",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       defaultRewriteRuleSet: {
-        serializedName: "defaultRewriteRuleSet",
+        serializedName: "properties.defaultRewriteRuleSet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       defaultRedirectConfiguration: {
-        serializedName: "defaultRedirectConfiguration",
+        serializedName: "properties.defaultRedirectConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14058,42 +14058,42 @@ export const ApplicationGatewayRequestRoutingRule: coreHttp.CompositeMapper = {
         }
       },
       backendAddressPool: {
-        serializedName: "backendAddressPool",
+        serializedName: "properties.backendAddressPool",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       backendHttpSettings: {
-        serializedName: "backendHttpSettings",
+        serializedName: "properties.backendHttpSettings",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       httpListener: {
-        serializedName: "httpListener",
+        serializedName: "properties.httpListener",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       urlPathMap: {
-        serializedName: "urlPathMap",
+        serializedName: "properties.urlPathMap",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       rewriteRuleSet: {
-        serializedName: "rewriteRuleSet",
+        serializedName: "properties.rewriteRuleSet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       redirectConfiguration: {
-        serializedName: "redirectConfiguration",
+        serializedName: "properties.redirectConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14185,7 +14185,7 @@ export const ApplicationGatewayRedirectConfiguration: coreHttp.CompositeMapper =
         }
       },
       targetListener: {
-        serializedName: "targetListener",
+        serializedName: "properties.targetListener",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14312,7 +14312,7 @@ export const AzureFirewallApplicationRuleCollection: coreHttp.CompositeMapper = 
         }
       },
       action: {
-        serializedName: "action",
+        serializedName: "properties.action",
         type: {
           name: "Composite",
           className: "AzureFirewallRCAction"
@@ -14371,7 +14371,7 @@ export const AzureFirewallNatRuleCollection: coreHttp.CompositeMapper = {
         }
       },
       action: {
-        serializedName: "action",
+        serializedName: "properties.action",
         type: {
           name: "Composite",
           className: "AzureFirewallNatRCAction"
@@ -14430,7 +14430,7 @@ export const AzureFirewallNetworkRuleCollection: coreHttp.CompositeMapper = {
         }
       },
       action: {
-        serializedName: "action",
+        serializedName: "properties.action",
         type: {
           name: "Composite",
           className: "AzureFirewallRCAction"
@@ -14493,14 +14493,14 @@ export const AzureFirewallIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14544,14 +14544,14 @@ export const BastionHostIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14674,14 +14674,14 @@ export const ExpressRouteCircuitConnection: coreHttp.CompositeMapper = {
         }
       },
       expressRouteCircuitPeering: {
-        serializedName: "expressRouteCircuitPeering",
+        serializedName: "properties.expressRouteCircuitPeering",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       peerExpressRouteCircuitPeering: {
-        serializedName: "peerExpressRouteCircuitPeering",
+        serializedName: "properties.peerExpressRouteCircuitPeering",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14700,7 +14700,7 @@ export const ExpressRouteCircuitConnection: coreHttp.CompositeMapper = {
         }
       },
       ipv6CircuitConnectionConfig: {
-        serializedName: "ipv6CircuitConnectionConfig",
+        serializedName: "properties.ipv6CircuitConnectionConfig",
         type: {
           name: "Composite",
           className: "Ipv6CircuitConnectionConfig"
@@ -14751,14 +14751,14 @@ export const PeerExpressRouteCircuitConnection: coreHttp.CompositeMapper = {
         }
       },
       expressRouteCircuitPeering: {
-        serializedName: "expressRouteCircuitPeering",
+        serializedName: "properties.expressRouteCircuitPeering",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       peerExpressRouteCircuitPeering: {
-        serializedName: "peerExpressRouteCircuitPeering",
+        serializedName: "properties.peerExpressRouteCircuitPeering",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -14891,14 +14891,14 @@ export const ExpressRouteCircuitPeering: coreHttp.CompositeMapper = {
         }
       },
       microsoftPeeringConfig: {
-        serializedName: "microsoftPeeringConfig",
+        serializedName: "properties.microsoftPeeringConfig",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitPeeringConfig"
         }
       },
       stats: {
-        serializedName: "stats",
+        serializedName: "properties.stats",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitStats"
@@ -14925,21 +14925,21 @@ export const ExpressRouteCircuitPeering: coreHttp.CompositeMapper = {
         }
       },
       routeFilter: {
-        serializedName: "routeFilter",
+        serializedName: "properties.routeFilter",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       ipv6PeeringConfig: {
-        serializedName: "ipv6PeeringConfig",
+        serializedName: "properties.ipv6PeeringConfig",
         type: {
           name: "Composite",
           className: "Ipv6ExpressRouteCircuitPeeringConfig"
         }
       },
       expressRouteConnection: {
-        serializedName: "expressRouteConnection",
+        serializedName: "properties.expressRouteConnection",
         type: {
           name: "Composite",
           className: "ExpressRouteConnectionId"
@@ -15061,7 +15061,7 @@ export const ExpressRouteCrossConnectionPeering: coreHttp.CompositeMapper = {
         }
       },
       microsoftPeeringConfig: {
-        serializedName: "microsoftPeeringConfig",
+        serializedName: "properties.microsoftPeeringConfig",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitPeeringConfig"
@@ -15088,7 +15088,7 @@ export const ExpressRouteCrossConnectionPeering: coreHttp.CompositeMapper = {
         }
       },
       ipv6PeeringConfig: {
-        serializedName: "ipv6PeeringConfig",
+        serializedName: "properties.ipv6PeeringConfig",
         type: {
           name: "Composite",
           className: "Ipv6ExpressRouteCircuitPeeringConfig"
@@ -15166,7 +15166,7 @@ export const ExpressRouteLink: coreHttp.CompositeMapper = {
         }
       },
       macSecConfig: {
-        serializedName: "macSecConfig",
+        serializedName: "properties.macSecConfig",
         type: {
           name: "Composite",
           className: "ExpressRouteLinkMacSecConfig"
@@ -15262,21 +15262,21 @@ export const LoadBalancingRule: coreHttp.CompositeMapper = {
         }
       },
       frontendIPConfiguration: {
-        serializedName: "frontendIPConfiguration",
+        serializedName: "properties.frontendIPConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       backendAddressPool: {
-        serializedName: "backendAddressPool",
+        serializedName: "properties.backendAddressPool",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       probe: {
-        serializedName: "probe",
+        serializedName: "properties.probe",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -15448,7 +15448,7 @@ export const InboundNatPool: coreHttp.CompositeMapper = {
         }
       },
       frontendIPConfiguration: {
-        serializedName: "frontendIPConfiguration",
+        serializedName: "properties.frontendIPConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -15552,7 +15552,7 @@ export const OutboundRule: coreHttp.CompositeMapper = {
         }
       },
       backendAddressPool: {
-        serializedName: "backendAddressPool",
+        serializedName: "properties.backendAddressPool",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -15675,14 +15675,14 @@ export const ContainerNetworkInterface: coreHttp.CompositeMapper = {
         }
       },
       containerNetworkInterfaceConfiguration: {
-        serializedName: "containerNetworkInterfaceConfiguration",
+        serializedName: "properties.containerNetworkInterfaceConfiguration",
         type: {
           name: "Composite",
           className: "ContainerNetworkInterfaceConfiguration"
         }
       },
       container: {
-        serializedName: "container",
+        serializedName: "properties.container",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -15793,7 +15793,7 @@ export const PrivateLinkServiceIpConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
@@ -15849,14 +15849,14 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
         }
       },
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpoint"
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionState"
@@ -15965,14 +15965,14 @@ export const VirtualNetworkGatewayIPConfiguration: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       publicIPAddress: {
-        serializedName: "publicIPAddress",
+        serializedName: "properties.publicIPAddress",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -16166,7 +16166,7 @@ export const VpnSiteLink: coreHttp.CompositeMapper = {
         }
       },
       linkProperties: {
-        serializedName: "linkProperties",
+        serializedName: "properties.linkProperties",
         type: {
           name: "Composite",
           className: "VpnLinkProviderProperties"
@@ -16185,7 +16185,7 @@ export const VpnSiteLink: coreHttp.CompositeMapper = {
         }
       },
       bgpProperties: {
-        serializedName: "bgpProperties",
+        serializedName: "properties.bgpProperties",
         type: {
           name: "Composite",
           className: "VpnLinkBgpSettings"
@@ -16222,14 +16222,14 @@ export const P2SConnectionConfiguration: coreHttp.CompositeMapper = {
         }
       },
       vpnClientAddressPool: {
-        serializedName: "vpnClientAddressPool",
+        serializedName: "properties.vpnClientAddressPool",
         type: {
           name: "Composite",
           className: "AddressSpace"
         }
       },
       routingConfiguration: {
-        serializedName: "routingConfiguration",
+        serializedName: "properties.routingConfiguration",
         type: {
           name: "Composite",
           className: "RoutingConfiguration"
@@ -16266,7 +16266,7 @@ export const HubVirtualNetworkConnection: coreHttp.CompositeMapper = {
         }
       },
       remoteVirtualNetwork: {
-        serializedName: "remoteVirtualNetwork",
+        serializedName: "properties.remoteVirtualNetwork",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -16291,7 +16291,7 @@ export const HubVirtualNetworkConnection: coreHttp.CompositeMapper = {
         }
       },
       routingConfiguration: {
-        serializedName: "routingConfiguration",
+        serializedName: "properties.routingConfiguration",
         type: {
           name: "Composite",
           className: "RoutingConfiguration"
@@ -16388,7 +16388,7 @@ export const VpnSiteLinkConnection: coreHttp.CompositeMapper = {
         }
       },
       vpnSiteLink: {
-        serializedName: "vpnSiteLink",
+        serializedName: "properties.vpnSiteLink",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -16506,7 +16506,7 @@ export const VpnConnection: coreHttp.CompositeMapper = {
         }
       },
       remoteVpnSite: {
-        serializedName: "remoteVpnSite",
+        serializedName: "properties.remoteVpnSite",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -16625,7 +16625,7 @@ export const VpnConnection: coreHttp.CompositeMapper = {
         }
       },
       routingConfiguration: {
-        serializedName: "routingConfiguration",
+        serializedName: "properties.routingConfiguration",
         type: {
           name: "Composite",
           className: "RoutingConfiguration"
@@ -16656,7 +16656,7 @@ export const ExpressRouteConnection: coreHttp.CompositeMapper = {
         }
       },
       expressRouteCircuitPeering: {
-        serializedName: "expressRouteCircuitPeering",
+        serializedName: "properties.expressRouteCircuitPeering",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitPeeringId"
@@ -16681,7 +16681,7 @@ export const ExpressRouteConnection: coreHttp.CompositeMapper = {
         }
       },
       routingConfiguration: {
-        serializedName: "routingConfiguration",
+        serializedName: "properties.routingConfiguration",
         type: {
           name: "Composite",
           className: "RoutingConfiguration"
@@ -16969,7 +16969,7 @@ export const PrivateEndpoint: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "Subnet"
@@ -17049,21 +17049,21 @@ export const NetworkInterface: coreHttp.CompositeMapper = {
         }
       },
       virtualMachine: {
-        serializedName: "virtualMachine",
+        serializedName: "properties.virtualMachine",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       networkSecurityGroup: {
-        serializedName: "networkSecurityGroup",
+        serializedName: "properties.networkSecurityGroup",
         type: {
           name: "Composite",
           className: "NetworkSecurityGroup"
         }
       },
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpoint"
@@ -17095,7 +17095,7 @@ export const NetworkInterface: coreHttp.CompositeMapper = {
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className: "NetworkInterfaceDnsSettings"
@@ -17196,21 +17196,21 @@ export const FlowLog: coreHttp.CompositeMapper = {
         }
       },
       retentionPolicy: {
-        serializedName: "retentionPolicy",
+        serializedName: "properties.retentionPolicy",
         type: {
           name: "Composite",
           className: "RetentionPolicyParameters"
         }
       },
       format: {
-        serializedName: "format",
+        serializedName: "properties.format",
         type: {
           name: "Composite",
           className: "FlowLogFormatParameters"
         }
       },
       flowAnalyticsConfiguration: {
-        serializedName: "flowAnalyticsConfiguration",
+        serializedName: "properties.flowAnalyticsConfiguration",
         type: {
           name: "Composite",
           className: "TrafficAnalyticsProperties"
@@ -17477,21 +17477,21 @@ export const PublicIPAddress: coreHttp.CompositeMapper = {
         }
       },
       ipConfiguration: {
-        serializedName: "ipConfiguration",
+        serializedName: "properties.ipConfiguration",
         type: {
           name: "Composite",
           className: "IPConfiguration"
         }
       },
       dnsSettings: {
-        serializedName: "dnsSettings",
+        serializedName: "properties.dnsSettings",
         type: {
           name: "Composite",
           className: "PublicIPAddressDnsSettings"
         }
       },
       ddosSettings: {
-        serializedName: "ddosSettings",
+        serializedName: "properties.ddosSettings",
         type: {
           name: "Composite",
           className: "DdosSettings"
@@ -17516,7 +17516,7 @@ export const PublicIPAddress: coreHttp.CompositeMapper = {
         }
       },
       publicIPPrefix: {
-        serializedName: "publicIPPrefix",
+        serializedName: "properties.publicIPPrefix",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -17587,14 +17587,15 @@ export const VirtualNetworkTap: coreHttp.CompositeMapper = {
         }
       },
       destinationNetworkInterfaceIPConfiguration: {
-        serializedName: "destinationNetworkInterfaceIPConfiguration",
+        serializedName: "properties.destinationNetworkInterfaceIPConfiguration",
         type: {
           name: "Composite",
           className: "NetworkInterfaceIPConfiguration"
         }
       },
       destinationLoadBalancerFrontEndIPConfiguration: {
-        serializedName: "destinationLoadBalancerFrontEndIPConfiguration",
+        serializedName:
+          "properties.destinationLoadBalancerFrontEndIPConfiguration",
         type: {
           name: "Composite",
           className: "FrontendIPConfiguration"
@@ -17624,14 +17625,14 @@ export const VirtualNetwork: coreHttp.CompositeMapper = {
         }
       },
       addressSpace: {
-        serializedName: "addressSpace",
+        serializedName: "properties.addressSpace",
         type: {
           name: "Composite",
           className: "AddressSpace"
         }
       },
       dhcpOptions: {
-        serializedName: "dhcpOptions",
+        serializedName: "properties.dhcpOptions",
         type: {
           name: "Composite",
           className: "DhcpOptions"
@@ -17688,14 +17689,14 @@ export const VirtualNetwork: coreHttp.CompositeMapper = {
         }
       },
       ddosProtectionPlan: {
-        serializedName: "ddosProtectionPlan",
+        serializedName: "properties.ddosProtectionPlan",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       bgpCommunities: {
-        serializedName: "bgpCommunities",
+        serializedName: "properties.bgpCommunities",
         type: {
           name: "Composite",
           className: "VirtualNetworkBgpCommunities"
@@ -17749,14 +17750,14 @@ export const ApplicationGateway: coreHttp.CompositeMapper = {
         }
       },
       sku: {
-        serializedName: "sku",
+        serializedName: "properties.sku",
         type: {
           name: "Composite",
           className: "ApplicationGatewaySku"
         }
       },
       sslPolicy: {
-        serializedName: "sslPolicy",
+        serializedName: "properties.sslPolicy",
         type: {
           name: "Composite",
           className: "ApplicationGatewaySslPolicy"
@@ -17938,14 +17939,14 @@ export const ApplicationGateway: coreHttp.CompositeMapper = {
         }
       },
       webApplicationFirewallConfiguration: {
-        serializedName: "webApplicationFirewallConfiguration",
+        serializedName: "properties.webApplicationFirewallConfiguration",
         type: {
           name: "Composite",
           className: "ApplicationGatewayWebApplicationFirewallConfiguration"
         }
       },
       firewallPolicy: {
-        serializedName: "firewallPolicy",
+        serializedName: "properties.firewallPolicy",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -17964,7 +17965,7 @@ export const ApplicationGateway: coreHttp.CompositeMapper = {
         }
       },
       autoscaleConfiguration: {
-        serializedName: "autoscaleConfiguration",
+        serializedName: "properties.autoscaleConfiguration",
         type: {
           name: "Composite",
           className: "ApplicationGatewayAutoscaleConfiguration"
@@ -18170,7 +18171,7 @@ export const AzureFirewall: coreHttp.CompositeMapper = {
         }
       },
       managementIpConfiguration: {
-        serializedName: "managementIpConfiguration",
+        serializedName: "properties.managementIpConfiguration",
         type: {
           name: "Composite",
           className: "AzureFirewallIPConfiguration"
@@ -18190,21 +18191,21 @@ export const AzureFirewall: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       firewallPolicy: {
-        serializedName: "firewallPolicy",
+        serializedName: "properties.firewallPolicy",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       hubIpAddresses: {
-        serializedName: "hubIpAddresses",
+        serializedName: "properties.hubIpAddresses",
         type: {
           name: "Composite",
           className: "HubIPAddresses"
@@ -18224,7 +18225,7 @@ export const AzureFirewall: coreHttp.CompositeMapper = {
         }
       },
       sku: {
-        serializedName: "sku",
+        serializedName: "properties.sku",
         type: {
           name: "Composite",
           className: "AzureFirewallSku"
@@ -18445,14 +18446,14 @@ export const ExpressRouteCircuit: coreHttp.CompositeMapper = {
         }
       },
       serviceProviderProperties: {
-        serializedName: "serviceProviderProperties",
+        serializedName: "properties.serviceProviderProperties",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitServiceProviderProperties"
         }
       },
       expressRoutePort: {
-        serializedName: "expressRoutePort",
+        serializedName: "properties.expressRoutePort",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -18581,7 +18582,7 @@ export const ExpressRouteCrossConnection: coreHttp.CompositeMapper = {
         }
       },
       expressRouteCircuit: {
-        serializedName: "expressRouteCircuit",
+        serializedName: "properties.expressRouteCircuit",
         type: {
           name: "Composite",
           className: "ExpressRouteCircuitReference"
@@ -18815,7 +18816,7 @@ export const FirewallPolicy: coreHttp.CompositeMapper = {
         }
       },
       basePolicy: {
-        serializedName: "basePolicy",
+        serializedName: "properties.basePolicy",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -18854,7 +18855,7 @@ export const FirewallPolicy: coreHttp.CompositeMapper = {
         }
       },
       threatIntelWhitelist: {
-        serializedName: "threatIntelWhitelist",
+        serializedName: "properties.threatIntelWhitelist",
         type: {
           name: "Composite",
           className: "FirewallPolicyThreatIntelWhitelist"
@@ -18867,7 +18868,7 @@ export const FirewallPolicy: coreHttp.CompositeMapper = {
         }
       },
       transportSecurity: {
-        serializedName: "transportSecurity",
+        serializedName: "properties.transportSecurity",
         type: {
           name: "Composite",
           className: "FirewallPolicyTransportSecurity"
@@ -18891,14 +18892,14 @@ export const IpAllocation: coreHttp.CompositeMapper = {
         }
       },
       subnet: {
-        serializedName: "subnet",
+        serializedName: "properties.subnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       virtualNetwork: {
-        serializedName: "virtualNetwork",
+        serializedName: "properties.virtualNetwork",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -19303,7 +19304,7 @@ export const NetworkVirtualAppliance: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -19449,14 +19450,14 @@ export const PrivateLinkService: coreHttp.CompositeMapper = {
         }
       },
       visibility: {
-        serializedName: "visibility",
+        serializedName: "properties.visibility",
         type: {
           name: "Composite",
           className: "ResourceSet"
         }
       },
       autoApproval: {
-        serializedName: "autoApproval",
+        serializedName: "properties.autoApproval",
         type: {
           name: "Composite",
           className: "ResourceSet"
@@ -19566,7 +19567,7 @@ export const PublicIPPrefix: coreHttp.CompositeMapper = {
         }
       },
       loadBalancerFrontendIpConfiguration: {
-        serializedName: "loadBalancerFrontendIpConfiguration",
+        serializedName: "properties.loadBalancerFrontendIpConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -19686,7 +19687,7 @@ export const SecurityPartnerProvider: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -19803,35 +19804,35 @@ export const VirtualNetworkGateway: coreHttp.CompositeMapper = {
         }
       },
       gatewayDefaultSite: {
-        serializedName: "gatewayDefaultSite",
+        serializedName: "properties.gatewayDefaultSite",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       sku: {
-        serializedName: "sku",
+        serializedName: "properties.sku",
         type: {
           name: "Composite",
           className: "VirtualNetworkGatewaySku"
         }
       },
       vpnClientConfiguration: {
-        serializedName: "vpnClientConfiguration",
+        serializedName: "properties.vpnClientConfiguration",
         type: {
           name: "Composite",
           className: "VpnClientConfiguration"
         }
       },
       bgpSettings: {
-        serializedName: "bgpSettings",
+        serializedName: "properties.bgpSettings",
         type: {
           name: "Composite",
           className: "BgpSettings"
         }
       },
       customRoutes: {
-        serializedName: "customRoutes",
+        serializedName: "properties.customRoutes",
         type: {
           name: "Composite",
           className: "AddressSpace"
@@ -19888,21 +19889,21 @@ export const VirtualNetworkGatewayConnectionListEntity: coreHttp.CompositeMapper
         }
       },
       virtualNetworkGateway1: {
-        serializedName: "virtualNetworkGateway1",
+        serializedName: "properties.virtualNetworkGateway1",
         type: {
           name: "Composite",
           className: "VirtualNetworkConnectionGatewayReference"
         }
       },
       virtualNetworkGateway2: {
-        serializedName: "virtualNetworkGateway2",
+        serializedName: "properties.virtualNetworkGateway2",
         type: {
           name: "Composite",
           className: "VirtualNetworkConnectionGatewayReference"
         }
       },
       localNetworkGateway2: {
-        serializedName: "localNetworkGateway2",
+        serializedName: "properties.localNetworkGateway2",
         type: {
           name: "Composite",
           className: "VirtualNetworkConnectionGatewayReference"
@@ -19968,7 +19969,7 @@ export const VirtualNetworkGatewayConnectionListEntity: coreHttp.CompositeMapper
         }
       },
       peer: {
-        serializedName: "peer",
+        serializedName: "properties.peer",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20048,7 +20049,7 @@ export const LocalNetworkGateway: coreHttp.CompositeMapper = {
         }
       },
       localNetworkAddressSpace: {
-        serializedName: "localNetworkAddressSpace",
+        serializedName: "properties.localNetworkAddressSpace",
         type: {
           name: "Composite",
           className: "AddressSpace"
@@ -20067,7 +20068,7 @@ export const LocalNetworkGateway: coreHttp.CompositeMapper = {
         }
       },
       bgpSettings: {
-        serializedName: "bgpSettings",
+        serializedName: "properties.bgpSettings",
         type: {
           name: "Composite",
           className: "BgpSettings"
@@ -20111,21 +20112,21 @@ export const VirtualNetworkGatewayConnection: coreHttp.CompositeMapper = {
         }
       },
       virtualNetworkGateway1: {
-        serializedName: "virtualNetworkGateway1",
+        serializedName: "properties.virtualNetworkGateway1",
         type: {
           name: "Composite",
           className: "VirtualNetworkGateway"
         }
       },
       virtualNetworkGateway2: {
-        serializedName: "virtualNetworkGateway2",
+        serializedName: "properties.virtualNetworkGateway2",
         type: {
           name: "Composite",
           className: "VirtualNetworkGateway"
         }
       },
       localNetworkGateway2: {
-        serializedName: "localNetworkGateway2",
+        serializedName: "properties.localNetworkGateway2",
         type: {
           name: "Composite",
           className: "LocalNetworkGateway"
@@ -20197,7 +20198,7 @@ export const VirtualNetworkGatewayConnection: coreHttp.CompositeMapper = {
         }
       },
       peer: {
-        serializedName: "peer",
+        serializedName: "properties.peer",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20304,14 +20305,14 @@ export const VirtualRouter: coreHttp.CompositeMapper = {
         }
       },
       hostedSubnet: {
-        serializedName: "hostedSubnet",
+        serializedName: "properties.hostedSubnet",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       hostedGateway: {
-        serializedName: "hostedGateway",
+        serializedName: "properties.hostedGateway",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20436,14 +20437,14 @@ export const VpnSite: coreHttp.CompositeMapper = {
         }
       },
       virtualWan: {
-        serializedName: "virtualWan",
+        serializedName: "properties.virtualWan",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       deviceProperties: {
-        serializedName: "deviceProperties",
+        serializedName: "properties.deviceProperties",
         type: {
           name: "Composite",
           className: "DeviceProperties"
@@ -20462,14 +20463,14 @@ export const VpnSite: coreHttp.CompositeMapper = {
         }
       },
       addressSpace: {
-        serializedName: "addressSpace",
+        serializedName: "properties.addressSpace",
         type: {
           name: "Composite",
           className: "AddressSpace"
         }
       },
       bgpProperties: {
-        serializedName: "bgpProperties",
+        serializedName: "properties.bgpProperties",
         type: {
           name: "Composite",
           className: "BgpSettings"
@@ -20518,7 +20519,7 @@ export const P2SVpnGateway: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20550,14 +20551,14 @@ export const P2SVpnGateway: coreHttp.CompositeMapper = {
         }
       },
       vpnServerConfiguration: {
-        serializedName: "vpnServerConfiguration",
+        serializedName: "properties.vpnServerConfiguration",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       vpnClientConnectionHealth: {
-        serializedName: "vpnClientConnectionHealth",
+        serializedName: "properties.vpnClientConnectionHealth",
         type: {
           name: "Composite",
           className: "VpnClientConnectionHealth"
@@ -20693,7 +20694,7 @@ export const VpnServerConfiguration: coreHttp.CompositeMapper = {
         }
       },
       aadAuthenticationParameters: {
-        serializedName: "aadAuthenticationParameters",
+        serializedName: "properties.aadAuthenticationParameters",
         type: {
           name: "Composite",
           className: "AadAuthenticationParameters"
@@ -20744,42 +20745,42 @@ export const VirtualHub: coreHttp.CompositeMapper = {
         }
       },
       virtualWan: {
-        serializedName: "virtualWan",
+        serializedName: "properties.virtualWan",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       vpnGateway: {
-        serializedName: "vpnGateway",
+        serializedName: "properties.vpnGateway",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       p2SVpnGateway: {
-        serializedName: "p2SVpnGateway",
+        serializedName: "properties.p2SVpnGateway",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       expressRouteGateway: {
-        serializedName: "expressRouteGateway",
+        serializedName: "properties.expressRouteGateway",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       azureFirewall: {
-        serializedName: "azureFirewall",
+        serializedName: "properties.azureFirewall",
         type: {
           name: "Composite",
           className: "SubResource"
         }
       },
       securityPartnerProvider: {
-        serializedName: "securityPartnerProvider",
+        serializedName: "properties.securityPartnerProvider",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20804,7 +20805,7 @@ export const VirtualHub: coreHttp.CompositeMapper = {
         }
       },
       routeTable: {
-        serializedName: "routeTable",
+        serializedName: "properties.routeTable",
         type: {
           name: "Composite",
           className: "VirtualHubRouteTable"
@@ -20859,7 +20860,7 @@ export const VpnGateway: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "SubResource"
@@ -20878,7 +20879,7 @@ export const VpnGateway: coreHttp.CompositeMapper = {
         }
       },
       bgpSettings: {
-        serializedName: "bgpSettings",
+        serializedName: "properties.bgpSettings",
         type: {
           name: "Composite",
           className: "BgpSettings"
@@ -20915,7 +20916,7 @@ export const ExpressRouteGateway: coreHttp.CompositeMapper = {
         }
       },
       autoScaleConfiguration: {
-        serializedName: "autoScaleConfiguration",
+        serializedName: "properties.autoScaleConfiguration",
         type: {
           name: "Composite",
           className: "ExpressRouteGatewayPropertiesAutoScaleConfiguration"
@@ -20942,7 +20943,7 @@ export const ExpressRouteGateway: coreHttp.CompositeMapper = {
         }
       },
       virtualHub: {
-        serializedName: "virtualHub",
+        serializedName: "properties.virtualHub",
         type: {
           name: "Composite",
           className: "VirtualHubId"
@@ -20966,7 +20967,7 @@ export const WebApplicationFirewallPolicy: coreHttp.CompositeMapper = {
         }
       },
       policySettings: {
-        serializedName: "policySettings",
+        serializedName: "properties.policySettings",
         type: {
           name: "Composite",
           className: "PolicySettings"
@@ -21012,7 +21013,7 @@ export const WebApplicationFirewallPolicy: coreHttp.CompositeMapper = {
         }
       },
       managedRules: {
-        serializedName: "managedRules",
+        serializedName: "properties.managedRules",
         type: {
           name: "Composite",
           className: "ManagedRulesDefinition"

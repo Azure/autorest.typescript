@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -31,6 +32,68 @@ export class EncryptionScopes {
    */
   constructor(client: StorageManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all the encryption scopes available under the specified storage account.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<EncryptionScope> {
+    const iter = this.listPagingAll(resourceGroupName, accountName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, accountName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<EncryptionScope[]> {
+    let result = await this._list(resourceGroupName, accountName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        accountName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<EncryptionScope> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -144,7 +207,7 @@ export class EncryptionScopes {
    *                    only.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
@@ -170,7 +233,7 @@ export class EncryptionScopes {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     accountName: string,
     nextLink: string,

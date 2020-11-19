@@ -6,34 +6,36 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
+  Recommendation,
+  RecommendationsListNextOptionalParams,
   RecommendationsListOptionalParams,
-  RecommendationsListResponse,
+  RecommendationsListHistoryForHostingEnvironmentNextOptionalParams,
   RecommendationsListHistoryForHostingEnvironmentOptionalParams,
-  RecommendationsListHistoryForHostingEnvironmentResponse,
+  RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams,
   RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams,
+  RecommendationsListHistoryForWebAppNextOptionalParams,
+  RecommendationsListHistoryForWebAppOptionalParams,
+  RecommendationsListRecommendedRulesForWebAppNextOptionalParams,
+  RecommendationsListRecommendedRulesForWebAppOptionalParams,
+  RecommendationsListResponse,
+  RecommendationsListHistoryForHostingEnvironmentResponse,
   RecommendationsListRecommendedRulesForHostingEnvironmentResponse,
   RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams,
   RecommendationsGetRuleDetailsByHostingEnvironmentResponse,
-  RecommendationsListHistoryForWebAppOptionalParams,
   RecommendationsListHistoryForWebAppResponse,
-  RecommendationsListRecommendedRulesForWebAppOptionalParams,
   RecommendationsListRecommendedRulesForWebAppResponse,
   RecommendationsGetRuleDetailsByWebAppOptionalParams,
   RecommendationsGetRuleDetailsByWebAppResponse,
-  RecommendationsListNextOptionalParams,
   RecommendationsListNextResponse,
-  RecommendationsListHistoryForHostingEnvironmentNextOptionalParams,
   RecommendationsListHistoryForHostingEnvironmentNextResponse,
-  RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams,
   RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse,
-  RecommendationsListHistoryForWebAppNextOptionalParams,
   RecommendationsListHistoryForWebAppNextResponse,
-  RecommendationsListRecommendedRulesForWebAppNextOptionalParams,
   RecommendationsListRecommendedRulesForWebAppNextResponse
 } from "../models";
 
@@ -55,7 +57,333 @@ export class Recommendations {
    * Description for List all recommendations for a subscription.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: RecommendationsListOptionalParams
+  ): PagedAsyncIterableIterator<Recommendation> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: RecommendationsListOptionalParams
+  ): AsyncIterableIterator<Recommendation[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: RecommendationsListOptionalParams
+  ): AsyncIterableIterator<Recommendation> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get past recommendations for an app, optionally specified by the time range.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param hostingEnvironmentName Name of the hosting environment.
+   * @param options The options parameters.
+   */
+  public listHistoryForHostingEnvironment(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
+  ): PagedAsyncIterableIterator<Recommendation> {
+    const iter = this.listHistoryForHostingEnvironmentPagingAll(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHistoryForHostingEnvironmentPagingPage(
+          resourceGroupName,
+          hostingEnvironmentName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHistoryForHostingEnvironmentPagingPage(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
+  ): AsyncIterableIterator<Recommendation[]> {
+    let result = await this._listHistoryForHostingEnvironment(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHistoryForHostingEnvironmentNext(
+        resourceGroupName,
+        hostingEnvironmentName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHistoryForHostingEnvironmentPagingAll(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
+  ): AsyncIterableIterator<Recommendation> {
+    for await (const page of this.listHistoryForHostingEnvironmentPagingPage(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all recommendations for an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param hostingEnvironmentName Name of the app.
+   * @param options The options parameters.
+   */
+  public listRecommendedRulesForHostingEnvironment(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
+  ): PagedAsyncIterableIterator<Recommendation> {
+    const iter = this.listRecommendedRulesForHostingEnvironmentPagingAll(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listRecommendedRulesForHostingEnvironmentPagingPage(
+          resourceGroupName,
+          hostingEnvironmentName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listRecommendedRulesForHostingEnvironmentPagingPage(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
+  ): AsyncIterableIterator<Recommendation[]> {
+    let result = await this._listRecommendedRulesForHostingEnvironment(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listRecommendedRulesForHostingEnvironmentNext(
+        resourceGroupName,
+        hostingEnvironmentName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listRecommendedRulesForHostingEnvironmentPagingAll(
+    resourceGroupName: string,
+    hostingEnvironmentName: string,
+    options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
+  ): AsyncIterableIterator<Recommendation> {
+    for await (const page of this.listRecommendedRulesForHostingEnvironmentPagingPage(
+      resourceGroupName,
+      hostingEnvironmentName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get past recommendations for an app, optionally specified by the time range.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Name of the app.
+   * @param options The options parameters.
+   */
+  public listHistoryForWebApp(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListHistoryForWebAppOptionalParams
+  ): PagedAsyncIterableIterator<Recommendation> {
+    const iter = this.listHistoryForWebAppPagingAll(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHistoryForWebAppPagingPage(
+          resourceGroupName,
+          siteName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHistoryForWebAppPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListHistoryForWebAppOptionalParams
+  ): AsyncIterableIterator<Recommendation[]> {
+    let result = await this._listHistoryForWebApp(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHistoryForWebAppNext(
+        resourceGroupName,
+        siteName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHistoryForWebAppPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListHistoryForWebAppOptionalParams
+  ): AsyncIterableIterator<Recommendation> {
+    for await (const page of this.listHistoryForWebAppPagingPage(
+      resourceGroupName,
+      siteName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all recommendations for an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param siteName Name of the app.
+   * @param options The options parameters.
+   */
+  public listRecommendedRulesForWebApp(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
+  ): PagedAsyncIterableIterator<Recommendation> {
+    const iter = this.listRecommendedRulesForWebAppPagingAll(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listRecommendedRulesForWebAppPagingPage(
+          resourceGroupName,
+          siteName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listRecommendedRulesForWebAppPagingPage(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
+  ): AsyncIterableIterator<Recommendation[]> {
+    let result = await this._listRecommendedRulesForWebApp(
+      resourceGroupName,
+      siteName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listRecommendedRulesForWebAppNext(
+        resourceGroupName,
+        siteName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listRecommendedRulesForWebAppPagingAll(
+    resourceGroupName: string,
+    siteName: string,
+    options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
+  ): AsyncIterableIterator<Recommendation> {
+    for await (const page of this.listRecommendedRulesForWebAppPagingPage(
+      resourceGroupName,
+      siteName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for List all recommendations for a subscription.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: RecommendationsListOptionalParams
   ): Promise<RecommendationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -108,7 +436,7 @@ export class Recommendations {
    * @param hostingEnvironmentName Name of the hosting environment.
    * @param options The options parameters.
    */
-  listHistoryForHostingEnvironment(
+  private _listHistoryForHostingEnvironment(
     resourceGroupName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
@@ -130,7 +458,7 @@ export class Recommendations {
    * @param hostingEnvironmentName Name of the app.
    * @param options The options parameters.
    */
-  listRecommendedRulesForHostingEnvironment(
+  private _listRecommendedRulesForHostingEnvironment(
     resourceGroupName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
@@ -257,7 +585,7 @@ export class Recommendations {
    * @param siteName Name of the app.
    * @param options The options parameters.
    */
-  listHistoryForWebApp(
+  private _listHistoryForWebApp(
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsListHistoryForWebAppOptionalParams
@@ -279,7 +607,7 @@ export class Recommendations {
    * @param siteName Name of the app.
    * @param options The options parameters.
    */
-  listRecommendedRulesForWebApp(
+  private _listRecommendedRulesForWebApp(
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
@@ -394,7 +722,7 @@ export class Recommendations {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: RecommendationsListNextOptionalParams
   ): Promise<RecommendationsListNextResponse> {
@@ -416,7 +744,7 @@ export class Recommendations {
    *                 ListHistoryForHostingEnvironment method.
    * @param options The options parameters.
    */
-  listHistoryForHostingEnvironmentNext(
+  private _listHistoryForHostingEnvironmentNext(
     resourceGroupName: string,
     hostingEnvironmentName: string,
     nextLink: string,
@@ -442,7 +770,7 @@ export class Recommendations {
    *                 ListRecommendedRulesForHostingEnvironment method.
    * @param options The options parameters.
    */
-  listRecommendedRulesForHostingEnvironmentNext(
+  private _listRecommendedRulesForHostingEnvironmentNext(
     resourceGroupName: string,
     hostingEnvironmentName: string,
     nextLink: string,
@@ -471,7 +799,7 @@ export class Recommendations {
    * @param nextLink The nextLink from the previous successful call to the ListHistoryForWebApp method.
    * @param options The options parameters.
    */
-  listHistoryForWebAppNext(
+  private _listHistoryForWebAppNext(
     resourceGroupName: string,
     siteName: string,
     nextLink: string,
@@ -497,7 +825,7 @@ export class Recommendations {
    *                 method.
    * @param options The options parameters.
    */
-  listRecommendedRulesForWebAppNext(
+  private _listRecommendedRulesForWebAppNext(
     resourceGroupName: string,
     siteName: string,
     nextLink: string,

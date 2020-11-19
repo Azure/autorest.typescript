@@ -6,21 +6,24 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  ADGroup,
+  GroupsListOptionalParams,
+  DirectoryObjectUnion,
+  GroupGetMemberGroupsParameters,
   CheckGroupMembershipParameters,
   GroupsIsMemberOfResponse,
   GroupAddMemberParameters,
   GroupCreateParameters,
   GroupsCreateResponse,
-  GroupsListOptionalParams,
   GroupsListResponse,
   GroupsGetGroupMembersResponse,
   GroupsGetResponse,
-  GroupGetMemberGroupsParameters,
   GroupsGetMemberGroupsResponse,
   GroupsListOwnersResponse,
   AddOwnerParameters,
@@ -41,6 +44,286 @@ export class Groups {
    */
   constructor(client: GraphRbacManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets list of groups for the current tenant.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: GroupsListOptionalParams
+  ): PagedAsyncIterableIterator<ADGroup> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: GroupsListOptionalParams
+  ): AsyncIterableIterator<ADGroup[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: GroupsListOptionalParams
+  ): AsyncIterableIterator<ADGroup> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the members of a group.
+   * @param objectId The object ID of the group whose members should be retrieved.
+   * @param options The options parameters.
+   */
+  public listGroupMembers(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
+    const iter = this.getGroupMembersPagingAll(objectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getGroupMembersPagingPage(objectId, options);
+      }
+    };
+  }
+
+  private async *getGroupMembersPagingPage(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._getGroupMembers(objectId, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._getGroupMembersNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getGroupMembersPagingAll(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.getGroupMembersPagingPage(
+      objectId,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a collection of object IDs of groups of which the specified group is a member.
+   * @param objectId The object ID of the group for which to get group membership.
+   * @param parameters Group filtering parameters.
+   * @param options The options parameters.
+   */
+  public listMemberGroups(
+    objectId: string,
+    parameters: GroupGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<string> {
+    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+      }
+    };
+  }
+
+  private async *getMemberGroupsPagingPage(
+    objectId: string,
+    parameters: GroupGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string[]> {
+    let result = await this._getMemberGroups(objectId, parameters, options);
+    yield result.value || [];
+  }
+
+  private async *getMemberGroupsPagingAll(
+    objectId: string,
+    parameters: GroupGetMemberGroupsParameters,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string> {
+    for await (const page of this.getMemberGroupsPagingPage(
+      objectId,
+      parameters,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The owners are a set of non-admin users who are allowed to modify this object.
+   * @param objectId The object ID of the group for which to get owners.
+   * @param options The options parameters.
+   */
+  public listOwners(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
+    const iter = this.listOwnersPagingAll(objectId, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnersPagingPage(objectId, options);
+      }
+    };
+  }
+
+  private async *listOwnersPagingPage(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._listOwners(objectId, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listOwnersNext(objectId, continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnersPagingAll(
+    objectId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.listOwnersPagingPage(objectId, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of groups for the current tenant.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ADGroup> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ADGroup[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ADGroup> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets the members of a group.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listGroupMembersNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
+    const iter = this.getGroupMembersNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getGroupMembersNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *getGroupMembersNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._getGroupMembersNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._getGroupMembersNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getGroupMembersNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.getGroupMembersNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -131,7 +414,9 @@ export class Groups {
    * Gets list of groups for the current tenant.
    * @param options The options parameters.
    */
-  list(options?: GroupsListOptionalParams): Promise<GroupsListResponse> {
+  private _list(
+    options?: GroupsListOptionalParams
+  ): Promise<GroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -146,7 +431,7 @@ export class Groups {
    * @param objectId The object ID of the group whose members should be retrieved.
    * @param options The options parameters.
    */
-  getGroupMembers(
+  private _getGroupMembers(
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetGroupMembersResponse> {
@@ -204,7 +489,7 @@ export class Groups {
    * @param parameters Group filtering parameters.
    * @param options The options parameters.
    */
-  getMemberGroups(
+  private _getMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
@@ -225,7 +510,7 @@ export class Groups {
    * @param objectId The object ID of the group for which to get owners.
    * @param options The options parameters.
    */
-  listOwners(
+  private _listOwners(
     objectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListOwnersResponse> {
@@ -289,7 +574,7 @@ export class Groups {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListNextResponse> {
@@ -308,7 +593,7 @@ export class Groups {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  getGroupMembersNext(
+  private _getGroupMembersNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetGroupMembersNextResponse> {
@@ -328,7 +613,7 @@ export class Groups {
    * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param options The options parameters.
    */
-  listOwnersNext(
+  private _listOwnersNext(
     objectId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

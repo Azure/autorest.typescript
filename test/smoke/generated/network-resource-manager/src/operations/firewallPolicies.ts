@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  FirewallPolicy,
   FirewallPoliciesGetOptionalParams,
   FirewallPoliciesGetResponse,
-  FirewallPolicy,
   FirewallPoliciesCreateOrUpdateResponse,
   FirewallPoliciesListResponse,
   FirewallPoliciesListAllResponse,
@@ -37,6 +38,98 @@ export class FirewallPolicies {
   }
 
   /**
+   * Lists all Firewall Policies in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FirewallPolicy> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FirewallPolicy[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FirewallPolicy> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all the Firewall Policies in a subscription.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<FirewallPolicy> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FirewallPolicy[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<FirewallPolicy> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Deletes the specified Firewall Policy.
    * @param resourceGroupName The name of the resource group.
    * @param firewallPolicyName The name of the Firewall Policy.
@@ -55,10 +148,12 @@ export class FirewallPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -116,10 +211,12 @@ export class FirewallPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         FirewallPoliciesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -138,7 +235,7 @@ export class FirewallPolicies {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPoliciesListResponse> {
@@ -156,7 +253,7 @@ export class FirewallPolicies {
    * Gets all the Firewall Policies in a subscription.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPoliciesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -174,7 +271,7 @@ export class FirewallPolicies {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -195,7 +292,7 @@ export class FirewallPolicies {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPoliciesListAllNextResponse> {

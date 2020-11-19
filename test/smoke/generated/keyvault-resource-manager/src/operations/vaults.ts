@@ -6,12 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClient } from "../keyVaultManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  Vault,
+  VaultsListByResourceGroupNextOptionalParams,
+  VaultsListByResourceGroupOptionalParams,
+  VaultsListBySubscriptionNextOptionalParams,
+  VaultsListBySubscriptionOptionalParams,
+  DeletedVault,
+  Resource,
+  VaultsListNextOptionalParams,
+  VaultsListOptionalParams,
   VaultCreateOrUpdateParameters,
   VaultsCreateOrUpdateResponse,
   VaultPatchParameters,
@@ -20,22 +30,16 @@ import {
   VaultAccessPolicyParameters,
   AccessPolicyUpdateKind,
   VaultsUpdateAccessPolicyResponse,
-  VaultsListByResourceGroupOptionalParams,
   VaultsListByResourceGroupResponse,
-  VaultsListBySubscriptionOptionalParams,
   VaultsListBySubscriptionResponse,
   VaultsListDeletedResponse,
   VaultsGetDeletedResponse,
-  VaultsListOptionalParams,
   VaultsListResponse,
   VaultCheckNameAvailabilityParameters,
   VaultsCheckNameAvailabilityResponse,
-  VaultsListByResourceGroupNextOptionalParams,
   VaultsListByResourceGroupNextResponse,
-  VaultsListBySubscriptionNextOptionalParams,
   VaultsListBySubscriptionNextResponse,
   VaultsListDeletedNextResponse,
-  VaultsListNextOptionalParams,
   VaultsListNextResponse
 } from "../models";
 
@@ -51,6 +55,186 @@ export class Vaults {
    */
   constructor(client: KeyVaultManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * The List operation gets information about the vaults associated with the subscription and within the
+   * specified resource group.
+   * @param resourceGroupName The name of the Resource Group to which the vault belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: VaultsListByResourceGroupOptionalParams
+  ): PagedAsyncIterableIterator<Vault> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: VaultsListByResourceGroupOptionalParams
+  ): AsyncIterableIterator<Vault[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: VaultsListByResourceGroupOptionalParams
+  ): AsyncIterableIterator<Vault> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The List operation gets information about the vaults associated with the subscription.
+   * @param options The options parameters.
+   */
+  public listBySubscription(
+    options?: VaultsListBySubscriptionOptionalParams
+  ): PagedAsyncIterableIterator<Vault> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: VaultsListBySubscriptionOptionalParams
+  ): AsyncIterableIterator<Vault[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: VaultsListBySubscriptionOptionalParams
+  ): AsyncIterableIterator<Vault> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets information about the deleted vaults in a subscription.
+   * @param options The options parameters.
+   */
+  public listDeleted(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DeletedVault> {
+    const iter = this.listDeletedPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listDeletedPagingPage(options);
+      }
+    };
+  }
+
+  private async *listDeletedPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DeletedVault[]> {
+    let result = await this._listDeleted(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listDeletedNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listDeletedPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DeletedVault> {
+    for await (const page of this.listDeletedPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The List operation gets information about the vaults associated with the subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: VaultsListOptionalParams
+  ): PagedAsyncIterableIterator<Resource> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: VaultsListOptionalParams
+  ): AsyncIterableIterator<Resource[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: VaultsListOptionalParams
+  ): AsyncIterableIterator<Resource> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -75,10 +259,12 @@ export class Vaults {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VaultsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -194,7 +380,7 @@ export class Vaults {
    * @param resourceGroupName The name of the Resource Group to which the vault belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: VaultsListByResourceGroupOptionalParams
   ): Promise<VaultsListByResourceGroupResponse> {
@@ -212,7 +398,7 @@ export class Vaults {
    * The List operation gets information about the vaults associated with the subscription.
    * @param options The options parameters.
    */
-  listBySubscription(
+  private _listBySubscription(
     options?: VaultsListBySubscriptionOptionalParams
   ): Promise<VaultsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -228,7 +414,7 @@ export class Vaults {
    * Gets information about the deleted vaults in a subscription.
    * @param options The options parameters.
    */
-  listDeleted(
+  private _listDeleted(
     options?: coreHttp.OperationOptions
   ): Promise<VaultsListDeletedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -281,10 +467,12 @@ export class Vaults {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       purgeDeletedOperationSpec
@@ -301,7 +489,9 @@ export class Vaults {
    * The List operation gets information about the vaults associated with the subscription.
    * @param options The options parameters.
    */
-  list(options?: VaultsListOptionalParams): Promise<VaultsListResponse> {
+  private _list(
+    options?: VaultsListOptionalParams
+  ): Promise<VaultsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -336,7 +526,7 @@ export class Vaults {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: VaultsListByResourceGroupNextOptionalParams
@@ -357,7 +547,7 @@ export class Vaults {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: VaultsListBySubscriptionNextOptionalParams
   ): Promise<VaultsListBySubscriptionNextResponse> {
@@ -376,7 +566,7 @@ export class Vaults {
    * @param nextLink The nextLink from the previous successful call to the ListDeleted method.
    * @param options The options parameters.
    */
-  listDeletedNext(
+  private _listDeletedNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsListDeletedNextResponse> {
@@ -395,7 +585,7 @@ export class Vaults {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: VaultsListNextOptionalParams
   ): Promise<VaultsListNextResponse> {

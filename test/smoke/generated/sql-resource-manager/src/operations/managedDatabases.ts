@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  ManagedDatabase,
   ManagedDatabasesListByInstanceResponse,
   ManagedDatabasesGetResponse,
-  ManagedDatabase,
   ManagedDatabasesCreateOrUpdateResponse,
   ManagedDatabaseUpdate,
   ManagedDatabasesUpdateResponse,
@@ -45,7 +46,151 @@ export class ManagedDatabases {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listByInstance(
+  public listByInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ManagedDatabase> {
+    const iter = this.listByInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedDatabase[]> {
+    let result = await this._listByInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedDatabase> {
+    for await (const page of this.listByInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of inaccessible managed databases in a managed instance
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  public listInaccessibleByInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ManagedDatabase> {
+    const iter = this.listInaccessibleByInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listInaccessibleByInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listInaccessibleByInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedDatabase[]> {
+    let result = await this._listInaccessibleByInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listInaccessibleByInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listInaccessibleByInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ManagedDatabase> {
+    for await (const page of this.listInaccessibleByInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of managed databases.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
@@ -113,10 +258,12 @@ export class ManagedDatabases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedDatabasesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -152,10 +299,12 @@ export class ManagedDatabases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -194,10 +343,12 @@ export class ManagedDatabases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ManagedDatabasesUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -217,7 +368,7 @@ export class ManagedDatabases {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  listInaccessibleByInstance(
+  private _listInaccessibleByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
@@ -259,10 +410,12 @@ export class ManagedDatabases {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       completeRestoreOperationSpec
@@ -283,7 +436,7 @@ export class ManagedDatabases {
    * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
    * @param options The options parameters.
    */
-  listByInstanceNext(
+  private _listByInstanceNext(
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
@@ -310,7 +463,7 @@ export class ManagedDatabases {
    *                 method.
    * @param options The options parameters.
    */
-  listInaccessibleByInstanceNext(
+  private _listInaccessibleByInstanceNext(
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,

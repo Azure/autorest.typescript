@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
+  DirectoryObjectUnion,
   SignedInUserGetResponse,
   SignedInUserListOwnedObjectsResponse,
   SignedInUserListOwnedObjectsNextResponse
@@ -31,6 +33,97 @@ export class SignedInUser {
   }
 
   /**
+   * Get the list of directory objects that are owned by the user.
+   * @param options The options parameters.
+   */
+  public listOwnedObjects(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
+    const iter = this.listOwnedObjectsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnedObjectsPagingPage(options);
+      }
+    };
+  }
+
+  private async *listOwnedObjectsPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._listOwnedObjects(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listOwnedObjectsNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnedObjectsPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.listOwnedObjectsPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Get the list of directory objects that are owned by the user.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listOwnedObjectsNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
+    const iter = this.listOwnedObjectsNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listOwnedObjectsNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listOwnedObjectsNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion[]> {
+    let result = await this._listOwnedObjectsNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listOwnedObjectsNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listOwnedObjectsNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DirectoryObjectUnion> {
+    for await (const page of this.listOwnedObjectsNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Gets the details for the currently logged-in user.
    * @param options The options parameters.
    */
@@ -48,7 +141,7 @@ export class SignedInUser {
    * Get the list of directory objects that are owned by the user.
    * @param options The options parameters.
    */
-  listOwnedObjects(
+  private _listOwnedObjects(
     options?: coreHttp.OperationOptions
   ): Promise<SignedInUserListOwnedObjectsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -65,7 +158,7 @@ export class SignedInUser {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listOwnedObjectsNext(
+  private _listOwnedObjectsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SignedInUserListOwnedObjectsNextResponse> {

@@ -107,8 +107,12 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
+        coreHttp.RestResponse
+      >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       operationSpec

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
 import {
   ApplicationGateways,
@@ -109,11 +110,14 @@ import * as Mappers from "./models/mappers";
 import { NetworkManagementClientContext } from "./networkManagementClientContext";
 import {
   NetworkManagementClientOptionalParams,
+  BastionShareableLink,
   BastionShareableLinkListRequest,
+  BastionActiveSession,
+  BastionSessionState,
+  SessionIds,
   NetworkManagementClientPutBastionShareableLinkResponse,
   NetworkManagementClientGetBastionShareableLinkResponse,
   NetworkManagementClientGetActiveSessionsResponse,
-  SessionIds,
   NetworkManagementClientDisconnectActiveSessionsResponse,
   NetworkManagementClientCheckDnsNameAvailabilityResponse,
   NetworkManagementClientSupportedSecurityProvidersResponse,
@@ -288,7 +292,320 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  async putBastionShareableLink(
+  public listPutBastionShareableLink(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BastionShareableLink> {
+    const iter = this.putBastionShareableLinkPagingAll(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.putBastionShareableLinkPagingPage(
+          resourceGroupName,
+          bastionHostName,
+          bslRequest,
+          options
+        );
+      }
+    };
+  }
+
+  private async *putBastionShareableLinkPagingPage(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionShareableLink[]> {
+    const poller = await this._putBastionShareableLink(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    );
+    let result: any = await poller.pollUntilDone();
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._putBastionShareableLinkNext(
+        resourceGroupName,
+        bastionHostName,
+        bslRequest,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *putBastionShareableLinkPagingAll(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionShareableLink> {
+    for await (const page of this.putBastionShareableLinkPagingPage(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Return the Bastion Shareable Links for all the VMs specified in the request.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
+   * @param options The options parameters.
+   */
+  public listBastionShareableLink(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BastionShareableLink> {
+    const iter = this.getBastionShareableLinkPagingAll(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getBastionShareableLinkPagingPage(
+          resourceGroupName,
+          bastionHostName,
+          bslRequest,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getBastionShareableLinkPagingPage(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionShareableLink[]> {
+    let result = await this._getBastionShareableLink(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getBastionShareableLinkNext(
+        resourceGroupName,
+        bastionHostName,
+        bslRequest,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getBastionShareableLinkPagingAll(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionShareableLink> {
+    for await (const page of this.getBastionShareableLinkPagingPage(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns the list of currently active sessions on the Bastion.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param options The options parameters.
+   */
+  public listActiveSessions(
+    resourceGroupName: string,
+    bastionHostName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BastionActiveSession> {
+    const iter = this.getActiveSessionsPagingAll(
+      resourceGroupName,
+      bastionHostName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getActiveSessionsPagingPage(
+          resourceGroupName,
+          bastionHostName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getActiveSessionsPagingPage(
+    resourceGroupName: string,
+    bastionHostName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionActiveSession[]> {
+    const poller = await this._getActiveSessions(
+      resourceGroupName,
+      bastionHostName,
+      options
+    );
+    let result: any = await poller.pollUntilDone();
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getActiveSessionsNext(
+        resourceGroupName,
+        bastionHostName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getActiveSessionsPagingAll(
+    resourceGroupName: string,
+    bastionHostName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionActiveSession> {
+    for await (const page of this.getActiveSessionsPagingPage(
+      resourceGroupName,
+      bastionHostName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Returns the list of currently active sessions on the Bastion.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param sessionIds The list of sessionids to disconnect.
+   * @param options The options parameters.
+   */
+  public listDisconnectActiveSessions(
+    resourceGroupName: string,
+    bastionHostName: string,
+    sessionIds: SessionIds,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<BastionSessionState> {
+    const iter = this.disconnectActiveSessionsPagingAll(
+      resourceGroupName,
+      bastionHostName,
+      sessionIds,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.disconnectActiveSessionsPagingPage(
+          resourceGroupName,
+          bastionHostName,
+          sessionIds,
+          options
+        );
+      }
+    };
+  }
+
+  private async *disconnectActiveSessionsPagingPage(
+    resourceGroupName: string,
+    bastionHostName: string,
+    sessionIds: SessionIds,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionSessionState[]> {
+    let result = await this._disconnectActiveSessions(
+      resourceGroupName,
+      bastionHostName,
+      sessionIds,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._disconnectActiveSessionsNext(
+        resourceGroupName,
+        bastionHostName,
+        sessionIds,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *disconnectActiveSessionsPagingAll(
+    resourceGroupName: string,
+    bastionHostName: string,
+    sessionIds: SessionIds,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<BastionSessionState> {
+    for await (const page of this.disconnectActiveSessionsPagingPage(
+      resourceGroupName,
+      bastionHostName,
+      sessionIds,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Creates a Bastion Shareable Links for all the VMs specified in the request.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
+   * @param options The options parameters.
+   */
+  private async _putBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -305,10 +622,12 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
         NetworkManagementClientPutBastionShareableLinkResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       putBastionShareableLinkOperationSpec
@@ -344,8 +663,12 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
+        coreHttp.RestResponse
+      >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteBastionShareableLinkOperationSpec
@@ -366,7 +689,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  getBastionShareableLink(
+  private _getBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -390,7 +713,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  async getActiveSessions(
+  private async _getActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
     options?: coreHttp.OperationOptions
@@ -403,10 +726,12 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
         NetworkManagementClientGetActiveSessionsResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       getActiveSessionsOperationSpec
@@ -427,7 +752,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param sessionIds The list of sessionids to disconnect.
    * @param options The options parameters.
    */
-  disconnectActiveSessions(
+  private _disconnectActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
@@ -518,10 +843,12 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.sendOperationRequest(args, spec) as Promise<
         NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec
@@ -544,7 +871,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    *                 method.
    * @param options The options parameters.
    */
-  putBastionShareableLinkNext(
+  private _putBastionShareableLinkNext(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -573,7 +900,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    *                 method.
    * @param options The options parameters.
    */
-  getBastionShareableLinkNext(
+  private _getBastionShareableLinkNext(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -600,7 +927,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the GetActiveSessions method.
    * @param options The options parameters.
    */
-  getActiveSessionsNext(
+  private _getActiveSessionsNext(
     resourceGroupName: string,
     bastionHostName: string,
     nextLink: string,
@@ -627,7 +954,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    *                 method.
    * @param options The options parameters.
    */
-  disconnectActiveSessionsNext(
+  private _disconnectActiveSessionsNext(
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,

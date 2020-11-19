@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -34,6 +35,88 @@ export class GalleryApplicationVersions {
    */
   constructor(client: ComputeManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * List gallery Application Versions in a gallery Application Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the Shared Application Gallery Application Definition from
+   *                               which the Application Versions are to be listed.
+   * @param options The options parameters.
+   */
+  public listByGalleryApplication(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<GalleryApplicationVersion> {
+    const iter = this.listByGalleryApplicationPagingAll(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByGalleryApplicationPagingPage(
+          resourceGroupName,
+          galleryName,
+          galleryApplicationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByGalleryApplicationPagingPage(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryApplicationVersion[]> {
+    let result = await this._listByGalleryApplication(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByGalleryApplicationNext(
+        resourceGroupName,
+        galleryName,
+        galleryApplicationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByGalleryApplicationPagingAll(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<GalleryApplicationVersion> {
+    for await (const page of this.listByGalleryApplicationPagingPage(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -69,10 +152,12 @@ export class GalleryApplicationVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryApplicationVersionsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -118,10 +203,12 @@ export class GalleryApplicationVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         GalleryApplicationVersionsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -191,10 +278,12 @@ export class GalleryApplicationVersions {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -216,7 +305,7 @@ export class GalleryApplicationVersions {
    *                               which the Application Versions are to be listed.
    * @param options The options parameters.
    */
-  listByGalleryApplication(
+  private _listByGalleryApplication(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -245,7 +334,7 @@ export class GalleryApplicationVersions {
    *                 method.
    * @param options The options parameters.
    */
-  listByGalleryApplicationNext(
+  private _listByGalleryApplicationNext(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,

@@ -6,24 +6,26 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClient } from "../resourceManagementClient";
 import {
+  Provider,
+  ProvidersListNextOptionalParams,
+  ProvidersListOptionalParams,
+  ProvidersListAtTenantScopeNextOptionalParams,
+  ProvidersListAtTenantScopeOptionalParams,
   ProvidersUnregisterResponse,
   ProvidersRegisterResponse,
-  ProvidersListOptionalParams,
   ProvidersListResponse,
-  ProvidersListAtTenantScopeOptionalParams,
   ProvidersListAtTenantScopeResponse,
   ProvidersGetOptionalParams,
   ProvidersGetResponse,
   ProvidersGetAtTenantScopeOptionalParams,
   ProvidersGetAtTenantScopeResponse,
-  ProvidersListNextOptionalParams,
   ProvidersListNextResponse,
-  ProvidersListAtTenantScopeNextOptionalParams,
   ProvidersListAtTenantScopeNextResponse
 } from "../models";
 
@@ -39,6 +41,90 @@ export class Providers {
    */
   constructor(client: ResourceManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all resource providers for a subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: ProvidersListOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ProvidersListOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ProvidersListOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all resource providers for the tenant.
+   * @param options The options parameters.
+   */
+  public listAtTenantScope(
+    options?: ProvidersListAtTenantScopeOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopePagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopePagingPage(options);
+      }
+    };
+  }
+
+  private async *listAtTenantScopePagingPage(
+    options?: ProvidersListAtTenantScopeOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScope(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopePagingAll(
+    options?: ProvidersListAtTenantScopeOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopePagingPage(options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -83,7 +169,9 @@ export class Providers {
    * Gets all resource providers for a subscription.
    * @param options The options parameters.
    */
-  list(options?: ProvidersListOptionalParams): Promise<ProvidersListResponse> {
+  private _list(
+    options?: ProvidersListOptionalParams
+  ): Promise<ProvidersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -97,7 +185,7 @@ export class Providers {
    * Gets all resource providers for the tenant.
    * @param options The options parameters.
    */
-  listAtTenantScope(
+  private _listAtTenantScope(
     options?: ProvidersListAtTenantScopeOptionalParams
   ): Promise<ProvidersListAtTenantScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -152,7 +240,7 @@ export class Providers {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: ProvidersListNextOptionalParams
   ): Promise<ProvidersListNextResponse> {
@@ -171,7 +259,7 @@ export class Providers {
    * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
    * @param options The options parameters.
    */
-  listAtTenantScopeNext(
+  private _listAtTenantScopeNext(
     nextLink: string,
     options?: ProvidersListAtTenantScopeNextOptionalParams
   ): Promise<ProvidersListAtTenantScopeNextResponse> {

@@ -6,37 +6,39 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  LongTermRetentionBackupsGetByResourceGroupResponse,
+  LongTermRetentionBackup,
+  LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupDatabaseResponse,
+  LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupLocationOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupLocationResponse,
+  LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupServerOptionalParams,
+  LongTermRetentionBackupsListByDatabaseNextOptionalParams,
+  LongTermRetentionBackupsListByDatabaseOptionalParams,
+  LongTermRetentionBackupsListByLocationNextOptionalParams,
+  LongTermRetentionBackupsListByLocationOptionalParams,
+  LongTermRetentionBackupsListByServerNextOptionalParams,
+  LongTermRetentionBackupsListByServerOptionalParams,
+  LongTermRetentionBackupsGetByResourceGroupResponse,
+  LongTermRetentionBackupsListByResourceGroupDatabaseResponse,
+  LongTermRetentionBackupsListByResourceGroupLocationResponse,
   LongTermRetentionBackupsListByResourceGroupServerResponse,
   LongTermRetentionBackupsGetResponse,
-  LongTermRetentionBackupsListByDatabaseOptionalParams,
   LongTermRetentionBackupsListByDatabaseResponse,
-  LongTermRetentionBackupsListByLocationOptionalParams,
   LongTermRetentionBackupsListByLocationResponse,
-  LongTermRetentionBackupsListByServerOptionalParams,
   LongTermRetentionBackupsListByServerResponse,
-  LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse,
-  LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupLocationNextResponse,
-  LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupServerNextResponse,
-  LongTermRetentionBackupsListByDatabaseNextOptionalParams,
   LongTermRetentionBackupsListByDatabaseNextResponse,
-  LongTermRetentionBackupsListByLocationNextOptionalParams,
   LongTermRetentionBackupsListByLocationNextResponse,
-  LongTermRetentionBackupsListByServerNextOptionalParams,
   LongTermRetentionBackupsListByServerNextResponse
 } from "../models";
 
@@ -52,6 +54,453 @@ export class LongTermRetentionBackups {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all long term retention backups for a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param options The options parameters.
+   */
+  public listByResourceGroupDatabase(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByResourceGroupDatabasePagingAll(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupDatabasePagingPage(
+          resourceGroupName,
+          locationName,
+          longTermRetentionServerName,
+          longTermRetentionDatabaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupDatabasePagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupDatabase(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupDatabaseNext(
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupDatabasePagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupDatabasePagingPage(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given location.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param options The options parameters.
+   */
+  public listByResourceGroupLocation(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByResourceGroupLocationPagingAll(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupLocationPagingPage(
+          resourceGroupName,
+          locationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupLocationPagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupLocation(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupLocationNext(
+        resourceGroupName,
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupLocationPagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupLocationPagingPage(
+      resourceGroupName,
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param options The options parameters.
+   */
+  public listByResourceGroupServer(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByResourceGroupServerPagingAll(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupServerPagingPage(
+          resourceGroupName,
+          locationName,
+          longTermRetentionServerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupServerPagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByResourceGroupServer(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupServerNext(
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupServerPagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByResourceGroupServerPagingPage(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all long term retention backups for a database.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param options The options parameters.
+   */
+  public listByDatabase(
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByDatabasePagingAll(
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByDatabasePagingPage(
+          locationName,
+          longTermRetentionServerName,
+          longTermRetentionDatabaseName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByDatabasePagingPage(
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByDatabase(
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByDatabasePagingAll(
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByDatabasePagingPage(
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given location.
+   * @param locationName The location of the database
+   * @param options The options parameters.
+   */
+  public listByLocation(
+    locationName: string,
+    options?: LongTermRetentionBackupsListByLocationOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByLocationPagingAll(locationName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(locationName, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    locationName: string,
+    options?: LongTermRetentionBackupsListByLocationOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByLocation(locationName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    locationName: string,
+    options?: LongTermRetentionBackupsListByLocationOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByLocationPagingPage(
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists the long term retention backups for a given server.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param options The options parameters.
+   */
+  public listByServer(
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByServerOptionalParams
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByServerPagingAll(
+      locationName,
+      longTermRetentionServerName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          locationName,
+          longTermRetentionServerName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByServerOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
+    let result = await this._listByServer(
+      locationName,
+      longTermRetentionServerName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        locationName,
+        longTermRetentionServerName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByServerPagingAll(
+    locationName: string,
+    longTermRetentionServerName: string,
+    options?: LongTermRetentionBackupsListByServerOptionalParams
+  ): AsyncIterableIterator<LongTermRetentionBackup> {
+    for await (const page of this.listByServerPagingPage(
+      locationName,
+      longTermRetentionServerName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -115,10 +564,12 @@ export class LongTermRetentionBackups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteByResourceGroupOperationSpec
@@ -140,7 +591,7 @@ export class LongTermRetentionBackups {
    * @param longTermRetentionDatabaseName The name of the database
    * @param options The options parameters.
    */
-  listByResourceGroupDatabase(
+  private _listByResourceGroupDatabase(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -167,7 +618,7 @@ export class LongTermRetentionBackups {
    * @param locationName The location of the database
    * @param options The options parameters.
    */
-  listByResourceGroupLocation(
+  private _listByResourceGroupLocation(
     resourceGroupName: string,
     locationName: string,
     options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
@@ -191,7 +642,7 @@ export class LongTermRetentionBackups {
    * @param longTermRetentionServerName The name of the server
    * @param options The options parameters.
    */
-  listByResourceGroupServer(
+  private _listByResourceGroupServer(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -262,10 +713,12 @@ export class LongTermRetentionBackups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -285,7 +738,7 @@ export class LongTermRetentionBackups {
    * @param longTermRetentionDatabaseName The name of the database
    * @param options The options parameters.
    */
-  listByDatabase(
+  private _listByDatabase(
     locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
@@ -308,7 +761,7 @@ export class LongTermRetentionBackups {
    * @param locationName The location of the database
    * @param options The options parameters.
    */
-  listByLocation(
+  private _listByLocation(
     locationName: string,
     options?: LongTermRetentionBackupsListByLocationOptionalParams
   ): Promise<LongTermRetentionBackupsListByLocationResponse> {
@@ -328,7 +781,7 @@ export class LongTermRetentionBackups {
    * @param longTermRetentionServerName The name of the server
    * @param options The options parameters.
    */
-  listByServer(
+  private _listByServer(
     locationName: string,
     longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByServerOptionalParams
@@ -355,7 +808,7 @@ export class LongTermRetentionBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupDatabaseNext(
+  private _listByResourceGroupDatabaseNext(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -388,7 +841,7 @@ export class LongTermRetentionBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupLocationNext(
+  private _listByResourceGroupLocationNext(
     resourceGroupName: string,
     locationName: string,
     nextLink: string,
@@ -418,7 +871,7 @@ export class LongTermRetentionBackups {
    *                 method.
    * @param options The options parameters.
    */
-  listByResourceGroupServerNext(
+  private _listByResourceGroupServerNext(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -446,7 +899,7 @@ export class LongTermRetentionBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
-  listByDatabaseNext(
+  private _listByDatabaseNext(
     locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
@@ -472,7 +925,7 @@ export class LongTermRetentionBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
-  listByLocationNext(
+  private _listByLocationNext(
     locationName: string,
     nextLink: string,
     options?: LongTermRetentionBackupsListByLocationNextOptionalParams
@@ -495,7 +948,7 @@ export class LongTermRetentionBackups {
    * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
-  listByServerNext(
+  private _listByServerNext(
     locationName: string,
     longTermRetentionServerName: string,
     nextLink: string,

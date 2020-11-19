@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  InstanceFailoverGroupsGetResponse,
   InstanceFailoverGroup,
+  InstanceFailoverGroupsGetResponse,
   InstanceFailoverGroupsCreateOrUpdateResponse,
   InstanceFailoverGroupsListByLocationResponse,
   InstanceFailoverGroupsFailoverResponse,
@@ -33,6 +34,78 @@ export class InstanceFailoverGroups {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists the failover groups in a location.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The name of the region where the resource is located.
+   * @param options The options parameters.
+   */
+  public listByLocation(
+    resourceGroupName: string,
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<InstanceFailoverGroup> {
+    const iter = this.listByLocationPagingAll(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(
+          resourceGroupName,
+          locationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    resourceGroupName: string,
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InstanceFailoverGroup[]> {
+    let result = await this._listByLocation(
+      resourceGroupName,
+      locationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        resourceGroupName,
+        locationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    resourceGroupName: string,
+    locationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<InstanceFailoverGroup> {
+    for await (const page of this.listByLocationPagingPage(
+      resourceGroupName,
+      locationName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -87,10 +160,12 @@ export class InstanceFailoverGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         InstanceFailoverGroupsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -126,10 +201,12 @@ export class InstanceFailoverGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -149,7 +226,7 @@ export class InstanceFailoverGroups {
    * @param locationName The name of the region where the resource is located.
    * @param options The options parameters.
    */
-  listByLocation(
+  private _listByLocation(
     resourceGroupName: string,
     locationName: string,
     options?: coreHttp.OperationOptions
@@ -188,10 +265,12 @@ export class InstanceFailoverGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         InstanceFailoverGroupsFailoverResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverOperationSpec
@@ -230,10 +309,12 @@ export class InstanceFailoverGroups {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         InstanceFailoverGroupsForceFailoverAllowDataLossResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       forceFailoverAllowDataLossOperationSpec
@@ -254,7 +335,7 @@ export class InstanceFailoverGroups {
    * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
-  listByLocationNext(
+  private _listByLocationNext(
     resourceGroupName: string,
     locationName: string,
     nextLink: string,

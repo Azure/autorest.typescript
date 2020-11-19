@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import {
+  AvailableDelegation,
   AvailableDelegationsListResponse,
   AvailableDelegationsListNextResponse
 } from "../models";
@@ -34,7 +36,53 @@ export class AvailableDelegations {
    * @param location The location of the subnet.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AvailableDelegation> {
+    const iter = this.listPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableDelegation[]> {
+    let result = await this._list(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(location, continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    location: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AvailableDelegation> {
+    for await (const page of this.listPagingPage(location, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all of the available subnet delegations for this subscription in this region.
+   * @param location The location of the subnet.
+   * @param options The options parameters.
+   */
+  private _list(
     location: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableDelegationsListResponse> {
@@ -54,7 +102,7 @@ export class AvailableDelegations {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     location: string,
     nextLink: string,
     options?: coreHttp.OperationOptions

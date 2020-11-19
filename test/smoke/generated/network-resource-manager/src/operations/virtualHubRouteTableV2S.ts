@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  VirtualHubRouteTableV2SGetResponse,
   VirtualHubRouteTableV2,
+  VirtualHubRouteTableV2SGetResponse,
   VirtualHubRouteTableV2SCreateOrUpdateResponse,
   VirtualHubRouteTableV2SListResponse,
   VirtualHubRouteTableV2SListNextResponse
@@ -31,6 +32,65 @@ export class VirtualHubRouteTableV2S {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Retrieves the details of all VirtualHubRouteTableV2s.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<VirtualHubRouteTableV2> {
+    const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, virtualHubName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualHubRouteTableV2[]> {
+    let result = await this._list(resourceGroupName, virtualHubName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        virtualHubName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<VirtualHubRouteTableV2> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      virtualHubName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -85,10 +145,12 @@ export class VirtualHubRouteTableV2S {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         VirtualHubRouteTableV2SCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -124,10 +186,12 @@ export class VirtualHubRouteTableV2S {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -147,7 +211,7 @@ export class VirtualHubRouteTableV2S {
    * @param virtualHubName The name of the VirtualHub.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     virtualHubName: string,
     options?: coreHttp.OperationOptions
@@ -170,7 +234,7 @@ export class VirtualHubRouteTableV2S {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,

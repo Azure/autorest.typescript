@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ServerBlobAuditingPoliciesGetResponse,
   ServerBlobAuditingPolicy,
+  ServerBlobAuditingPoliciesGetResponse,
   ServerBlobAuditingPoliciesCreateOrUpdateResponse,
   ServerBlobAuditingPoliciesListByServerResponse,
   ServerBlobAuditingPoliciesListByServerNextResponse
@@ -31,6 +32,78 @@ export class ServerBlobAuditingPolicies {
    */
   constructor(client: SqlManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists auditing settings of a server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  public listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ServerBlobAuditingPolicy> {
+    const iter = this.listByServerPagingAll(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          resourceGroupName,
+          serverName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServerBlobAuditingPolicy[]> {
+    let result = await this._listByServer(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByServerPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ServerBlobAuditingPolicy> {
+    for await (const page of this.listByServerPagingPage(
+      resourceGroupName,
+      serverName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -79,10 +152,12 @@ export class ServerBlobAuditingPolicies {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         ServerBlobAuditingPoliciesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -102,7 +177,7 @@ export class ServerBlobAuditingPolicies {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  listByServer(
+  private _listByServer(
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
@@ -126,7 +201,7 @@ export class ServerBlobAuditingPolicies {
    * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
-  listByServerNext(
+  private _listByServerNext(
     resourceGroupName: string,
     serverName: string,
     nextLink: string,

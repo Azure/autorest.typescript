@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -34,6 +35,65 @@ export class HubRouteTables {
   }
 
   /**
+   * Retrieves the details of all RouteTables.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<HubRouteTable> {
+    const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, virtualHubName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HubRouteTable[]> {
+    let result = await this._list(resourceGroupName, virtualHubName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        virtualHubName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HubRouteTable> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      virtualHubName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
@@ -58,10 +118,12 @@ export class HubRouteTables {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         HubRouteTablesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -122,10 +184,12 @@ export class HubRouteTables {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -145,7 +209,7 @@ export class HubRouteTables {
    * @param virtualHubName The name of the VirtualHub.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     virtualHubName: string,
     options?: coreHttp.OperationOptions
@@ -168,7 +232,7 @@ export class HubRouteTables {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,

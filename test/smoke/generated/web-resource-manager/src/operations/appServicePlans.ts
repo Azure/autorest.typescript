@@ -6,17 +6,26 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  AppServicePlan,
+  AppServicePlansListNextOptionalParams,
   AppServicePlansListOptionalParams,
+  HybridConnection,
+  Site,
+  AppServicePlansListWebAppsNextOptionalParams,
+  AppServicePlansListWebAppsOptionalParams,
+  CsmUsageQuota,
+  AppServicePlansListUsagesNextOptionalParams,
+  AppServicePlansListUsagesOptionalParams,
   AppServicePlansListResponse,
   AppServicePlansListByResourceGroupResponse,
   AppServicePlansGetResponse,
-  AppServicePlan,
   AppServicePlansCreateOrUpdateResponse,
   AppServicePlanPatchResource,
   AppServicePlansUpdateResponse,
@@ -27,10 +36,8 @@ import {
   AppServicePlansGetHybridConnectionPlanLimitResponse,
   AppServicePlansListHybridConnectionsResponse,
   AppServicePlansRestartWebAppsOptionalParams,
-  AppServicePlansListWebAppsOptionalParams,
   AppServicePlansListWebAppsResponse,
   AppServicePlansGetServerFarmSkusResponse,
-  AppServicePlansListUsagesOptionalParams,
   AppServicePlansListUsagesResponse,
   AppServicePlansListVnetsResponse,
   AppServicePlansGetVnetFromServerFarmResponse,
@@ -42,14 +49,11 @@ import {
   VnetRoute,
   AppServicePlansCreateOrUpdateVnetRouteResponse,
   AppServicePlansUpdateVnetRouteResponse,
-  AppServicePlansListNextOptionalParams,
   AppServicePlansListNextResponse,
   AppServicePlansListByResourceGroupNextResponse,
   AppServicePlansListWebAppsByHybridConnectionNextResponse,
   AppServicePlansListHybridConnectionsNextResponse,
-  AppServicePlansListWebAppsNextOptionalParams,
   AppServicePlansListWebAppsNextResponse,
-  AppServicePlansListUsagesNextOptionalParams,
   AppServicePlansListUsagesNextResponse
 } from "../models";
 
@@ -71,7 +75,380 @@ export class AppServicePlans {
    * Description for Get all App Service plans for a subscription.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    options?: AppServicePlansListOptionalParams
+  ): PagedAsyncIterableIterator<AppServicePlan> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: AppServicePlansListOptionalParams
+  ): AsyncIterableIterator<AppServicePlan[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: AppServicePlansListOptionalParams
+  ): AsyncIterableIterator<AppServicePlan> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all App Service plans in a resource group.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<AppServicePlan> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServicePlan[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<AppServicePlan> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all apps that use a Hybrid Connection in an App Service Plan.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service plan.
+   * @param namespaceName Name of the Hybrid Connection namespace.
+   * @param relayName Name of the Hybrid Connection relay.
+   * @param options The options parameters.
+   */
+  public listWebAppsByHybridConnection(
+    resourceGroupName: string,
+    name: string,
+    namespaceName: string,
+    relayName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<string> {
+    const iter = this.listWebAppsByHybridConnectionPagingAll(
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebAppsByHybridConnectionPagingPage(
+          resourceGroupName,
+          name,
+          namespaceName,
+          relayName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listWebAppsByHybridConnectionPagingPage(
+    resourceGroupName: string,
+    name: string,
+    namespaceName: string,
+    relayName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string[]> {
+    let result = await this._listWebAppsByHybridConnection(
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebAppsByHybridConnectionNext(
+        resourceGroupName,
+        name,
+        namespaceName,
+        relayName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebAppsByHybridConnectionPagingAll(
+    resourceGroupName: string,
+    name: string,
+    namespaceName: string,
+    relayName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<string> {
+    for await (const page of this.listWebAppsByHybridConnectionPagingPage(
+      resourceGroupName,
+      name,
+      namespaceName,
+      relayName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Retrieve all Hybrid Connections in use in an App Service plan.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service plan.
+   * @param options The options parameters.
+   */
+  public listHybridConnections(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<HybridConnection> {
+    const iter = this.listHybridConnectionsPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listHybridConnectionsPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listHybridConnectionsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HybridConnection[]> {
+    let result = await this._listHybridConnections(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listHybridConnectionsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listHybridConnectionsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<HybridConnection> {
+    for await (const page of this.listHybridConnectionsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all apps associated with an App Service plan.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service plan.
+   * @param options The options parameters.
+   */
+  public listWebApps(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListWebAppsOptionalParams
+  ): PagedAsyncIterableIterator<Site> {
+    const iter = this.listWebAppsPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listWebAppsPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listWebAppsPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListWebAppsOptionalParams
+  ): AsyncIterableIterator<Site[]> {
+    let result = await this._listWebApps(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listWebAppsNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listWebAppsPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListWebAppsOptionalParams
+  ): AsyncIterableIterator<Site> {
+    for await (const page of this.listWebAppsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets server farm usage information
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of App Service Plan
+   * @param options The options parameters.
+   */
+  public listUsages(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListUsagesOptionalParams
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
+    const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesPagingPage(resourceGroupName, name, options);
+      }
+    };
+  }
+
+  private async *listUsagesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota[]> {
+    let result = await this._listUsages(resourceGroupName, name, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listUsagesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listUsagesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServicePlansListUsagesOptionalParams
+  ): AsyncIterableIterator<CsmUsageQuota> {
+    for await (const page of this.listUsagesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Get all App Service plans for a subscription.
+   * @param options The options parameters.
+   */
+  private _list(
     options?: AppServicePlansListOptionalParams
   ): Promise<AppServicePlansListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -88,7 +465,7 @@ export class AppServicePlans {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListByResourceGroupResponse> {
@@ -146,10 +523,12 @@ export class AppServicePlans {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         AppServicePlansCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -323,7 +702,7 @@ export class AppServicePlans {
    * @param relayName Name of the Hybrid Connection relay.
    * @param options The options parameters.
    */
-  listWebAppsByHybridConnection(
+  private _listWebAppsByHybridConnection(
     resourceGroupName: string,
     name: string,
     namespaceName: string,
@@ -371,7 +750,7 @@ export class AppServicePlans {
    * @param name Name of the App Service plan.
    * @param options The options parameters.
    */
-  listHybridConnections(
+  private _listHybridConnections(
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
@@ -415,7 +794,7 @@ export class AppServicePlans {
    * @param name Name of the App Service plan.
    * @param options The options parameters.
    */
-  listWebApps(
+  private _listWebApps(
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansListWebAppsOptionalParams
@@ -459,7 +838,7 @@ export class AppServicePlans {
    * @param name Name of App Service Plan
    * @param options The options parameters.
    */
-  listUsages(
+  private _listUsages(
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansListUsagesOptionalParams
@@ -754,7 +1133,7 @@ export class AppServicePlans {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: AppServicePlansListNextOptionalParams
   ): Promise<AppServicePlansListNextResponse> {
@@ -774,7 +1153,7 @@ export class AppServicePlans {
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
-  listByResourceGroupNext(
+  private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -800,7 +1179,7 @@ export class AppServicePlans {
    *                 method.
    * @param options The options parameters.
    */
-  listWebAppsByHybridConnectionNext(
+  private _listWebAppsByHybridConnectionNext(
     resourceGroupName: string,
     name: string,
     namespaceName: string,
@@ -829,7 +1208,7 @@ export class AppServicePlans {
    * @param nextLink The nextLink from the previous successful call to the ListHybridConnections method.
    * @param options The options parameters.
    */
-  listHybridConnectionsNext(
+  private _listHybridConnectionsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -854,7 +1233,7 @@ export class AppServicePlans {
    * @param nextLink The nextLink from the previous successful call to the ListWebApps method.
    * @param options The options parameters.
    */
-  listWebAppsNext(
+  private _listWebAppsNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
@@ -879,7 +1258,7 @@ export class AppServicePlans {
    * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param options The options parameters.
    */
-  listUsagesNext(
+  private _listUsagesNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,

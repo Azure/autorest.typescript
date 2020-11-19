@@ -346,14 +346,14 @@ export const PrivateEndpointConnectionItem: coreHttp.CompositeMapper = {
     className: "PrivateEndpointConnectionItem",
     modelProperties: {
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpoint"
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionState"
@@ -1015,7 +1015,7 @@ export const Operation: coreHttp.CompositeMapper = {
         }
       },
       serviceSpecification: {
-        serializedName: "serviceSpecification",
+        serializedName: "properties.serviceSpecification",
         type: {
           name: "Composite",
           className: "ServiceSpecification"
@@ -1113,14 +1113,14 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       privateEndpoint: {
-        serializedName: "privateEndpoint",
+        serializedName: "properties.privateEndpoint",
         type: {
           name: "Composite",
           className: "PrivateEndpoint"
         }
       },
       privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
+        serializedName: "properties.privateLinkServiceConnectionState",
         type: {
           name: "Composite",
           className: "PrivateLinkServiceConnectionState"

@@ -9,6 +9,7 @@ import { HttpMethods } from '@azure/core-http';
 import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { Poller } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
@@ -8071,17 +8072,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     getPublishingUser(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetPublishingUserResponse>;
     getSourceControl(sourceControlType: string, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetSourceControlResponse>;
     getSubscriptionDeploymentLocations(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse>;
-    listBillingMeters(options?: WebSiteManagementClientListBillingMetersOptionalParams): Promise<WebSiteManagementClientListBillingMetersResponse>;
-    listBillingMetersNext(nextLink: string, options?: WebSiteManagementClientListBillingMetersNextOptionalParams): Promise<WebSiteManagementClientListBillingMetersNextResponse>;
-    listGeoRegions(options?: WebSiteManagementClientListGeoRegionsOptionalParams): Promise<WebSiteManagementClientListGeoRegionsResponse>;
-    listGeoRegionsNext(nextLink: string, options?: WebSiteManagementClientListGeoRegionsNextOptionalParams): Promise<WebSiteManagementClientListGeoRegionsNextResponse>;
-    listPremierAddOnOffers(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListPremierAddOnOffersResponse>;
-    listPremierAddOnOffersNext(nextLink: string, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse>;
-    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse>;
-    listSiteIdentifiersAssignedToHostNameNext(nameIdentifier: NameIdentifier, nextLink: string, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse>;
+    listBillingMeters(options?: WebSiteManagementClientListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;
+    listGeoRegions(options?: WebSiteManagementClientListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion>;
+    listPremierAddOnOffers(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PremierAddOnOffer>;
+    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identifier>;
     listSkus(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSkusResponse>;
-    listSourceControls(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSourceControlsResponse>;
-    listSourceControlsNext(nextLink: string, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSourceControlsNextResponse>;
+    listSourceControls(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SourceControl>;
     move(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     // Warning: (ae-forgotten-export) The symbol "Provider" needs to be exported by the entry point index.d.ts
     //

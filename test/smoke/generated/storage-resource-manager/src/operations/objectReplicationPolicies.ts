@@ -6,14 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import {
+  ObjectReplicationPolicy,
   ObjectReplicationPoliciesListResponse,
   ObjectReplicationPoliciesGetResponse,
-  ObjectReplicationPolicy,
   ObjectReplicationPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -40,7 +41,58 @@ export class ObjectReplicationPolicies {
    *                    only.
    * @param options The options parameters.
    */
-  list(
+  public list(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<ObjectReplicationPolicy> {
+    const iter = this.listPagingAll(resourceGroupName, accountName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, accountName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ObjectReplicationPolicy[]> {
+    let result = await this._list(resourceGroupName, accountName, options);
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<ObjectReplicationPolicy> {
+    for await (const page of this.listPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * List the object replication policies associated with the storage account.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param options The options parameters.
+   */
+  private _list(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions

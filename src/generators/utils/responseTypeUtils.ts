@@ -1,4 +1,9 @@
 import { ClientDetails } from "../../models/clientDetails";
+import { TypeDetails } from "../../models/modelDetails";
+import {
+  OperationDetails,
+  OperationResponseDetails
+} from "../../models/operationDetails";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 
 /**
@@ -31,4 +36,68 @@ export function getResponseTypeName(
   return modelNames.has(typeName)
     ? `${operationResponseName}OperationResponse`
     : typeName;
+}
+
+/**
+ * Given an Operation, this function finds the response type name and adds it to the imported models.
+ * This function checks for a possible model name, or returns the default "RestResponse" type from core-http.
+ */
+export function getOperationResponseType(
+  operation: OperationDetails,
+  importedModels: Set<string>,
+  modelNames: Set<string>
+) {
+  const hasSuccessResponse = operation.responses.some(
+    ({ isError, mappers }) =>
+      !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
+  );
+
+  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
+
+  if (responseName) {
+    const typeName = getResponseTypeName(responseName, modelNames);
+    importedModels.add(typeName);
+    return typeName;
+  }
+
+  return "coreHttp.RestResponse";
+}
+
+/**
+ * This function extracts the body type for pageable operations. This is used to later on
+ * be able to return an array of items, instead of the Response objects. This will get the type
+ * of the "value" property from the response on a pageable operation.
+ */
+export function getPagingResponseBodyType(
+  operation: OperationDetails
+): TypeDetails | undefined {
+  const responses = operation.responses
+    // Filter responses that are not marked as errors and that have either body or headers
+    .filter(
+      ({ isError, mappers }) =>
+        !isError && (mappers.bodyMapper || mappers.headersMapper)
+    );
+
+  if (responses.length > 1 && !hasUniqueMappers(responses)) {
+    throw new Error("Handling multiple response types is not yet implemented");
+  }
+
+  return responses[0].types.pagingValueType;
+}
+
+function hasUniqueMappers(responses: OperationResponseDetails[]): boolean {
+  if (!responses.length) {
+    throw new Error("Expected responses array to be non-empty");
+  }
+  const mapper = responses[0].mappers;
+  for (const response of responses) {
+    if (
+      response.mappers.bodyMapper !== mapper.bodyMapper ||
+      response.mappers.headersMapper !== mapper.headersMapper
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }

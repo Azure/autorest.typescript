@@ -6,12 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  DatabaseAccountGetResults,
+  Metric,
+  Usage,
+  DatabaseAccountsListUsagesOptionalParams,
+  MetricDefinition,
   DatabaseAccountsGetResponse,
   DatabaseAccountUpdateParameters,
   DatabaseAccountsUpdateResponse,
@@ -27,7 +33,6 @@ import {
   DatabaseAccountsListReadOnlyKeysResponse,
   DatabaseAccountRegenerateKeyParameters,
   DatabaseAccountsListMetricsResponse,
-  DatabaseAccountsListUsagesOptionalParams,
   DatabaseAccountsListUsagesResponse,
   DatabaseAccountsListMetricDefinitionsResponse
 } from "../models";
@@ -44,6 +49,275 @@ export class DatabaseAccounts {
    */
   constructor(client: CosmosDBManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Lists all the Azure Cosmos DB database accounts available under the subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DatabaseAccountGetResults> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Lists all the Azure Cosmos DB database accounts available under the given resource group.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param options The options parameters.
+   */
+  public listByResourceGroup(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
+    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listByResourceGroupPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
+    let result = await this._listByResourceGroup(resourceGroupName, options);
+    yield result.value || [];
+  }
+
+  private async *listByResourceGroupPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<DatabaseAccountGetResults> {
+    for await (const page of this.listByResourceGroupPagingPage(
+      resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the metrics determined by the given filter for the given database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param filter An OData filter expression that describes a subset of metrics to return. The
+   *               parameters that can be filtered are name.value (name of the metric, can have an or of multiple
+   *               names), startTime, endTime, and timeGrain. The supported operator is eq.
+   * @param options The options parameters.
+   */
+  public listMetrics(
+    resourceGroupName: string,
+    accountName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Metric> {
+    const iter = this.listMetricsPagingAll(
+      resourceGroupName,
+      accountName,
+      filter,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricsPagingPage(
+          resourceGroupName,
+          accountName,
+          filter,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric[]> {
+    let result = await this._listMetrics(
+      resourceGroupName,
+      accountName,
+      filter,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    filter: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Metric> {
+    for await (const page of this.listMetricsPagingPage(
+      resourceGroupName,
+      accountName,
+      filter,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the usages (most recent data) for the given database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  public listUsages(
+    resourceGroupName: string,
+    accountName: string,
+    options?: DatabaseAccountsListUsagesOptionalParams
+  ): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listUsagesPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listUsagesPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listUsagesPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: DatabaseAccountsListUsagesOptionalParams
+  ): AsyncIterableIterator<Usage[]> {
+    let result = await this._listUsages(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listUsagesPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: DatabaseAccountsListUsagesOptionalParams
+  ): AsyncIterableIterator<Usage> {
+    for await (const page of this.listUsagesPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves metric definitions for the given database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  public listMetricDefinitions(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<MetricDefinition> {
+    const iter = this.listMetricDefinitionsPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listMetricDefinitionsPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listMetricDefinitionsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition[]> {
+    let result = await this._listMetricDefinitions(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listMetricDefinitionsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<MetricDefinition> {
+    for await (const page of this.listMetricDefinitionsPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -90,10 +364,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabaseAccountsUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       updateOperationSpec
@@ -129,10 +405,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         DatabaseAccountsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -164,10 +442,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -205,10 +485,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       failoverPriorityChangeOperationSpec
@@ -225,7 +507,7 @@ export class DatabaseAccounts {
    * Lists all the Azure Cosmos DB database accounts available under the subscription.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAccountsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -242,7 +524,7 @@ export class DatabaseAccounts {
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param options The options parameters.
    */
-  listByResourceGroup(
+  private _listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAccountsListByResourceGroupResponse> {
@@ -322,10 +604,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       offlineRegionOperationSpec
@@ -360,10 +644,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       onlineRegionOperationSpec
@@ -442,10 +728,12 @@ export class DatabaseAccounts {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       regenerateKeyOperationSpec
@@ -487,7 +775,7 @@ export class DatabaseAccounts {
    *               names), startTime, endTime, and timeGrain. The supported operator is eq.
    * @param options The options parameters.
    */
-  listMetrics(
+  private _listMetrics(
     resourceGroupName: string,
     accountName: string,
     filter: string,
@@ -511,7 +799,7 @@ export class DatabaseAccounts {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listUsages(
+  private _listUsages(
     resourceGroupName: string,
     accountName: string,
     options?: DatabaseAccountsListUsagesOptionalParams
@@ -533,7 +821,7 @@ export class DatabaseAccounts {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  listMetricDefinitions(
+  private _listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions

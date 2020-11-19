@@ -6,13 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
-  DeletedApplicationsRestoreResponse,
+  Application,
   DeletedApplicationsListOptionalParams,
+  DeletedApplicationsRestoreResponse,
   DeletedApplicationsListResponse,
   DeletedApplicationsListNextResponse
 } from "../models";
@@ -29,6 +31,94 @@ export class DeletedApplications {
    */
   constructor(client: GraphRbacManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets a list of deleted applications in the directory.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: DeletedApplicationsListOptionalParams
+  ): PagedAsyncIterableIterator<Application> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: DeletedApplicationsListOptionalParams
+  ): AsyncIterableIterator<Application[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: DeletedApplicationsListOptionalParams
+  ): AsyncIterableIterator<Application> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of deleted applications in the directory.
+   * @param nextLink Next link for the list operation.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Application> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Application[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.odataNextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.odataNextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Application> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -54,7 +144,7 @@ export class DeletedApplications {
    * Gets a list of deleted applications in the directory.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: DeletedApplicationsListOptionalParams
   ): Promise<DeletedApplicationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -90,7 +180,7 @@ export class DeletedApplications {
    * @param nextLink Next link for the list operation.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeletedApplicationsListNextResponse> {

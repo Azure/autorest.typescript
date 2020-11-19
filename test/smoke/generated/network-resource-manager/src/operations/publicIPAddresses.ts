@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  PublicIPAddress,
   PublicIPAddressesGetOptionalParams,
   PublicIPAddressesGetResponse,
-  PublicIPAddress,
   PublicIPAddressesCreateOrUpdateResponse,
   TagsObject,
   PublicIPAddressesUpdateTagsResponse,
@@ -45,6 +46,268 @@ export class PublicIPAddresses {
   }
 
   /**
+   * Gets all the public IP addresses in a subscription.
+   * @param options The options parameters.
+   */
+  public listAll(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listAllPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAllPagingPage(options);
+      }
+    };
+  }
+
+  private async *listAllPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._listAll(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAllNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAllPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listAllPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all public IP addresses in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets information about all public IP addresses on a virtual machine scale set level.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the virtual machine scale set.
+   * @param options The options parameters.
+   */
+  public listVirtualMachineScaleSetPublicIPAddresses(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listVirtualMachineScaleSetPublicIPAddressesPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listVirtualMachineScaleSetPublicIPAddressesPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listVirtualMachineScaleSetPublicIPAddressesPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._listVirtualMachineScaleSetPublicIPAddresses(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listVirtualMachineScaleSetPublicIPAddressesNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listVirtualMachineScaleSetPublicIPAddressesPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listVirtualMachineScaleSetPublicIPAddressesPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets information about all public IP addresses in a virtual machine IP configuration in a virtual
+   * machine scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualMachineScaleSetName The name of the virtual machine scale set.
+   * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The network interface name.
+   * @param ipConfigurationName The IP configuration name.
+   * @param options The options parameters.
+   */
+  public listVirtualMachineScaleSetVMPublicIPAddresses(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listVirtualMachineScaleSetVMPublicIPAddressesPagingAll(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listVirtualMachineScaleSetVMPublicIPAddressesPagingPage(
+          resourceGroupName,
+          virtualMachineScaleSetName,
+          virtualmachineIndex,
+          networkInterfaceName,
+          ipConfigurationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listVirtualMachineScaleSetVMPublicIPAddressesPagingPage(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._listVirtualMachineScaleSetVMPublicIPAddresses(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listVirtualMachineScaleSetVMPublicIPAddressesNext(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        ipConfigurationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listVirtualMachineScaleSetVMPublicIPAddressesPagingAll(
+    resourceGroupName: string,
+    virtualMachineScaleSetName: string,
+    virtualmachineIndex: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listVirtualMachineScaleSetVMPublicIPAddressesPagingPage(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Deletes the specified public IP address.
    * @param resourceGroupName The name of the resource group.
    * @param publicIpAddressName The name of the subnet.
@@ -63,10 +326,12 @@ export class PublicIPAddresses {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -124,10 +389,12 @@ export class PublicIPAddresses {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PublicIPAddressesCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -170,7 +437,7 @@ export class PublicIPAddresses {
    * Gets all the public IP addresses in a subscription.
    * @param options The options parameters.
    */
-  listAll(
+  private _listAll(
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -187,7 +454,7 @@ export class PublicIPAddresses {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListResponse> {
@@ -207,7 +474,7 @@ export class PublicIPAddresses {
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetPublicIPAddresses(
+  private _listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: coreHttp.OperationOptions
@@ -237,7 +504,7 @@ export class PublicIPAddresses {
    * @param ipConfigurationName The IP configuration name.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetVMPublicIPAddresses(
+  private _listVirtualMachineScaleSetVMPublicIPAddresses(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
@@ -306,7 +573,7 @@ export class PublicIPAddresses {
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
    */
-  listAllNext(
+  private _listAllNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PublicIPAddressesListAllNextResponse> {
@@ -326,7 +593,7 @@ export class PublicIPAddresses {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -350,7 +617,7 @@ export class PublicIPAddresses {
    *                 ListVirtualMachineScaleSetPublicIPAddresses method.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetPublicIPAddressesNext(
+  private _listVirtualMachineScaleSetPublicIPAddressesNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     nextLink: string,
@@ -383,7 +650,7 @@ export class PublicIPAddresses {
    *                 ListVirtualMachineScaleSetVMPublicIPAddresses method.
    * @param options The options parameters.
    */
-  listVirtualMachineScaleSetVMPublicIPAddressesNext(
+  private _listVirtualMachineScaleSetVMPublicIPAddressesNext(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,

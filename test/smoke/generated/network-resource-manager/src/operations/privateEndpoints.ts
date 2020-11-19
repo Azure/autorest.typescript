@@ -6,15 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  PrivateEndpoint,
   PrivateEndpointsGetOptionalParams,
   PrivateEndpointsGetResponse,
-  PrivateEndpoint,
   PrivateEndpointsCreateOrUpdateResponse,
   PrivateEndpointsListResponse,
   PrivateEndpointsListBySubscriptionResponse,
@@ -37,6 +38,98 @@ export class PrivateEndpoints {
   }
 
   /**
+   * Gets all private endpoints in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param options The options parameters.
+   */
+  public list(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PrivateEndpoint> {
+    const iter = this.listPagingAll(resourceGroupName, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(resourceGroupName, options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpoint[]> {
+    let result = await this._list(resourceGroupName, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    resourceGroupName: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpoint> {
+    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all private endpoints in a subscription.
+   * @param options The options parameters.
+   */
+  public listBySubscription(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PrivateEndpoint> {
+    const iter = this.listBySubscriptionPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpoint[]> {
+    let result = await this._listBySubscription(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PrivateEndpoint> {
+    for await (const page of this.listBySubscriptionPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Deletes the specified private endpoint.
    * @param resourceGroupName The name of the resource group.
    * @param privateEndpointName The name of the private endpoint.
@@ -55,10 +148,12 @@ export class PrivateEndpoints {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         coreHttp.RestResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       deleteOperationSpec
@@ -116,10 +211,12 @@ export class PrivateEndpoints {
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
+    ) => {
+      return this.client.sendOperationRequest(args, spec) as Promise<
         PrivateEndpointsCreateOrUpdateResponse
       >;
+    };
+
     const initialOperationResult = await sendOperation(
       operationArguments,
       createOrUpdateOperationSpec
@@ -138,7 +235,7 @@ export class PrivateEndpoints {
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListResponse> {
@@ -156,7 +253,7 @@ export class PrivateEndpoints {
    * Gets all private endpoints in a subscription.
    * @param options The options parameters.
    */
-  listBySubscription(
+  private _listBySubscription(
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -174,7 +271,7 @@ export class PrivateEndpoints {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
@@ -195,7 +292,7 @@ export class PrivateEndpoints {
    * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
-  listBySubscriptionNext(
+  private _listBySubscriptionNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateEndpointsListBySubscriptionNextResponse> {

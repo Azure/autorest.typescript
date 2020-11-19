@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -37,6 +38,146 @@ export class PolicyDefinitions {
    */
   constructor(client: PolicyClient) {
     this.client = client;
+  }
+
+  /**
+   * This operation retrieves a list of all the policy definitions in a given subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * This operation retrieves a list of all the built-in policy definitions.
+   * @param options The options parameters.
+   */
+  public listBuiltIn(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listBuiltInPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBuiltInPagingPage(options);
+      }
+    };
+  }
+
+  private async *listBuiltInPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition[]> {
+    let result = await this._listBuiltIn(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBuiltInNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBuiltInPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition> {
+    for await (const page of this.listBuiltInPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * This operation retrieves a list of all the policy definitions in a given management group.
+   * @param managementGroupId The ID of the management group.
+   * @param options The options parameters.
+   */
+  public listByManagementGroup(
+    managementGroupId: string,
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listByManagementGroupPagingAll(
+      managementGroupId,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByManagementGroupPagingPage(managementGroupId, options);
+      }
+    };
+  }
+
+  private async *listByManagementGroupPagingPage(
+    managementGroupId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition[]> {
+    let result = await this._listByManagementGroup(managementGroupId, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByManagementGroupNext(
+        managementGroupId,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByManagementGroupPagingAll(
+    managementGroupId: string,
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<PolicyDefinition> {
+    for await (const page of this.listByManagementGroupPagingPage(
+      managementGroupId,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -192,7 +333,7 @@ export class PolicyDefinitions {
    * This operation retrieves a list of all the policy definitions in a given subscription.
    * @param options The options parameters.
    */
-  list(
+  private _list(
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -208,7 +349,7 @@ export class PolicyDefinitions {
    * This operation retrieves a list of all the built-in policy definitions.
    * @param options The options parameters.
    */
-  listBuiltIn(
+  private _listBuiltIn(
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListBuiltInResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -225,7 +366,7 @@ export class PolicyDefinitions {
    * @param managementGroupId The ID of the management group.
    * @param options The options parameters.
    */
-  listByManagementGroup(
+  private _listByManagementGroup(
     managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListByManagementGroupResponse> {
@@ -244,7 +385,7 @@ export class PolicyDefinitions {
    * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
-  listNext(
+  private _listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListNextResponse> {
@@ -263,7 +404,7 @@ export class PolicyDefinitions {
    * @param nextLink The nextLink from the previous successful call to the ListBuiltIn method.
    * @param options The options parameters.
    */
-  listBuiltInNext(
+  private _listBuiltInNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyDefinitionsListBuiltInNextResponse> {
@@ -283,7 +424,7 @@ export class PolicyDefinitions {
    * @param nextLink The nextLink from the previous successful call to the ListByManagementGroup method.
    * @param options The options parameters.
    */
-  listByManagementGroupNext(
+  private _listByManagementGroupNext(
     managementGroupId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
