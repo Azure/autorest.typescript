@@ -45,7 +45,7 @@ export class LoadBalancers {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<LoadBalancer, LoadBalancer[]> {
+  ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class LoadBalancers {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<LoadBalancer, LoadBalancer[]> {
+  ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

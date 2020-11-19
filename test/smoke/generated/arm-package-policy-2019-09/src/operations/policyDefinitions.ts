@@ -46,7 +46,7 @@ export class PolicyDefinitions {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PolicyDefinition, PolicyDefinition[]> {
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -88,7 +88,7 @@ export class PolicyDefinitions {
    */
   public listBuiltIn(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PolicyDefinition, PolicyDefinition[]> {
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listBuiltInPagingAll(options);
     return {
       next() {
@@ -132,7 +132,7 @@ export class PolicyDefinitions {
   public listByManagementGroup(
     managementGroupId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PolicyDefinition, PolicyDefinition[]> {
+  ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listByManagementGroupPagingAll(
       managementGroupId,
       options

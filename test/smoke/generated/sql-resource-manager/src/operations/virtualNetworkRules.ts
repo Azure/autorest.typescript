@@ -45,7 +45,7 @@ export class VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetworkRule, VirtualNetworkRule[]> {
+  ): PagedAsyncIterableIterator<VirtualNetworkRule> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

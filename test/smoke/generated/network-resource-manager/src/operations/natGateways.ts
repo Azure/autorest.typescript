@@ -45,7 +45,7 @@ export class NatGateways {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NatGateway, NatGateway[]> {
+  ): PagedAsyncIterableIterator<NatGateway> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class NatGateways {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NatGateway, NatGateway[]> {
+  ): PagedAsyncIterableIterator<NatGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

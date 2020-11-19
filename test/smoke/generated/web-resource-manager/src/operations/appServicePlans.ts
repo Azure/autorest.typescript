@@ -77,7 +77,7 @@ export class AppServicePlans {
    */
   public list(
     options?: AppServicePlansListOptionalParams
-  ): PagedAsyncIterableIterator<AppServicePlan, AppServicePlan[]> {
+  ): PagedAsyncIterableIterator<AppServicePlan> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -121,7 +121,7 @@ export class AppServicePlans {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AppServicePlan, AppServicePlan[]> {
+  ): PagedAsyncIterableIterator<AppServicePlan> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -180,7 +180,7 @@ export class AppServicePlans {
     namespaceName: string,
     relayName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<string, string[]> {
+  ): PagedAsyncIterableIterator<string> {
     const iter = this.listWebAppsByHybridConnectionPagingAll(
       resourceGroupName,
       name,
@@ -265,7 +265,7 @@ export class AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<HybridConnection, HybridConnection[]> {
+  ): PagedAsyncIterableIterator<HybridConnection> {
     const iter = this.listHybridConnectionsPagingAll(
       resourceGroupName,
       name,
@@ -336,7 +336,7 @@ export class AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansListWebAppsOptionalParams
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.listWebAppsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -395,7 +395,7 @@ export class AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<CsmUsageQuota, CsmUsageQuota[]> {
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
     const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
     return {
       next() {

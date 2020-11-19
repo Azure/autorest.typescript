@@ -46,7 +46,7 @@ export class GeoBackupPolicies {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<GeoBackupPolicy, GeoBackupPolicy[]> {
+  ): PagedAsyncIterableIterator<GeoBackupPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

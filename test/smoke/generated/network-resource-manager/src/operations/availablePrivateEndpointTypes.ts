@@ -42,10 +42,7 @@ export class AvailablePrivateEndpointTypes {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AvailablePrivateEndpointType,
-    AvailablePrivateEndpointType[]
-  > {
+  ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {
@@ -94,10 +91,7 @@ export class AvailablePrivateEndpointTypes {
     location: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AvailablePrivateEndpointType,
-    AvailablePrivateEndpointType[]
-  > {
+  ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
     const iter = this.listByResourceGroupPagingAll(
       location,
       resourceGroupName,

@@ -46,10 +46,7 @@ export class ManagedInstanceEncryptionProtectors {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceEncryptionProtector,
-    ManagedInstanceEncryptionProtector[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

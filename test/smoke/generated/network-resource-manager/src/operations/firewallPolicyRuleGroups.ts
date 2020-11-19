@@ -44,10 +44,7 @@ export class FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    FirewallPolicyRuleGroup,
-    FirewallPolicyRuleGroup[]
-  > {
+  ): PagedAsyncIterableIterator<FirewallPolicyRuleGroup> {
     const iter = this.listPagingAll(
       resourceGroupName,
       firewallPolicyName,

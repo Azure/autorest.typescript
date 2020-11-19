@@ -45,7 +45,7 @@ export class VirtualRouters {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualRouter, VirtualRouter[]> {
+  ): PagedAsyncIterableIterator<VirtualRouter> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -96,7 +96,7 @@ export class VirtualRouters {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualRouter, VirtualRouter[]> {
+  ): PagedAsyncIterableIterator<VirtualRouter> {
     const iter = this.listPagingAll(options);
     return {
       next() {

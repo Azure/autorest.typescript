@@ -41,7 +41,7 @@ export class PrivateLinkResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateLinkResource, PrivateLinkResource[]> {
+  ): PagedAsyncIterableIterator<PrivateLinkResource> {
     const iter = this.listByDatabaseAccountPagingAll(
       resourceGroupName,
       accountName,

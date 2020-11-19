@@ -62148,16 +62148,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BillingMeter",
-                  "canonicalReference": "web-resource-manager!BillingMeter:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -62167,7 +62158,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62216,16 +62207,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "GeoRegion",
-                  "canonicalReference": "web-resource-manager!GeoRegion:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -62235,7 +62217,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62288,16 +62270,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PremierAddOnOffer",
-                  "canonicalReference": "web-resource-manager!PremierAddOnOffer:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -62307,7 +62280,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 10
+                "endIndex": 8
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62369,16 +62342,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Identifier",
-                  "canonicalReference": "web-resource-manager!Identifier:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -62388,7 +62352,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 6,
-                "endIndex": 12
+                "endIndex": 10
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -62511,16 +62475,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "SourceControl",
-                  "canonicalReference": "web-resource-manager!SourceControl:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -62530,7 +62485,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 10
+                "endIndex": 8
               },
               "releaseTag": "Public",
               "overloadIndex": 1,

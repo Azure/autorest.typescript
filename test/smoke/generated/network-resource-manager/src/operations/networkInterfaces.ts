@@ -60,7 +60,7 @@ export class NetworkInterfaces {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkInterface, NetworkInterface[]> {
+  ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -104,7 +104,7 @@ export class NetworkInterfaces {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkInterface, NetworkInterface[]> {
+  ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -158,7 +158,7 @@ export class NetworkInterfaces {
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkInterface, NetworkInterface[]> {
+  ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listVirtualMachineScaleSetVMNetworkInterfacesPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,
@@ -236,7 +236,7 @@ export class NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkInterface, NetworkInterface[]> {
+  ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listVirtualMachineScaleSetNetworkInterfacesPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,
@@ -311,10 +311,7 @@ export class NetworkInterfaces {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
-  ): PagedAsyncIterableIterator<
-    NetworkInterfaceIPConfiguration,
-    NetworkInterfaceIPConfiguration[]
-  > {
+  ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration> {
     const iter = this.listVirtualMachineScaleSetIpConfigurationsPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,

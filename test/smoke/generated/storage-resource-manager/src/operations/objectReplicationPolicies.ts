@@ -45,10 +45,7 @@ export class ObjectReplicationPolicies {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ObjectReplicationPolicy,
-    ObjectReplicationPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ObjectReplicationPolicy> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
       next() {

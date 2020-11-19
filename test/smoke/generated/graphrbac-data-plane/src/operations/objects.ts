@@ -41,7 +41,7 @@ export class Objects {
   public listObjectsByObjectIds(
     parameters: GetObjectsParameters,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsPagingAll(parameters, options);
     return {
       next() {
@@ -93,7 +93,7 @@ export class Objects {
   public listObjectsByObjectIdsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsNextPagingAll(nextLink, options);
     return {
       next() {

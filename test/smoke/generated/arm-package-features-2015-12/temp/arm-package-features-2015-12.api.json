@@ -177,16 +177,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Operation",
-                  "canonicalReference": "arm-package-features-2015-12!Operation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -196,7 +187,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 4,
-                "endIndex": 10
+                "endIndex": 8
               },
               "releaseTag": "Public",
               "overloadIndex": 1,

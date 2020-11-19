@@ -44,7 +44,7 @@ export class HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<HubRouteTable, HubRouteTable[]> {
+  ): PagedAsyncIterableIterator<HubRouteTable> {
     const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
     return {
       next() {

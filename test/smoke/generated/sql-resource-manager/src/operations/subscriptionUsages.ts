@@ -40,7 +40,7 @@ export class SubscriptionUsages {
   public listByLocation(
     locationName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SubscriptionUsage, SubscriptionUsage[]> {
+  ): PagedAsyncIterableIterator<SubscriptionUsage> {
     const iter = this.listByLocationPagingAll(locationName, options);
     return {
       next() {

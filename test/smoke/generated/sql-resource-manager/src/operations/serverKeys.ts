@@ -45,7 +45,7 @@ export class ServerKeys {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServerKey, ServerKey[]> {
+  ): PagedAsyncIterableIterator<ServerKey> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

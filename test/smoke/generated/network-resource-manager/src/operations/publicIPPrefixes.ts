@@ -45,7 +45,7 @@ export class PublicIPPrefixes {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPPrefix, PublicIPPrefix[]> {
+  ): PagedAsyncIterableIterator<PublicIPPrefix> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class PublicIPPrefixes {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPPrefix, PublicIPPrefix[]> {
+  ): PagedAsyncIterableIterator<PublicIPPrefix> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

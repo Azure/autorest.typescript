@@ -44,7 +44,7 @@ export class LocalNetworkGateways {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<LocalNetworkGateway, LocalNetworkGateway[]> {
+  ): PagedAsyncIterableIterator<LocalNetworkGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

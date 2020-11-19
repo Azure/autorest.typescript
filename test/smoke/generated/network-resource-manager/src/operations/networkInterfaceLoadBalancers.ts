@@ -41,7 +41,7 @@ export class NetworkInterfaceLoadBalancers {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<LoadBalancer, LoadBalancer[]> {
+  ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkInterfaceName,

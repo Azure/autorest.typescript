@@ -45,7 +45,7 @@ export class SshPublicKeys {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SshPublicKeyResource, SshPublicKeyResource[]> {
+  ): PagedAsyncIterableIterator<SshPublicKeyResource> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -90,7 +90,7 @@ export class SshPublicKeys {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SshPublicKeyResource, SshPublicKeyResource[]> {
+  ): PagedAsyncIterableIterator<SshPublicKeyResource> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -50,7 +50,7 @@ export class PartitionKeyRangeId {
     partitionKeyRangeId: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PartitionMetric, PartitionMetric[]> {
+  ): PagedAsyncIterableIterator<PartitionMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,

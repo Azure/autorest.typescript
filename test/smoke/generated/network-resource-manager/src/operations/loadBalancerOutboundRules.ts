@@ -42,7 +42,7 @@ export class LoadBalancerOutboundRules {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<OutboundRule, OutboundRule[]> {
+  ): PagedAsyncIterableIterator<OutboundRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
       loadBalancerName,

@@ -42,10 +42,7 @@ export class RestorableDroppedDatabases {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    RestorableDroppedDatabase,
-    RestorableDroppedDatabase[]
-  > {
+  ): PagedAsyncIterableIterator<RestorableDroppedDatabase> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

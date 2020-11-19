@@ -65,10 +65,7 @@ export class VirtualMachineScaleSets {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualMachineScaleSet,
-    VirtualMachineScaleSet[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSet> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -118,10 +115,7 @@ export class VirtualMachineScaleSets {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualMachineScaleSet,
-    VirtualMachineScaleSet[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSet> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -168,10 +162,7 @@ export class VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualMachineScaleSetSku,
-    VirtualMachineScaleSetSku[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSetSku> {
     const iter = this.listSkusPagingAll(
       resourceGroupName,
       vmScaleSetName,
@@ -242,10 +233,7 @@ export class VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    UpgradeOperationHistoricalStatusInfo,
-    UpgradeOperationHistoricalStatusInfo[]
-  > {
+  ): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo> {
     const iter = this.getOSUpgradeHistoryPagingAll(
       resourceGroupName,
       vmScaleSetName,

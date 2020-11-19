@@ -53,7 +53,7 @@ export class SyncMembers {
     databaseName: string,
     syncGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SyncMember, SyncMember[]> {
+  ): PagedAsyncIterableIterator<SyncMember> {
     const iter = this.listBySyncGroupPagingAll(
       resourceGroupName,
       serverName,
@@ -145,10 +145,7 @@ export class SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SyncFullSchemaProperties,
-    SyncFullSchemaProperties[]
-  > {
+  ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
     const iter = this.listMemberSchemasPagingAll(
       resourceGroupName,
       serverName,

@@ -46,7 +46,7 @@ export class DedicatedHostGroups {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DedicatedHostGroup, DedicatedHostGroup[]> {
+  ): PagedAsyncIterableIterator<DedicatedHostGroup> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -98,7 +98,7 @@ export class DedicatedHostGroups {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DedicatedHostGroup, DedicatedHostGroup[]> {
+  ): PagedAsyncIterableIterator<DedicatedHostGroup> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {

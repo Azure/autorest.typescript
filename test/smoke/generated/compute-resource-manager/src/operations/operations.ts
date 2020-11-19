@@ -33,10 +33,7 @@ export class Operations {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ComputeOperationValue,
-    ComputeOperationValue[]
-  > {
+  ): PagedAsyncIterableIterator<ComputeOperationValue> {
     const iter = this.listPagingAll(options);
     return {
       next() {

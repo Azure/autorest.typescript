@@ -49,10 +49,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedBackupShortTermRetentionPolicy,
-    ManagedBackupShortTermRetentionPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     const iter = this.listByRestorableDroppedDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,

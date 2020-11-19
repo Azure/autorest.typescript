@@ -45,10 +45,7 @@ export class PrivateEndpointConnections {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    PrivateEndpointConnection,
-    PrivateEndpointConnection[]
-  > {
+  ): PagedAsyncIterableIterator<PrivateEndpointConnection> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

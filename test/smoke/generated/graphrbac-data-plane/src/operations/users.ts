@@ -44,7 +44,7 @@ export class Users {
    */
   public list(
     options?: UsersListOptionalParams
-  ): PagedAsyncIterableIterator<User, User[]> {
+  ): PagedAsyncIterableIterator<User> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -90,7 +90,7 @@ export class Users {
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<string, string[]> {
+  ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
       next() {
@@ -136,7 +136,7 @@ export class Users {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<User, User[]> {
+  ): PagedAsyncIterableIterator<User> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {

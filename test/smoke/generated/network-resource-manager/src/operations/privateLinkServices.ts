@@ -59,7 +59,7 @@ export class PrivateLinkServices {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateLinkService, PrivateLinkService[]> {
+  ): PagedAsyncIterableIterator<PrivateLinkService> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -107,7 +107,7 @@ export class PrivateLinkServices {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateLinkService, PrivateLinkService[]> {
+  ): PagedAsyncIterableIterator<PrivateLinkService> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -153,10 +153,7 @@ export class PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    PrivateEndpointConnection,
-    PrivateEndpointConnection[]
-  > {
+  ): PagedAsyncIterableIterator<PrivateEndpointConnection> {
     const iter = this.listPrivateEndpointConnectionsPagingAll(
       resourceGroupName,
       serviceName,
@@ -226,10 +223,7 @@ export class PrivateLinkServices {
   public listAutoApprovedPrivateLinkServices(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AutoApprovedPrivateLinkService,
-    AutoApprovedPrivateLinkService[]
-  > {
+  ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService> {
     const iter = this.listAutoApprovedPrivateLinkServicesPagingAll(
       location,
       options
@@ -294,10 +288,7 @@ export class PrivateLinkServices {
     location: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AutoApprovedPrivateLinkService,
-    AutoApprovedPrivateLinkService[]
-  > {
+  ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService> {
     const iter = this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingAll(
       location,
       resourceGroupName,

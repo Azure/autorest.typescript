@@ -44,7 +44,7 @@ export class Usages {
     resourceGroupName: string,
     instancePoolName: string,
     options?: UsagesListByInstancePoolOptionalParams
-  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listByInstancePoolPagingAll(
       resourceGroupName,
       instancePoolName,

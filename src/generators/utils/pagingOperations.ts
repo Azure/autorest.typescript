@@ -176,7 +176,7 @@ export function writeAsyncIterators(
 
       // Build an object with all the information about the paging methods
       // while generating each of the paging methods, this will help up access
-      // information about the other methdos.
+      // information about the other methods.
       const pagingMethodSettings: PagingMethodSettings = {
         initialMethod: {
           name: `${operation.namePrefix}${initialOperationName}`,
@@ -236,7 +236,7 @@ function writePublicMethod(
   operationGroupClass: ClassDeclaration,
   pagingMethodSettings: PagingMethodSettings
 ) {
-  const returnType = `PagedAsyncIterableIterator<${pagingMethodSettings.bodyResponseType}, ${pagingMethodSettings.bodyResponseType}[]>`;
+  const returnType = `PagedAsyncIterableIterator<${pagingMethodSettings.bodyResponseType}>`;
 
   const method = operationGroupClass.addMethod({
     name: pagingMethodSettings.publicMethod.name,
@@ -254,12 +254,12 @@ function writePublicMethod(
   // Extract the parameter names for the All method to call it
   let allMethodParameters = pagingMethodSettings.allMethod.parameters
     .map(p => p.name)
-    .join(",");
+    .join();
 
   // Extract the parameter names for the page method to call it
   const pageMethodNameParams = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
-    .join(",");
+    .join();
 
   method.addStatements([
     `const iter = this.${pagingMethodSettings.allMethod.name}(${allMethodParameters});`,
@@ -278,7 +278,7 @@ function writePublicMethod(
 }
 
 /**
- * Generates the All method which loops through all the pages and returns a single array with all the results
+ * Generates the All method which loops through all the pages and returns an iterator for all the results
  */
 function writeAllMethod(
   operationGroupClass: ClassDeclaration,
@@ -289,7 +289,7 @@ function writeAllMethod(
   // Gets the page method parameters to use when calling it.
   const pageMethodParameters = pagingMethodSettings.pageMethod.parameters
     .map(p => p.name)
-    .join(",");
+    .join();
 
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.allMethod.name}`,
@@ -325,7 +325,7 @@ function writePageMethod(
   // Extract the names for the initial method parameters
   const initialMethodParameters = pagingMethodSettings.initialMethod.parameters
     .map(p => p.name)
-    .join(",");
+    .join();
 
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.pageMethod.name}`,
@@ -361,7 +361,7 @@ function writePageMethod(
       // renaming nextLink to continuationToken sice it is the name we are using below and to avoid collisions with the
       // nextLink parameter that this (page method) takes.
       .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
-      .join(",");
+      .join();
 
     method.addStatements([
       `let continuationToken = result.${nextLinkProperty}`

@@ -43,7 +43,7 @@ export class PrivateLinkResources {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateLinkResource, PrivateLinkResource[]> {
+  ): PagedAsyncIterableIterator<PrivateLinkResource> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

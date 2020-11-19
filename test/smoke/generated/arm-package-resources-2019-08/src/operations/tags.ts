@@ -39,7 +39,7 @@ export class Tags {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TagDetails, TagDetails[]> {
+  ): PagedAsyncIterableIterator<TagDetails> {
     const iter = this.listPagingAll(options);
     return {
       next() {

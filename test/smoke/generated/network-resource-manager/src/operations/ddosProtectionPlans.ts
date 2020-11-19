@@ -44,7 +44,7 @@ export class DdosProtectionPlans {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DdosProtectionPlan, DdosProtectionPlan[]> {
+  ): PagedAsyncIterableIterator<DdosProtectionPlan> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -88,7 +88,7 @@ export class DdosProtectionPlans {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DdosProtectionPlan, DdosProtectionPlan[]> {
+  ): PagedAsyncIterableIterator<DdosProtectionPlan> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -33,7 +33,7 @@ export class Skus {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SkuInformation, SkuInformation[]> {
+  ): PagedAsyncIterableIterator<SkuInformation> {
     const iter = this.listPagingAll(options);
     return {
       next() {

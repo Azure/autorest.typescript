@@ -47,7 +47,7 @@ export class Images {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Image, Image[]> {
+  ): PagedAsyncIterableIterator<Image> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -99,7 +99,7 @@ export class Images {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Image, Image[]> {
+  ): PagedAsyncIterableIterator<Image> {
     const iter = this.listPagingAll(options);
     return {
       next() {

@@ -37,7 +37,7 @@ export class AuthorizationOperations {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Operation, Operation[]> {
+  ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listPagingAll(options);
     return {
       next() {

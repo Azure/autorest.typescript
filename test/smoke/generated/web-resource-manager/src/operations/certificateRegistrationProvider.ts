@@ -38,10 +38,7 @@ export class CertificateRegistrationProvider {
    */
   public listOperations(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    CsmOperationDescription,
-    CsmOperationDescription[]
-  > {
+  ): PagedAsyncIterableIterator<CsmOperationDescription> {
     const iter = this.listOperationsPagingAll(options);
     return {
       next() {

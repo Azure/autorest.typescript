@@ -44,10 +44,7 @@ export class ApplicationDefinitions {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ApplicationDefinition,
-    ApplicationDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ApplicationDefinition> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

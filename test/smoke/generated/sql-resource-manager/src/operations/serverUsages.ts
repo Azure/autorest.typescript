@@ -38,7 +38,7 @@ export class ServerUsages {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServerUsage, ServerUsage[]> {
+  ): PagedAsyncIterableIterator<ServerUsage> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

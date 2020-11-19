@@ -45,7 +45,7 @@ export class PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PacketCaptureResult, PacketCaptureResult[]> {
+  ): PagedAsyncIterableIterator<PacketCaptureResult> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkWatcherName,

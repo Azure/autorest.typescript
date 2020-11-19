@@ -51,10 +51,7 @@ export class VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: VirtualMachineScaleSetVMsListOptionalParams
-  ): PagedAsyncIterableIterator<
-    VirtualMachineScaleSetVM,
-    VirtualMachineScaleSetVM[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSetVM> {
     const iter = this.listPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,

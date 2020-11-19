@@ -39,7 +39,7 @@ export class ResourceSkus {
    */
   public list(
     options?: ResourceSkusListOptionalParams
-  ): PagedAsyncIterableIterator<ResourceSku, ResourceSku[]> {
+  ): PagedAsyncIterableIterator<ResourceSku> {
     const iter = this.listPagingAll(options);
     return {
       next() {

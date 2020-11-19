@@ -42,7 +42,7 @@ export class ExpressRouteLinks {
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ExpressRouteLink, ExpressRouteLink[]> {
+  ): PagedAsyncIterableIterator<ExpressRouteLink> {
     const iter = this.listPagingAll(
       resourceGroupName,
       expressRoutePortName,

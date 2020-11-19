@@ -42,7 +42,7 @@ export class Features {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FeatureResult, FeatureResult[]> {
+  ): PagedAsyncIterableIterator<FeatureResult> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -87,7 +87,7 @@ export class Features {
   public list(
     resourceProviderNamespace: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FeatureResult, FeatureResult[]> {
+  ): PagedAsyncIterableIterator<FeatureResult> {
     const iter = this.listPagingAll(resourceProviderNamespace, options);
     return {
       next() {

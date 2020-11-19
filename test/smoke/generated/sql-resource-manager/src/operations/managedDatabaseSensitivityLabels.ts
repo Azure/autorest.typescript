@@ -53,7 +53,7 @@ export class ManagedDatabaseSensitivityLabels {
     managedInstanceName: string,
     databaseName: string,
     options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<SensitivityLabel, SensitivityLabel[]> {
+  ): PagedAsyncIterableIterator<SensitivityLabel> {
     const iter = this.listCurrentByDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,
@@ -134,7 +134,7 @@ export class ManagedDatabaseSensitivityLabels {
     managedInstanceName: string,
     databaseName: string,
     options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<SensitivityLabel, SensitivityLabel[]> {
+  ): PagedAsyncIterableIterator<SensitivityLabel> {
     const iter = this.listRecommendedByDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,

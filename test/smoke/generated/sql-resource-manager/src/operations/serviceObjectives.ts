@@ -42,7 +42,7 @@ export class ServiceObjectives {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServiceObjective, ServiceObjective[]> {
+  ): PagedAsyncIterableIterator<ServiceObjective> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

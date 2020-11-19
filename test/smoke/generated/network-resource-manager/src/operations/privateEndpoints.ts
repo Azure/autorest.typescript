@@ -45,7 +45,7 @@ export class PrivateEndpoints {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateEndpoint, PrivateEndpoint[]> {
+  ): PagedAsyncIterableIterator<PrivateEndpoint> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -93,7 +93,7 @@ export class PrivateEndpoints {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateEndpoint, PrivateEndpoint[]> {
+  ): PagedAsyncIterableIterator<PrivateEndpoint> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {

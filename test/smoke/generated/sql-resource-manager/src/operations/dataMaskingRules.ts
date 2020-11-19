@@ -44,7 +44,7 @@ export class DataMaskingRules {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DataMaskingRule, DataMaskingRule[]> {
+  ): PagedAsyncIterableIterator<DataMaskingRule> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

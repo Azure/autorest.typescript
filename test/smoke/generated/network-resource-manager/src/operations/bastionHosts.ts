@@ -42,7 +42,7 @@ export class BastionHosts {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionHost, BastionHost[]> {
+  ): PagedAsyncIterableIterator<BastionHost> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -86,7 +86,7 @@ export class BastionHosts {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionHost, BastionHost[]> {
+  ): PagedAsyncIterableIterator<BastionHost> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

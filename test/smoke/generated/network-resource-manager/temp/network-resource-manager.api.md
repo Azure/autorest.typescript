@@ -4932,10 +4932,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     //
     // (undocumented)
     ipGroups: IpGroups;
-    listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionActiveSession, BastionActiveSession[]>;
-    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]>;
-    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionSessionState, BastionSessionState[]>;
-    listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]>;
+    listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionActiveSession>;
+    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
+    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionSessionState>;
+    listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
     // Warning: (ae-forgotten-export) The symbol "LoadBalancerBackendAddressPools" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)

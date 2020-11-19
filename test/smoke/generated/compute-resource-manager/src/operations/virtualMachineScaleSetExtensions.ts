@@ -47,10 +47,7 @@ export class VirtualMachineScaleSetExtensions {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualMachineScaleSetExtension,
-    VirtualMachineScaleSetExtension[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension> {
     const iter = this.listPagingAll(resourceGroupName, vmScaleSetName, options);
     return {
       next() {

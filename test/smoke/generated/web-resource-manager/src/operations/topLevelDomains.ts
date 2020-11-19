@@ -42,7 +42,7 @@ export class TopLevelDomains {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TopLevelDomain, TopLevelDomain[]> {
+  ): PagedAsyncIterableIterator<TopLevelDomain> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -88,7 +88,7 @@ export class TopLevelDomains {
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TldLegalAgreement, TldLegalAgreement[]> {
+  ): PagedAsyncIterableIterator<TldLegalAgreement> {
     const iter = this.listAgreementsPagingAll(name, agreementOption, options);
     return {
       next() {

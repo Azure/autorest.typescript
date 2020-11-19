@@ -71,10 +71,7 @@ export class LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByResourceGroupDatabasePagingAll(
       resourceGroupName,
       locationName,
@@ -160,10 +157,7 @@ export class LongTermRetentionBackups {
     resourceGroupName: string,
     locationName: string,
     options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByResourceGroupLocationPagingAll(
       resourceGroupName,
       locationName,
@@ -237,10 +231,7 @@ export class LongTermRetentionBackups {
     locationName: string,
     longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByResourceGroupServerPagingAll(
       resourceGroupName,
       locationName,
@@ -320,10 +311,7 @@ export class LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     options?: LongTermRetentionBackupsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByDatabasePagingAll(
       locationName,
       longTermRetentionServerName,
@@ -399,10 +387,7 @@ export class LongTermRetentionBackups {
   public listByLocation(
     locationName: string,
     options?: LongTermRetentionBackupsListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByLocationPagingAll(locationName, options);
     return {
       next() {
@@ -457,10 +442,7 @@ export class LongTermRetentionBackups {
     locationName: string,
     longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<
-    LongTermRetentionBackup,
-    LongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
     const iter = this.listByServerPagingAll(
       locationName,
       longTermRetentionServerName,

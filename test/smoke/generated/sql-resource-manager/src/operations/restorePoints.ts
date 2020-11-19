@@ -47,7 +47,7 @@ export class RestorePoints {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RestorePoint, RestorePoint[]> {
+  ): PagedAsyncIterableIterator<RestorePoint> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

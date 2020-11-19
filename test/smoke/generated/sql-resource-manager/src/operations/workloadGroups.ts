@@ -47,7 +47,7 @@ export class WorkloadGroups {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WorkloadGroup, WorkloadGroup[]> {
+  ): PagedAsyncIterableIterator<WorkloadGroup> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

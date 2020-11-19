@@ -46,7 +46,7 @@ export class JobTargetGroups {
     serverName: string,
     jobAgentName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<JobTargetGroup, JobTargetGroup[]> {
+  ): PagedAsyncIterableIterator<JobTargetGroup> {
     const iter = this.listByAgentPagingAll(
       resourceGroupName,
       serverName,

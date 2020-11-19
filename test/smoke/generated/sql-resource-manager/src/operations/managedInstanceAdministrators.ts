@@ -45,10 +45,7 @@ export class ManagedInstanceAdministrators {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceAdministrator,
-    ManagedInstanceAdministrator[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceAdministrator> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

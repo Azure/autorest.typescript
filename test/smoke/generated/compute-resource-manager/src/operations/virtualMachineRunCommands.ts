@@ -40,10 +40,7 @@ export class VirtualMachineRunCommands {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    RunCommandDocumentBase,
-    RunCommandDocumentBase[]
-  > {
+  ): PagedAsyncIterableIterator<RunCommandDocumentBase> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {

@@ -43,10 +43,7 @@ export class RestorableDroppedManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    RestorableDroppedManagedDatabase,
-    RestorableDroppedManagedDatabase[]
-  > {
+  ): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

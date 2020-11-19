@@ -46,7 +46,7 @@ export class EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<EncryptionProtector, EncryptionProtector[]> {
+  ): PagedAsyncIterableIterator<EncryptionProtector> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

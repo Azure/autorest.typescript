@@ -43,7 +43,7 @@ export class Certificates {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Certificate, Certificate[]> {
+  ): PagedAsyncIterableIterator<Certificate> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -87,7 +87,7 @@ export class Certificates {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Certificate, Certificate[]> {
+  ): PagedAsyncIterableIterator<Certificate> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

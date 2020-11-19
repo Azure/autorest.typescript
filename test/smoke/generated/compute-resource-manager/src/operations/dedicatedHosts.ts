@@ -47,7 +47,7 @@ export class DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DedicatedHost, DedicatedHost[]> {
+  ): PagedAsyncIterableIterator<DedicatedHost> {
     const iter = this.listByHostGroupPagingAll(
       resourceGroupName,
       hostGroupName,

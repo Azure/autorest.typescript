@@ -51,7 +51,7 @@ export class PublicIPAddresses {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPAddress, PublicIPAddress[]> {
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -95,7 +95,7 @@ export class PublicIPAddresses {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPAddress, PublicIPAddress[]> {
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -147,7 +147,7 @@ export class PublicIPAddresses {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPAddress, PublicIPAddress[]> {
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listVirtualMachineScaleSetPublicIPAddressesPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,
@@ -225,7 +225,7 @@ export class PublicIPAddresses {
     networkInterfaceName: string,
     ipConfigurationName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicIPAddress, PublicIPAddress[]> {
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listVirtualMachineScaleSetVMPublicIPAddressesPagingAll(
       resourceGroupName,
       virtualMachineScaleSetName,

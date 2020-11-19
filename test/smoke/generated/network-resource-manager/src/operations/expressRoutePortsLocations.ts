@@ -39,10 +39,7 @@ export class ExpressRoutePortsLocations {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRoutePortsLocation,
-    ExpressRoutePortsLocation[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRoutePortsLocation> {
     const iter = this.listPagingAll(options);
     return {
       next() {

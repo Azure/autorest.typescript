@@ -42,7 +42,7 @@ export class LoadBalancerProbes {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Probe, Probe[]> {
+  ): PagedAsyncIterableIterator<Probe> {
     const iter = this.listPagingAll(
       resourceGroupName,
       loadBalancerName,

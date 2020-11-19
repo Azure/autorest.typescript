@@ -47,7 +47,7 @@ export class EncryptionScopes {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<EncryptionScope, EncryptionScope[]> {
+  ): PagedAsyncIterableIterator<EncryptionScope> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
       next() {

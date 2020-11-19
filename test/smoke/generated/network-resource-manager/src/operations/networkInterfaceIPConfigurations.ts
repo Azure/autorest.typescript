@@ -42,10 +42,7 @@ export class NetworkInterfaceIPConfigurations {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    NetworkInterfaceIPConfiguration,
-    NetworkInterfaceIPConfiguration[]
-  > {
+  ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkInterfaceName,

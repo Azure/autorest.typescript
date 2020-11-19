@@ -51,7 +51,7 @@ export class ManagedInstances {
     resourceGroupName: string,
     instancePoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ManagedInstance, ManagedInstance[]> {
+  ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listByInstancePoolPagingAll(
       resourceGroupName,
       instancePoolName,
@@ -121,7 +121,7 @@ export class ManagedInstances {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ManagedInstance, ManagedInstance[]> {
+  ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -172,7 +172,7 @@ export class ManagedInstances {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ManagedInstance, ManagedInstance[]> {
+  ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listPagingAll(options);
     return {
       next() {

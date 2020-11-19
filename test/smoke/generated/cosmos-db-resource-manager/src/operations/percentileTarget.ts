@@ -48,7 +48,7 @@ export class PercentileTarget {
     targetRegion: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PercentileMetric, PercentileMetric[]> {
+  ): PagedAsyncIterableIterator<PercentileMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,

@@ -48,7 +48,7 @@ export class Disks {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Disk, Disk[]> {
+  ): PagedAsyncIterableIterator<Disk> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -99,7 +99,7 @@ export class Disks {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Disk, Disk[]> {
+  ): PagedAsyncIterableIterator<Disk> {
     const iter = this.listPagingAll(options);
     return {
       next() {

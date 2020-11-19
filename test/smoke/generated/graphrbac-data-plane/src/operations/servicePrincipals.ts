@@ -51,7 +51,7 @@ export class ServicePrincipals {
    */
   public list(
     options?: ServicePrincipalsListOptionalParams
-  ): PagedAsyncIterableIterator<ServicePrincipal, ServicePrincipal[]> {
+  ): PagedAsyncIterableIterator<ServicePrincipal> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -95,7 +95,7 @@ export class ServicePrincipals {
   public listOwners(
     objectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
       next() {
@@ -141,7 +141,7 @@ export class ServicePrincipals {
   public listKeyCredentials(
     objectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<KeyCredential, KeyCredential[]> {
+  ): PagedAsyncIterableIterator<KeyCredential> {
     const iter = this.listKeyCredentialsPagingAll(objectId, options);
     return {
       next() {
@@ -184,7 +184,7 @@ export class ServicePrincipals {
   public listPasswordCredentials(
     objectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PasswordCredential, PasswordCredential[]> {
+  ): PagedAsyncIterableIterator<PasswordCredential> {
     const iter = this.listPasswordCredentialsPagingAll(objectId, options);
     return {
       next() {
@@ -227,7 +227,7 @@ export class ServicePrincipals {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServicePrincipal, ServicePrincipal[]> {
+  ): PagedAsyncIterableIterator<ServicePrincipal> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {

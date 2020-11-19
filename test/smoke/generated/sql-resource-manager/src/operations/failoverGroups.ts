@@ -49,7 +49,7 @@ export class FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FailoverGroup, FailoverGroup[]> {
+  ): PagedAsyncIterableIterator<FailoverGroup> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

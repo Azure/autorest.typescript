@@ -49,10 +49,7 @@ export class ManagedBackupShortTermRetentionPolicies {
     managedInstanceName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedBackupShortTermRetentionPolicy,
-    ManagedBackupShortTermRetentionPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,

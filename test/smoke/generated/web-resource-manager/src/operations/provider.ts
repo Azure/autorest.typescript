@@ -46,10 +46,7 @@ export class Provider {
    */
   public listAvailableStacks(
     options?: ProviderGetAvailableStacksOptionalParams
-  ): PagedAsyncIterableIterator<
-    ApplicationStackResource,
-    ApplicationStackResource[]
-  > {
+  ): PagedAsyncIterableIterator<ApplicationStackResource> {
     const iter = this.getAvailableStacksPagingAll(options);
     return {
       next() {
@@ -92,10 +89,7 @@ export class Provider {
    */
   public listOperations(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    CsmOperationDescription,
-    CsmOperationDescription[]
-  > {
+  ): PagedAsyncIterableIterator<CsmOperationDescription> {
     const iter = this.listOperationsPagingAll(options);
     return {
       next() {
@@ -137,10 +131,7 @@ export class Provider {
    */
   public listAvailableStacksOnPrem(
     options?: ProviderGetAvailableStacksOnPremOptionalParams
-  ): PagedAsyncIterableIterator<
-    ApplicationStackResource,
-    ApplicationStackResource[]
-  > {
+  ): PagedAsyncIterableIterator<ApplicationStackResource> {
     const iter = this.getAvailableStacksOnPremPagingAll(options);
     return {
       next() {

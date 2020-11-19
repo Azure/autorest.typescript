@@ -46,10 +46,7 @@ export class ExtendedDatabaseBlobAuditingPolicies {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExtendedDatabaseBlobAuditingPolicy,
-    ExtendedDatabaseBlobAuditingPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

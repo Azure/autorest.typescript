@@ -45,10 +45,7 @@ export class ServiceEndpointPolicies {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ServiceEndpointPolicy,
-    ServiceEndpointPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ServiceEndpointPolicy> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -92,10 +89,7 @@ export class ServiceEndpointPolicies {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ServiceEndpointPolicy,
-    ServiceEndpointPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ServiceEndpointPolicy> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

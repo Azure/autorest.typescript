@@ -43,7 +43,7 @@ export class ElasticPoolActivities {
     serverName: string,
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ElasticPoolActivity, ElasticPoolActivity[]> {
+  ): PagedAsyncIterableIterator<ElasticPoolActivity> {
     const iter = this.listByElasticPoolPagingAll(
       resourceGroupName,
       serverName,

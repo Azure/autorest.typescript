@@ -47,7 +47,7 @@ export class InstancePools {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<InstancePool, InstancePool[]> {
+  ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -98,7 +98,7 @@ export class InstancePools {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<InstancePool, InstancePool[]> {
+  ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listPagingAll(options);
     return {
       next() {

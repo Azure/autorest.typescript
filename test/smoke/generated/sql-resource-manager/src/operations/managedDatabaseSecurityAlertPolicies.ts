@@ -48,10 +48,7 @@ export class ManagedDatabaseSecurityAlertPolicies {
     managedInstanceName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedDatabaseSecurityAlertPolicy,
-    ManagedDatabaseSecurityAlertPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,

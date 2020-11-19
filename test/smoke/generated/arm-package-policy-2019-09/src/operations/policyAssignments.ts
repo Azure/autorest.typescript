@@ -66,7 +66,7 @@ export class PolicyAssignments {
   public listForResourceGroup(
     resourceGroupName: string,
     options?: PolicyAssignmentsListForResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment, PolicyAssignment[]> {
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
     const iter = this.listForResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -148,7 +148,7 @@ export class PolicyAssignments {
     resourceType: string,
     resourceName: string,
     options?: PolicyAssignmentsListForResourceOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment, PolicyAssignment[]> {
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
     const iter = this.listForResourcePagingAll(
       resourceGroupName,
       resourceProviderNamespace,
@@ -247,7 +247,7 @@ export class PolicyAssignments {
     managementGroupId: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PolicyAssignment, PolicyAssignment[]> {
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
     const iter = this.listForManagementGroupPagingAll(
       managementGroupId,
       filter,
@@ -323,7 +323,7 @@ export class PolicyAssignments {
    */
   public list(
     options?: PolicyAssignmentsListOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment, PolicyAssignment[]> {
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
     const iter = this.listPagingAll(options);
     return {
       next() {

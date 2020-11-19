@@ -40,7 +40,7 @@ export class DeletedWebApps {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DeletedSite, DeletedSite[]> {
+  ): PagedAsyncIterableIterator<DeletedSite> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -84,7 +84,7 @@ export class DeletedWebApps {
   public listByLocation(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DeletedSite, DeletedSite[]> {
+  ): PagedAsyncIterableIterator<DeletedSite> {
     const iter = this.listByLocationPagingAll(location, options);
     return {
       next() {

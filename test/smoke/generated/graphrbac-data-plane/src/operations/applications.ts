@@ -53,7 +53,7 @@ export class Applications {
    */
   public list(
     options?: ApplicationsListOptionalParams
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class Applications {
   public listOwners(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(applicationObjectId, options);
     return {
       next() {
@@ -150,7 +150,7 @@ export class Applications {
   public listKeyCredentials(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<KeyCredential, KeyCredential[]> {
+  ): PagedAsyncIterableIterator<KeyCredential> {
     const iter = this.listKeyCredentialsPagingAll(applicationObjectId, options);
     return {
       next() {
@@ -193,7 +193,7 @@ export class Applications {
   public listPasswordCredentials(
     applicationObjectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PasswordCredential, PasswordCredential[]> {
+  ): PagedAsyncIterableIterator<PasswordCredential> {
     const iter = this.listPasswordCredentialsPagingAll(
       applicationObjectId,
       options
@@ -245,7 +245,7 @@ export class Applications {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {

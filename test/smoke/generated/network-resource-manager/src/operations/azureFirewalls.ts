@@ -46,7 +46,7 @@ export class AzureFirewalls {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AzureFirewall, AzureFirewall[]> {
+  ): PagedAsyncIterableIterator<AzureFirewall> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -94,7 +94,7 @@ export class AzureFirewalls {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AzureFirewall, AzureFirewall[]> {
+  ): PagedAsyncIterableIterator<AzureFirewall> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

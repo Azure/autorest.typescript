@@ -36,7 +36,7 @@ export class VirtualMachineSizes {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualMachineSize, VirtualMachineSize[]> {
+  ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {

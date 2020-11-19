@@ -663,7 +663,7 @@ function processProperties(
       NameType.Property,
       true /** shouldGuard */
     );
-    modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
+    modelProperties[name] = getMapperOrRef(prop.schema, serializedName, {
       ...options,
       required: prop.required,
       readOnly: prop.readOnly,

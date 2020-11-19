@@ -46,10 +46,7 @@ export class TransparentDataEncryptionActivities {
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    TransparentDataEncryptionActivity,
-    TransparentDataEncryptionActivity[]
-  > {
+  ): PagedAsyncIterableIterator<TransparentDataEncryptionActivity> {
     const iter = this.listByConfigurationPagingAll(
       resourceGroupName,
       serverName,

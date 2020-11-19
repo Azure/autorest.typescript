@@ -42,7 +42,7 @@ export class DefaultSecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SecurityRule, SecurityRule[]> {
+  ): PagedAsyncIterableIterator<SecurityRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkSecurityGroupName,

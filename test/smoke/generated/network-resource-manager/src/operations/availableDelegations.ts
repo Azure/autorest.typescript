@@ -39,7 +39,7 @@ export class AvailableDelegations {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AvailableDelegation, AvailableDelegation[]> {
+  ): PagedAsyncIterableIterator<AvailableDelegation> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {

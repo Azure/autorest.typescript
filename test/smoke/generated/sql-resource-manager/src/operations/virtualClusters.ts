@@ -43,7 +43,7 @@ export class VirtualClusters {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualCluster, VirtualCluster[]> {
+  ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -88,7 +88,7 @@ export class VirtualClusters {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualCluster, VirtualCluster[]> {
+  ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -48,7 +48,7 @@ export class Snapshots {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -99,7 +99,7 @@ export class Snapshots {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listPagingAll(options);
     return {
       next() {

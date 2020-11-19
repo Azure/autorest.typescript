@@ -43,7 +43,7 @@ export class DatabaseAccountRegion {
     region: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+  ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,

@@ -54,10 +54,7 @@ export class MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    MongoDBDatabaseGetResults,
-    MongoDBDatabaseGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<MongoDBDatabaseGetResults> {
     const iter = this.listMongoDBDatabasesPagingAll(
       resourceGroupName,
       accountName,
@@ -119,10 +116,7 @@ export class MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    MongoDBCollectionGetResults,
-    MongoDBCollectionGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<MongoDBCollectionGetResults> {
     const iter = this.listMongoDBCollectionsPagingAll(
       resourceGroupName,
       accountName,

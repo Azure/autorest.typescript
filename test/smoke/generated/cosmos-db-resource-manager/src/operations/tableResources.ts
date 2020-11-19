@@ -47,7 +47,7 @@ export class TableResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TableGetResults, TableGetResults[]> {
+  ): PagedAsyncIterableIterator<TableGetResults> {
     const iter = this.listTablesPagingAll(
       resourceGroupName,
       accountName,

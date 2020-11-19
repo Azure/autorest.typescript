@@ -46,7 +46,7 @@ export class ExpressRoutePorts {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ExpressRoutePort, ExpressRoutePort[]> {
+  ): PagedAsyncIterableIterator<ExpressRoutePort> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class ExpressRoutePorts {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ExpressRoutePort, ExpressRoutePort[]> {
+  ): PagedAsyncIterableIterator<ExpressRoutePort> {
     const iter = this.listPagingAll(options);
     return {
       next() {

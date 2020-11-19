@@ -41,7 +41,7 @@ export class Paging {
   public listPagesPartialUrl(
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Product, Product[]> {
+  ): PagedAsyncIterableIterator<Product> {
     const iter = this.getPagesPartialUrlPagingAll(accountName, options);
     return {
       next() {
@@ -94,7 +94,7 @@ export class Paging {
   public listPagesPartialUrlOperation(
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Product, Product[]> {
+  ): PagedAsyncIterableIterator<Product> {
     const iter = this.getPagesPartialUrlOperationPagingAll(
       accountName,
       options
@@ -152,7 +152,7 @@ export class Paging {
     accountName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Product, Product[]> {
+  ): PagedAsyncIterableIterator<Product> {
     const iter = this.getPagesPartialUrlOperationNextPagingAll(
       accountName,
       nextLink,

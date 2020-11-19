@@ -59,7 +59,7 @@ export class VirtualMachines {
   public listByLocation(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualMachine, VirtualMachine[]> {
+  ): PagedAsyncIterableIterator<VirtualMachine> {
     const iter = this.listByLocationPagingAll(location, options);
     return {
       next() {
@@ -110,7 +110,7 @@ export class VirtualMachines {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualMachine, VirtualMachine[]> {
+  ): PagedAsyncIterableIterator<VirtualMachine> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -159,7 +159,7 @@ export class VirtualMachines {
    */
   public listAll(
     options?: VirtualMachinesListAllOptionalParams
-  ): PagedAsyncIterableIterator<VirtualMachine, VirtualMachine[]> {
+  ): PagedAsyncIterableIterator<VirtualMachine> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -205,7 +205,7 @@ export class VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualMachineSize, VirtualMachineSize[]> {
+  ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listAvailableSizesPagingAll(
       resourceGroupName,
       vmName,

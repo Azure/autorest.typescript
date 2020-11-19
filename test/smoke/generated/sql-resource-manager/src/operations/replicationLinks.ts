@@ -46,7 +46,7 @@ export class ReplicationLinks {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ReplicationLink, ReplicationLink[]> {
+  ): PagedAsyncIterableIterator<ReplicationLink> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

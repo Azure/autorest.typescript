@@ -44,10 +44,7 @@ export class ServerCommunicationLinks {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ServerCommunicationLink,
-    ServerCommunicationLink[]
-  > {
+  ): PagedAsyncIterableIterator<ServerCommunicationLink> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

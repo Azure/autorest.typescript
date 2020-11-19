@@ -42,7 +42,7 @@ export class VpnSiteLinks {
     resourceGroupName: string,
     vpnSiteName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VpnSiteLink, VpnSiteLink[]> {
+  ): PagedAsyncIterableIterator<VpnSiteLink> {
     const iter = this.listByVpnSitePagingAll(
       resourceGroupName,
       vpnSiteName,

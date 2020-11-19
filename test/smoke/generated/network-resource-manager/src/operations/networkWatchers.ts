@@ -68,7 +68,7 @@ export class NetworkWatchers {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkWatcher, NetworkWatcher[]> {
+  ): PagedAsyncIterableIterator<NetworkWatcher> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -106,7 +106,7 @@ export class NetworkWatchers {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkWatcher, NetworkWatcher[]> {
+  ): PagedAsyncIterableIterator<NetworkWatcher> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

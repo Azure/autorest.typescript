@@ -43,7 +43,7 @@ export class Subscriptions {
   public listLocations(
     subscriptionId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Location, Location[]> {
+  ): PagedAsyncIterableIterator<Location> {
     const iter = this.listLocationsPagingAll(subscriptionId, options);
     return {
       next() {
@@ -84,7 +84,7 @@ export class Subscriptions {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Subscription, Subscription[]> {
+  ): PagedAsyncIterableIterator<Subscription> {
     const iter = this.listPagingAll(options);
     return {
       next() {

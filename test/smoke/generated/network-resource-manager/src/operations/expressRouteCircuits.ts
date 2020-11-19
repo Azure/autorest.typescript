@@ -51,7 +51,7 @@ export class ExpressRouteCircuits {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ExpressRouteCircuit, ExpressRouteCircuit[]> {
+  ): PagedAsyncIterableIterator<ExpressRouteCircuit> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -99,7 +99,7 @@ export class ExpressRouteCircuits {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ExpressRouteCircuit, ExpressRouteCircuit[]> {
+  ): PagedAsyncIterableIterator<ExpressRouteCircuit> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

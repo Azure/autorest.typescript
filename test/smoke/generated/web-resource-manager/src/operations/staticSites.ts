@@ -69,10 +69,7 @@ export class StaticSites {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteARMResource,
-    StaticSiteARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteARMResource> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -116,10 +113,7 @@ export class StaticSites {
   public listStaticSitesByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteARMResource,
-    StaticSiteARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteARMResource> {
     const iter = this.getStaticSitesByResourceGroupPagingAll(
       resourceGroupName,
       options
@@ -185,10 +179,7 @@ export class StaticSites {
     name: string,
     authprovider: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteUserARMResource,
-    StaticSiteUserARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteUserARMResource> {
     const iter = this.listStaticSiteUsersPagingAll(
       resourceGroupName,
       name,
@@ -266,10 +257,7 @@ export class StaticSites {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteBuildARMResource,
-    StaticSiteBuildARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteBuildARMResource> {
     const iter = this.getStaticSiteBuildsPagingAll(
       resourceGroupName,
       name,
@@ -342,10 +330,7 @@ export class StaticSites {
     name: string,
     prId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteFunctionOverviewARMResource,
-    StaticSiteFunctionOverviewARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     const iter = this.listStaticSiteBuildFunctionsPagingAll(
       resourceGroupName,
       name,
@@ -423,10 +408,7 @@ export class StaticSites {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteCustomDomainOverviewARMResource,
-    StaticSiteCustomDomainOverviewARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource> {
     const iter = this.listStaticSiteCustomDomainsPagingAll(
       resourceGroupName,
       name,
@@ -497,10 +479,7 @@ export class StaticSites {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    StaticSiteFunctionOverviewARMResource,
-    StaticSiteFunctionOverviewARMResource[]
-  > {
+  ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     const iter = this.listStaticSiteFunctionsPagingAll(
       resourceGroupName,
       name,

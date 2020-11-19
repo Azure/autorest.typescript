@@ -44,10 +44,7 @@ export class NetworkInterfaceTapConfigurations {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    NetworkInterfaceTapConfiguration,
-    NetworkInterfaceTapConfiguration[]
-  > {
+  ): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkInterfaceName,

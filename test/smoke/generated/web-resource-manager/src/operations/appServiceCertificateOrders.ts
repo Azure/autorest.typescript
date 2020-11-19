@@ -58,10 +58,7 @@ export class AppServiceCertificateOrders {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AppServiceCertificateOrder,
-    AppServiceCertificateOrder[]
-  > {
+  ): PagedAsyncIterableIterator<AppServiceCertificateOrder> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -105,10 +102,7 @@ export class AppServiceCertificateOrders {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AppServiceCertificateOrder,
-    AppServiceCertificateOrder[]
-  > {
+  ): PagedAsyncIterableIterator<AppServiceCertificateOrder> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -163,10 +157,7 @@ export class AppServiceCertificateOrders {
     resourceGroupName: string,
     certificateOrderName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AppServiceCertificateResource,
-    AppServiceCertificateResource[]
-  > {
+  ): PagedAsyncIterableIterator<AppServiceCertificateResource> {
     const iter = this.listCertificatesPagingAll(
       resourceGroupName,
       certificateOrderName,

@@ -61,7 +61,7 @@ export class ManagementLocks {
   public listAtResourceGroupLevel(
     resourceGroupName: string,
     options?: ManagementLocksListAtResourceGroupLevelOptionalParams
-  ): PagedAsyncIterableIterator<ManagementLockObject, ManagementLockObject[]> {
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
     const iter = this.listAtResourceGroupLevelPagingAll(
       resourceGroupName,
       options
@@ -132,7 +132,7 @@ export class ManagementLocks {
     resourceType: string,
     resourceName: string,
     options?: ManagementLocksListAtResourceLevelOptionalParams
-  ): PagedAsyncIterableIterator<ManagementLockObject, ManagementLockObject[]> {
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
     const iter = this.listAtResourceLevelPagingAll(
       resourceGroupName,
       resourceProviderNamespace,
@@ -220,7 +220,7 @@ export class ManagementLocks {
    */
   public listAtSubscriptionLevel(
     options?: ManagementLocksListAtSubscriptionLevelOptionalParams
-  ): PagedAsyncIterableIterator<ManagementLockObject, ManagementLockObject[]> {
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
     const iter = this.listAtSubscriptionLevelPagingAll(options);
     return {
       next() {
@@ -271,7 +271,7 @@ export class ManagementLocks {
   public listByScope(
     scope: string,
     options?: ManagementLocksListByScopeOptionalParams
-  ): PagedAsyncIterableIterator<ManagementLockObject, ManagementLockObject[]> {
+  ): PagedAsyncIterableIterator<ManagementLockObject> {
     const iter = this.listByScopePagingAll(scope, options);
     return {
       next() {

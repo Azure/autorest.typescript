@@ -39,7 +39,7 @@ export class DeletedApplications {
    */
   public list(
     options?: DeletedApplicationsListOptionalParams
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -83,7 +83,7 @@ export class DeletedApplications {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {

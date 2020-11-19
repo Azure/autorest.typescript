@@ -50,7 +50,7 @@ export class Applications {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -101,7 +101,7 @@ export class Applications {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Application, Application[]> {
+  ): PagedAsyncIterableIterator<Application> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {

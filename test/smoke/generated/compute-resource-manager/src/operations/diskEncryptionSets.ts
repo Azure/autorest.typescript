@@ -46,7 +46,7 @@ export class DiskEncryptionSets {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DiskEncryptionSet, DiskEncryptionSet[]> {
+  ): PagedAsyncIterableIterator<DiskEncryptionSet> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class DiskEncryptionSets {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DiskEncryptionSet, DiskEncryptionSet[]> {
+  ): PagedAsyncIterableIterator<DiskEncryptionSet> {
     const iter = this.listPagingAll(options);
     return {
       next() {

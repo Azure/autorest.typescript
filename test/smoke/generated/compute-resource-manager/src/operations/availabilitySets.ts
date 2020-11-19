@@ -47,7 +47,7 @@ export class AvailabilitySets {
    */
   public listBySubscription(
     options?: AvailabilitySetsListBySubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<AvailabilitySet, AvailabilitySet[]> {
+  ): PagedAsyncIterableIterator<AvailabilitySet> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -91,7 +91,7 @@ export class AvailabilitySets {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AvailabilitySet, AvailabilitySet[]> {
+  ): PagedAsyncIterableIterator<AvailabilitySet> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -144,7 +144,7 @@ export class AvailabilitySets {
     resourceGroupName: string,
     availabilitySetName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualMachineSize, VirtualMachineSize[]> {
+  ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listAvailableSizesPagingAll(
       resourceGroupName,
       availabilitySetName,

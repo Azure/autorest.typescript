@@ -40,7 +40,7 @@ export class Usage {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<UsageModel, UsageModel[]> {
+  ): PagedAsyncIterableIterator<UsageModel> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {

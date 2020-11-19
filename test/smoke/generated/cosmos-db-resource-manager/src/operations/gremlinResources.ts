@@ -54,10 +54,7 @@ export class GremlinResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    GremlinDatabaseGetResults,
-    GremlinDatabaseGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<GremlinDatabaseGetResults> {
     const iter = this.listGremlinDatabasesPagingAll(
       resourceGroupName,
       accountName,
@@ -119,10 +116,7 @@ export class GremlinResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    GremlinGraphGetResults,
-    GremlinGraphGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<GremlinGraphGetResults> {
     const iter = this.listGremlinGraphsPagingAll(
       resourceGroupName,
       accountName,

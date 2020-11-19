@@ -44,10 +44,7 @@ export class RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    RecommendedElasticPool,
-    RecommendedElasticPool[]
-  > {
+  ): PagedAsyncIterableIterator<RecommendedElasticPool> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
@@ -110,10 +107,7 @@ export class RecommendedElasticPools {
     serverName: string,
     recommendedElasticPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    RecommendedElasticPoolMetric,
-    RecommendedElasticPoolMetric[]
-  > {
+  ): PagedAsyncIterableIterator<RecommendedElasticPoolMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       serverName,

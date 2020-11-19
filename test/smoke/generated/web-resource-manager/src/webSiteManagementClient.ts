@@ -107,7 +107,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   public listSourceControls(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SourceControl, SourceControl[]> {
+  ): PagedAsyncIterableIterator<SourceControl> {
     const iter = this.listSourceControlsPagingAll(options);
     return {
       next() {
@@ -149,7 +149,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   public listBillingMeters(
     options?: WebSiteManagementClientListBillingMetersOptionalParams
-  ): PagedAsyncIterableIterator<BillingMeter, BillingMeter[]> {
+  ): PagedAsyncIterableIterator<BillingMeter> {
     const iter = this.listBillingMetersPagingAll(options);
     return {
       next() {
@@ -191,7 +191,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   public listGeoRegions(
     options?: WebSiteManagementClientListGeoRegionsOptionalParams
-  ): PagedAsyncIterableIterator<GeoRegion, GeoRegion[]> {
+  ): PagedAsyncIterableIterator<GeoRegion> {
     const iter = this.listGeoRegionsPagingAll(options);
     return {
       next() {
@@ -235,7 +235,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   public listSiteIdentifiersAssignedToHostName(
     nameIdentifier: NameIdentifier,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Identifier, Identifier[]> {
+  ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listSiteIdentifiersAssignedToHostNamePagingAll(
       nameIdentifier,
       options
@@ -295,7 +295,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   public listPremierAddOnOffers(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PremierAddOnOffer, PremierAddOnOffer[]> {
+  ): PagedAsyncIterableIterator<PremierAddOnOffer> {
     const iter = this.listPremierAddOnOffersPagingAll(options);
     return {
       next() {

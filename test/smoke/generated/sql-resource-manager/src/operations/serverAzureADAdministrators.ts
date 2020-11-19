@@ -47,10 +47,7 @@ export class ServerAzureADAdministrators {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ServerAzureADAdministrator,
-    ServerAzureADAdministrator[]
-  > {
+  ): PagedAsyncIterableIterator<ServerAzureADAdministrator> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

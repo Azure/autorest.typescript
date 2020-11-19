@@ -57,10 +57,7 @@ export class DatabaseAccounts {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    DatabaseAccountGetResults,
-    DatabaseAccountGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -98,10 +95,7 @@ export class DatabaseAccounts {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    DatabaseAccountGetResults,
-    DatabaseAccountGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -150,7 +144,7 @@ export class DatabaseAccounts {
     accountName: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+  ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,
@@ -216,7 +210,7 @@ export class DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: DatabaseAccountsListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listUsagesPagingAll(
       resourceGroupName,
       accountName,
@@ -276,7 +270,7 @@ export class DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+  ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
       accountName,

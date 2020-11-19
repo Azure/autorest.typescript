@@ -46,7 +46,7 @@ export class ResourceGroups {
    */
   public list(
     options?: ResourceGroupsListOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup, ResourceGroup[]> {
+  ): PagedAsyncIterableIterator<ResourceGroup> {
     const iter = this.listPagingAll(options);
     return {
       next() {

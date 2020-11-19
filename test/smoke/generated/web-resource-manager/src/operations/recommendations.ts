@@ -59,7 +59,7 @@ export class Recommendations {
    */
   public list(
     options?: RecommendationsListOptionalParams
-  ): PagedAsyncIterableIterator<Recommendation, Recommendation[]> {
+  ): PagedAsyncIterableIterator<Recommendation> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -105,7 +105,7 @@ export class Recommendations {
     resourceGroupName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
-  ): PagedAsyncIterableIterator<Recommendation, Recommendation[]> {
+  ): PagedAsyncIterableIterator<Recommendation> {
     const iter = this.listHistoryForHostingEnvironmentPagingAll(
       resourceGroupName,
       hostingEnvironmentName,
@@ -176,7 +176,7 @@ export class Recommendations {
     resourceGroupName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
-  ): PagedAsyncIterableIterator<Recommendation, Recommendation[]> {
+  ): PagedAsyncIterableIterator<Recommendation> {
     const iter = this.listRecommendedRulesForHostingEnvironmentPagingAll(
       resourceGroupName,
       hostingEnvironmentName,
@@ -247,7 +247,7 @@ export class Recommendations {
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsListHistoryForWebAppOptionalParams
-  ): PagedAsyncIterableIterator<Recommendation, Recommendation[]> {
+  ): PagedAsyncIterableIterator<Recommendation> {
     const iter = this.listHistoryForWebAppPagingAll(
       resourceGroupName,
       siteName,
@@ -318,7 +318,7 @@ export class Recommendations {
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsListRecommendedRulesForWebAppOptionalParams
-  ): PagedAsyncIterableIterator<Recommendation, Recommendation[]> {
+  ): PagedAsyncIterableIterator<Recommendation> {
     const iter = this.listRecommendedRulesForWebAppPagingAll(
       resourceGroupName,
       siteName,

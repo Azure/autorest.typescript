@@ -47,10 +47,7 @@ export class DeploymentScripts {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    DeploymentScriptUnion,
-    DeploymentScriptUnion[]
-  > {
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -94,10 +91,7 @@ export class DeploymentScripts {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    DeploymentScriptUnion,
-    DeploymentScriptUnion[]
-  > {
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

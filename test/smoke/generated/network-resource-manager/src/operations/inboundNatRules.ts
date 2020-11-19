@@ -45,7 +45,7 @@ export class InboundNatRules {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<InboundNatRule, InboundNatRule[]> {
+  ): PagedAsyncIterableIterator<InboundNatRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
       loadBalancerName,

@@ -51,10 +51,7 @@ export class GalleryApplicationVersions {
     galleryName: string,
     galleryApplicationName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    GalleryApplicationVersion,
-    GalleryApplicationVersion[]
-  > {
+  ): PagedAsyncIterableIterator<GalleryApplicationVersion> {
     const iter = this.listByGalleryApplicationPagingAll(
       resourceGroupName,
       galleryName,

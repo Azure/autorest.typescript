@@ -44,7 +44,7 @@ export class PrivateDnsZoneGroups {
     privateEndpointName: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PrivateDnsZoneGroup, PrivateDnsZoneGroup[]> {
+  ): PagedAsyncIterableIterator<PrivateDnsZoneGroup> {
     const iter = this.listPagingAll(
       privateEndpointName,
       resourceGroupName,

@@ -47,7 +47,7 @@ export class RouteTables {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RouteTable, RouteTable[]> {
+  ): PagedAsyncIterableIterator<RouteTable> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -95,7 +95,7 @@ export class RouteTables {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RouteTable, RouteTable[]> {
+  ): PagedAsyncIterableIterator<RouteTable> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

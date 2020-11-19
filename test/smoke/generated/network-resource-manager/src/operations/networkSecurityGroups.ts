@@ -45,7 +45,7 @@ export class NetworkSecurityGroups {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkSecurityGroup, NetworkSecurityGroup[]> {
+  ): PagedAsyncIterableIterator<NetworkSecurityGroup> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class NetworkSecurityGroups {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkSecurityGroup, NetworkSecurityGroup[]> {
+  ): PagedAsyncIterableIterator<NetworkSecurityGroup> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -14,7 +14,7 @@ export class FeatureClient extends FeatureClientContext {
     //
     // (undocumented)
     features: Features;
-    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation, Operation[]>;
+    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
     }
 
 // @public (undocumented)

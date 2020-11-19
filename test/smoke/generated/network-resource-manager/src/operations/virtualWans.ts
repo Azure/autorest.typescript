@@ -46,7 +46,7 @@ export class VirtualWans {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualWAN, VirtualWAN[]> {
+  ): PagedAsyncIterableIterator<VirtualWAN> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class VirtualWans {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualWAN, VirtualWAN[]> {
+  ): PagedAsyncIterableIterator<VirtualWAN> {
     const iter = this.listPagingAll(options);
     return {
       next() {

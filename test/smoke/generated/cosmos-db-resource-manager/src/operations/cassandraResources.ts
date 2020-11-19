@@ -54,10 +54,7 @@ export class CassandraResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    CassandraKeyspaceGetResults,
-    CassandraKeyspaceGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<CassandraKeyspaceGetResults> {
     const iter = this.listCassandraKeyspacesPagingAll(
       resourceGroupName,
       accountName,
@@ -119,10 +116,7 @@ export class CassandraResources {
     accountName: string,
     keyspaceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    CassandraTableGetResults,
-    CassandraTableGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<CassandraTableGetResults> {
     const iter = this.listCassandraTablesPagingAll(
       resourceGroupName,
       accountName,

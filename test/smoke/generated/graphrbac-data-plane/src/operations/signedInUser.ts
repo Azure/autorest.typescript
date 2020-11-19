@@ -38,7 +38,7 @@ export class SignedInUser {
    */
   public listOwnedObjects(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsPagingAll(options);
     return {
       next() {
@@ -82,7 +82,7 @@ export class SignedInUser {
   public listOwnedObjectsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsNextPagingAll(nextLink, options);
     return {
       next() {

@@ -44,10 +44,7 @@ export class ExpressRouteCircuitAuthorizations {
     resourceGroupName: string,
     circuitName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteCircuitAuthorization,
-    ExpressRouteCircuitAuthorization[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization> {
     const iter = this.listPagingAll(resourceGroupName, circuitName, options);
     return {
       next() {

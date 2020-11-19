@@ -53,7 +53,7 @@ export class Collection {
     collectionRid: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+  ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,
@@ -135,7 +135,7 @@ export class Collection {
     databaseRid: string,
     collectionRid: string,
     options?: CollectionListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listUsagesPagingAll(
       resourceGroupName,
       accountName,
@@ -211,7 +211,7 @@ export class Collection {
     databaseRid: string,
     collectionRid: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+  ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
       accountName,

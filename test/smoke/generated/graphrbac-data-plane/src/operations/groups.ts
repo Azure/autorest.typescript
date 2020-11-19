@@ -52,7 +52,7 @@ export class Groups {
    */
   public list(
     options?: GroupsListOptionalParams
-  ): PagedAsyncIterableIterator<ADGroup, ADGroup[]> {
+  ): PagedAsyncIterableIterator<ADGroup> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -96,7 +96,7 @@ export class Groups {
   public listGroupMembers(
     objectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersPagingAll(objectId, options);
     return {
       next() {
@@ -147,7 +147,7 @@ export class Groups {
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<string, string[]> {
+  ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
       next() {
@@ -193,7 +193,7 @@ export class Groups {
   public listOwners(
     objectId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
       next() {
@@ -239,7 +239,7 @@ export class Groups {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ADGroup, ADGroup[]> {
+  ): PagedAsyncIterableIterator<ADGroup> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {
@@ -285,7 +285,7 @@ export class Groups {
   public listGroupMembersNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DirectoryObjectUnion, DirectoryObjectUnion[]> {
+  ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersNextPagingAll(nextLink, options);
     return {
       next() {

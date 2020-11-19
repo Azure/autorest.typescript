@@ -39,10 +39,7 @@ export class AvailableEndpointServices {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    EndpointServiceResult,
-    EndpointServiceResult[]
-  > {
+  ): PagedAsyncIterableIterator<EndpointServiceResult> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {

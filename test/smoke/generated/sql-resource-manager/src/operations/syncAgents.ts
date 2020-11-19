@@ -49,7 +49,7 @@ export class SyncAgents {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SyncAgent, SyncAgent[]> {
+  ): PagedAsyncIterableIterator<SyncAgent> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
@@ -123,10 +123,7 @@ export class SyncAgents {
     serverName: string,
     syncAgentName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SyncAgentLinkedDatabase,
-    SyncAgentLinkedDatabase[]
-  > {
+  ): PagedAsyncIterableIterator<SyncAgentLinkedDatabase> {
     const iter = this.listLinkedDatabasesPagingAll(
       resourceGroupName,
       serverName,

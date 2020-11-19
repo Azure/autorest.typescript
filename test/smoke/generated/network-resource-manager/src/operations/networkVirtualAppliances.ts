@@ -47,10 +47,7 @@ export class NetworkVirtualAppliances {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    NetworkVirtualAppliance,
-    NetworkVirtualAppliance[]
-  > {
+  ): PagedAsyncIterableIterator<NetworkVirtualAppliance> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -101,10 +98,7 @@ export class NetworkVirtualAppliances {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    NetworkVirtualAppliance,
-    NetworkVirtualAppliance[]
-  > {
+  ): PagedAsyncIterableIterator<NetworkVirtualAppliance> {
     const iter = this.listPagingAll(options);
     return {
       next() {

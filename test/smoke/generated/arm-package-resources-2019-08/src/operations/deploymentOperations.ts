@@ -64,7 +64,7 @@ export class DeploymentOperations {
     scope: string,
     deploymentName: string,
     options?: DeploymentOperationsListAtScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation, DeploymentOperation[]> {
+  ): PagedAsyncIterableIterator<DeploymentOperation> {
     const iter = this.listAtScopePagingAll(scope, deploymentName, options);
     return {
       next() {
@@ -121,7 +121,7 @@ export class DeploymentOperations {
   public listAtTenantScope(
     deploymentName: string,
     options?: DeploymentOperationsListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation, DeploymentOperation[]> {
+  ): PagedAsyncIterableIterator<DeploymentOperation> {
     const iter = this.listAtTenantScopePagingAll(deploymentName, options);
     return {
       next() {
@@ -176,7 +176,7 @@ export class DeploymentOperations {
     groupId: string,
     deploymentName: string,
     options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation, DeploymentOperation[]> {
+  ): PagedAsyncIterableIterator<DeploymentOperation> {
     const iter = this.listAtManagementGroupScopePagingAll(
       groupId,
       deploymentName,
@@ -245,7 +245,7 @@ export class DeploymentOperations {
   public listAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation, DeploymentOperation[]> {
+  ): PagedAsyncIterableIterator<DeploymentOperation> {
     const iter = this.listAtSubscriptionScopePagingAll(deploymentName, options);
     return {
       next() {
@@ -300,7 +300,7 @@ export class DeploymentOperations {
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentOperationsListOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation, DeploymentOperation[]> {
+  ): PagedAsyncIterableIterator<DeploymentOperation> {
     const iter = this.listPagingAll(resourceGroupName, deploymentName, options);
     return {
       next() {

@@ -43,7 +43,7 @@ export class UserAssignedIdentities {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Identity, Identity[]> {
+  ): PagedAsyncIterableIterator<Identity> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -87,7 +87,7 @@ export class UserAssignedIdentities {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Identity, Identity[]> {
+  ): PagedAsyncIterableIterator<Identity> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

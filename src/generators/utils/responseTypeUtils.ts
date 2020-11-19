@@ -1,4 +1,5 @@
 import { ClientDetails } from "../../models/clientDetails";
+import { TypeDetails } from "../../models/modelDetails";
 import {
   OperationDetails,
   OperationResponseDetails
@@ -67,7 +68,9 @@ export function getOperationResponseType(
  * be able to return an array of items, instead of the Response objects. This will get the type
  * of the "value" property from the response on a pageable operation.
  */
-export function getPagingResponseBodyType(operation: OperationDetails) {
+export function getPagingResponseBodyType(
+  operation: OperationDetails
+): TypeDetails | undefined {
   const responses = operation.responses
     // Filter responses that are not marked as errors and that have either body or headers
     .filter(

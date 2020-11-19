@@ -297,7 +297,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]> {
+  ): PagedAsyncIterableIterator<BastionShareableLink> {
     const iter = this.putBastionShareableLinkPagingAll(
       resourceGroupName,
       bastionHostName,
@@ -378,7 +378,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionShareableLink, BastionShareableLink[]> {
+  ): PagedAsyncIterableIterator<BastionShareableLink> {
     const iter = this.getBastionShareableLinkPagingAll(
       resourceGroupName,
       bastionHostName,
@@ -456,7 +456,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionActiveSession, BastionActiveSession[]> {
+  ): PagedAsyncIterableIterator<BastionActiveSession> {
     const iter = this.getActiveSessionsPagingAll(
       resourceGroupName,
       bastionHostName,
@@ -530,7 +530,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     sessionIds: SessionIds,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BastionSessionState, BastionSessionState[]> {
+  ): PagedAsyncIterableIterator<BastionSessionState> {
     const iter = this.disconnectActiveSessionsPagingAll(
       resourceGroupName,
       bastionHostName,

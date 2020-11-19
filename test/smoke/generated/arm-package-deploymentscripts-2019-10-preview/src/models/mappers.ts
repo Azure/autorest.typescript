@@ -645,14 +645,14 @@ export const AzurePowerShellScript: coreHttp.CompositeMapper = {
     modelProperties: {
       ...DeploymentScript.type.modelProperties,
       containerSettings: {
-        serializedName: "containerSettings",
+        serializedName: "properties.containerSettings",
         type: {
           name: "Composite",
           className: "ContainerConfiguration"
         }
       },
       storageAccountSettings: {
-        serializedName: "storageAccountSettings",
+        serializedName: "properties.storageAccountSettings",
         type: {
           name: "Composite",
           className: "StorageAccountConfiguration"
@@ -672,7 +672,7 @@ export const AzurePowerShellScript: coreHttp.CompositeMapper = {
         }
       },
       status: {
-        serializedName: "status",
+        serializedName: "properties.status",
         type: {
           name: "Composite",
           className: "ScriptStatus"
@@ -770,14 +770,14 @@ export const AzureCliScript: coreHttp.CompositeMapper = {
     modelProperties: {
       ...DeploymentScript.type.modelProperties,
       containerSettings: {
-        serializedName: "containerSettings",
+        serializedName: "properties.containerSettings",
         type: {
           name: "Composite",
           className: "ContainerConfiguration"
         }
       },
       storageAccountSettings: {
-        serializedName: "storageAccountSettings",
+        serializedName: "properties.storageAccountSettings",
         type: {
           name: "Composite",
           className: "StorageAccountConfiguration"
@@ -797,7 +797,7 @@ export const AzureCliScript: coreHttp.CompositeMapper = {
         }
       },
       status: {
-        serializedName: "status",
+        serializedName: "properties.status",
         type: {
           name: "Composite",
           className: "ScriptStatus"

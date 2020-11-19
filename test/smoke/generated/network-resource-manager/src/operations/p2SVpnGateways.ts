@@ -52,7 +52,7 @@ export class P2SVpnGateways {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<P2SVpnGateway, P2SVpnGateway[]> {
+  ): PagedAsyncIterableIterator<P2SVpnGateway> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -103,7 +103,7 @@ export class P2SVpnGateways {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<P2SVpnGateway, P2SVpnGateway[]> {
+  ): PagedAsyncIterableIterator<P2SVpnGateway> {
     const iter = this.listPagingAll(options);
     return {
       next() {

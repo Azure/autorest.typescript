@@ -48,10 +48,7 @@ export class ManagedInstanceLongTermRetentionPolicies {
     managedInstanceName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionPolicy,
-    ManagedInstanceLongTermRetentionPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       managedInstanceName,

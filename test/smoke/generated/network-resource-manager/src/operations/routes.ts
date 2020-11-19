@@ -44,7 +44,7 @@ export class Routes {
     resourceGroupName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Route, Route[]> {
+  ): PagedAsyncIterableIterator<Route> {
     const iter = this.listPagingAll(resourceGroupName, routeTableName, options);
     return {
       next() {

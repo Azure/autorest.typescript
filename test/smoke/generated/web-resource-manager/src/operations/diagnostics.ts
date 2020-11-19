@@ -80,7 +80,7 @@ export class Diagnostics {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DetectorResponse, DetectorResponse[]> {
+  ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listHostingEnvironmentDetectorResponsesPagingAll(
       resourceGroupName,
       name,
@@ -151,7 +151,7 @@ export class Diagnostics {
     resourceGroupName: string,
     siteName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DetectorResponse, DetectorResponse[]> {
+  ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listSiteDetectorResponsesPagingAll(
       resourceGroupName,
       siteName,
@@ -222,7 +222,7 @@ export class Diagnostics {
     resourceGroupName: string,
     siteName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DiagnosticCategory, DiagnosticCategory[]> {
+  ): PagedAsyncIterableIterator<DiagnosticCategory> {
     const iter = this.listSiteDiagnosticCategoriesPagingAll(
       resourceGroupName,
       siteName,
@@ -295,7 +295,7 @@ export class Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AnalysisDefinition, AnalysisDefinition[]> {
+  ): PagedAsyncIterableIterator<AnalysisDefinition> {
     const iter = this.listSiteAnalysesPagingAll(
       resourceGroupName,
       siteName,
@@ -375,7 +375,7 @@ export class Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DetectorDefinition, DetectorDefinition[]> {
+  ): PagedAsyncIterableIterator<DetectorDefinition> {
     const iter = this.listSiteDetectorsPagingAll(
       resourceGroupName,
       siteName,
@@ -455,7 +455,7 @@ export class Diagnostics {
     siteName: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DetectorResponse, DetectorResponse[]> {
+  ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listSiteDetectorResponsesSlotPagingAll(
       resourceGroupName,
       siteName,
@@ -535,7 +535,7 @@ export class Diagnostics {
     siteName: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DiagnosticCategory, DiagnosticCategory[]> {
+  ): PagedAsyncIterableIterator<DiagnosticCategory> {
     const iter = this.listSiteDiagnosticCategoriesSlotPagingAll(
       resourceGroupName,
       siteName,
@@ -617,7 +617,7 @@ export class Diagnostics {
     diagnosticCategory: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AnalysisDefinition, AnalysisDefinition[]> {
+  ): PagedAsyncIterableIterator<AnalysisDefinition> {
     const iter = this.listSiteAnalysesSlotPagingAll(
       resourceGroupName,
       siteName,
@@ -706,7 +706,7 @@ export class Diagnostics {
     diagnosticCategory: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DetectorDefinition, DetectorDefinition[]> {
+  ): PagedAsyncIterableIterator<DetectorDefinition> {
     const iter = this.listSiteDetectorsSlotPagingAll(
       resourceGroupName,
       siteName,

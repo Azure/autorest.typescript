@@ -51,7 +51,7 @@ export class FileShares {
     resourceGroupName: string,
     accountName: string,
     options?: FileSharesListOptionalParams
-  ): PagedAsyncIterableIterator<FileShareItem, FileShareItem[]> {
+  ): PagedAsyncIterableIterator<FileShareItem> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
       next() {

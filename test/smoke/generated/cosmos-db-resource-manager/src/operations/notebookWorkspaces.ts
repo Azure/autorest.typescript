@@ -46,7 +46,7 @@ export class NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NotebookWorkspace, NotebookWorkspace[]> {
+  ): PagedAsyncIterableIterator<NotebookWorkspace> {
     const iter = this.listByDatabaseAccountPagingAll(
       resourceGroupName,
       accountName,

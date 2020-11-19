@@ -46,7 +46,7 @@ export class Galleries {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Gallery, Gallery[]> {
+  ): PagedAsyncIterableIterator<Gallery> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class Galleries {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Gallery, Gallery[]> {
+  ): PagedAsyncIterableIterator<Gallery> {
     const iter = this.listPagingAll(options);
     return {
       next() {

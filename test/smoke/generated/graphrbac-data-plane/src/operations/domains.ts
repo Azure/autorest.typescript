@@ -38,7 +38,7 @@ export class Domains {
    */
   public list(
     options?: DomainsListOptionalParams
-  ): PagedAsyncIterableIterator<Domain, Domain[]> {
+  ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listPagingAll(options);
     return {
       next() {

@@ -45,10 +45,7 @@ export class BlobServices {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    BlobServiceProperties,
-    BlobServiceProperties[]
-  > {
+  ): PagedAsyncIterableIterator<BlobServiceProperties> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
       next() {

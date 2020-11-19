@@ -47,7 +47,7 @@ export class JobVersions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Resource, Resource[]> {
+  ): PagedAsyncIterableIterator<Resource> {
     const iter = this.listByJobPagingAll(
       resourceGroupName,
       serverName,

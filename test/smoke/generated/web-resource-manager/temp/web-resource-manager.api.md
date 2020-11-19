@@ -8072,12 +8072,12 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     getPublishingUser(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetPublishingUserResponse>;
     getSourceControl(sourceControlType: string, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetSourceControlResponse>;
     getSubscriptionDeploymentLocations(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse>;
-    listBillingMeters(options?: WebSiteManagementClientListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter, BillingMeter[]>;
-    listGeoRegions(options?: WebSiteManagementClientListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion, GeoRegion[]>;
-    listPremierAddOnOffers(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PremierAddOnOffer, PremierAddOnOffer[]>;
-    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identifier, Identifier[]>;
+    listBillingMeters(options?: WebSiteManagementClientListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;
+    listGeoRegions(options?: WebSiteManagementClientListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion>;
+    listPremierAddOnOffers(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PremierAddOnOffer>;
+    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identifier>;
     listSkus(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSkusResponse>;
-    listSourceControls(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SourceControl, SourceControl[]>;
+    listSourceControls(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SourceControl>;
     move(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     // Warning: (ae-forgotten-export) The symbol "Provider" needs to be exported by the entry point index.d.ts
     //

@@ -49,7 +49,7 @@ export class Servers {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Server, Server[]> {
+  ): PagedAsyncIterableIterator<Server> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -100,7 +100,7 @@ export class Servers {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Server, Server[]> {
+  ): PagedAsyncIterableIterator<Server> {
     const iter = this.listPagingAll(options);
     return {
       next() {

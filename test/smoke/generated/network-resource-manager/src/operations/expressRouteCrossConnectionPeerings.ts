@@ -44,10 +44,7 @@ export class ExpressRouteCrossConnectionPeerings {
     resourceGroupName: string,
     crossConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteCrossConnectionPeering,
-    ExpressRouteCrossConnectionPeering[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering> {
     const iter = this.listPagingAll(
       resourceGroupName,
       crossConnectionName,

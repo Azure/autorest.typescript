@@ -41,10 +41,7 @@ export class AvailableServiceAliases {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AvailableServiceAlias,
-    AvailableServiceAlias[]
-  > {
+  ): PagedAsyncIterableIterator<AvailableServiceAlias> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {
@@ -92,10 +89,7 @@ export class AvailableServiceAliases {
     resourceGroupName: string,
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AvailableServiceAlias,
-    AvailableServiceAlias[]
-  > {
+  ): PagedAsyncIterableIterator<AvailableServiceAlias> {
     const iter = this.listByResourceGroupPagingAll(
       resourceGroupName,
       location,

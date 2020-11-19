@@ -44,7 +44,7 @@ export class DatabaseOperations {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DatabaseOperation, DatabaseOperation[]> {
+  ): PagedAsyncIterableIterator<DatabaseOperation> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

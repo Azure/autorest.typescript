@@ -46,10 +46,7 @@ export class ExpressRouteCircuitConnections {
     circuitName: string,
     peeringName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteCircuitConnection,
-    ExpressRouteCircuitConnection[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteCircuitConnection> {
     const iter = this.listPagingAll(
       resourceGroupName,
       circuitName,

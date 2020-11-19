@@ -44,7 +44,7 @@ export class VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VpnConnection, VpnConnection[]> {
+  ): PagedAsyncIterableIterator<VpnConnection> {
     const iter = this.listByVpnGatewayPagingAll(
       resourceGroupName,
       gatewayName,

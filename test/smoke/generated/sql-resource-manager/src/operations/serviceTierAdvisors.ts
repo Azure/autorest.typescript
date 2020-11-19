@@ -44,7 +44,7 @@ export class ServiceTierAdvisors {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServiceTierAdvisor, ServiceTierAdvisor[]> {
+  ): PagedAsyncIterableIterator<ServiceTierAdvisor> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

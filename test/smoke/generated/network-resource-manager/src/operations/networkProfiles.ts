@@ -45,7 +45,7 @@ export class NetworkProfiles {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkProfile, NetworkProfile[]> {
+  ): PagedAsyncIterableIterator<NetworkProfile> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class NetworkProfiles {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NetworkProfile, NetworkProfile[]> {
+  ): PagedAsyncIterableIterator<NetworkProfile> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

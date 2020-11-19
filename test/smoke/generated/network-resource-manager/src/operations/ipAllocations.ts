@@ -45,7 +45,7 @@ export class IpAllocations {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<IpAllocation, IpAllocation[]> {
+  ): PagedAsyncIterableIterator<IpAllocation> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class IpAllocations {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<IpAllocation, IpAllocation[]> {
+  ): PagedAsyncIterableIterator<IpAllocation> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

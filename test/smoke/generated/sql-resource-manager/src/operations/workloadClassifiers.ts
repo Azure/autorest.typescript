@@ -49,7 +49,7 @@ export class WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WorkloadClassifier, WorkloadClassifier[]> {
+  ): PagedAsyncIterableIterator<WorkloadClassifier> {
     const iter = this.listByWorkloadGroupPagingAll(
       resourceGroupName,
       serverName,

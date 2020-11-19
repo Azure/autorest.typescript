@@ -47,10 +47,7 @@ export class ExpressRouteCrossConnections {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteCrossConnection,
-    ExpressRouteCrossConnection[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteCrossConnection> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -94,10 +91,7 @@ export class ExpressRouteCrossConnections {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteCrossConnection,
-    ExpressRouteCrossConnection[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteCrossConnection> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -40,10 +40,7 @@ export class OAuth2PermissionGrant {
    */
   public list(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): PagedAsyncIterableIterator<
-    OAuth2PermissionGrantModel,
-    OAuth2PermissionGrantModel[]
-  > {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrantModel> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -87,10 +84,7 @@ export class OAuth2PermissionGrant {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    OAuth2PermissionGrantModel,
-    OAuth2PermissionGrantModel[]
-  > {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrantModel> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {

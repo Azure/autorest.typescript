@@ -57,7 +57,7 @@ export class Domains {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Domain, Domain[]> {
+  ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -101,7 +101,7 @@ export class Domains {
   public listRecommendations(
     parameters: DomainRecommendationSearchParameters,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<NameIdentifier, NameIdentifier[]> {
+  ): PagedAsyncIterableIterator<NameIdentifier> {
     const iter = this.listRecommendationsPagingAll(parameters, options);
     return {
       next() {
@@ -154,7 +154,7 @@ export class Domains {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Domain, Domain[]> {
+  ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -209,10 +209,7 @@ export class Domains {
     resourceGroupName: string,
     domainName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    DomainOwnershipIdentifier,
-    DomainOwnershipIdentifier[]
-  > {
+  ): PagedAsyncIterableIterator<DomainOwnershipIdentifier> {
     const iter = this.listOwnershipIdentifiersPagingAll(
       resourceGroupName,
       domainName,

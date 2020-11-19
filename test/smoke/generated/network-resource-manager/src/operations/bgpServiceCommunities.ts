@@ -37,7 +37,7 @@ export class BgpServiceCommunities {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BgpServiceCommunity, BgpServiceCommunity[]> {
+  ): PagedAsyncIterableIterator<BgpServiceCommunity> {
     const iter = this.listPagingAll(options);
     return {
       next() {

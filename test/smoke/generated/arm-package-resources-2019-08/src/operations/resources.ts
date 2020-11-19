@@ -54,10 +54,7 @@ export class Resources {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: ResourcesListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<
-    GenericResourceExpanded,
-    GenericResourceExpanded[]
-  > {
+  ): PagedAsyncIterableIterator<GenericResourceExpanded> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -108,10 +105,7 @@ export class Resources {
    */
   public list(
     options?: ResourcesListOptionalParams
-  ): PagedAsyncIterableIterator<
-    GenericResourceExpanded,
-    GenericResourceExpanded[]
-  > {
+  ): PagedAsyncIterableIterator<GenericResourceExpanded> {
     const iter = this.listPagingAll(options);
     return {
       next() {

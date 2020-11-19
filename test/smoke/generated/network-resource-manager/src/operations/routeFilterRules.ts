@@ -44,7 +44,7 @@ export class RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RouteFilterRule, RouteFilterRule[]> {
+  ): PagedAsyncIterableIterator<RouteFilterRule> {
     const iter = this.listByRouteFilterPagingAll(
       resourceGroupName,
       routeFilterName,

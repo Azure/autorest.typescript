@@ -37,7 +37,7 @@ export class Tenants {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TenantIdDescription, TenantIdDescription[]> {
+  ): PagedAsyncIterableIterator<TenantIdDescription> {
     const iter = this.listPagingAll(options);
     return {
       next() {

@@ -49,7 +49,7 @@ export class VirtualNetworks {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetwork, VirtualNetwork[]> {
+  ): PagedAsyncIterableIterator<VirtualNetwork> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -93,7 +93,7 @@ export class VirtualNetworks {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetwork, VirtualNetwork[]> {
+  ): PagedAsyncIterableIterator<VirtualNetwork> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -145,7 +145,7 @@ export class VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetworkUsage, VirtualNetworkUsage[]> {
+  ): PagedAsyncIterableIterator<VirtualNetworkUsage> {
     const iter = this.listUsagePagingAll(
       resourceGroupName,
       virtualNetworkName,

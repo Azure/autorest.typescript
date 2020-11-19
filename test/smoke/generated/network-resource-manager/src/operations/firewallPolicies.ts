@@ -45,7 +45,7 @@ export class FirewallPolicies {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FirewallPolicy, FirewallPolicy[]> {
+  ): PagedAsyncIterableIterator<FirewallPolicy> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -93,7 +93,7 @@ export class FirewallPolicies {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FirewallPolicy, FirewallPolicy[]> {
+  ): PagedAsyncIterableIterator<FirewallPolicy> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

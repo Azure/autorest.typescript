@@ -46,10 +46,7 @@ export class SecurityPartnerProviders {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SecurityPartnerProvider,
-    SecurityPartnerProvider[]
-  > {
+  ): PagedAsyncIterableIterator<SecurityPartnerProvider> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -100,10 +97,7 @@ export class SecurityPartnerProviders {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SecurityPartnerProvider,
-    SecurityPartnerProvider[]
-  > {
+  ): PagedAsyncIterableIterator<SecurityPartnerProvider> {
     const iter = this.listPagingAll(options);
     return {
       next() {

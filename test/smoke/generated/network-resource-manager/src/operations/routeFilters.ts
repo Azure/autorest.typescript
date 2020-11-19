@@ -47,7 +47,7 @@ export class RouteFilters {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RouteFilter, RouteFilter[]> {
+  ): PagedAsyncIterableIterator<RouteFilter> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -98,7 +98,7 @@ export class RouteFilters {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RouteFilter, RouteFilter[]> {
+  ): PagedAsyncIterableIterator<RouteFilter> {
     const iter = this.listPagingAll(options);
     return {
       next() {

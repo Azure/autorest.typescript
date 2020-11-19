@@ -57,7 +57,7 @@ export class ElasticPools {
     elasticPoolName: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Metric, Metric[]> {
+  ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       serverName,
@@ -132,7 +132,7 @@ export class ElasticPools {
     serverName: string,
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<MetricDefinition, MetricDefinition[]> {
+  ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
       serverName,
@@ -199,7 +199,7 @@ export class ElasticPools {
     resourceGroupName: string,
     serverName: string,
     options?: ElasticPoolsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ElasticPool, ElasticPool[]> {
+  ): PagedAsyncIterableIterator<ElasticPool> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

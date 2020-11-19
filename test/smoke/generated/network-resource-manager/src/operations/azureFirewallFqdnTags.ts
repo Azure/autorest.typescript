@@ -37,7 +37,7 @@ export class AzureFirewallFqdnTags {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AzureFirewallFqdnTag, AzureFirewallFqdnTag[]> {
+  ): PagedAsyncIterableIterator<AzureFirewallFqdnTag> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {

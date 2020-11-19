@@ -47,10 +47,7 @@ export class ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ConnectionMonitorResult,
-    ConnectionMonitorResult[]
-  > {
+  ): PagedAsyncIterableIterator<ConnectionMonitorResult> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkWatcherName,

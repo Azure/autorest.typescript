@@ -66,7 +66,7 @@ export class Vaults {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: VaultsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<Vault, Vault[]> {
+  ): PagedAsyncIterableIterator<Vault> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -117,7 +117,7 @@ export class Vaults {
    */
   public listBySubscription(
     options?: VaultsListBySubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<Vault, Vault[]> {
+  ): PagedAsyncIterableIterator<Vault> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -159,7 +159,7 @@ export class Vaults {
    */
   public listDeleted(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DeletedVault, DeletedVault[]> {
+  ): PagedAsyncIterableIterator<DeletedVault> {
     const iter = this.listDeletedPagingAll(options);
     return {
       next() {
@@ -201,7 +201,7 @@ export class Vaults {
    */
   public list(
     options?: VaultsListOptionalParams
-  ): PagedAsyncIterableIterator<Resource, Resource[]> {
+  ): PagedAsyncIterableIterator<Resource> {
     const iter = this.listPagingAll(options);
     return {
       next() {

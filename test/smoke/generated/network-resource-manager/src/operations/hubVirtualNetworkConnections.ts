@@ -42,10 +42,7 @@ export class HubVirtualNetworkConnections {
     resourceGroupName: string,
     virtualHubName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    HubVirtualNetworkConnection,
-    HubVirtualNetworkConnection[]
-  > {
+  ): PagedAsyncIterableIterator<HubVirtualNetworkConnection> {
     const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
     return {
       next() {

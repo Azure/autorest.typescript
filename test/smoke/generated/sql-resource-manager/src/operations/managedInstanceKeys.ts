@@ -47,7 +47,7 @@ export class ManagedInstanceKeys {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstanceKeysListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceKey, ManagedInstanceKey[]> {
+  ): PagedAsyncIterableIterator<ManagedInstanceKey> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

@@ -44,10 +44,7 @@ export class VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualNetworkPeering,
-    VirtualNetworkPeering[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualNetworkPeering> {
     const iter = this.listPagingAll(
       resourceGroupName,
       virtualNetworkName,

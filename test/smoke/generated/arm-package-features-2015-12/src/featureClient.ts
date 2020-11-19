@@ -41,7 +41,7 @@ export class FeatureClient extends FeatureClientContext {
    */
   public listOperations(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Operation, Operation[]> {
+  ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listOperationsPagingAll(options);
     return {
       next() {

@@ -40,7 +40,7 @@ export class DatabaseUsages {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<DatabaseUsage, DatabaseUsage[]> {
+  ): PagedAsyncIterableIterator<DatabaseUsage> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

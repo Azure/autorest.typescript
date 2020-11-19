@@ -44,7 +44,7 @@ export class VirtualRouterPeerings {
     resourceGroupName: string,
     virtualRouterName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualRouterPeering, VirtualRouterPeering[]> {
+  ): PagedAsyncIterableIterator<VirtualRouterPeering> {
     const iter = this.listPagingAll(
       resourceGroupName,
       virtualRouterName,

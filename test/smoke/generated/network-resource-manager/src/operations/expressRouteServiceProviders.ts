@@ -37,10 +37,7 @@ export class ExpressRouteServiceProviders {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ExpressRouteServiceProvider,
-    ExpressRouteServiceProvider[]
-  > {
+  ): PagedAsyncIterableIterator<ExpressRouteServiceProvider> {
     const iter = this.listPagingAll(options);
     return {
       next() {

@@ -44,10 +44,7 @@ export class ServiceEndpointPolicyDefinitions {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ServiceEndpointPolicyDefinition,
-    ServiceEndpointPolicyDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition> {
     const iter = this.listByResourceGroupPagingAll(
       resourceGroupName,
       serviceEndpointPolicyName,

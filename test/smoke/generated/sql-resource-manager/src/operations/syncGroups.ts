@@ -55,10 +55,7 @@ export class SyncGroups {
   public listSyncDatabaseIds(
     locationName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SyncDatabaseIdProperties,
-    SyncDatabaseIdProperties[]
-  > {
+  ): PagedAsyncIterableIterator<SyncDatabaseIdProperties> {
     const iter = this.listSyncDatabaseIdsPagingAll(locationName, options);
     return {
       next() {
@@ -118,10 +115,7 @@ export class SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SyncFullSchemaProperties,
-    SyncFullSchemaProperties[]
-  > {
+  ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
     const iter = this.listHubSchemasPagingAll(
       resourceGroupName,
       serverName,
@@ -217,10 +211,7 @@ export class SyncGroups {
     endTime: string,
     typeParam: Enum21,
     options?: SyncGroupsListLogsOptionalParams
-  ): PagedAsyncIterableIterator<
-    SyncGroupLogProperties,
-    SyncGroupLogProperties[]
-  > {
+  ): PagedAsyncIterableIterator<SyncGroupLogProperties> {
     const iter = this.listLogsPagingAll(
       resourceGroupName,
       serverName,
@@ -329,7 +320,7 @@ export class SyncGroups {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SyncGroup, SyncGroup[]> {
+  ): PagedAsyncIterableIterator<SyncGroup> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,

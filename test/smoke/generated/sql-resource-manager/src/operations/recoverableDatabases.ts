@@ -42,7 +42,7 @@ export class RecoverableDatabases {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<RecoverableDatabase, RecoverableDatabase[]> {
+  ): PagedAsyncIterableIterator<RecoverableDatabase> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

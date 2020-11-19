@@ -57,7 +57,7 @@ export class StorageAccounts {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<StorageAccount, StorageAccount[]> {
+  ): PagedAsyncIterableIterator<StorageAccount> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -103,7 +103,7 @@ export class StorageAccounts {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<StorageAccount, StorageAccount[]> {
+  ): PagedAsyncIterableIterator<StorageAccount> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

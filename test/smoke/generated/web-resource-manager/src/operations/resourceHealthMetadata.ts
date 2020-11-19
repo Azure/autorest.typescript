@@ -45,10 +45,7 @@ export class ResourceHealthMetadata {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceHealthMetadataModel,
-    ResourceHealthMetadataModel[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadataModel> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -93,10 +90,7 @@ export class ResourceHealthMetadata {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceHealthMetadataModel,
-    ResourceHealthMetadataModel[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadataModel> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -152,10 +146,7 @@ export class ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceHealthMetadataModel,
-    ResourceHealthMetadataModel[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadataModel> {
     const iter = this.listBySitePagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -217,10 +208,7 @@ export class ResourceHealthMetadata {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceHealthMetadataModel,
-    ResourceHealthMetadataModel[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadataModel> {
     const iter = this.listBySiteSlotPagingAll(
       resourceGroupName,
       name,

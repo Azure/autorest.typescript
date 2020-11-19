@@ -46,10 +46,7 @@ export class ManagedServerSecurityAlertPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ManagedServerSecurityAlertPolicy,
-    ManagedServerSecurityAlertPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

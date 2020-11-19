@@ -49,7 +49,7 @@ export class Providers {
    */
   public list(
     options?: ProvidersListOptionalParams
-  ): PagedAsyncIterableIterator<Provider, Provider[]> {
+  ): PagedAsyncIterableIterator<Provider> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -91,7 +91,7 @@ export class Providers {
    */
   public listAtTenantScope(
     options?: ProvidersListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<Provider, Provider[]> {
+  ): PagedAsyncIterableIterator<Provider> {
     const iter = this.listAtTenantScopePagingAll(options);
     return {
       next() {

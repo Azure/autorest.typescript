@@ -46,7 +46,7 @@ export class ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ServerDnsAlias, ServerDnsAlias[]> {
+  ): PagedAsyncIterableIterator<ServerDnsAlias> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

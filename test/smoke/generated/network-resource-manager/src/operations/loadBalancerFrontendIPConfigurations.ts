@@ -42,10 +42,7 @@ export class LoadBalancerFrontendIPConfigurations {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    FrontendIPConfiguration,
-    FrontendIPConfiguration[]
-  > {
+  ): PagedAsyncIterableIterator<FrontendIPConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
       loadBalancerName,

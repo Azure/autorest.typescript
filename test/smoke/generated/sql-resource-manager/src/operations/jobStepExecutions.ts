@@ -51,7 +51,7 @@ export class JobStepExecutions {
     jobName: string,
     jobExecutionId: string,
     options?: JobStepExecutionsListByJobExecutionOptionalParams
-  ): PagedAsyncIterableIterator<JobExecution, JobExecution[]> {
+  ): PagedAsyncIterableIterator<JobExecution> {
     const iter = this.listByJobExecutionPagingAll(
       resourceGroupName,
       serverName,

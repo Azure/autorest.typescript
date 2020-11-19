@@ -50,7 +50,7 @@ export class GalleryImageVersions {
     galleryName: string,
     galleryImageName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<GalleryImageVersion, GalleryImageVersion[]> {
+  ): PagedAsyncIterableIterator<GalleryImageVersion> {
     const iter = this.listByGalleryImagePagingAll(
       resourceGroupName,
       galleryName,

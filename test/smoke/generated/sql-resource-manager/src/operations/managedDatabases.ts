@@ -50,7 +50,7 @@ export class ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ManagedDatabase, ManagedDatabase[]> {
+  ): PagedAsyncIterableIterator<ManagedDatabase> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,
@@ -122,7 +122,7 @@ export class ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ManagedDatabase, ManagedDatabase[]> {
+  ): PagedAsyncIterableIterator<ManagedDatabase> {
     const iter = this.listInaccessibleByInstancePagingAll(
       resourceGroupName,
       managedInstanceName,

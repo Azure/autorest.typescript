@@ -84,7 +84,7 @@ export class Deployments {
   public listAtScope(
     scope: string,
     options?: DeploymentsListAtScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended, DeploymentExtended[]> {
+  ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtScopePagingAll(scope, options);
     return {
       next() {
@@ -128,7 +128,7 @@ export class Deployments {
    */
   public listAtTenantScope(
     options?: DeploymentsListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended, DeploymentExtended[]> {
+  ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtTenantScopePagingAll(options);
     return {
       next() {
@@ -172,7 +172,7 @@ export class Deployments {
   public listAtManagementGroupScope(
     groupId: string,
     options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended, DeploymentExtended[]> {
+  ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtManagementGroupScopePagingAll(groupId, options);
     return {
       next() {
@@ -223,7 +223,7 @@ export class Deployments {
    */
   public listAtSubscriptionScope(
     options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended, DeploymentExtended[]> {
+  ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtSubscriptionScopePagingAll(options);
     return {
       next() {
@@ -271,7 +271,7 @@ export class Deployments {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: DeploymentsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended, DeploymentExtended[]> {
+  ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

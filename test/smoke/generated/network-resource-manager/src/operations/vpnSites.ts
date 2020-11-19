@@ -46,7 +46,7 @@ export class VpnSites {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VpnSite, VpnSite[]> {
+  ): PagedAsyncIterableIterator<VpnSite> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -97,7 +97,7 @@ export class VpnSites {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VpnSite, VpnSite[]> {
+  ): PagedAsyncIterableIterator<VpnSite> {
     const iter = this.listPagingAll(options);
     return {
       next() {

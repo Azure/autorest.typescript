@@ -47,7 +47,7 @@ export class Subnets {
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Subnet, Subnet[]> {
+  ): PagedAsyncIterableIterator<Subnet> {
     const iter = this.listPagingAll(
       resourceGroupName,
       virtualNetworkName,

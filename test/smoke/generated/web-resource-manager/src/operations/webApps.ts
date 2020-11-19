@@ -444,7 +444,7 @@ export class WebApps {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -488,7 +488,7 @@ export class WebApps {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: WebAppsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -543,7 +543,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BackupItem, BackupItem[]> {
+  ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listBackupsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -602,7 +602,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteConfigResource, SiteConfigResource[]> {
+  ): PagedAsyncIterableIterator<SiteConfigResource> {
     const iter = this.listConfigurationsPagingAll(
       resourceGroupName,
       name,
@@ -674,10 +674,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SiteConfigurationSnapshotInfo,
-    SiteConfigurationSnapshotInfo[]
-  > {
+  ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     const iter = this.listConfigurationSnapshotInfoPagingAll(
       resourceGroupName,
       name,
@@ -748,7 +745,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ContinuousWebJob, ContinuousWebJob[]> {
+  ): PagedAsyncIterableIterator<ContinuousWebJob> {
     const iter = this.listContinuousWebJobsPagingAll(
       resourceGroupName,
       name,
@@ -819,7 +816,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Deployment, Deployment[]> {
+  ): PagedAsyncIterableIterator<Deployment> {
     const iter = this.listDeploymentsPagingAll(
       resourceGroupName,
       name,
@@ -882,7 +879,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Identifier, Identifier[]> {
+  ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listDomainOwnershipIdentifiersPagingAll(
       resourceGroupName,
       name,
@@ -953,7 +950,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FunctionEnvelope, FunctionEnvelope[]> {
+  ): PagedAsyncIterableIterator<FunctionEnvelope> {
     const iter = this.listFunctionsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1012,7 +1009,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<HostNameBinding, HostNameBinding[]> {
+  ): PagedAsyncIterableIterator<HostNameBinding> {
     const iter = this.listHostNameBindingsPagingAll(
       resourceGroupName,
       name,
@@ -1083,7 +1080,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteInstance, SiteInstance[]> {
+  ): PagedAsyncIterableIterator<SiteInstance> {
     const iter = this.listInstanceIdentifiersPagingAll(
       resourceGroupName,
       name,
@@ -1158,7 +1155,7 @@ export class WebApps {
     name: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessInfo, ProcessInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listInstanceProcessesPagingAll(
       resourceGroupName,
       name,
@@ -1242,7 +1239,7 @@ export class WebApps {
     processId: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessModuleInfo, ProcessModuleInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listInstanceProcessModulesPagingAll(
       resourceGroupName,
       name,
@@ -1333,7 +1330,7 @@ export class WebApps {
     processId: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessThreadInfo, ProcessThreadInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listInstanceProcessThreadsPagingAll(
       resourceGroupName,
       name,
@@ -1418,7 +1415,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BackupItem, BackupItem[]> {
+  ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listSiteBackupsPagingAll(
       resourceGroupName,
       name,
@@ -1481,7 +1478,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListPerfMonCountersOptionalParams
-  ): PagedAsyncIterableIterator<PerfMonResponse, PerfMonResponse[]> {
+  ): PagedAsyncIterableIterator<PerfMonResponse> {
     const iter = this.listPerfMonCountersPagingAll(
       resourceGroupName,
       name,
@@ -1553,7 +1550,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessInfo, ProcessInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listProcessesPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1615,7 +1612,7 @@ export class WebApps {
     name: string,
     processId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessModuleInfo, ProcessModuleInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listProcessModulesPagingAll(
       resourceGroupName,
       name,
@@ -1696,7 +1693,7 @@ export class WebApps {
     name: string,
     processId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessThreadInfo, ProcessThreadInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listProcessThreadsPagingAll(
       resourceGroupName,
       name,
@@ -1774,7 +1771,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicCertificate, PublicCertificate[]> {
+  ): PagedAsyncIterableIterator<PublicCertificate> {
     const iter = this.listPublicCertificatesPagingAll(
       resourceGroupName,
       name,
@@ -1845,7 +1842,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteExtensionInfo, SiteExtensionInfo[]> {
+  ): PagedAsyncIterableIterator<SiteExtensionInfo> {
     const iter = this.listSiteExtensionsPagingAll(
       resourceGroupName,
       name,
@@ -1916,7 +1913,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.listSlotsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1978,7 +1975,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BackupItem, BackupItem[]> {
+  ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listBackupsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2059,7 +2056,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteConfigResource, SiteConfigResource[]> {
+  ): PagedAsyncIterableIterator<SiteConfigResource> {
     const iter = this.listConfigurationsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2141,10 +2138,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SiteConfigurationSnapshotInfo,
-    SiteConfigurationSnapshotInfo[]
-  > {
+  ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     const iter = this.listConfigurationSnapshotInfoSlotPagingAll(
       resourceGroupName,
       name,
@@ -2225,7 +2219,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ContinuousWebJob, ContinuousWebJob[]> {
+  ): PagedAsyncIterableIterator<ContinuousWebJob> {
     const iter = this.listContinuousWebJobsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2306,7 +2300,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Deployment, Deployment[]> {
+  ): PagedAsyncIterableIterator<Deployment> {
     const iter = this.listDeploymentsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2387,7 +2381,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Identifier, Identifier[]> {
+  ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listDomainOwnershipIdentifiersSlotPagingAll(
       resourceGroupName,
       name,
@@ -2467,7 +2461,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FunctionEnvelope, FunctionEnvelope[]> {
+  ): PagedAsyncIterableIterator<FunctionEnvelope> {
     const iter = this.listInstanceFunctionsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2548,7 +2542,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<HostNameBinding, HostNameBinding[]> {
+  ): PagedAsyncIterableIterator<HostNameBinding> {
     const iter = this.listHostNameBindingsSlotPagingAll(
       resourceGroupName,
       name,
@@ -2629,7 +2623,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteInstance, SiteInstance[]> {
+  ): PagedAsyncIterableIterator<SiteInstance> {
     const iter = this.listInstanceIdentifiersSlotPagingAll(
       resourceGroupName,
       name,
@@ -2714,7 +2708,7 @@ export class WebApps {
     slot: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessInfo, ProcessInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listInstanceProcessesSlotPagingAll(
       resourceGroupName,
       name,
@@ -2808,7 +2802,7 @@ export class WebApps {
     slot: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessModuleInfo, ProcessModuleInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listInstanceProcessModulesSlotPagingAll(
       resourceGroupName,
       name,
@@ -2909,7 +2903,7 @@ export class WebApps {
     slot: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessThreadInfo, ProcessThreadInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listInstanceProcessThreadsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3004,7 +2998,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BackupItem, BackupItem[]> {
+  ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listSiteBackupsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3084,7 +3078,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: WebAppsListPerfMonCountersSlotOptionalParams
-  ): PagedAsyncIterableIterator<PerfMonResponse, PerfMonResponse[]> {
+  ): PagedAsyncIterableIterator<PerfMonResponse> {
     const iter = this.listPerfMonCountersSlotPagingAll(
       resourceGroupName,
       name,
@@ -3166,7 +3160,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessInfo, ProcessInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listProcessesSlotPagingAll(
       resourceGroupName,
       name,
@@ -3250,7 +3244,7 @@ export class WebApps {
     processId: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessModuleInfo, ProcessModuleInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listProcessModulesSlotPagingAll(
       resourceGroupName,
       name,
@@ -3341,7 +3335,7 @@ export class WebApps {
     processId: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ProcessThreadInfo, ProcessThreadInfo[]> {
+  ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listProcessThreadsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3429,7 +3423,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PublicCertificate, PublicCertificate[]> {
+  ): PagedAsyncIterableIterator<PublicCertificate> {
     const iter = this.listPublicCertificatesSlotPagingAll(
       resourceGroupName,
       name,
@@ -3510,7 +3504,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SiteExtensionInfo, SiteExtensionInfo[]> {
+  ): PagedAsyncIterableIterator<SiteExtensionInfo> {
     const iter = this.listSiteExtensionsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3593,7 +3587,7 @@ export class WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SlotDifference, SlotDifference[]> {
+  ): PagedAsyncIterableIterator<SlotDifference> {
     const iter = this.listSlotDifferencesSlotPagingAll(
       resourceGroupName,
       name,
@@ -3680,7 +3674,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3760,7 +3754,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsFromDRSecondarySlotPagingAll(
       resourceGroupName,
       name,
@@ -3841,7 +3835,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TriggeredWebJob, TriggeredWebJob[]> {
+  ): PagedAsyncIterableIterator<TriggeredWebJob> {
     const iter = this.listTriggeredWebJobsSlotPagingAll(
       resourceGroupName,
       name,
@@ -3924,7 +3918,7 @@ export class WebApps {
     webJobName: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TriggeredJobHistory, TriggeredJobHistory[]> {
+  ): PagedAsyncIterableIterator<TriggeredJobHistory> {
     const iter = this.listTriggeredWebJobHistorySlotPagingAll(
       resourceGroupName,
       name,
@@ -4012,7 +4006,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: WebAppsListUsagesSlotOptionalParams
-  ): PagedAsyncIterableIterator<CsmUsageQuota, CsmUsageQuota[]> {
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
     const iter = this.listUsagesSlotPagingAll(
       resourceGroupName,
       name,
@@ -4093,7 +4087,7 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WebJob, WebJob[]> {
+  ): PagedAsyncIterableIterator<WebJob> {
     const iter = this.listWebJobsSlotPagingAll(
       resourceGroupName,
       name,
@@ -4173,7 +4167,7 @@ export class WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SlotDifference, SlotDifference[]> {
+  ): PagedAsyncIterableIterator<SlotDifference> {
     const iter = this.listSlotDifferencesFromProductionPagingAll(
       resourceGroupName,
       name,
@@ -4251,7 +4245,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -4310,7 +4304,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Snapshot, Snapshot[]> {
+  ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsFromDRSecondaryPagingAll(
       resourceGroupName,
       name,
@@ -4381,7 +4375,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TriggeredWebJob, TriggeredWebJob[]> {
+  ): PagedAsyncIterableIterator<TriggeredWebJob> {
     const iter = this.listTriggeredWebJobsPagingAll(
       resourceGroupName,
       name,
@@ -4454,7 +4448,7 @@ export class WebApps {
     name: string,
     webJobName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<TriggeredJobHistory, TriggeredJobHistory[]> {
+  ): PagedAsyncIterableIterator<TriggeredJobHistory> {
     const iter = this.listTriggeredWebJobHistoryPagingAll(
       resourceGroupName,
       name,
@@ -4532,7 +4526,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<CsmUsageQuota, CsmUsageQuota[]> {
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
     const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -4591,7 +4585,7 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WebJob, WebJob[]> {
+  ): PagedAsyncIterableIterator<WebJob> {
     const iter = this.listWebJobsPagingAll(resourceGroupName, name, options);
     return {
       next() {

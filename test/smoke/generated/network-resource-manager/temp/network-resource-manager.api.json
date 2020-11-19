@@ -43270,16 +43270,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionActiveSession",
-                  "canonicalReference": "network-resource-manager!BastionActiveSession:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -43289,7 +43280,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 12
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -43381,16 +43372,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLink",
-                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -43400,7 +43382,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 14
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -43499,16 +43481,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionSessionState",
-                  "canonicalReference": "network-resource-manager!BastionSessionState:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -43518,7 +43491,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 14
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -43617,16 +43590,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BastionShareableLink",
-                  "canonicalReference": "network-resource-manager!BastionShareableLink:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]>"
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -43636,7 +43600,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 14
               },
               "releaseTag": "Public",
               "overloadIndex": 1,

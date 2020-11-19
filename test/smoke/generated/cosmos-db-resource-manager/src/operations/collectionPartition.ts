@@ -51,7 +51,7 @@ export class CollectionPartition {
     collectionRid: string,
     filter: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<PartitionMetric, PartitionMetric[]> {
+  ): PagedAsyncIterableIterator<PartitionMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       accountName,
@@ -133,7 +133,7 @@ export class CollectionPartition {
     databaseRid: string,
     collectionRid: string,
     options?: CollectionPartitionListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<PartitionUsage, PartitionUsage[]> {
+  ): PagedAsyncIterableIterator<PartitionUsage> {
     const iter = this.listUsagesPagingAll(
       resourceGroupName,
       accountName,

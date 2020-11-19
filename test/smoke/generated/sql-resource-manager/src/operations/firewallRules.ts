@@ -43,7 +43,7 @@ export class FirewallRules {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FirewallRule, FirewallRule[]> {
+  ): PagedAsyncIterableIterator<FirewallRule> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,

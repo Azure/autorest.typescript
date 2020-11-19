@@ -64,7 +64,7 @@ export class BlobContainers {
     resourceGroupName: string,
     accountName: string,
     options?: BlobContainersListOptionalParams
-  ): PagedAsyncIterableIterator<ListContainerItem, ListContainerItem[]> {
+  ): PagedAsyncIterableIterator<ListContainerItem> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
       next() {

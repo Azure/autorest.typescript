@@ -54,10 +54,7 @@ export class VirtualNetworkGatewayConnections {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    VirtualNetworkGatewayConnection,
-    VirtualNetworkGatewayConnection[]
-  > {
+  ): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {

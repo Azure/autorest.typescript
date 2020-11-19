@@ -41,7 +41,7 @@ export class AvailableResourceGroupDelegations {
     location: string,
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AvailableDelegation, AvailableDelegation[]> {
+  ): PagedAsyncIterableIterator<AvailableDelegation> {
     const iter = this.listPagingAll(location, resourceGroupName, options);
     return {
       next() {

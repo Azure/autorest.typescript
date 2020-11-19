@@ -44,7 +44,7 @@ export class VirtualNetworkTaps {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetworkTap, VirtualNetworkTap[]> {
+  ): PagedAsyncIterableIterator<VirtualNetworkTap> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -88,7 +88,7 @@ export class VirtualNetworkTaps {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<VirtualNetworkTap, VirtualNetworkTap[]> {
+  ): PagedAsyncIterableIterator<VirtualNetworkTap> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

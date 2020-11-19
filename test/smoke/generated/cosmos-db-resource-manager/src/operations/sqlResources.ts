@@ -69,10 +69,7 @@ export class SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SqlDatabaseGetResults,
-    SqlDatabaseGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<SqlDatabaseGetResults> {
     const iter = this.listSqlDatabasesPagingAll(
       resourceGroupName,
       accountName,
@@ -134,10 +131,7 @@ export class SqlResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SqlContainerGetResults,
-    SqlContainerGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<SqlContainerGetResults> {
     const iter = this.listSqlContainersPagingAll(
       resourceGroupName,
       accountName,
@@ -207,10 +201,7 @@ export class SqlResources {
     databaseName: string,
     containerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SqlStoredProcedureGetResults,
-    SqlStoredProcedureGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<SqlStoredProcedureGetResults> {
     const iter = this.listSqlStoredProceduresPagingAll(
       resourceGroupName,
       accountName,
@@ -286,10 +277,7 @@ export class SqlResources {
     databaseName: string,
     containerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    SqlUserDefinedFunctionGetResults,
-    SqlUserDefinedFunctionGetResults[]
-  > {
+  ): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
     const iter = this.listSqlUserDefinedFunctionsPagingAll(
       resourceGroupName,
       accountName,
@@ -365,7 +353,7 @@ export class SqlResources {
     databaseName: string,
     containerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SqlTriggerGetResults, SqlTriggerGetResults[]> {
+  ): PagedAsyncIterableIterator<SqlTriggerGetResults> {
     const iter = this.listSqlTriggersPagingAll(
       resourceGroupName,
       accountName,

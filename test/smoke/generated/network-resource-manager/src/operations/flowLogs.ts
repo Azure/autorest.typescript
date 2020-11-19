@@ -44,7 +44,7 @@ export class FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<FlowLog, FlowLog[]> {
+  ): PagedAsyncIterableIterator<FlowLog> {
     const iter = this.listPagingAll(
       resourceGroupName,
       networkWatcherName,

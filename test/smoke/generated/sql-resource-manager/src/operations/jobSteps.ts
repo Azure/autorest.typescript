@@ -53,7 +53,7 @@ export class JobSteps {
     jobName: string,
     jobVersion: number,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<JobStep, JobStep[]> {
+  ): PagedAsyncIterableIterator<JobStep> {
     const iter = this.listByVersionPagingAll(
       resourceGroupName,
       serverName,
@@ -150,7 +150,7 @@ export class JobSteps {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<JobStep, JobStep[]> {
+  ): PagedAsyncIterableIterator<JobStep> {
     const iter = this.listByJobPagingAll(
       resourceGroupName,
       serverName,

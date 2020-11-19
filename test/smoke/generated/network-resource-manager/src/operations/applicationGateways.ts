@@ -60,7 +60,7 @@ export class ApplicationGateways {
   public list(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ApplicationGateway, ApplicationGateway[]> {
+  ): PagedAsyncIterableIterator<ApplicationGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -108,7 +108,7 @@ export class ApplicationGateways {
    */
   public listAll(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ApplicationGateway, ApplicationGateway[]> {
+  ): PagedAsyncIterableIterator<ApplicationGateway> {
     const iter = this.listAllPagingAll(options);
     return {
       next() {
@@ -150,10 +150,7 @@ export class ApplicationGateways {
    */
   public listAvailableSslPredefinedPolicies(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ApplicationGatewaySslPredefinedPolicy,
-    ApplicationGatewaySslPredefinedPolicy[]
-  > {
+  ): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy> {
     const iter = this.listAvailableSslPredefinedPoliciesPagingAll(options);
     return {
       next() {

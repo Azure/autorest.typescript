@@ -44,7 +44,7 @@ export class ContainerServices {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ContainerService, ContainerService[]> {
+  ): PagedAsyncIterableIterator<ContainerService> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -90,7 +90,7 @@ export class ContainerServices {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ContainerService, ContainerService[]> {
+  ): PagedAsyncIterableIterator<ContainerService> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

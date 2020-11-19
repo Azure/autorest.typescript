@@ -44,7 +44,7 @@ export class LoadBalancerBackendAddressPools {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<BackendAddressPool, BackendAddressPool[]> {
+  ): PagedAsyncIterableIterator<BackendAddressPool> {
     const iter = this.listPagingAll(
       resourceGroupName,
       loadBalancerName,

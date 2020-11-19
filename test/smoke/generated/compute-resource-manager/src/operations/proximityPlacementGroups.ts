@@ -44,10 +44,7 @@ export class ProximityPlacementGroups {
    */
   public listBySubscription(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ProximityPlacementGroup,
-    ProximityPlacementGroup[]
-  > {
+  ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
       next() {
@@ -91,10 +88,7 @@ export class ProximityPlacementGroups {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ProximityPlacementGroup,
-    ProximityPlacementGroup[]
-  > {
+  ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {

@@ -68,10 +68,7 @@ export class LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByDatabasePagingAll(
       locationName,
       managedInstanceName,
@@ -149,10 +146,7 @@ export class LongTermRetentionManagedInstanceBackups {
     locationName: string,
     managedInstanceName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByInstancePagingAll(
       locationName,
       managedInstanceName,
@@ -221,10 +215,7 @@ export class LongTermRetentionManagedInstanceBackups {
   public listByLocation(
     locationName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByLocationPagingAll(locationName, options);
     return {
       next() {
@@ -284,10 +275,7 @@ export class LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByResourceGroupDatabasePagingAll(
       resourceGroupName,
       locationName,
@@ -375,10 +363,7 @@ export class LongTermRetentionManagedInstanceBackups {
     locationName: string,
     managedInstanceName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByResourceGroupInstancePagingAll(
       resourceGroupName,
       locationName,
@@ -457,10 +442,7 @@ export class LongTermRetentionManagedInstanceBackups {
     resourceGroupName: string,
     locationName: string,
     options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
-  ): PagedAsyncIterableIterator<
-    ManagedInstanceLongTermRetentionBackup,
-    ManagedInstanceLongTermRetentionBackup[]
-  > {
+  ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup> {
     const iter = this.listByResourceGroupLocationPagingAll(
       resourceGroupName,
       locationName,

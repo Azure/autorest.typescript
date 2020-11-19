@@ -43,7 +43,7 @@ export class ResourceLinks {
    */
   public listAtSubscription(
     options?: ResourceLinksListAtSubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<ResourceLink, ResourceLink[]> {
+  ): PagedAsyncIterableIterator<ResourceLink> {
     const iter = this.listAtSubscriptionPagingAll(options);
     return {
       next() {
@@ -89,7 +89,7 @@ export class ResourceLinks {
   public listAtSourceScope(
     scope: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<ResourceLink, ResourceLink[]> {
+  ): PagedAsyncIterableIterator<ResourceLink> {
     const iter = this.listAtSourceScopePagingAll(scope, options);
     return {
       next() {

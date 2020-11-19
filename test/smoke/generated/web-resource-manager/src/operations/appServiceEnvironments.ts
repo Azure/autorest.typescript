@@ -108,10 +108,7 @@ export class AppServiceEnvironments {
    */
   public list(
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AppServiceEnvironmentResource,
-    AppServiceEnvironmentResource[]
-  > {
+  ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -155,10 +152,7 @@ export class AppServiceEnvironments {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    AppServiceEnvironmentResource,
-    AppServiceEnvironmentResource[]
-  > {
+  ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -213,7 +207,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<StampCapacity, StampCapacity[]> {
+  ): PagedAsyncIterableIterator<StampCapacity> {
     const iter = this.listCapacitiesPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -274,7 +268,7 @@ export class AppServiceEnvironments {
     name: string,
     vnetInfo: VirtualNetworkProfile,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.changeVnetPagingAll(
       resourceGroupName,
       name,
@@ -353,10 +347,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    InboundEnvironmentEndpoint,
-    InboundEnvironmentEndpoint[]
-  > {
+  ): PagedAsyncIterableIterator<InboundEnvironmentEndpoint> {
     const iter = this.getInboundNetworkDependenciesEndpointsPagingAll(
       resourceGroupName,
       name,
@@ -427,7 +418,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WorkerPoolResource, WorkerPoolResource[]> {
+  ): PagedAsyncIterableIterator<WorkerPoolResource> {
     const iter = this.listMultiRolePoolsPagingAll(
       resourceGroupName,
       name,
@@ -501,10 +492,7 @@ export class AppServiceEnvironments {
     name: string,
     instance: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceMetricDefinition,
-    ResourceMetricDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listMultiRolePoolInstanceMetricDefinitionsPagingAll(
       resourceGroupName,
       name,
@@ -582,10 +570,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceMetricDefinition,
-    ResourceMetricDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listMultiRoleMetricDefinitionsPagingAll(
       resourceGroupName,
       name,
@@ -656,7 +641,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SkuInfo, SkuInfo[]> {
+  ): PagedAsyncIterableIterator<SkuInfo> {
     const iter = this.listMultiRolePoolSkusPagingAll(
       resourceGroupName,
       name,
@@ -727,7 +712,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listMultiRoleUsagesPagingAll(
       resourceGroupName,
       name,
@@ -799,10 +784,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    OutboundEnvironmentEndpoint,
-    OutboundEnvironmentEndpoint[]
-  > {
+  ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint> {
     const iter = this.getOutboundNetworkDependenciesEndpointsPagingAll(
       resourceGroupName,
       name,
@@ -873,7 +855,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.resumePagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -933,7 +915,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<AppServicePlan, AppServicePlan[]> {
+  ): PagedAsyncIterableIterator<AppServicePlan> {
     const iter = this.listAppServicePlansPagingAll(
       resourceGroupName,
       name,
@@ -1004,7 +986,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsListWebAppsOptionalParams
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.listWebAppsPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1063,7 +1045,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Site, Site[]> {
+  ): PagedAsyncIterableIterator<Site> {
     const iter = this.suspendPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1123,7 +1105,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsListUsagesOptionalParams
-  ): PagedAsyncIterableIterator<CsmUsageQuota, CsmUsageQuota[]> {
+  ): PagedAsyncIterableIterator<CsmUsageQuota> {
     const iter = this.listUsagesPagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -1182,7 +1164,7 @@ export class AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<WorkerPoolResource, WorkerPoolResource[]> {
+  ): PagedAsyncIterableIterator<WorkerPoolResource> {
     const iter = this.listWorkerPoolsPagingAll(
       resourceGroupName,
       name,
@@ -1250,10 +1232,7 @@ export class AppServiceEnvironments {
     workerPoolName: string,
     instance: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceMetricDefinition,
-    ResourceMetricDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listWorkerPoolInstanceMetricDefinitionsPagingAll(
       resourceGroupName,
       name,
@@ -1340,10 +1319,7 @@ export class AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    ResourceMetricDefinition,
-    ResourceMetricDefinition[]
-  > {
+  ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listWebWorkerMetricDefinitionsPagingAll(
       resourceGroupName,
       name,
@@ -1423,7 +1399,7 @@ export class AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<SkuInfo, SkuInfo[]> {
+  ): PagedAsyncIterableIterator<SkuInfo> {
     const iter = this.listWorkerPoolSkusPagingAll(
       resourceGroupName,
       name,
@@ -1503,7 +1479,7 @@ export class AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Usage, Usage[]> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listWebWorkerUsagesPagingAll(
       resourceGroupName,
       name,

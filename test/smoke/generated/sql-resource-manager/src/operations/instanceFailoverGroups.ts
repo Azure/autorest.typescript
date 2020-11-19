@@ -47,10 +47,7 @@ export class InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<
-    InstanceFailoverGroup,
-    InstanceFailoverGroup[]
-  > {
+  ): PagedAsyncIterableIterator<InstanceFailoverGroup> {
     const iter = this.listByLocationPagingAll(
       resourceGroupName,
       locationName,
