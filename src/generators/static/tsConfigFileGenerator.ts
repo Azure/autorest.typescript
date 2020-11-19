@@ -4,16 +4,7 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 
-export function generateTsConfig(
-  project: Project,
-  clientDetails: ClientDetails
-) {
-  const esNext =
-    !clientDetails.options.disablePagingAsyncIterators &&
-    clientDetails.options.hasPaging
-      ? ["esnext"]
-      : [];
-
+export function generateTsConfig(project: Project) {
   const tsConfigContents = {
     compilerOptions: {
       module: "es6",
@@ -25,7 +16,7 @@ export function generateTsConfig(
       esModuleInterop: true,
       allowSyntheticDefaultImports: true,
       forceConsistentCasingInFileNames: true,
-      lib: ["es6", "dom", ...esNext],
+      lib: ["es6", "dom"],
       declaration: true,
       outDir: "./esm",
       importHelpers: true

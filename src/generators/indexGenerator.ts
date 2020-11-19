@@ -13,9 +13,12 @@ export function generateIndexFile(
     }
   );
 
-  const hasOperationsFile = clientDetails.operationGroups.some(
-    og => !og.isTopLevel
-  );
+  if (
+    clientDetails.options.hasPaging &&
+    !clientDetails.options.disablePagingAsyncIterators
+  ) {
+    indexFile.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
+  }
 
   indexFile.addExportDeclarations([
     {
