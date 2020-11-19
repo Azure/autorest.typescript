@@ -27,7 +27,7 @@ const getArmReadmes = (): SpecDefinition[] => {
     path: "./.tmp/specs/specification/resources/resource-manager/readme.md",
     params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
-    buildTag: "debug"
+    buildTag: "ci_1"
   }));
 };
 
