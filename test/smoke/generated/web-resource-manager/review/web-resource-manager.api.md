@@ -8052,7 +8052,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     //
     // (undocumented)
     certificates: Certificates;
-    checkNameAvailability(request: ResourceNameAvailabilityRequest, name: string, typeParam: CheckNameResourceTypes, options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
+    checkNameAvailability(name: string, typeParam: CheckNameResourceTypes, options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
     // Warning: (ae-forgotten-export) The symbol "DeletedWebApps" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
