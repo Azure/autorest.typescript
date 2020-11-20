@@ -15,7 +15,8 @@ export async function transformOptions(
   return {
     addCredentials,
     mediaTypes,
-    disablePagingAsyncIterators
+    disablePagingAsyncIterators,
+    hasPaging: hasPagingOperations(operationGroups)
   };
 }
 
@@ -29,4 +30,12 @@ function getMediaTypesStyles(operationGroups: OperationGroupDetails[]) {
       new Set<KnownMediaType>([...mediaTypes, ...operationGroup.mediaTypes]),
     new Set<KnownMediaType>()
   );
+}
+
+function hasPagingOperations(operationGroups: OperationGroupDetails[]) {
+  return operationGroups.some(og => og.operations.some(o => !!o.pagination));
+}
+
+function hasLroOperations(operationGroups: OperationGroupDetails[]) {
+  return operationGroups.some(og => og.operations.some(o => o.isLRO));
 }

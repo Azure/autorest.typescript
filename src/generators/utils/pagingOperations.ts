@@ -43,12 +43,13 @@ interface PagingMethodSettings {
  * @param sourceFile File to add imports to
  */
 export function addPagingImports(
-  { options, operationGroups }: ClientDetails,
+  operations: OperationDetails[],
+  { options }: ClientDetails,
   sourceFile: SourceFile
 ) {
   if (
     !options.disablePagingAsyncIterators &&
-    operationGroups.some(og => hasAsyncIteratorOperations(og))
+    hasAsyncIteratorOperations(operations)
   ) {
     sourceFile.addImportDeclarations([
       {
@@ -63,10 +64,8 @@ export function addPagingImports(
  * Checks whether or not an operation group contains any pageable operations
  * that would need AsyncIterators
  */
-export function hasAsyncIteratorOperations(
-  operationGroupDetails: OperationGroupDetails
-) {
-  return operationGroupDetails.operations.some(o => o.pagination);
+export function hasAsyncIteratorOperations(operations: OperationDetails[]) {
+  return operations.some(o => o.pagination);
 }
 
 /**
