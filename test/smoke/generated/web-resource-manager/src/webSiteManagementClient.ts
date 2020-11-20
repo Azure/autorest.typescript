@@ -47,7 +47,6 @@ import {
   WebSiteManagementClientGetSourceControlResponse,
   WebSiteManagementClientUpdateSourceControlResponse,
   WebSiteManagementClientListBillingMetersResponse,
-  ResourceNameAvailabilityRequest,
   CheckNameResourceTypes,
   WebSiteManagementClientCheckNameAvailabilityOptionalParams,
   WebSiteManagementClientCheckNameAvailabilityResponse,
@@ -444,19 +443,16 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
 
   /**
    * Description for Check if a resource name is available.
-   * @param request Name availability request.
    * @param name Resource name to verify.
    * @param typeParam Resource type used for verification.
    * @param options The options parameters.
    */
   checkNameAvailability(
-    request: ResourceNameAvailabilityRequest,
     name: string,
     typeParam: CheckNameResourceTypes,
     options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams
   ): Promise<WebSiteManagementClientCheckNameAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
-      request,
       name,
       typeParam,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -63748,20 +63748,11 @@
             {
               "kind": "Method",
               "canonicalReference": "web-resource-manager!WebSiteManagementClient#checkNameAvailability:member(1)",
-              "docComment": "/**\n * Description for Check if a resource name is available.\n *\n * @param request - Name availability request.\n *\n * @param name - Resource name to verify.\n *\n * @param typeParam - Resource type used for verification.\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Description for Check if a resource name is available.\n *\n * @param name - Resource name to verify.\n *\n * @param typeParam - Resource type used for verification.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "checkNameAvailability(request: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ResourceNameAvailabilityRequest",
-                  "canonicalReference": "web-resource-manager!ResourceNameAvailabilityRequest:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", name: "
+                  "text": "checkNameAvailability(name: "
                 },
                 {
                   "kind": "Content",
@@ -63814,38 +63805,31 @@
               ],
               "isStatic": false,
               "returnTypeTokenRange": {
-                "startIndex": 9,
-                "endIndex": 13
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "request",
+                  "parameterName": "name",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "name",
+                  "parameterName": "typeParam",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
                   }
                 },
                 {
-                  "parameterName": "typeParam",
+                  "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
                   }
                 }
               ],

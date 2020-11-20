@@ -113,7 +113,7 @@ export function getOperationParameterSignatures(
 ) {
   const operationParameters = filterOperationParameters(parameters, operation, {
     includeContentType: true
-  });
+  }).filter(p => !p.isFlattened);
 
   const operationRequests = operation.requests;
   const overloadParameterDeclarations: ParameterWithDescription[][] = [];
