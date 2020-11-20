@@ -527,38 +527,108 @@ export type AzureCliScript = DeploymentScript & {
    */
   azCliVersion: string;
 };
+
 /**
- * Defines values for ManagedServiceIdentityType.
+ * Known values of {@link ManagedServiceIdentityType} that the service accepts.
  */
-export type ManagedServiceIdentityType = "UserAssigned" | string;
+export const enum KnownManagedServiceIdentityType {
+  UserAssigned = "UserAssigned"
+}
+
 /**
- * Defines values for ScriptType.
+ * Defines values for ManagedServiceIdentityType. \
+ * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **UserAssigned**
  */
-export type ScriptType = "AzurePowerShell" | "AzureCLI" | string;
+export type ManagedServiceIdentityType = string;
+
 /**
- * Defines values for CreatedByType.
+ * Known values of {@link ScriptType} that the service accepts.
  */
-export type CreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key"
-  | string;
+export const enum KnownScriptType {
+  AzurePowerShell = "AzurePowerShell",
+  AzureCLI = "AzureCLI"
+}
+
 /**
- * Defines values for CleanupOptions.
+ * Defines values for ScriptType. \
+ * {@link KnownScriptType} can be used interchangeably with ScriptType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AzurePowerShell** \
+ * **AzureCLI**
  */
-export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration" | string;
+export type ScriptType = string;
+
 /**
- * Defines values for ScriptProvisioningState.
+ * Known values of {@link CreatedByType} that the service accepts.
  */
-export type ScriptProvisioningState =
-  | "Creating"
-  | "ProvisioningResources"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | string;
+export const enum KnownCreatedByType {
+  User = "User",
+  Application = "Application",
+  ManagedIdentity = "ManagedIdentity",
+  Key = "Key"
+}
+
+/**
+ * Defines values for CreatedByType. \
+ * {@link KnownCreatedByType} can be used interchangeably with CreatedByType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **User** \
+ * **Application** \
+ * **ManagedIdentity** \
+ * **Key**
+ */
+export type CreatedByType = string;
+
+/**
+ * Known values of {@link CleanupOptions} that the service accepts.
+ */
+export const enum KnownCleanupOptions {
+  Always = "Always",
+  OnSuccess = "OnSuccess",
+  OnExpiration = "OnExpiration"
+}
+
+/**
+ * Defines values for CleanupOptions. \
+ * {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Always** \
+ * **OnSuccess** \
+ * **OnExpiration**
+ */
+export type CleanupOptions = string;
+
+/**
+ * Known values of {@link ScriptProvisioningState} that the service accepts.
+ */
+export const enum KnownScriptProvisioningState {
+  Creating = "Creating",
+  ProvisioningResources = "ProvisioningResources",
+  Running = "Running",
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "Canceled"
+}
+
+/**
+ * Defines values for ScriptProvisioningState. \
+ * {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **ProvisioningResources** \
+ * **Running** \
+ * **Succeeded** \
+ * **Failed** \
+ * **Canceled**
+ */
+export type ScriptProvisioningState = string;
 
 /**
  * Contains response data for the create operation.

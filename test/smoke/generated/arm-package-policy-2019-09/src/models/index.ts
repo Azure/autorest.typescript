@@ -403,30 +403,78 @@ export interface PolicySetDefinitionListResult {
 }
 
 /**
- * Defines values for EnforcementMode.
+ * Known values of {@link EnforcementMode} that the service accepts.
  */
-export type EnforcementMode = "Default" | "DoNotEnforce" | string;
+export const enum KnownEnforcementMode {
+  /**
+   * The policy effect is enforced during resource creation or update.
+   */
+  Default = "Default",
+  /**
+   * The policy effect is not enforced during resource creation or update.
+   */
+  DoNotEnforce = "DoNotEnforce"
+}
+
 /**
- * Defines values for PolicyType.
+ * Defines values for EnforcementMode. \
+ * {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Default**: The policy effect is enforced during resource creation or update. \
+ * **DoNotEnforce**: The policy effect is not enforced during resource creation or update.
  */
-export type PolicyType =
-  | "NotSpecified"
-  | "BuiltIn"
-  | "Custom"
-  | "Static"
-  | string;
+export type EnforcementMode = string;
+
 /**
- * Defines values for ParameterType.
+ * Known values of {@link PolicyType} that the service accepts.
  */
-export type ParameterType =
-  | "String"
-  | "Array"
-  | "Object"
-  | "Boolean"
-  | "Integer"
-  | "Float"
-  | "DateTime"
-  | string;
+export const enum KnownPolicyType {
+  NotSpecified = "NotSpecified",
+  BuiltIn = "BuiltIn",
+  Custom = "Custom",
+  Static = "Static"
+}
+
+/**
+ * Defines values for PolicyType. \
+ * {@link KnownPolicyType} can be used interchangeably with PolicyType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotSpecified** \
+ * **BuiltIn** \
+ * **Custom** \
+ * **Static**
+ */
+export type PolicyType = string;
+
+/**
+ * Known values of {@link ParameterType} that the service accepts.
+ */
+export const enum KnownParameterType {
+  String = "String",
+  Array = "Array",
+  Object = "Object",
+  Boolean = "Boolean",
+  Integer = "Integer",
+  Float = "Float",
+  DateTime = "DateTime"
+}
+
+/**
+ * Defines values for ParameterType. \
+ * {@link KnownParameterType} can be used interchangeably with ParameterType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **String** \
+ * **Array** \
+ * **Object** \
+ * **Boolean** \
+ * **Integer** \
+ * **Float** \
+ * **DateTime**
+ */
+export type ParameterType = string;
 /**
  * Defines values for ResourceIdentityType.
  */

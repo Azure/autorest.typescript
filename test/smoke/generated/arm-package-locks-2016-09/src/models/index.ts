@@ -112,9 +112,24 @@ export interface ManagementLockListResult {
 }
 
 /**
- * Defines values for LockLevel.
+ * Known values of {@link LockLevel} that the service accepts.
  */
-export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly" | string;
+export const enum KnownLockLevel {
+  NotSpecified = "NotSpecified",
+  CanNotDelete = "CanNotDelete",
+  ReadOnly = "ReadOnly"
+}
+
+/**
+ * Defines values for LockLevel. \
+ * {@link KnownLockLevel} can be used interchangeably with LockLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotSpecified** \
+ * **CanNotDelete** \
+ * **ReadOnly**
+ */
+export type LockLevel = string;
 
 /**
  * Contains response data for the list operation.

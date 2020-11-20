@@ -349,22 +349,42 @@ export type ApplicationPatchable = GenericResource & {
    */
   readonly provisioningState?: ProvisioningState;
 };
+
 /**
- * Defines values for ProvisioningState.
+ * Known values of {@link ProvisioningState} that the service accepts.
  */
-export type ProvisioningState =
-  | "Accepted"
-  | "Running"
-  | "Ready"
-  | "Creating"
-  | "Created"
-  | "Deleting"
-  | "Deleted"
-  | "Canceled"
-  | "Failed"
-  | "Succeeded"
-  | "Updating"
-  | string;
+export const enum KnownProvisioningState {
+  Accepted = "Accepted",
+  Running = "Running",
+  Ready = "Ready",
+  Creating = "Creating",
+  Created = "Created",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  Canceled = "Canceled",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+  Updating = "Updating"
+}
+
+/**
+ * Defines values for ProvisioningState. \
+ * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Accepted** \
+ * **Running** \
+ * **Ready** \
+ * **Creating** \
+ * **Created** \
+ * **Deleting** \
+ * **Deleted** \
+ * **Canceled** \
+ * **Failed** \
+ * **Succeeded** \
+ * **Updating**
+ */
+export type ProvisioningState = string;
 /**
  * Defines values for ApplicationLockLevel.
  */

@@ -245,7 +245,7 @@ export interface BlobRestoreParameters {
 }
 
 // @public
-export type BlobRestoreProgressStatus = "InProgress" | "Complete" | "Failed" | string;
+export type BlobRestoreProgressStatus = string;
 
 // @public
 export interface BlobRestoreRange {
@@ -304,7 +304,7 @@ export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
 };
 
 // @public
-export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices" | string;
+export type Bypass = string;
 
 // @public
 export interface ChangeFeed {
@@ -341,7 +341,7 @@ export interface CorsRule {
 }
 
 // @public
-export type CorsRuleAllowedMethodsItem = "DELETE" | "GET" | "HEAD" | "MERGE" | "POST" | "OPTIONS" | "PUT" | string;
+export type CorsRuleAllowedMethodsItem = string;
 
 // @public
 export interface CorsRules {
@@ -386,10 +386,10 @@ export interface Dimension {
 }
 
 // @public
-export type DirectoryServiceOptions = "None" | "AADDS" | "AD" | string;
+export type DirectoryServiceOptions = string;
 
 // @public
-export type EnabledProtocols = "SMB" | "NFS" | string;
+export type EnabledProtocols = string;
 
 // @public
 export interface Encryption {
@@ -443,7 +443,7 @@ export type EncryptionScopesListResponse = EncryptionScopeListResult & {
 };
 
 // @public
-export type EncryptionScopeSource = "Microsoft.Storage" | "Microsoft.KeyVault" | string;
+export type EncryptionScopeSource = string;
 
 // @public
 export type EncryptionScopesPatchResponse = EncryptionScope & {
@@ -462,7 +462,7 @@ export type EncryptionScopesPutResponse = EncryptionScope & {
 };
 
 // @public
-export type EncryptionScopeState = "Enabled" | "Disabled" | string;
+export type EncryptionScopeState = string;
 
 // @public
 export interface EncryptionService {
@@ -637,7 +637,7 @@ export interface GeoReplicationStats {
 }
 
 // @public
-export type GeoReplicationStatus = "Live" | "Bootstrap" | "Unavailable" | string;
+export type GeoReplicationStatus = string;
 
 // @public
 export type HttpProtocol = "https,http" | "https";
@@ -666,10 +666,10 @@ export interface ImmutabilityPolicyProperties {
 }
 
 // @public
-export type ImmutabilityPolicyState = "Locked" | "Unlocked" | string;
+export type ImmutabilityPolicyState = string;
 
 // @public
-export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend" | string;
+export type ImmutabilityPolicyUpdateType = string;
 
 // @public
 export interface IPRule {
@@ -681,10 +681,10 @@ export interface IPRule {
 export type KeyPermission = "Read" | "Full";
 
 // @public
-export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault" | string;
+export type KeySource = string;
 
 // @public
-type KeyType_2 = "Service" | "Account" | string;
+type KeyType_2 = string;
 
 export { KeyType_2 as KeyType }
 
@@ -698,10 +698,340 @@ export interface KeyVaultProperties {
 }
 
 // @public
-export type Kind = "Storage" | "StorageV2" | "BlobStorage" | "FileStorage" | "BlockBlobStorage" | string;
+export type Kind = string;
 
 // @public
-export type LargeFileSharesState = "Disabled" | "Enabled" | string;
+export const enum KnownBlobRestoreProgressStatus {
+    // (undocumented)
+    Complete = "Complete",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress"
+}
+
+// @public
+export const enum KnownBypass {
+    // (undocumented)
+    AzureServices = "AzureServices",
+    // (undocumented)
+    Logging = "Logging",
+    // (undocumented)
+    Metrics = "Metrics",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownCorsRuleAllowedMethodsItem {
+    // (undocumented)
+    Delete = "DELETE",
+    // (undocumented)
+    GET = "GET",
+    // (undocumented)
+    Head = "HEAD",
+    // (undocumented)
+    Merge = "MERGE",
+    // (undocumented)
+    Options = "OPTIONS",
+    // (undocumented)
+    Post = "POST",
+    // (undocumented)
+    PUT = "PUT"
+}
+
+// @public
+export const enum KnownDirectoryServiceOptions {
+    // (undocumented)
+    Aadds = "AADDS",
+    // (undocumented)
+    AD = "AD",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownEnabledProtocols {
+    // (undocumented)
+    NFS = "NFS",
+    // (undocumented)
+    SMB = "SMB"
+}
+
+// @public
+export const enum KnownEncryptionScopeSource {
+    // (undocumented)
+    MicrosoftKeyVault = "Microsoft.KeyVault",
+    // (undocumented)
+    MicrosoftStorage = "Microsoft.Storage"
+}
+
+// @public
+export const enum KnownEncryptionScopeState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownGeoReplicationStatus {
+    // (undocumented)
+    Bootstrap = "Bootstrap",
+    // (undocumented)
+    Live = "Live",
+    // (undocumented)
+    Unavailable = "Unavailable"
+}
+
+// @public
+export const enum KnownImmutabilityPolicyState {
+    // (undocumented)
+    Locked = "Locked",
+    // (undocumented)
+    Unlocked = "Unlocked"
+}
+
+// @public
+export const enum KnownImmutabilityPolicyUpdateType {
+    // (undocumented)
+    Extend = "extend",
+    // (undocumented)
+    Lock = "lock",
+    // (undocumented)
+    Put = "put"
+}
+
+// @public
+export const enum KnownKeySource {
+    // (undocumented)
+    MicrosoftKeyvault = "Microsoft.Keyvault",
+    // (undocumented)
+    MicrosoftStorage = "Microsoft.Storage"
+}
+
+// @public
+export const enum KnownKeyType {
+    // (undocumented)
+    Account = "Account",
+    // (undocumented)
+    Service = "Service"
+}
+
+// @public
+export const enum KnownKind {
+    // (undocumented)
+    BlobStorage = "BlobStorage",
+    // (undocumented)
+    BlockBlobStorage = "BlockBlobStorage",
+    // (undocumented)
+    FileStorage = "FileStorage",
+    // (undocumented)
+    Storage = "Storage",
+    // (undocumented)
+    StorageV2 = "StorageV2"
+}
+
+// @public
+export const enum KnownLargeFileSharesState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownLeaseContainerRequestAction {
+    // (undocumented)
+    Acquire = "Acquire",
+    // (undocumented)
+    Break = "Break",
+    // (undocumented)
+    Change = "Change",
+    // (undocumented)
+    Release = "Release",
+    // (undocumented)
+    Renew = "Renew"
+}
+
+// @public
+export const enum KnownLeaseDuration {
+    // (undocumented)
+    Fixed = "Fixed",
+    // (undocumented)
+    Infinite = "Infinite"
+}
+
+// @public
+export const enum KnownLeaseState {
+    // (undocumented)
+    Available = "Available",
+    // (undocumented)
+    Breaking = "Breaking",
+    // (undocumented)
+    Broken = "Broken",
+    // (undocumented)
+    Expired = "Expired",
+    // (undocumented)
+    Leased = "Leased"
+}
+
+// @public
+export const enum KnownLeaseStatus {
+    // (undocumented)
+    Locked = "Locked",
+    // (undocumented)
+    Unlocked = "Unlocked"
+}
+
+// @public
+export const enum KnownManagementPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownPermissions {
+    // (undocumented)
+    A = "a",
+    // (undocumented)
+    C = "c",
+    // (undocumented)
+    D = "d",
+    // (undocumented)
+    L = "l",
+    // (undocumented)
+    P = "p",
+    // (undocumented)
+    R = "r",
+    // (undocumented)
+    U = "u",
+    // (undocumented)
+    W = "w"
+}
+
+// @public
+export const enum KnownPrivateEndpointConnectionProvisioningState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public
+export const enum KnownPrivateEndpointServiceConnectionStatus {
+    // (undocumented)
+    Approved = "Approved",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    Rejected = "Rejected"
+}
+
+// @public
+export const enum KnownReasonCode {
+    // (undocumented)
+    NotAvailableForSubscription = "NotAvailableForSubscription",
+    // (undocumented)
+    QuotaId = "QuotaId"
+}
+
+// @public
+export const enum KnownRootSquashType {
+    // (undocumented)
+    AllSquash = "AllSquash",
+    // (undocumented)
+    NoRootSquash = "NoRootSquash",
+    // (undocumented)
+    RootSquash = "RootSquash"
+}
+
+// @public
+export const enum KnownRoutingChoice {
+    // (undocumented)
+    InternetRouting = "InternetRouting",
+    // (undocumented)
+    MicrosoftRouting = "MicrosoftRouting"
+}
+
+// @public
+export const enum KnownRuleType {
+    // (undocumented)
+    Lifecycle = "Lifecycle"
+}
+
+// @public
+export const enum KnownServices {
+    // (undocumented)
+    B = "b",
+    // (undocumented)
+    F = "f",
+    // (undocumented)
+    Q = "q",
+    // (undocumented)
+    T = "t"
+}
+
+// @public
+export const enum KnownShareAccessTier {
+    // (undocumented)
+    Cool = "Cool",
+    // (undocumented)
+    Hot = "Hot",
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    TransactionOptimized = "TransactionOptimized"
+}
+
+// @public
+export const enum KnownSignedResource {
+    // (undocumented)
+    B = "b",
+    // (undocumented)
+    C = "c",
+    // (undocumented)
+    F = "f",
+    // (undocumented)
+    S = "s"
+}
+
+// @public
+export const enum KnownSignedResourceTypes {
+    // (undocumented)
+    C = "c",
+    // (undocumented)
+    O = "o",
+    // (undocumented)
+    S = "s"
+}
+
+// @public
+export const enum KnownSkuName {
+    // (undocumented)
+    PremiumLRS = "Premium_LRS",
+    // (undocumented)
+    PremiumZRS = "Premium_ZRS",
+    // (undocumented)
+    StandardGRS = "Standard_GRS",
+    // (undocumented)
+    StandardGzrs = "Standard_GZRS",
+    // (undocumented)
+    StandardLRS = "Standard_LRS",
+    // (undocumented)
+    StandardRagrs = "Standard_RAGRS",
+    // (undocumented)
+    StandardRagzrs = "Standard_RAGZRS",
+    // (undocumented)
+    StandardZRS = "Standard_ZRS"
+}
+
+// @public
+export type LargeFileSharesState = string;
 
 // @public
 export interface LeaseContainerRequest {
@@ -713,7 +1043,7 @@ export interface LeaseContainerRequest {
 }
 
 // @public
-export type LeaseContainerRequestAction = "Acquire" | "Renew" | "Change" | "Release" | "Break" | string;
+export type LeaseContainerRequestAction = string;
 
 // @public
 export interface LeaseContainerResponse {
@@ -722,13 +1052,13 @@ export interface LeaseContainerResponse {
 }
 
 // @public
-export type LeaseDuration = "Infinite" | "Fixed" | string;
+export type LeaseDuration = string;
 
 // @public
-export type LeaseState = "Available" | "Leased" | "Expired" | "Breaking" | "Broken" | string;
+export type LeaseState = string;
 
 // @public
-export type LeaseStatus = "Locked" | "Unlocked" | string;
+export type LeaseStatus = string;
 
 // @public
 export interface LegalHold {
@@ -825,7 +1155,7 @@ export interface ManagementPolicyFilter {
 }
 
 // @public
-export type ManagementPolicyName = "default" | string;
+export type ManagementPolicyName = string;
 
 // @public
 export interface ManagementPolicyRule {
@@ -948,7 +1278,7 @@ export type OperationsListResponse = OperationListResult & {
 };
 
 // @public
-type Permissions_2 = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p" | string;
+type Permissions_2 = string;
 
 export { Permissions_2 as Permissions }
 
@@ -970,7 +1300,7 @@ export interface PrivateEndpointConnectionListResult {
 }
 
 // @public
-export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Deleting" | "Failed" | string;
+export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -997,7 +1327,7 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & 
 };
 
 // @public
-export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | string;
+export type PrivateEndpointServiceConnectionStatus = string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -1036,7 +1366,7 @@ export type PublicAccess = "Container" | "Blob" | "None";
 export type Reason = "AccountNameInvalid" | "AlreadyExists";
 
 // @public
-export type ReasonCode = "QuotaId" | "NotAvailableForSubscription" | string;
+export type ReasonCode = string;
 
 // @public (undocumented)
 export interface Resource {
@@ -1060,10 +1390,10 @@ export interface Restriction {
 }
 
 // @public
-export type RootSquashType = "NoRootSquash" | "RootSquash" | "AllSquash" | string;
+export type RootSquashType = string;
 
 // @public
-export type RoutingChoice = "MicrosoftRouting" | "InternetRouting" | string;
+export type RoutingChoice = string;
 
 // @public
 export interface RoutingPreference {
@@ -1073,10 +1403,10 @@ export interface RoutingPreference {
 }
 
 // @public
-export type RuleType = "Lifecycle" | string;
+export type RuleType = string;
 
 // @public
-export type Services = "b" | "q" | "t" | "f" | string;
+export type Services = string;
 
 // @public
 export interface ServiceSasParameters {
@@ -1106,13 +1436,13 @@ export interface ServiceSpecification {
 }
 
 // @public
-export type ShareAccessTier = "TransactionOptimized" | "Hot" | "Cool" | "Premium" | string;
+export type ShareAccessTier = string;
 
 // @public
-export type SignedResource = "b" | "c" | "f" | "s" | string;
+export type SignedResource = string;
 
 // @public
-export type SignedResourceTypes = "s" | "c" | "o" | string;
+export type SignedResourceTypes = string;
 
 // @public
 export interface Sku {
@@ -1138,7 +1468,7 @@ export interface SkuInformation {
 }
 
 // @public
-export type SkuName = "Standard_LRS" | "Standard_GRS" | "Standard_RAGRS" | "Standard_ZRS" | "Premium_LRS" | "Premium_ZRS" | "Standard_GZRS" | "Standard_RAGZRS" | string;
+export type SkuName = string;
 
 // @public
 export type SkusListResponse = StorageSkuListResult & {
@@ -1528,7 +1858,7 @@ export interface VirtualNetworkRule {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:2670:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:3112:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

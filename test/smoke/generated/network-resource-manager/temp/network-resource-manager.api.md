@@ -22,7 +22,7 @@ export interface AadAuthenticationParameters {
 }
 
 // @public
-export type Access = "Allow" | "Deny" | string;
+export type Access = string;
 
 // @public
 export interface AddressSpace {
@@ -144,7 +144,7 @@ export interface ApplicationGatewayBackendHealthServer {
 }
 
 // @public
-export type ApplicationGatewayBackendHealthServerHealth = "Unknown" | "Up" | "Down" | "Partial" | "Draining" | string;
+export type ApplicationGatewayBackendHealthServerHealth = string;
 
 // @public
 export type ApplicationGatewayBackendHttpSettings = SubResource & {
@@ -174,7 +174,7 @@ export interface ApplicationGatewayConnectionDraining {
 }
 
 // @public
-export type ApplicationGatewayCookieBasedAffinity = "Enabled" | "Disabled" | string;
+export type ApplicationGatewayCookieBasedAffinity = string;
 
 // @public
 export interface ApplicationGatewayCustomError {
@@ -183,7 +183,7 @@ export interface ApplicationGatewayCustomError {
 }
 
 // @public
-export type ApplicationGatewayCustomErrorStatusCode = "HttpStatus403" | "HttpStatus502" | string;
+export type ApplicationGatewayCustomErrorStatusCode = string;
 
 // @public
 export interface ApplicationGatewayFirewallDisabledRuleGroup {
@@ -199,7 +199,7 @@ export interface ApplicationGatewayFirewallExclusion {
 }
 
 // @public
-export type ApplicationGatewayFirewallMode = "Detection" | "Prevention" | string;
+export type ApplicationGatewayFirewallMode = string;
 
 // @public
 export interface ApplicationGatewayFirewallRule {
@@ -294,7 +294,7 @@ export interface ApplicationGatewayOnDemandProbe {
 }
 
 // @public
-export type ApplicationGatewayOperationalState = "Stopped" | "Starting" | "Running" | "Stopping" | string;
+export type ApplicationGatewayOperationalState = string;
 
 // @public
 export type ApplicationGatewayPathRule = SubResource & {
@@ -335,7 +335,7 @@ export interface ApplicationGatewayProbeHealthResponseMatch {
 }
 
 // @public
-export type ApplicationGatewayProtocol = "Http" | "Https" | string;
+export type ApplicationGatewayProtocol = string;
 
 // @public
 export type ApplicationGatewayRedirectConfiguration = SubResource & {
@@ -353,7 +353,7 @@ export type ApplicationGatewayRedirectConfiguration = SubResource & {
 };
 
 // @public
-export type ApplicationGatewayRedirectType = "Permanent" | "Found" | "SeeOther" | "Temporary" | string;
+export type ApplicationGatewayRedirectType = string;
 
 // @public
 export type ApplicationGatewayRequestRoutingRule = SubResource & {
@@ -372,7 +372,7 @@ export type ApplicationGatewayRequestRoutingRule = SubResource & {
 };
 
 // @public
-export type ApplicationGatewayRequestRoutingRuleType = "Basic" | "PathBasedRouting" | string;
+export type ApplicationGatewayRequestRoutingRuleType = string;
 
 // @public
 export interface ApplicationGatewayRewriteRule {
@@ -466,7 +466,7 @@ export interface ApplicationGatewaySku {
 }
 
 // @public
-export type ApplicationGatewaySkuName = "Standard_Small" | "Standard_Medium" | "Standard_Large" | "WAF_Medium" | "WAF_Large" | "Standard_v2" | "WAF_v2" | string;
+export type ApplicationGatewaySkuName = string;
 
 // @public
 export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResult & {
@@ -572,7 +572,7 @@ export type ApplicationGatewaySslCertificate = SubResource & {
 };
 
 // @public
-export type ApplicationGatewaySslCipherSuite = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384" | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_AES_256_GCM_SHA384" | "TLS_RSA_WITH_AES_128_GCM_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA256" | "TLS_RSA_WITH_AES_128_CBC_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA" | "TLS_RSA_WITH_AES_128_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_3DES_EDE_CBC_SHA" | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384" | string;
+export type ApplicationGatewaySslCipherSuite = string;
 
 // @public
 export interface ApplicationGatewaySslPolicy {
@@ -584,10 +584,10 @@ export interface ApplicationGatewaySslPolicy {
 }
 
 // @public
-export type ApplicationGatewaySslPolicyName = "AppGwSslPolicy20150501" | "AppGwSslPolicy20170401" | "AppGwSslPolicy20170401S" | string;
+export type ApplicationGatewaySslPolicyName = string;
 
 // @public
-export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom" | string;
+export type ApplicationGatewaySslPolicyType = string;
 
 // @public
 export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
@@ -597,7 +597,7 @@ export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
 };
 
 // @public
-export type ApplicationGatewaySslProtocol = "TLSv1_0" | "TLSv1_1" | "TLSv1_2" | string;
+export type ApplicationGatewaySslProtocol = string;
 
 // @public
 export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
@@ -608,7 +608,7 @@ export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
 };
 
 // @public
-export type ApplicationGatewayTier = "Standard" | "WAF" | "Standard_v2" | "WAF_v2" | string;
+export type ApplicationGatewayTier = string;
 
 // @public
 export type ApplicationGatewayTrustedRootCertificate = SubResource & {
@@ -736,10 +736,10 @@ export type ApplicationSecurityGroupsUpdateTagsResponse = ApplicationSecurityGro
 };
 
 // @public
-export type AssociationType = "Associated" | "Contains" | string;
+export type AssociationType = string;
 
 // @public
-export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2" | string;
+export type AuthenticationMethod = string;
 
 // @public
 export interface AuthorizationListResult {
@@ -748,7 +748,7 @@ export interface AuthorizationListResult {
 }
 
 // @public
-export type AuthorizationUseStatus = "Available" | "InUse" | string;
+export type AuthorizationUseStatus = string;
 
 // @public
 export interface AutoApprovedPrivateLinkService {
@@ -1011,7 +1011,7 @@ export interface AzureFirewallApplicationRuleProtocol {
 }
 
 // @public
-export type AzureFirewallApplicationRuleProtocolType = "Http" | "Https" | "Mssql" | string;
+export type AzureFirewallApplicationRuleProtocolType = string;
 
 // @public
 export type AzureFirewallFqdnTag = Resource & {
@@ -1071,7 +1071,7 @@ export interface AzureFirewallNatRCAction {
 }
 
 // @public
-export type AzureFirewallNatRCActionType = "Snat" | "Dnat" | string;
+export type AzureFirewallNatRCActionType = string;
 
 // @public
 export interface AzureFirewallNatRule {
@@ -1121,7 +1121,7 @@ export type AzureFirewallNetworkRuleCollection = SubResource & {
 };
 
 // @public
-export type AzureFirewallNetworkRuleProtocol = "TCP" | "UDP" | "Any" | "ICMP" | string;
+export type AzureFirewallNetworkRuleProtocol = string;
 
 // @public
 export interface AzureFirewallPublicIPAddress {
@@ -1134,7 +1134,7 @@ export interface AzureFirewallRCAction {
 }
 
 // @public
-export type AzureFirewallRCActionType = "Allow" | "Deny" | string;
+export type AzureFirewallRCActionType = string;
 
 // @public
 export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
@@ -1160,10 +1160,10 @@ export interface AzureFirewallSku {
 }
 
 // @public
-export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub" | string;
+export type AzureFirewallSkuName = string;
 
 // @public
-export type AzureFirewallSkuTier = "Standard" | "Premium" | string;
+export type AzureFirewallSkuTier = string;
 
 // @public
 export type AzureFirewallsListAllNextResponse = AzureFirewallListResult & {
@@ -1207,7 +1207,7 @@ export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
 };
 
 // @public
-export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off" | string;
+export type AzureFirewallThreatIntelMode = string;
 
 // @public
 export interface AzureReachabilityReport {
@@ -1280,7 +1280,7 @@ export interface BastionActiveSessionListResult {
 }
 
 // @public
-export type BastionConnectProtocol = "SSH" | "RDP" | string;
+export type BastionConnectProtocol = string;
 
 // @public
 export type BastionHost = Resource & {
@@ -1399,7 +1399,7 @@ export interface BGPCommunity {
 }
 
 // @public
-export type BgpPeerState = "Unknown" | "Stopped" | "Idle" | "Connecting" | "Connected" | string;
+export type BgpPeerState = string;
 
 // @public
 export interface BgpPeerStatus {
@@ -1460,7 +1460,7 @@ export interface CheckPrivateLinkServiceVisibilityRequest {
 }
 
 // @public
-export type CircuitConnectionStatus = "Connected" | "Connecting" | "Disconnected" | string;
+export type CircuitConnectionStatus = string;
 
 // @public
 export interface CloudError {
@@ -1526,10 +1526,10 @@ export interface ConnectionMonitorEndpointFilterItem {
 }
 
 // @public
-export type ConnectionMonitorEndpointFilterItemType = "AgentAddress" | string;
+export type ConnectionMonitorEndpointFilterItemType = string;
 
 // @public
-export type ConnectionMonitorEndpointFilterType = "Include" | string;
+export type ConnectionMonitorEndpointFilterType = string;
 
 // @public
 export interface ConnectionMonitorHttpConfiguration {
@@ -1641,7 +1641,7 @@ export interface ConnectionMonitorSource {
 }
 
 // @public
-export type ConnectionMonitorSourceStatus = "Unknown" | "Active" | "Inactive" | string;
+export type ConnectionMonitorSourceStatus = string;
 
 // @public
 export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
@@ -1685,7 +1685,7 @@ export interface ConnectionMonitorTestConfiguration {
 }
 
 // @public
-export type ConnectionMonitorTestConfigurationProtocol = "Tcp" | "Http" | "Icmp" | string;
+export type ConnectionMonitorTestConfigurationProtocol = string;
 
 // @public
 export interface ConnectionMonitorTestGroup {
@@ -1697,7 +1697,7 @@ export interface ConnectionMonitorTestGroup {
 }
 
 // @public
-export type ConnectionMonitorType = "MultiEndpoint" | "SingleSourceDestination" | string;
+export type ConnectionMonitorType = string;
 
 // @public
 export interface ConnectionMonitorWorkspaceSettings {
@@ -1715,7 +1715,7 @@ export type ConnectionSharedKey = SubResource & {
 };
 
 // @public
-export type ConnectionState = "Reachable" | "Unreachable" | "Unknown" | string;
+export type ConnectionState = string;
 
 // @public
 export interface ConnectionStateSnapshot {
@@ -1732,7 +1732,7 @@ export interface ConnectionStateSnapshot {
 }
 
 // @public
-export type ConnectionStatus = "Unknown" | "Connected" | "Disconnected" | "Degraded" | string;
+export type ConnectionStatus = string;
 
 // @public
 export interface ConnectivityDestination {
@@ -1860,10 +1860,10 @@ export type DdosCustomPolicy = Resource & {
 };
 
 // @public
-export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn" | string;
+export type DdosCustomPolicyProtocol = string;
 
 // @public
-export type DdosCustomPolicyTriggerSensitivityOverride = "Relaxed" | "Low" | "Default" | "High" | string;
+export type DdosCustomPolicyTriggerSensitivityOverride = string;
 
 // @public
 export interface DdosProtectionPlan {
@@ -1951,7 +1951,7 @@ export interface DdosSettings {
 }
 
 // @public
-export type DdosSettingsProtectionCoverage = "Basic" | "Standard" | string;
+export type DdosSettingsProtectionCoverage = string;
 
 // @public
 export type DefaultSecurityRulesGetResponse = SecurityRule & {
@@ -1999,7 +1999,7 @@ export interface DhcpOptions {
 }
 
 // @public
-export type DhGroup = "None" | "DHGroup1" | "DHGroup2" | "DHGroup14" | "DHGroup2048" | "ECP256" | "ECP384" | "DHGroup24" | string;
+export type DhGroup = string;
 
 // @public
 export interface Dimension {
@@ -2009,7 +2009,7 @@ export interface Dimension {
 }
 
 // @public
-export type Direction = "Inbound" | "Outbound" | string;
+export type Direction = string;
 
 // @public
 export interface DnsNameAvailabilityResult {
@@ -2073,13 +2073,13 @@ export interface EffectiveRouteListResult {
 }
 
 // @public
-export type EffectiveRouteSource = "Unknown" | "User" | "VirtualNetworkGateway" | "Default" | string;
+export type EffectiveRouteSource = string;
 
 // @public
-export type EffectiveRouteState = "Active" | "Invalid" | string;
+export type EffectiveRouteState = string;
 
 // @public
-export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All" | string;
+export type EffectiveSecurityRuleProtocol = string;
 
 // @public
 export type EndpointServiceResult = SubResource & {
@@ -2123,7 +2123,7 @@ export interface EvaluatedNetworkSecurityGroup {
 }
 
 // @public
-export type EvaluationState = "NotStarted" | "InProgress" | "Completed" | string;
+export type EvaluationState = string;
 
 // @public
 export type ExpressRouteCircuit = Resource & {
@@ -2283,7 +2283,7 @@ export type ExpressRouteCircuitPeering = SubResource & {
 };
 
 // @public
-export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = "NotConfigured" | "Configuring" | "Configured" | "ValidationNeeded" | string;
+export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = string;
 
 // @public
 export interface ExpressRouteCircuitPeeringConfig {
@@ -2340,7 +2340,7 @@ export type ExpressRouteCircuitPeeringsListResponse = ExpressRouteCircuitPeering
 };
 
 // @public
-export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled" | string;
+export type ExpressRouteCircuitPeeringState = string;
 
 // @public
 export interface ExpressRouteCircuitReference {
@@ -2419,10 +2419,10 @@ export interface ExpressRouteCircuitSku {
 }
 
 // @public
-export type ExpressRouteCircuitSkuFamily = "UnlimitedData" | "MeteredData" | string;
+export type ExpressRouteCircuitSkuFamily = string;
 
 // @public
-export type ExpressRouteCircuitSkuTier = "Standard" | "Premium" | "Basic" | "Local" | string;
+export type ExpressRouteCircuitSkuTier = string;
 
 // @public
 export type ExpressRouteCircuitsListAllNextResponse = ExpressRouteCircuitListResult & {
@@ -2809,10 +2809,10 @@ export type ExpressRouteLink = SubResource & {
 };
 
 // @public
-export type ExpressRouteLinkAdminState = "Enabled" | "Disabled" | string;
+export type ExpressRouteLinkAdminState = string;
 
 // @public
-export type ExpressRouteLinkConnectorType = "LC" | "SC" | string;
+export type ExpressRouteLinkConnectorType = string;
 
 // @public
 export interface ExpressRouteLinkListResult {
@@ -2821,7 +2821,7 @@ export interface ExpressRouteLinkListResult {
 }
 
 // @public
-export type ExpressRouteLinkMacSecCipher = "gcm-aes-128" | "gcm-aes-256" | string;
+export type ExpressRouteLinkMacSecCipher = string;
 
 // @public
 export interface ExpressRouteLinkMacSecConfig {
@@ -2855,10 +2855,10 @@ export type ExpressRouteLinksListResponse = ExpressRouteLinkListResult & {
 };
 
 // @public
-export type ExpressRoutePeeringState = "Disabled" | "Enabled" | string;
+export type ExpressRoutePeeringState = string;
 
 // @public
-export type ExpressRoutePeeringType = "AzurePublicPeering" | "AzurePrivatePeering" | "MicrosoftPeering" | string;
+export type ExpressRoutePeeringType = string;
 
 // @public
 export type ExpressRoutePort = Resource & {
@@ -2893,7 +2893,7 @@ export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
 };
 
 // @public
-export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ" | string;
+export type ExpressRoutePortsEncapsulation = string;
 
 // @public
 export type ExpressRoutePortsGetResponse = ExpressRoutePort & {
@@ -3109,10 +3109,10 @@ export interface FirewallPolicyFilterRuleAction {
 }
 
 // @public
-export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny" | string;
+export type FirewallPolicyFilterRuleActionType = string;
 
 // @public
-export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled" | string;
+export type FirewallPolicyIntrusionSystemMode = string;
 
 // @public
 export interface FirewallPolicyListResult {
@@ -3134,7 +3134,7 @@ export interface FirewallPolicyNatRuleAction {
 }
 
 // @public
-export type FirewallPolicyNatRuleActionType = "DNAT" | string;
+export type FirewallPolicyNatRuleActionType = string;
 
 // @public
 export interface FirewallPolicyRule {
@@ -3157,13 +3157,13 @@ export interface FirewallPolicyRuleConditionApplicationProtocol {
 }
 
 // @public
-export type FirewallPolicyRuleConditionApplicationProtocolType = "Http" | "Https" | string;
+export type FirewallPolicyRuleConditionApplicationProtocolType = string;
 
 // @public
-export type FirewallPolicyRuleConditionNetworkProtocol = "TCP" | "UDP" | "Any" | "ICMP" | string;
+export type FirewallPolicyRuleConditionNetworkProtocol = string;
 
 // @public
-export type FirewallPolicyRuleConditionType = "ApplicationRuleCondition" | "NetworkRuleCondition" | "NatRuleCondition" | string;
+export type FirewallPolicyRuleConditionType = string;
 
 // @public (undocumented)
 export type FirewallPolicyRuleConditionUnion = ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
@@ -3218,7 +3218,7 @@ export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListRe
 };
 
 // @public
-export type FirewallPolicyRuleType = "FirewallPolicyNatRule" | "FirewallPolicyFilterRule" | string;
+export type FirewallPolicyRuleType = string;
 
 // @public (undocumented)
 export type FirewallPolicyRuleUnion = FirewallPolicyNatRule | FirewallPolicyFilterRule;
@@ -3262,7 +3262,7 @@ export interface FlowLogFormatParameters {
 }
 
 // @public
-export type FlowLogFormatType = "JSON" | string;
+export type FlowLogFormatType = string;
 
 // @public
 export interface FlowLogInformation {
@@ -3367,7 +3367,7 @@ export interface HttpConfiguration {
 }
 
 // @public
-export type HttpConfigurationMethod = "Get" | "Post" | string;
+export type HttpConfigurationMethod = string;
 
 // @public
 export interface HttpHeader {
@@ -3376,7 +3376,7 @@ export interface HttpHeader {
 }
 
 // @public
-export type HttpMethod = "Get" | string;
+export type HttpMethod = string;
 
 // @public
 export interface HubIPAddresses {
@@ -3475,13 +3475,13 @@ export type HubVirtualNetworkConnectionsListResponse = ListHubVirtualNetworkConn
 };
 
 // @public
-export type HubVirtualNetworkConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
+export type HubVirtualNetworkConnectionStatus = string;
 
 // @public
-export type IkeEncryption = "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES256" | "GCMAES128" | string;
+export type IkeEncryption = string;
 
 // @public
-export type IkeIntegrity = "MD5" | "SHA1" | "SHA256" | "SHA384" | "GCMAES256" | "GCMAES128" | string;
+export type IkeIntegrity = string;
 
 // @public
 export type InboundNatPool = SubResource & {
@@ -3587,7 +3587,7 @@ export interface IpAllocationListResult {
 }
 
 // @public
-export type IPAllocationMethod = "Static" | "Dynamic" | string;
+export type IPAllocationMethod = string;
 
 // @public
 export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
@@ -3652,7 +3652,7 @@ export type IpAllocationsUpdateTagsResponse = IpAllocation & {
 };
 
 // @public
-export type IpAllocationType = "Undefined" | "Hypernet" | string;
+export type IpAllocationType = string;
 
 // @public
 export type IPConfiguration = SubResource & {
@@ -3683,7 +3683,7 @@ export type IPConfigurationProfile = SubResource & {
 };
 
 // @public
-export type IpFlowProtocol = "TCP" | "UDP" | string;
+export type IpFlowProtocol = string;
 
 // @public
 export type IpGroup = Resource & {
@@ -3762,10 +3762,10 @@ export type IpGroupsUpdateGroupsResponse = IpGroup & {
 };
 
 // @public
-export type IpsecEncryption = "None" | "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES128" | "GCMAES192" | "GCMAES256" | string;
+export type IpsecEncryption = string;
 
 // @public
-export type IpsecIntegrity = "MD5" | "SHA1" | "SHA256" | "GCMAES128" | "GCMAES192" | "GCMAES256" | string;
+export type IpsecIntegrity = string;
 
 // @public
 export interface IpsecPolicy {
@@ -3801,10 +3801,1480 @@ export interface Ipv6ExpressRouteCircuitPeeringConfig {
 }
 
 // @public
-export type IPVersion = "IPv4" | "IPv6" | string;
+export type IPVersion = string;
 
 // @public
-export type IssueType = "Unknown" | "AgentStopped" | "GuestFirewall" | "DnsResolution" | "SocketBind" | "NetworkSecurityRule" | "UserDefinedRoute" | "PortThrottled" | "Platform" | string;
+export type IssueType = string;
+
+// @public
+export const enum KnownAccess {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public
+export const enum KnownApplicationGatewayBackendHealthServerHealth {
+    // (undocumented)
+    Down = "Down",
+    // (undocumented)
+    Draining = "Draining",
+    // (undocumented)
+    Partial = "Partial",
+    // (undocumented)
+    Unknown = "Unknown",
+    // (undocumented)
+    Up = "Up"
+}
+
+// @public
+export const enum KnownApplicationGatewayCookieBasedAffinity {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownApplicationGatewayCustomErrorStatusCode {
+    // (undocumented)
+    HttpStatus403 = "HttpStatus403",
+    // (undocumented)
+    HttpStatus502 = "HttpStatus502"
+}
+
+// @public
+export const enum KnownApplicationGatewayFirewallMode {
+    // (undocumented)
+    Detection = "Detection",
+    // (undocumented)
+    Prevention = "Prevention"
+}
+
+// @public
+export const enum KnownApplicationGatewayOperationalState {
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Starting = "Starting",
+    // (undocumented)
+    Stopped = "Stopped",
+    // (undocumented)
+    Stopping = "Stopping"
+}
+
+// @public
+export const enum KnownApplicationGatewayProtocol {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Https = "Https"
+}
+
+// @public
+export const enum KnownApplicationGatewayRedirectType {
+    // (undocumented)
+    Found = "Found",
+    // (undocumented)
+    Permanent = "Permanent",
+    // (undocumented)
+    SeeOther = "SeeOther",
+    // (undocumented)
+    Temporary = "Temporary"
+}
+
+// @public
+export const enum KnownApplicationGatewayRequestRoutingRuleType {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    PathBasedRouting = "PathBasedRouting"
+}
+
+// @public
+export const enum KnownApplicationGatewaySkuName {
+    // (undocumented)
+    StandardLarge = "Standard_Large",
+    // (undocumented)
+    StandardMedium = "Standard_Medium",
+    // (undocumented)
+    StandardSmall = "Standard_Small",
+    // (undocumented)
+    StandardV2 = "Standard_v2",
+    // (undocumented)
+    WAFLarge = "WAF_Large",
+    // (undocumented)
+    WAFMedium = "WAF_Medium",
+    // (undocumented)
+    WAFV2 = "WAF_v2"
+}
+
+// @public
+export const enum KnownApplicationGatewaySslCipherSuite {
+    // (undocumented)
+    TLSDHEDSSWith3DESEDECBCSHA = "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
+    // (undocumented)
+    TLSDHEDSSWithAES128CBCSHA = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
+    // (undocumented)
+    TLSDHEDSSWithAES128CBCSHA256 = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
+    // (undocumented)
+    TLSDHEDSSWithAES256CBCSHA = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA",
+    // (undocumented)
+    TLSDHEDSSWithAES256CBCSHA256 = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256",
+    // (undocumented)
+    TLSDHERSAWithAES128CBCSHA = "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+    // (undocumented)
+    TLSDHERSAWithAES128GCMSHA256 = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
+    // (undocumented)
+    TLSDHERSAWithAES256CBCSHA = "TLS_DHE_RSA_WITH_AES_256_CBC_SHA",
+    // (undocumented)
+    TLSDHERSAWithAES256GCMSHA384 = "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES128CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES128CBCSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES128GCMSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES256CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES256CBCSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+    // (undocumented)
+    TLSEcdheEcdsaWithAES256GCMSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+    // (undocumented)
+    TLSEcdheRSAWithAES128CBCSHA = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+    // (undocumented)
+    TLSEcdheRSAWithAES128CBCSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+    // (undocumented)
+    TLSEcdheRSAWithAES128GCMSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+    // (undocumented)
+    TLSEcdheRSAWithAES256CBCSHA = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+    // (undocumented)
+    TLSEcdheRSAWithAES256CBCSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+    // (undocumented)
+    TLSEcdheRSAWithAES256GCMSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+    // (undocumented)
+    TLSRSAWith3DESEDECBCSHA = "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+    // (undocumented)
+    TLSRSAWithAES128CBCSHA = "TLS_RSA_WITH_AES_128_CBC_SHA",
+    // (undocumented)
+    TLSRSAWithAES128CBCSHA256 = "TLS_RSA_WITH_AES_128_CBC_SHA256",
+    // (undocumented)
+    TLSRSAWithAES128GCMSHA256 = "TLS_RSA_WITH_AES_128_GCM_SHA256",
+    // (undocumented)
+    TLSRSAWithAES256CBCSHA = "TLS_RSA_WITH_AES_256_CBC_SHA",
+    // (undocumented)
+    TLSRSAWithAES256CBCSHA256 = "TLS_RSA_WITH_AES_256_CBC_SHA256",
+    // (undocumented)
+    TLSRSAWithAES256GCMSHA384 = "TLS_RSA_WITH_AES_256_GCM_SHA384"
+}
+
+// @public
+export const enum KnownApplicationGatewaySslPolicyName {
+    // (undocumented)
+    AppGwSslPolicy20150501 = "AppGwSslPolicy20150501",
+    // (undocumented)
+    AppGwSslPolicy20170401 = "AppGwSslPolicy20170401",
+    // (undocumented)
+    AppGwSslPolicy20170401S = "AppGwSslPolicy20170401S"
+}
+
+// @public
+export const enum KnownApplicationGatewaySslPolicyType {
+    // (undocumented)
+    Custom = "Custom",
+    // (undocumented)
+    Predefined = "Predefined"
+}
+
+// @public
+export const enum KnownApplicationGatewaySslProtocol {
+    // (undocumented)
+    TLSv10 = "TLSv1_0",
+    // (undocumented)
+    TLSv11 = "TLSv1_1",
+    // (undocumented)
+    TLSv12 = "TLSv1_2"
+}
+
+// @public
+export const enum KnownApplicationGatewayTier {
+    // (undocumented)
+    Standard = "Standard",
+    // (undocumented)
+    StandardV2 = "Standard_v2",
+    // (undocumented)
+    WAF = "WAF",
+    // (undocumented)
+    WAFV2 = "WAF_v2"
+}
+
+// @public
+export const enum KnownAssociationType {
+    // (undocumented)
+    Associated = "Associated",
+    // (undocumented)
+    Contains = "Contains"
+}
+
+// @public
+export const enum KnownAuthenticationMethod {
+    // (undocumented)
+    EapmschaPv2 = "EAPMSCHAPv2",
+    // (undocumented)
+    Eaptls = "EAPTLS"
+}
+
+// @public
+export const enum KnownAuthorizationUseStatus {
+    // (undocumented)
+    Available = "Available",
+    // (undocumented)
+    InUse = "InUse"
+}
+
+// @public
+export const enum KnownAzureFirewallApplicationRuleProtocolType {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Https = "Https",
+    // (undocumented)
+    Mssql = "Mssql"
+}
+
+// @public
+export const enum KnownAzureFirewallNatRCActionType {
+    // (undocumented)
+    Dnat = "Dnat",
+    // (undocumented)
+    Snat = "Snat"
+}
+
+// @public
+export const enum KnownAzureFirewallNetworkRuleProtocol {
+    // (undocumented)
+    Any = "Any",
+    // (undocumented)
+    Icmp = "ICMP",
+    // (undocumented)
+    TCP = "TCP",
+    // (undocumented)
+    UDP = "UDP"
+}
+
+// @public
+export const enum KnownAzureFirewallRCActionType {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public
+export const enum KnownAzureFirewallSkuName {
+    // (undocumented)
+    AzfwHub = "AZFW_Hub",
+    // (undocumented)
+    AzfwVnet = "AZFW_VNet"
+}
+
+// @public
+export const enum KnownAzureFirewallSkuTier {
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownAzureFirewallThreatIntelMode {
+    // (undocumented)
+    Alert = "Alert",
+    // (undocumented)
+    Deny = "Deny",
+    // (undocumented)
+    Off = "Off"
+}
+
+// @public
+export const enum KnownBastionConnectProtocol {
+    // (undocumented)
+    RDP = "RDP",
+    // (undocumented)
+    SSH = "SSH"
+}
+
+// @public
+export const enum KnownBgpPeerState {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    Idle = "Idle",
+    // (undocumented)
+    Stopped = "Stopped",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownCircuitConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    Disconnected = "Disconnected"
+}
+
+// @public
+export const enum KnownConnectionMonitorEndpointFilterItemType {
+    // (undocumented)
+    AgentAddress = "AgentAddress"
+}
+
+// @public
+export const enum KnownConnectionMonitorEndpointFilterType {
+    // (undocumented)
+    Include = "Include"
+}
+
+// @public
+export const enum KnownConnectionMonitorSourceStatus {
+    // (undocumented)
+    Active = "Active",
+    // (undocumented)
+    Inactive = "Inactive",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownConnectionMonitorTestConfigurationProtocol {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Icmp = "Icmp",
+    // (undocumented)
+    Tcp = "Tcp"
+}
+
+// @public
+export const enum KnownConnectionMonitorType {
+    // (undocumented)
+    MultiEndpoint = "MultiEndpoint",
+    // (undocumented)
+    SingleSourceDestination = "SingleSourceDestination"
+}
+
+// @public
+export const enum KnownConnectionState {
+    // (undocumented)
+    Reachable = "Reachable",
+    // (undocumented)
+    Unknown = "Unknown",
+    // (undocumented)
+    Unreachable = "Unreachable"
+}
+
+// @public
+export const enum KnownConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Degraded = "Degraded",
+    // (undocumented)
+    Disconnected = "Disconnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownDdosCustomPolicyProtocol {
+    // (undocumented)
+    Syn = "Syn",
+    // (undocumented)
+    Tcp = "Tcp",
+    // (undocumented)
+    Udp = "Udp"
+}
+
+// @public
+export const enum KnownDdosCustomPolicyTriggerSensitivityOverride {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    High = "High",
+    // (undocumented)
+    Low = "Low",
+    // (undocumented)
+    Relaxed = "Relaxed"
+}
+
+// @public
+export const enum KnownDdosSettingsProtectionCoverage {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownDhGroup {
+    // (undocumented)
+    DHGroup1 = "DHGroup1",
+    // (undocumented)
+    DHGroup14 = "DHGroup14",
+    // (undocumented)
+    DHGroup2 = "DHGroup2",
+    // (undocumented)
+    DHGroup2048 = "DHGroup2048",
+    // (undocumented)
+    DHGroup24 = "DHGroup24",
+    // (undocumented)
+    ECP256 = "ECP256",
+    // (undocumented)
+    ECP384 = "ECP384",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownDirection {
+    // (undocumented)
+    Inbound = "Inbound",
+    // (undocumented)
+    Outbound = "Outbound"
+}
+
+// @public
+export const enum KnownEffectiveRouteSource {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    Unknown = "Unknown",
+    // (undocumented)
+    User = "User",
+    // (undocumented)
+    VirtualNetworkGateway = "VirtualNetworkGateway"
+}
+
+// @public
+export const enum KnownEffectiveRouteState {
+    // (undocumented)
+    Active = "Active",
+    // (undocumented)
+    Invalid = "Invalid"
+}
+
+// @public
+export const enum KnownEffectiveSecurityRuleProtocol {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Tcp = "Tcp",
+    // (undocumented)
+    Udp = "Udp"
+}
+
+// @public
+export const enum KnownEvaluationState {
+    // (undocumented)
+    Completed = "Completed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    NotStarted = "NotStarted"
+}
+
+// @public
+export const enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
+    // (undocumented)
+    Configured = "Configured",
+    // (undocumented)
+    Configuring = "Configuring",
+    // (undocumented)
+    NotConfigured = "NotConfigured",
+    // (undocumented)
+    ValidationNeeded = "ValidationNeeded"
+}
+
+// @public
+export const enum KnownExpressRouteCircuitPeeringState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownExpressRouteCircuitSkuFamily {
+    // (undocumented)
+    MeteredData = "MeteredData",
+    // (undocumented)
+    UnlimitedData = "UnlimitedData"
+}
+
+// @public
+export const enum KnownExpressRouteCircuitSkuTier {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Local = "Local",
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownExpressRouteLinkAdminState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownExpressRouteLinkConnectorType {
+    // (undocumented)
+    LC = "LC",
+    // (undocumented)
+    SC = "SC"
+}
+
+// @public
+export const enum KnownExpressRouteLinkMacSecCipher {
+    // (undocumented)
+    GcmAes128 = "gcm-aes-128",
+    // (undocumented)
+    GcmAes256 = "gcm-aes-256"
+}
+
+// @public
+export const enum KnownExpressRoutePeeringState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownExpressRoutePeeringType {
+    // (undocumented)
+    AzurePrivatePeering = "AzurePrivatePeering",
+    // (undocumented)
+    AzurePublicPeering = "AzurePublicPeering",
+    // (undocumented)
+    MicrosoftPeering = "MicrosoftPeering"
+}
+
+// @public
+export const enum KnownExpressRoutePortsEncapsulation {
+    // (undocumented)
+    Dot1Q = "Dot1Q",
+    // (undocumented)
+    QinQ = "QinQ"
+}
+
+// @public
+export const enum KnownFirewallPolicyFilterRuleActionType {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public
+export const enum KnownFirewallPolicyIntrusionSystemMode {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownFirewallPolicyNatRuleActionType {
+    // (undocumented)
+    Dnat = "DNAT"
+}
+
+// @public
+export const enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Https = "Https"
+}
+
+// @public
+export const enum KnownFirewallPolicyRuleConditionNetworkProtocol {
+    // (undocumented)
+    Any = "Any",
+    // (undocumented)
+    Icmp = "ICMP",
+    // (undocumented)
+    TCP = "TCP",
+    // (undocumented)
+    UDP = "UDP"
+}
+
+// @public
+export const enum KnownFirewallPolicyRuleConditionType {
+    // (undocumented)
+    ApplicationRuleCondition = "ApplicationRuleCondition",
+    // (undocumented)
+    NatRuleCondition = "NatRuleCondition",
+    // (undocumented)
+    NetworkRuleCondition = "NetworkRuleCondition"
+}
+
+// @public
+export const enum KnownFirewallPolicyRuleType {
+    // (undocumented)
+    FirewallPolicyFilterRule = "FirewallPolicyFilterRule",
+    // (undocumented)
+    FirewallPolicyNatRule = "FirewallPolicyNatRule"
+}
+
+// @public
+export const enum KnownFlowLogFormatType {
+    // (undocumented)
+    Json = "JSON"
+}
+
+// @public
+export const enum KnownHttpConfigurationMethod {
+    // (undocumented)
+    Get = "Get",
+    // (undocumented)
+    Post = "Post"
+}
+
+// @public
+export const enum KnownHttpMethod {
+    // (undocumented)
+    Get = "Get"
+}
+
+// @public
+export const enum KnownHubVirtualNetworkConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    NotConnected = "NotConnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownIkeEncryption {
+    // (undocumented)
+    AES128 = "AES128",
+    // (undocumented)
+    AES192 = "AES192",
+    // (undocumented)
+    AES256 = "AES256",
+    // (undocumented)
+    DES = "DES",
+    // (undocumented)
+    DES3 = "DES3",
+    // (undocumented)
+    Gcmaes128 = "GCMAES128",
+    // (undocumented)
+    Gcmaes256 = "GCMAES256"
+}
+
+// @public
+export const enum KnownIkeIntegrity {
+    // (undocumented)
+    Gcmaes128 = "GCMAES128",
+    // (undocumented)
+    Gcmaes256 = "GCMAES256",
+    // (undocumented)
+    MD5 = "MD5",
+    // (undocumented)
+    SHA1 = "SHA1",
+    // (undocumented)
+    SHA256 = "SHA256",
+    // (undocumented)
+    SHA384 = "SHA384"
+}
+
+// @public
+export const enum KnownIPAllocationMethod {
+    // (undocumented)
+    Dynamic = "Dynamic",
+    // (undocumented)
+    Static = "Static"
+}
+
+// @public
+export const enum KnownIpAllocationType {
+    // (undocumented)
+    Hypernet = "Hypernet",
+    // (undocumented)
+    Undefined = "Undefined"
+}
+
+// @public
+export const enum KnownIpFlowProtocol {
+    // (undocumented)
+    TCP = "TCP",
+    // (undocumented)
+    UDP = "UDP"
+}
+
+// @public
+export const enum KnownIpsecEncryption {
+    // (undocumented)
+    AES128 = "AES128",
+    // (undocumented)
+    AES192 = "AES192",
+    // (undocumented)
+    AES256 = "AES256",
+    // (undocumented)
+    DES = "DES",
+    // (undocumented)
+    DES3 = "DES3",
+    // (undocumented)
+    Gcmaes128 = "GCMAES128",
+    // (undocumented)
+    Gcmaes192 = "GCMAES192",
+    // (undocumented)
+    Gcmaes256 = "GCMAES256",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownIpsecIntegrity {
+    // (undocumented)
+    Gcmaes128 = "GCMAES128",
+    // (undocumented)
+    Gcmaes192 = "GCMAES192",
+    // (undocumented)
+    Gcmaes256 = "GCMAES256",
+    // (undocumented)
+    MD5 = "MD5",
+    // (undocumented)
+    SHA1 = "SHA1",
+    // (undocumented)
+    SHA256 = "SHA256"
+}
+
+// @public
+export const enum KnownIPVersion {
+    // (undocumented)
+    IPv4 = "IPv4",
+    // (undocumented)
+    IPv6 = "IPv6"
+}
+
+// @public
+export const enum KnownIssueType {
+    // (undocumented)
+    AgentStopped = "AgentStopped",
+    // (undocumented)
+    DnsResolution = "DnsResolution",
+    // (undocumented)
+    GuestFirewall = "GuestFirewall",
+    // (undocumented)
+    NetworkSecurityRule = "NetworkSecurityRule",
+    // (undocumented)
+    Platform = "Platform",
+    // (undocumented)
+    PortThrottled = "PortThrottled",
+    // (undocumented)
+    SocketBind = "SocketBind",
+    // (undocumented)
+    Unknown = "Unknown",
+    // (undocumented)
+    UserDefinedRoute = "UserDefinedRoute"
+}
+
+// @public
+export const enum KnownLoadBalancerOutboundRuleProtocol {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Tcp = "Tcp",
+    // (undocumented)
+    Udp = "Udp"
+}
+
+// @public
+export const enum KnownLoadBalancerSkuName {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownLoadDistribution {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    SourceIP = "SourceIP",
+    // (undocumented)
+    SourceIPProtocol = "SourceIPProtocol"
+}
+
+// @public
+export const enum KnownManagedRuleEnabledState {
+    // (undocumented)
+    Disabled = "Disabled"
+}
+
+// @public
+export const enum KnownNatGatewaySkuName {
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownNetworkOperationStatus {
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public
+export const enum KnownNextHopType {
+    // (undocumented)
+    HyperNetGateway = "HyperNetGateway",
+    // (undocumented)
+    Internet = "Internet",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    VirtualAppliance = "VirtualAppliance",
+    // (undocumented)
+    VirtualNetworkGateway = "VirtualNetworkGateway",
+    // (undocumented)
+    VnetLocal = "VnetLocal"
+}
+
+// @public
+export const enum KnownOfficeTrafficCategory {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    Optimize = "Optimize",
+    // (undocumented)
+    OptimizeAndAllow = "OptimizeAndAllow"
+}
+
+// @public
+export const enum KnownOrigin {
+    // (undocumented)
+    Inbound = "Inbound",
+    // (undocumented)
+    Local = "Local",
+    // (undocumented)
+    Outbound = "Outbound"
+}
+
+// @public
+export const enum KnownOutputType {
+    // (undocumented)
+    Workspace = "Workspace"
+}
+
+// @public
+export const enum KnownOwaspCrsExclusionEntryMatchVariable {
+    // (undocumented)
+    RequestArgNames = "RequestArgNames",
+    // (undocumented)
+    RequestCookieNames = "RequestCookieNames",
+    // (undocumented)
+    RequestHeaderNames = "RequestHeaderNames"
+}
+
+// @public
+export const enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
+    // (undocumented)
+    Contains = "Contains",
+    // (undocumented)
+    EndsWith = "EndsWith",
+    // (undocumented)
+    Equals = "Equals",
+    // (undocumented)
+    EqualsAny = "EqualsAny",
+    // (undocumented)
+    StartsWith = "StartsWith"
+}
+
+// @public
+export const enum KnownPcError {
+    // (undocumented)
+    AgentStopped = "AgentStopped",
+    // (undocumented)
+    CaptureFailed = "CaptureFailed",
+    // (undocumented)
+    InternalError = "InternalError",
+    // (undocumented)
+    LocalFileFailed = "LocalFileFailed",
+    // (undocumented)
+    StorageFailed = "StorageFailed"
+}
+
+// @public
+export const enum KnownPcProtocol {
+    // (undocumented)
+    Any = "Any",
+    // (undocumented)
+    TCP = "TCP",
+    // (undocumented)
+    UDP = "UDP"
+}
+
+// @public
+export const enum KnownPcStatus {
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    NotStarted = "NotStarted",
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Stopped = "Stopped",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownPfsGroup {
+    // (undocumented)
+    ECP256 = "ECP256",
+    // (undocumented)
+    ECP384 = "ECP384",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    PFS1 = "PFS1",
+    // (undocumented)
+    PFS14 = "PFS14",
+    // (undocumented)
+    PFS2 = "PFS2",
+    // (undocumented)
+    PFS2048 = "PFS2048",
+    // (undocumented)
+    PFS24 = "PFS24",
+    // (undocumented)
+    Pfsmm = "PFSMM"
+}
+
+// @public
+export const enum KnownPreferredIPVersion {
+    // (undocumented)
+    IPv4 = "IPv4",
+    // (undocumented)
+    IPv6 = "IPv6"
+}
+
+// @public
+export const enum KnownProbeProtocol {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Https = "Https",
+    // (undocumented)
+    Tcp = "Tcp"
+}
+
+// @public
+export const enum KnownProcessorArchitecture {
+    // (undocumented)
+    Amd64 = "Amd64",
+    // (undocumented)
+    X86 = "X86"
+}
+
+// @public
+export const enum KnownProtocol {
+    // (undocumented)
+    Http = "Http",
+    // (undocumented)
+    Https = "Https",
+    // (undocumented)
+    Icmp = "Icmp",
+    // (undocumented)
+    Tcp = "Tcp"
+}
+
+// @public
+export const enum KnownProvisioningState {
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
+export const enum KnownPublicIPAddressSkuName {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownPublicIPPrefixSkuName {
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownRouteFilterRuleType {
+    // (undocumented)
+    Community = "Community"
+}
+
+// @public
+export const enum KnownRouteNextHopType {
+    // (undocumented)
+    Internet = "Internet",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    VirtualAppliance = "VirtualAppliance",
+    // (undocumented)
+    VirtualNetworkGateway = "VirtualNetworkGateway",
+    // (undocumented)
+    VnetLocal = "VnetLocal"
+}
+
+// @public
+export const enum KnownSecurityPartnerProviderConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    NotConnected = "NotConnected",
+    // (undocumented)
+    PartiallyConnected = "PartiallyConnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownSecurityProviderName {
+    // (undocumented)
+    Checkpoint = "Checkpoint",
+    // (undocumented)
+    IBoss = "IBoss",
+    // (undocumented)
+    ZScaler = "ZScaler"
+}
+
+// @public
+export const enum KnownSecurityRuleAccess {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public
+export const enum KnownSecurityRuleDirection {
+    // (undocumented)
+    Inbound = "Inbound",
+    // (undocumented)
+    Outbound = "Outbound"
+}
+
+// @public
+export const enum KnownSecurityRuleProtocol {
+    // (undocumented)
+    Ah = "Ah",
+    // (undocumented)
+    Asterisk = "*",
+    // (undocumented)
+    Esp = "Esp",
+    // (undocumented)
+    Icmp = "Icmp",
+    // (undocumented)
+    Tcp = "Tcp",
+    // (undocumented)
+    Udp = "Udp"
+}
+
+// @public
+export const enum KnownServiceProviderProvisioningState {
+    // (undocumented)
+    Deprovisioning = "Deprovisioning",
+    // (undocumented)
+    NotProvisioned = "NotProvisioned",
+    // (undocumented)
+    Provisioned = "Provisioned",
+    // (undocumented)
+    Provisioning = "Provisioning"
+}
+
+// @public
+export const enum KnownSeverity {
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
+export const enum KnownTransportProtocol {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Tcp = "Tcp",
+    // (undocumented)
+    Udp = "Udp"
+}
+
+// @public
+export const enum KnownTunnelConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    NotConnected = "NotConnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownUsageUnit {
+    // (undocumented)
+    Count = "Count"
+}
+
+// @public
+export const enum KnownVerbosityLevel {
+    // (undocumented)
+    Full = "Full",
+    // (undocumented)
+    Minimum = "Minimum",
+    // (undocumented)
+    Normal = "Normal"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewayConnectionProtocol {
+    // (undocumented)
+    IKEv1 = "IKEv1",
+    // (undocumented)
+    IKEv2 = "IKEv2"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewayConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    NotConnected = "NotConnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewayConnectionType {
+    // (undocumented)
+    ExpressRoute = "ExpressRoute",
+    // (undocumented)
+    IPsec = "IPsec",
+    // (undocumented)
+    Vnet2Vnet = "Vnet2Vnet",
+    // (undocumented)
+    VPNClient = "VPNClient"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewaySkuName {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    ErGw1AZ = "ErGw1AZ",
+    // (undocumented)
+    ErGw2AZ = "ErGw2AZ",
+    // (undocumented)
+    ErGw3AZ = "ErGw3AZ",
+    // (undocumented)
+    HighPerformance = "HighPerformance",
+    // (undocumented)
+    Standard = "Standard",
+    // (undocumented)
+    UltraPerformance = "UltraPerformance",
+    // (undocumented)
+    VpnGw1 = "VpnGw1",
+    // (undocumented)
+    VpnGw1AZ = "VpnGw1AZ",
+    // (undocumented)
+    VpnGw2 = "VpnGw2",
+    // (undocumented)
+    VpnGw2AZ = "VpnGw2AZ",
+    // (undocumented)
+    VpnGw3 = "VpnGw3",
+    // (undocumented)
+    VpnGw3AZ = "VpnGw3AZ",
+    // (undocumented)
+    VpnGw4 = "VpnGw4",
+    // (undocumented)
+    VpnGw4AZ = "VpnGw4AZ",
+    // (undocumented)
+    VpnGw5 = "VpnGw5",
+    // (undocumented)
+    VpnGw5AZ = "VpnGw5AZ"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewaySkuTier {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    ErGw1AZ = "ErGw1AZ",
+    // (undocumented)
+    ErGw2AZ = "ErGw2AZ",
+    // (undocumented)
+    ErGw3AZ = "ErGw3AZ",
+    // (undocumented)
+    HighPerformance = "HighPerformance",
+    // (undocumented)
+    Standard = "Standard",
+    // (undocumented)
+    UltraPerformance = "UltraPerformance",
+    // (undocumented)
+    VpnGw1 = "VpnGw1",
+    // (undocumented)
+    VpnGw1AZ = "VpnGw1AZ",
+    // (undocumented)
+    VpnGw2 = "VpnGw2",
+    // (undocumented)
+    VpnGw2AZ = "VpnGw2AZ",
+    // (undocumented)
+    VpnGw3 = "VpnGw3",
+    // (undocumented)
+    VpnGw3AZ = "VpnGw3AZ",
+    // (undocumented)
+    VpnGw4 = "VpnGw4",
+    // (undocumented)
+    VpnGw4AZ = "VpnGw4AZ",
+    // (undocumented)
+    VpnGw5 = "VpnGw5",
+    // (undocumented)
+    VpnGw5AZ = "VpnGw5AZ"
+}
+
+// @public
+export const enum KnownVirtualNetworkGatewayType {
+    // (undocumented)
+    ExpressRoute = "ExpressRoute",
+    // (undocumented)
+    Vpn = "Vpn"
+}
+
+// @public
+export const enum KnownVirtualNetworkPeeringState {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Disconnected = "Disconnected",
+    // (undocumented)
+    Initiated = "Initiated"
+}
+
+// @public
+export const enum KnownVirtualWanSecurityProviderType {
+    // (undocumented)
+    External = "External",
+    // (undocumented)
+    Native = "Native"
+}
+
+// @public
+export const enum KnownVpnAuthenticationType {
+    // (undocumented)
+    AAD = "AAD",
+    // (undocumented)
+    Certificate = "Certificate",
+    // (undocumented)
+    Radius = "Radius"
+}
+
+// @public
+export const enum KnownVpnClientProtocol {
+    // (undocumented)
+    IkeV2 = "IkeV2",
+    // (undocumented)
+    OpenVPN = "OpenVPN",
+    // (undocumented)
+    Sstp = "SSTP"
+}
+
+// @public
+export const enum KnownVpnConnectionStatus {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Connecting = "Connecting",
+    // (undocumented)
+    NotConnected = "NotConnected",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownVpnGatewayGeneration {
+    // (undocumented)
+    Generation1 = "Generation1",
+    // (undocumented)
+    Generation2 = "Generation2",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownVpnGatewayTunnelingProtocol {
+    // (undocumented)
+    IkeV2 = "IkeV2",
+    // (undocumented)
+    OpenVPN = "OpenVPN"
+}
+
+// @public
+export const enum KnownVpnType {
+    // (undocumented)
+    PolicyBased = "PolicyBased",
+    // (undocumented)
+    RouteBased = "RouteBased"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallAction {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Block = "Block",
+    // (undocumented)
+    Log = "Log"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallEnabledState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallMatchVariable {
+    // (undocumented)
+    PostArgs = "PostArgs",
+    // (undocumented)
+    QueryString = "QueryString",
+    // (undocumented)
+    RemoteAddr = "RemoteAddr",
+    // (undocumented)
+    RequestBody = "RequestBody",
+    // (undocumented)
+    RequestCookies = "RequestCookies",
+    // (undocumented)
+    RequestHeaders = "RequestHeaders",
+    // (undocumented)
+    RequestMethod = "RequestMethod",
+    // (undocumented)
+    RequestUri = "RequestUri"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallMode {
+    // (undocumented)
+    Detection = "Detection",
+    // (undocumented)
+    Prevention = "Prevention"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallOperator {
+    // (undocumented)
+    BeginsWith = "BeginsWith",
+    // (undocumented)
+    Contains = "Contains",
+    // (undocumented)
+    EndsWith = "EndsWith",
+    // (undocumented)
+    Equal = "Equal",
+    // (undocumented)
+    GeoMatch = "GeoMatch",
+    // (undocumented)
+    GreaterThan = "GreaterThan",
+    // (undocumented)
+    GreaterThanOrEqual = "GreaterThanOrEqual",
+    // (undocumented)
+    IPMatch = "IPMatch",
+    // (undocumented)
+    LessThan = "LessThan",
+    // (undocumented)
+    LessThanOrEqual = "LessThanOrEqual",
+    // (undocumented)
+    Regex = "Regex"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallPolicyResourceState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Disabling = "Disabling",
+    // (undocumented)
+    Enabled = "Enabled",
+    // (undocumented)
+    Enabling = "Enabling"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallRuleType {
+    // (undocumented)
+    Invalid = "Invalid",
+    // (undocumented)
+    MatchRule = "MatchRule"
+}
+
+// @public
+export const enum KnownWebApplicationFirewallTransform {
+    // (undocumented)
+    HtmlEntityDecode = "HtmlEntityDecode",
+    // (undocumented)
+    Lowercase = "Lowercase",
+    // (undocumented)
+    RemoveNulls = "RemoveNulls",
+    // (undocumented)
+    Trim = "Trim",
+    // (undocumented)
+    UrlDecode = "UrlDecode",
+    // (undocumented)
+    UrlEncode = "UrlEncode"
+}
 
 // @public
 export interface ListHubRouteTablesResult {
@@ -4029,7 +5499,7 @@ export interface LoadBalancerOutboundRuleListResult {
 }
 
 // @public
-export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All" | string;
+export type LoadBalancerOutboundRuleProtocol = string;
 
 // @public
 export type LoadBalancerOutboundRulesGetResponse = OutboundRule & {
@@ -4113,7 +5583,7 @@ export interface LoadBalancerSku {
 }
 
 // @public
-export type LoadBalancerSkuName = "Basic" | "Standard" | string;
+export type LoadBalancerSkuName = string;
 
 // @public
 export type LoadBalancersListAllNextResponse = LoadBalancerListResult & {
@@ -4175,7 +5645,7 @@ export type LoadBalancingRule = SubResource & {
 };
 
 // @public
-export type LoadDistribution = "Default" | "SourceIP" | "SourceIPProtocol" | string;
+export type LoadDistribution = string;
 
 // @public
 export type LocalNetworkGateway = Resource & {
@@ -4243,7 +5713,7 @@ export interface LogSpecification {
 }
 
 // @public
-export type ManagedRuleEnabledState = "Disabled" | string;
+export type ManagedRuleEnabledState = string;
 
 // @public
 export interface ManagedRuleGroupOverride {
@@ -4366,7 +5836,7 @@ export interface NatGatewaySku {
 }
 
 // @public
-export type NatGatewaySkuName = "Standard" | string;
+export type NatGatewaySkuName = string;
 
 // @public
 export type NatGatewaysListAllNextResponse = NatGatewayListResult & {
@@ -5282,7 +6752,7 @@ export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualW
 };
 
 // @public
-export type NetworkOperationStatus = "InProgress" | "Succeeded" | "Failed" | string;
+export type NetworkOperationStatus = string;
 
 // @public
 export type NetworkProfile = Resource & {
@@ -5721,10 +7191,10 @@ export interface NextHopResult {
 }
 
 // @public
-export type NextHopType = "Internet" | "VirtualAppliance" | "VirtualNetworkGateway" | "VnetLocal" | "HyperNetGateway" | "None" | string;
+export type NextHopType = string;
 
 // @public
-export type OfficeTrafficCategory = "Optimize" | "OptimizeAndAllow" | "All" | "None" | string;
+export type OfficeTrafficCategory = string;
 
 // @public
 export interface Operation {
@@ -5771,7 +7241,7 @@ export type OperationsListResponse = OperationListResult & {
 };
 
 // @public
-export type Origin = "Local" | "Inbound" | "Outbound" | string;
+export type Origin = string;
 
 // @public
 export type OutboundRule = SubResource & {
@@ -5788,7 +7258,7 @@ export type OutboundRule = SubResource & {
 };
 
 // @public
-export type OutputType = "Workspace" | string;
+export type OutputType = string;
 
 // @public
 export interface OwaspCrsExclusionEntry {
@@ -5798,10 +7268,10 @@ export interface OwaspCrsExclusionEntry {
 }
 
 // @public
-export type OwaspCrsExclusionEntryMatchVariable = "RequestHeaderNames" | "RequestCookieNames" | "RequestArgNames" | string;
+export type OwaspCrsExclusionEntryMatchVariable = string;
 
 // @public
-export type OwaspCrsExclusionEntrySelectorMatchOperator = "Equals" | "Contains" | "StartsWith" | "EndsWith" | "EqualsAny" | string;
+export type OwaspCrsExclusionEntrySelectorMatchOperator = string;
 
 // @public
 export type P2SConnectionConfiguration = SubResource & {
@@ -6057,13 +7527,13 @@ export type PatchRouteFilterRule = SubResource & {
 };
 
 // @public
-export type PcError = "InternalError" | "AgentStopped" | "CaptureFailed" | "LocalFileFailed" | "StorageFailed" | string;
+export type PcError = string;
 
 // @public
-export type PcProtocol = "TCP" | "UDP" | "Any" | string;
+export type PcProtocol = string;
 
 // @public
-export type PcStatus = "NotStarted" | "Running" | "Stopped" | "Error" | "Unknown" | string;
+export type PcStatus = string;
 
 // @public
 export type PeerExpressRouteCircuitConnection = SubResource & {
@@ -6110,7 +7580,7 @@ export type PeerExpressRouteCircuitConnectionsListResponse = PeerExpressRouteCir
 };
 
 // @public
-export type PfsGroup = "None" | "PFS1" | "PFS2" | "PFS2048" | "ECP256" | "ECP384" | "PFS24" | "PFS14" | "PFSMM" | string;
+export type PfsGroup = string;
 
 // @public
 export interface PolicySettings {
@@ -6122,7 +7592,7 @@ export interface PolicySettings {
 }
 
 // @public
-export type PreferredIPVersion = "IPv4" | "IPv6" | string;
+export type PreferredIPVersion = string;
 
 // @public
 export interface PrepareNetworkPoliciesRequest {
@@ -6490,10 +7960,10 @@ export type Probe = SubResource & {
 };
 
 // @public
-export type ProbeProtocol = "Http" | "Tcp" | "Https" | string;
+export type ProbeProtocol = string;
 
 // @public
-export type ProcessorArchitecture = "Amd64" | "X86" | string;
+export type ProcessorArchitecture = string;
 
 // @public
 export interface PropagatedRouteTable {
@@ -6502,7 +7972,7 @@ export interface PropagatedRouteTable {
 }
 
 // @public
-export type Protocol = "Tcp" | "Http" | "Https" | "Icmp" | string;
+export type Protocol = string;
 
 // @public
 export interface ProtocolConfiguration {
@@ -6518,7 +7988,7 @@ export interface ProtocolCustomSettingsFormat {
 }
 
 // @public
-export type ProvisioningState = "Succeeded" | "Updating" | "Deleting" | "Failed" | string;
+export type ProvisioningState = string;
 
 // @public
 export type PublicIPAddress = Resource & {
@@ -6664,7 +8134,7 @@ export interface PublicIPAddressSku {
 }
 
 // @public
-export type PublicIPAddressSkuName = "Basic" | "Standard" | string;
+export type PublicIPAddressSkuName = string;
 
 // @public
 export type PublicIPPrefix = Resource & {
@@ -6755,7 +8225,7 @@ export interface PublicIPPrefixSku {
 }
 
 // @public
-export type PublicIPPrefixSkuName = "Standard" | string;
+export type PublicIPPrefixSkuName = string;
 
 // @public
 export interface QueryTroubleshootingParameters {
@@ -6909,7 +8379,7 @@ export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResul
 };
 
 // @public
-export type RouteFilterRuleType = "Community" | string;
+export type RouteFilterRuleType = string;
 
 // @public
 export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
@@ -6980,7 +8450,7 @@ export interface RouteListResult {
 }
 
 // @public
-export type RouteNextHopType = "VirtualNetworkGateway" | "VnetLocal" | "Internet" | "VirtualAppliance" | "None" | string;
+export type RouteNextHopType = string;
 
 // @public
 export type RoutesCreateOrUpdateResponse = Route & {
@@ -7125,7 +8595,7 @@ export type SecurityPartnerProvider = Resource & {
 };
 
 // @public
-export type SecurityPartnerProviderConnectionStatus = "Unknown" | "PartiallyConnected" | "Connected" | "NotConnected" | string;
+export type SecurityPartnerProviderConnectionStatus = string;
 
 // @public
 export interface SecurityPartnerProviderListResult {
@@ -7191,7 +8661,7 @@ export type SecurityPartnerProvidersUpdateTagsResponse = SecurityPartnerProvider
 };
 
 // @public
-export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint" | string;
+export type SecurityProviderName = string;
 
 // @public
 export type SecurityRule = SubResource & {
@@ -7216,7 +8686,7 @@ export type SecurityRule = SubResource & {
 };
 
 // @public
-export type SecurityRuleAccess = "Allow" | "Deny" | string;
+export type SecurityRuleAccess = string;
 
 // @public
 export interface SecurityRuleAssociations {
@@ -7227,7 +8697,7 @@ export interface SecurityRuleAssociations {
 }
 
 // @public
-export type SecurityRuleDirection = "Inbound" | "Outbound" | string;
+export type SecurityRuleDirection = string;
 
 // @public
 export interface SecurityRuleListResult {
@@ -7236,7 +8706,7 @@ export interface SecurityRuleListResult {
 }
 
 // @public
-export type SecurityRuleProtocol = "Tcp" | "Udp" | "Icmp" | "Esp" | "*" | "Ah" | string;
+export type SecurityRuleProtocol = string;
 
 // @public
 export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
@@ -7431,7 +8901,7 @@ export interface ServiceEndpointPropertiesFormat {
 }
 
 // @public
-export type ServiceProviderProvisioningState = "NotProvisioned" | "Provisioning" | "Provisioned" | "Deprovisioning" | string;
+export type ServiceProviderProvisioningState = string;
 
 // @public
 export interface ServiceTagInformation {
@@ -7472,7 +8942,7 @@ export interface SessionIds {
 }
 
 // @public
-export type Severity = "Error" | "Warning" | string;
+export type Severity = string;
 
 // @public
 export interface StaticRoute {
@@ -7618,7 +9088,7 @@ export interface TrafficSelectorPolicy {
 }
 
 // @public
-export type TransportProtocol = "Udp" | "Tcp" | "All" | string;
+export type TransportProtocol = string;
 
 // @public
 export interface TroubleshootingDetails {
@@ -7662,7 +9132,7 @@ export interface TunnelConnectionHealth {
 }
 
 // @public
-export type TunnelConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
+export type TunnelConnectionStatus = string;
 
 // @public
 export interface UnprepareNetworkPoliciesRequest {
@@ -7707,10 +9177,10 @@ export interface UsagesListResult {
 }
 
 // @public
-export type UsageUnit = "Count" | string;
+export type UsageUnit = string;
 
 // @public
-export type VerbosityLevel = "Normal" | "Minimum" | "Full" | string;
+export type VerbosityLevel = string;
 
 // @public
 export interface VerificationIPFlowParameters {
@@ -7992,7 +9462,7 @@ export interface VirtualNetworkGatewayConnectionListResult {
 }
 
 // @public
-export type VirtualNetworkGatewayConnectionProtocol = "IKEv2" | "IKEv1" | string;
+export type VirtualNetworkGatewayConnectionProtocol = string;
 
 // @public
 export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetworkGatewayConnection & {
@@ -8079,7 +9549,7 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
 };
 
 // @public
-export type VirtualNetworkGatewayConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
+export type VirtualNetworkGatewayConnectionStatus = string;
 
 // @public
 export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkGatewayConnection & {
@@ -8091,7 +9561,7 @@ export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkG
 };
 
 // @public
-export type VirtualNetworkGatewayConnectionType = "IPsec" | "Vnet2Vnet" | "ExpressRoute" | "VPNClient" | string;
+export type VirtualNetworkGatewayConnectionType = string;
 
 // @public
 export type VirtualNetworkGatewayIPConfiguration = SubResource & {
@@ -8221,10 +9691,10 @@ export interface VirtualNetworkGatewaySku {
 }
 
 // @public
-export type VirtualNetworkGatewaySkuName = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ" | string;
+export type VirtualNetworkGatewaySkuName = string;
 
 // @public
-export type VirtualNetworkGatewaySkuTier = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ" | string;
+export type VirtualNetworkGatewaySkuTier = string;
 
 // @public
 export type VirtualNetworkGatewaysListConnectionsNextResponse = VirtualNetworkGatewayListConnectionsResult & {
@@ -8334,7 +9804,7 @@ export type VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse = {
 };
 
 // @public
-export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute" | string;
+export type VirtualNetworkGatewayType = string;
 
 // @public
 export interface VirtualNetworkListResult {
@@ -8402,7 +9872,7 @@ export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult
 };
 
 // @public
-export type VirtualNetworkPeeringState = "Initiated" | "Connected" | "Disconnected" | string;
+export type VirtualNetworkPeeringState = string;
 
 // @public
 export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailabilityResult & {
@@ -8734,7 +10204,7 @@ export interface VirtualWanSecurityProviders {
 }
 
 // @public
-export type VirtualWanSecurityProviderType = "External" | "Native" | string;
+export type VirtualWanSecurityProviderType = string;
 
 // @public
 export type VirtualWansGetResponse = VirtualWAN & {
@@ -8799,7 +10269,7 @@ export interface VnetRoute {
 }
 
 // @public
-export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD" | string;
+export type VpnAuthenticationType = string;
 
 // @public
 export interface VpnClientConfiguration {
@@ -8866,7 +10336,7 @@ export interface VpnClientParameters {
 }
 
 // @public
-export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN" | string;
+export type VpnClientProtocol = string;
 
 // @public
 export type VpnClientRevokedCertificate = SubResource & {
@@ -8942,7 +10412,7 @@ export type VpnConnectionsListByVpnGatewayResponse = ListVpnConnectionsResult & 
 };
 
 // @public
-export type VpnConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
+export type VpnConnectionStatus = string;
 
 // @public
 export interface VpnDeviceScriptParameters {
@@ -8962,7 +10432,7 @@ export type VpnGateway = Resource & {
 };
 
 // @public
-export type VpnGatewayGeneration = "None" | "Generation1" | "Generation2" | string;
+export type VpnGatewayGeneration = string;
 
 // @public
 export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
@@ -9031,7 +10501,7 @@ export type VpnGatewaysUpdateTagsResponse = VpnGateway & {
 };
 
 // @public
-export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN" | string;
+export type VpnGatewayTunnelingProtocol = string;
 
 // @public
 export interface VpnLinkBgpSettings {
@@ -9333,10 +10803,10 @@ export type VpnSitesUpdateTagsResponse = VpnSite & {
 };
 
 // @public
-export type VpnType = "PolicyBased" | "RouteBased" | string;
+export type VpnType = string;
 
 // @public
-export type WebApplicationFirewallAction = "Allow" | "Block" | "Log" | string;
+export type WebApplicationFirewallAction = string;
 
 // @public
 export interface WebApplicationFirewallCustomRule {
@@ -9349,16 +10819,16 @@ export interface WebApplicationFirewallCustomRule {
 }
 
 // @public
-export type WebApplicationFirewallEnabledState = "Disabled" | "Enabled" | string;
+export type WebApplicationFirewallEnabledState = string;
 
 // @public
-export type WebApplicationFirewallMatchVariable = "RemoteAddr" | "RequestMethod" | "QueryString" | "PostArgs" | "RequestUri" | "RequestHeaders" | "RequestBody" | "RequestCookies" | string;
+export type WebApplicationFirewallMatchVariable = string;
 
 // @public
-export type WebApplicationFirewallMode = "Prevention" | "Detection" | string;
+export type WebApplicationFirewallMode = string;
 
 // @public
-export type WebApplicationFirewallOperator = "IPMatch" | "Equal" | "Contains" | "LessThan" | "GreaterThan" | "LessThanOrEqual" | "GreaterThanOrEqual" | "BeginsWith" | "EndsWith" | "Regex" | "GeoMatch" | string;
+export type WebApplicationFirewallOperator = string;
 
 // @public
 export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicationFirewallPolicy & {
@@ -9428,18 +10898,18 @@ export interface WebApplicationFirewallPolicyListResult {
 }
 
 // @public
-export type WebApplicationFirewallPolicyResourceState = "Creating" | "Enabling" | "Enabled" | "Disabling" | "Disabled" | "Deleting" | string;
+export type WebApplicationFirewallPolicyResourceState = string;
 
 // @public
-export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid" | string;
+export type WebApplicationFirewallRuleType = string;
 
 // @public
-export type WebApplicationFirewallTransform = "Lowercase" | "Trim" | "UrlDecode" | "UrlEncode" | "RemoveNulls" | "HtmlEntityDecode" | string;
+export type WebApplicationFirewallTransform = string;
 
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:13368:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:15227:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

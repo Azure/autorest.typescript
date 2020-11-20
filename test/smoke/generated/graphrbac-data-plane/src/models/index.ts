@@ -1312,22 +1312,62 @@ export type UserUpdateParameters = UserBase & {
    */
   mailNickname?: string;
 };
+
 /**
- * Defines values for UserType.
+ * Known values of {@link UserType} that the service accepts.
  */
-export type UserType = "Member" | "Guest" | string;
+export const enum KnownUserType {
+  Member = "Member",
+  Guest = "Guest"
+}
+
 /**
- * Defines values for GroupMembershipClaimTypes.
+ * Defines values for UserType. \
+ * {@link KnownUserType} can be used interchangeably with UserType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Member** \
+ * **Guest**
  */
-export type GroupMembershipClaimTypes =
-  | "None"
-  | "SecurityGroup"
-  | "All"
-  | string;
+export type UserType = string;
+
 /**
- * Defines values for ConsentType.
+ * Known values of {@link GroupMembershipClaimTypes} that the service accepts.
  */
-export type ConsentType = "AllPrincipals" | "Principal" | string;
+export const enum KnownGroupMembershipClaimTypes {
+  None = "None",
+  SecurityGroup = "SecurityGroup",
+  All = "All"
+}
+
+/**
+ * Defines values for GroupMembershipClaimTypes. \
+ * {@link KnownGroupMembershipClaimTypes} can be used interchangeably with GroupMembershipClaimTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **SecurityGroup** \
+ * **All**
+ */
+export type GroupMembershipClaimTypes = string;
+
+/**
+ * Known values of {@link ConsentType} that the service accepts.
+ */
+export const enum KnownConsentType {
+  AllPrincipals = "AllPrincipals",
+  Principal = "Principal"
+}
+
+/**
+ * Defines values for ConsentType. \
+ * {@link KnownConsentType} can be used interchangeably with ConsentType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AllPrincipals** \
+ * **Principal**
+ */
+export type ConsentType = string;
 
 /**
  * Contains response data for the get operation.

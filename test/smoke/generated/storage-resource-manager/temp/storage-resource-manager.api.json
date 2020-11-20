@@ -2070,7 +2070,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!BlobRestoreProgressStatus:type",
-          "docComment": "/**\n * Defines values for BlobRestoreProgressStatus.\n */\n",
+          "docComment": "/**\n * Defines values for BlobRestoreProgressStatus. \\ {@link KnownBlobRestoreProgressStatus} can be used interchangeably with BlobRestoreProgressStatus, this enum contains the known values that the service supports. ### Know values supported by the service **InProgress** \\ **Complete** \\ **Failed**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2078,7 +2078,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"InProgress\" | \"Complete\" | \"Failed\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2553,7 +2553,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!Bypass:type",
-          "docComment": "/**\n * Defines values for Bypass.\n */\n",
+          "docComment": "/**\n * Defines values for Bypass. \\ {@link KnownBypass} can be used interchangeably with Bypass, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **Logging** \\ **Metrics** \\ **AzureServices**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2561,7 +2561,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Logging\" | \"Metrics\" | \"AzureServices\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3020,7 +3020,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!CorsRuleAllowedMethodsItem:type",
-          "docComment": "/**\n * Defines values for CorsRuleAllowedMethodsItem.\n */\n",
+          "docComment": "/**\n * Defines values for CorsRuleAllowedMethodsItem. \\ {@link KnownCorsRuleAllowedMethodsItem} can be used interchangeably with CorsRuleAllowedMethodsItem, this enum contains the known values that the service supports. ### Know values supported by the service **DELETE** \\ **GET** \\ **HEAD** \\ **MERGE** \\ **POST** \\ **OPTIONS** \\ **PUT**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3028,7 +3028,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DELETE\" | \"GET\" | \"HEAD\" | \"MERGE\" | \"POST\" | \"OPTIONS\" | \"PUT\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3462,7 +3462,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!DirectoryServiceOptions:type",
-          "docComment": "/**\n * Defines values for DirectoryServiceOptions.\n */\n",
+          "docComment": "/**\n * Defines values for DirectoryServiceOptions. \\ {@link KnownDirectoryServiceOptions} can be used interchangeably with DirectoryServiceOptions, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **AADDS** \\ **AD**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3470,7 +3470,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"AADDS\" | \"AD\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3487,7 +3487,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!EnabledProtocols:type",
-          "docComment": "/**\n * Defines values for EnabledProtocols.\n */\n",
+          "docComment": "/**\n * Defines values for EnabledProtocols. \\ {@link KnownEnabledProtocols} can be used interchangeably with EnabledProtocols, this enum contains the known values that the service supports. ### Know values supported by the service **SMB** \\ **NFS**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3495,7 +3495,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SMB\" | \"NFS\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3937,7 +3937,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!EncryptionScopeSource:type",
-          "docComment": "/**\n * Defines values for EncryptionScopeSource.\n */\n",
+          "docComment": "/**\n * Defines values for EncryptionScopeSource. \\ {@link KnownEncryptionScopeSource} can be used interchangeably with EncryptionScopeSource, this enum contains the known values that the service supports. ### Know values supported by the service **Microsoft.Storage** \\ **Microsoft.KeyVault**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3945,7 +3945,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Microsoft.Storage\" | \"Microsoft.KeyVault\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -4058,7 +4058,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!EncryptionScopeState:type",
-          "docComment": "/**\n * Defines values for EncryptionScopeState.\n */\n",
+          "docComment": "/**\n * Defines values for EncryptionScopeState. \\ {@link KnownEncryptionScopeState} can be used interchangeably with EncryptionScopeState, this enum contains the known values that the service supports. ### Know values supported by the service **Enabled** \\ **Disabled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4066,7 +4066,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -5567,7 +5567,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!GeoReplicationStatus:type",
-          "docComment": "/**\n * Defines values for GeoReplicationStatus.\n */\n",
+          "docComment": "/**\n * Defines values for GeoReplicationStatus. \\ {@link KnownGeoReplicationStatus} can be used interchangeably with GeoReplicationStatus, this enum contains the known values that the service supports. ### Know values supported by the service **Live** \\ **Bootstrap** \\ **Unavailable**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5575,7 +5575,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Live\" | \"Bootstrap\" | \"Unavailable\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -5894,7 +5894,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!ImmutabilityPolicyState:type",
-          "docComment": "/**\n * Defines values for ImmutabilityPolicyState.\n */\n",
+          "docComment": "/**\n * Defines values for ImmutabilityPolicyState. \\ {@link KnownImmutabilityPolicyState} can be used interchangeably with ImmutabilityPolicyState, this enum contains the known values that the service supports. ### Know values supported by the service **Locked** \\ **Unlocked**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5902,7 +5902,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Locked\" | \"Unlocked\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -5919,7 +5919,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!ImmutabilityPolicyUpdateType:type",
-          "docComment": "/**\n * Defines values for ImmutabilityPolicyUpdateType.\n */\n",
+          "docComment": "/**\n * Defines values for ImmutabilityPolicyUpdateType. \\ {@link KnownImmutabilityPolicyUpdateType} can be used interchangeably with ImmutabilityPolicyUpdateType, this enum contains the known values that the service supports. ### Know values supported by the service **put** \\ **lock** \\ **extend**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5927,7 +5927,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"put\" | \"lock\" | \"extend\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6035,7 +6035,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!KeySource:type",
-          "docComment": "/**\n * Defines values for KeySource.\n */\n",
+          "docComment": "/**\n * Defines values for KeySource. \\ {@link KnownKeySource} can be used interchangeably with KeySource, this enum contains the known values that the service supports. ### Know values supported by the service **Microsoft.Storage** \\ **Microsoft.Keyvault**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6043,7 +6043,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Microsoft.Storage\" | \"Microsoft.Keyvault\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6060,7 +6060,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!KeyType_2:type",
-          "docComment": "/**\n * Defines values for KeyType.\n */\n",
+          "docComment": "/**\n * Defines values for KeyType. \\ {@link KnownKeyType} can be used interchangeably with KeyType, this enum contains the known values that the service supports. ### Know values supported by the service **Service** \\ **Account**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6068,7 +6068,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Service\" | \"Account\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6227,7 +6227,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!Kind:type",
-          "docComment": "/**\n * Defines values for Kind.\n */\n",
+          "docComment": "/**\n * Defines values for Kind. \\ {@link KnownKind} can be used interchangeably with Kind, this enum contains the known values that the service supports. ### Know values supported by the service **Storage** \\ **StorageV2** \\ **BlobStorage** \\ **FileStorage** \\ **BlockBlobStorage**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6235,7 +6235,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Storage\" | \"StorageV2\" | \"BlobStorage\" | \"FileStorage\" | \"BlockBlobStorage\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6250,9 +6250,2637 @@
           }
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownBlobRestoreProgressStatus:enum",
+          "docComment": "/**\n * Known values of {@link BlobRestoreProgressStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownBlobRestoreProgressStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownBlobRestoreProgressStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBlobRestoreProgressStatus.Complete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Complete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Complete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Complete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBlobRestoreProgressStatus.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBlobRestoreProgressStatus.InProgress:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "InProgress = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"InProgress\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "InProgress",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownBypass:enum",
+          "docComment": "/**\n * Known values of {@link Bypass} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownBypass "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownBypass",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBypass.AzureServices:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AzureServices = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AzureServices\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AzureServices",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBypass.Logging:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Logging = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Logging\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Logging",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBypass.Metrics:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Metrics = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Metrics\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Metrics",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownBypass.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem:enum",
+          "docComment": "/**\n * Known values of {@link CorsRuleAllowedMethodsItem} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCorsRuleAllowedMethodsItem "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCorsRuleAllowedMethodsItem",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"DELETE\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.GET:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "GET = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"GET\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "GET",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.Head:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Head = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"HEAD\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Head",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.Merge:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Merge = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MERGE\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Merge",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.Options:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Options = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"OPTIONS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Options",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.Post:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Post = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"POST\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Post",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownCorsRuleAllowedMethodsItem.PUT:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PUT = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"PUT\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PUT",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownDirectoryServiceOptions:enum",
+          "docComment": "/**\n * Known values of {@link DirectoryServiceOptions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDirectoryServiceOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDirectoryServiceOptions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownDirectoryServiceOptions.Aadds:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Aadds = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AADDS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Aadds",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownDirectoryServiceOptions.AD:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AD = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AD\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AD",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownDirectoryServiceOptions.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownEnabledProtocols:enum",
+          "docComment": "/**\n * Known values of {@link EnabledProtocols} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEnabledProtocols "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEnabledProtocols",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEnabledProtocols.NFS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NFS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"NFS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "NFS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEnabledProtocols.SMB:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SMB = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SMB\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SMB",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownEncryptionScopeSource:enum",
+          "docComment": "/**\n * Known values of {@link EncryptionScopeSource} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEncryptionScopeSource "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEncryptionScopeSource",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEncryptionScopeSource.MicrosoftKeyVault:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftKeyVault = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.KeyVault\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftKeyVault",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEncryptionScopeSource.MicrosoftStorage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftStorage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Storage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftStorage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownEncryptionScopeState:enum",
+          "docComment": "/**\n * Known values of {@link EncryptionScopeState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEncryptionScopeState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEncryptionScopeState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEncryptionScopeState.Disabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownEncryptionScopeState.Enabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Enabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Enabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Enabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownGeoReplicationStatus:enum",
+          "docComment": "/**\n * Known values of {@link GeoReplicationStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownGeoReplicationStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownGeoReplicationStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownGeoReplicationStatus.Bootstrap:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Bootstrap = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Bootstrap\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Bootstrap",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownGeoReplicationStatus.Live:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Live = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Live\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Live",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownGeoReplicationStatus.Unavailable:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Unavailable = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Unavailable\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Unavailable",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyState:enum",
+          "docComment": "/**\n * Known values of {@link ImmutabilityPolicyState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownImmutabilityPolicyState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownImmutabilityPolicyState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyState.Locked:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Locked = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Locked\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Locked",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyState.Unlocked:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Unlocked = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Unlocked\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Unlocked",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyUpdateType:enum",
+          "docComment": "/**\n * Known values of {@link ImmutabilityPolicyUpdateType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownImmutabilityPolicyUpdateType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownImmutabilityPolicyUpdateType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyUpdateType.Extend:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Extend = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"extend\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Extend",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyUpdateType.Lock:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Lock = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"lock\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Lock",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownImmutabilityPolicyUpdateType.Put:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Put = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"put\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Put",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownKeySource:enum",
+          "docComment": "/**\n * Known values of {@link KeySource} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownKeySource "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownKeySource",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKeySource.MicrosoftKeyvault:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftKeyvault = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Keyvault\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftKeyvault",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKeySource.MicrosoftStorage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftStorage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Storage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftStorage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownKeyType:enum",
+          "docComment": "/**\n * Known values of {@link KeyType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownKeyType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownKeyType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKeyType.Account:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Account = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Account\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Account",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKeyType.Service:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Service = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Service\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Service",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownKind:enum",
+          "docComment": "/**\n * Known values of {@link Kind} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKind.BlobStorage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BlobStorage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BlobStorage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BlobStorage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKind.BlockBlobStorage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BlockBlobStorage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BlockBlobStorage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BlockBlobStorage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKind.FileStorage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "FileStorage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"FileStorage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "FileStorage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKind.Storage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Storage = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Storage\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Storage",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownKind.StorageV2:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StorageV2 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"StorageV2\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StorageV2",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownLargeFileSharesState:enum",
+          "docComment": "/**\n * Known values of {@link LargeFileSharesState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLargeFileSharesState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLargeFileSharesState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLargeFileSharesState.Disabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLargeFileSharesState.Enabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Enabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Enabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Enabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction:enum",
+          "docComment": "/**\n * Known values of {@link LeaseContainerRequestAction} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLeaseContainerRequestAction "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLeaseContainerRequestAction",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction.Acquire:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Acquire = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Acquire\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Acquire",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction.Break:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Break = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Break\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Break",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction.Change:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Change = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Change\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Change",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction.Release:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Release = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Release\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Release",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseContainerRequestAction.Renew:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Renew = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Renew\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Renew",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownLeaseDuration:enum",
+          "docComment": "/**\n * Known values of {@link LeaseDuration} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLeaseDuration "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLeaseDuration",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseDuration.Fixed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Fixed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Fixed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Fixed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseDuration.Infinite:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Infinite = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Infinite\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Infinite",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownLeaseState:enum",
+          "docComment": "/**\n * Known values of {@link LeaseState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLeaseState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLeaseState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseState.Available:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Available = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Available\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Available",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseState.Breaking:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Breaking = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Breaking\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Breaking",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseState.Broken:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Broken = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Broken\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Broken",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseState.Expired:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Expired = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Expired\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Expired",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseState.Leased:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Leased = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Leased\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Leased",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownLeaseStatus:enum",
+          "docComment": "/**\n * Known values of {@link LeaseStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLeaseStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLeaseStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseStatus.Locked:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Locked = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Locked\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Locked",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownLeaseStatus.Unlocked:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Unlocked = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Unlocked\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Unlocked",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownManagementPolicyName:enum",
+          "docComment": "/**\n * Known values of {@link ManagementPolicyName} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownManagementPolicyName "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownManagementPolicyName",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownManagementPolicyName.Default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Default = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"default\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Default",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownPermissions:enum",
+          "docComment": "/**\n * Known values of {@link Permissions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPermissions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPermissions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.A:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "A = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"a\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "A",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.C:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "C = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"c\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "C",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.D:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "D = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"d\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "D",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.L:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "L = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"l\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "L",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.P:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "P = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"p\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "P",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.R:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "R = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"r\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "R",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.U:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "U = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"u\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "U",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPermissions.W:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "W = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"w\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "W",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownPrivateEndpointConnectionProvisioningState:enum",
+          "docComment": "/**\n * Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPrivateEndpointConnectionProvisioningState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPrivateEndpointConnectionProvisioningState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Creating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Creating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Creating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Creating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Deleting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deleting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Succeeded:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Succeeded = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Succeeded\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Succeeded",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownPrivateEndpointServiceConnectionStatus:enum",
+          "docComment": "/**\n * Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPrivateEndpointServiceConnectionStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPrivateEndpointServiceConnectionStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Approved:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Approved = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Approved\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Approved",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Pending:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Pending = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Pending\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Pending",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Rejected:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Rejected = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Rejected\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Rejected",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownReasonCode:enum",
+          "docComment": "/**\n * Known values of {@link ReasonCode} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownReasonCode "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownReasonCode",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownReasonCode.NotAvailableForSubscription:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NotAvailableForSubscription = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"NotAvailableForSubscription\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "NotAvailableForSubscription",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownReasonCode.QuotaId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "QuotaId = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"QuotaId\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "QuotaId",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownRootSquashType:enum",
+          "docComment": "/**\n * Known values of {@link RootSquashType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownRootSquashType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownRootSquashType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRootSquashType.AllSquash:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AllSquash = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AllSquash\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AllSquash",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRootSquashType.NoRootSquash:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NoRootSquash = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"NoRootSquash\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "NoRootSquash",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRootSquashType.RootSquash:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "RootSquash = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"RootSquash\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "RootSquash",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownRoutingChoice:enum",
+          "docComment": "/**\n * Known values of {@link RoutingChoice} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownRoutingChoice "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownRoutingChoice",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRoutingChoice.InternetRouting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "InternetRouting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"InternetRouting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "InternetRouting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRoutingChoice.MicrosoftRouting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftRouting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MicrosoftRouting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftRouting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownRuleType:enum",
+          "docComment": "/**\n * Known values of {@link RuleType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownRuleType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownRuleType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownRuleType.Lifecycle:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Lifecycle = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Lifecycle\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Lifecycle",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownServices:enum",
+          "docComment": "/**\n * Known values of {@link Services} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownServices "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownServices",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownServices.B:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "B = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"b\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "B",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownServices.F:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "F = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"f\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "F",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownServices.Q:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Q = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"q\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Q",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownServices.T:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "T = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"t\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "T",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownShareAccessTier:enum",
+          "docComment": "/**\n * Known values of {@link ShareAccessTier} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownShareAccessTier "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownShareAccessTier",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownShareAccessTier.Cool:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Cool = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Cool\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Cool",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownShareAccessTier.Hot:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Hot = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Hot\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Hot",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownShareAccessTier.Premium:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Premium = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Premium\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Premium",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownShareAccessTier.TransactionOptimized:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "TransactionOptimized = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"TransactionOptimized\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "TransactionOptimized",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownSignedResource:enum",
+          "docComment": "/**\n * Known values of {@link SignedResource} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSignedResource "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSignedResource",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResource.B:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "B = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"b\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "B",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResource.C:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "C = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"c\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "C",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResource.F:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "F = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"f\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "F",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResource.S:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "S = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"s\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "S",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownSignedResourceTypes:enum",
+          "docComment": "/**\n * Known values of {@link SignedResourceTypes} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSignedResourceTypes "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSignedResourceTypes",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResourceTypes.C:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "C = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"c\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "C",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResourceTypes.O:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "O = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"o\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "O",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSignedResourceTypes.S:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "S = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"s\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "S",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "storage-resource-manager!KnownSkuName:enum",
+          "docComment": "/**\n * Known values of {@link SkuName} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSkuName "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSkuName",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.PremiumLRS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PremiumLRS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Premium_LRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PremiumLRS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.PremiumZRS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PremiumZRS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Premium_ZRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PremiumZRS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardGRS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardGRS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_GRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardGRS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardGzrs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardGzrs = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_GZRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardGzrs",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardLRS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardLRS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_LRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardLRS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardRagrs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardRagrs = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_RAGRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardRagrs",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardRagzrs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardRagzrs = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_RAGZRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardRagzrs",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "storage-resource-manager!KnownSkuName.StandardZRS:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "StandardZRS = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard_ZRS\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "StandardZRS",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!LargeFileSharesState:type",
-          "docComment": "/**\n * Defines values for LargeFileSharesState.\n */\n",
+          "docComment": "/**\n * Defines values for LargeFileSharesState. \\ {@link KnownLargeFileSharesState} can be used interchangeably with LargeFileSharesState, this enum contains the known values that the service supports. ### Know values supported by the service **Disabled** \\ **Enabled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6260,7 +8888,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6419,7 +9047,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!LeaseContainerRequestAction:type",
-          "docComment": "/**\n * Defines values for LeaseContainerRequestAction.\n */\n",
+          "docComment": "/**\n * Defines values for LeaseContainerRequestAction. \\ {@link KnownLeaseContainerRequestAction} can be used interchangeably with LeaseContainerRequestAction, this enum contains the known values that the service supports. ### Know values supported by the service **Acquire** \\ **Renew** \\ **Change** \\ **Release** \\ **Break**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6427,7 +9055,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Acquire\" | \"Renew\" | \"Change\" | \"Release\" | \"Break\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6510,7 +9138,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!LeaseDuration:type",
-          "docComment": "/**\n * Defines values for LeaseDuration.\n */\n",
+          "docComment": "/**\n * Defines values for LeaseDuration. \\ {@link KnownLeaseDuration} can be used interchangeably with LeaseDuration, this enum contains the known values that the service supports. ### Know values supported by the service **Infinite** \\ **Fixed**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6518,7 +9146,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Infinite\" | \"Fixed\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6535,7 +9163,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!LeaseState:type",
-          "docComment": "/**\n * Defines values for LeaseState.\n */\n",
+          "docComment": "/**\n * Defines values for LeaseState. \\ {@link KnownLeaseState} can be used interchangeably with LeaseState, this enum contains the known values that the service supports. ### Know values supported by the service **Available** \\ **Leased** \\ **Expired** \\ **Breaking** \\ **Broken**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6543,7 +9171,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Available\" | \"Leased\" | \"Expired\" | \"Breaking\" | \"Broken\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -6560,7 +9188,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!LeaseStatus:type",
-          "docComment": "/**\n * Defines values for LeaseStatus.\n */\n",
+          "docComment": "/**\n * Defines values for LeaseStatus. \\ {@link KnownLeaseStatus} can be used interchangeably with LeaseStatus, this enum contains the known values that the service supports. ### Know values supported by the service **Locked** \\ **Unlocked**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6568,7 +9196,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Locked\" | \"Unlocked\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -7438,7 +10066,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!ManagementPolicyName:type",
-          "docComment": "/**\n * Defines values for ManagementPolicyName.\n */\n",
+          "docComment": "/**\n * Defines values for ManagementPolicyName. \\ {@link KnownManagementPolicyName} can be used interchangeably with ManagementPolicyName, this enum contains the known values that the service supports. ### Know values supported by the service **default**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7446,7 +10074,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -8792,7 +11420,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!Permissions_2:type",
-          "docComment": "/**\n * Defines values for Permissions.\n */\n",
+          "docComment": "/**\n * Defines values for Permissions. \\ {@link KnownPermissions} can be used interchangeably with Permissions, this enum contains the known values that the service supports. ### Know values supported by the service **r** \\ **d** \\ **w** \\ **l** \\ **a** \\ **c** \\ **u** \\ **p**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -8800,7 +11428,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"r\" | \"d\" | \"w\" | \"l\" | \"a\" | \"c\" | \"u\" | \"p\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -8961,7 +11589,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!PrivateEndpointConnectionProvisioningState:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState.\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState. \\ {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Succeeded** \\ **Creating** \\ **Deleting** \\ **Failed**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -8969,7 +11597,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Succeeded\" | \"Creating\" | \"Deleting\" | \"Failed\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9130,7 +11758,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!PrivateEndpointServiceConnectionStatus:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus.\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus. \\ {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus, this enum contains the known values that the service supports. ### Know values supported by the service **Pending** \\ **Approved** \\ **Rejected**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9138,7 +11766,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pending\" | \"Approved\" | \"Rejected\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9446,7 +12074,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!ReasonCode:type",
-          "docComment": "/**\n * Defines values for ReasonCode.\n */\n",
+          "docComment": "/**\n * Defines values for ReasonCode. \\ {@link KnownReasonCode} can be used interchangeably with ReasonCode, this enum contains the known values that the service supports. ### Know values supported by the service **QuotaId** \\ **NotAvailableForSubscription**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9454,7 +12082,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"QuotaId\" | \"NotAvailableForSubscription\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9746,7 +12374,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!RootSquashType:type",
-          "docComment": "/**\n * Defines values for RootSquashType.\n */\n",
+          "docComment": "/**\n * Defines values for RootSquashType. \\ {@link KnownRootSquashType} can be used interchangeably with RootSquashType, this enum contains the known values that the service supports. ### Know values supported by the service **NoRootSquash** \\ **RootSquash** \\ **AllSquash**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9754,7 +12382,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NoRootSquash\" | \"RootSquash\" | \"AllSquash\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9771,7 +12399,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!RoutingChoice:type",
-          "docComment": "/**\n * Defines values for RoutingChoice.\n */\n",
+          "docComment": "/**\n * Defines values for RoutingChoice. \\ {@link KnownRoutingChoice} can be used interchangeably with RoutingChoice, this enum contains the known values that the service supports. ### Know values supported by the service **MicrosoftRouting** \\ **InternetRouting**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9779,7 +12407,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MicrosoftRouting\" | \"InternetRouting\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9888,7 +12516,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!RuleType:type",
-          "docComment": "/**\n * Defines values for RuleType.\n */\n",
+          "docComment": "/**\n * Defines values for RuleType. \\ {@link KnownRuleType} can be used interchangeably with RuleType, this enum contains the known values that the service supports. ### Know values supported by the service **Lifecycle**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9896,7 +12524,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Lifecycle\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -9913,7 +12541,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!Services:type",
-          "docComment": "/**\n * Defines values for Services.\n */\n",
+          "docComment": "/**\n * Defines values for Services. \\ {@link KnownServices} can be used interchangeably with Services, this enum contains the known values that the service supports. ### Know values supported by the service **b** \\ **q** \\ **t** \\ **f**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9921,7 +12549,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"b\" | \"q\" | \"t\" | \"f\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10455,7 +13083,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!ShareAccessTier:type",
-          "docComment": "/**\n * Defines values for ShareAccessTier.\n */\n",
+          "docComment": "/**\n * Defines values for ShareAccessTier. \\ {@link KnownShareAccessTier} can be used interchangeably with ShareAccessTier, this enum contains the known values that the service supports. ### Know values supported by the service **TransactionOptimized** \\ **Hot** \\ **Cool** \\ **Premium**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10463,7 +13091,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TransactionOptimized\" | \"Hot\" | \"Cool\" | \"Premium\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10480,7 +13108,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!SignedResource:type",
-          "docComment": "/**\n * Defines values for SignedResource.\n */\n",
+          "docComment": "/**\n * Defines values for SignedResource. \\ {@link KnownSignedResource} can be used interchangeably with SignedResource, this enum contains the known values that the service supports. ### Know values supported by the service **b** \\ **c** \\ **f** \\ **s**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10488,7 +13116,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"b\" | \"c\" | \"f\" | \"s\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10505,7 +13133,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!SignedResourceTypes:type",
-          "docComment": "/**\n * Defines values for SignedResourceTypes.\n */\n",
+          "docComment": "/**\n * Defines values for SignedResourceTypes. \\ {@link KnownSignedResourceTypes} can be used interchangeably with SignedResourceTypes, this enum contains the known values that the service supports. ### Know values supported by the service **s** \\ **c** \\ **o**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10513,7 +13141,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"s\" | \"c\" | \"o\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10868,7 +13496,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "storage-resource-manager!SkuName:type",
-          "docComment": "/**\n * Defines values for SkuName.\n */\n",
+          "docComment": "/**\n * Defines values for SkuName. \\ {@link KnownSkuName} can be used interchangeably with SkuName, this enum contains the known values that the service supports. ### Know values supported by the service **Standard_LRS** \\ **Standard_GRS** \\ **Standard_RAGRS** \\ **Standard_ZRS** \\ **Premium_LRS** \\ **Premium_ZRS** \\ **Standard_GZRS** \\ **Standard_RAGZRS**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10876,7 +13504,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard_LRS\" | \"Standard_GRS\" | \"Standard_RAGRS\" | \"Standard_ZRS\" | \"Premium_LRS\" | \"Premium_ZRS\" | \"Standard_GZRS\" | \"Standard_RAGZRS\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

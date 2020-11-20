@@ -24,7 +24,17 @@ export type AuthorizationOperationsListResponse = OperationListResult & {
 };
 
 // @public
-export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly" | string;
+export const enum KnownLockLevel {
+    // (undocumented)
+    CanNotDelete = "CanNotDelete",
+    // (undocumented)
+    NotSpecified = "NotSpecified",
+    // (undocumented)
+    ReadOnly = "ReadOnly"
+}
+
+// @public
+export type LockLevel = string;
 
 // @public (undocumented)
 export class ManagementLockClient extends ManagementLockClientContext {

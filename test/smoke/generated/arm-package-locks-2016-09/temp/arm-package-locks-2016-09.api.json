@@ -112,9 +112,87 @@
           }
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel:enum",
+          "docComment": "/**\n * Known values of {@link LockLevel} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownLockLevel "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownLockLevel",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.CanNotDelete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CanNotDelete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"CanNotDelete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "CanNotDelete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.NotSpecified:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NotSpecified = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"NotSpecified\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "NotSpecified",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.ReadOnly:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ReadOnly = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ReadOnly\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ReadOnly",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-locks-2016-09!LockLevel:type",
-          "docComment": "/**\n * Defines values for LockLevel.\n */\n",
+          "docComment": "/**\n * Defines values for LockLevel. \\ {@link KnownLockLevel} can be used interchangeably with LockLevel, this enum contains the known values that the service supports. ### Know values supported by the service **NotSpecified** \\ **CanNotDelete** \\ **ReadOnly**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -122,7 +200,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotSpecified\" | \"CanNotDelete\" | \"ReadOnly\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

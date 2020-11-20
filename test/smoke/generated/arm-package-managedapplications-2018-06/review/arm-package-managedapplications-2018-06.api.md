@@ -275,6 +275,32 @@ export interface Identity {
 }
 
 // @public
+export const enum KnownProvisioningState {
+    // (undocumented)
+    Accepted = "Accepted",
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Created = "Created",
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleted = "Deleted",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
 export interface Plan {
     name: string;
     product: string;
@@ -293,7 +319,7 @@ export interface PlanPatchable {
 }
 
 // @public
-export type ProvisioningState = "Accepted" | "Running" | "Ready" | "Creating" | "Created" | "Deleting" | "Deleted" | "Canceled" | "Failed" | "Succeeded" | "Updating" | string;
+export type ProvisioningState = string;
 
 // @public
 export interface Resource {
@@ -319,7 +345,7 @@ export interface Sku {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:711:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:731:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

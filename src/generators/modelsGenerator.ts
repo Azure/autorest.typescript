@@ -41,6 +41,7 @@ import {
   getAllModelsNames
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
+import { UnionDetails } from "../models/unionDetails";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -404,22 +405,92 @@ function buildResponseType(
 const writeChoices = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
-) =>
+) => {
   clientDetails.unions.forEach(choice => {
-    const values = choice.properties.map(p => p.value);
     if (choice.schemaType === SchemaType.Choice) {
-      const valueToPush = choice.itemType ? choice.itemType : "string";
-      values.push(valueToPush);
+      writeExtensibleChoice(choice, modelsIndexFile);
+    } else {
+      writeSealedChoice(choice, modelsIndexFile);
     }
-
-    modelsIndexFile.addTypeAlias({
-      name: choice.name,
-      docs: [choice.description],
-      isExported: true,
-      type: values.join(" | "),
-      trailingTrivia: writer => writer.newLine()
-    });
   });
+};
+
+const writeExtensibleChoice = (
+  choice: UnionDetails,
+  modelsIndexFile: SourceFile
+) => {
+  // Only generate helper enums for string and number.
+  // Other types will only have the type alias and information about the known values listed in the docs
+  if (
+    choice.itemType === SchemaType.Number ||
+    choice.itemType == SchemaType.String
+  ) {
+    const enumName = getExtensibleEnumName(choice);
+    modelsIndexFile.addEnum({
+      isConst: true,
+      isExported: true,
+      name: enumName,
+      docs: [
+        `Known values of {@link ${choice.name}} that the service accepts.`
+      ],
+      members: choice.properties.map(p => ({
+        name: p.name,
+        value: p.value,
+        docs: p.description ? [p.description] : undefined
+      }))
+    });
+  }
+
+  modelsIndexFile.addTypeAlias({
+    name: choice.name,
+    docs: [getExtensibleChoiceDescription(choice)],
+    isExported: true,
+    type: choice.itemType || SchemaType.String,
+    trailingTrivia: writer => writer.newLine()
+  });
+};
+
+function getExtensibleEnumName(choice: UnionDetails) {
+  return `Known${choice.name}`;
+}
+
+// Builds the description based on the choice name. For numbers and strings we need to
+// add informationa bout the helper enum we generated.
+function getExtensibleChoiceDescription(choice: UnionDetails) {
+  const hasEnum = [SchemaType.String, SchemaType.Number].includes(
+    choice.itemType || SchemaType.Unknown
+  );
+
+  const valueDescriptions = choice.properties
+    .map(p => `**${p.value}**${p.description ? `: ${p.description}` : ""}`)
+    .join(` \\\n`);
+  const enumName = getExtensibleEnumName(choice);
+  const enumLink = `{@link ${enumName}} can be used interchangeably with ${choice.name},\n this enum contains the known values that the service supports.`;
+
+  return [
+    `${choice.description} \\`,
+    ...(hasEnum ? [enumLink] : []),
+    `### Know values supported by the service`,
+    valueDescriptions
+  ].join(" \n");
+}
+
+const writeSealedChoice = (
+  choice: UnionDetails,
+  modelsIndexFile: SourceFile
+) => {
+  const values = choice.properties
+    .map(p => (choice.itemType === SchemaType.String ? `"${p.value}"` : p.name))
+    .join(" | ");
+
+  modelsIndexFile.addTypeAlias({
+    name: choice.name,
+    docs: [choice.description],
+    isExported: true,
+    type: values,
+    trailingTrivia: writer => writer.newLine()
+  });
+};
 
 const writeObjects = (
   clientDetails: ClientDetails,

@@ -924,53 +924,112 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
 }
 
 /**
- * Defines values for ProductPropertiesProvisioningStateValues.
+ * Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts.
  */
-export type ProductPropertiesProvisioningStateValues =
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "Accepted"
-  | "Creating"
-  | "Created"
-  | "Updating"
-  | "Updated"
-  | "Deleting"
-  | "Deleted"
-  | "OK"
-  | string;
+export const enum KnownProductPropertiesProvisioningStateValues {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "canceled",
+  Accepted = "Accepted",
+  Creating = "Creating",
+  Created = "Created",
+  Updating = "Updating",
+  Updated = "Updated",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  OK = "OK"
+}
+
 /**
- * Defines values for SubProductPropertiesProvisioningStateValues.
+ * Defines values for ProductPropertiesProvisioningStateValues. \
+ * {@link KnownProductPropertiesProvisioningStateValues} can be used interchangeably with ProductPropertiesProvisioningStateValues,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **canceled** \
+ * **Accepted** \
+ * **Creating** \
+ * **Created** \
+ * **Updating** \
+ * **Updated** \
+ * **Deleting** \
+ * **Deleted** \
+ * **OK**
  */
-export type SubProductPropertiesProvisioningStateValues =
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "Accepted"
-  | "Creating"
-  | "Created"
-  | "Updating"
-  | "Updated"
-  | "Deleting"
-  | "Deleted"
-  | "OK"
-  | string;
+export type ProductPropertiesProvisioningStateValues = string;
+
 /**
- * Defines values for OperationResultStatus.
+ * Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts.
  */
-export type OperationResultStatus =
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "Accepted"
-  | "Creating"
-  | "Created"
-  | "Updating"
-  | "Updated"
-  | "Deleting"
-  | "Deleted"
-  | "OK"
-  | string;
+export const enum KnownSubProductPropertiesProvisioningStateValues {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "canceled",
+  Accepted = "Accepted",
+  Creating = "Creating",
+  Created = "Created",
+  Updating = "Updating",
+  Updated = "Updated",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  OK = "OK"
+}
+
+/**
+ * Defines values for SubProductPropertiesProvisioningStateValues. \
+ * {@link KnownSubProductPropertiesProvisioningStateValues} can be used interchangeably with SubProductPropertiesProvisioningStateValues,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **canceled** \
+ * **Accepted** \
+ * **Creating** \
+ * **Created** \
+ * **Updating** \
+ * **Updated** \
+ * **Deleting** \
+ * **Deleted** \
+ * **OK**
+ */
+export type SubProductPropertiesProvisioningStateValues = string;
+
+/**
+ * Known values of {@link OperationResultStatus} that the service accepts.
+ */
+export const enum KnownOperationResultStatus {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "canceled",
+  Accepted = "Accepted",
+  Creating = "Creating",
+  Created = "Created",
+  Updating = "Updating",
+  Updated = "Updated",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  OK = "OK"
+}
+
+/**
+ * Defines values for OperationResultStatus. \
+ * {@link KnownOperationResultStatus} can be used interchangeably with OperationResultStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **canceled** \
+ * **Accepted** \
+ * **Creating** \
+ * **Created** \
+ * **Updating** \
+ * **Updated** \
+ * **Deleting** \
+ * **Deleted** \
+ * **OK**
+ */
+export type OperationResultStatus = string;
 
 /**
  * Optional parameters.

@@ -210,7 +210,7 @@ export interface CheckGroupMembershipResult {
 }
 
 // @public
-export type ConsentType = "AllPrincipals" | "Principal" | string;
+export type ConsentType = string;
 
 // @public
 export type DeletedApplicationsListNextResponse = ApplicationListResult & {
@@ -399,7 +399,7 @@ export interface GroupListResult {
 }
 
 // @public
-export type GroupMembershipClaimTypes = "None" | "SecurityGroup" | "All" | string;
+export type GroupMembershipClaimTypes = string;
 
 // @public
 export type GroupsCreateResponse = ADGroup & {
@@ -514,6 +514,32 @@ export interface KeyCredentialListResult {
 // @public
 export interface KeyCredentialsUpdateParameters {
     value: KeyCredential[];
+}
+
+// @public
+export const enum KnownConsentType {
+    // (undocumented)
+    AllPrincipals = "AllPrincipals",
+    // (undocumented)
+    Principal = "Principal"
+}
+
+// @public
+export const enum KnownGroupMembershipClaimTypes {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    SecurityGroup = "SecurityGroup"
+}
+
+// @public
+export const enum KnownUserType {
+    // (undocumented)
+    Guest = "Guest",
+    // (undocumented)
+    Member = "Member"
 }
 
 // @public
@@ -925,7 +951,7 @@ export type UsersListResponse = UserListResult & {
 };
 
 // @public
-export type UserType = "Member" | "Guest" | string;
+export type UserType = string;
 
 // @public
 export type UserUpdateParameters = UserBase & {

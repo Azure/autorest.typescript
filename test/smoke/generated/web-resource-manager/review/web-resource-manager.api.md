@@ -189,10 +189,10 @@ export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
 };
 
 // @public
-export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem = "RegistrationStatusNotSupportedForRenewal" | "ExpirationNotInRenewalTimeRange" | "SubscriptionNotActive" | string;
+export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem = string;
 
 // @public
-export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem = "RegistrationStatusNotSupportedForRenewal" | "ExpirationNotInRenewalTimeRange" | "SubscriptionNotActive" | string;
+export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem = string;
 
 // @public
 export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppServiceCertificateResource & {
@@ -1404,7 +1404,7 @@ export interface BillingMeterCollection {
 }
 
 // @public
-export type BuildStatus = "WaitingForDeployment" | "Uploading" | "Deploying" | "Ready" | "Failed" | "Deleting" | "Detached" | string;
+export type BuildStatus = string;
 
 // @public
 export type BuiltInAuthenticationProvider = "AzureActiveDirectory" | "Facebook" | "Google" | "MicrosoftAccount" | "Twitter";
@@ -1580,7 +1580,7 @@ export type CertificatesUpdateResponse = Certificate & {
 export type Channels = "Notification" | "Api" | "Email" | "Webhook" | "All";
 
 // @public
-export type CheckNameResourceTypes = "Site" | "Slot" | "HostingEnvironment" | "PublishingUser" | "Microsoft.Web/sites" | "Microsoft.Web/sites/slots" | "Microsoft.Web/hostingEnvironments" | "Microsoft.Web/publishingUsers" | string;
+export type CheckNameResourceTypes = string;
 
 // @public
 export type CloneAbilityResult = "Cloneable" | "PartiallyCloneable" | "NotCloneable";
@@ -1864,7 +1864,7 @@ export interface DatabaseBackupSetting {
 }
 
 // @public
-export type DatabaseType = "SqlAzure" | "MySql" | "LocalMySql" | "PostgreSql" | string;
+export type DatabaseType = string;
 
 // @public
 export interface DataSource {
@@ -2505,10 +2505,10 @@ export type DomainPatchResource = ProxyOnlyResource & {
 };
 
 // @public
-export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem = "RegistrationStatusNotSupportedForRenewal" | "ExpirationNotInRenewalTimeRange" | "SubscriptionNotActive" | string;
+export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem = string;
 
 // @public
-export type DomainPropertiesDomainNotRenewableReasonsItem = "RegistrationStatusNotSupportedForRenewal" | "ExpirationNotInRenewalTimeRange" | "SubscriptionNotActive" | string;
+export type DomainPropertiesDomainNotRenewableReasonsItem = string;
 
 // @public
 export interface DomainPurchaseConsent {
@@ -2699,10 +2699,10 @@ export interface EndpointDetail {
 }
 
 // @public
-export type Enum4 = "Windows" | "Linux" | "WindowsFunctions" | "LinuxFunctions" | string;
+export type Enum4 = string;
 
 // @public
-export type Enum5 = "Windows" | "Linux" | "WindowsFunctions" | "LinuxFunctions" | string;
+export type Enum5 = string;
 
 // @public
 export interface ErrorEntity {
@@ -2735,7 +2735,7 @@ export interface FileSystemHttpLogsConfig {
 export type FrequencyUnit = "Day" | "Hour";
 
 // @public
-export type FtpsState = "AllAllowed" | "FtpsOnly" | "Disabled" | string;
+export type FtpsState = string;
 
 // @public
 export type FunctionEnvelope = ProxyOnlyResource & {
@@ -2925,7 +2925,7 @@ export interface IdentifierCollection {
 }
 
 // @public
-export type InAvailabilityReasonType = "Invalid" | "AlreadyExists" | string;
+export type InAvailabilityReasonType = string;
 
 // @public
 export interface InboundEnvironmentEndpoint {
@@ -2991,6 +2991,250 @@ export type KeyVaultReferenceResource = ProxyOnlyResource & {
 
 // @public
 export type KeyVaultSecretStatus = "Initialized" | "WaitingOnCertificateOrder" | "Succeeded" | "CertificateOrderFailed" | "OperationNotPermittedOnKeyVault" | "AzureServiceUnauthorizedToAccessKeyVault" | "KeyVaultDoesNotExist" | "KeyVaultSecretDoesNotExist" | "UnknownError" | "ExternalPrivateKey" | "Unknown";
+
+// @public
+export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
+    // (undocumented)
+    ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+    // (undocumented)
+    RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+    // (undocumented)
+    SubscriptionNotActive = "SubscriptionNotActive"
+}
+
+// @public
+export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
+    // (undocumented)
+    ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+    // (undocumented)
+    RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+    // (undocumented)
+    SubscriptionNotActive = "SubscriptionNotActive"
+}
+
+// @public
+export const enum KnownBuildStatus {
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Deploying = "Deploying",
+    // (undocumented)
+    Detached = "Detached",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Uploading = "Uploading",
+    // (undocumented)
+    WaitingForDeployment = "WaitingForDeployment"
+}
+
+// @public
+export const enum KnownCheckNameResourceTypes {
+    // (undocumented)
+    HostingEnvironment = "HostingEnvironment",
+    // (undocumented)
+    MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
+    // (undocumented)
+    MicrosoftWebPublishingUsers = "Microsoft.Web/publishingUsers",
+    // (undocumented)
+    MicrosoftWebSites = "Microsoft.Web/sites",
+    // (undocumented)
+    MicrosoftWebSitesSlots = "Microsoft.Web/sites/slots",
+    // (undocumented)
+    PublishingUser = "PublishingUser",
+    // (undocumented)
+    Site = "Site",
+    // (undocumented)
+    Slot = "Slot"
+}
+
+// @public
+export const enum KnownDatabaseType {
+    // (undocumented)
+    LocalMySql = "LocalMySql",
+    // (undocumented)
+    MySql = "MySql",
+    // (undocumented)
+    PostgreSql = "PostgreSql",
+    // (undocumented)
+    SqlAzure = "SqlAzure"
+}
+
+// @public
+export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
+    // (undocumented)
+    ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+    // (undocumented)
+    RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+    // (undocumented)
+    SubscriptionNotActive = "SubscriptionNotActive"
+}
+
+// @public
+export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
+    // (undocumented)
+    ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+    // (undocumented)
+    RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+    // (undocumented)
+    SubscriptionNotActive = "SubscriptionNotActive"
+}
+
+// @public
+export const enum KnownEnum4 {
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    LinuxFunctions = "LinuxFunctions",
+    // (undocumented)
+    Windows = "Windows",
+    // (undocumented)
+    WindowsFunctions = "WindowsFunctions"
+}
+
+// @public
+export const enum KnownEnum5 {
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    LinuxFunctions = "LinuxFunctions",
+    // (undocumented)
+    Windows = "Windows",
+    // (undocumented)
+    WindowsFunctions = "WindowsFunctions"
+}
+
+// @public
+export const enum KnownFtpsState {
+    // (undocumented)
+    AllAllowed = "AllAllowed",
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    FtpsOnly = "FtpsOnly"
+}
+
+// @public
+export const enum KnownInAvailabilityReasonType {
+    // (undocumented)
+    AlreadyExists = "AlreadyExists",
+    // (undocumented)
+    Invalid = "Invalid"
+}
+
+// @public
+export const enum KnownPublishingProfileFormat {
+    // (undocumented)
+    FileZilla3 = "FileZilla3",
+    // (undocumented)
+    Ftp = "Ftp",
+    // (undocumented)
+    WebDeploy = "WebDeploy"
+}
+
+// @public
+export const enum KnownResourceScopeType {
+    // (undocumented)
+    ServerFarm = "ServerFarm",
+    // (undocumented)
+    Subscription = "Subscription",
+    // (undocumented)
+    WebSite = "WebSite"
+}
+
+// @public
+export const enum KnownRouteType {
+    // (undocumented)
+    Default = "DEFAULT",
+    // (undocumented)
+    Inherited = "INHERITED",
+    // (undocumented)
+    Static = "STATIC"
+}
+
+// @public
+export const enum KnownScmType {
+    // (undocumented)
+    BitbucketGit = "BitbucketGit",
+    // (undocumented)
+    BitbucketHg = "BitbucketHg",
+    // (undocumented)
+    CodePlexGit = "CodePlexGit",
+    // (undocumented)
+    CodePlexHg = "CodePlexHg",
+    // (undocumented)
+    Dropbox = "Dropbox",
+    // (undocumented)
+    ExternalGit = "ExternalGit",
+    // (undocumented)
+    ExternalHg = "ExternalHg",
+    // (undocumented)
+    GitHub = "GitHub",
+    // (undocumented)
+    LocalGit = "LocalGit",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    OneDrive = "OneDrive",
+    // (undocumented)
+    Tfs = "Tfs",
+    // (undocumented)
+    VSO = "VSO",
+    // (undocumented)
+    Vstsrm = "VSTSRM"
+}
+
+// @public
+export const enum KnownSkuName {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Dynamic = "Dynamic",
+    // (undocumented)
+    ElasticIsolated = "ElasticIsolated",
+    // (undocumented)
+    ElasticPremium = "ElasticPremium",
+    // (undocumented)
+    Free = "Free",
+    // (undocumented)
+    Isolated = "Isolated",
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    PremiumV2 = "PremiumV2",
+    // (undocumented)
+    Shared = "Shared",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownSupportedTlsVersions {
+    // (undocumented)
+    One0 = "1.0",
+    // (undocumented)
+    One1 = "1.1",
+    // (undocumented)
+    One2 = "1.2"
+}
+
+// @public
+export const enum KnownTriggerTypes {
+    // (undocumented)
+    HttpTrigger = "HttpTrigger",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownValidateResourceTypes {
+    // (undocumented)
+    ServerFarm = "ServerFarm",
+    // (undocumented)
+    Site = "Site"
+}
 
 // @public
 export interface LocalizableString {
@@ -3517,7 +3761,7 @@ export interface PublicCertificateCollection {
 export type PublicCertificateLocation = "CurrentUserMy" | "LocalMachineMy" | "Unknown";
 
 // @public
-export type PublishingProfileFormat = "FileZilla3" | "WebDeploy" | "Ftp" | string;
+export type PublishingProfileFormat = string;
 
 // @public
 export type PushSettings = ProxyOnlyResource & {
@@ -3953,7 +4197,7 @@ export interface ResourceNameAvailabilityRequest {
 }
 
 // @public
-export type ResourceScopeType = "ServerFarm" | "Subscription" | "WebSite" | string;
+export type ResourceScopeType = string;
 
 // @public (undocumented)
 export interface ResponseMetaData {
@@ -3976,10 +4220,10 @@ export type RestoreRequest = ProxyOnlyResource & {
 };
 
 // @public
-export type RouteType = "DEFAULT" | "INHERITED" | "STATIC" | string;
+export type RouteType = string;
 
 // @public
-export type ScmType = "None" | "Dropbox" | "Tfs" | "LocalGit" | "GitHub" | "CodePlexGit" | "CodePlexHg" | "BitbucketGit" | "BitbucketHg" | "ExternalGit" | "ExternalHg" | "OneDrive" | "VSO" | "VSTSRM" | string;
+export type ScmType = string;
 
 // @public
 export interface ServiceSpecification {
@@ -4388,7 +4632,7 @@ export interface SkuInfos {
 }
 
 // @public
-export type SkuName = "Free" | "Shared" | "Basic" | "Standard" | "Premium" | "Dynamic" | "Isolated" | "PremiumV2" | "ElasticPremium" | "ElasticIsolated" | string;
+export type SkuName = string;
 
 // @public
 export type SlotConfigNamesResource = ProxyOnlyResource & {
@@ -4878,7 +5122,7 @@ export type StringDictionary = ProxyOnlyResource & {
 };
 
 // @public
-export type SupportedTlsVersions = "1.0" | "1.1" | "1.2" | string;
+export type SupportedTlsVersions = string;
 
 // @public
 export type SwiftVirtualNetwork = ProxyOnlyResource & {
@@ -5009,7 +5253,7 @@ export interface TriggeredWebJobCollection {
 export type TriggeredWebJobStatus = "Success" | "Failed" | "Error";
 
 // @public
-export type TriggerTypes = "HttpTrigger" | "Unknown" | string;
+export type TriggerTypes = string;
 
 // @public
 export type UnauthenticatedClientAction = "RedirectToLoginPage" | "AllowAnonymous";
@@ -5065,7 +5309,7 @@ export interface ValidateRequest {
 }
 
 // @public
-export type ValidateResourceTypes = "ServerFarm" | "Site" | string;
+export type ValidateResourceTypes = string;
 
 // @public
 export interface ValidateResponse {
@@ -8344,7 +8588,7 @@ export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:9399:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:9675:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -60,7 +60,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!EnforcementMode:type",
-          "docComment": "/**\n * Defines values for EnforcementMode.\n */\n",
+          "docComment": "/**\n * Defines values for EnforcementMode. \\ {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode, this enum contains the known values that the service supports. ### Know values supported by the service **Default**: The policy effect is enforced during resource creation or update. \\ **DoNotEnforce**: The policy effect is not enforced during resource creation or update.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -68,7 +68,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"DoNotEnforce\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -392,6 +392,324 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode:enum",
+          "docComment": "/**\n * Known values of {@link EnforcementMode} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEnforcementMode "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEnforcementMode",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode.Default:member",
+              "docComment": "/**\n * The policy effect is enforced during resource creation or update.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Default = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Default\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Default",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode.DoNotEnforce:member",
+              "docComment": "/**\n * The policy effect is not enforced during resource creation or update.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "DoNotEnforce = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"DoNotEnforce\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "DoNotEnforce",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-policy-2019-09!KnownParameterType:enum",
+          "docComment": "/**\n * Known values of {@link ParameterType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownParameterType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownParameterType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Array:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Array = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Array\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Array",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Boolean:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Boolean = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Boolean\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Boolean",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.DateTime:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "DateTime = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"DateTime\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "DateTime",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Float:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Float = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Float\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Float",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Integer:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Integer = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Integer\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Integer",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Object:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Object = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Object\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Object",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.String:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "String = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"String\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "String",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType:enum",
+          "docComment": "/**\n * Known values of {@link PolicyType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPolicyType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPolicyType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.BuiltIn:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BuiltIn = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BuiltIn\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BuiltIn",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.Custom:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Custom = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Custom\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Custom",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.NotSpecified:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NotSpecified = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"NotSpecified\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "NotSpecified",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.Static:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Static = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Static\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Static",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue:interface",
           "docComment": "/**\n * The definition of a parameter that can be provided to the policy.\n */\n",
@@ -620,7 +938,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!ParameterType:type",
-          "docComment": "/**\n * Defines values for ParameterType.\n */\n",
+          "docComment": "/**\n * Defines values for ParameterType. \\ {@link KnownParameterType} can be used interchangeably with ParameterType, this enum contains the known values that the service supports. ### Know values supported by the service **String** \\ **Array** \\ **Object** \\ **Boolean** \\ **Integer** \\ **Float** \\ **DateTime**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -628,7 +946,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"String\" | \"Array\" | \"Object\" | \"Boolean\" | \"Integer\" | \"Float\" | \"DateTime\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -4733,7 +5051,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyType:type",
-          "docComment": "/**\n * Defines values for PolicyType.\n */\n",
+          "docComment": "/**\n * Defines values for PolicyType. \\ {@link KnownPolicyType} can be used interchangeably with PolicyType, this enum contains the known values that the service supports. ### Know values supported by the service **NotSpecified** \\ **BuiltIn** \\ **Custom** \\ **Static**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4741,7 +5059,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotSpecified\" | \"BuiltIn\" | \"Custom\" | \"Static\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
