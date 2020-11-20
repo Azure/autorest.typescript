@@ -1995,7 +1995,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ConsentType:type",
-          "docComment": "/**\n * Defines values for ConsentType.\n */\n",
+          "docComment": "/**\n * Defines values for ConsentType. \\ {@link KnownConsentType} can be used interchangeably with ConsentType, this enum contains the known values that the service supports. ### Know values supported by the service **AllPrincipals** \\ **Principal**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2003,7 +2003,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AllPrincipals\" | \"Principal\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -4117,7 +4117,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupMembershipClaimTypes:type",
-          "docComment": "/**\n * Defines values for GroupMembershipClaimTypes.\n */\n",
+          "docComment": "/**\n * Defines values for GroupMembershipClaimTypes. \\ {@link KnownGroupMembershipClaimTypes} can be used interchangeably with GroupMembershipClaimTypes, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **SecurityGroup** \\ **All**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4125,7 +4125,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"SecurityGroup\" | \"All\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -5120,6 +5120,198 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "graphrbac-data-plane!KnownConsentType:enum",
+          "docComment": "/**\n * Known values of {@link ConsentType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownConsentType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownConsentType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownConsentType.AllPrincipals:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AllPrincipals = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AllPrincipals\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AllPrincipals",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownConsentType.Principal:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Principal = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Principal\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Principal",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "graphrbac-data-plane!KnownGroupMembershipClaimTypes:enum",
+          "docComment": "/**\n * Known values of {@link GroupMembershipClaimTypes} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownGroupMembershipClaimTypes "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownGroupMembershipClaimTypes",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownGroupMembershipClaimTypes.All:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "All = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"All\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "All",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownGroupMembershipClaimTypes.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownGroupMembershipClaimTypes.SecurityGroup:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SecurityGroup = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SecurityGroup\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SecurityGroup",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "graphrbac-data-plane!KnownUserType:enum",
+          "docComment": "/**\n * Known values of {@link UserType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownUserType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownUserType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownUserType.Guest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Guest = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Guest\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Guest",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "graphrbac-data-plane!KnownUserType.Member:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Member = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Member\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Member",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -8973,7 +9165,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!UserType:type",
-          "docComment": "/**\n * Defines values for UserType.\n */\n",
+          "docComment": "/**\n * Defines values for UserType. \\ {@link KnownUserType} can be used interchangeably with UserType, this enum contains the known values that the service supports. ### Know values supported by the service **Member** \\ **Guest**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -8981,7 +9173,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Member\" | \"Guest\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

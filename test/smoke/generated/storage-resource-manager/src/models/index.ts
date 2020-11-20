@@ -2331,202 +2331,644 @@ export interface BlobContainersExtendImmutabilityPolicyHeaders {
 }
 
 /**
- * Defines values for SkuName.
+ * Known values of {@link SkuName} that the service accepts.
  */
-export type SkuName =
-  | "Standard_LRS"
-  | "Standard_GRS"
-  | "Standard_RAGRS"
-  | "Standard_ZRS"
-  | "Premium_LRS"
-  | "Premium_ZRS"
-  | "Standard_GZRS"
-  | "Standard_RAGZRS"
-  | string;
+export const enum KnownSkuName {
+  StandardLRS = "Standard_LRS",
+  StandardGRS = "Standard_GRS",
+  StandardRagrs = "Standard_RAGRS",
+  StandardZRS = "Standard_ZRS",
+  PremiumLRS = "Premium_LRS",
+  PremiumZRS = "Premium_ZRS",
+  StandardGzrs = "Standard_GZRS",
+  StandardRagzrs = "Standard_RAGZRS"
+}
+
 /**
- * Defines values for Kind.
+ * Defines values for SkuName. \
+ * {@link KnownSkuName} can be used interchangeably with SkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_LRS** \
+ * **Standard_GRS** \
+ * **Standard_RAGRS** \
+ * **Standard_ZRS** \
+ * **Premium_LRS** \
+ * **Premium_ZRS** \
+ * **Standard_GZRS** \
+ * **Standard_RAGZRS**
  */
-export type Kind =
-  | "Storage"
-  | "StorageV2"
-  | "BlobStorage"
-  | "FileStorage"
-  | "BlockBlobStorage"
-  | string;
+export type SkuName = string;
+
 /**
- * Defines values for ReasonCode.
+ * Known values of {@link Kind} that the service accepts.
  */
-export type ReasonCode = "QuotaId" | "NotAvailableForSubscription" | string;
+export const enum KnownKind {
+  Storage = "Storage",
+  StorageV2 = "StorageV2",
+  BlobStorage = "BlobStorage",
+  FileStorage = "FileStorage",
+  BlockBlobStorage = "BlockBlobStorage"
+}
+
 /**
- * Defines values for KeyType.
+ * Defines values for Kind. \
+ * {@link KnownKind} can be used interchangeably with Kind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Storage** \
+ * **StorageV2** \
+ * **BlobStorage** \
+ * **FileStorage** \
+ * **BlockBlobStorage**
  */
-export type KeyType = "Service" | "Account" | string;
+export type Kind = string;
+
 /**
- * Defines values for KeySource.
+ * Known values of {@link ReasonCode} that the service accepts.
  */
-export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault" | string;
+export const enum KnownReasonCode {
+  QuotaId = "QuotaId",
+  NotAvailableForSubscription = "NotAvailableForSubscription"
+}
+
 /**
- * Defines values for Bypass.
+ * Defines values for ReasonCode. \
+ * {@link KnownReasonCode} can be used interchangeably with ReasonCode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **QuotaId** \
+ * **NotAvailableForSubscription**
  */
-export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices" | string;
+export type ReasonCode = string;
+
 /**
- * Defines values for DirectoryServiceOptions.
+ * Known values of {@link KeyType} that the service accepts.
  */
-export type DirectoryServiceOptions = "None" | "AADDS" | "AD" | string;
+export const enum KnownKeyType {
+  Service = "Service",
+  Account = "Account"
+}
+
 /**
- * Defines values for LargeFileSharesState.
+ * Defines values for KeyType. \
+ * {@link KnownKeyType} can be used interchangeably with KeyType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Service** \
+ * **Account**
  */
-export type LargeFileSharesState = "Disabled" | "Enabled" | string;
+export type KeyType = string;
+
 /**
- * Defines values for RoutingChoice.
+ * Known values of {@link KeySource} that the service accepts.
  */
-export type RoutingChoice = "MicrosoftRouting" | "InternetRouting" | string;
+export const enum KnownKeySource {
+  MicrosoftStorage = "Microsoft.Storage",
+  MicrosoftKeyvault = "Microsoft.Keyvault"
+}
+
 /**
- * Defines values for GeoReplicationStatus.
+ * Defines values for KeySource. \
+ * {@link KnownKeySource} can be used interchangeably with KeySource,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Microsoft.Storage** \
+ * **Microsoft.Keyvault**
  */
-export type GeoReplicationStatus =
-  | "Live"
-  | "Bootstrap"
-  | "Unavailable"
-  | string;
+export type KeySource = string;
+
 /**
- * Defines values for PrivateEndpointServiceConnectionStatus.
+ * Known values of {@link Bypass} that the service accepts.
  */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | string;
+export const enum KnownBypass {
+  None = "None",
+  Logging = "Logging",
+  Metrics = "Metrics",
+  AzureServices = "AzureServices"
+}
+
 /**
- * Defines values for PrivateEndpointConnectionProvisioningState.
+ * Defines values for Bypass. \
+ * {@link KnownBypass} can be used interchangeably with Bypass,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **Logging** \
+ * **Metrics** \
+ * **AzureServices**
  */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed"
-  | string;
+export type Bypass = string;
+
 /**
- * Defines values for BlobRestoreProgressStatus.
+ * Known values of {@link DirectoryServiceOptions} that the service accepts.
  */
-export type BlobRestoreProgressStatus =
-  | "InProgress"
-  | "Complete"
-  | "Failed"
-  | string;
+export const enum KnownDirectoryServiceOptions {
+  None = "None",
+  Aadds = "AADDS",
+  AD = "AD"
+}
+
 /**
- * Defines values for Services.
+ * Defines values for DirectoryServiceOptions. \
+ * {@link KnownDirectoryServiceOptions} can be used interchangeably with DirectoryServiceOptions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **AADDS** \
+ * **AD**
  */
-export type Services = "b" | "q" | "t" | "f" | string;
+export type DirectoryServiceOptions = string;
+
 /**
- * Defines values for SignedResourceTypes.
+ * Known values of {@link LargeFileSharesState} that the service accepts.
  */
-export type SignedResourceTypes = "s" | "c" | "o" | string;
+export const enum KnownLargeFileSharesState {
+  Disabled = "Disabled",
+  Enabled = "Enabled"
+}
+
 /**
- * Defines values for Permissions.
+ * Defines values for LargeFileSharesState. \
+ * {@link KnownLargeFileSharesState} can be used interchangeably with LargeFileSharesState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Disabled** \
+ * **Enabled**
  */
-export type Permissions =
-  | "r"
-  | "d"
-  | "w"
-  | "l"
-  | "a"
-  | "c"
-  | "u"
-  | "p"
-  | string;
+export type LargeFileSharesState = string;
+
 /**
- * Defines values for SignedResource.
+ * Known values of {@link RoutingChoice} that the service accepts.
  */
-export type SignedResource = "b" | "c" | "f" | "s" | string;
+export const enum KnownRoutingChoice {
+  MicrosoftRouting = "MicrosoftRouting",
+  InternetRouting = "InternetRouting"
+}
+
 /**
- * Defines values for ManagementPolicyName.
+ * Defines values for RoutingChoice. \
+ * {@link KnownRoutingChoice} can be used interchangeably with RoutingChoice,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **MicrosoftRouting** \
+ * **InternetRouting**
  */
-export type ManagementPolicyName = "default" | string;
+export type RoutingChoice = string;
+
 /**
- * Defines values for RuleType.
+ * Known values of {@link GeoReplicationStatus} that the service accepts.
  */
-export type RuleType = "Lifecycle" | string;
+export const enum KnownGeoReplicationStatus {
+  Live = "Live",
+  Bootstrap = "Bootstrap",
+  Unavailable = "Unavailable"
+}
+
 /**
- * Defines values for EncryptionScopeSource.
+ * Defines values for GeoReplicationStatus. \
+ * {@link KnownGeoReplicationStatus} can be used interchangeably with GeoReplicationStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Live** \
+ * **Bootstrap** \
+ * **Unavailable**
  */
-export type EncryptionScopeSource =
-  | "Microsoft.Storage"
-  | "Microsoft.KeyVault"
-  | string;
+export type GeoReplicationStatus = string;
+
 /**
- * Defines values for EncryptionScopeState.
+ * Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts.
  */
-export type EncryptionScopeState = "Enabled" | "Disabled" | string;
+export const enum KnownPrivateEndpointServiceConnectionStatus {
+  Pending = "Pending",
+  Approved = "Approved",
+  Rejected = "Rejected"
+}
+
 /**
- * Defines values for CorsRuleAllowedMethodsItem.
+ * Defines values for PrivateEndpointServiceConnectionStatus. \
+ * {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Pending** \
+ * **Approved** \
+ * **Rejected**
  */
-export type CorsRuleAllowedMethodsItem =
-  | "DELETE"
-  | "GET"
-  | "HEAD"
-  | "MERGE"
-  | "POST"
-  | "OPTIONS"
-  | "PUT"
-  | string;
+export type PrivateEndpointServiceConnectionStatus = string;
+
 /**
- * Defines values for LeaseStatus.
+ * Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts.
  */
-export type LeaseStatus = "Locked" | "Unlocked" | string;
+export const enum KnownPrivateEndpointConnectionProvisioningState {
+  Succeeded = "Succeeded",
+  Creating = "Creating",
+  Deleting = "Deleting",
+  Failed = "Failed"
+}
+
 /**
- * Defines values for LeaseState.
+ * Defines values for PrivateEndpointConnectionProvisioningState. \
+ * {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Creating** \
+ * **Deleting** \
+ * **Failed**
  */
-export type LeaseState =
-  | "Available"
-  | "Leased"
-  | "Expired"
-  | "Breaking"
-  | "Broken"
-  | string;
+export type PrivateEndpointConnectionProvisioningState = string;
+
 /**
- * Defines values for LeaseDuration.
+ * Known values of {@link BlobRestoreProgressStatus} that the service accepts.
  */
-export type LeaseDuration = "Infinite" | "Fixed" | string;
+export const enum KnownBlobRestoreProgressStatus {
+  InProgress = "InProgress",
+  Complete = "Complete",
+  Failed = "Failed"
+}
+
 /**
- * Defines values for ImmutabilityPolicyState.
+ * Defines values for BlobRestoreProgressStatus. \
+ * {@link KnownBlobRestoreProgressStatus} can be used interchangeably with BlobRestoreProgressStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **InProgress** \
+ * **Complete** \
+ * **Failed**
  */
-export type ImmutabilityPolicyState = "Locked" | "Unlocked" | string;
+export type BlobRestoreProgressStatus = string;
+
 /**
- * Defines values for ImmutabilityPolicyUpdateType.
+ * Known values of {@link Services} that the service accepts.
  */
-export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend" | string;
+export const enum KnownServices {
+  B = "b",
+  Q = "q",
+  T = "t",
+  F = "f"
+}
+
 /**
- * Defines values for LeaseContainerRequestAction.
+ * Defines values for Services. \
+ * {@link KnownServices} can be used interchangeably with Services,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **b** \
+ * **q** \
+ * **t** \
+ * **f**
  */
-export type LeaseContainerRequestAction =
-  | "Acquire"
-  | "Renew"
-  | "Change"
-  | "Release"
-  | "Break"
-  | string;
+export type Services = string;
+
 /**
- * Defines values for EnabledProtocols.
+ * Known values of {@link SignedResourceTypes} that the service accepts.
  */
-export type EnabledProtocols = "SMB" | "NFS" | string;
+export const enum KnownSignedResourceTypes {
+  S = "s",
+  C = "c",
+  O = "o"
+}
+
 /**
- * Defines values for RootSquashType.
+ * Defines values for SignedResourceTypes. \
+ * {@link KnownSignedResourceTypes} can be used interchangeably with SignedResourceTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **s** \
+ * **c** \
+ * **o**
  */
-export type RootSquashType =
-  | "NoRootSquash"
-  | "RootSquash"
-  | "AllSquash"
-  | string;
+export type SignedResourceTypes = string;
+
 /**
- * Defines values for ShareAccessTier.
+ * Known values of {@link Permissions} that the service accepts.
  */
-export type ShareAccessTier =
-  | "TransactionOptimized"
-  | "Hot"
-  | "Cool"
-  | "Premium"
-  | string;
+export const enum KnownPermissions {
+  R = "r",
+  D = "d",
+  W = "w",
+  L = "l",
+  A = "a",
+  C = "c",
+  U = "u",
+  P = "p"
+}
+
+/**
+ * Defines values for Permissions. \
+ * {@link KnownPermissions} can be used interchangeably with Permissions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **r** \
+ * **d** \
+ * **w** \
+ * **l** \
+ * **a** \
+ * **c** \
+ * **u** \
+ * **p**
+ */
+export type Permissions = string;
+
+/**
+ * Known values of {@link SignedResource} that the service accepts.
+ */
+export const enum KnownSignedResource {
+  B = "b",
+  C = "c",
+  F = "f",
+  S = "s"
+}
+
+/**
+ * Defines values for SignedResource. \
+ * {@link KnownSignedResource} can be used interchangeably with SignedResource,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **b** \
+ * **c** \
+ * **f** \
+ * **s**
+ */
+export type SignedResource = string;
+
+/**
+ * Known values of {@link ManagementPolicyName} that the service accepts.
+ */
+export const enum KnownManagementPolicyName {
+  Default = "default"
+}
+
+/**
+ * Defines values for ManagementPolicyName. \
+ * {@link KnownManagementPolicyName} can be used interchangeably with ManagementPolicyName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **default**
+ */
+export type ManagementPolicyName = string;
+
+/**
+ * Known values of {@link RuleType} that the service accepts.
+ */
+export const enum KnownRuleType {
+  Lifecycle = "Lifecycle"
+}
+
+/**
+ * Defines values for RuleType. \
+ * {@link KnownRuleType} can be used interchangeably with RuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Lifecycle**
+ */
+export type RuleType = string;
+
+/**
+ * Known values of {@link EncryptionScopeSource} that the service accepts.
+ */
+export const enum KnownEncryptionScopeSource {
+  MicrosoftStorage = "Microsoft.Storage",
+  MicrosoftKeyVault = "Microsoft.KeyVault"
+}
+
+/**
+ * Defines values for EncryptionScopeSource. \
+ * {@link KnownEncryptionScopeSource} can be used interchangeably with EncryptionScopeSource,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Microsoft.Storage** \
+ * **Microsoft.KeyVault**
+ */
+export type EncryptionScopeSource = string;
+
+/**
+ * Known values of {@link EncryptionScopeState} that the service accepts.
+ */
+export const enum KnownEncryptionScopeState {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for EncryptionScopeState. \
+ * {@link KnownEncryptionScopeState} can be used interchangeably with EncryptionScopeState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type EncryptionScopeState = string;
+
+/**
+ * Known values of {@link CorsRuleAllowedMethodsItem} that the service accepts.
+ */
+export const enum KnownCorsRuleAllowedMethodsItem {
+  Delete = "DELETE",
+  GET = "GET",
+  Head = "HEAD",
+  Merge = "MERGE",
+  Post = "POST",
+  Options = "OPTIONS",
+  PUT = "PUT"
+}
+
+/**
+ * Defines values for CorsRuleAllowedMethodsItem. \
+ * {@link KnownCorsRuleAllowedMethodsItem} can be used interchangeably with CorsRuleAllowedMethodsItem,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **DELETE** \
+ * **GET** \
+ * **HEAD** \
+ * **MERGE** \
+ * **POST** \
+ * **OPTIONS** \
+ * **PUT**
+ */
+export type CorsRuleAllowedMethodsItem = string;
+
+/**
+ * Known values of {@link LeaseStatus} that the service accepts.
+ */
+export const enum KnownLeaseStatus {
+  Locked = "Locked",
+  Unlocked = "Unlocked"
+}
+
+/**
+ * Defines values for LeaseStatus. \
+ * {@link KnownLeaseStatus} can be used interchangeably with LeaseStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Locked** \
+ * **Unlocked**
+ */
+export type LeaseStatus = string;
+
+/**
+ * Known values of {@link LeaseState} that the service accepts.
+ */
+export const enum KnownLeaseState {
+  Available = "Available",
+  Leased = "Leased",
+  Expired = "Expired",
+  Breaking = "Breaking",
+  Broken = "Broken"
+}
+
+/**
+ * Defines values for LeaseState. \
+ * {@link KnownLeaseState} can be used interchangeably with LeaseState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Available** \
+ * **Leased** \
+ * **Expired** \
+ * **Breaking** \
+ * **Broken**
+ */
+export type LeaseState = string;
+
+/**
+ * Known values of {@link LeaseDuration} that the service accepts.
+ */
+export const enum KnownLeaseDuration {
+  Infinite = "Infinite",
+  Fixed = "Fixed"
+}
+
+/**
+ * Defines values for LeaseDuration. \
+ * {@link KnownLeaseDuration} can be used interchangeably with LeaseDuration,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Infinite** \
+ * **Fixed**
+ */
+export type LeaseDuration = string;
+
+/**
+ * Known values of {@link ImmutabilityPolicyState} that the service accepts.
+ */
+export const enum KnownImmutabilityPolicyState {
+  Locked = "Locked",
+  Unlocked = "Unlocked"
+}
+
+/**
+ * Defines values for ImmutabilityPolicyState. \
+ * {@link KnownImmutabilityPolicyState} can be used interchangeably with ImmutabilityPolicyState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Locked** \
+ * **Unlocked**
+ */
+export type ImmutabilityPolicyState = string;
+
+/**
+ * Known values of {@link ImmutabilityPolicyUpdateType} that the service accepts.
+ */
+export const enum KnownImmutabilityPolicyUpdateType {
+  Put = "put",
+  Lock = "lock",
+  Extend = "extend"
+}
+
+/**
+ * Defines values for ImmutabilityPolicyUpdateType. \
+ * {@link KnownImmutabilityPolicyUpdateType} can be used interchangeably with ImmutabilityPolicyUpdateType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **put** \
+ * **lock** \
+ * **extend**
+ */
+export type ImmutabilityPolicyUpdateType = string;
+
+/**
+ * Known values of {@link LeaseContainerRequestAction} that the service accepts.
+ */
+export const enum KnownLeaseContainerRequestAction {
+  Acquire = "Acquire",
+  Renew = "Renew",
+  Change = "Change",
+  Release = "Release",
+  Break = "Break"
+}
+
+/**
+ * Defines values for LeaseContainerRequestAction. \
+ * {@link KnownLeaseContainerRequestAction} can be used interchangeably with LeaseContainerRequestAction,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Acquire** \
+ * **Renew** \
+ * **Change** \
+ * **Release** \
+ * **Break**
+ */
+export type LeaseContainerRequestAction = string;
+
+/**
+ * Known values of {@link EnabledProtocols} that the service accepts.
+ */
+export const enum KnownEnabledProtocols {
+  SMB = "SMB",
+  NFS = "NFS"
+}
+
+/**
+ * Defines values for EnabledProtocols. \
+ * {@link KnownEnabledProtocols} can be used interchangeably with EnabledProtocols,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **SMB** \
+ * **NFS**
+ */
+export type EnabledProtocols = string;
+
+/**
+ * Known values of {@link RootSquashType} that the service accepts.
+ */
+export const enum KnownRootSquashType {
+  NoRootSquash = "NoRootSquash",
+  RootSquash = "RootSquash",
+  AllSquash = "AllSquash"
+}
+
+/**
+ * Defines values for RootSquashType. \
+ * {@link KnownRootSquashType} can be used interchangeably with RootSquashType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NoRootSquash** \
+ * **RootSquash** \
+ * **AllSquash**
+ */
+export type RootSquashType = string;
+
+/**
+ * Known values of {@link ShareAccessTier} that the service accepts.
+ */
+export const enum KnownShareAccessTier {
+  TransactionOptimized = "TransactionOptimized",
+  Hot = "Hot",
+  Cool = "Cool",
+  Premium = "Premium"
+}
+
+/**
+ * Defines values for ShareAccessTier. \
+ * {@link KnownShareAccessTier} can be used interchangeably with ShareAccessTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TransactionOptimized** \
+ * **Hot** \
+ * **Cool** \
+ * **Premium**
+ */
+export type ShareAccessTier = string;
 /**
  * Defines values for SkuTier.
  */

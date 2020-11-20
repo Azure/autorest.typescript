@@ -12255,937 +12255,2796 @@ export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
    */
   destinationIpGroups?: string[];
 };
-/**
- * Defines values for ApplicationGatewaySkuName.
- */
-export type ApplicationGatewaySkuName =
-  | "Standard_Small"
-  | "Standard_Medium"
-  | "Standard_Large"
-  | "WAF_Medium"
-  | "WAF_Large"
-  | "Standard_v2"
-  | "WAF_v2"
-  | string;
-/**
- * Defines values for ApplicationGatewayTier.
- */
-export type ApplicationGatewayTier =
-  | "Standard"
-  | "WAF"
-  | "Standard_v2"
-  | "WAF_v2"
-  | string;
-/**
- * Defines values for ApplicationGatewaySslProtocol.
- */
-export type ApplicationGatewaySslProtocol =
-  | "TLSv1_0"
-  | "TLSv1_1"
-  | "TLSv1_2"
-  | string;
-/**
- * Defines values for ApplicationGatewaySslPolicyType.
- */
-export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom" | string;
-/**
- * Defines values for ApplicationGatewaySslPolicyName.
- */
-export type ApplicationGatewaySslPolicyName =
-  | "AppGwSslPolicy20150501"
-  | "AppGwSslPolicy20170401"
-  | "AppGwSslPolicy20170401S"
-  | string;
-/**
- * Defines values for ApplicationGatewaySslCipherSuite.
- */
-export type ApplicationGatewaySslCipherSuite =
-  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"
-  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_RSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_RSA_WITH_AES_256_CBC_SHA256"
-  | "TLS_RSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256"
-  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
-  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA"
-  | "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
-  | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
-  | string;
-/**
- * Defines values for ApplicationGatewayOperationalState.
- */
-export type ApplicationGatewayOperationalState =
-  | "Stopped"
-  | "Starting"
-  | "Running"
-  | "Stopping"
-  | string;
-/**
- * Defines values for ProvisioningState.
- */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Updating"
-  | "Deleting"
-  | "Failed"
-  | string;
-/**
- * Defines values for IPAllocationMethod.
- */
-export type IPAllocationMethod = "Static" | "Dynamic" | string;
-/**
- * Defines values for ApplicationGatewayProtocol.
- */
-export type ApplicationGatewayProtocol = "Http" | "Https" | string;
-/**
- * Defines values for IPVersion.
- */
-export type IPVersion = "IPv4" | "IPv6" | string;
-/**
- * Defines values for SecurityRuleProtocol.
- */
-export type SecurityRuleProtocol =
-  | "Tcp"
-  | "Udp"
-  | "Icmp"
-  | "Esp"
-  | "*"
-  | "Ah"
-  | string;
-/**
- * Defines values for SecurityRuleAccess.
- */
-export type SecurityRuleAccess = "Allow" | "Deny" | string;
-/**
- * Defines values for SecurityRuleDirection.
- */
-export type SecurityRuleDirection = "Inbound" | "Outbound" | string;
-/**
- * Defines values for FlowLogFormatType.
- */
-export type FlowLogFormatType = "JSON" | string;
-/**
- * Defines values for RouteNextHopType.
- */
-export type RouteNextHopType =
-  | "VirtualNetworkGateway"
-  | "VnetLocal"
-  | "Internet"
-  | "VirtualAppliance"
-  | "None"
-  | string;
-/**
- * Defines values for PublicIPAddressSkuName.
- */
-export type PublicIPAddressSkuName = "Basic" | "Standard" | string;
-/**
- * Defines values for DdosSettingsProtectionCoverage.
- */
-export type DdosSettingsProtectionCoverage = "Basic" | "Standard" | string;
-/**
- * Defines values for VirtualNetworkPeeringState.
- */
-export type VirtualNetworkPeeringState =
-  | "Initiated"
-  | "Connected"
-  | "Disconnected"
-  | string;
-/**
- * Defines values for TransportProtocol.
- */
-export type TransportProtocol = "Udp" | "Tcp" | "All" | string;
-/**
- * Defines values for ApplicationGatewayCookieBasedAffinity.
- */
-export type ApplicationGatewayCookieBasedAffinity =
-  | "Enabled"
-  | "Disabled"
-  | string;
-/**
- * Defines values for ApplicationGatewayCustomErrorStatusCode.
- */
-export type ApplicationGatewayCustomErrorStatusCode =
-  | "HttpStatus403"
-  | "HttpStatus502"
-  | string;
-/**
- * Defines values for ApplicationGatewayRequestRoutingRuleType.
- */
-export type ApplicationGatewayRequestRoutingRuleType =
-  | "Basic"
-  | "PathBasedRouting"
-  | string;
-/**
- * Defines values for ApplicationGatewayRedirectType.
- */
-export type ApplicationGatewayRedirectType =
-  | "Permanent"
-  | "Found"
-  | "SeeOther"
-  | "Temporary"
-  | string;
-/**
- * Defines values for ApplicationGatewayFirewallMode.
- */
-export type ApplicationGatewayFirewallMode =
-  | "Detection"
-  | "Prevention"
-  | string;
-/**
- * Defines values for ApplicationGatewayBackendHealthServerHealth.
- */
-export type ApplicationGatewayBackendHealthServerHealth =
-  | "Unknown"
-  | "Up"
-  | "Down"
-  | "Partial"
-  | "Draining"
-  | string;
-/**
- * Defines values for AzureFirewallRCActionType.
- */
-export type AzureFirewallRCActionType = "Allow" | "Deny" | string;
-/**
- * Defines values for AzureFirewallApplicationRuleProtocolType.
- */
-export type AzureFirewallApplicationRuleProtocolType =
-  | "Http"
-  | "Https"
-  | "Mssql"
-  | string;
-/**
- * Defines values for AzureFirewallNatRCActionType.
- */
-export type AzureFirewallNatRCActionType = "Snat" | "Dnat" | string;
-/**
- * Defines values for AzureFirewallNetworkRuleProtocol.
- */
-export type AzureFirewallNetworkRuleProtocol =
-  | "TCP"
-  | "UDP"
-  | "Any"
-  | "ICMP"
-  | string;
-/**
- * Defines values for AzureFirewallThreatIntelMode.
- */
-export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off" | string;
-/**
- * Defines values for AzureFirewallSkuName.
- */
-export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub" | string;
-/**
- * Defines values for AzureFirewallSkuTier.
- */
-export type AzureFirewallSkuTier = "Standard" | "Premium" | string;
-/**
- * Defines values for BastionConnectProtocol.
- */
-export type BastionConnectProtocol = "SSH" | "RDP" | string;
-/**
- * Defines values for DdosCustomPolicyProtocol.
- */
-export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn" | string;
-/**
- * Defines values for DdosCustomPolicyTriggerSensitivityOverride.
- */
-export type DdosCustomPolicyTriggerSensitivityOverride =
-  | "Relaxed"
-  | "Low"
-  | "Default"
-  | "High"
-  | string;
-/**
- * Defines values for AuthorizationUseStatus.
- */
-export type AuthorizationUseStatus = "Available" | "InUse" | string;
-/**
- * Defines values for ExpressRoutePeeringType.
- */
-export type ExpressRoutePeeringType =
-  | "AzurePublicPeering"
-  | "AzurePrivatePeering"
-  | "MicrosoftPeering"
-  | string;
-/**
- * Defines values for ExpressRoutePeeringState.
- */
-export type ExpressRoutePeeringState = "Disabled" | "Enabled" | string;
-/**
- * Defines values for ExpressRouteCircuitPeeringAdvertisedPublicPrefixState.
- */
-export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState =
-  | "NotConfigured"
-  | "Configuring"
-  | "Configured"
-  | "ValidationNeeded"
-  | string;
-/**
- * Defines values for ExpressRouteCircuitPeeringState.
- */
-export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled" | string;
-/**
- * Defines values for CircuitConnectionStatus.
- */
-export type CircuitConnectionStatus =
-  | "Connected"
-  | "Connecting"
-  | "Disconnected"
-  | string;
-/**
- * Defines values for ExpressRouteCircuitSkuTier.
- */
-export type ExpressRouteCircuitSkuTier =
-  | "Standard"
-  | "Premium"
-  | "Basic"
-  | "Local"
-  | string;
-/**
- * Defines values for ExpressRouteCircuitSkuFamily.
- */
-export type ExpressRouteCircuitSkuFamily =
-  | "UnlimitedData"
-  | "MeteredData"
-  | string;
-/**
- * Defines values for ServiceProviderProvisioningState.
- */
-export type ServiceProviderProvisioningState =
-  | "NotProvisioned"
-  | "Provisioning"
-  | "Provisioned"
-  | "Deprovisioning"
-  | string;
-/**
- * Defines values for ExpressRoutePortsEncapsulation.
- */
-export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ" | string;
-/**
- * Defines values for ExpressRouteLinkConnectorType.
- */
-export type ExpressRouteLinkConnectorType = "LC" | "SC" | string;
-/**
- * Defines values for ExpressRouteLinkAdminState.
- */
-export type ExpressRouteLinkAdminState = "Enabled" | "Disabled" | string;
-/**
- * Defines values for ExpressRouteLinkMacSecCipher.
- */
-export type ExpressRouteLinkMacSecCipher =
-  | "gcm-aes-128"
-  | "gcm-aes-256"
-  | string;
-/**
- * Defines values for FirewallPolicyIntrusionSystemMode.
- */
-export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled" | string;
-/**
- * Defines values for FirewallPolicyRuleType.
- */
-export type FirewallPolicyRuleType =
-  | "FirewallPolicyNatRule"
-  | "FirewallPolicyFilterRule"
-  | string;
-/**
- * Defines values for IpAllocationType.
- */
-export type IpAllocationType = "Undefined" | "Hypernet" | string;
-/**
- * Defines values for LoadBalancerSkuName.
- */
-export type LoadBalancerSkuName = "Basic" | "Standard" | string;
-/**
- * Defines values for LoadDistribution.
- */
-export type LoadDistribution =
-  | "Default"
-  | "SourceIP"
-  | "SourceIPProtocol"
-  | string;
-/**
- * Defines values for ProbeProtocol.
- */
-export type ProbeProtocol = "Http" | "Tcp" | "Https" | string;
-/**
- * Defines values for LoadBalancerOutboundRuleProtocol.
- */
-export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All" | string;
-/**
- * Defines values for NatGatewaySkuName.
- */
-export type NatGatewaySkuName = "Standard" | string;
-/**
- * Defines values for EffectiveRouteSource.
- */
-export type EffectiveRouteSource =
-  | "Unknown"
-  | "User"
-  | "VirtualNetworkGateway"
-  | "Default"
-  | string;
-/**
- * Defines values for EffectiveRouteState.
- */
-export type EffectiveRouteState = "Active" | "Invalid" | string;
-/**
- * Defines values for EffectiveSecurityRuleProtocol.
- */
-export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All" | string;
-/**
- * Defines values for AssociationType.
- */
-export type AssociationType = "Associated" | "Contains" | string;
-/**
- * Defines values for Direction.
- */
-export type Direction = "Inbound" | "Outbound" | string;
-/**
- * Defines values for IpFlowProtocol.
- */
-export type IpFlowProtocol = "TCP" | "UDP" | string;
-/**
- * Defines values for Access.
- */
-export type Access = "Allow" | "Deny" | string;
-/**
- * Defines values for NextHopType.
- */
-export type NextHopType =
-  | "Internet"
-  | "VirtualAppliance"
-  | "VirtualNetworkGateway"
-  | "VnetLocal"
-  | "HyperNetGateway"
-  | "None"
-  | string;
-/**
- * Defines values for PcProtocol.
- */
-export type PcProtocol = "TCP" | "UDP" | "Any" | string;
-/**
- * Defines values for PcStatus.
- */
-export type PcStatus =
-  | "NotStarted"
-  | "Running"
-  | "Stopped"
-  | "Error"
-  | "Unknown"
-  | string;
-/**
- * Defines values for PcError.
- */
-export type PcError =
-  | "InternalError"
-  | "AgentStopped"
-  | "CaptureFailed"
-  | "LocalFileFailed"
-  | "StorageFailed"
-  | string;
-/**
- * Defines values for Protocol.
- */
-export type Protocol = "Tcp" | "Http" | "Https" | "Icmp" | string;
-/**
- * Defines values for HttpMethod.
- */
-export type HttpMethod = "Get" | string;
-/**
- * Defines values for Origin.
- */
-export type Origin = "Local" | "Inbound" | "Outbound" | string;
-/**
- * Defines values for Severity.
- */
-export type Severity = "Error" | "Warning" | string;
-/**
- * Defines values for IssueType.
- */
-export type IssueType =
-  | "Unknown"
-  | "AgentStopped"
-  | "GuestFirewall"
-  | "DnsResolution"
-  | "SocketBind"
-  | "NetworkSecurityRule"
-  | "UserDefinedRoute"
-  | "PortThrottled"
-  | "Platform"
-  | string;
-/**
- * Defines values for ConnectionStatus.
- */
-export type ConnectionStatus =
-  | "Unknown"
-  | "Connected"
-  | "Disconnected"
-  | "Degraded"
-  | string;
-/**
- * Defines values for VerbosityLevel.
- */
-export type VerbosityLevel = "Normal" | "Minimum" | "Full" | string;
-/**
- * Defines values for ConnectionMonitorEndpointFilterType.
- */
-export type ConnectionMonitorEndpointFilterType = "Include" | string;
-/**
- * Defines values for ConnectionMonitorEndpointFilterItemType.
- */
-export type ConnectionMonitorEndpointFilterItemType = "AgentAddress" | string;
-/**
- * Defines values for ConnectionMonitorTestConfigurationProtocol.
- */
-export type ConnectionMonitorTestConfigurationProtocol =
-  | "Tcp"
-  | "Http"
-  | "Icmp"
-  | string;
-/**
- * Defines values for PreferredIPVersion.
- */
-export type PreferredIPVersion = "IPv4" | "IPv6" | string;
-/**
- * Defines values for HttpConfigurationMethod.
- */
-export type HttpConfigurationMethod = "Get" | "Post" | string;
-/**
- * Defines values for OutputType.
- */
-export type OutputType = "Workspace" | string;
-/**
- * Defines values for ConnectionMonitorType.
- */
-export type ConnectionMonitorType =
-  | "MultiEndpoint"
-  | "SingleSourceDestination"
-  | string;
-/**
- * Defines values for ConnectionMonitorSourceStatus.
- */
-export type ConnectionMonitorSourceStatus =
-  | "Unknown"
-  | "Active"
-  | "Inactive"
-  | string;
-/**
- * Defines values for ConnectionState.
- */
-export type ConnectionState = "Reachable" | "Unreachable" | "Unknown" | string;
-/**
- * Defines values for EvaluationState.
- */
-export type EvaluationState =
-  | "NotStarted"
-  | "InProgress"
-  | "Completed"
-  | string;
-/**
- * Defines values for PublicIPPrefixSkuName.
- */
-export type PublicIPPrefixSkuName = "Standard" | string;
-/**
- * Defines values for RouteFilterRuleType.
- */
-export type RouteFilterRuleType = "Community" | string;
-/**
- * Defines values for SecurityProviderName.
- */
-export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint" | string;
-/**
- * Defines values for SecurityPartnerProviderConnectionStatus.
- */
-export type SecurityPartnerProviderConnectionStatus =
-  | "Unknown"
-  | "PartiallyConnected"
-  | "Connected"
-  | "NotConnected"
-  | string;
-/**
- * Defines values for UsageUnit.
- */
-export type UsageUnit = "Count" | string;
-/**
- * Defines values for VirtualNetworkGatewayType.
- */
-export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute" | string;
-/**
- * Defines values for VpnType.
- */
-export type VpnType = "PolicyBased" | "RouteBased" | string;
-/**
- * Defines values for VpnGatewayGeneration.
- */
-export type VpnGatewayGeneration =
-  | "None"
-  | "Generation1"
-  | "Generation2"
-  | string;
-/**
- * Defines values for VirtualNetworkGatewaySkuName.
- */
-export type VirtualNetworkGatewaySkuName =
-  | "Basic"
-  | "HighPerformance"
-  | "Standard"
-  | "UltraPerformance"
-  | "VpnGw1"
-  | "VpnGw2"
-  | "VpnGw3"
-  | "VpnGw4"
-  | "VpnGw5"
-  | "VpnGw1AZ"
-  | "VpnGw2AZ"
-  | "VpnGw3AZ"
-  | "VpnGw4AZ"
-  | "VpnGw5AZ"
-  | "ErGw1AZ"
-  | "ErGw2AZ"
-  | "ErGw3AZ"
-  | string;
-/**
- * Defines values for VirtualNetworkGatewaySkuTier.
- */
-export type VirtualNetworkGatewaySkuTier =
-  | "Basic"
-  | "HighPerformance"
-  | "Standard"
-  | "UltraPerformance"
-  | "VpnGw1"
-  | "VpnGw2"
-  | "VpnGw3"
-  | "VpnGw4"
-  | "VpnGw5"
-  | "VpnGw1AZ"
-  | "VpnGw2AZ"
-  | "VpnGw3AZ"
-  | "VpnGw4AZ"
-  | "VpnGw5AZ"
-  | "ErGw1AZ"
-  | "ErGw2AZ"
-  | "ErGw3AZ"
-  | string;
-/**
- * Defines values for VpnClientProtocol.
- */
-export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN" | string;
-/**
- * Defines values for IpsecEncryption.
- */
-export type IpsecEncryption =
-  | "None"
-  | "DES"
-  | "DES3"
-  | "AES128"
-  | "AES192"
-  | "AES256"
-  | "GCMAES128"
-  | "GCMAES192"
-  | "GCMAES256"
-  | string;
-/**
- * Defines values for IpsecIntegrity.
- */
-export type IpsecIntegrity =
-  | "MD5"
-  | "SHA1"
-  | "SHA256"
-  | "GCMAES128"
-  | "GCMAES192"
-  | "GCMAES256"
-  | string;
-/**
- * Defines values for IkeEncryption.
- */
-export type IkeEncryption =
-  | "DES"
-  | "DES3"
-  | "AES128"
-  | "AES192"
-  | "AES256"
-  | "GCMAES256"
-  | "GCMAES128"
-  | string;
-/**
- * Defines values for IkeIntegrity.
- */
-export type IkeIntegrity =
-  | "MD5"
-  | "SHA1"
-  | "SHA256"
-  | "SHA384"
-  | "GCMAES256"
-  | "GCMAES128"
-  | string;
-/**
- * Defines values for DhGroup.
- */
-export type DhGroup =
-  | "None"
-  | "DHGroup1"
-  | "DHGroup2"
-  | "DHGroup14"
-  | "DHGroup2048"
-  | "ECP256"
-  | "ECP384"
-  | "DHGroup24"
-  | string;
-/**
- * Defines values for PfsGroup.
- */
-export type PfsGroup =
-  | "None"
-  | "PFS1"
-  | "PFS2"
-  | "PFS2048"
-  | "ECP256"
-  | "ECP384"
-  | "PFS24"
-  | "PFS14"
-  | "PFSMM"
-  | string;
-/**
- * Defines values for VirtualNetworkGatewayConnectionType.
- */
-export type VirtualNetworkGatewayConnectionType =
-  | "IPsec"
-  | "Vnet2Vnet"
-  | "ExpressRoute"
-  | "VPNClient"
-  | string;
-/**
- * Defines values for VirtualNetworkGatewayConnectionProtocol.
- */
-export type VirtualNetworkGatewayConnectionProtocol =
-  | "IKEv2"
-  | "IKEv1"
-  | string;
-/**
- * Defines values for VirtualNetworkGatewayConnectionStatus.
- */
-export type VirtualNetworkGatewayConnectionStatus =
-  | "Unknown"
-  | "Connecting"
-  | "Connected"
-  | "NotConnected"
-  | string;
-/**
- * Defines values for ProcessorArchitecture.
- */
-export type ProcessorArchitecture = "Amd64" | "X86" | string;
-/**
- * Defines values for AuthenticationMethod.
- */
-export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2" | string;
-/**
- * Defines values for BgpPeerState.
- */
-export type BgpPeerState =
-  | "Unknown"
-  | "Stopped"
-  | "Idle"
-  | "Connecting"
-  | "Connected"
-  | string;
-/**
- * Defines values for OfficeTrafficCategory.
- */
-export type OfficeTrafficCategory =
-  | "Optimize"
-  | "OptimizeAndAllow"
-  | "All"
-  | "None"
-  | string;
-/**
- * Defines values for VirtualWanSecurityProviderType.
- */
-export type VirtualWanSecurityProviderType = "External" | "Native" | string;
-/**
- * Defines values for VpnGatewayTunnelingProtocol.
- */
-export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN" | string;
-/**
- * Defines values for VpnAuthenticationType.
- */
-export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD" | string;
-/**
- * Defines values for VpnConnectionStatus.
- */
-export type VpnConnectionStatus =
-  | "Unknown"
-  | "Connecting"
-  | "Connected"
-  | "NotConnected"
-  | string;
-/**
- * Defines values for WebApplicationFirewallEnabledState.
- */
-export type WebApplicationFirewallEnabledState =
-  | "Disabled"
-  | "Enabled"
-  | string;
-/**
- * Defines values for WebApplicationFirewallMode.
- */
-export type WebApplicationFirewallMode = "Prevention" | "Detection" | string;
-/**
- * Defines values for WebApplicationFirewallRuleType.
- */
-export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid" | string;
-/**
- * Defines values for WebApplicationFirewallMatchVariable.
- */
-export type WebApplicationFirewallMatchVariable =
-  | "RemoteAddr"
-  | "RequestMethod"
-  | "QueryString"
-  | "PostArgs"
-  | "RequestUri"
-  | "RequestHeaders"
-  | "RequestBody"
-  | "RequestCookies"
-  | string;
-/**
- * Defines values for WebApplicationFirewallOperator.
- */
-export type WebApplicationFirewallOperator =
-  | "IPMatch"
-  | "Equal"
-  | "Contains"
-  | "LessThan"
-  | "GreaterThan"
-  | "LessThanOrEqual"
-  | "GreaterThanOrEqual"
-  | "BeginsWith"
-  | "EndsWith"
-  | "Regex"
-  | "GeoMatch"
-  | string;
-/**
- * Defines values for WebApplicationFirewallTransform.
- */
-export type WebApplicationFirewallTransform =
-  | "Lowercase"
-  | "Trim"
-  | "UrlDecode"
-  | "UrlEncode"
-  | "RemoveNulls"
-  | "HtmlEntityDecode"
-  | string;
-/**
- * Defines values for WebApplicationFirewallAction.
- */
-export type WebApplicationFirewallAction = "Allow" | "Block" | "Log" | string;
-/**
- * Defines values for WebApplicationFirewallPolicyResourceState.
- */
-export type WebApplicationFirewallPolicyResourceState =
-  | "Creating"
-  | "Enabling"
-  | "Enabled"
-  | "Disabling"
-  | "Disabled"
-  | "Deleting"
-  | string;
-/**
- * Defines values for OwaspCrsExclusionEntryMatchVariable.
- */
-export type OwaspCrsExclusionEntryMatchVariable =
-  | "RequestHeaderNames"
-  | "RequestCookieNames"
-  | "RequestArgNames"
-  | string;
-/**
- * Defines values for OwaspCrsExclusionEntrySelectorMatchOperator.
- */
-export type OwaspCrsExclusionEntrySelectorMatchOperator =
-  | "Equals"
-  | "Contains"
-  | "StartsWith"
-  | "EndsWith"
-  | "EqualsAny"
-  | string;
-/**
- * Defines values for ManagedRuleEnabledState.
- */
-export type ManagedRuleEnabledState = "Disabled" | string;
-/**
- * Defines values for FirewallPolicyNatRuleActionType.
- */
-export type FirewallPolicyNatRuleActionType = "DNAT" | string;
-/**
- * Defines values for FirewallPolicyRuleConditionType.
- */
-export type FirewallPolicyRuleConditionType =
-  | "ApplicationRuleCondition"
-  | "NetworkRuleCondition"
-  | "NatRuleCondition"
-  | string;
-/**
- * Defines values for FirewallPolicyFilterRuleActionType.
- */
-export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny" | string;
-/**
- * Defines values for FirewallPolicyRuleConditionApplicationProtocolType.
- */
-export type FirewallPolicyRuleConditionApplicationProtocolType =
-  | "Http"
-  | "Https"
-  | string;
-/**
- * Defines values for FirewallPolicyRuleConditionNetworkProtocol.
- */
-export type FirewallPolicyRuleConditionNetworkProtocol =
-  | "TCP"
-  | "UDP"
-  | "Any"
-  | "ICMP"
-  | string;
-/**
- * Defines values for NetworkOperationStatus.
- */
-export type NetworkOperationStatus =
-  | "InProgress"
-  | "Succeeded"
-  | "Failed"
-  | string;
-/**
- * Defines values for TunnelConnectionStatus.
- */
-export type TunnelConnectionStatus =
-  | "Unknown"
-  | "Connecting"
-  | "Connected"
-  | "NotConnected"
-  | string;
-/**
- * Defines values for HubVirtualNetworkConnectionStatus.
- */
-export type HubVirtualNetworkConnectionStatus =
-  | "Unknown"
-  | "Connecting"
-  | "Connected"
-  | "NotConnected"
-  | string;
+
+/**
+ * Known values of {@link ApplicationGatewaySkuName} that the service accepts.
+ */
+export const enum KnownApplicationGatewaySkuName {
+  StandardSmall = "Standard_Small",
+  StandardMedium = "Standard_Medium",
+  StandardLarge = "Standard_Large",
+  WAFMedium = "WAF_Medium",
+  WAFLarge = "WAF_Large",
+  StandardV2 = "Standard_v2",
+  WAFV2 = "WAF_v2"
+}
+
+/**
+ * Defines values for ApplicationGatewaySkuName. \
+ * {@link KnownApplicationGatewaySkuName} can be used interchangeably with ApplicationGatewaySkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_Small** \
+ * **Standard_Medium** \
+ * **Standard_Large** \
+ * **WAF_Medium** \
+ * **WAF_Large** \
+ * **Standard_v2** \
+ * **WAF_v2**
+ */
+export type ApplicationGatewaySkuName = string;
+
+/**
+ * Known values of {@link ApplicationGatewayTier} that the service accepts.
+ */
+export const enum KnownApplicationGatewayTier {
+  Standard = "Standard",
+  WAF = "WAF",
+  StandardV2 = "Standard_v2",
+  WAFV2 = "WAF_v2"
+}
+
+/**
+ * Defines values for ApplicationGatewayTier. \
+ * {@link KnownApplicationGatewayTier} can be used interchangeably with ApplicationGatewayTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard** \
+ * **WAF** \
+ * **Standard_v2** \
+ * **WAF_v2**
+ */
+export type ApplicationGatewayTier = string;
+
+/**
+ * Known values of {@link ApplicationGatewaySslProtocol} that the service accepts.
+ */
+export const enum KnownApplicationGatewaySslProtocol {
+  TLSv10 = "TLSv1_0",
+  TLSv11 = "TLSv1_1",
+  TLSv12 = "TLSv1_2"
+}
+
+/**
+ * Defines values for ApplicationGatewaySslProtocol. \
+ * {@link KnownApplicationGatewaySslProtocol} can be used interchangeably with ApplicationGatewaySslProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TLSv1_0** \
+ * **TLSv1_1** \
+ * **TLSv1_2**
+ */
+export type ApplicationGatewaySslProtocol = string;
+
+/**
+ * Known values of {@link ApplicationGatewaySslPolicyType} that the service accepts.
+ */
+export const enum KnownApplicationGatewaySslPolicyType {
+  Predefined = "Predefined",
+  Custom = "Custom"
+}
+
+/**
+ * Defines values for ApplicationGatewaySslPolicyType. \
+ * {@link KnownApplicationGatewaySslPolicyType} can be used interchangeably with ApplicationGatewaySslPolicyType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Predefined** \
+ * **Custom**
+ */
+export type ApplicationGatewaySslPolicyType = string;
+
+/**
+ * Known values of {@link ApplicationGatewaySslPolicyName} that the service accepts.
+ */
+export const enum KnownApplicationGatewaySslPolicyName {
+  AppGwSslPolicy20150501 = "AppGwSslPolicy20150501",
+  AppGwSslPolicy20170401 = "AppGwSslPolicy20170401",
+  AppGwSslPolicy20170401S = "AppGwSslPolicy20170401S"
+}
+
+/**
+ * Defines values for ApplicationGatewaySslPolicyName. \
+ * {@link KnownApplicationGatewaySslPolicyName} can be used interchangeably with ApplicationGatewaySslPolicyName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AppGwSslPolicy20150501** \
+ * **AppGwSslPolicy20170401** \
+ * **AppGwSslPolicy20170401S**
+ */
+export type ApplicationGatewaySslPolicyName = string;
+
+/**
+ * Known values of {@link ApplicationGatewaySslCipherSuite} that the service accepts.
+ */
+export const enum KnownApplicationGatewaySslCipherSuite {
+  TLSEcdheRSAWithAES256CBCSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+  TLSEcdheRSAWithAES128CBCSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+  TLSEcdheRSAWithAES256CBCSHA = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+  TLSEcdheRSAWithAES128CBCSHA = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+  TLSDHERSAWithAES256GCMSHA384 = "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
+  TLSDHERSAWithAES128GCMSHA256 = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
+  TLSDHERSAWithAES256CBCSHA = "TLS_DHE_RSA_WITH_AES_256_CBC_SHA",
+  TLSDHERSAWithAES128CBCSHA = "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+  TLSRSAWithAES256GCMSHA384 = "TLS_RSA_WITH_AES_256_GCM_SHA384",
+  TLSRSAWithAES128GCMSHA256 = "TLS_RSA_WITH_AES_128_GCM_SHA256",
+  TLSRSAWithAES256CBCSHA256 = "TLS_RSA_WITH_AES_256_CBC_SHA256",
+  TLSRSAWithAES128CBCSHA256 = "TLS_RSA_WITH_AES_128_CBC_SHA256",
+  TLSRSAWithAES256CBCSHA = "TLS_RSA_WITH_AES_256_CBC_SHA",
+  TLSRSAWithAES128CBCSHA = "TLS_RSA_WITH_AES_128_CBC_SHA",
+  TLSEcdheEcdsaWithAES256GCMSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+  TLSEcdheEcdsaWithAES128GCMSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+  TLSEcdheEcdsaWithAES256CBCSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+  TLSEcdheEcdsaWithAES128CBCSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+  TLSEcdheEcdsaWithAES256CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+  TLSEcdheEcdsaWithAES128CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+  TLSDHEDSSWithAES256CBCSHA256 = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256",
+  TLSDHEDSSWithAES128CBCSHA256 = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
+  TLSDHEDSSWithAES256CBCSHA = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA",
+  TLSDHEDSSWithAES128CBCSHA = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
+  TLSRSAWith3DESEDECBCSHA = "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+  TLSDHEDSSWith3DESEDECBCSHA = "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
+  TLSEcdheRSAWithAES128GCMSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+  TLSEcdheRSAWithAES256GCMSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+}
+
+/**
+ * Defines values for ApplicationGatewaySslCipherSuite. \
+ * {@link KnownApplicationGatewaySslCipherSuite} can be used interchangeably with ApplicationGatewaySslCipherSuite,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384** \
+ * **TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256** \
+ * **TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA** \
+ * **TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA** \
+ * **TLS_DHE_RSA_WITH_AES_256_GCM_SHA384** \
+ * **TLS_DHE_RSA_WITH_AES_128_GCM_SHA256** \
+ * **TLS_DHE_RSA_WITH_AES_256_CBC_SHA** \
+ * **TLS_DHE_RSA_WITH_AES_128_CBC_SHA** \
+ * **TLS_RSA_WITH_AES_256_GCM_SHA384** \
+ * **TLS_RSA_WITH_AES_128_GCM_SHA256** \
+ * **TLS_RSA_WITH_AES_256_CBC_SHA256** \
+ * **TLS_RSA_WITH_AES_128_CBC_SHA256** \
+ * **TLS_RSA_WITH_AES_256_CBC_SHA** \
+ * **TLS_RSA_WITH_AES_128_CBC_SHA** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA** \
+ * **TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA** \
+ * **TLS_DHE_DSS_WITH_AES_256_CBC_SHA256** \
+ * **TLS_DHE_DSS_WITH_AES_128_CBC_SHA256** \
+ * **TLS_DHE_DSS_WITH_AES_256_CBC_SHA** \
+ * **TLS_DHE_DSS_WITH_AES_128_CBC_SHA** \
+ * **TLS_RSA_WITH_3DES_EDE_CBC_SHA** \
+ * **TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA** \
+ * **TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256** \
+ * **TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384**
+ */
+export type ApplicationGatewaySslCipherSuite = string;
+
+/**
+ * Known values of {@link ApplicationGatewayOperationalState} that the service accepts.
+ */
+export const enum KnownApplicationGatewayOperationalState {
+  Stopped = "Stopped",
+  Starting = "Starting",
+  Running = "Running",
+  Stopping = "Stopping"
+}
+
+/**
+ * Defines values for ApplicationGatewayOperationalState. \
+ * {@link KnownApplicationGatewayOperationalState} can be used interchangeably with ApplicationGatewayOperationalState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Stopped** \
+ * **Starting** \
+ * **Running** \
+ * **Stopping**
+ */
+export type ApplicationGatewayOperationalState = string;
+
+/**
+ * Known values of {@link ProvisioningState} that the service accepts.
+ */
+export const enum KnownProvisioningState {
+  Succeeded = "Succeeded",
+  Updating = "Updating",
+  Deleting = "Deleting",
+  Failed = "Failed"
+}
+
+/**
+ * Defines values for ProvisioningState. \
+ * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Updating** \
+ * **Deleting** \
+ * **Failed**
+ */
+export type ProvisioningState = string;
+
+/**
+ * Known values of {@link IPAllocationMethod} that the service accepts.
+ */
+export const enum KnownIPAllocationMethod {
+  Static = "Static",
+  Dynamic = "Dynamic"
+}
+
+/**
+ * Defines values for IPAllocationMethod. \
+ * {@link KnownIPAllocationMethod} can be used interchangeably with IPAllocationMethod,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Static** \
+ * **Dynamic**
+ */
+export type IPAllocationMethod = string;
+
+/**
+ * Known values of {@link ApplicationGatewayProtocol} that the service accepts.
+ */
+export const enum KnownApplicationGatewayProtocol {
+  Http = "Http",
+  Https = "Https"
+}
+
+/**
+ * Defines values for ApplicationGatewayProtocol. \
+ * {@link KnownApplicationGatewayProtocol} can be used interchangeably with ApplicationGatewayProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Http** \
+ * **Https**
+ */
+export type ApplicationGatewayProtocol = string;
+
+/**
+ * Known values of {@link IPVersion} that the service accepts.
+ */
+export const enum KnownIPVersion {
+  IPv4 = "IPv4",
+  IPv6 = "IPv6"
+}
+
+/**
+ * Defines values for IPVersion. \
+ * {@link KnownIPVersion} can be used interchangeably with IPVersion,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IPv4** \
+ * **IPv6**
+ */
+export type IPVersion = string;
+
+/**
+ * Known values of {@link SecurityRuleProtocol} that the service accepts.
+ */
+export const enum KnownSecurityRuleProtocol {
+  Tcp = "Tcp",
+  Udp = "Udp",
+  Icmp = "Icmp",
+  Esp = "Esp",
+  Asterisk = "*",
+  Ah = "Ah"
+}
+
+/**
+ * Defines values for SecurityRuleProtocol. \
+ * {@link KnownSecurityRuleProtocol} can be used interchangeably with SecurityRuleProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Udp** \
+ * **Icmp** \
+ * **Esp** \
+ * ***** \
+ * **Ah**
+ */
+export type SecurityRuleProtocol = string;
+
+/**
+ * Known values of {@link SecurityRuleAccess} that the service accepts.
+ */
+export const enum KnownSecurityRuleAccess {
+  Allow = "Allow",
+  Deny = "Deny"
+}
+
+/**
+ * Defines values for SecurityRuleAccess. \
+ * {@link KnownSecurityRuleAccess} can be used interchangeably with SecurityRuleAccess,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type SecurityRuleAccess = string;
+
+/**
+ * Known values of {@link SecurityRuleDirection} that the service accepts.
+ */
+export const enum KnownSecurityRuleDirection {
+  Inbound = "Inbound",
+  Outbound = "Outbound"
+}
+
+/**
+ * Defines values for SecurityRuleDirection. \
+ * {@link KnownSecurityRuleDirection} can be used interchangeably with SecurityRuleDirection,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Inbound** \
+ * **Outbound**
+ */
+export type SecurityRuleDirection = string;
+
+/**
+ * Known values of {@link FlowLogFormatType} that the service accepts.
+ */
+export const enum KnownFlowLogFormatType {
+  Json = "JSON"
+}
+
+/**
+ * Defines values for FlowLogFormatType. \
+ * {@link KnownFlowLogFormatType} can be used interchangeably with FlowLogFormatType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **JSON**
+ */
+export type FlowLogFormatType = string;
+
+/**
+ * Known values of {@link RouteNextHopType} that the service accepts.
+ */
+export const enum KnownRouteNextHopType {
+  VirtualNetworkGateway = "VirtualNetworkGateway",
+  VnetLocal = "VnetLocal",
+  Internet = "Internet",
+  VirtualAppliance = "VirtualAppliance",
+  None = "None"
+}
+
+/**
+ * Defines values for RouteNextHopType. \
+ * {@link KnownRouteNextHopType} can be used interchangeably with RouteNextHopType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **VirtualNetworkGateway** \
+ * **VnetLocal** \
+ * **Internet** \
+ * **VirtualAppliance** \
+ * **None**
+ */
+export type RouteNextHopType = string;
+
+/**
+ * Known values of {@link PublicIPAddressSkuName} that the service accepts.
+ */
+export const enum KnownPublicIPAddressSkuName {
+  Basic = "Basic",
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for PublicIPAddressSkuName. \
+ * {@link KnownPublicIPAddressSkuName} can be used interchangeably with PublicIPAddressSkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **Standard**
+ */
+export type PublicIPAddressSkuName = string;
+
+/**
+ * Known values of {@link DdosSettingsProtectionCoverage} that the service accepts.
+ */
+export const enum KnownDdosSettingsProtectionCoverage {
+  Basic = "Basic",
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for DdosSettingsProtectionCoverage. \
+ * {@link KnownDdosSettingsProtectionCoverage} can be used interchangeably with DdosSettingsProtectionCoverage,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **Standard**
+ */
+export type DdosSettingsProtectionCoverage = string;
+
+/**
+ * Known values of {@link VirtualNetworkPeeringState} that the service accepts.
+ */
+export const enum KnownVirtualNetworkPeeringState {
+  Initiated = "Initiated",
+  Connected = "Connected",
+  Disconnected = "Disconnected"
+}
+
+/**
+ * Defines values for VirtualNetworkPeeringState. \
+ * {@link KnownVirtualNetworkPeeringState} can be used interchangeably with VirtualNetworkPeeringState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Initiated** \
+ * **Connected** \
+ * **Disconnected**
+ */
+export type VirtualNetworkPeeringState = string;
+
+/**
+ * Known values of {@link TransportProtocol} that the service accepts.
+ */
+export const enum KnownTransportProtocol {
+  Udp = "Udp",
+  Tcp = "Tcp",
+  All = "All"
+}
+
+/**
+ * Defines values for TransportProtocol. \
+ * {@link KnownTransportProtocol} can be used interchangeably with TransportProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Udp** \
+ * **Tcp** \
+ * **All**
+ */
+export type TransportProtocol = string;
+
+/**
+ * Known values of {@link ApplicationGatewayCookieBasedAffinity} that the service accepts.
+ */
+export const enum KnownApplicationGatewayCookieBasedAffinity {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for ApplicationGatewayCookieBasedAffinity. \
+ * {@link KnownApplicationGatewayCookieBasedAffinity} can be used interchangeably with ApplicationGatewayCookieBasedAffinity,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type ApplicationGatewayCookieBasedAffinity = string;
+
+/**
+ * Known values of {@link ApplicationGatewayCustomErrorStatusCode} that the service accepts.
+ */
+export const enum KnownApplicationGatewayCustomErrorStatusCode {
+  HttpStatus403 = "HttpStatus403",
+  HttpStatus502 = "HttpStatus502"
+}
+
+/**
+ * Defines values for ApplicationGatewayCustomErrorStatusCode. \
+ * {@link KnownApplicationGatewayCustomErrorStatusCode} can be used interchangeably with ApplicationGatewayCustomErrorStatusCode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **HttpStatus403** \
+ * **HttpStatus502**
+ */
+export type ApplicationGatewayCustomErrorStatusCode = string;
+
+/**
+ * Known values of {@link ApplicationGatewayRequestRoutingRuleType} that the service accepts.
+ */
+export const enum KnownApplicationGatewayRequestRoutingRuleType {
+  Basic = "Basic",
+  PathBasedRouting = "PathBasedRouting"
+}
+
+/**
+ * Defines values for ApplicationGatewayRequestRoutingRuleType. \
+ * {@link KnownApplicationGatewayRequestRoutingRuleType} can be used interchangeably with ApplicationGatewayRequestRoutingRuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **PathBasedRouting**
+ */
+export type ApplicationGatewayRequestRoutingRuleType = string;
+
+/**
+ * Known values of {@link ApplicationGatewayRedirectType} that the service accepts.
+ */
+export const enum KnownApplicationGatewayRedirectType {
+  Permanent = "Permanent",
+  Found = "Found",
+  SeeOther = "SeeOther",
+  Temporary = "Temporary"
+}
+
+/**
+ * Defines values for ApplicationGatewayRedirectType. \
+ * {@link KnownApplicationGatewayRedirectType} can be used interchangeably with ApplicationGatewayRedirectType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Permanent** \
+ * **Found** \
+ * **SeeOther** \
+ * **Temporary**
+ */
+export type ApplicationGatewayRedirectType = string;
+
+/**
+ * Known values of {@link ApplicationGatewayFirewallMode} that the service accepts.
+ */
+export const enum KnownApplicationGatewayFirewallMode {
+  Detection = "Detection",
+  Prevention = "Prevention"
+}
+
+/**
+ * Defines values for ApplicationGatewayFirewallMode. \
+ * {@link KnownApplicationGatewayFirewallMode} can be used interchangeably with ApplicationGatewayFirewallMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Detection** \
+ * **Prevention**
+ */
+export type ApplicationGatewayFirewallMode = string;
+
+/**
+ * Known values of {@link ApplicationGatewayBackendHealthServerHealth} that the service accepts.
+ */
+export const enum KnownApplicationGatewayBackendHealthServerHealth {
+  Unknown = "Unknown",
+  Up = "Up",
+  Down = "Down",
+  Partial = "Partial",
+  Draining = "Draining"
+}
+
+/**
+ * Defines values for ApplicationGatewayBackendHealthServerHealth. \
+ * {@link KnownApplicationGatewayBackendHealthServerHealth} can be used interchangeably with ApplicationGatewayBackendHealthServerHealth,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Up** \
+ * **Down** \
+ * **Partial** \
+ * **Draining**
+ */
+export type ApplicationGatewayBackendHealthServerHealth = string;
+
+/**
+ * Known values of {@link AzureFirewallRCActionType} that the service accepts.
+ */
+export const enum KnownAzureFirewallRCActionType {
+  Allow = "Allow",
+  Deny = "Deny"
+}
+
+/**
+ * Defines values for AzureFirewallRCActionType. \
+ * {@link KnownAzureFirewallRCActionType} can be used interchangeably with AzureFirewallRCActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type AzureFirewallRCActionType = string;
+
+/**
+ * Known values of {@link AzureFirewallApplicationRuleProtocolType} that the service accepts.
+ */
+export const enum KnownAzureFirewallApplicationRuleProtocolType {
+  Http = "Http",
+  Https = "Https",
+  Mssql = "Mssql"
+}
+
+/**
+ * Defines values for AzureFirewallApplicationRuleProtocolType. \
+ * {@link KnownAzureFirewallApplicationRuleProtocolType} can be used interchangeably with AzureFirewallApplicationRuleProtocolType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Http** \
+ * **Https** \
+ * **Mssql**
+ */
+export type AzureFirewallApplicationRuleProtocolType = string;
+
+/**
+ * Known values of {@link AzureFirewallNatRCActionType} that the service accepts.
+ */
+export const enum KnownAzureFirewallNatRCActionType {
+  Snat = "Snat",
+  Dnat = "Dnat"
+}
+
+/**
+ * Defines values for AzureFirewallNatRCActionType. \
+ * {@link KnownAzureFirewallNatRCActionType} can be used interchangeably with AzureFirewallNatRCActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Snat** \
+ * **Dnat**
+ */
+export type AzureFirewallNatRCActionType = string;
+
+/**
+ * Known values of {@link AzureFirewallNetworkRuleProtocol} that the service accepts.
+ */
+export const enum KnownAzureFirewallNetworkRuleProtocol {
+  TCP = "TCP",
+  UDP = "UDP",
+  Any = "Any",
+  Icmp = "ICMP"
+}
+
+/**
+ * Defines values for AzureFirewallNetworkRuleProtocol. \
+ * {@link KnownAzureFirewallNetworkRuleProtocol} can be used interchangeably with AzureFirewallNetworkRuleProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TCP** \
+ * **UDP** \
+ * **Any** \
+ * **ICMP**
+ */
+export type AzureFirewallNetworkRuleProtocol = string;
+
+/**
+ * Known values of {@link AzureFirewallThreatIntelMode} that the service accepts.
+ */
+export const enum KnownAzureFirewallThreatIntelMode {
+  Alert = "Alert",
+  Deny = "Deny",
+  Off = "Off"
+}
+
+/**
+ * Defines values for AzureFirewallThreatIntelMode. \
+ * {@link KnownAzureFirewallThreatIntelMode} can be used interchangeably with AzureFirewallThreatIntelMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Alert** \
+ * **Deny** \
+ * **Off**
+ */
+export type AzureFirewallThreatIntelMode = string;
+
+/**
+ * Known values of {@link AzureFirewallSkuName} that the service accepts.
+ */
+export const enum KnownAzureFirewallSkuName {
+  AzfwVnet = "AZFW_VNet",
+  AzfwHub = "AZFW_Hub"
+}
+
+/**
+ * Defines values for AzureFirewallSkuName. \
+ * {@link KnownAzureFirewallSkuName} can be used interchangeably with AzureFirewallSkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AZFW_VNet** \
+ * **AZFW_Hub**
+ */
+export type AzureFirewallSkuName = string;
+
+/**
+ * Known values of {@link AzureFirewallSkuTier} that the service accepts.
+ */
+export const enum KnownAzureFirewallSkuTier {
+  Standard = "Standard",
+  Premium = "Premium"
+}
+
+/**
+ * Defines values for AzureFirewallSkuTier. \
+ * {@link KnownAzureFirewallSkuTier} can be used interchangeably with AzureFirewallSkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard** \
+ * **Premium**
+ */
+export type AzureFirewallSkuTier = string;
+
+/**
+ * Known values of {@link BastionConnectProtocol} that the service accepts.
+ */
+export const enum KnownBastionConnectProtocol {
+  SSH = "SSH",
+  RDP = "RDP"
+}
+
+/**
+ * Defines values for BastionConnectProtocol. \
+ * {@link KnownBastionConnectProtocol} can be used interchangeably with BastionConnectProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **SSH** \
+ * **RDP**
+ */
+export type BastionConnectProtocol = string;
+
+/**
+ * Known values of {@link DdosCustomPolicyProtocol} that the service accepts.
+ */
+export const enum KnownDdosCustomPolicyProtocol {
+  Tcp = "Tcp",
+  Udp = "Udp",
+  Syn = "Syn"
+}
+
+/**
+ * Defines values for DdosCustomPolicyProtocol. \
+ * {@link KnownDdosCustomPolicyProtocol} can be used interchangeably with DdosCustomPolicyProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Udp** \
+ * **Syn**
+ */
+export type DdosCustomPolicyProtocol = string;
+
+/**
+ * Known values of {@link DdosCustomPolicyTriggerSensitivityOverride} that the service accepts.
+ */
+export const enum KnownDdosCustomPolicyTriggerSensitivityOverride {
+  Relaxed = "Relaxed",
+  Low = "Low",
+  Default = "Default",
+  High = "High"
+}
+
+/**
+ * Defines values for DdosCustomPolicyTriggerSensitivityOverride. \
+ * {@link KnownDdosCustomPolicyTriggerSensitivityOverride} can be used interchangeably with DdosCustomPolicyTriggerSensitivityOverride,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Relaxed** \
+ * **Low** \
+ * **Default** \
+ * **High**
+ */
+export type DdosCustomPolicyTriggerSensitivityOverride = string;
+
+/**
+ * Known values of {@link AuthorizationUseStatus} that the service accepts.
+ */
+export const enum KnownAuthorizationUseStatus {
+  Available = "Available",
+  InUse = "InUse"
+}
+
+/**
+ * Defines values for AuthorizationUseStatus. \
+ * {@link KnownAuthorizationUseStatus} can be used interchangeably with AuthorizationUseStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Available** \
+ * **InUse**
+ */
+export type AuthorizationUseStatus = string;
+
+/**
+ * Known values of {@link ExpressRoutePeeringType} that the service accepts.
+ */
+export const enum KnownExpressRoutePeeringType {
+  AzurePublicPeering = "AzurePublicPeering",
+  AzurePrivatePeering = "AzurePrivatePeering",
+  MicrosoftPeering = "MicrosoftPeering"
+}
+
+/**
+ * Defines values for ExpressRoutePeeringType. \
+ * {@link KnownExpressRoutePeeringType} can be used interchangeably with ExpressRoutePeeringType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AzurePublicPeering** \
+ * **AzurePrivatePeering** \
+ * **MicrosoftPeering**
+ */
+export type ExpressRoutePeeringType = string;
+
+/**
+ * Known values of {@link ExpressRoutePeeringState} that the service accepts.
+ */
+export const enum KnownExpressRoutePeeringState {
+  Disabled = "Disabled",
+  Enabled = "Enabled"
+}
+
+/**
+ * Defines values for ExpressRoutePeeringState. \
+ * {@link KnownExpressRoutePeeringState} can be used interchangeably with ExpressRoutePeeringState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Disabled** \
+ * **Enabled**
+ */
+export type ExpressRoutePeeringState = string;
+
+/**
+ * Known values of {@link ExpressRouteCircuitPeeringAdvertisedPublicPrefixState} that the service accepts.
+ */
+export const enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
+  NotConfigured = "NotConfigured",
+  Configuring = "Configuring",
+  Configured = "Configured",
+  ValidationNeeded = "ValidationNeeded"
+}
+
+/**
+ * Defines values for ExpressRouteCircuitPeeringAdvertisedPublicPrefixState. \
+ * {@link KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState} can be used interchangeably with ExpressRouteCircuitPeeringAdvertisedPublicPrefixState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotConfigured** \
+ * **Configuring** \
+ * **Configured** \
+ * **ValidationNeeded**
+ */
+export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = string;
+
+/**
+ * Known values of {@link ExpressRouteCircuitPeeringState} that the service accepts.
+ */
+export const enum KnownExpressRouteCircuitPeeringState {
+  Disabled = "Disabled",
+  Enabled = "Enabled"
+}
+
+/**
+ * Defines values for ExpressRouteCircuitPeeringState. \
+ * {@link KnownExpressRouteCircuitPeeringState} can be used interchangeably with ExpressRouteCircuitPeeringState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Disabled** \
+ * **Enabled**
+ */
+export type ExpressRouteCircuitPeeringState = string;
+
+/**
+ * Known values of {@link CircuitConnectionStatus} that the service accepts.
+ */
+export const enum KnownCircuitConnectionStatus {
+  Connected = "Connected",
+  Connecting = "Connecting",
+  Disconnected = "Disconnected"
+}
+
+/**
+ * Defines values for CircuitConnectionStatus. \
+ * {@link KnownCircuitConnectionStatus} can be used interchangeably with CircuitConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Connected** \
+ * **Connecting** \
+ * **Disconnected**
+ */
+export type CircuitConnectionStatus = string;
+
+/**
+ * Known values of {@link ExpressRouteCircuitSkuTier} that the service accepts.
+ */
+export const enum KnownExpressRouteCircuitSkuTier {
+  Standard = "Standard",
+  Premium = "Premium",
+  Basic = "Basic",
+  Local = "Local"
+}
+
+/**
+ * Defines values for ExpressRouteCircuitSkuTier. \
+ * {@link KnownExpressRouteCircuitSkuTier} can be used interchangeably with ExpressRouteCircuitSkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard** \
+ * **Premium** \
+ * **Basic** \
+ * **Local**
+ */
+export type ExpressRouteCircuitSkuTier = string;
+
+/**
+ * Known values of {@link ExpressRouteCircuitSkuFamily} that the service accepts.
+ */
+export const enum KnownExpressRouteCircuitSkuFamily {
+  UnlimitedData = "UnlimitedData",
+  MeteredData = "MeteredData"
+}
+
+/**
+ * Defines values for ExpressRouteCircuitSkuFamily. \
+ * {@link KnownExpressRouteCircuitSkuFamily} can be used interchangeably with ExpressRouteCircuitSkuFamily,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **UnlimitedData** \
+ * **MeteredData**
+ */
+export type ExpressRouteCircuitSkuFamily = string;
+
+/**
+ * Known values of {@link ServiceProviderProvisioningState} that the service accepts.
+ */
+export const enum KnownServiceProviderProvisioningState {
+  NotProvisioned = "NotProvisioned",
+  Provisioning = "Provisioning",
+  Provisioned = "Provisioned",
+  Deprovisioning = "Deprovisioning"
+}
+
+/**
+ * Defines values for ServiceProviderProvisioningState. \
+ * {@link KnownServiceProviderProvisioningState} can be used interchangeably with ServiceProviderProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotProvisioned** \
+ * **Provisioning** \
+ * **Provisioned** \
+ * **Deprovisioning**
+ */
+export type ServiceProviderProvisioningState = string;
+
+/**
+ * Known values of {@link ExpressRoutePortsEncapsulation} that the service accepts.
+ */
+export const enum KnownExpressRoutePortsEncapsulation {
+  Dot1Q = "Dot1Q",
+  QinQ = "QinQ"
+}
+
+/**
+ * Defines values for ExpressRoutePortsEncapsulation. \
+ * {@link KnownExpressRoutePortsEncapsulation} can be used interchangeably with ExpressRoutePortsEncapsulation,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Dot1Q** \
+ * **QinQ**
+ */
+export type ExpressRoutePortsEncapsulation = string;
+
+/**
+ * Known values of {@link ExpressRouteLinkConnectorType} that the service accepts.
+ */
+export const enum KnownExpressRouteLinkConnectorType {
+  LC = "LC",
+  SC = "SC"
+}
+
+/**
+ * Defines values for ExpressRouteLinkConnectorType. \
+ * {@link KnownExpressRouteLinkConnectorType} can be used interchangeably with ExpressRouteLinkConnectorType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **LC** \
+ * **SC**
+ */
+export type ExpressRouteLinkConnectorType = string;
+
+/**
+ * Known values of {@link ExpressRouteLinkAdminState} that the service accepts.
+ */
+export const enum KnownExpressRouteLinkAdminState {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for ExpressRouteLinkAdminState. \
+ * {@link KnownExpressRouteLinkAdminState} can be used interchangeably with ExpressRouteLinkAdminState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type ExpressRouteLinkAdminState = string;
+
+/**
+ * Known values of {@link ExpressRouteLinkMacSecCipher} that the service accepts.
+ */
+export const enum KnownExpressRouteLinkMacSecCipher {
+  GcmAes128 = "gcm-aes-128",
+  GcmAes256 = "gcm-aes-256"
+}
+
+/**
+ * Defines values for ExpressRouteLinkMacSecCipher. \
+ * {@link KnownExpressRouteLinkMacSecCipher} can be used interchangeably with ExpressRouteLinkMacSecCipher,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **gcm-aes-128** \
+ * **gcm-aes-256**
+ */
+export type ExpressRouteLinkMacSecCipher = string;
+
+/**
+ * Known values of {@link FirewallPolicyIntrusionSystemMode} that the service accepts.
+ */
+export const enum KnownFirewallPolicyIntrusionSystemMode {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for FirewallPolicyIntrusionSystemMode. \
+ * {@link KnownFirewallPolicyIntrusionSystemMode} can be used interchangeably with FirewallPolicyIntrusionSystemMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type FirewallPolicyIntrusionSystemMode = string;
+
+/**
+ * Known values of {@link FirewallPolicyRuleType} that the service accepts.
+ */
+export const enum KnownFirewallPolicyRuleType {
+  FirewallPolicyNatRule = "FirewallPolicyNatRule",
+  FirewallPolicyFilterRule = "FirewallPolicyFilterRule"
+}
+
+/**
+ * Defines values for FirewallPolicyRuleType. \
+ * {@link KnownFirewallPolicyRuleType} can be used interchangeably with FirewallPolicyRuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **FirewallPolicyNatRule** \
+ * **FirewallPolicyFilterRule**
+ */
+export type FirewallPolicyRuleType = string;
+
+/**
+ * Known values of {@link IpAllocationType} that the service accepts.
+ */
+export const enum KnownIpAllocationType {
+  Undefined = "Undefined",
+  Hypernet = "Hypernet"
+}
+
+/**
+ * Defines values for IpAllocationType. \
+ * {@link KnownIpAllocationType} can be used interchangeably with IpAllocationType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Undefined** \
+ * **Hypernet**
+ */
+export type IpAllocationType = string;
+
+/**
+ * Known values of {@link LoadBalancerSkuName} that the service accepts.
+ */
+export const enum KnownLoadBalancerSkuName {
+  Basic = "Basic",
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for LoadBalancerSkuName. \
+ * {@link KnownLoadBalancerSkuName} can be used interchangeably with LoadBalancerSkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **Standard**
+ */
+export type LoadBalancerSkuName = string;
+
+/**
+ * Known values of {@link LoadDistribution} that the service accepts.
+ */
+export const enum KnownLoadDistribution {
+  Default = "Default",
+  SourceIP = "SourceIP",
+  SourceIPProtocol = "SourceIPProtocol"
+}
+
+/**
+ * Defines values for LoadDistribution. \
+ * {@link KnownLoadDistribution} can be used interchangeably with LoadDistribution,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Default** \
+ * **SourceIP** \
+ * **SourceIPProtocol**
+ */
+export type LoadDistribution = string;
+
+/**
+ * Known values of {@link ProbeProtocol} that the service accepts.
+ */
+export const enum KnownProbeProtocol {
+  Http = "Http",
+  Tcp = "Tcp",
+  Https = "Https"
+}
+
+/**
+ * Defines values for ProbeProtocol. \
+ * {@link KnownProbeProtocol} can be used interchangeably with ProbeProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Http** \
+ * **Tcp** \
+ * **Https**
+ */
+export type ProbeProtocol = string;
+
+/**
+ * Known values of {@link LoadBalancerOutboundRuleProtocol} that the service accepts.
+ */
+export const enum KnownLoadBalancerOutboundRuleProtocol {
+  Tcp = "Tcp",
+  Udp = "Udp",
+  All = "All"
+}
+
+/**
+ * Defines values for LoadBalancerOutboundRuleProtocol. \
+ * {@link KnownLoadBalancerOutboundRuleProtocol} can be used interchangeably with LoadBalancerOutboundRuleProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Udp** \
+ * **All**
+ */
+export type LoadBalancerOutboundRuleProtocol = string;
+
+/**
+ * Known values of {@link NatGatewaySkuName} that the service accepts.
+ */
+export const enum KnownNatGatewaySkuName {
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for NatGatewaySkuName. \
+ * {@link KnownNatGatewaySkuName} can be used interchangeably with NatGatewaySkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard**
+ */
+export type NatGatewaySkuName = string;
+
+/**
+ * Known values of {@link EffectiveRouteSource} that the service accepts.
+ */
+export const enum KnownEffectiveRouteSource {
+  Unknown = "Unknown",
+  User = "User",
+  VirtualNetworkGateway = "VirtualNetworkGateway",
+  Default = "Default"
+}
+
+/**
+ * Defines values for EffectiveRouteSource. \
+ * {@link KnownEffectiveRouteSource} can be used interchangeably with EffectiveRouteSource,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **User** \
+ * **VirtualNetworkGateway** \
+ * **Default**
+ */
+export type EffectiveRouteSource = string;
+
+/**
+ * Known values of {@link EffectiveRouteState} that the service accepts.
+ */
+export const enum KnownEffectiveRouteState {
+  Active = "Active",
+  Invalid = "Invalid"
+}
+
+/**
+ * Defines values for EffectiveRouteState. \
+ * {@link KnownEffectiveRouteState} can be used interchangeably with EffectiveRouteState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Active** \
+ * **Invalid**
+ */
+export type EffectiveRouteState = string;
+
+/**
+ * Known values of {@link EffectiveSecurityRuleProtocol} that the service accepts.
+ */
+export const enum KnownEffectiveSecurityRuleProtocol {
+  Tcp = "Tcp",
+  Udp = "Udp",
+  All = "All"
+}
+
+/**
+ * Defines values for EffectiveSecurityRuleProtocol. \
+ * {@link KnownEffectiveSecurityRuleProtocol} can be used interchangeably with EffectiveSecurityRuleProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Udp** \
+ * **All**
+ */
+export type EffectiveSecurityRuleProtocol = string;
+
+/**
+ * Known values of {@link AssociationType} that the service accepts.
+ */
+export const enum KnownAssociationType {
+  Associated = "Associated",
+  Contains = "Contains"
+}
+
+/**
+ * Defines values for AssociationType. \
+ * {@link KnownAssociationType} can be used interchangeably with AssociationType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Associated** \
+ * **Contains**
+ */
+export type AssociationType = string;
+
+/**
+ * Known values of {@link Direction} that the service accepts.
+ */
+export const enum KnownDirection {
+  Inbound = "Inbound",
+  Outbound = "Outbound"
+}
+
+/**
+ * Defines values for Direction. \
+ * {@link KnownDirection} can be used interchangeably with Direction,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Inbound** \
+ * **Outbound**
+ */
+export type Direction = string;
+
+/**
+ * Known values of {@link IpFlowProtocol} that the service accepts.
+ */
+export const enum KnownIpFlowProtocol {
+  TCP = "TCP",
+  UDP = "UDP"
+}
+
+/**
+ * Defines values for IpFlowProtocol. \
+ * {@link KnownIpFlowProtocol} can be used interchangeably with IpFlowProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TCP** \
+ * **UDP**
+ */
+export type IpFlowProtocol = string;
+
+/**
+ * Known values of {@link Access} that the service accepts.
+ */
+export const enum KnownAccess {
+  Allow = "Allow",
+  Deny = "Deny"
+}
+
+/**
+ * Defines values for Access. \
+ * {@link KnownAccess} can be used interchangeably with Access,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type Access = string;
+
+/**
+ * Known values of {@link NextHopType} that the service accepts.
+ */
+export const enum KnownNextHopType {
+  Internet = "Internet",
+  VirtualAppliance = "VirtualAppliance",
+  VirtualNetworkGateway = "VirtualNetworkGateway",
+  VnetLocal = "VnetLocal",
+  HyperNetGateway = "HyperNetGateway",
+  None = "None"
+}
+
+/**
+ * Defines values for NextHopType. \
+ * {@link KnownNextHopType} can be used interchangeably with NextHopType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Internet** \
+ * **VirtualAppliance** \
+ * **VirtualNetworkGateway** \
+ * **VnetLocal** \
+ * **HyperNetGateway** \
+ * **None**
+ */
+export type NextHopType = string;
+
+/**
+ * Known values of {@link PcProtocol} that the service accepts.
+ */
+export const enum KnownPcProtocol {
+  TCP = "TCP",
+  UDP = "UDP",
+  Any = "Any"
+}
+
+/**
+ * Defines values for PcProtocol. \
+ * {@link KnownPcProtocol} can be used interchangeably with PcProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TCP** \
+ * **UDP** \
+ * **Any**
+ */
+export type PcProtocol = string;
+
+/**
+ * Known values of {@link PcStatus} that the service accepts.
+ */
+export const enum KnownPcStatus {
+  NotStarted = "NotStarted",
+  Running = "Running",
+  Stopped = "Stopped",
+  Error = "Error",
+  Unknown = "Unknown"
+}
+
+/**
+ * Defines values for PcStatus. \
+ * {@link KnownPcStatus} can be used interchangeably with PcStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotStarted** \
+ * **Running** \
+ * **Stopped** \
+ * **Error** \
+ * **Unknown**
+ */
+export type PcStatus = string;
+
+/**
+ * Known values of {@link PcError} that the service accepts.
+ */
+export const enum KnownPcError {
+  InternalError = "InternalError",
+  AgentStopped = "AgentStopped",
+  CaptureFailed = "CaptureFailed",
+  LocalFileFailed = "LocalFileFailed",
+  StorageFailed = "StorageFailed"
+}
+
+/**
+ * Defines values for PcError. \
+ * {@link KnownPcError} can be used interchangeably with PcError,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **InternalError** \
+ * **AgentStopped** \
+ * **CaptureFailed** \
+ * **LocalFileFailed** \
+ * **StorageFailed**
+ */
+export type PcError = string;
+
+/**
+ * Known values of {@link Protocol} that the service accepts.
+ */
+export const enum KnownProtocol {
+  Tcp = "Tcp",
+  Http = "Http",
+  Https = "Https",
+  Icmp = "Icmp"
+}
+
+/**
+ * Defines values for Protocol. \
+ * {@link KnownProtocol} can be used interchangeably with Protocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Http** \
+ * **Https** \
+ * **Icmp**
+ */
+export type Protocol = string;
+
+/**
+ * Known values of {@link HttpMethod} that the service accepts.
+ */
+export const enum KnownHttpMethod {
+  Get = "Get"
+}
+
+/**
+ * Defines values for HttpMethod. \
+ * {@link KnownHttpMethod} can be used interchangeably with HttpMethod,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Get**
+ */
+export type HttpMethod = string;
+
+/**
+ * Known values of {@link Origin} that the service accepts.
+ */
+export const enum KnownOrigin {
+  Local = "Local",
+  Inbound = "Inbound",
+  Outbound = "Outbound"
+}
+
+/**
+ * Defines values for Origin. \
+ * {@link KnownOrigin} can be used interchangeably with Origin,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Local** \
+ * **Inbound** \
+ * **Outbound**
+ */
+export type Origin = string;
+
+/**
+ * Known values of {@link Severity} that the service accepts.
+ */
+export const enum KnownSeverity {
+  Error = "Error",
+  Warning = "Warning"
+}
+
+/**
+ * Defines values for Severity. \
+ * {@link KnownSeverity} can be used interchangeably with Severity,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Error** \
+ * **Warning**
+ */
+export type Severity = string;
+
+/**
+ * Known values of {@link IssueType} that the service accepts.
+ */
+export const enum KnownIssueType {
+  Unknown = "Unknown",
+  AgentStopped = "AgentStopped",
+  GuestFirewall = "GuestFirewall",
+  DnsResolution = "DnsResolution",
+  SocketBind = "SocketBind",
+  NetworkSecurityRule = "NetworkSecurityRule",
+  UserDefinedRoute = "UserDefinedRoute",
+  PortThrottled = "PortThrottled",
+  Platform = "Platform"
+}
+
+/**
+ * Defines values for IssueType. \
+ * {@link KnownIssueType} can be used interchangeably with IssueType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **AgentStopped** \
+ * **GuestFirewall** \
+ * **DnsResolution** \
+ * **SocketBind** \
+ * **NetworkSecurityRule** \
+ * **UserDefinedRoute** \
+ * **PortThrottled** \
+ * **Platform**
+ */
+export type IssueType = string;
+
+/**
+ * Known values of {@link ConnectionStatus} that the service accepts.
+ */
+export const enum KnownConnectionStatus {
+  Unknown = "Unknown",
+  Connected = "Connected",
+  Disconnected = "Disconnected",
+  Degraded = "Degraded"
+}
+
+/**
+ * Defines values for ConnectionStatus. \
+ * {@link KnownConnectionStatus} can be used interchangeably with ConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Connected** \
+ * **Disconnected** \
+ * **Degraded**
+ */
+export type ConnectionStatus = string;
+
+/**
+ * Known values of {@link VerbosityLevel} that the service accepts.
+ */
+export const enum KnownVerbosityLevel {
+  Normal = "Normal",
+  Minimum = "Minimum",
+  Full = "Full"
+}
+
+/**
+ * Defines values for VerbosityLevel. \
+ * {@link KnownVerbosityLevel} can be used interchangeably with VerbosityLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Normal** \
+ * **Minimum** \
+ * **Full**
+ */
+export type VerbosityLevel = string;
+
+/**
+ * Known values of {@link ConnectionMonitorEndpointFilterType} that the service accepts.
+ */
+export const enum KnownConnectionMonitorEndpointFilterType {
+  Include = "Include"
+}
+
+/**
+ * Defines values for ConnectionMonitorEndpointFilterType. \
+ * {@link KnownConnectionMonitorEndpointFilterType} can be used interchangeably with ConnectionMonitorEndpointFilterType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Include**
+ */
+export type ConnectionMonitorEndpointFilterType = string;
+
+/**
+ * Known values of {@link ConnectionMonitorEndpointFilterItemType} that the service accepts.
+ */
+export const enum KnownConnectionMonitorEndpointFilterItemType {
+  AgentAddress = "AgentAddress"
+}
+
+/**
+ * Defines values for ConnectionMonitorEndpointFilterItemType. \
+ * {@link KnownConnectionMonitorEndpointFilterItemType} can be used interchangeably with ConnectionMonitorEndpointFilterItemType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AgentAddress**
+ */
+export type ConnectionMonitorEndpointFilterItemType = string;
+
+/**
+ * Known values of {@link ConnectionMonitorTestConfigurationProtocol} that the service accepts.
+ */
+export const enum KnownConnectionMonitorTestConfigurationProtocol {
+  Tcp = "Tcp",
+  Http = "Http",
+  Icmp = "Icmp"
+}
+
+/**
+ * Defines values for ConnectionMonitorTestConfigurationProtocol. \
+ * {@link KnownConnectionMonitorTestConfigurationProtocol} can be used interchangeably with ConnectionMonitorTestConfigurationProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Tcp** \
+ * **Http** \
+ * **Icmp**
+ */
+export type ConnectionMonitorTestConfigurationProtocol = string;
+
+/**
+ * Known values of {@link PreferredIPVersion} that the service accepts.
+ */
+export const enum KnownPreferredIPVersion {
+  IPv4 = "IPv4",
+  IPv6 = "IPv6"
+}
+
+/**
+ * Defines values for PreferredIPVersion. \
+ * {@link KnownPreferredIPVersion} can be used interchangeably with PreferredIPVersion,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IPv4** \
+ * **IPv6**
+ */
+export type PreferredIPVersion = string;
+
+/**
+ * Known values of {@link HttpConfigurationMethod} that the service accepts.
+ */
+export const enum KnownHttpConfigurationMethod {
+  Get = "Get",
+  Post = "Post"
+}
+
+/**
+ * Defines values for HttpConfigurationMethod. \
+ * {@link KnownHttpConfigurationMethod} can be used interchangeably with HttpConfigurationMethod,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Get** \
+ * **Post**
+ */
+export type HttpConfigurationMethod = string;
+
+/**
+ * Known values of {@link OutputType} that the service accepts.
+ */
+export const enum KnownOutputType {
+  Workspace = "Workspace"
+}
+
+/**
+ * Defines values for OutputType. \
+ * {@link KnownOutputType} can be used interchangeably with OutputType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Workspace**
+ */
+export type OutputType = string;
+
+/**
+ * Known values of {@link ConnectionMonitorType} that the service accepts.
+ */
+export const enum KnownConnectionMonitorType {
+  MultiEndpoint = "MultiEndpoint",
+  SingleSourceDestination = "SingleSourceDestination"
+}
+
+/**
+ * Defines values for ConnectionMonitorType. \
+ * {@link KnownConnectionMonitorType} can be used interchangeably with ConnectionMonitorType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **MultiEndpoint** \
+ * **SingleSourceDestination**
+ */
+export type ConnectionMonitorType = string;
+
+/**
+ * Known values of {@link ConnectionMonitorSourceStatus} that the service accepts.
+ */
+export const enum KnownConnectionMonitorSourceStatus {
+  Unknown = "Unknown",
+  Active = "Active",
+  Inactive = "Inactive"
+}
+
+/**
+ * Defines values for ConnectionMonitorSourceStatus. \
+ * {@link KnownConnectionMonitorSourceStatus} can be used interchangeably with ConnectionMonitorSourceStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Active** \
+ * **Inactive**
+ */
+export type ConnectionMonitorSourceStatus = string;
+
+/**
+ * Known values of {@link ConnectionState} that the service accepts.
+ */
+export const enum KnownConnectionState {
+  Reachable = "Reachable",
+  Unreachable = "Unreachable",
+  Unknown = "Unknown"
+}
+
+/**
+ * Defines values for ConnectionState. \
+ * {@link KnownConnectionState} can be used interchangeably with ConnectionState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Reachable** \
+ * **Unreachable** \
+ * **Unknown**
+ */
+export type ConnectionState = string;
+
+/**
+ * Known values of {@link EvaluationState} that the service accepts.
+ */
+export const enum KnownEvaluationState {
+  NotStarted = "NotStarted",
+  InProgress = "InProgress",
+  Completed = "Completed"
+}
+
+/**
+ * Defines values for EvaluationState. \
+ * {@link KnownEvaluationState} can be used interchangeably with EvaluationState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotStarted** \
+ * **InProgress** \
+ * **Completed**
+ */
+export type EvaluationState = string;
+
+/**
+ * Known values of {@link PublicIPPrefixSkuName} that the service accepts.
+ */
+export const enum KnownPublicIPPrefixSkuName {
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for PublicIPPrefixSkuName. \
+ * {@link KnownPublicIPPrefixSkuName} can be used interchangeably with PublicIPPrefixSkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard**
+ */
+export type PublicIPPrefixSkuName = string;
+
+/**
+ * Known values of {@link RouteFilterRuleType} that the service accepts.
+ */
+export const enum KnownRouteFilterRuleType {
+  Community = "Community"
+}
+
+/**
+ * Defines values for RouteFilterRuleType. \
+ * {@link KnownRouteFilterRuleType} can be used interchangeably with RouteFilterRuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Community**
+ */
+export type RouteFilterRuleType = string;
+
+/**
+ * Known values of {@link SecurityProviderName} that the service accepts.
+ */
+export const enum KnownSecurityProviderName {
+  ZScaler = "ZScaler",
+  IBoss = "IBoss",
+  Checkpoint = "Checkpoint"
+}
+
+/**
+ * Defines values for SecurityProviderName. \
+ * {@link KnownSecurityProviderName} can be used interchangeably with SecurityProviderName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **ZScaler** \
+ * **IBoss** \
+ * **Checkpoint**
+ */
+export type SecurityProviderName = string;
+
+/**
+ * Known values of {@link SecurityPartnerProviderConnectionStatus} that the service accepts.
+ */
+export const enum KnownSecurityPartnerProviderConnectionStatus {
+  Unknown = "Unknown",
+  PartiallyConnected = "PartiallyConnected",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for SecurityPartnerProviderConnectionStatus. \
+ * {@link KnownSecurityPartnerProviderConnectionStatus} can be used interchangeably with SecurityPartnerProviderConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **PartiallyConnected** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type SecurityPartnerProviderConnectionStatus = string;
+
+/**
+ * Known values of {@link UsageUnit} that the service accepts.
+ */
+export const enum KnownUsageUnit {
+  Count = "Count"
+}
+
+/**
+ * Defines values for UsageUnit. \
+ * {@link KnownUsageUnit} can be used interchangeably with UsageUnit,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Count**
+ */
+export type UsageUnit = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewayType} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewayType {
+  Vpn = "Vpn",
+  ExpressRoute = "ExpressRoute"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewayType. \
+ * {@link KnownVirtualNetworkGatewayType} can be used interchangeably with VirtualNetworkGatewayType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Vpn** \
+ * **ExpressRoute**
+ */
+export type VirtualNetworkGatewayType = string;
+
+/**
+ * Known values of {@link VpnType} that the service accepts.
+ */
+export const enum KnownVpnType {
+  PolicyBased = "PolicyBased",
+  RouteBased = "RouteBased"
+}
+
+/**
+ * Defines values for VpnType. \
+ * {@link KnownVpnType} can be used interchangeably with VpnType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **PolicyBased** \
+ * **RouteBased**
+ */
+export type VpnType = string;
+
+/**
+ * Known values of {@link VpnGatewayGeneration} that the service accepts.
+ */
+export const enum KnownVpnGatewayGeneration {
+  None = "None",
+  Generation1 = "Generation1",
+  Generation2 = "Generation2"
+}
+
+/**
+ * Defines values for VpnGatewayGeneration. \
+ * {@link KnownVpnGatewayGeneration} can be used interchangeably with VpnGatewayGeneration,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **Generation1** \
+ * **Generation2**
+ */
+export type VpnGatewayGeneration = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewaySkuName} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewaySkuName {
+  Basic = "Basic",
+  HighPerformance = "HighPerformance",
+  Standard = "Standard",
+  UltraPerformance = "UltraPerformance",
+  VpnGw1 = "VpnGw1",
+  VpnGw2 = "VpnGw2",
+  VpnGw3 = "VpnGw3",
+  VpnGw4 = "VpnGw4",
+  VpnGw5 = "VpnGw5",
+  VpnGw1AZ = "VpnGw1AZ",
+  VpnGw2AZ = "VpnGw2AZ",
+  VpnGw3AZ = "VpnGw3AZ",
+  VpnGw4AZ = "VpnGw4AZ",
+  VpnGw5AZ = "VpnGw5AZ",
+  ErGw1AZ = "ErGw1AZ",
+  ErGw2AZ = "ErGw2AZ",
+  ErGw3AZ = "ErGw3AZ"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewaySkuName. \
+ * {@link KnownVirtualNetworkGatewaySkuName} can be used interchangeably with VirtualNetworkGatewaySkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **HighPerformance** \
+ * **Standard** \
+ * **UltraPerformance** \
+ * **VpnGw1** \
+ * **VpnGw2** \
+ * **VpnGw3** \
+ * **VpnGw4** \
+ * **VpnGw5** \
+ * **VpnGw1AZ** \
+ * **VpnGw2AZ** \
+ * **VpnGw3AZ** \
+ * **VpnGw4AZ** \
+ * **VpnGw5AZ** \
+ * **ErGw1AZ** \
+ * **ErGw2AZ** \
+ * **ErGw3AZ**
+ */
+export type VirtualNetworkGatewaySkuName = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewaySkuTier} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewaySkuTier {
+  Basic = "Basic",
+  HighPerformance = "HighPerformance",
+  Standard = "Standard",
+  UltraPerformance = "UltraPerformance",
+  VpnGw1 = "VpnGw1",
+  VpnGw2 = "VpnGw2",
+  VpnGw3 = "VpnGw3",
+  VpnGw4 = "VpnGw4",
+  VpnGw5 = "VpnGw5",
+  VpnGw1AZ = "VpnGw1AZ",
+  VpnGw2AZ = "VpnGw2AZ",
+  VpnGw3AZ = "VpnGw3AZ",
+  VpnGw4AZ = "VpnGw4AZ",
+  VpnGw5AZ = "VpnGw5AZ",
+  ErGw1AZ = "ErGw1AZ",
+  ErGw2AZ = "ErGw2AZ",
+  ErGw3AZ = "ErGw3AZ"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewaySkuTier. \
+ * {@link KnownVirtualNetworkGatewaySkuTier} can be used interchangeably with VirtualNetworkGatewaySkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic** \
+ * **HighPerformance** \
+ * **Standard** \
+ * **UltraPerformance** \
+ * **VpnGw1** \
+ * **VpnGw2** \
+ * **VpnGw3** \
+ * **VpnGw4** \
+ * **VpnGw5** \
+ * **VpnGw1AZ** \
+ * **VpnGw2AZ** \
+ * **VpnGw3AZ** \
+ * **VpnGw4AZ** \
+ * **VpnGw5AZ** \
+ * **ErGw1AZ** \
+ * **ErGw2AZ** \
+ * **ErGw3AZ**
+ */
+export type VirtualNetworkGatewaySkuTier = string;
+
+/**
+ * Known values of {@link VpnClientProtocol} that the service accepts.
+ */
+export const enum KnownVpnClientProtocol {
+  IkeV2 = "IkeV2",
+  Sstp = "SSTP",
+  OpenVPN = "OpenVPN"
+}
+
+/**
+ * Defines values for VpnClientProtocol. \
+ * {@link KnownVpnClientProtocol} can be used interchangeably with VpnClientProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IkeV2** \
+ * **SSTP** \
+ * **OpenVPN**
+ */
+export type VpnClientProtocol = string;
+
+/**
+ * Known values of {@link IpsecEncryption} that the service accepts.
+ */
+export const enum KnownIpsecEncryption {
+  None = "None",
+  DES = "DES",
+  DES3 = "DES3",
+  AES128 = "AES128",
+  AES192 = "AES192",
+  AES256 = "AES256",
+  Gcmaes128 = "GCMAES128",
+  Gcmaes192 = "GCMAES192",
+  Gcmaes256 = "GCMAES256"
+}
+
+/**
+ * Defines values for IpsecEncryption. \
+ * {@link KnownIpsecEncryption} can be used interchangeably with IpsecEncryption,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **DES** \
+ * **DES3** \
+ * **AES128** \
+ * **AES192** \
+ * **AES256** \
+ * **GCMAES128** \
+ * **GCMAES192** \
+ * **GCMAES256**
+ */
+export type IpsecEncryption = string;
+
+/**
+ * Known values of {@link IpsecIntegrity} that the service accepts.
+ */
+export const enum KnownIpsecIntegrity {
+  MD5 = "MD5",
+  SHA1 = "SHA1",
+  SHA256 = "SHA256",
+  Gcmaes128 = "GCMAES128",
+  Gcmaes192 = "GCMAES192",
+  Gcmaes256 = "GCMAES256"
+}
+
+/**
+ * Defines values for IpsecIntegrity. \
+ * {@link KnownIpsecIntegrity} can be used interchangeably with IpsecIntegrity,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **MD5** \
+ * **SHA1** \
+ * **SHA256** \
+ * **GCMAES128** \
+ * **GCMAES192** \
+ * **GCMAES256**
+ */
+export type IpsecIntegrity = string;
+
+/**
+ * Known values of {@link IkeEncryption} that the service accepts.
+ */
+export const enum KnownIkeEncryption {
+  DES = "DES",
+  DES3 = "DES3",
+  AES128 = "AES128",
+  AES192 = "AES192",
+  AES256 = "AES256",
+  Gcmaes256 = "GCMAES256",
+  Gcmaes128 = "GCMAES128"
+}
+
+/**
+ * Defines values for IkeEncryption. \
+ * {@link KnownIkeEncryption} can be used interchangeably with IkeEncryption,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **DES** \
+ * **DES3** \
+ * **AES128** \
+ * **AES192** \
+ * **AES256** \
+ * **GCMAES256** \
+ * **GCMAES128**
+ */
+export type IkeEncryption = string;
+
+/**
+ * Known values of {@link IkeIntegrity} that the service accepts.
+ */
+export const enum KnownIkeIntegrity {
+  MD5 = "MD5",
+  SHA1 = "SHA1",
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  Gcmaes256 = "GCMAES256",
+  Gcmaes128 = "GCMAES128"
+}
+
+/**
+ * Defines values for IkeIntegrity. \
+ * {@link KnownIkeIntegrity} can be used interchangeably with IkeIntegrity,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **MD5** \
+ * **SHA1** \
+ * **SHA256** \
+ * **SHA384** \
+ * **GCMAES256** \
+ * **GCMAES128**
+ */
+export type IkeIntegrity = string;
+
+/**
+ * Known values of {@link DhGroup} that the service accepts.
+ */
+export const enum KnownDhGroup {
+  None = "None",
+  DHGroup1 = "DHGroup1",
+  DHGroup2 = "DHGroup2",
+  DHGroup14 = "DHGroup14",
+  DHGroup2048 = "DHGroup2048",
+  ECP256 = "ECP256",
+  ECP384 = "ECP384",
+  DHGroup24 = "DHGroup24"
+}
+
+/**
+ * Defines values for DhGroup. \
+ * {@link KnownDhGroup} can be used interchangeably with DhGroup,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **DHGroup1** \
+ * **DHGroup2** \
+ * **DHGroup14** \
+ * **DHGroup2048** \
+ * **ECP256** \
+ * **ECP384** \
+ * **DHGroup24**
+ */
+export type DhGroup = string;
+
+/**
+ * Known values of {@link PfsGroup} that the service accepts.
+ */
+export const enum KnownPfsGroup {
+  None = "None",
+  PFS1 = "PFS1",
+  PFS2 = "PFS2",
+  PFS2048 = "PFS2048",
+  ECP256 = "ECP256",
+  ECP384 = "ECP384",
+  PFS24 = "PFS24",
+  PFS14 = "PFS14",
+  Pfsmm = "PFSMM"
+}
+
+/**
+ * Defines values for PfsGroup. \
+ * {@link KnownPfsGroup} can be used interchangeably with PfsGroup,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **PFS1** \
+ * **PFS2** \
+ * **PFS2048** \
+ * **ECP256** \
+ * **ECP384** \
+ * **PFS24** \
+ * **PFS14** \
+ * **PFSMM**
+ */
+export type PfsGroup = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewayConnectionType} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewayConnectionType {
+  IPsec = "IPsec",
+  Vnet2Vnet = "Vnet2Vnet",
+  ExpressRoute = "ExpressRoute",
+  VPNClient = "VPNClient"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewayConnectionType. \
+ * {@link KnownVirtualNetworkGatewayConnectionType} can be used interchangeably with VirtualNetworkGatewayConnectionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IPsec** \
+ * **Vnet2Vnet** \
+ * **ExpressRoute** \
+ * **VPNClient**
+ */
+export type VirtualNetworkGatewayConnectionType = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewayConnectionProtocol} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewayConnectionProtocol {
+  IKEv2 = "IKEv2",
+  IKEv1 = "IKEv1"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewayConnectionProtocol. \
+ * {@link KnownVirtualNetworkGatewayConnectionProtocol} can be used interchangeably with VirtualNetworkGatewayConnectionProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IKEv2** \
+ * **IKEv1**
+ */
+export type VirtualNetworkGatewayConnectionProtocol = string;
+
+/**
+ * Known values of {@link VirtualNetworkGatewayConnectionStatus} that the service accepts.
+ */
+export const enum KnownVirtualNetworkGatewayConnectionStatus {
+  Unknown = "Unknown",
+  Connecting = "Connecting",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewayConnectionStatus. \
+ * {@link KnownVirtualNetworkGatewayConnectionStatus} can be used interchangeably with VirtualNetworkGatewayConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Connecting** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type VirtualNetworkGatewayConnectionStatus = string;
+
+/**
+ * Known values of {@link ProcessorArchitecture} that the service accepts.
+ */
+export const enum KnownProcessorArchitecture {
+  Amd64 = "Amd64",
+  X86 = "X86"
+}
+
+/**
+ * Defines values for ProcessorArchitecture. \
+ * {@link KnownProcessorArchitecture} can be used interchangeably with ProcessorArchitecture,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Amd64** \
+ * **X86**
+ */
+export type ProcessorArchitecture = string;
+
+/**
+ * Known values of {@link AuthenticationMethod} that the service accepts.
+ */
+export const enum KnownAuthenticationMethod {
+  Eaptls = "EAPTLS",
+  EapmschaPv2 = "EAPMSCHAPv2"
+}
+
+/**
+ * Defines values for AuthenticationMethod. \
+ * {@link KnownAuthenticationMethod} can be used interchangeably with AuthenticationMethod,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **EAPTLS** \
+ * **EAPMSCHAPv2**
+ */
+export type AuthenticationMethod = string;
+
+/**
+ * Known values of {@link BgpPeerState} that the service accepts.
+ */
+export const enum KnownBgpPeerState {
+  Unknown = "Unknown",
+  Stopped = "Stopped",
+  Idle = "Idle",
+  Connecting = "Connecting",
+  Connected = "Connected"
+}
+
+/**
+ * Defines values for BgpPeerState. \
+ * {@link KnownBgpPeerState} can be used interchangeably with BgpPeerState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Stopped** \
+ * **Idle** \
+ * **Connecting** \
+ * **Connected**
+ */
+export type BgpPeerState = string;
+
+/**
+ * Known values of {@link OfficeTrafficCategory} that the service accepts.
+ */
+export const enum KnownOfficeTrafficCategory {
+  Optimize = "Optimize",
+  OptimizeAndAllow = "OptimizeAndAllow",
+  All = "All",
+  None = "None"
+}
+
+/**
+ * Defines values for OfficeTrafficCategory. \
+ * {@link KnownOfficeTrafficCategory} can be used interchangeably with OfficeTrafficCategory,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Optimize** \
+ * **OptimizeAndAllow** \
+ * **All** \
+ * **None**
+ */
+export type OfficeTrafficCategory = string;
+
+/**
+ * Known values of {@link VirtualWanSecurityProviderType} that the service accepts.
+ */
+export const enum KnownVirtualWanSecurityProviderType {
+  External = "External",
+  Native = "Native"
+}
+
+/**
+ * Defines values for VirtualWanSecurityProviderType. \
+ * {@link KnownVirtualWanSecurityProviderType} can be used interchangeably with VirtualWanSecurityProviderType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **External** \
+ * **Native**
+ */
+export type VirtualWanSecurityProviderType = string;
+
+/**
+ * Known values of {@link VpnGatewayTunnelingProtocol} that the service accepts.
+ */
+export const enum KnownVpnGatewayTunnelingProtocol {
+  IkeV2 = "IkeV2",
+  OpenVPN = "OpenVPN"
+}
+
+/**
+ * Defines values for VpnGatewayTunnelingProtocol. \
+ * {@link KnownVpnGatewayTunnelingProtocol} can be used interchangeably with VpnGatewayTunnelingProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IkeV2** \
+ * **OpenVPN**
+ */
+export type VpnGatewayTunnelingProtocol = string;
+
+/**
+ * Known values of {@link VpnAuthenticationType} that the service accepts.
+ */
+export const enum KnownVpnAuthenticationType {
+  Certificate = "Certificate",
+  Radius = "Radius",
+  AAD = "AAD"
+}
+
+/**
+ * Defines values for VpnAuthenticationType. \
+ * {@link KnownVpnAuthenticationType} can be used interchangeably with VpnAuthenticationType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Certificate** \
+ * **Radius** \
+ * **AAD**
+ */
+export type VpnAuthenticationType = string;
+
+/**
+ * Known values of {@link VpnConnectionStatus} that the service accepts.
+ */
+export const enum KnownVpnConnectionStatus {
+  Unknown = "Unknown",
+  Connecting = "Connecting",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for VpnConnectionStatus. \
+ * {@link KnownVpnConnectionStatus} can be used interchangeably with VpnConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Connecting** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type VpnConnectionStatus = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallEnabledState} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallEnabledState {
+  Disabled = "Disabled",
+  Enabled = "Enabled"
+}
+
+/**
+ * Defines values for WebApplicationFirewallEnabledState. \
+ * {@link KnownWebApplicationFirewallEnabledState} can be used interchangeably with WebApplicationFirewallEnabledState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Disabled** \
+ * **Enabled**
+ */
+export type WebApplicationFirewallEnabledState = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallMode} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallMode {
+  Prevention = "Prevention",
+  Detection = "Detection"
+}
+
+/**
+ * Defines values for WebApplicationFirewallMode. \
+ * {@link KnownWebApplicationFirewallMode} can be used interchangeably with WebApplicationFirewallMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Prevention** \
+ * **Detection**
+ */
+export type WebApplicationFirewallMode = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallRuleType} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallRuleType {
+  MatchRule = "MatchRule",
+  Invalid = "Invalid"
+}
+
+/**
+ * Defines values for WebApplicationFirewallRuleType. \
+ * {@link KnownWebApplicationFirewallRuleType} can be used interchangeably with WebApplicationFirewallRuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **MatchRule** \
+ * **Invalid**
+ */
+export type WebApplicationFirewallRuleType = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallMatchVariable} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallMatchVariable {
+  RemoteAddr = "RemoteAddr",
+  RequestMethod = "RequestMethod",
+  QueryString = "QueryString",
+  PostArgs = "PostArgs",
+  RequestUri = "RequestUri",
+  RequestHeaders = "RequestHeaders",
+  RequestBody = "RequestBody",
+  RequestCookies = "RequestCookies"
+}
+
+/**
+ * Defines values for WebApplicationFirewallMatchVariable. \
+ * {@link KnownWebApplicationFirewallMatchVariable} can be used interchangeably with WebApplicationFirewallMatchVariable,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RemoteAddr** \
+ * **RequestMethod** \
+ * **QueryString** \
+ * **PostArgs** \
+ * **RequestUri** \
+ * **RequestHeaders** \
+ * **RequestBody** \
+ * **RequestCookies**
+ */
+export type WebApplicationFirewallMatchVariable = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallOperator} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallOperator {
+  IPMatch = "IPMatch",
+  Equal = "Equal",
+  Contains = "Contains",
+  LessThan = "LessThan",
+  GreaterThan = "GreaterThan",
+  LessThanOrEqual = "LessThanOrEqual",
+  GreaterThanOrEqual = "GreaterThanOrEqual",
+  BeginsWith = "BeginsWith",
+  EndsWith = "EndsWith",
+  Regex = "Regex",
+  GeoMatch = "GeoMatch"
+}
+
+/**
+ * Defines values for WebApplicationFirewallOperator. \
+ * {@link KnownWebApplicationFirewallOperator} can be used interchangeably with WebApplicationFirewallOperator,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IPMatch** \
+ * **Equal** \
+ * **Contains** \
+ * **LessThan** \
+ * **GreaterThan** \
+ * **LessThanOrEqual** \
+ * **GreaterThanOrEqual** \
+ * **BeginsWith** \
+ * **EndsWith** \
+ * **Regex** \
+ * **GeoMatch**
+ */
+export type WebApplicationFirewallOperator = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallTransform} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallTransform {
+  Lowercase = "Lowercase",
+  Trim = "Trim",
+  UrlDecode = "UrlDecode",
+  UrlEncode = "UrlEncode",
+  RemoveNulls = "RemoveNulls",
+  HtmlEntityDecode = "HtmlEntityDecode"
+}
+
+/**
+ * Defines values for WebApplicationFirewallTransform. \
+ * {@link KnownWebApplicationFirewallTransform} can be used interchangeably with WebApplicationFirewallTransform,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Lowercase** \
+ * **Trim** \
+ * **UrlDecode** \
+ * **UrlEncode** \
+ * **RemoveNulls** \
+ * **HtmlEntityDecode**
+ */
+export type WebApplicationFirewallTransform = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallAction} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallAction {
+  Allow = "Allow",
+  Block = "Block",
+  Log = "Log"
+}
+
+/**
+ * Defines values for WebApplicationFirewallAction. \
+ * {@link KnownWebApplicationFirewallAction} can be used interchangeably with WebApplicationFirewallAction,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Block** \
+ * **Log**
+ */
+export type WebApplicationFirewallAction = string;
+
+/**
+ * Known values of {@link WebApplicationFirewallPolicyResourceState} that the service accepts.
+ */
+export const enum KnownWebApplicationFirewallPolicyResourceState {
+  Creating = "Creating",
+  Enabling = "Enabling",
+  Enabled = "Enabled",
+  Disabling = "Disabling",
+  Disabled = "Disabled",
+  Deleting = "Deleting"
+}
+
+/**
+ * Defines values for WebApplicationFirewallPolicyResourceState. \
+ * {@link KnownWebApplicationFirewallPolicyResourceState} can be used interchangeably with WebApplicationFirewallPolicyResourceState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **Enabling** \
+ * **Enabled** \
+ * **Disabling** \
+ * **Disabled** \
+ * **Deleting**
+ */
+export type WebApplicationFirewallPolicyResourceState = string;
+
+/**
+ * Known values of {@link OwaspCrsExclusionEntryMatchVariable} that the service accepts.
+ */
+export const enum KnownOwaspCrsExclusionEntryMatchVariable {
+  RequestHeaderNames = "RequestHeaderNames",
+  RequestCookieNames = "RequestCookieNames",
+  RequestArgNames = "RequestArgNames"
+}
+
+/**
+ * Defines values for OwaspCrsExclusionEntryMatchVariable. \
+ * {@link KnownOwaspCrsExclusionEntryMatchVariable} can be used interchangeably with OwaspCrsExclusionEntryMatchVariable,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RequestHeaderNames** \
+ * **RequestCookieNames** \
+ * **RequestArgNames**
+ */
+export type OwaspCrsExclusionEntryMatchVariable = string;
+
+/**
+ * Known values of {@link OwaspCrsExclusionEntrySelectorMatchOperator} that the service accepts.
+ */
+export const enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
+  Equals = "Equals",
+  Contains = "Contains",
+  StartsWith = "StartsWith",
+  EndsWith = "EndsWith",
+  EqualsAny = "EqualsAny"
+}
+
+/**
+ * Defines values for OwaspCrsExclusionEntrySelectorMatchOperator. \
+ * {@link KnownOwaspCrsExclusionEntrySelectorMatchOperator} can be used interchangeably with OwaspCrsExclusionEntrySelectorMatchOperator,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Equals** \
+ * **Contains** \
+ * **StartsWith** \
+ * **EndsWith** \
+ * **EqualsAny**
+ */
+export type OwaspCrsExclusionEntrySelectorMatchOperator = string;
+
+/**
+ * Known values of {@link ManagedRuleEnabledState} that the service accepts.
+ */
+export const enum KnownManagedRuleEnabledState {
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for ManagedRuleEnabledState. \
+ * {@link KnownManagedRuleEnabledState} can be used interchangeably with ManagedRuleEnabledState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Disabled**
+ */
+export type ManagedRuleEnabledState = string;
+
+/**
+ * Known values of {@link FirewallPolicyNatRuleActionType} that the service accepts.
+ */
+export const enum KnownFirewallPolicyNatRuleActionType {
+  Dnat = "DNAT"
+}
+
+/**
+ * Defines values for FirewallPolicyNatRuleActionType. \
+ * {@link KnownFirewallPolicyNatRuleActionType} can be used interchangeably with FirewallPolicyNatRuleActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **DNAT**
+ */
+export type FirewallPolicyNatRuleActionType = string;
+
+/**
+ * Known values of {@link FirewallPolicyRuleConditionType} that the service accepts.
+ */
+export const enum KnownFirewallPolicyRuleConditionType {
+  ApplicationRuleCondition = "ApplicationRuleCondition",
+  NetworkRuleCondition = "NetworkRuleCondition",
+  NatRuleCondition = "NatRuleCondition"
+}
+
+/**
+ * Defines values for FirewallPolicyRuleConditionType. \
+ * {@link KnownFirewallPolicyRuleConditionType} can be used interchangeably with FirewallPolicyRuleConditionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **ApplicationRuleCondition** \
+ * **NetworkRuleCondition** \
+ * **NatRuleCondition**
+ */
+export type FirewallPolicyRuleConditionType = string;
+
+/**
+ * Known values of {@link FirewallPolicyFilterRuleActionType} that the service accepts.
+ */
+export const enum KnownFirewallPolicyFilterRuleActionType {
+  Allow = "Allow",
+  Deny = "Deny"
+}
+
+/**
+ * Defines values for FirewallPolicyFilterRuleActionType. \
+ * {@link KnownFirewallPolicyFilterRuleActionType} can be used interchangeably with FirewallPolicyFilterRuleActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type FirewallPolicyFilterRuleActionType = string;
+
+/**
+ * Known values of {@link FirewallPolicyRuleConditionApplicationProtocolType} that the service accepts.
+ */
+export const enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
+  Http = "Http",
+  Https = "Https"
+}
+
+/**
+ * Defines values for FirewallPolicyRuleConditionApplicationProtocolType. \
+ * {@link KnownFirewallPolicyRuleConditionApplicationProtocolType} can be used interchangeably with FirewallPolicyRuleConditionApplicationProtocolType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Http** \
+ * **Https**
+ */
+export type FirewallPolicyRuleConditionApplicationProtocolType = string;
+
+/**
+ * Known values of {@link FirewallPolicyRuleConditionNetworkProtocol} that the service accepts.
+ */
+export const enum KnownFirewallPolicyRuleConditionNetworkProtocol {
+  TCP = "TCP",
+  UDP = "UDP",
+  Any = "Any",
+  Icmp = "ICMP"
+}
+
+/**
+ * Defines values for FirewallPolicyRuleConditionNetworkProtocol. \
+ * {@link KnownFirewallPolicyRuleConditionNetworkProtocol} can be used interchangeably with FirewallPolicyRuleConditionNetworkProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **TCP** \
+ * **UDP** \
+ * **Any** \
+ * **ICMP**
+ */
+export type FirewallPolicyRuleConditionNetworkProtocol = string;
+
+/**
+ * Known values of {@link NetworkOperationStatus} that the service accepts.
+ */
+export const enum KnownNetworkOperationStatus {
+  InProgress = "InProgress",
+  Succeeded = "Succeeded",
+  Failed = "Failed"
+}
+
+/**
+ * Defines values for NetworkOperationStatus. \
+ * {@link KnownNetworkOperationStatus} can be used interchangeably with NetworkOperationStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **InProgress** \
+ * **Succeeded** \
+ * **Failed**
+ */
+export type NetworkOperationStatus = string;
+
+/**
+ * Known values of {@link TunnelConnectionStatus} that the service accepts.
+ */
+export const enum KnownTunnelConnectionStatus {
+  Unknown = "Unknown",
+  Connecting = "Connecting",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for TunnelConnectionStatus. \
+ * {@link KnownTunnelConnectionStatus} can be used interchangeably with TunnelConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Connecting** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type TunnelConnectionStatus = string;
+
+/**
+ * Known values of {@link HubVirtualNetworkConnectionStatus} that the service accepts.
+ */
+export const enum KnownHubVirtualNetworkConnectionStatus {
+  Unknown = "Unknown",
+  Connecting = "Connecting",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for HubVirtualNetworkConnectionStatus. \
+ * {@link KnownHubVirtualNetworkConnectionStatus} can be used interchangeably with HubVirtualNetworkConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Connecting** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type HubVirtualNetworkConnectionStatus = string;
 /**
  * Defines values for ResourceIdentityType.
  */

@@ -120,21 +120,40 @@ export interface PagingGetMultiplePagesLroOptions {
 }
 
 /**
- * Defines values for OperationResultStatus.
+ * Known values of {@link OperationResultStatus} that the service accepts.
  */
-export type OperationResultStatus =
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "Accepted"
-  | "Creating"
-  | "Created"
-  | "Updating"
-  | "Updated"
-  | "Deleting"
-  | "Deleted"
-  | "OK"
-  | string;
+export const enum KnownOperationResultStatus {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "canceled",
+  Accepted = "Accepted",
+  Creating = "Creating",
+  Created = "Created",
+  Updating = "Updating",
+  Updated = "Updated",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  OK = "OK"
+}
+
+/**
+ * Defines values for OperationResultStatus. \
+ * {@link KnownOperationResultStatus} can be used interchangeably with OperationResultStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **canceled** \
+ * **Accepted** \
+ * **Creating** \
+ * **Created** \
+ * **Updating** \
+ * **Updated** \
+ * **Deleting** \
+ * **Deleted** \
+ * **OK**
+ */
+export type OperationResultStatus = string;
 
 /**
  * Contains response data for the getNoItemNamePages operation.

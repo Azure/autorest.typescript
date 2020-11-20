@@ -202,24 +202,74 @@ export type Goblinshark = Shark & {
 };
 
 export type Cookiecuttershark = Shark & {};
+
 /**
- * Defines values for CMYKColors.
+ * Known values of {@link CMYKColors} that the service accepts.
  */
-export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK" | string;
+export const enum KnownCMYKColors {
+  Cyan = "cyan",
+  Magenta = "Magenta",
+  Yellow = "YELLOW",
+  BlacK = "blacK"
+}
+
 /**
- * Defines values for MyKind.
+ * Defines values for CMYKColors. \
+ * {@link KnownCMYKColors} can be used interchangeably with CMYKColors,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **cyan** \
+ * **Magenta** \
+ * **YELLOW** \
+ * **blacK**
  */
-export type MyKind = "Kind1" | string;
+export type CMYKColors = string;
+
 /**
- * Defines values for GoblinSharkColor.
+ * Known values of {@link MyKind} that the service accepts.
  */
-export type GoblinSharkColor =
-  | "pink"
-  | "gray"
-  | "brown"
-  | "RED"
-  | "red"
-  | string;
+export const enum KnownMyKind {
+  Kind1 = "Kind1"
+}
+
+/**
+ * Defines values for MyKind. \
+ * {@link KnownMyKind} can be used interchangeably with MyKind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Kind1**
+ */
+export type MyKind = string;
+
+/**
+ * Known values of {@link GoblinSharkColor} that the service accepts.
+ */
+export const enum KnownGoblinSharkColor {
+  Pink = "pink",
+  Gray = "gray",
+  Brown = "brown",
+  /**
+   * Uppercase RED
+   */
+  UpperRed = "RED",
+  /**
+   * Lowercase RED
+   */
+  LowerRed = "red"
+}
+
+/**
+ * Defines values for GoblinSharkColor. \
+ * {@link KnownGoblinSharkColor} can be used interchangeably with GoblinSharkColor,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **pink** \
+ * **gray** \
+ * **brown** \
+ * **RED**: Uppercase RED \
+ * **red**: Lowercase RED
+ */
+export type GoblinSharkColor = string;
 
 /**
  * Contains response data for the getValid operation.

@@ -281,10 +281,10 @@ export interface CompositePath {
 }
 
 // @public
-export type CompositePathSortOrder = "Ascending" | "Descending" | string;
+export type CompositePathSortOrder = string;
 
 // @public
-export type ConflictResolutionMode = "LastWriterWins" | "Custom" | string;
+export type ConflictResolutionMode = string;
 
 // @public
 export interface ConflictResolutionPolicy {
@@ -294,7 +294,7 @@ export interface ConflictResolutionPolicy {
 }
 
 // @public
-export type ConnectorOffer = "Small" | string;
+export type ConnectorOffer = string;
 
 // @public
 export interface ConsistencyPolicy {
@@ -471,7 +471,7 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
 };
 
 // @public
-export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse" | string;
+export type DatabaseAccountKind = string;
 
 // @public
 export interface DatabaseAccountListConnectionStringsResult {
@@ -662,7 +662,7 @@ export type DatabaseListUsagesResponse = UsagesResult & {
 };
 
 // @public
-export type DataType = "String" | "Number" | "Point" | "Polygon" | "LineString" | "MultiPolygon" | string;
+export type DataType = string;
 
 // @public
 export type DefaultConsistencyLevel = "Eventual" | "Session" | "BoundedStaleness" | "Strong" | "ConsistentPrefix";
@@ -856,7 +856,7 @@ export interface Indexes {
 }
 
 // @public
-export type IndexingMode = "Consistent" | "Lazy" | "None" | string;
+export type IndexingMode = string;
 
 // @public
 export interface IndexingPolicy {
@@ -869,10 +869,180 @@ export interface IndexingPolicy {
 }
 
 // @public
-export type IndexKind = "Hash" | "Range" | "Spatial" | string;
+export type IndexKind = string;
 
 // @public
-export type KeyKind = "primary" | "secondary" | "primaryReadonly" | "secondaryReadonly" | string;
+export type KeyKind = string;
+
+// @public
+export const enum KnownCompositePathSortOrder {
+    // (undocumented)
+    Ascending = "Ascending",
+    // (undocumented)
+    Descending = "Descending"
+}
+
+// @public
+export const enum KnownConflictResolutionMode {
+    // (undocumented)
+    Custom = "Custom",
+    // (undocumented)
+    LastWriterWins = "LastWriterWins"
+}
+
+// @public
+export const enum KnownConnectorOffer {
+    // (undocumented)
+    Small = "Small"
+}
+
+// @public
+export const enum KnownDatabaseAccountKind {
+    // (undocumented)
+    GlobalDocumentDB = "GlobalDocumentDB",
+    // (undocumented)
+    MongoDB = "MongoDB",
+    // (undocumented)
+    Parse = "Parse"
+}
+
+// @public
+export const enum KnownDataType {
+    // (undocumented)
+    LineString = "LineString",
+    // (undocumented)
+    MultiPolygon = "MultiPolygon",
+    // (undocumented)
+    Number = "Number",
+    // (undocumented)
+    Point = "Point",
+    // (undocumented)
+    Polygon = "Polygon",
+    // (undocumented)
+    String = "String"
+}
+
+// @public
+export const enum KnownIndexingMode {
+    // (undocumented)
+    Consistent = "Consistent",
+    // (undocumented)
+    Lazy = "Lazy",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownIndexKind {
+    // (undocumented)
+    Hash = "Hash",
+    // (undocumented)
+    Range = "Range",
+    // (undocumented)
+    Spatial = "Spatial"
+}
+
+// @public
+export const enum KnownKeyKind {
+    // (undocumented)
+    Primary = "primary",
+    // (undocumented)
+    PrimaryReadonly = "primaryReadonly",
+    // (undocumented)
+    Secondary = "secondary",
+    // (undocumented)
+    SecondaryReadonly = "secondaryReadonly"
+}
+
+// @public
+export const enum KnownNotebookWorkspaceName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownPartitionKind {
+    // (undocumented)
+    Hash = "Hash",
+    // (undocumented)
+    Range = "Range"
+}
+
+// @public
+export const enum KnownPrimaryAggregationType {
+    // (undocumented)
+    Average = "Average",
+    // (undocumented)
+    Last = "Last",
+    // (undocumented)
+    Maximum = "Maximum",
+    // (undocumented)
+    Minimum = "Minimum",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    Total = "Total"
+}
+
+// @public
+export const enum KnownPublicNetworkAccess {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownSpatialType {
+    // (undocumented)
+    LineString = "LineString",
+    // (undocumented)
+    MultiPolygon = "MultiPolygon",
+    // (undocumented)
+    Point = "Point",
+    // (undocumented)
+    Polygon = "Polygon"
+}
+
+// @public
+export const enum KnownTriggerOperation {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Create = "Create",
+    // (undocumented)
+    Delete = "Delete",
+    // (undocumented)
+    Replace = "Replace",
+    // (undocumented)
+    Update = "Update"
+}
+
+// @public
+export const enum KnownTriggerType {
+    // (undocumented)
+    Post = "Post",
+    // (undocumented)
+    Pre = "Pre"
+}
+
+// @public
+export const enum KnownUnitType {
+    // (undocumented)
+    Bytes = "Bytes",
+    // (undocumented)
+    BytesPerSecond = "BytesPerSecond",
+    // (undocumented)
+    Count = "Count",
+    // (undocumented)
+    CountPerSecond = "CountPerSecond",
+    // (undocumented)
+    Milliseconds = "Milliseconds",
+    // (undocumented)
+    Percent = "Percent",
+    // (undocumented)
+    Seconds = "Seconds"
+}
 
 // @public
 interface Location_2 {
@@ -1119,7 +1289,7 @@ export interface NotebookWorkspaceListResult {
 }
 
 // @public
-export type NotebookWorkspaceName = "default" | string;
+export type NotebookWorkspaceName = string;
 
 // @public
 export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace & {
@@ -1212,7 +1382,7 @@ export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListRe
 };
 
 // @public
-export type PartitionKind = "Hash" | "Range" | string;
+export type PartitionKind = string;
 
 // @public
 export type PartitionMetric = Metric & {
@@ -1287,7 +1457,7 @@ export type PercentileTargetListMetricsResponse = PercentileMetricListResult & {
 };
 
 // @public
-export type PrimaryAggregationType = "None" | "Average" | "Total" | "Minimum" | "Maximum" | "Last" | string;
+export type PrimaryAggregationType = string;
 
 // @public
 export type PrivateEndpointConnection = Resource & {
@@ -1390,7 +1560,7 @@ export interface ProvisionedThroughputSettingsResource {
 export type ProxyResource = Resource & {};
 
 // @public
-export type PublicNetworkAccess = "Enabled" | "Disabled" | string;
+export type PublicNetworkAccess = string;
 
 // @public
 export interface RegionForOnlineOffline {
@@ -1411,7 +1581,7 @@ export interface SpatialSpec {
 }
 
 // @public
-export type SpatialType = "Point" | "LineString" | "Polygon" | "MultiPolygon" | string;
+export type SpatialType = string;
 
 // @public
 export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
@@ -1811,10 +1981,10 @@ export type ThroughputSettingsUpdateParameters = ARMResourceProperties & {
 };
 
 // @public
-export type TriggerOperation = "All" | "Create" | "Update" | "Delete" | "Replace" | string;
+export type TriggerOperation = string;
 
 // @public
-export type TriggerType = "Pre" | "Post" | string;
+export type TriggerType = string;
 
 // @public
 export interface UniqueKey {
@@ -1827,7 +1997,7 @@ export interface UniqueKeyPolicy {
 }
 
 // @public
-export type UnitType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond" | "Milliseconds" | string;
+export type UnitType = string;
 
 // @public
 export interface Usage {
@@ -1852,7 +2022,7 @@ export interface VirtualNetworkRule {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:3695:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:3919:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -13,7 +13,7 @@ export interface CloudError {
 }
 
 // @public
-export type EnforcementMode = "Default" | "DoNotEnforce" | string;
+export type EnforcementMode = string;
 
 // @public
 export interface ErrorAdditionalInfo {
@@ -38,6 +38,42 @@ export interface Identity {
 }
 
 // @public
+export const enum KnownEnforcementMode {
+    Default = "Default",
+    DoNotEnforce = "DoNotEnforce"
+}
+
+// @public
+export const enum KnownParameterType {
+    // (undocumented)
+    Array = "Array",
+    // (undocumented)
+    Boolean = "Boolean",
+    // (undocumented)
+    DateTime = "DateTime",
+    // (undocumented)
+    Float = "Float",
+    // (undocumented)
+    Integer = "Integer",
+    // (undocumented)
+    Object = "Object",
+    // (undocumented)
+    String = "String"
+}
+
+// @public
+export const enum KnownPolicyType {
+    // (undocumented)
+    BuiltIn = "BuiltIn",
+    // (undocumented)
+    Custom = "Custom",
+    // (undocumented)
+    NotSpecified = "NotSpecified",
+    // (undocumented)
+    Static = "Static"
+}
+
+// @public
 export interface ParameterDefinitionsValue {
     allowedValues?: any[];
     defaultValue?: any;
@@ -53,7 +89,7 @@ export interface ParameterDefinitionsValueMetadata {
 }
 
 // @public
-export type ParameterType = "String" | "Array" | "Object" | "Boolean" | "Integer" | "Float" | "DateTime" | string;
+export type ParameterType = string;
 
 // @public
 export interface ParameterValuesValue {
@@ -509,7 +545,7 @@ export interface PolicySku {
 }
 
 // @public
-export type PolicyType = "NotSpecified" | "BuiltIn" | "Custom" | "Static" | string;
+export type PolicyType = string;
 
 // @public
 export type ResourceIdentityType = "SystemAssigned" | "None";

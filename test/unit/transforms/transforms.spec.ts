@@ -102,7 +102,7 @@ describe("Transforms", () => {
       assert.strictEqual(colorUnion.description, "Defines values for Color.");
       assert.deepEqual(
         colorUnion.properties.map(p => p.value),
-        [`"red"`, `"green"`, `"blue"`]
+        [`red`, `green`, `blue`]
       );
     });
   });

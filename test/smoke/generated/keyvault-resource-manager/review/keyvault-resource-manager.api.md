@@ -26,7 +26,7 @@ export interface AccessPolicyEntry {
 export type AccessPolicyUpdateKind = "add" | "replace" | "remove";
 
 // @public
-export type CertificatePermissions = "get" | "list" | "delete" | "create" | "import" | "update" | "managecontacts" | "getissuers" | "listissuers" | "setissuers" | "deleteissuers" | "manageissuers" | "recover" | "purge" | "backup" | "restore" | string;
+export type CertificatePermissions = string;
 
 // @public
 export interface CheckNameAvailabilityResult {
@@ -80,7 +80,7 @@ export interface IPRule {
 }
 
 // @public
-export type KeyPermissions = "encrypt" | "decrypt" | "wrapKey" | "unwrapKey" | "sign" | "verify" | "get" | "list" | "create" | "update" | "import" | "delete" | "backup" | "restore" | "recover" | "purge" | string;
+export type KeyPermissions = string;
 
 // @public (undocumented)
 export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
@@ -122,6 +122,180 @@ export interface KeyVaultManagementClientOptionalParams extends coreHttp.Service
 }
 
 // @public
+export const enum KnownCertificatePermissions {
+    // (undocumented)
+    Backup = "backup",
+    // (undocumented)
+    Create = "create",
+    // (undocumented)
+    Delete = "delete",
+    // (undocumented)
+    Deleteissuers = "deleteissuers",
+    // (undocumented)
+    Get = "get",
+    // (undocumented)
+    Getissuers = "getissuers",
+    // (undocumented)
+    Import = "import",
+    // (undocumented)
+    List = "list",
+    // (undocumented)
+    Listissuers = "listissuers",
+    // (undocumented)
+    Managecontacts = "managecontacts",
+    // (undocumented)
+    Manageissuers = "manageissuers",
+    // (undocumented)
+    Purge = "purge",
+    // (undocumented)
+    Recover = "recover",
+    // (undocumented)
+    Restore = "restore",
+    // (undocumented)
+    Setissuers = "setissuers",
+    // (undocumented)
+    Update = "update"
+}
+
+// @public
+export const enum KnownKeyPermissions {
+    // (undocumented)
+    Backup = "backup",
+    // (undocumented)
+    Create = "create",
+    // (undocumented)
+    Decrypt = "decrypt",
+    // (undocumented)
+    Delete = "delete",
+    // (undocumented)
+    Encrypt = "encrypt",
+    // (undocumented)
+    Get = "get",
+    // (undocumented)
+    Import = "import",
+    // (undocumented)
+    List = "list",
+    // (undocumented)
+    Purge = "purge",
+    // (undocumented)
+    Recover = "recover",
+    // (undocumented)
+    Restore = "restore",
+    // (undocumented)
+    Sign = "sign",
+    // (undocumented)
+    UnwrapKey = "unwrapKey",
+    // (undocumented)
+    Update = "update",
+    // (undocumented)
+    Verify = "verify",
+    // (undocumented)
+    WrapKey = "wrapKey"
+}
+
+// @public
+export const enum KnownNetworkRuleAction {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public
+export const enum KnownNetworkRuleBypassOptions {
+    // (undocumented)
+    AzureServices = "AzureServices",
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownPrivateEndpointConnectionProvisioningState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Disconnected = "Disconnected",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
+export const enum KnownPrivateEndpointServiceConnectionStatus {
+    // (undocumented)
+    Approved = "Approved",
+    // (undocumented)
+    Disconnected = "Disconnected",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    Rejected = "Rejected"
+}
+
+// @public
+export const enum KnownSecretPermissions {
+    // (undocumented)
+    Backup = "backup",
+    // (undocumented)
+    Delete = "delete",
+    // (undocumented)
+    Get = "get",
+    // (undocumented)
+    List = "list",
+    // (undocumented)
+    Purge = "purge",
+    // (undocumented)
+    Recover = "recover",
+    // (undocumented)
+    Restore = "restore",
+    // (undocumented)
+    Set = "set"
+}
+
+// @public
+export const enum KnownSkuFamily {
+    // (undocumented)
+    A = "A"
+}
+
+// @public
+export const enum KnownStoragePermissions {
+    // (undocumented)
+    Backup = "backup",
+    // (undocumented)
+    Delete = "delete",
+    // (undocumented)
+    Deletesas = "deletesas",
+    // (undocumented)
+    Get = "get",
+    // (undocumented)
+    Getsas = "getsas",
+    // (undocumented)
+    List = "list",
+    // (undocumented)
+    Listsas = "listsas",
+    // (undocumented)
+    Purge = "purge",
+    // (undocumented)
+    Recover = "recover",
+    // (undocumented)
+    Regeneratekey = "regeneratekey",
+    // (undocumented)
+    Restore = "restore",
+    // (undocumented)
+    Set = "set",
+    // (undocumented)
+    Setsas = "setsas",
+    // (undocumented)
+    Update = "update"
+}
+
+// @public
 export interface LogSpecification {
     blobDuration?: string;
     displayName?: string;
@@ -129,10 +303,10 @@ export interface LogSpecification {
 }
 
 // @public
-export type NetworkRuleAction = "Allow" | "Deny" | string;
+export type NetworkRuleAction = string;
 
 // @public
-export type NetworkRuleBypassOptions = "AzureServices" | "None" | string;
+export type NetworkRuleBypassOptions = string;
 
 // @public
 export interface NetworkRuleSet {
@@ -210,7 +384,7 @@ export interface PrivateEndpointConnectionItem {
 }
 
 // @public
-export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Updating" | "Deleting" | "Failed" | "Disconnected" | string;
+export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnectionsDeleteHeaders {
@@ -251,7 +425,7 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPu
 };
 
 // @public
-export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | "Disconnected" | string;
+export type PrivateEndpointServiceConnectionStatus = string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -301,7 +475,7 @@ export interface ResourceListResult {
 }
 
 // @public
-export type SecretPermissions = "get" | "list" | "set" | "delete" | "backup" | "restore" | "recover" | "purge" | string;
+export type SecretPermissions = string;
 
 // @public
 export interface ServiceSpecification {
@@ -315,13 +489,13 @@ export interface Sku {
 }
 
 // @public
-export type SkuFamily = "A" | string;
+export type SkuFamily = string;
 
 // @public
 export type SkuName = "standard" | "premium";
 
 // @public
-export type StoragePermissions = "get" | "list" | "delete" | "set" | "update" | "regeneratekey" | "recover" | "purge" | "backup" | "restore" | "setsas" | "listsas" | "getsas" | "deletesas" | string;
+export type StoragePermissions = string;
 
 // @public
 export interface Vault {
@@ -563,7 +737,7 @@ export interface VirtualNetworkRule {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:1270:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:1427:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

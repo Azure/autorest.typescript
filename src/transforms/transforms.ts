@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ClientDetails } from "../models/clientDetails";
-import { UnionDetails, NameValuePair } from "../models/unionDetails";
+import { UnionDetails, UnionElement } from "../models/unionDetails";
 
 import {
   CodeModel,
@@ -37,15 +37,17 @@ export async function transformChoices(codeModel: CodeModel) {
 
 function extractProperties(
   choice: ChoiceSchema | SealedChoiceSchema
-): NameValuePair[] {
+): UnionElement[] {
   return choice.choices.map(c => {
     const metadata = getLanguageMetadata(c.language);
     return {
       name: metadata.name,
       value: getStringForValue(
         c.value,
-        choice?.choiceType?.type ?? SchemaType.String
-      )
+        choice?.choiceType?.type ?? SchemaType.String,
+        false
+      ),
+      description: metadata.description
     };
   });
 }

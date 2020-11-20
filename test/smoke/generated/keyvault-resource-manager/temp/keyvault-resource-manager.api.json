@@ -160,7 +160,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!CertificatePermissions:type",
-          "docComment": "/**\n * Defines values for CertificatePermissions.\n */\n",
+          "docComment": "/**\n * Defines values for CertificatePermissions. \\ {@link KnownCertificatePermissions} can be used interchangeably with CertificatePermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **delete** \\ **create** \\ **import** \\ **update** \\ **managecontacts** \\ **getissuers** \\ **listissuers** \\ **setissuers** \\ **deleteissuers** \\ **manageissuers** \\ **recover** \\ **purge** \\ **backup** \\ **restore**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -168,7 +168,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"delete\" | \"create\" | \"import\" | \"update\" | \"managecontacts\" | \"getissuers\" | \"listissuers\" | \"setissuers\" | \"deleteissuers\" | \"manageissuers\" | \"recover\" | \"purge\" | \"backup\" | \"restore\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -782,7 +782,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!KeyPermissions:type",
-          "docComment": "/**\n * Defines values for KeyPermissions.\n */\n",
+          "docComment": "/**\n * Defines values for KeyPermissions. \\ {@link KnownKeyPermissions} can be used interchangeably with KeyPermissions, this enum contains the known values that the service supports. ### Know values supported by the service **encrypt** \\ **decrypt** \\ **wrapKey** \\ **unwrapKey** \\ **sign** \\ **verify** \\ **get** \\ **list** \\ **create** \\ **update** \\ **import** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -790,7 +790,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"encrypt\" | \"decrypt\" | \"wrapKey\" | \"unwrapKey\" | \"sign\" | \"verify\" | \"get\" | \"list\" | \"create\" | \"update\" | \"import\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -1312,6 +1312,1590 @@
           ]
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions:enum",
+          "docComment": "/**\n * Known values of {@link CertificatePermissions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCertificatePermissions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCertificatePermissions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Backup:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Backup = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"backup\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Backup",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Create:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Create = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"create\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Create",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"delete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Deleteissuers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleteissuers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"deleteissuers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleteissuers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Get:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Get = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"get\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Get",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Getissuers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Getissuers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"getissuers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Getissuers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Import:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Import = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"import\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Import",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.List:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "List = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"list\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "List",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Listissuers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Listissuers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"listissuers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Listissuers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Managecontacts:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Managecontacts = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"managecontacts\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Managecontacts",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Manageissuers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Manageissuers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"manageissuers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Manageissuers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Purge:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Purge = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"purge\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Purge",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Recover:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Recover = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"recover\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Recover",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Restore:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Restore = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"restore\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Restore",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Setissuers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Setissuers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"setissuers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Setissuers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownCertificatePermissions.Update:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Update = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"update\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Update",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions:enum",
+          "docComment": "/**\n * Known values of {@link KeyPermissions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownKeyPermissions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownKeyPermissions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Backup:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Backup = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"backup\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Backup",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Create:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Create = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"create\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Create",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Decrypt:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Decrypt = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"decrypt\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Decrypt",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"delete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Encrypt:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Encrypt = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"encrypt\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Encrypt",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Get:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Get = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"get\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Get",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Import:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Import = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"import\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Import",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.List:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "List = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"list\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "List",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Purge:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Purge = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"purge\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Purge",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Recover:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Recover = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"recover\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Recover",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Restore:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Restore = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"restore\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Restore",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Sign:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Sign = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"sign\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Sign",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.UnwrapKey:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "UnwrapKey = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"unwrapKey\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "UnwrapKey",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Update:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Update = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"update\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Update",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.Verify:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Verify = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"verify\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Verify",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownKeyPermissions.WrapKey:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WrapKey = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"wrapKey\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WrapKey",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleAction:enum",
+          "docComment": "/**\n * Known values of {@link NetworkRuleAction} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownNetworkRuleAction "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownNetworkRuleAction",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleAction.Allow:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Allow = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Allow\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Allow",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleAction.Deny:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deny = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deny\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deny",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleBypassOptions:enum",
+          "docComment": "/**\n * Known values of {@link NetworkRuleBypassOptions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownNetworkRuleBypassOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownNetworkRuleBypassOptions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleBypassOptions.AzureServices:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AzureServices = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AzureServices\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AzureServices",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownNetworkRuleBypassOptions.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState:enum",
+          "docComment": "/**\n * Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPrivateEndpointConnectionProvisioningState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPrivateEndpointConnectionProvisioningState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Creating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Creating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Creating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Creating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Deleting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deleting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Disconnected:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disconnected = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disconnected\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disconnected",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Succeeded:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Succeeded = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Succeeded\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Succeeded",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointConnectionProvisioningState.Updating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Updating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Updating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Updating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointServiceConnectionStatus:enum",
+          "docComment": "/**\n * Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPrivateEndpointServiceConnectionStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPrivateEndpointServiceConnectionStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Approved:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Approved = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Approved\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Approved",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Disconnected:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disconnected = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disconnected\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disconnected",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Pending:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Pending = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Pending\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Pending",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownPrivateEndpointServiceConnectionStatus.Rejected:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Rejected = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Rejected\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Rejected",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions:enum",
+          "docComment": "/**\n * Known values of {@link SecretPermissions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSecretPermissions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSecretPermissions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Backup:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Backup = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"backup\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Backup",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"delete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Get:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Get = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"get\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Get",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.List:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "List = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"list\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "List",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Purge:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Purge = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"purge\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Purge",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Recover:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Recover = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"recover\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Recover",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Restore:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Restore = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"restore\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Restore",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSecretPermissions.Set:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Set = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"set\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Set",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownSkuFamily:enum",
+          "docComment": "/**\n * Known values of {@link SkuFamily} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSkuFamily "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSkuFamily",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownSkuFamily.A:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "A = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"A\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "A",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions:enum",
+          "docComment": "/**\n * Known values of {@link StoragePermissions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownStoragePermissions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownStoragePermissions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Backup:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Backup = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"backup\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Backup",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"delete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Deletesas:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deletesas = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"deletesas\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deletesas",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Get:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Get = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"get\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Get",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Getsas:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Getsas = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"getsas\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Getsas",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.List:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "List = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"list\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "List",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Listsas:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Listsas = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"listsas\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Listsas",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Purge:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Purge = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"purge\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Purge",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Recover:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Recover = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"recover\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Recover",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Regeneratekey:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Regeneratekey = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"regeneratekey\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Regeneratekey",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Restore:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Restore = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"restore\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Restore",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Set:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Set = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"set\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Set",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Setsas:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Setsas = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"setsas\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Setsas",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "keyvault-resource-manager!KnownStoragePermissions.Update:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Update = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"update\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Update",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "keyvault-resource-manager!LogSpecification:interface",
           "docComment": "/**\n * Log specification of operation.\n */\n",
@@ -1405,7 +2989,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!NetworkRuleAction:type",
-          "docComment": "/**\n * Defines values for NetworkRuleAction.\n */\n",
+          "docComment": "/**\n * Defines values for NetworkRuleAction. \\ {@link KnownNetworkRuleAction} can be used interchangeably with NetworkRuleAction, this enum contains the known values that the service supports. ### Know values supported by the service **Allow** \\ **Deny**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1413,7 +2997,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -1430,7 +3014,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!NetworkRuleBypassOptions:type",
-          "docComment": "/**\n * Defines values for NetworkRuleBypassOptions.\n */\n",
+          "docComment": "/**\n * Defines values for NetworkRuleBypassOptions. \\ {@link KnownNetworkRuleBypassOptions} can be used interchangeably with NetworkRuleBypassOptions, this enum contains the known values that the service supports. ### Know values supported by the service **AzureServices** \\ **None**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1438,7 +3022,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzureServices\" | \"None\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2312,7 +3896,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionProvisioningState:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState.\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState. \\ {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Succeeded** \\ **Creating** \\ **Updating** \\ **Deleting** \\ **Failed** \\ **Disconnected**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2320,7 +3904,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Succeeded\" | \"Creating\" | \"Updating\" | \"Deleting\" | \"Failed\" | \"Disconnected\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2649,7 +4233,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!PrivateEndpointServiceConnectionStatus:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus.\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus. \\ {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus, this enum contains the known values that the service supports. ### Know values supported by the service **Pending** \\ **Approved** \\ **Rejected** \\ **Disconnected**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2657,7 +4241,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pending\" | \"Approved\" | \"Rejected\" | \"Disconnected\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3127,7 +4711,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!SecretPermissions:type",
-          "docComment": "/**\n * Defines values for SecretPermissions.\n */\n",
+          "docComment": "/**\n * Defines values for SecretPermissions. \\ {@link KnownSecretPermissions} can be used interchangeably with SecretPermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **set** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3135,7 +4719,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"set\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3266,7 +4850,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!SkuFamily:type",
-          "docComment": "/**\n * Defines values for SkuFamily.\n */\n",
+          "docComment": "/**\n * Defines values for SkuFamily. \\ {@link KnownSkuFamily} can be used interchangeably with SkuFamily, this enum contains the known values that the service supports. ### Know values supported by the service **A**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3274,7 +4858,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"A\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3316,7 +4900,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!StoragePermissions:type",
-          "docComment": "/**\n * Defines values for StoragePermissions.\n */\n",
+          "docComment": "/**\n * Defines values for StoragePermissions. \\ {@link KnownStoragePermissions} can be used interchangeably with StoragePermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **delete** \\ **set** \\ **update** \\ **regeneratekey** \\ **recover** \\ **purge** \\ **backup** \\ **restore** \\ **setsas** \\ **listsas** \\ **getsas** \\ **deletesas**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3324,7 +4908,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"delete\" | \"set\" | \"update\" | \"regeneratekey\" | \"recover\" | \"purge\" | \"backup\" | \"restore\" | \"setsas\" | \"listsas\" | \"getsas\" | \"deletesas\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

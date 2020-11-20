@@ -2240,7 +2240,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!CompositePathSortOrder:type",
-          "docComment": "/**\n * Defines values for CompositePathSortOrder.\n */\n",
+          "docComment": "/**\n * Defines values for CompositePathSortOrder. \\ {@link KnownCompositePathSortOrder} can be used interchangeably with CompositePathSortOrder, this enum contains the known values that the service supports. ### Know values supported by the service **Ascending** \\ **Descending**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2248,7 +2248,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Ascending\" | \"Descending\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2265,7 +2265,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!ConflictResolutionMode:type",
-          "docComment": "/**\n * Defines values for ConflictResolutionMode.\n */\n",
+          "docComment": "/**\n * Defines values for ConflictResolutionMode. \\ {@link KnownConflictResolutionMode} can be used interchangeably with ConflictResolutionMode, this enum contains the known values that the service supports. ### Know values supported by the service **LastWriterWins** \\ **Custom**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2273,7 +2273,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LastWriterWins\" | \"Custom\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2382,7 +2382,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!ConnectorOffer:type",
-          "docComment": "/**\n * Defines values for ConnectorOffer.\n */\n",
+          "docComment": "/**\n * Defines values for ConnectorOffer. \\ {@link KnownConnectorOffer} can be used interchangeably with ConnectorOffer, this enum contains the known values that the service supports. ### Know values supported by the service **Small**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2390,7 +2390,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Small\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -3877,7 +3877,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountKind:type",
-          "docComment": "/**\n * Defines values for DatabaseAccountKind.\n */\n",
+          "docComment": "/**\n * Defines values for DatabaseAccountKind. \\ {@link KnownDatabaseAccountKind} can be used interchangeably with DatabaseAccountKind, this enum contains the known values that the service supports. ### Know values supported by the service **GlobalDocumentDB** \\ **MongoDB** \\ **Parse**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3885,7 +3885,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"GlobalDocumentDB\" | \"MongoDB\" | \"Parse\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -5463,7 +5463,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!DataType:type",
-          "docComment": "/**\n * Defines values for DataType.\n */\n",
+          "docComment": "/**\n * Defines values for DataType. \\ {@link KnownDataType} can be used interchangeably with DataType, this enum contains the known values that the service supports. ### Know values supported by the service **String** \\ **Number** \\ **Point** \\ **Polygon** \\ **LineString** \\ **MultiPolygon**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5471,7 +5471,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"String\" | \"Number\" | \"Point\" | \"Polygon\" | \"LineString\" | \"MultiPolygon\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -7197,7 +7197,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!IndexingMode:type",
-          "docComment": "/**\n * Defines values for IndexingMode.\n */\n",
+          "docComment": "/**\n * Defines values for IndexingMode. \\ {@link KnownIndexingMode} can be used interchangeably with IndexingMode, this enum contains the known values that the service supports. ### Know values supported by the service **Consistent** \\ **Lazy** \\ **None**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7205,7 +7205,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Consistent\" | \"Lazy\" | \"None\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -7409,7 +7409,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!IndexKind:type",
-          "docComment": "/**\n * Defines values for IndexKind.\n */\n",
+          "docComment": "/**\n * Defines values for IndexKind. \\ {@link KnownIndexKind} can be used interchangeably with IndexKind, this enum contains the known values that the service supports. ### Know values supported by the service **Hash** \\ **Range** \\ **Spatial**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7417,7 +7417,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Hash\" | \"Range\" | \"Spatial\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -7434,7 +7434,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!KeyKind:type",
-          "docComment": "/**\n * Defines values for KeyKind.\n */\n",
+          "docComment": "/**\n * Defines values for KeyKind. \\ {@link KnownKeyKind} can be used interchangeably with KeyKind, this enum contains the known values that the service supports. ### Know values supported by the service **primary** \\ **secondary** \\ **primaryReadonly** \\ **secondaryReadonly**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7442,7 +7442,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"primary\" | \"secondary\" | \"primaryReadonly\" | \"secondaryReadonly\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -7455,6 +7455,1359 @@
             "startIndex": 1,
             "endIndex": 2
           }
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownCompositePathSortOrder:enum",
+          "docComment": "/**\n * Known values of {@link CompositePathSortOrder} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCompositePathSortOrder "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCompositePathSortOrder",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownCompositePathSortOrder.Ascending:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Ascending = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Ascending\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Ascending",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownCompositePathSortOrder.Descending:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Descending = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Descending\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Descending",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownConflictResolutionMode:enum",
+          "docComment": "/**\n * Known values of {@link ConflictResolutionMode} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownConflictResolutionMode "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownConflictResolutionMode",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownConflictResolutionMode.Custom:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Custom = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Custom\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Custom",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownConflictResolutionMode.LastWriterWins:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LastWriterWins = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LastWriterWins\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LastWriterWins",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownConnectorOffer:enum",
+          "docComment": "/**\n * Known values of {@link ConnectorOffer} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownConnectorOffer "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownConnectorOffer",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownConnectorOffer.Small:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Small = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Small\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Small",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownDatabaseAccountKind:enum",
+          "docComment": "/**\n * Known values of {@link DatabaseAccountKind} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDatabaseAccountKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDatabaseAccountKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDatabaseAccountKind.GlobalDocumentDB:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "GlobalDocumentDB = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"GlobalDocumentDB\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "GlobalDocumentDB",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDatabaseAccountKind.MongoDB:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MongoDB = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MongoDB\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MongoDB",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDatabaseAccountKind.Parse:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Parse = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Parse\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Parse",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownDataType:enum",
+          "docComment": "/**\n * Known values of {@link DataType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDataType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDataType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.LineString:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LineString = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LineString\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LineString",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.MultiPolygon:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MultiPolygon = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MultiPolygon\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MultiPolygon",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.Number:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Number = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Number\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Number",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.Point:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Point = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Point\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Point",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.Polygon:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Polygon = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Polygon\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Polygon",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownDataType.String:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "String = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"String\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "String",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownIndexingMode:enum",
+          "docComment": "/**\n * Known values of {@link IndexingMode} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownIndexingMode "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownIndexingMode",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexingMode.Consistent:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Consistent = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Consistent\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Consistent",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexingMode.Lazy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Lazy = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Lazy\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Lazy",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexingMode.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownIndexKind:enum",
+          "docComment": "/**\n * Known values of {@link IndexKind} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownIndexKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownIndexKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexKind.Hash:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Hash = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Hash\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Hash",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexKind.Range:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Range = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Range\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Range",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownIndexKind.Spatial:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Spatial = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Spatial\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Spatial",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownKeyKind:enum",
+          "docComment": "/**\n * Known values of {@link KeyKind} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownKeyKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownKeyKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownKeyKind.Primary:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Primary = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"primary\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Primary",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownKeyKind.PrimaryReadonly:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PrimaryReadonly = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"primaryReadonly\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PrimaryReadonly",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownKeyKind.Secondary:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Secondary = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"secondary\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Secondary",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownKeyKind.SecondaryReadonly:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SecondaryReadonly = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"secondaryReadonly\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SecondaryReadonly",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownNotebookWorkspaceName:enum",
+          "docComment": "/**\n * Known values of {@link NotebookWorkspaceName} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownNotebookWorkspaceName "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownNotebookWorkspaceName",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownNotebookWorkspaceName.Default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Default = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"default\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Default",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownPartitionKind:enum",
+          "docComment": "/**\n * Known values of {@link PartitionKind} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPartitionKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPartitionKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPartitionKind.Hash:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Hash = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Hash\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Hash",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPartitionKind.Range:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Range = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Range\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Range",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType:enum",
+          "docComment": "/**\n * Known values of {@link PrimaryAggregationType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPrimaryAggregationType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPrimaryAggregationType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.Average:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Average = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Average\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Average",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.Last:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Last = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Last\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Last",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.Maximum:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Maximum = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Maximum\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Maximum",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.Minimum:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Minimum = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Minimum\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Minimum",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPrimaryAggregationType.Total:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Total = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Total\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Total",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownPublicNetworkAccess:enum",
+          "docComment": "/**\n * Known values of {@link PublicNetworkAccess} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPublicNetworkAccess "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPublicNetworkAccess",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPublicNetworkAccess.Disabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownPublicNetworkAccess.Enabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Enabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Enabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Enabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownSpatialType:enum",
+          "docComment": "/**\n * Known values of {@link SpatialType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSpatialType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSpatialType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownSpatialType.LineString:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LineString = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LineString\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LineString",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownSpatialType.MultiPolygon:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MultiPolygon = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MultiPolygon\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MultiPolygon",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownSpatialType.Point:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Point = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Point\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Point",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownSpatialType.Polygon:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Polygon = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Polygon\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Polygon",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation:enum",
+          "docComment": "/**\n * Known values of {@link TriggerOperation} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownTriggerOperation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownTriggerOperation",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation.All:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "All = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"All\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "All",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation.Create:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Create = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Create\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Create",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation.Delete:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Delete = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Delete\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Delete",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation.Replace:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Replace = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Replace\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Replace",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerOperation.Update:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Update = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Update\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Update",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownTriggerType:enum",
+          "docComment": "/**\n * Known values of {@link TriggerType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownTriggerType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownTriggerType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerType.Post:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Post = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Post\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Post",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownTriggerType.Pre:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Pre = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Pre\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Pre",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "cosmos-db-resource-manager!KnownUnitType:enum",
+          "docComment": "/**\n * Known values of {@link UnitType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownUnitType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownUnitType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.Bytes:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Bytes = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Bytes\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Bytes",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.BytesPerSecond:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BytesPerSecond = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BytesPerSecond\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BytesPerSecond",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.Count:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Count = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Count\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Count",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.CountPerSecond:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CountPerSecond = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"CountPerSecond\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "CountPerSecond",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.Milliseconds:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Milliseconds = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Milliseconds\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Milliseconds",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.Percent:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Percent = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Percent\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Percent",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "cosmos-db-resource-manager!KnownUnitType.Seconds:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Seconds = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Seconds\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Seconds",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -9798,7 +11151,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!NotebookWorkspaceName:type",
-          "docComment": "/**\n * Defines values for NotebookWorkspaceName.\n */\n",
+          "docComment": "/**\n * Defines values for NotebookWorkspaceName. \\ {@link KnownNotebookWorkspaceName} can be used interchangeably with NotebookWorkspaceName, this enum contains the known values that the service supports. ### Know values supported by the service **default**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9806,7 +11159,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10520,7 +11873,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PartitionKind:type",
-          "docComment": "/**\n * Defines values for PartitionKind.\n */\n",
+          "docComment": "/**\n * Defines values for PartitionKind. \\ {@link KnownPartitionKind} can be used interchangeably with PartitionKind, this enum contains the known values that the service supports. ### Know values supported by the service **Hash** \\ **Range**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10528,7 +11881,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Hash\" | \"Range\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -11092,7 +12445,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PrimaryAggregationType:type",
-          "docComment": "/**\n * Defines values for PrimaryAggregationType.\n */\n",
+          "docComment": "/**\n * Defines values for PrimaryAggregationType. \\ {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **Average** \\ **Total** \\ **Minimum** \\ **Maximum** \\ **Last**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -11100,7 +12453,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Average\" | \"Total\" | \"Minimum\" | \"Maximum\" | \"Last\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -11913,7 +13266,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PublicNetworkAccess:type",
-          "docComment": "/**\n * Defines values for PublicNetworkAccess.\n */\n",
+          "docComment": "/**\n * Defines values for PublicNetworkAccess. \\ {@link KnownPublicNetworkAccess} can be used interchangeably with PublicNetworkAccess, this enum contains the known values that the service supports. ### Know values supported by the service **Enabled** \\ **Disabled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -11921,7 +13274,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -12141,7 +13494,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!SpatialType:type",
-          "docComment": "/**\n * Defines values for SpatialType.\n */\n",
+          "docComment": "/**\n * Defines values for SpatialType. \\ {@link KnownSpatialType} can be used interchangeably with SpatialType, this enum contains the known values that the service supports. ### Know values supported by the service **Point** \\ **LineString** \\ **Polygon** \\ **MultiPolygon**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -12149,7 +13502,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Point\" | \"LineString\" | \"Polygon\" | \"MultiPolygon\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -15431,7 +16784,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!TriggerOperation:type",
-          "docComment": "/**\n * Defines values for TriggerOperation.\n */\n",
+          "docComment": "/**\n * Defines values for TriggerOperation. \\ {@link KnownTriggerOperation} can be used interchangeably with TriggerOperation, this enum contains the known values that the service supports. ### Know values supported by the service **All** \\ **Create** \\ **Update** \\ **Delete** \\ **Replace**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -15439,7 +16792,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Create\" | \"Update\" | \"Delete\" | \"Replace\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -15456,7 +16809,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!TriggerType:type",
-          "docComment": "/**\n * Defines values for TriggerType.\n */\n",
+          "docComment": "/**\n * Defines values for TriggerType. \\ {@link KnownTriggerType} can be used interchangeably with TriggerType, this enum contains the known values that the service supports. ### Know values supported by the service **Pre** \\ **Post**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -15464,7 +16817,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pre\" | \"Post\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -15568,7 +16921,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!UnitType:type",
-          "docComment": "/**\n * Defines values for UnitType.\n */\n",
+          "docComment": "/**\n * Defines values for UnitType. \\ {@link KnownUnitType} can be used interchangeably with UnitType, this enum contains the known values that the service supports. ### Know values supported by the service **Count** \\ **Bytes** \\ **Seconds** \\ **Percent** \\ **CountPerSecond** \\ **BytesPerSecond** \\ **Milliseconds**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -15576,7 +16929,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Count\" | \"Bytes\" | \"Seconds\" | \"Percent\" | \"CountPerSecond\" | \"BytesPerSecond\" | \"Milliseconds\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

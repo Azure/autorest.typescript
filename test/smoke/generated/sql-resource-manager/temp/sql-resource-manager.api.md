@@ -21,10 +21,10 @@ export interface AdministratorListResult {
 }
 
 // @public
-export type AdministratorName = "ActiveDirectory" | string;
+export type AdministratorName = string;
 
 // @public
-export type AdministratorType = "ActiveDirectory" | string;
+export type AdministratorType = string;
 
 // @public
 export type AuthenticationType = "SQL" | "ADPassword";
@@ -176,13 +176,13 @@ export type CapabilitiesListByLocationResponse = LocationCapabilities & {
 };
 
 // @public
-export type CapabilityGroup = "supportedEditions" | "supportedElasticPoolEditions" | "supportedManagedInstanceVersions" | "supportedInstancePoolEditions" | "supportedManagedInstanceEditions" | string;
+export type CapabilityGroup = string;
 
 // @public
 export type CapabilityStatus = "Visible" | "Available" | "Default" | "Disabled";
 
 // @public
-export type CatalogCollationType = "DATABASE_DEFAULT" | "SQL_Latin1_General_CP1_CI_AS" | string;
+export type CatalogCollationType = string;
 
 // @public
 export type CheckNameAvailabilityReason = "Invalid" | "AlreadyExists";
@@ -209,7 +209,7 @@ export interface CompleteDatabaseRestoreDefinition {
 }
 
 // @public
-export type ConnectionPolicyName = "default" | string;
+export type ConnectionPolicyName = string;
 
 // @public
 export interface CreateDatabaseRestorePointDefinition {
@@ -217,7 +217,7 @@ export interface CreateDatabaseRestorePointDefinition {
 }
 
 // @public
-export type CreateMode = "Default" | "Copy" | "Secondary" | "PointInTimeRestore" | "Restore" | "Recovery" | "RestoreExternalBackup" | "RestoreExternalBackupSecondary" | "RestoreLongTermRetentionBackup" | "OnlineSecondary" | string;
+export type CreateMode = string;
 
 // @public
 export type Database = TrackedResource & {
@@ -335,10 +335,10 @@ export interface DatabaseBlobAuditingPolicyListResult {
 }
 
 // @public
-export type DatabaseEdition = "Web" | "Business" | "Basic" | "Standard" | "Premium" | "PremiumRS" | "Free" | "Stretch" | "DataWarehouse" | "System" | "System2" | "GeneralPurpose" | "BusinessCritical" | "Hyperscale" | string;
+export type DatabaseEdition = string;
 
 // @public
-export type DatabaseLicenseType = "LicenseIncluded" | "BasePrice" | string;
+export type DatabaseLicenseType = string;
 
 // @public
 export interface DatabaseListResult {
@@ -387,7 +387,7 @@ export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResu
 };
 
 // @public
-export type DatabaseReadScale = "Enabled" | "Disabled" | string;
+export type DatabaseReadScale = string;
 
 // @public
 export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
@@ -519,10 +519,10 @@ export type DatabasesResumeResponse = Database & {
 };
 
 // @public
-export type DatabaseState = "All" | "Live" | "Deleted" | string;
+export type DatabaseState = string;
 
 // @public
-export type DatabaseStatus = "Online" | "Restoring" | "RecoveryPending" | "Recovering" | "Suspect" | "Offline" | "Standby" | "Shutdown" | "EmergencyMode" | "AutoClosed" | "Copying" | "Creating" | "Inaccessible" | "OfflineSecondary" | "Pausing" | "Paused" | "Resuming" | "Scaling" | "OfflineChangingDwPerformanceTiers" | "OnlineChangingDwPerformanceTiers" | "Disabled" | string;
+export type DatabaseStatus = string;
 
 // @public
 export type DatabasesUpdateResponse = Database & {
@@ -890,7 +890,7 @@ export interface ElasticPoolDatabaseActivityListResult {
 }
 
 // @public
-export type ElasticPoolEdition = "Basic" | "Standard" | "Premium" | "GeneralPurpose" | "BusinessCritical" | string;
+export type ElasticPoolEdition = string;
 
 // @public
 export interface ElasticPoolEditionCapability {
@@ -902,7 +902,7 @@ export interface ElasticPoolEditionCapability {
 }
 
 // @public
-export type ElasticPoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
+export type ElasticPoolLicenseType = string;
 
 // @public
 export interface ElasticPoolListResult {
@@ -1048,7 +1048,7 @@ export type ElasticPoolsListMetricsResponse = MetricListResult & {
 };
 
 // @public
-export type ElasticPoolState = "Creating" | "Ready" | "Disabled" | string;
+export type ElasticPoolState = string;
 
 // @public
 export type ElasticPoolsUpdateResponse = ElasticPool & {
@@ -1089,7 +1089,7 @@ export interface EncryptionProtectorListResult {
 }
 
 // @public
-export type EncryptionProtectorName = "current" | string;
+export type EncryptionProtectorName = string;
 
 // @public
 export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
@@ -1125,7 +1125,7 @@ export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListRe
 };
 
 // @public
-export type Enum21 = "All" | "Error" | "Warning" | "Success" | string;
+export type Enum21 = string;
 
 // @public
 export interface ExportRequest {
@@ -1243,7 +1243,7 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
 }
 
 // @public
-export type ExtensionName = "import" | string;
+export type ExtensionName = string;
 
 // @public
 export type FailoverGroup = Resource & {
@@ -1277,7 +1277,7 @@ export interface FailoverGroupReadWriteEndpoint {
 }
 
 // @public
-export type FailoverGroupReplicationRole = "Primary" | "Secondary" | string;
+export type FailoverGroupReplicationRole = string;
 
 // @public
 export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
@@ -1424,13 +1424,13 @@ export interface GeoBackupPolicyListResult {
 }
 
 // @public
-export type GeoBackupPolicyName = "Default" | string;
+export type GeoBackupPolicyName = string;
 
 // @public
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
 
 // @public
-export type IdentityType = "SystemAssigned" | string;
+export type IdentityType = string;
 
 // @public
 export type ImportExportResponse = Resource & {
@@ -1499,7 +1499,7 @@ export interface InstanceFailoverGroupReadWriteEndpoint {
 }
 
 // @public
-export type InstanceFailoverGroupReplicationRole = "Primary" | "Secondary" | string;
+export type InstanceFailoverGroupReplicationRole = string;
 
 // @public
 export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup & {
@@ -1578,7 +1578,7 @@ export interface InstancePoolFamilyCapability {
 }
 
 // @public
-export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
+export type InstancePoolLicenseType = string;
 
 // @public
 export interface InstancePoolListResult {
@@ -1714,7 +1714,7 @@ export type JobAgentsListByServerResponse = JobAgentListResult & {
 };
 
 // @public
-export type JobAgentState = "Creating" | "Ready" | "Updating" | "Deleting" | "Disabled" | string;
+export type JobAgentState = string;
 
 // @public
 export type JobAgentsUpdateResponse = JobAgent & {
@@ -1794,7 +1794,7 @@ export type JobExecution = Resource & {
 };
 
 // @public
-export type JobExecutionLifecycle = "Created" | "InProgress" | "WaitingForChildJobExecutions" | "WaitingForRetry" | "Succeeded" | "SucceededWithSkipped" | "Failed" | "TimedOut" | "Canceled" | "Skipped" | string;
+export type JobExecutionLifecycle = string;
 
 // @public
 export interface JobExecutionListResult {
@@ -1979,10 +1979,10 @@ export interface JobStepAction {
 }
 
 // @public
-export type JobStepActionSource = "Inline" | string;
+export type JobStepActionSource = string;
 
 // @public
-export type JobStepActionType = "TSql" | string;
+export type JobStepActionType = string;
 
 // @public
 export interface JobStepExecutionOptions {
@@ -2058,7 +2058,7 @@ export interface JobStepOutput {
 }
 
 // @public
-export type JobStepOutputType = "SqlDatabase" | string;
+export type JobStepOutputType = string;
 
 // @public
 export type JobStepsCreateOrUpdateResponse = JobStep & {
@@ -2258,7 +2258,7 @@ export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
 };
 
 // @public
-export type JobTargetType = "TargetGroup" | "SqlDatabase" | "SqlElasticPool" | "SqlShardMap" | "SqlServer" | string;
+export type JobTargetType = string;
 
 // @public
 export type JobVersion = Resource & {};
@@ -2294,6 +2294,972 @@ export type JobVersionsListByJobResponse = JobVersionListResult & {
 };
 
 // @public
+export const enum KnownAdministratorName {
+    // (undocumented)
+    ActiveDirectory = "ActiveDirectory"
+}
+
+// @public
+export const enum KnownAdministratorType {
+    // (undocumented)
+    ActiveDirectory = "ActiveDirectory"
+}
+
+// @public
+export const enum KnownCapabilityGroup {
+    // (undocumented)
+    SupportedEditions = "supportedEditions",
+    // (undocumented)
+    SupportedElasticPoolEditions = "supportedElasticPoolEditions",
+    // (undocumented)
+    SupportedInstancePoolEditions = "supportedInstancePoolEditions",
+    // (undocumented)
+    SupportedManagedInstanceEditions = "supportedManagedInstanceEditions",
+    // (undocumented)
+    SupportedManagedInstanceVersions = "supportedManagedInstanceVersions"
+}
+
+// @public
+export const enum KnownCatalogCollationType {
+    // (undocumented)
+    DatabaseDefault = "DATABASE_DEFAULT",
+    // (undocumented)
+    SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
+}
+
+// @public
+export const enum KnownConnectionPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownCreateMode {
+    // (undocumented)
+    Copy = "Copy",
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    OnlineSecondary = "OnlineSecondary",
+    // (undocumented)
+    PointInTimeRestore = "PointInTimeRestore",
+    // (undocumented)
+    Recovery = "Recovery",
+    // (undocumented)
+    Restore = "Restore",
+    // (undocumented)
+    RestoreExternalBackup = "RestoreExternalBackup",
+    // (undocumented)
+    RestoreExternalBackupSecondary = "RestoreExternalBackupSecondary",
+    // (undocumented)
+    RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
+    // (undocumented)
+    Secondary = "Secondary"
+}
+
+// @public
+export const enum KnownDatabaseEdition {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    Business = "Business",
+    // (undocumented)
+    BusinessCritical = "BusinessCritical",
+    // (undocumented)
+    DataWarehouse = "DataWarehouse",
+    // (undocumented)
+    Free = "Free",
+    // (undocumented)
+    GeneralPurpose = "GeneralPurpose",
+    // (undocumented)
+    Hyperscale = "Hyperscale",
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    PremiumRS = "PremiumRS",
+    // (undocumented)
+    Standard = "Standard",
+    // (undocumented)
+    Stretch = "Stretch",
+    // (undocumented)
+    System = "System",
+    // (undocumented)
+    System2 = "System2",
+    // (undocumented)
+    Web = "Web"
+}
+
+// @public
+export const enum KnownDatabaseLicenseType {
+    // (undocumented)
+    BasePrice = "BasePrice",
+    // (undocumented)
+    LicenseIncluded = "LicenseIncluded"
+}
+
+// @public
+export const enum KnownDatabaseReadScale {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownDatabaseState {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Deleted = "Deleted",
+    // (undocumented)
+    Live = "Live"
+}
+
+// @public
+export const enum KnownDatabaseStatus {
+    // (undocumented)
+    AutoClosed = "AutoClosed",
+    // (undocumented)
+    Copying = "Copying",
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    EmergencyMode = "EmergencyMode",
+    // (undocumented)
+    Inaccessible = "Inaccessible",
+    // (undocumented)
+    Offline = "Offline",
+    // (undocumented)
+    OfflineChangingDwPerformanceTiers = "OfflineChangingDwPerformanceTiers",
+    // (undocumented)
+    OfflineSecondary = "OfflineSecondary",
+    // (undocumented)
+    Online = "Online",
+    // (undocumented)
+    OnlineChangingDwPerformanceTiers = "OnlineChangingDwPerformanceTiers",
+    // (undocumented)
+    Paused = "Paused",
+    // (undocumented)
+    Pausing = "Pausing",
+    // (undocumented)
+    Recovering = "Recovering",
+    // (undocumented)
+    RecoveryPending = "RecoveryPending",
+    // (undocumented)
+    Restoring = "Restoring",
+    // (undocumented)
+    Resuming = "Resuming",
+    // (undocumented)
+    Scaling = "Scaling",
+    // (undocumented)
+    Shutdown = "Shutdown",
+    // (undocumented)
+    Standby = "Standby",
+    // (undocumented)
+    Suspect = "Suspect"
+}
+
+// @public
+export const enum KnownElasticPoolEdition {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    BusinessCritical = "BusinessCritical",
+    // (undocumented)
+    GeneralPurpose = "GeneralPurpose",
+    // (undocumented)
+    Premium = "Premium",
+    // (undocumented)
+    Standard = "Standard"
+}
+
+// @public
+export const enum KnownElasticPoolLicenseType {
+    // (undocumented)
+    BasePrice = "BasePrice",
+    // (undocumented)
+    LicenseIncluded = "LicenseIncluded"
+}
+
+// @public
+export const enum KnownElasticPoolState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Ready = "Ready"
+}
+
+// @public
+export const enum KnownEncryptionProtectorName {
+    // (undocumented)
+    Current = "current"
+}
+
+// @public
+export const enum KnownEnum21 {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Success = "Success",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
+export const enum KnownExtensionName {
+    // (undocumented)
+    Import = "import"
+}
+
+// @public
+export const enum KnownFailoverGroupReplicationRole {
+    // (undocumented)
+    Primary = "Primary",
+    // (undocumented)
+    Secondary = "Secondary"
+}
+
+// @public
+export const enum KnownGeoBackupPolicyName {
+    // (undocumented)
+    Default = "Default"
+}
+
+// @public
+export const enum KnownIdentityType {
+    // (undocumented)
+    SystemAssigned = "SystemAssigned"
+}
+
+// @public
+export const enum KnownInstanceFailoverGroupReplicationRole {
+    // (undocumented)
+    Primary = "Primary",
+    // (undocumented)
+    Secondary = "Secondary"
+}
+
+// @public
+export const enum KnownInstancePoolLicenseType {
+    // (undocumented)
+    BasePrice = "BasePrice",
+    // (undocumented)
+    LicenseIncluded = "LicenseIncluded"
+}
+
+// @public
+export const enum KnownJobAgentState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
+export const enum KnownJobExecutionLifecycle {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Created = "Created",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Skipped = "Skipped",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    SucceededWithSkipped = "SucceededWithSkipped",
+    // (undocumented)
+    TimedOut = "TimedOut",
+    // (undocumented)
+    WaitingForChildJobExecutions = "WaitingForChildJobExecutions",
+    // (undocumented)
+    WaitingForRetry = "WaitingForRetry"
+}
+
+// @public
+export const enum KnownJobStepActionSource {
+    // (undocumented)
+    Inline = "Inline"
+}
+
+// @public
+export const enum KnownJobStepActionType {
+    // (undocumented)
+    TSql = "TSql"
+}
+
+// @public
+export const enum KnownJobStepOutputType {
+    // (undocumented)
+    SqlDatabase = "SqlDatabase"
+}
+
+// @public
+export const enum KnownJobTargetType {
+    // (undocumented)
+    SqlDatabase = "SqlDatabase",
+    // (undocumented)
+    SqlElasticPool = "SqlElasticPool",
+    // (undocumented)
+    SqlServer = "SqlServer",
+    // (undocumented)
+    SqlShardMap = "SqlShardMap",
+    // (undocumented)
+    TargetGroup = "TargetGroup"
+}
+
+// @public
+export const enum KnownLogSizeUnit {
+    // (undocumented)
+    Gigabytes = "Gigabytes",
+    // (undocumented)
+    Megabytes = "Megabytes",
+    // (undocumented)
+    Percent = "Percent",
+    // (undocumented)
+    Petabytes = "Petabytes",
+    // (undocumented)
+    Terabytes = "Terabytes"
+}
+
+// @public
+export const enum KnownLongTermRetentionDatabaseState {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Deleted = "Deleted",
+    // (undocumented)
+    Live = "Live"
+}
+
+// @public
+export const enum KnownLongTermRetentionPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownManagedDatabaseCreateMode {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    PointInTimeRestore = "PointInTimeRestore",
+    // (undocumented)
+    Recovery = "Recovery",
+    // (undocumented)
+    RestoreExternalBackup = "RestoreExternalBackup",
+    // (undocumented)
+    RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup"
+}
+
+// @public
+export const enum KnownManagedDatabaseStatus {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Inaccessible = "Inaccessible",
+    // (undocumented)
+    Offline = "Offline",
+    // (undocumented)
+    Online = "Online",
+    // (undocumented)
+    Restoring = "Restoring",
+    // (undocumented)
+    Shutdown = "Shutdown",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
+export const enum KnownManagedInstanceAdministratorType {
+    // (undocumented)
+    ActiveDirectory = "ActiveDirectory"
+}
+
+// @public
+export const enum KnownManagedInstanceLicenseType {
+    // (undocumented)
+    BasePrice = "BasePrice",
+    // (undocumented)
+    LicenseIncluded = "LicenseIncluded"
+}
+
+// @public
+export const enum KnownManagedInstanceLongTermRetentionPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownManagedInstanceProxyOverride {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    Proxy = "Proxy",
+    // (undocumented)
+    Redirect = "Redirect"
+}
+
+// @public
+export const enum KnownManagedServerCreateMode {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    PointInTimeRestore = "PointInTimeRestore"
+}
+
+// @public
+export const enum KnownManagedShortTermRetentionPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownManagementOperationState {
+    // (undocumented)
+    CancelInProgress = "CancelInProgress",
+    // (undocumented)
+    Cancelled = "Cancelled",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public
+export const enum KnownMaxSizeUnit {
+    // (undocumented)
+    Gigabytes = "Gigabytes",
+    // (undocumented)
+    Megabytes = "Megabytes",
+    // (undocumented)
+    Petabytes = "Petabytes",
+    // (undocumented)
+    Terabytes = "Terabytes"
+}
+
+// @public
+export const enum KnownOperationOrigin {
+    // (undocumented)
+    System = "system",
+    // (undocumented)
+    User = "user"
+}
+
+// @public
+export const enum KnownPauseDelayTimeUnit {
+    // (undocumented)
+    Minutes = "Minutes"
+}
+
+// @public
+export const enum KnownPerformanceLevelUnit {
+    // (undocumented)
+    DTU = "DTU",
+    // (undocumented)
+    VCores = "VCores"
+}
+
+// @public
+export const enum KnownPrimaryAggregationType {
+    // (undocumented)
+    Average = "Average",
+    // (undocumented)
+    Count = "Count",
+    // (undocumented)
+    Maximum = "Maximum",
+    // (undocumented)
+    Minimum = "Minimum",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    Total = "Total"
+}
+
+// @public
+export const enum KnownPrivateEndpointProvisioningState {
+    // (undocumented)
+    Approving = "Approving",
+    // (undocumented)
+    Dropping = "Dropping",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Rejecting = "Rejecting"
+}
+
+// @public
+export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
+    // (undocumented)
+    None = "None"
+}
+
+// @public
+export const enum KnownPrivateLinkServiceConnectionStateStatus {
+    // (undocumented)
+    Approved = "Approved",
+    // (undocumented)
+    Disconnected = "Disconnected",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    Rejected = "Rejected"
+}
+
+// @public
+export const enum KnownProvisioningState {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Created = "Created",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public
+export const enum KnownReadOnlyEndpointFailoverPolicy {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownReadWriteEndpointFailoverPolicy {
+    // (undocumented)
+    Automatic = "Automatic",
+    // (undocumented)
+    Manual = "Manual"
+}
+
+// @public
+export const enum KnownReplicationState {
+    // (undocumented)
+    CatchUP = "CATCH_UP",
+    // (undocumented)
+    Pending = "PENDING",
+    // (undocumented)
+    Seeding = "SEEDING",
+    // (undocumented)
+    Suspended = "SUSPENDED"
+}
+
+// @public
+export const enum KnownReplicaType {
+    // (undocumented)
+    Primary = "Primary",
+    // (undocumented)
+    ReadableSecondary = "ReadableSecondary"
+}
+
+// @public
+export const enum KnownRestoreDetailsName {
+    // (undocumented)
+    Default = "Default"
+}
+
+// @public
+export const enum KnownSampleName {
+    // (undocumented)
+    AdventureWorksLT = "AdventureWorksLT",
+    // (undocumented)
+    WideWorldImportersFull = "WideWorldImportersFull",
+    // (undocumented)
+    WideWorldImportersStd = "WideWorldImportersStd"
+}
+
+// @public
+export const enum KnownSecurityAlertPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownSecurityAlertPolicyNameAutoGenerated {
+    // (undocumented)
+    Default = "Default"
+}
+
+// @public
+export const enum KnownServerKeyType {
+    // (undocumented)
+    AzureKeyVault = "AzureKeyVault",
+    // (undocumented)
+    ServiceManaged = "ServiceManaged"
+}
+
+// @public
+export const enum KnownServerPublicNetworkAccess {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
+export const enum KnownServiceObjectiveName {
+    // (undocumented)
+    Basic = "Basic",
+    // (undocumented)
+    DS100 = "DS100",
+    // (undocumented)
+    DS1000 = "DS1000",
+    // (undocumented)
+    DS1200 = "DS1200",
+    // (undocumented)
+    DS1500 = "DS1500",
+    // (undocumented)
+    DS200 = "DS200",
+    // (undocumented)
+    DS2000 = "DS2000",
+    // (undocumented)
+    DS300 = "DS300",
+    // (undocumented)
+    DS400 = "DS400",
+    // (undocumented)
+    DS500 = "DS500",
+    // (undocumented)
+    DS600 = "DS600",
+    // (undocumented)
+    DW100 = "DW100",
+    // (undocumented)
+    DW1000 = "DW1000",
+    // (undocumented)
+    DW10000C = "DW10000c",
+    // (undocumented)
+    DW1000C = "DW1000c",
+    // (undocumented)
+    DW1200 = "DW1200",
+    // (undocumented)
+    DW1500 = "DW1500",
+    // (undocumented)
+    DW15000C = "DW15000c",
+    // (undocumented)
+    DW1500C = "DW1500c",
+    // (undocumented)
+    DW200 = "DW200",
+    // (undocumented)
+    DW2000 = "DW2000",
+    // (undocumented)
+    DW2000C = "DW2000c",
+    // (undocumented)
+    DW2500C = "DW2500c",
+    // (undocumented)
+    DW300 = "DW300",
+    // (undocumented)
+    DW3000 = "DW3000",
+    // (undocumented)
+    DW30000C = "DW30000c",
+    // (undocumented)
+    DW3000C = "DW3000c",
+    // (undocumented)
+    DW400 = "DW400",
+    // (undocumented)
+    DW500 = "DW500",
+    // (undocumented)
+    DW5000C = "DW5000c",
+    // (undocumented)
+    DW600 = "DW600",
+    // (undocumented)
+    DW6000 = "DW6000",
+    // (undocumented)
+    DW6000C = "DW6000c",
+    // (undocumented)
+    DW7500C = "DW7500c",
+    // (undocumented)
+    ElasticPool = "ElasticPool",
+    // (undocumented)
+    Free = "Free",
+    // (undocumented)
+    P1 = "P1",
+    // (undocumented)
+    P11 = "P11",
+    // (undocumented)
+    P15 = "P15",
+    // (undocumented)
+    P2 = "P2",
+    // (undocumented)
+    P3 = "P3",
+    // (undocumented)
+    P4 = "P4",
+    // (undocumented)
+    P6 = "P6",
+    // (undocumented)
+    PRS1 = "PRS1",
+    // (undocumented)
+    PRS2 = "PRS2",
+    // (undocumented)
+    PRS4 = "PRS4",
+    // (undocumented)
+    PRS6 = "PRS6",
+    // (undocumented)
+    S0 = "S0",
+    // (undocumented)
+    S1 = "S1",
+    // (undocumented)
+    S12 = "S12",
+    // (undocumented)
+    S2 = "S2",
+    // (undocumented)
+    S3 = "S3",
+    // (undocumented)
+    S4 = "S4",
+    // (undocumented)
+    S6 = "S6",
+    // (undocumented)
+    S7 = "S7",
+    // (undocumented)
+    S9 = "S9",
+    // (undocumented)
+    System = "System",
+    // (undocumented)
+    System0 = "System0",
+    // (undocumented)
+    System1 = "System1",
+    // (undocumented)
+    System2 = "System2",
+    // (undocumented)
+    System2L = "System2L",
+    // (undocumented)
+    System3 = "System3",
+    // (undocumented)
+    System3L = "System3L",
+    // (undocumented)
+    System4 = "System4",
+    // (undocumented)
+    System4L = "System4L"
+}
+
+// @public
+export const enum KnownShortTermRetentionPolicyName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownStorageCapabilityStorageAccountType {
+    // (undocumented)
+    GRS = "GRS",
+    // (undocumented)
+    LRS = "LRS",
+    // (undocumented)
+    ZRS = "ZRS"
+}
+
+// @public
+export const enum KnownSyncAgentState {
+    // (undocumented)
+    NeverConnected = "NeverConnected",
+    // (undocumented)
+    Offline = "Offline",
+    // (undocumented)
+    Online = "Online"
+}
+
+// @public
+export const enum KnownSyncConflictResolutionPolicy {
+    // (undocumented)
+    HubWin = "HubWin",
+    // (undocumented)
+    MemberWin = "MemberWin"
+}
+
+// @public
+export const enum KnownSyncDirection {
+    // (undocumented)
+    Bidirectional = "Bidirectional",
+    // (undocumented)
+    OneWayHubToMember = "OneWayHubToMember",
+    // (undocumented)
+    OneWayMemberToHub = "OneWayMemberToHub"
+}
+
+// @public
+export const enum KnownSyncGroupLogType {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Success = "Success",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
+export const enum KnownSyncGroupState {
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Good = "Good",
+    // (undocumented)
+    NotReady = "NotReady",
+    // (undocumented)
+    Progressing = "Progressing",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
+export const enum KnownSyncMemberDbType {
+    // (undocumented)
+    AzureSqlDatabase = "AzureSqlDatabase",
+    // (undocumented)
+    SqlServerDatabase = "SqlServerDatabase"
+}
+
+// @public
+export const enum KnownSyncMemberState {
+    // (undocumented)
+    DeProvisioned = "DeProvisioned",
+    // (undocumented)
+    DeProvisionFailed = "DeProvisionFailed",
+    // (undocumented)
+    DeProvisioning = "DeProvisioning",
+    // (undocumented)
+    DisabledBackupRestore = "DisabledBackupRestore",
+    // (undocumented)
+    DisabledTombstoneCleanup = "DisabledTombstoneCleanup",
+    // (undocumented)
+    Provisioned = "Provisioned",
+    // (undocumented)
+    ProvisionFailed = "ProvisionFailed",
+    // (undocumented)
+    Provisioning = "Provisioning",
+    // (undocumented)
+    ReprovisionFailed = "ReprovisionFailed",
+    // (undocumented)
+    Reprovisioning = "Reprovisioning",
+    // (undocumented)
+    SyncCancelled = "SyncCancelled",
+    // (undocumented)
+    SyncCancelling = "SyncCancelling",
+    // (undocumented)
+    SyncFailed = "SyncFailed",
+    // (undocumented)
+    SyncInProgress = "SyncInProgress",
+    // (undocumented)
+    SyncSucceeded = "SyncSucceeded",
+    // (undocumented)
+    SyncSucceededWithWarnings = "SyncSucceededWithWarnings",
+    // (undocumented)
+    UnProvisioned = "UnProvisioned",
+    // (undocumented)
+    UnReprovisioned = "UnReprovisioned"
+}
+
+// @public
+export const enum KnownTransparentDataEncryptionActivityStatus {
+    // (undocumented)
+    Decrypting = "Decrypting",
+    // (undocumented)
+    Encrypting = "Encrypting"
+}
+
+// @public
+export const enum KnownTransparentDataEncryptionName {
+    // (undocumented)
+    Current = "current"
+}
+
+// @public
+export const enum KnownUnitDefinitionType {
+    // (undocumented)
+    Bytes = "Bytes",
+    // (undocumented)
+    BytesPerSecond = "BytesPerSecond",
+    // (undocumented)
+    Count = "Count",
+    // (undocumented)
+    CountPerSecond = "CountPerSecond",
+    // (undocumented)
+    Percent = "Percent",
+    // (undocumented)
+    Seconds = "Seconds"
+}
+
+// @public
+export const enum KnownUnitType {
+    // (undocumented)
+    Bytes = "bytes",
+    // (undocumented)
+    BytesPerSecond = "bytesPerSecond",
+    // (undocumented)
+    Count = "count",
+    // (undocumented)
+    CountPerSecond = "countPerSecond",
+    // (undocumented)
+    Percent = "percent",
+    // (undocumented)
+    Seconds = "seconds"
+}
+
+// @public
+export const enum KnownVirtualNetworkRuleState {
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Initializing = "Initializing",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Unknown = "Unknown"
+}
+
+// @public
+export const enum KnownVulnerabilityAssessmentName {
+    // (undocumented)
+    Default = "default"
+}
+
+// @public
+export const enum KnownVulnerabilityAssessmentScanState {
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    FailedToRun = "FailedToRun",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    Passed = "Passed"
+}
+
+// @public
+export const enum KnownVulnerabilityAssessmentScanTriggerType {
+    // (undocumented)
+    OnDemand = "OnDemand",
+    // (undocumented)
+    Recurring = "Recurring"
+}
+
+// @public
 export interface LicenseTypeCapability {
     readonly name?: string;
     reason?: string;
@@ -2322,7 +3288,7 @@ export interface LogSizeCapability {
 }
 
 // @public
-export type LogSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes" | "Percent" | string;
+export type LogSizeUnit = string;
 
 // @public
 export type LongTermRetentionBackup = Resource & {
@@ -2525,7 +3491,7 @@ export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBack
 };
 
 // @public
-export type LongTermRetentionDatabaseState = "All" | "Live" | "Deleted" | string;
+export type LongTermRetentionDatabaseState = string;
 
 // @public
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
@@ -2712,7 +3678,7 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationRe
 };
 
 // @public
-export type LongTermRetentionPolicyName = "default" | string;
+export type LongTermRetentionPolicyName = string;
 
 // @public
 export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -2787,7 +3753,7 @@ export type ManagedDatabase = TrackedResource & {
 };
 
 // @public
-export type ManagedDatabaseCreateMode = "Default" | "RestoreExternalBackup" | "PointInTimeRestore" | "Recovery" | "RestoreLongTermRetentionBackup" | string;
+export type ManagedDatabaseCreateMode = string;
 
 // @public
 export interface ManagedDatabaseListResult {
@@ -2991,7 +3957,7 @@ export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabase
 };
 
 // @public
-export type ManagedDatabaseStatus = "Online" | "Offline" | "Shutdown" | "Creating" | "Inaccessible" | "Restoring" | "Updating" | string;
+export type ManagedDatabaseStatus = string;
 
 // @public
 export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
@@ -3177,7 +4143,7 @@ export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanc
 };
 
 // @public
-export type ManagedInstanceAdministratorType = "ActiveDirectory" | string;
+export type ManagedInstanceAdministratorType = string;
 
 // @public
 export interface ManagedInstanceEditionCapability {
@@ -3304,7 +4270,7 @@ export type ManagedInstanceKeysListByInstanceResponse = ManagedInstanceKeyListRe
 };
 
 // @public
-export type ManagedInstanceLicenseType = "LicenseIncluded" | "BasePrice" | string;
+export type ManagedInstanceLicenseType = string;
 
 // @public
 export interface ManagedInstanceListResult {
@@ -3376,7 +4342,7 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
 }
 
 // @public
-export type ManagedInstanceLongTermRetentionPolicyName = "default" | string;
+export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 // @public
 export type ManagedInstanceOperation = Resource & {
@@ -3432,7 +4398,7 @@ export interface ManagedInstancePairInfo {
 }
 
 // @public
-export type ManagedInstanceProxyOverride = "Proxy" | "Redirect" | "Default" | string;
+export type ManagedInstanceProxyOverride = string;
 
 // @public
 export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
@@ -3645,7 +4611,7 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
 };
 
 // @public
-export type ManagedServerCreateMode = "Default" | "PointInTimeRestore" | string;
+export type ManagedServerCreateMode = string;
 
 // @public
 export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy & {
@@ -3699,10 +4665,10 @@ export interface ManagedServerSecurityAlertPolicyListResult {
 }
 
 // @public
-export type ManagedShortTermRetentionPolicyName = "default" | string;
+export type ManagedShortTermRetentionPolicyName = string;
 
 // @public
-export type ManagementOperationState = "Pending" | "InProgress" | "Succeeded" | "Failed" | "CancelInProgress" | "Cancelled" | string;
+export type ManagementOperationState = string;
 
 // @public
 export interface MaxSizeCapability {
@@ -3721,7 +4687,7 @@ export interface MaxSizeRangeCapability {
 }
 
 // @public
-export type MaxSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes" | string;
+export type MaxSizeUnit = string;
 
 // @public
 export interface Metric {
@@ -3820,7 +4786,7 @@ export interface OperationListResult {
 }
 
 // @public
-export type OperationOrigin = "user" | "system" | string;
+export type OperationOrigin = string;
 
 // @public
 export type OperationsListNextResponse = OperationListResult & {
@@ -3852,7 +4818,7 @@ export interface PartnerRegionInfo {
 }
 
 // @public
-export type PauseDelayTimeUnit = "Minutes" | string;
+export type PauseDelayTimeUnit = string;
 
 // @public
 export interface PerformanceLevelCapability {
@@ -3861,10 +4827,10 @@ export interface PerformanceLevelCapability {
 }
 
 // @public
-export type PerformanceLevelUnit = "DTU" | "VCores" | string;
+export type PerformanceLevelUnit = string;
 
 // @public
-export type PrimaryAggregationType = "None" | "Average" | "Count" | "Minimum" | "Maximum" | "Total" | string;
+export type PrimaryAggregationType = string;
 
 // @public
 export type PrivateEndpointConnection = Resource & {
@@ -3925,7 +4891,7 @@ export interface PrivateEndpointProperty {
 }
 
 // @public
-export type PrivateEndpointProvisioningState = "Approving" | "Ready" | "Dropping" | "Failed" | "Rejecting" | string;
+export type PrivateEndpointProvisioningState = string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -3969,7 +4935,7 @@ export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListRe
 };
 
 // @public
-export type PrivateLinkServiceConnectionStateActionsRequire = "None" | string;
+export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
 // @public (undocumented)
 export interface PrivateLinkServiceConnectionStateProperty {
@@ -3986,16 +4952,16 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
 }
 
 // @public
-export type PrivateLinkServiceConnectionStateStatus = "Approved" | "Pending" | "Rejected" | "Disconnected" | string;
+export type PrivateLinkServiceConnectionStateStatus = string;
 
 // @public
-export type ProvisioningState = "Created" | "InProgress" | "Succeeded" | "Failed" | "Canceled" | string;
+export type ProvisioningState = string;
 
 // @public
 export type ProxyResource = Resource & {};
 
 // @public
-export type ReadOnlyEndpointFailoverPolicy = "Disabled" | "Enabled" | string;
+export type ReadOnlyEndpointFailoverPolicy = string;
 
 // @public
 export interface ReadScaleCapability {
@@ -4005,7 +4971,7 @@ export interface ReadScaleCapability {
 }
 
 // @public
-export type ReadWriteEndpointFailoverPolicy = "Manual" | "Automatic" | string;
+export type ReadWriteEndpointFailoverPolicy = string;
 
 // @public
 export type RecommendedElasticPool = Resource & {
@@ -4192,10 +5158,10 @@ export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult &
 export type ReplicationRole = "Primary" | "Secondary" | "NonReadableSecondary" | "Source" | "Copy";
 
 // @public
-export type ReplicationState = "PENDING" | "SEEDING" | "CATCH_UP" | "SUSPENDED" | string;
+export type ReplicationState = string;
 
 // @public
-export type ReplicaType = "Primary" | "ReadableSecondary" | string;
+export type ReplicaType = string;
 
 // @public
 export interface Resource {
@@ -4289,7 +5255,7 @@ export type RestorableDroppedManagedDatabasesListByInstanceResponse = Restorable
 };
 
 // @public
-export type RestoreDetailsName = "Default" | string;
+export type RestoreDetailsName = string;
 
 // @public
 export type RestorePoint = Resource & {
@@ -4335,16 +5301,16 @@ export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
 export type RestorePointType = "CONTINUOUS" | "DISCRETE";
 
 // @public
-export type SampleName = "AdventureWorksLT" | "WideWorldImportersStd" | "WideWorldImportersFull" | string;
+export type SampleName = string;
 
 // @public
 export type SecurityAlertPolicyEmailAccountAdmins = "Enabled" | "Disabled";
 
 // @public
-export type SecurityAlertPolicyName = "default" | string;
+export type SecurityAlertPolicyName = string;
 
 // @public
-export type SecurityAlertPolicyNameAutoGenerated = "Default" | string;
+export type SecurityAlertPolicyNameAutoGenerated = string;
 
 // @public
 export type SecurityAlertPolicyState = "New" | "Enabled" | "Disabled";
@@ -4754,7 +5720,7 @@ export type ServerKeysListByServerResponse = ServerKeyListResult & {
 };
 
 // @public
-export type ServerKeyType = "ServiceManaged" | "AzureKeyVault" | string;
+export type ServerKeyType = string;
 
 // @public
 export interface ServerListResult {
@@ -4769,7 +5735,7 @@ export interface ServerPrivateEndpointConnection {
 }
 
 // @public
-export type ServerPublicNetworkAccess = "Enabled" | "Disabled" | string;
+export type ServerPublicNetworkAccess = string;
 
 // @public
 export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse & {
@@ -5008,7 +5974,7 @@ export interface ServiceObjectiveListResult {
 }
 
 // @public
-export type ServiceObjectiveName = "System" | "System0" | "System1" | "System2" | "System3" | "System4" | "System2L" | "System3L" | "System4L" | "Free" | "Basic" | "S0" | "S1" | "S2" | "S3" | "S4" | "S6" | "S7" | "S9" | "S12" | "P1" | "P2" | "P3" | "P4" | "P6" | "P11" | "P15" | "PRS1" | "PRS2" | "PRS4" | "PRS6" | "DW100" | "DW200" | "DW300" | "DW400" | "DW500" | "DW600" | "DW1000" | "DW1200" | "DW1000c" | "DW1500" | "DW1500c" | "DW2000" | "DW2000c" | "DW3000" | "DW2500c" | "DW3000c" | "DW6000" | "DW5000c" | "DW6000c" | "DW7500c" | "DW10000c" | "DW15000c" | "DW30000c" | "DS100" | "DS200" | "DS300" | "DS400" | "DS500" | "DS600" | "DS1000" | "DS1200" | "DS1500" | "DS2000" | "ElasticPool" | string;
+export type ServiceObjectiveName = string;
 
 // @public
 export type ServiceObjectivesGetResponse = ServiceObjective & {
@@ -5071,7 +6037,7 @@ export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListRe
 };
 
 // @public
-export type ShortTermRetentionPolicyName = "default" | string;
+export type ShortTermRetentionPolicyName = string;
 
 // @public
 export interface Sku {
@@ -5481,7 +6447,7 @@ export interface StorageCapability {
 }
 
 // @public
-export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS" | string;
+export type StorageCapabilityStorageAccountType = string;
 
 // @public
 export type StorageKeyType = "StorageAccessKey" | "SharedAccessKey";
@@ -5620,10 +6586,10 @@ export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListR
 };
 
 // @public
-export type SyncAgentState = "Online" | "Offline" | "NeverConnected" | string;
+export type SyncAgentState = string;
 
 // @public
-export type SyncConflictResolutionPolicy = "HubWin" | "MemberWin" | string;
+export type SyncConflictResolutionPolicy = string;
 
 // @public
 export interface SyncDatabaseIdListResult {
@@ -5637,7 +6603,7 @@ export interface SyncDatabaseIdProperties {
 }
 
 // @public
-export type SyncDirection = "Bidirectional" | "OneWayMemberToHub" | "OneWayHubToMember" | string;
+export type SyncDirection = string;
 
 // @public
 export interface SyncFullSchemaProperties {
@@ -5706,7 +6672,7 @@ export interface SyncGroupLogProperties {
 }
 
 // @public
-export type SyncGroupLogType = "All" | "Error" | "Warning" | "Success" | string;
+export type SyncGroupLogType = string;
 
 // @public
 export interface SyncGroupSchema {
@@ -5819,7 +6785,7 @@ export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
 };
 
 // @public
-export type SyncGroupState = "NotReady" | "Error" | "Warning" | "Progressing" | "Good" | string;
+export type SyncGroupState = string;
 
 // @public
 export type SyncGroupsUpdateResponse = SyncGroup & {
@@ -5844,7 +6810,7 @@ export type SyncMember = Resource & {
 };
 
 // @public
-export type SyncMemberDbType = "AzureSqlDatabase" | "SqlServerDatabase" | string;
+export type SyncMemberDbType = string;
 
 // @public
 export interface SyncMemberListResult {
@@ -5902,7 +6868,7 @@ export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListR
 };
 
 // @public
-export type SyncMemberState = "SyncInProgress" | "SyncSucceeded" | "SyncFailed" | "DisabledTombstoneCleanup" | "DisabledBackupRestore" | "SyncSucceededWithWarnings" | "SyncCancelling" | "SyncCancelled" | "UnProvisioned" | "Provisioning" | "Provisioned" | "ProvisionFailed" | "DeProvisioning" | "DeProvisioned" | "DeProvisionFailed" | "Reprovisioning" | "ReprovisionFailed" | "UnReprovisioned" | string;
+export type SyncMemberState = string;
 
 // @public
 export type SyncMembersUpdateResponse = SyncMember & {
@@ -5954,10 +6920,10 @@ export interface TransparentDataEncryptionActivityListResult {
 }
 
 // @public
-export type TransparentDataEncryptionActivityStatus = "Encrypting" | "Decrypting" | string;
+export type TransparentDataEncryptionActivityStatus = string;
 
 // @public
-export type TransparentDataEncryptionName = "current" | string;
+export type TransparentDataEncryptionName = string;
 
 // @public
 export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption & {
@@ -5979,10 +6945,10 @@ export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & 
 export type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
 
 // @public
-export type UnitDefinitionType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond" | string;
+export type UnitDefinitionType = string;
 
 // @public
-export type UnitType = "count" | "bytes" | "seconds" | "percent" | "countPerSecond" | "bytesPerSecond" | string;
+export type UnitType = string;
 
 // @public
 export interface UnlinkParameters {
@@ -6151,10 +7117,10 @@ export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResu
 };
 
 // @public
-export type VirtualNetworkRuleState = "Initializing" | "InProgress" | "Ready" | "Deleting" | "Unknown" | string;
+export type VirtualNetworkRuleState = string;
 
 // @public
-export type VulnerabilityAssessmentName = "default" | string;
+export type VulnerabilityAssessmentName = string;
 
 // @public
 export type VulnerabilityAssessmentPolicyBaselineName = "master" | "default";
@@ -6191,10 +7157,10 @@ export interface VulnerabilityAssessmentScanRecordListResult {
 }
 
 // @public
-export type VulnerabilityAssessmentScanState = "Passed" | "Failed" | "FailedToRun" | "InProgress" | string;
+export type VulnerabilityAssessmentScanState = string;
 
 // @public
-export type VulnerabilityAssessmentScanTriggerType = "OnDemand" | "Recurring" | string;
+export type VulnerabilityAssessmentScanTriggerType = string;
 
 // @public
 export type WorkloadClassifier = Resource & {
@@ -6297,7 +7263,7 @@ export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:12501:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:13631:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

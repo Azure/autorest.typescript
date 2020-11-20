@@ -731,111 +731,268 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
 }
 
 /**
- * Defines values for SkuFamily.
+ * Known values of {@link SkuFamily} that the service accepts.
  */
-export type SkuFamily = "A" | string;
+export const enum KnownSkuFamily {
+  A = "A"
+}
+
 /**
- * Defines values for KeyPermissions.
+ * Defines values for SkuFamily. \
+ * {@link KnownSkuFamily} can be used interchangeably with SkuFamily,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **A**
  */
-export type KeyPermissions =
-  | "encrypt"
-  | "decrypt"
-  | "wrapKey"
-  | "unwrapKey"
-  | "sign"
-  | "verify"
-  | "get"
-  | "list"
-  | "create"
-  | "update"
-  | "import"
-  | "delete"
-  | "backup"
-  | "restore"
-  | "recover"
-  | "purge"
-  | string;
+export type SkuFamily = string;
+
 /**
- * Defines values for SecretPermissions.
+ * Known values of {@link KeyPermissions} that the service accepts.
  */
-export type SecretPermissions =
-  | "get"
-  | "list"
-  | "set"
-  | "delete"
-  | "backup"
-  | "restore"
-  | "recover"
-  | "purge"
-  | string;
+export const enum KnownKeyPermissions {
+  Encrypt = "encrypt",
+  Decrypt = "decrypt",
+  WrapKey = "wrapKey",
+  UnwrapKey = "unwrapKey",
+  Sign = "sign",
+  Verify = "verify",
+  Get = "get",
+  List = "list",
+  Create = "create",
+  Update = "update",
+  Import = "import",
+  Delete = "delete",
+  Backup = "backup",
+  Restore = "restore",
+  Recover = "recover",
+  Purge = "purge"
+}
+
 /**
- * Defines values for CertificatePermissions.
+ * Defines values for KeyPermissions. \
+ * {@link KnownKeyPermissions} can be used interchangeably with KeyPermissions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **encrypt** \
+ * **decrypt** \
+ * **wrapKey** \
+ * **unwrapKey** \
+ * **sign** \
+ * **verify** \
+ * **get** \
+ * **list** \
+ * **create** \
+ * **update** \
+ * **import** \
+ * **delete** \
+ * **backup** \
+ * **restore** \
+ * **recover** \
+ * **purge**
  */
-export type CertificatePermissions =
-  | "get"
-  | "list"
-  | "delete"
-  | "create"
-  | "import"
-  | "update"
-  | "managecontacts"
-  | "getissuers"
-  | "listissuers"
-  | "setissuers"
-  | "deleteissuers"
-  | "manageissuers"
-  | "recover"
-  | "purge"
-  | "backup"
-  | "restore"
-  | string;
+export type KeyPermissions = string;
+
 /**
- * Defines values for StoragePermissions.
+ * Known values of {@link SecretPermissions} that the service accepts.
  */
-export type StoragePermissions =
-  | "get"
-  | "list"
-  | "delete"
-  | "set"
-  | "update"
-  | "regeneratekey"
-  | "recover"
-  | "purge"
-  | "backup"
-  | "restore"
-  | "setsas"
-  | "listsas"
-  | "getsas"
-  | "deletesas"
-  | string;
+export const enum KnownSecretPermissions {
+  Get = "get",
+  List = "list",
+  Set = "set",
+  Delete = "delete",
+  Backup = "backup",
+  Restore = "restore",
+  Recover = "recover",
+  Purge = "purge"
+}
+
 /**
- * Defines values for NetworkRuleBypassOptions.
+ * Defines values for SecretPermissions. \
+ * {@link KnownSecretPermissions} can be used interchangeably with SecretPermissions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **get** \
+ * **list** \
+ * **set** \
+ * **delete** \
+ * **backup** \
+ * **restore** \
+ * **recover** \
+ * **purge**
  */
-export type NetworkRuleBypassOptions = "AzureServices" | "None" | string;
+export type SecretPermissions = string;
+
 /**
- * Defines values for NetworkRuleAction.
+ * Known values of {@link CertificatePermissions} that the service accepts.
  */
-export type NetworkRuleAction = "Allow" | "Deny" | string;
+export const enum KnownCertificatePermissions {
+  Get = "get",
+  List = "list",
+  Delete = "delete",
+  Create = "create",
+  Import = "import",
+  Update = "update",
+  Managecontacts = "managecontacts",
+  Getissuers = "getissuers",
+  Listissuers = "listissuers",
+  Setissuers = "setissuers",
+  Deleteissuers = "deleteissuers",
+  Manageissuers = "manageissuers",
+  Recover = "recover",
+  Purge = "purge",
+  Backup = "backup",
+  Restore = "restore"
+}
+
 /**
- * Defines values for PrivateEndpointServiceConnectionStatus.
+ * Defines values for CertificatePermissions. \
+ * {@link KnownCertificatePermissions} can be used interchangeably with CertificatePermissions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **get** \
+ * **list** \
+ * **delete** \
+ * **create** \
+ * **import** \
+ * **update** \
+ * **managecontacts** \
+ * **getissuers** \
+ * **listissuers** \
+ * **setissuers** \
+ * **deleteissuers** \
+ * **manageissuers** \
+ * **recover** \
+ * **purge** \
+ * **backup** \
+ * **restore**
  */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | "Disconnected"
-  | string;
+export type CertificatePermissions = string;
+
 /**
- * Defines values for PrivateEndpointConnectionProvisioningState.
+ * Known values of {@link StoragePermissions} that the service accepts.
  */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Failed"
-  | "Disconnected"
-  | string;
+export const enum KnownStoragePermissions {
+  Get = "get",
+  List = "list",
+  Delete = "delete",
+  Set = "set",
+  Update = "update",
+  Regeneratekey = "regeneratekey",
+  Recover = "recover",
+  Purge = "purge",
+  Backup = "backup",
+  Restore = "restore",
+  Setsas = "setsas",
+  Listsas = "listsas",
+  Getsas = "getsas",
+  Deletesas = "deletesas"
+}
+
+/**
+ * Defines values for StoragePermissions. \
+ * {@link KnownStoragePermissions} can be used interchangeably with StoragePermissions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **get** \
+ * **list** \
+ * **delete** \
+ * **set** \
+ * **update** \
+ * **regeneratekey** \
+ * **recover** \
+ * **purge** \
+ * **backup** \
+ * **restore** \
+ * **setsas** \
+ * **listsas** \
+ * **getsas** \
+ * **deletesas**
+ */
+export type StoragePermissions = string;
+
+/**
+ * Known values of {@link NetworkRuleBypassOptions} that the service accepts.
+ */
+export const enum KnownNetworkRuleBypassOptions {
+  AzureServices = "AzureServices",
+  None = "None"
+}
+
+/**
+ * Defines values for NetworkRuleBypassOptions. \
+ * {@link KnownNetworkRuleBypassOptions} can be used interchangeably with NetworkRuleBypassOptions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AzureServices** \
+ * **None**
+ */
+export type NetworkRuleBypassOptions = string;
+
+/**
+ * Known values of {@link NetworkRuleAction} that the service accepts.
+ */
+export const enum KnownNetworkRuleAction {
+  Allow = "Allow",
+  Deny = "Deny"
+}
+
+/**
+ * Defines values for NetworkRuleAction. \
+ * {@link KnownNetworkRuleAction} can be used interchangeably with NetworkRuleAction,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type NetworkRuleAction = string;
+
+/**
+ * Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts.
+ */
+export const enum KnownPrivateEndpointServiceConnectionStatus {
+  Pending = "Pending",
+  Approved = "Approved",
+  Rejected = "Rejected",
+  Disconnected = "Disconnected"
+}
+
+/**
+ * Defines values for PrivateEndpointServiceConnectionStatus. \
+ * {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Pending** \
+ * **Approved** \
+ * **Rejected** \
+ * **Disconnected**
+ */
+export type PrivateEndpointServiceConnectionStatus = string;
+
+/**
+ * Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts.
+ */
+export const enum KnownPrivateEndpointConnectionProvisioningState {
+  Succeeded = "Succeeded",
+  Creating = "Creating",
+  Updating = "Updating",
+  Deleting = "Deleting",
+  Failed = "Failed",
+  Disconnected = "Disconnected"
+}
+
+/**
+ * Defines values for PrivateEndpointConnectionProvisioningState. \
+ * {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Creating** \
+ * **Updating** \
+ * **Deleting** \
+ * **Failed** \
+ * **Disconnected**
+ */
+export type PrivateEndpointConnectionProvisioningState = string;
 /**
  * Defines values for SkuName.
  */

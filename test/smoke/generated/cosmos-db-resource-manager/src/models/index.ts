@@ -2132,112 +2132,336 @@ export type PrivateLinkResource = ARMProxyResource & {
  * Parameters to create a notebook workspace resource
  */
 export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
+
 /**
- * Defines values for DatabaseAccountKind.
+ * Known values of {@link DatabaseAccountKind} that the service accepts.
  */
-export type DatabaseAccountKind =
-  | "GlobalDocumentDB"
-  | "MongoDB"
-  | "Parse"
-  | string;
+export const enum KnownDatabaseAccountKind {
+  GlobalDocumentDB = "GlobalDocumentDB",
+  MongoDB = "MongoDB",
+  Parse = "Parse"
+}
+
 /**
- * Defines values for ConnectorOffer.
+ * Defines values for DatabaseAccountKind. \
+ * {@link KnownDatabaseAccountKind} can be used interchangeably with DatabaseAccountKind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **GlobalDocumentDB** \
+ * **MongoDB** \
+ * **Parse**
  */
-export type ConnectorOffer = "Small" | string;
+export type DatabaseAccountKind = string;
+
 /**
- * Defines values for PublicNetworkAccess.
+ * Known values of {@link ConnectorOffer} that the service accepts.
  */
-export type PublicNetworkAccess = "Enabled" | "Disabled" | string;
+export const enum KnownConnectorOffer {
+  Small = "Small"
+}
+
 /**
- * Defines values for KeyKind.
+ * Defines values for ConnectorOffer. \
+ * {@link KnownConnectorOffer} can be used interchangeably with ConnectorOffer,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Small**
  */
-export type KeyKind =
-  | "primary"
-  | "secondary"
-  | "primaryReadonly"
-  | "secondaryReadonly"
-  | string;
+export type ConnectorOffer = string;
+
 /**
- * Defines values for UnitType.
+ * Known values of {@link PublicNetworkAccess} that the service accepts.
  */
-export type UnitType =
-  | "Count"
-  | "Bytes"
-  | "Seconds"
-  | "Percent"
-  | "CountPerSecond"
-  | "BytesPerSecond"
-  | "Milliseconds"
-  | string;
+export const enum KnownPublicNetworkAccess {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
 /**
- * Defines values for PrimaryAggregationType.
+ * Defines values for PublicNetworkAccess. \
+ * {@link KnownPublicNetworkAccess} can be used interchangeably with PublicNetworkAccess,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Enabled** \
+ * **Disabled**
  */
-export type PrimaryAggregationType =
-  | "None"
-  | "Average"
-  | "Total"
-  | "Minimum"
-  | "Maximum"
-  | "Last"
-  | string;
+export type PublicNetworkAccess = string;
+
 /**
- * Defines values for IndexingMode.
+ * Known values of {@link KeyKind} that the service accepts.
  */
-export type IndexingMode = "Consistent" | "Lazy" | "None" | string;
+export const enum KnownKeyKind {
+  Primary = "primary",
+  Secondary = "secondary",
+  PrimaryReadonly = "primaryReadonly",
+  SecondaryReadonly = "secondaryReadonly"
+}
+
 /**
- * Defines values for DataType.
+ * Defines values for KeyKind. \
+ * {@link KnownKeyKind} can be used interchangeably with KeyKind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **primary** \
+ * **secondary** \
+ * **primaryReadonly** \
+ * **secondaryReadonly**
  */
-export type DataType =
-  | "String"
-  | "Number"
-  | "Point"
-  | "Polygon"
-  | "LineString"
-  | "MultiPolygon"
-  | string;
+export type KeyKind = string;
+
 /**
- * Defines values for IndexKind.
+ * Known values of {@link UnitType} that the service accepts.
  */
-export type IndexKind = "Hash" | "Range" | "Spatial" | string;
+export const enum KnownUnitType {
+  Count = "Count",
+  Bytes = "Bytes",
+  Seconds = "Seconds",
+  Percent = "Percent",
+  CountPerSecond = "CountPerSecond",
+  BytesPerSecond = "BytesPerSecond",
+  Milliseconds = "Milliseconds"
+}
+
 /**
- * Defines values for CompositePathSortOrder.
+ * Defines values for UnitType. \
+ * {@link KnownUnitType} can be used interchangeably with UnitType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Count** \
+ * **Bytes** \
+ * **Seconds** \
+ * **Percent** \
+ * **CountPerSecond** \
+ * **BytesPerSecond** \
+ * **Milliseconds**
  */
-export type CompositePathSortOrder = "Ascending" | "Descending" | string;
+export type UnitType = string;
+
 /**
- * Defines values for SpatialType.
+ * Known values of {@link PrimaryAggregationType} that the service accepts.
  */
-export type SpatialType =
-  | "Point"
-  | "LineString"
-  | "Polygon"
-  | "MultiPolygon"
-  | string;
+export const enum KnownPrimaryAggregationType {
+  None = "None",
+  Average = "Average",
+  Total = "Total",
+  Minimum = "Minimum",
+  Maximum = "Maximum",
+  Last = "Last"
+}
+
 /**
- * Defines values for PartitionKind.
+ * Defines values for PrimaryAggregationType. \
+ * {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **Average** \
+ * **Total** \
+ * **Minimum** \
+ * **Maximum** \
+ * **Last**
  */
-export type PartitionKind = "Hash" | "Range" | string;
+export type PrimaryAggregationType = string;
+
 /**
- * Defines values for ConflictResolutionMode.
+ * Known values of {@link IndexingMode} that the service accepts.
  */
-export type ConflictResolutionMode = "LastWriterWins" | "Custom" | string;
+export const enum KnownIndexingMode {
+  Consistent = "Consistent",
+  Lazy = "Lazy",
+  None = "None"
+}
+
 /**
- * Defines values for TriggerType.
+ * Defines values for IndexingMode. \
+ * {@link KnownIndexingMode} can be used interchangeably with IndexingMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Consistent** \
+ * **Lazy** \
+ * **None**
  */
-export type TriggerType = "Pre" | "Post" | string;
+export type IndexingMode = string;
+
 /**
- * Defines values for TriggerOperation.
+ * Known values of {@link DataType} that the service accepts.
  */
-export type TriggerOperation =
-  | "All"
-  | "Create"
-  | "Update"
-  | "Delete"
-  | "Replace"
-  | string;
+export const enum KnownDataType {
+  String = "String",
+  Number = "Number",
+  Point = "Point",
+  Polygon = "Polygon",
+  LineString = "LineString",
+  MultiPolygon = "MultiPolygon"
+}
+
 /**
- * Defines values for NotebookWorkspaceName.
+ * Defines values for DataType. \
+ * {@link KnownDataType} can be used interchangeably with DataType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **String** \
+ * **Number** \
+ * **Point** \
+ * **Polygon** \
+ * **LineString** \
+ * **MultiPolygon**
  */
-export type NotebookWorkspaceName = "default" | string;
+export type DataType = string;
+
+/**
+ * Known values of {@link IndexKind} that the service accepts.
+ */
+export const enum KnownIndexKind {
+  Hash = "Hash",
+  Range = "Range",
+  Spatial = "Spatial"
+}
+
+/**
+ * Defines values for IndexKind. \
+ * {@link KnownIndexKind} can be used interchangeably with IndexKind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Hash** \
+ * **Range** \
+ * **Spatial**
+ */
+export type IndexKind = string;
+
+/**
+ * Known values of {@link CompositePathSortOrder} that the service accepts.
+ */
+export const enum KnownCompositePathSortOrder {
+  Ascending = "Ascending",
+  Descending = "Descending"
+}
+
+/**
+ * Defines values for CompositePathSortOrder. \
+ * {@link KnownCompositePathSortOrder} can be used interchangeably with CompositePathSortOrder,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Ascending** \
+ * **Descending**
+ */
+export type CompositePathSortOrder = string;
+
+/**
+ * Known values of {@link SpatialType} that the service accepts.
+ */
+export const enum KnownSpatialType {
+  Point = "Point",
+  LineString = "LineString",
+  Polygon = "Polygon",
+  MultiPolygon = "MultiPolygon"
+}
+
+/**
+ * Defines values for SpatialType. \
+ * {@link KnownSpatialType} can be used interchangeably with SpatialType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Point** \
+ * **LineString** \
+ * **Polygon** \
+ * **MultiPolygon**
+ */
+export type SpatialType = string;
+
+/**
+ * Known values of {@link PartitionKind} that the service accepts.
+ */
+export const enum KnownPartitionKind {
+  Hash = "Hash",
+  Range = "Range"
+}
+
+/**
+ * Defines values for PartitionKind. \
+ * {@link KnownPartitionKind} can be used interchangeably with PartitionKind,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Hash** \
+ * **Range**
+ */
+export type PartitionKind = string;
+
+/**
+ * Known values of {@link ConflictResolutionMode} that the service accepts.
+ */
+export const enum KnownConflictResolutionMode {
+  LastWriterWins = "LastWriterWins",
+  Custom = "Custom"
+}
+
+/**
+ * Defines values for ConflictResolutionMode. \
+ * {@link KnownConflictResolutionMode} can be used interchangeably with ConflictResolutionMode,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **LastWriterWins** \
+ * **Custom**
+ */
+export type ConflictResolutionMode = string;
+
+/**
+ * Known values of {@link TriggerType} that the service accepts.
+ */
+export const enum KnownTriggerType {
+  Pre = "Pre",
+  Post = "Post"
+}
+
+/**
+ * Defines values for TriggerType. \
+ * {@link KnownTriggerType} can be used interchangeably with TriggerType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Pre** \
+ * **Post**
+ */
+export type TriggerType = string;
+
+/**
+ * Known values of {@link TriggerOperation} that the service accepts.
+ */
+export const enum KnownTriggerOperation {
+  All = "All",
+  Create = "Create",
+  Update = "Update",
+  Delete = "Delete",
+  Replace = "Replace"
+}
+
+/**
+ * Defines values for TriggerOperation. \
+ * {@link KnownTriggerOperation} can be used interchangeably with TriggerOperation,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **All** \
+ * **Create** \
+ * **Update** \
+ * **Delete** \
+ * **Replace**
+ */
+export type TriggerOperation = string;
+
+/**
+ * Known values of {@link NotebookWorkspaceName} that the service accepts.
+ */
+export const enum KnownNotebookWorkspaceName {
+  Default = "default"
+}
+
+/**
+ * Defines values for NotebookWorkspaceName. \
+ * {@link KnownNotebookWorkspaceName} can be used interchangeably with NotebookWorkspaceName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **default**
+ */
+export type NotebookWorkspaceName = string;
 /**
  * Defines values for DefaultConsistencyLevel.
  */

@@ -396,31 +396,74 @@ export interface XmlGetHeadersHeaders {
 }
 
 /**
- * Defines values for PublicAccessType.
+ * Known values of {@link PublicAccessType} that the service accepts.
  */
-export type PublicAccessType = "container" | "blob" | string;
+export const enum KnownPublicAccessType {
+  Container = "container",
+  Blob = "blob"
+}
+
 /**
- * Defines values for AccessTier.
+ * Defines values for PublicAccessType. \
+ * {@link KnownPublicAccessType} can be used interchangeably with PublicAccessType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **container** \
+ * **blob**
  */
-export type AccessTier =
-  | "P4"
-  | "P6"
-  | "P10"
-  | "P20"
-  | "P30"
-  | "P40"
-  | "P50"
-  | "Hot"
-  | "Cool"
-  | "Archive"
-  | string;
+export type PublicAccessType = string;
+
 /**
- * Defines values for ArchiveStatus.
+ * Known values of {@link AccessTier} that the service accepts.
  */
-export type ArchiveStatus =
-  | "rehydrate-pending-to-hot"
-  | "rehydrate-pending-to-cool"
-  | string;
+export const enum KnownAccessTier {
+  P4 = "P4",
+  P6 = "P6",
+  P10 = "P10",
+  P20 = "P20",
+  P30 = "P30",
+  P40 = "P40",
+  P50 = "P50",
+  Hot = "Hot",
+  Cool = "Cool",
+  Archive = "Archive"
+}
+
+/**
+ * Defines values for AccessTier. \
+ * {@link KnownAccessTier} can be used interchangeably with AccessTier,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **P4** \
+ * **P6** \
+ * **P10** \
+ * **P20** \
+ * **P30** \
+ * **P40** \
+ * **P50** \
+ * **Hot** \
+ * **Cool** \
+ * **Archive**
+ */
+export type AccessTier = string;
+
+/**
+ * Known values of {@link ArchiveStatus} that the service accepts.
+ */
+export const enum KnownArchiveStatus {
+  RehydratePendingToHot = "rehydrate-pending-to-hot",
+  RehydratePendingToCool = "rehydrate-pending-to-cool"
+}
+
+/**
+ * Defines values for ArchiveStatus. \
+ * {@link KnownArchiveStatus} can be used interchangeably with ArchiveStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **rehydrate-pending-to-hot** \
+ * **rehydrate-pending-to-cool**
+ */
+export type ArchiveStatus = string;
 /**
  * Defines values for LeaseStatusType.
  */

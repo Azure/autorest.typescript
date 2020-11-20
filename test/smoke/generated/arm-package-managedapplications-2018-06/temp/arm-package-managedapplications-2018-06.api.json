@@ -2162,6 +2162,252 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState:enum",
+          "docComment": "/**\n * Known values of {@link ProvisioningState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownProvisioningState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownProvisioningState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Accepted:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Accepted = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Accepted\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Accepted",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Canceled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Canceled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Canceled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Canceled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Created:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Created = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Created\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Created",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Creating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Creating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Creating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Creating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Deleted:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleted = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deleted\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleted",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Deleting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deleting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Ready:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Ready = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Ready\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Ready",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Running:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Running = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Running\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Running",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Succeeded:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Succeeded = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Succeeded\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Succeeded",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Updating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Updating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Updating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Updating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "arm-package-managedapplications-2018-06!Plan:interface",
           "docComment": "/**\n * Plan for the managed application.\n */\n",
@@ -2446,7 +2692,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ProvisioningState:type",
-          "docComment": "/**\n * Defines values for ProvisioningState.\n */\n",
+          "docComment": "/**\n * Defines values for ProvisioningState. \\ {@link KnownProvisioningState} can be used interchangeably with ProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Accepted** \\ **Running** \\ **Ready** \\ **Creating** \\ **Created** \\ **Deleting** \\ **Deleted** \\ **Canceled** \\ **Failed** \\ **Succeeded** \\ **Updating**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2454,7 +2700,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Accepted\" | \"Running\" | \"Ready\" | \"Creating\" | \"Created\" | \"Deleting\" | \"Deleted\" | \"Canceled\" | \"Failed\" | \"Succeeded\" | \"Updating\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

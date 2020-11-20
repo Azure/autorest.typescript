@@ -1740,7 +1740,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem:type",
-          "docComment": "/**\n * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.\n */\n",
+          "docComment": "/**\n * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem. \\ {@link KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem, this enum contains the known values that the service supports. ### Know values supported by the service **RegistrationStatusNotSupportedForRenewal** \\ **ExpirationNotInRenewalTimeRange** \\ **SubscriptionNotActive**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1748,7 +1748,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -1765,7 +1765,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem:type",
-          "docComment": "/**\n * Defines values for AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem.\n */\n",
+          "docComment": "/**\n * Defines values for AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem. \\ {@link KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem, this enum contains the known values that the service supports. ### Know values supported by the service **RegistrationStatusNotSupportedForRenewal** \\ **ExpirationNotInRenewalTimeRange** \\ **SubscriptionNotActive**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1773,7 +1773,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -10558,7 +10558,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!BuildStatus:type",
-          "docComment": "/**\n * Defines values for BuildStatus.\n */\n",
+          "docComment": "/**\n * Defines values for BuildStatus. \\ {@link KnownBuildStatus} can be used interchangeably with BuildStatus, this enum contains the known values that the service supports. ### Know values supported by the service **WaitingForDeployment** \\ **Uploading** \\ **Deploying** \\ **Ready** \\ **Failed** \\ **Deleting** \\ **Detached**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -10566,7 +10566,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"WaitingForDeployment\" | \"Uploading\" | \"Deploying\" | \"Ready\" | \"Failed\" | \"Deleting\" | \"Detached\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -11800,7 +11800,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!CheckNameResourceTypes:type",
-          "docComment": "/**\n * Defines values for CheckNameResourceTypes.\n */\n",
+          "docComment": "/**\n * Defines values for CheckNameResourceTypes. \\ {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes, this enum contains the known values that the service supports. ### Know values supported by the service **Site** \\ **Slot** \\ **HostingEnvironment** \\ **PublishingUser** \\ **Microsoft.Web/sites** \\ **Microsoft.Web/sites/slots** \\ **Microsoft.Web/hostingEnvironments** \\ **Microsoft.Web/publishingUsers**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -11808,7 +11808,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Site\" | \"Slot\" | \"HostingEnvironment\" | \"PublishingUser\" | \"Microsoft.Web/sites\" | \"Microsoft.Web/sites/slots\" | \"Microsoft.Web/hostingEnvironments\" | \"Microsoft.Web/publishingUsers\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -14778,7 +14778,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!DatabaseType:type",
-          "docComment": "/**\n * Defines values for DatabaseType.\n */\n",
+          "docComment": "/**\n * Defines values for DatabaseType. \\ {@link KnownDatabaseType} can be used interchangeably with DatabaseType, this enum contains the known values that the service supports. ### Know values supported by the service **SqlAzure** \\ **MySql** \\ **LocalMySql** \\ **PostgreSql**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -14786,7 +14786,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SqlAzure\" | \"MySql\" | \"LocalMySql\" | \"PostgreSql\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -20347,7 +20347,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!DomainPatchResourcePropertiesDomainNotRenewableReasonsItem:type",
-          "docComment": "/**\n * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem.\n */\n",
+          "docComment": "/**\n * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem. \\ {@link KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPatchResourcePropertiesDomainNotRenewableReasonsItem, this enum contains the known values that the service supports. ### Know values supported by the service **RegistrationStatusNotSupportedForRenewal** \\ **ExpirationNotInRenewalTimeRange** \\ **SubscriptionNotActive**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -20355,7 +20355,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -20372,7 +20372,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!DomainPropertiesDomainNotRenewableReasonsItem:type",
-          "docComment": "/**\n * Defines values for DomainPropertiesDomainNotRenewableReasonsItem.\n */\n",
+          "docComment": "/**\n * Defines values for DomainPropertiesDomainNotRenewableReasonsItem. \\ {@link KnownDomainPropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPropertiesDomainNotRenewableReasonsItem, this enum contains the known values that the service supports. ### Know values supported by the service **RegistrationStatusNotSupportedForRenewal** \\ **ExpirationNotInRenewalTimeRange** \\ **SubscriptionNotActive**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -20380,7 +20380,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -21774,7 +21774,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!Enum4:type",
-          "docComment": "/**\n * Defines values for Enum4.\n */\n",
+          "docComment": "/**\n * Defines values for Enum4. \\ {@link KnownEnum4} can be used interchangeably with Enum4, this enum contains the known values that the service supports. ### Know values supported by the service **Windows** \\ **Linux** \\ **WindowsFunctions** \\ **LinuxFunctions**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -21782,7 +21782,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -21799,7 +21799,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!Enum5:type",
-          "docComment": "/**\n * Defines values for Enum5.\n */\n",
+          "docComment": "/**\n * Defines values for Enum5. \\ {@link KnownEnum5} can be used interchangeably with Enum5, this enum contains the known values that the service supports. ### Know values supported by the service **Windows** \\ **Linux** \\ **WindowsFunctions** \\ **LinuxFunctions**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -21807,7 +21807,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -22199,7 +22199,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!FtpsState:type",
-          "docComment": "/**\n * Defines values for FtpsState.\n */\n",
+          "docComment": "/**\n * Defines values for FtpsState. \\ {@link KnownFtpsState} can be used interchangeably with FtpsState, this enum contains the known values that the service supports. ### Know values supported by the service **AllAllowed** \\ **FtpsOnly** \\ **Disabled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -22207,7 +22207,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AllAllowed\" | \"FtpsOnly\" | \"Disabled\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -23937,7 +23937,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!InAvailabilityReasonType:type",
-          "docComment": "/**\n * Defines values for InAvailabilityReasonType.\n */\n",
+          "docComment": "/**\n * Defines values for InAvailabilityReasonType. \\ {@link KnownInAvailabilityReasonType} can be used interchangeably with InAvailabilityReasonType, this enum contains the known values that the service supports. ### Know values supported by the service **Invalid** \\ **AlreadyExists**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -23945,7 +23945,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Invalid\" | \"AlreadyExists\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -24640,6 +24640,2055 @@
             "startIndex": 1,
             "endIndex": 2
           }
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem:enum",
+          "docComment": "/**\n * Known values of {@link AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.ExpirationNotInRenewalTimeRange:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExpirationNotInRenewalTimeRange = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExpirationNotInRenewalTimeRange\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExpirationNotInRenewalTimeRange",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.RegistrationStatusNotSupportedForRenewal:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "RegistrationStatusNotSupportedForRenewal = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"RegistrationStatusNotSupportedForRenewal\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "RegistrationStatusNotSupportedForRenewal",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.SubscriptionNotActive:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SubscriptionNotActive = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SubscriptionNotActive\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SubscriptionNotActive",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem:enum",
+          "docComment": "/**\n * Known values of {@link AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem.ExpirationNotInRenewalTimeRange:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExpirationNotInRenewalTimeRange = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExpirationNotInRenewalTimeRange\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExpirationNotInRenewalTimeRange",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem.RegistrationStatusNotSupportedForRenewal:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "RegistrationStatusNotSupportedForRenewal = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"RegistrationStatusNotSupportedForRenewal\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "RegistrationStatusNotSupportedForRenewal",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem.SubscriptionNotActive:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SubscriptionNotActive = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SubscriptionNotActive\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SubscriptionNotActive",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownBuildStatus:enum",
+          "docComment": "/**\n * Known values of {@link BuildStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownBuildStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownBuildStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Deleting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deleting = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deleting\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deleting",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Deploying:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Deploying = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Deploying\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Deploying",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Detached:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Detached = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Detached\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Detached",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Ready:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Ready = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Ready\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Ready",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.Uploading:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Uploading = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Uploading\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Uploading",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownBuildStatus.WaitingForDeployment:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WaitingForDeployment = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"WaitingForDeployment\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WaitingForDeployment",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes:enum",
+          "docComment": "/**\n * Known values of {@link CheckNameResourceTypes} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCheckNameResourceTypes "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCheckNameResourceTypes",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.HostingEnvironment:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "HostingEnvironment = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"HostingEnvironment\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "HostingEnvironment",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.MicrosoftWebHostingEnvironments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftWebHostingEnvironments = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Web/hostingEnvironments\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftWebHostingEnvironments",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.MicrosoftWebPublishingUsers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftWebPublishingUsers = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Web/publishingUsers\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftWebPublishingUsers",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.MicrosoftWebSites:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftWebSites = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Web/sites\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftWebSites",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.MicrosoftWebSitesSlots:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MicrosoftWebSitesSlots = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Microsoft.Web/sites/slots\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MicrosoftWebSitesSlots",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.PublishingUser:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PublishingUser = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"PublishingUser\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PublishingUser",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.Site:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Site = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Site\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Site",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownCheckNameResourceTypes.Slot:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Slot = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Slot\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Slot",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownDatabaseType:enum",
+          "docComment": "/**\n * Known values of {@link DatabaseType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDatabaseType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDatabaseType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDatabaseType.LocalMySql:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LocalMySql = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LocalMySql\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LocalMySql",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDatabaseType.MySql:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MySql = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"MySql\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "MySql",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDatabaseType.PostgreSql:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PostgreSql = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"PostgreSql\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PostgreSql",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDatabaseType.SqlAzure:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SqlAzure = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SqlAzure\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SqlAzure",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem:enum",
+          "docComment": "/**\n * Known values of {@link DomainPatchResourcePropertiesDomainNotRenewableReasonsItem} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem.ExpirationNotInRenewalTimeRange:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExpirationNotInRenewalTimeRange = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExpirationNotInRenewalTimeRange\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExpirationNotInRenewalTimeRange",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem.RegistrationStatusNotSupportedForRenewal:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "RegistrationStatusNotSupportedForRenewal = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"RegistrationStatusNotSupportedForRenewal\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "RegistrationStatusNotSupportedForRenewal",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem.SubscriptionNotActive:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SubscriptionNotActive = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SubscriptionNotActive\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SubscriptionNotActive",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownDomainPropertiesDomainNotRenewableReasonsItem:enum",
+          "docComment": "/**\n * Known values of {@link DomainPropertiesDomainNotRenewableReasonsItem} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownDomainPropertiesDomainNotRenewableReasonsItem "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownDomainPropertiesDomainNotRenewableReasonsItem",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPropertiesDomainNotRenewableReasonsItem.ExpirationNotInRenewalTimeRange:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExpirationNotInRenewalTimeRange = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExpirationNotInRenewalTimeRange\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExpirationNotInRenewalTimeRange",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPropertiesDomainNotRenewableReasonsItem.RegistrationStatusNotSupportedForRenewal:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "RegistrationStatusNotSupportedForRenewal = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"RegistrationStatusNotSupportedForRenewal\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "RegistrationStatusNotSupportedForRenewal",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownDomainPropertiesDomainNotRenewableReasonsItem.SubscriptionNotActive:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "SubscriptionNotActive = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"SubscriptionNotActive\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "SubscriptionNotActive",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownEnum4:enum",
+          "docComment": "/**\n * Known values of {@link Enum4} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEnum4 "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEnum4",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum4.Linux:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Linux = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Linux\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Linux",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum4.LinuxFunctions:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LinuxFunctions = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LinuxFunctions\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LinuxFunctions",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum4.Windows:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Windows = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Windows\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Windows",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum4.WindowsFunctions:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WindowsFunctions = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"WindowsFunctions\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WindowsFunctions",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownEnum5:enum",
+          "docComment": "/**\n * Known values of {@link Enum5} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownEnum5 "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownEnum5",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum5.Linux:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Linux = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Linux\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Linux",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum5.LinuxFunctions:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LinuxFunctions = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LinuxFunctions\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LinuxFunctions",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum5.Windows:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Windows = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Windows\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Windows",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownEnum5.WindowsFunctions:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WindowsFunctions = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"WindowsFunctions\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WindowsFunctions",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownFtpsState:enum",
+          "docComment": "/**\n * Known values of {@link FtpsState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownFtpsState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownFtpsState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownFtpsState.AllAllowed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AllAllowed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AllAllowed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AllAllowed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownFtpsState.Disabled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Disabled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Disabled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Disabled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownFtpsState.FtpsOnly:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "FtpsOnly = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"FtpsOnly\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "FtpsOnly",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownInAvailabilityReasonType:enum",
+          "docComment": "/**\n * Known values of {@link InAvailabilityReasonType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownInAvailabilityReasonType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownInAvailabilityReasonType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownInAvailabilityReasonType.AlreadyExists:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AlreadyExists = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AlreadyExists\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AlreadyExists",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownInAvailabilityReasonType.Invalid:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Invalid = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Invalid\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Invalid",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownPublishingProfileFormat:enum",
+          "docComment": "/**\n * Known values of {@link PublishingProfileFormat} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownPublishingProfileFormat "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownPublishingProfileFormat",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownPublishingProfileFormat.FileZilla3:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "FileZilla3 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"FileZilla3\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "FileZilla3",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownPublishingProfileFormat.Ftp:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Ftp = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Ftp\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Ftp",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownPublishingProfileFormat.WebDeploy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WebDeploy = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"WebDeploy\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WebDeploy",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownResourceScopeType:enum",
+          "docComment": "/**\n * Known values of {@link ResourceScopeType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownResourceScopeType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownResourceScopeType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownResourceScopeType.ServerFarm:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ServerFarm = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ServerFarm\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ServerFarm",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownResourceScopeType.Subscription:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Subscription = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Subscription\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Subscription",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownResourceScopeType.WebSite:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "WebSite = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"WebSite\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "WebSite",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownRouteType:enum",
+          "docComment": "/**\n * Known values of {@link RouteType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownRouteType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownRouteType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownRouteType.Default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Default = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"DEFAULT\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Default",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownRouteType.Inherited:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Inherited = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"INHERITED\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Inherited",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownRouteType.Static:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Static = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"STATIC\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Static",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownScmType:enum",
+          "docComment": "/**\n * Known values of {@link ScmType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownScmType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownScmType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.BitbucketGit:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BitbucketGit = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BitbucketGit\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BitbucketGit",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.BitbucketHg:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BitbucketHg = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"BitbucketHg\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "BitbucketHg",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.CodePlexGit:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CodePlexGit = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"CodePlexGit\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "CodePlexGit",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.CodePlexHg:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CodePlexHg = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"CodePlexHg\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "CodePlexHg",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.Dropbox:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Dropbox = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Dropbox\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Dropbox",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.ExternalGit:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExternalGit = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExternalGit\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExternalGit",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.ExternalHg:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ExternalHg = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ExternalHg\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ExternalHg",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.GitHub:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "GitHub = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"GitHub\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "GitHub",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.LocalGit:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "LocalGit = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"LocalGit\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "LocalGit",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.None:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "None = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"None\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "None",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.OneDrive:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "OneDrive = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"OneDrive\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "OneDrive",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.Tfs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Tfs = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Tfs\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Tfs",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.VSO:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "VSO = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"VSO\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "VSO",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownScmType.Vstsrm:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Vstsrm = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"VSTSRM\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Vstsrm",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownSkuName:enum",
+          "docComment": "/**\n * Known values of {@link SkuName} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSkuName "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSkuName",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Basic:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Basic = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Basic\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Basic",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Dynamic:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Dynamic = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Dynamic\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Dynamic",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.ElasticIsolated:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ElasticIsolated = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ElasticIsolated\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ElasticIsolated",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.ElasticPremium:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ElasticPremium = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ElasticPremium\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ElasticPremium",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Free:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Free = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Free\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Free",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Isolated:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Isolated = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Isolated\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Isolated",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Premium:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Premium = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Premium\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Premium",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.PremiumV2:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "PremiumV2 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"PremiumV2\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "PremiumV2",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Shared:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Shared = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Shared\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Shared",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSkuName.Standard:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Standard = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Standard\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Standard",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownSupportedTlsVersions:enum",
+          "docComment": "/**\n * Known values of {@link SupportedTlsVersions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownSupportedTlsVersions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownSupportedTlsVersions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSupportedTlsVersions.One0:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "One0 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"1.0\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "One0",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSupportedTlsVersions.One1:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "One1 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"1.1\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "One1",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownSupportedTlsVersions.One2:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "One2 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"1.2\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "One2",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownTriggerTypes:enum",
+          "docComment": "/**\n * Known values of {@link TriggerTypes} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownTriggerTypes "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownTriggerTypes",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownTriggerTypes.HttpTrigger:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "HttpTrigger = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"HttpTrigger\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "HttpTrigger",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownTriggerTypes.Unknown:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Unknown = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Unknown\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Unknown",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "web-resource-manager!KnownValidateResourceTypes:enum",
+          "docComment": "/**\n * Known values of {@link ValidateResourceTypes} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownValidateResourceTypes "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownValidateResourceTypes",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownValidateResourceTypes.ServerFarm:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ServerFarm = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ServerFarm\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ServerFarm",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "web-resource-manager!KnownValidateResourceTypes.Site:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Site = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Site\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Site",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -29118,7 +31167,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!PublishingProfileFormat:type",
-          "docComment": "/**\n * Defines values for PublishingProfileFormat.\n */\n",
+          "docComment": "/**\n * Defines values for PublishingProfileFormat. \\ {@link KnownPublishingProfileFormat} can be used interchangeably with PublishingProfileFormat, this enum contains the known values that the service supports. ### Know values supported by the service **FileZilla3** \\ **WebDeploy** \\ **Ftp**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -29126,7 +31175,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"FileZilla3\" | \"WebDeploy\" | \"Ftp\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -32699,7 +34748,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!ResourceScopeType:type",
-          "docComment": "/**\n * Defines values for ResourceScopeType.\n */\n",
+          "docComment": "/**\n * Defines values for ResourceScopeType. \\ {@link KnownResourceScopeType} can be used interchangeably with ResourceScopeType, this enum contains the known values that the service supports. ### Know values supported by the service **ServerFarm** \\ **Subscription** \\ **WebSite**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -32707,7 +34756,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ServerFarm\" | \"Subscription\" | \"WebSite\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -32814,7 +34863,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!RouteType:type",
-          "docComment": "/**\n * Defines values for RouteType.\n */\n",
+          "docComment": "/**\n * Defines values for RouteType. \\ {@link KnownRouteType} can be used interchangeably with RouteType, this enum contains the known values that the service supports. ### Know values supported by the service **DEFAULT** \\ **INHERITED** \\ **STATIC**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -32822,7 +34871,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DEFAULT\" | \"INHERITED\" | \"STATIC\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -32839,7 +34888,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!ScmType:type",
-          "docComment": "/**\n * Defines values for ScmType.\n */\n",
+          "docComment": "/**\n * Defines values for ScmType. \\ {@link KnownScmType} can be used interchangeably with ScmType, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **Dropbox** \\ **Tfs** \\ **LocalGit** \\ **GitHub** \\ **CodePlexGit** \\ **CodePlexHg** \\ **BitbucketGit** \\ **BitbucketHg** \\ **ExternalGit** \\ **ExternalHg** \\ **OneDrive** \\ **VSO** \\ **VSTSRM**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -32847,7 +34896,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Dropbox\" | \"Tfs\" | \"LocalGit\" | \"GitHub\" | \"CodePlexGit\" | \"CodePlexHg\" | \"BitbucketGit\" | \"BitbucketHg\" | \"ExternalGit\" | \"ExternalHg\" | \"OneDrive\" | \"VSO\" | \"VSTSRM\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -36541,7 +38590,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!SkuName:type",
-          "docComment": "/**\n * Defines values for SkuName.\n */\n",
+          "docComment": "/**\n * Defines values for SkuName. \\ {@link KnownSkuName} can be used interchangeably with SkuName, this enum contains the known values that the service supports. ### Know values supported by the service **Free** \\ **Shared** \\ **Basic** \\ **Standard** \\ **Premium** \\ **Dynamic** \\ **Isolated** \\ **PremiumV2** \\ **ElasticPremium** \\ **ElasticIsolated**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -36549,7 +38598,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Free\" | \"Shared\" | \"Basic\" | \"Standard\" | \"Premium\" | \"Dynamic\" | \"Isolated\" | \"PremiumV2\" | \"ElasticPremium\" | \"ElasticIsolated\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -40450,7 +42499,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!SupportedTlsVersions:type",
-          "docComment": "/**\n * Defines values for SupportedTlsVersions.\n */\n",
+          "docComment": "/**\n * Defines values for SupportedTlsVersions. \\ {@link KnownSupportedTlsVersions} can be used interchangeably with SupportedTlsVersions, this enum contains the known values that the service supports. ### Know values supported by the service **1.0** \\ **1.1** \\ **1.2**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -40458,7 +42507,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"1.0\" | \"1.1\" | \"1.2\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -41410,7 +43459,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!TriggerTypes:type",
-          "docComment": "/**\n * Defines values for TriggerTypes.\n */\n",
+          "docComment": "/**\n * Defines values for TriggerTypes. \\ {@link KnownTriggerTypes} can be used interchangeably with TriggerTypes, this enum contains the known values that the service supports. ### Know values supported by the service **HttpTrigger** \\ **Unknown**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -41418,7 +43467,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"HttpTrigger\" | \"Unknown\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -42051,7 +44100,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!ValidateResourceTypes:type",
-          "docComment": "/**\n * Defines values for ValidateResourceTypes.\n */\n",
+          "docComment": "/**\n * Defines values for ValidateResourceTypes. \\ {@link KnownValidateResourceTypes} can be used interchangeably with ValidateResourceTypes, this enum contains the known values that the service supports. ### Know values supported by the service **ServerFarm** \\ **Site**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -42059,7 +44108,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ServerFarm\" | \"Site\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

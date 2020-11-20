@@ -8674,164 +8674,440 @@ export type ResourceHealthMetadata = ProxyOnlyResource & {
    */
   signalAvailability?: boolean;
 };
+
 /**
- * Defines values for AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem.
+ * Known values of {@link AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts.
  */
-export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem =
-  | "RegistrationStatusNotSupportedForRenewal"
-  | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive"
-  | string;
+export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
+  RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  SubscriptionNotActive = "SubscriptionNotActive"
+}
+
 /**
- * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.
+ * Defines values for AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem. \
+ * {@link KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RegistrationStatusNotSupportedForRenewal** \
+ * **ExpirationNotInRenewalTimeRange** \
+ * **SubscriptionNotActive**
  */
-export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem =
-  | "RegistrationStatusNotSupportedForRenewal"
-  | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive"
-  | string;
+export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem = string;
+
 /**
- * Defines values for DomainPropertiesDomainNotRenewableReasonsItem.
+ * Known values of {@link AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts.
  */
-export type DomainPropertiesDomainNotRenewableReasonsItem =
-  | "RegistrationStatusNotSupportedForRenewal"
-  | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive"
-  | string;
+export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
+  RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  SubscriptionNotActive = "SubscriptionNotActive"
+}
+
 /**
- * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem.
+ * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem. \
+ * {@link KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RegistrationStatusNotSupportedForRenewal** \
+ * **ExpirationNotInRenewalTimeRange** \
+ * **SubscriptionNotActive**
  */
-export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem =
-  | "RegistrationStatusNotSupportedForRenewal"
-  | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive"
-  | string;
+export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem = string;
+
 /**
- * Defines values for Enum4.
+ * Known values of {@link DomainPropertiesDomainNotRenewableReasonsItem} that the service accepts.
  */
-export type Enum4 =
-  | "Windows"
-  | "Linux"
-  | "WindowsFunctions"
-  | "LinuxFunctions"
-  | string;
+export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
+  RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  SubscriptionNotActive = "SubscriptionNotActive"
+}
+
 /**
- * Defines values for Enum5.
+ * Defines values for DomainPropertiesDomainNotRenewableReasonsItem. \
+ * {@link KnownDomainPropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPropertiesDomainNotRenewableReasonsItem,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RegistrationStatusNotSupportedForRenewal** \
+ * **ExpirationNotInRenewalTimeRange** \
+ * **SubscriptionNotActive**
  */
-export type Enum5 =
-  | "Windows"
-  | "Linux"
-  | "WindowsFunctions"
-  | "LinuxFunctions"
-  | string;
+export type DomainPropertiesDomainNotRenewableReasonsItem = string;
+
 /**
- * Defines values for ResourceScopeType.
+ * Known values of {@link DomainPatchResourcePropertiesDomainNotRenewableReasonsItem} that the service accepts.
  */
-export type ResourceScopeType =
-  | "ServerFarm"
-  | "Subscription"
-  | "WebSite"
-  | string;
+export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
+  RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  SubscriptionNotActive = "SubscriptionNotActive"
+}
+
 /**
- * Defines values for CheckNameResourceTypes.
+ * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem. \
+ * {@link KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPatchResourcePropertiesDomainNotRenewableReasonsItem,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **RegistrationStatusNotSupportedForRenewal** \
+ * **ExpirationNotInRenewalTimeRange** \
+ * **SubscriptionNotActive**
  */
-export type CheckNameResourceTypes =
-  | "Site"
-  | "Slot"
-  | "HostingEnvironment"
-  | "PublishingUser"
-  | "Microsoft.Web/sites"
-  | "Microsoft.Web/sites/slots"
-  | "Microsoft.Web/hostingEnvironments"
-  | "Microsoft.Web/publishingUsers"
-  | string;
+export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem = string;
+
 /**
- * Defines values for InAvailabilityReasonType.
+ * Known values of {@link Enum4} that the service accepts.
  */
-export type InAvailabilityReasonType = "Invalid" | "AlreadyExists" | string;
+export const enum KnownEnum4 {
+  Windows = "Windows",
+  Linux = "Linux",
+  WindowsFunctions = "WindowsFunctions",
+  LinuxFunctions = "LinuxFunctions"
+}
+
 /**
- * Defines values for SkuName.
+ * Defines values for Enum4. \
+ * {@link KnownEnum4} can be used interchangeably with Enum4,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **WindowsFunctions** \
+ * **LinuxFunctions**
  */
-export type SkuName =
-  | "Free"
-  | "Shared"
-  | "Basic"
-  | "Standard"
-  | "Premium"
-  | "Dynamic"
-  | "Isolated"
-  | "PremiumV2"
-  | "ElasticPremium"
-  | "ElasticIsolated"
-  | string;
+export type Enum4 = string;
+
 /**
- * Defines values for ValidateResourceTypes.
+ * Known values of {@link Enum5} that the service accepts.
  */
-export type ValidateResourceTypes = "ServerFarm" | "Site" | string;
+export const enum KnownEnum5 {
+  Windows = "Windows",
+  Linux = "Linux",
+  WindowsFunctions = "WindowsFunctions",
+  LinuxFunctions = "LinuxFunctions"
+}
+
 /**
- * Defines values for ScmType.
+ * Defines values for Enum5. \
+ * {@link KnownEnum5} can be used interchangeably with Enum5,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **WindowsFunctions** \
+ * **LinuxFunctions**
  */
-export type ScmType =
-  | "None"
-  | "Dropbox"
-  | "Tfs"
-  | "LocalGit"
-  | "GitHub"
-  | "CodePlexGit"
-  | "CodePlexHg"
-  | "BitbucketGit"
-  | "BitbucketHg"
-  | "ExternalGit"
-  | "ExternalHg"
-  | "OneDrive"
-  | "VSO"
-  | "VSTSRM"
-  | string;
+export type Enum5 = string;
+
 /**
- * Defines values for SupportedTlsVersions.
+ * Known values of {@link ResourceScopeType} that the service accepts.
  */
-export type SupportedTlsVersions = "1.0" | "1.1" | "1.2" | string;
+export const enum KnownResourceScopeType {
+  ServerFarm = "ServerFarm",
+  Subscription = "Subscription",
+  WebSite = "WebSite"
+}
+
 /**
- * Defines values for FtpsState.
+ * Defines values for ResourceScopeType. \
+ * {@link KnownResourceScopeType} can be used interchangeably with ResourceScopeType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **ServerFarm** \
+ * **Subscription** \
+ * **WebSite**
  */
-export type FtpsState = "AllAllowed" | "FtpsOnly" | "Disabled" | string;
+export type ResourceScopeType = string;
+
 /**
- * Defines values for DatabaseType.
+ * Known values of {@link CheckNameResourceTypes} that the service accepts.
  */
-export type DatabaseType =
-  | "SqlAzure"
-  | "MySql"
-  | "LocalMySql"
-  | "PostgreSql"
-  | string;
+export const enum KnownCheckNameResourceTypes {
+  Site = "Site",
+  Slot = "Slot",
+  HostingEnvironment = "HostingEnvironment",
+  PublishingUser = "PublishingUser",
+  MicrosoftWebSites = "Microsoft.Web/sites",
+  MicrosoftWebSitesSlots = "Microsoft.Web/sites/slots",
+  MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
+  MicrosoftWebPublishingUsers = "Microsoft.Web/publishingUsers"
+}
+
 /**
- * Defines values for RouteType.
+ * Defines values for CheckNameResourceTypes. \
+ * {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Site** \
+ * **Slot** \
+ * **HostingEnvironment** \
+ * **PublishingUser** \
+ * **Microsoft.Web/sites** \
+ * **Microsoft.Web/sites/slots** \
+ * **Microsoft.Web/hostingEnvironments** \
+ * **Microsoft.Web/publishingUsers**
  */
-export type RouteType = "DEFAULT" | "INHERITED" | "STATIC" | string;
+export type CheckNameResourceTypes = string;
+
 /**
- * Defines values for PublishingProfileFormat.
+ * Known values of {@link InAvailabilityReasonType} that the service accepts.
  */
-export type PublishingProfileFormat =
-  | "FileZilla3"
-  | "WebDeploy"
-  | "Ftp"
-  | string;
+export const enum KnownInAvailabilityReasonType {
+  Invalid = "Invalid",
+  AlreadyExists = "AlreadyExists"
+}
+
 /**
- * Defines values for BuildStatus.
+ * Defines values for InAvailabilityReasonType. \
+ * {@link KnownInAvailabilityReasonType} can be used interchangeably with InAvailabilityReasonType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Invalid** \
+ * **AlreadyExists**
  */
-export type BuildStatus =
-  | "WaitingForDeployment"
-  | "Uploading"
-  | "Deploying"
-  | "Ready"
-  | "Failed"
-  | "Deleting"
-  | "Detached"
-  | string;
+export type InAvailabilityReasonType = string;
+
 /**
- * Defines values for TriggerTypes.
+ * Known values of {@link SkuName} that the service accepts.
  */
-export type TriggerTypes = "HttpTrigger" | "Unknown" | string;
+export const enum KnownSkuName {
+  Free = "Free",
+  Shared = "Shared",
+  Basic = "Basic",
+  Standard = "Standard",
+  Premium = "Premium",
+  Dynamic = "Dynamic",
+  Isolated = "Isolated",
+  PremiumV2 = "PremiumV2",
+  ElasticPremium = "ElasticPremium",
+  ElasticIsolated = "ElasticIsolated"
+}
+
+/**
+ * Defines values for SkuName. \
+ * {@link KnownSkuName} can be used interchangeably with SkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Free** \
+ * **Shared** \
+ * **Basic** \
+ * **Standard** \
+ * **Premium** \
+ * **Dynamic** \
+ * **Isolated** \
+ * **PremiumV2** \
+ * **ElasticPremium** \
+ * **ElasticIsolated**
+ */
+export type SkuName = string;
+
+/**
+ * Known values of {@link ValidateResourceTypes} that the service accepts.
+ */
+export const enum KnownValidateResourceTypes {
+  ServerFarm = "ServerFarm",
+  Site = "Site"
+}
+
+/**
+ * Defines values for ValidateResourceTypes. \
+ * {@link KnownValidateResourceTypes} can be used interchangeably with ValidateResourceTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **ServerFarm** \
+ * **Site**
+ */
+export type ValidateResourceTypes = string;
+
+/**
+ * Known values of {@link ScmType} that the service accepts.
+ */
+export const enum KnownScmType {
+  None = "None",
+  Dropbox = "Dropbox",
+  Tfs = "Tfs",
+  LocalGit = "LocalGit",
+  GitHub = "GitHub",
+  CodePlexGit = "CodePlexGit",
+  CodePlexHg = "CodePlexHg",
+  BitbucketGit = "BitbucketGit",
+  BitbucketHg = "BitbucketHg",
+  ExternalGit = "ExternalGit",
+  ExternalHg = "ExternalHg",
+  OneDrive = "OneDrive",
+  VSO = "VSO",
+  Vstsrm = "VSTSRM"
+}
+
+/**
+ * Defines values for ScmType. \
+ * {@link KnownScmType} can be used interchangeably with ScmType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **Dropbox** \
+ * **Tfs** \
+ * **LocalGit** \
+ * **GitHub** \
+ * **CodePlexGit** \
+ * **CodePlexHg** \
+ * **BitbucketGit** \
+ * **BitbucketHg** \
+ * **ExternalGit** \
+ * **ExternalHg** \
+ * **OneDrive** \
+ * **VSO** \
+ * **VSTSRM**
+ */
+export type ScmType = string;
+
+/**
+ * Known values of {@link SupportedTlsVersions} that the service accepts.
+ */
+export const enum KnownSupportedTlsVersions {
+  One0 = "1.0",
+  One1 = "1.1",
+  One2 = "1.2"
+}
+
+/**
+ * Defines values for SupportedTlsVersions. \
+ * {@link KnownSupportedTlsVersions} can be used interchangeably with SupportedTlsVersions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **1.0** \
+ * **1.1** \
+ * **1.2**
+ */
+export type SupportedTlsVersions = string;
+
+/**
+ * Known values of {@link FtpsState} that the service accepts.
+ */
+export const enum KnownFtpsState {
+  AllAllowed = "AllAllowed",
+  FtpsOnly = "FtpsOnly",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for FtpsState. \
+ * {@link KnownFtpsState} can be used interchangeably with FtpsState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AllAllowed** \
+ * **FtpsOnly** \
+ * **Disabled**
+ */
+export type FtpsState = string;
+
+/**
+ * Known values of {@link DatabaseType} that the service accepts.
+ */
+export const enum KnownDatabaseType {
+  SqlAzure = "SqlAzure",
+  MySql = "MySql",
+  LocalMySql = "LocalMySql",
+  PostgreSql = "PostgreSql"
+}
+
+/**
+ * Defines values for DatabaseType. \
+ * {@link KnownDatabaseType} can be used interchangeably with DatabaseType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **SqlAzure** \
+ * **MySql** \
+ * **LocalMySql** \
+ * **PostgreSql**
+ */
+export type DatabaseType = string;
+
+/**
+ * Known values of {@link RouteType} that the service accepts.
+ */
+export const enum KnownRouteType {
+  Default = "DEFAULT",
+  Inherited = "INHERITED",
+  Static = "STATIC"
+}
+
+/**
+ * Defines values for RouteType. \
+ * {@link KnownRouteType} can be used interchangeably with RouteType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **DEFAULT** \
+ * **INHERITED** \
+ * **STATIC**
+ */
+export type RouteType = string;
+
+/**
+ * Known values of {@link PublishingProfileFormat} that the service accepts.
+ */
+export const enum KnownPublishingProfileFormat {
+  FileZilla3 = "FileZilla3",
+  WebDeploy = "WebDeploy",
+  Ftp = "Ftp"
+}
+
+/**
+ * Defines values for PublishingProfileFormat. \
+ * {@link KnownPublishingProfileFormat} can be used interchangeably with PublishingProfileFormat,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **FileZilla3** \
+ * **WebDeploy** \
+ * **Ftp**
+ */
+export type PublishingProfileFormat = string;
+
+/**
+ * Known values of {@link BuildStatus} that the service accepts.
+ */
+export const enum KnownBuildStatus {
+  WaitingForDeployment = "WaitingForDeployment",
+  Uploading = "Uploading",
+  Deploying = "Deploying",
+  Ready = "Ready",
+  Failed = "Failed",
+  Deleting = "Deleting",
+  Detached = "Detached"
+}
+
+/**
+ * Defines values for BuildStatus. \
+ * {@link KnownBuildStatus} can be used interchangeably with BuildStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **WaitingForDeployment** \
+ * **Uploading** \
+ * **Deploying** \
+ * **Ready** \
+ * **Failed** \
+ * **Deleting** \
+ * **Detached**
+ */
+export type BuildStatus = string;
+
+/**
+ * Known values of {@link TriggerTypes} that the service accepts.
+ */
+export const enum KnownTriggerTypes {
+  HttpTrigger = "HttpTrigger",
+  Unknown = "Unknown"
+}
+
+/**
+ * Defines values for TriggerTypes. \
+ * {@link KnownTriggerTypes} can be used interchangeably with TriggerTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **HttpTrigger** \
+ * **Unknown**
+ */
+export type TriggerTypes = string;
 /**
  * Defines values for KeyVaultSecretStatus.
  */

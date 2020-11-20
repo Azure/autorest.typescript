@@ -5525,442 +5525,1176 @@ export type VirtualMachineImage = VirtualMachineImageResource & {
    */
   hyperVGeneration?: HyperVGenerationTypes;
 };
+
 /**
- * Defines values for ProximityPlacementGroupType.
+ * Known values of {@link ProximityPlacementGroupType} that the service accepts.
  */
-export type ProximityPlacementGroupType = "Standard" | "Ultra" | string;
+export const enum KnownProximityPlacementGroupType {
+  Standard = "Standard",
+  Ultra = "Ultra"
+}
+
 /**
- * Defines values for HyperVGenerationTypes.
+ * Defines values for ProximityPlacementGroupType. \
+ * {@link KnownProximityPlacementGroupType} can be used interchangeably with ProximityPlacementGroupType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard** \
+ * **Ultra**
  */
-export type HyperVGenerationTypes = "V1" | "V2" | string;
+export type ProximityPlacementGroupType = string;
+
 /**
- * Defines values for VirtualMachineSizeTypes.
+ * Known values of {@link HyperVGenerationTypes} that the service accepts.
  */
-export type VirtualMachineSizeTypes =
-  | "Basic_A0"
-  | "Basic_A1"
-  | "Basic_A2"
-  | "Basic_A3"
-  | "Basic_A4"
-  | "Standard_A0"
-  | "Standard_A1"
-  | "Standard_A2"
-  | "Standard_A3"
-  | "Standard_A4"
-  | "Standard_A5"
-  | "Standard_A6"
-  | "Standard_A7"
-  | "Standard_A8"
-  | "Standard_A9"
-  | "Standard_A10"
-  | "Standard_A11"
-  | "Standard_A1_v2"
-  | "Standard_A2_v2"
-  | "Standard_A4_v2"
-  | "Standard_A8_v2"
-  | "Standard_A2m_v2"
-  | "Standard_A4m_v2"
-  | "Standard_A8m_v2"
-  | "Standard_B1s"
-  | "Standard_B1ms"
-  | "Standard_B2s"
-  | "Standard_B2ms"
-  | "Standard_B4ms"
-  | "Standard_B8ms"
-  | "Standard_D1"
-  | "Standard_D2"
-  | "Standard_D3"
-  | "Standard_D4"
-  | "Standard_D11"
-  | "Standard_D12"
-  | "Standard_D13"
-  | "Standard_D14"
-  | "Standard_D1_v2"
-  | "Standard_D2_v2"
-  | "Standard_D3_v2"
-  | "Standard_D4_v2"
-  | "Standard_D5_v2"
-  | "Standard_D2_v3"
-  | "Standard_D4_v3"
-  | "Standard_D8_v3"
-  | "Standard_D16_v3"
-  | "Standard_D32_v3"
-  | "Standard_D64_v3"
-  | "Standard_D2s_v3"
-  | "Standard_D4s_v3"
-  | "Standard_D8s_v3"
-  | "Standard_D16s_v3"
-  | "Standard_D32s_v3"
-  | "Standard_D64s_v3"
-  | "Standard_D11_v2"
-  | "Standard_D12_v2"
-  | "Standard_D13_v2"
-  | "Standard_D14_v2"
-  | "Standard_D15_v2"
-  | "Standard_DS1"
-  | "Standard_DS2"
-  | "Standard_DS3"
-  | "Standard_DS4"
-  | "Standard_DS11"
-  | "Standard_DS12"
-  | "Standard_DS13"
-  | "Standard_DS14"
-  | "Standard_DS1_v2"
-  | "Standard_DS2_v2"
-  | "Standard_DS3_v2"
-  | "Standard_DS4_v2"
-  | "Standard_DS5_v2"
-  | "Standard_DS11_v2"
-  | "Standard_DS12_v2"
-  | "Standard_DS13_v2"
-  | "Standard_DS14_v2"
-  | "Standard_DS15_v2"
-  | "Standard_DS13-4_v2"
-  | "Standard_DS13-2_v2"
-  | "Standard_DS14-8_v2"
-  | "Standard_DS14-4_v2"
-  | "Standard_E2_v3"
-  | "Standard_E4_v3"
-  | "Standard_E8_v3"
-  | "Standard_E16_v3"
-  | "Standard_E32_v3"
-  | "Standard_E64_v3"
-  | "Standard_E2s_v3"
-  | "Standard_E4s_v3"
-  | "Standard_E8s_v3"
-  | "Standard_E16s_v3"
-  | "Standard_E32s_v3"
-  | "Standard_E64s_v3"
-  | "Standard_E32-16_v3"
-  | "Standard_E32-8s_v3"
-  | "Standard_E64-32s_v3"
-  | "Standard_E64-16s_v3"
-  | "Standard_F1"
-  | "Standard_F2"
-  | "Standard_F4"
-  | "Standard_F8"
-  | "Standard_F16"
-  | "Standard_F1s"
-  | "Standard_F2s"
-  | "Standard_F4s"
-  | "Standard_F8s"
-  | "Standard_F16s"
-  | "Standard_F2s_v2"
-  | "Standard_F4s_v2"
-  | "Standard_F8s_v2"
-  | "Standard_F16s_v2"
-  | "Standard_F32s_v2"
-  | "Standard_F64s_v2"
-  | "Standard_F72s_v2"
-  | "Standard_G1"
-  | "Standard_G2"
-  | "Standard_G3"
-  | "Standard_G4"
-  | "Standard_G5"
-  | "Standard_GS1"
-  | "Standard_GS2"
-  | "Standard_GS3"
-  | "Standard_GS4"
-  | "Standard_GS5"
-  | "Standard_GS4-8"
-  | "Standard_GS4-4"
-  | "Standard_GS5-16"
-  | "Standard_GS5-8"
-  | "Standard_H8"
-  | "Standard_H16"
-  | "Standard_H8m"
-  | "Standard_H16m"
-  | "Standard_H16r"
-  | "Standard_H16mr"
-  | "Standard_L4s"
-  | "Standard_L8s"
-  | "Standard_L16s"
-  | "Standard_L32s"
-  | "Standard_M64s"
-  | "Standard_M64ms"
-  | "Standard_M128s"
-  | "Standard_M128ms"
-  | "Standard_M64-32ms"
-  | "Standard_M64-16ms"
-  | "Standard_M128-64ms"
-  | "Standard_M128-32ms"
-  | "Standard_NC6"
-  | "Standard_NC12"
-  | "Standard_NC24"
-  | "Standard_NC24r"
-  | "Standard_NC6s_v2"
-  | "Standard_NC12s_v2"
-  | "Standard_NC24s_v2"
-  | "Standard_NC24rs_v2"
-  | "Standard_NC6s_v3"
-  | "Standard_NC12s_v3"
-  | "Standard_NC24s_v3"
-  | "Standard_NC24rs_v3"
-  | "Standard_ND6s"
-  | "Standard_ND12s"
-  | "Standard_ND24s"
-  | "Standard_ND24rs"
-  | "Standard_NV6"
-  | "Standard_NV12"
-  | "Standard_NV24"
-  | string;
+export const enum KnownHyperVGenerationTypes {
+  V1 = "V1",
+  V2 = "V2"
+}
+
 /**
- * Defines values for DiffDiskOptions.
+ * Defines values for HyperVGenerationTypes. \
+ * {@link KnownHyperVGenerationTypes} can be used interchangeably with HyperVGenerationTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **V1** \
+ * **V2**
  */
-export type DiffDiskOptions = "Local" | string;
+export type HyperVGenerationTypes = string;
+
 /**
- * Defines values for DiffDiskPlacement.
+ * Known values of {@link VirtualMachineSizeTypes} that the service accepts.
  */
-export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk" | string;
+export const enum KnownVirtualMachineSizeTypes {
+  BasicA0 = "Basic_A0",
+  BasicA1 = "Basic_A1",
+  BasicA2 = "Basic_A2",
+  BasicA3 = "Basic_A3",
+  BasicA4 = "Basic_A4",
+  StandardA0 = "Standard_A0",
+  StandardA1 = "Standard_A1",
+  StandardA2 = "Standard_A2",
+  StandardA3 = "Standard_A3",
+  StandardA4 = "Standard_A4",
+  StandardA5 = "Standard_A5",
+  StandardA6 = "Standard_A6",
+  StandardA7 = "Standard_A7",
+  StandardA8 = "Standard_A8",
+  StandardA9 = "Standard_A9",
+  StandardA10 = "Standard_A10",
+  StandardA11 = "Standard_A11",
+  StandardA1V2 = "Standard_A1_v2",
+  StandardA2V2 = "Standard_A2_v2",
+  StandardA4V2 = "Standard_A4_v2",
+  StandardA8V2 = "Standard_A8_v2",
+  StandardA2MV2 = "Standard_A2m_v2",
+  StandardA4MV2 = "Standard_A4m_v2",
+  StandardA8MV2 = "Standard_A8m_v2",
+  StandardB1S = "Standard_B1s",
+  StandardB1Ms = "Standard_B1ms",
+  StandardB2S = "Standard_B2s",
+  StandardB2Ms = "Standard_B2ms",
+  StandardB4Ms = "Standard_B4ms",
+  StandardB8Ms = "Standard_B8ms",
+  StandardD1 = "Standard_D1",
+  StandardD2 = "Standard_D2",
+  StandardD3 = "Standard_D3",
+  StandardD4 = "Standard_D4",
+  StandardD11 = "Standard_D11",
+  StandardD12 = "Standard_D12",
+  StandardD13 = "Standard_D13",
+  StandardD14 = "Standard_D14",
+  StandardD1V2 = "Standard_D1_v2",
+  StandardD2V2 = "Standard_D2_v2",
+  StandardD3V2 = "Standard_D3_v2",
+  StandardD4V2 = "Standard_D4_v2",
+  StandardD5V2 = "Standard_D5_v2",
+  StandardD2V3 = "Standard_D2_v3",
+  StandardD4V3 = "Standard_D4_v3",
+  StandardD8V3 = "Standard_D8_v3",
+  StandardD16V3 = "Standard_D16_v3",
+  StandardD32V3 = "Standard_D32_v3",
+  StandardD64V3 = "Standard_D64_v3",
+  StandardD2SV3 = "Standard_D2s_v3",
+  StandardD4SV3 = "Standard_D4s_v3",
+  StandardD8SV3 = "Standard_D8s_v3",
+  StandardD16SV3 = "Standard_D16s_v3",
+  StandardD32SV3 = "Standard_D32s_v3",
+  StandardD64SV3 = "Standard_D64s_v3",
+  StandardD11V2 = "Standard_D11_v2",
+  StandardD12V2 = "Standard_D12_v2",
+  StandardD13V2 = "Standard_D13_v2",
+  StandardD14V2 = "Standard_D14_v2",
+  StandardD15V2 = "Standard_D15_v2",
+  StandardDS1 = "Standard_DS1",
+  StandardDS2 = "Standard_DS2",
+  StandardDS3 = "Standard_DS3",
+  StandardDS4 = "Standard_DS4",
+  StandardDS11 = "Standard_DS11",
+  StandardDS12 = "Standard_DS12",
+  StandardDS13 = "Standard_DS13",
+  StandardDS14 = "Standard_DS14",
+  StandardDS1V2 = "Standard_DS1_v2",
+  StandardDS2V2 = "Standard_DS2_v2",
+  StandardDS3V2 = "Standard_DS3_v2",
+  StandardDS4V2 = "Standard_DS4_v2",
+  StandardDS5V2 = "Standard_DS5_v2",
+  StandardDS11V2 = "Standard_DS11_v2",
+  StandardDS12V2 = "Standard_DS12_v2",
+  StandardDS13V2 = "Standard_DS13_v2",
+  StandardDS14V2 = "Standard_DS14_v2",
+  StandardDS15V2 = "Standard_DS15_v2",
+  StandardDS134V2 = "Standard_DS13-4_v2",
+  StandardDS132V2 = "Standard_DS13-2_v2",
+  StandardDS148V2 = "Standard_DS14-8_v2",
+  StandardDS144V2 = "Standard_DS14-4_v2",
+  StandardE2V3 = "Standard_E2_v3",
+  StandardE4V3 = "Standard_E4_v3",
+  StandardE8V3 = "Standard_E8_v3",
+  StandardE16V3 = "Standard_E16_v3",
+  StandardE32V3 = "Standard_E32_v3",
+  StandardE64V3 = "Standard_E64_v3",
+  StandardE2SV3 = "Standard_E2s_v3",
+  StandardE4SV3 = "Standard_E4s_v3",
+  StandardE8SV3 = "Standard_E8s_v3",
+  StandardE16SV3 = "Standard_E16s_v3",
+  StandardE32SV3 = "Standard_E32s_v3",
+  StandardE64SV3 = "Standard_E64s_v3",
+  StandardE3216V3 = "Standard_E32-16_v3",
+  StandardE328SV3 = "Standard_E32-8s_v3",
+  StandardE6432SV3 = "Standard_E64-32s_v3",
+  StandardE6416SV3 = "Standard_E64-16s_v3",
+  StandardF1 = "Standard_F1",
+  StandardF2 = "Standard_F2",
+  StandardF4 = "Standard_F4",
+  StandardF8 = "Standard_F8",
+  StandardF16 = "Standard_F16",
+  StandardF1S = "Standard_F1s",
+  StandardF2S = "Standard_F2s",
+  StandardF4S = "Standard_F4s",
+  StandardF8S = "Standard_F8s",
+  StandardF16S = "Standard_F16s",
+  StandardF2SV2 = "Standard_F2s_v2",
+  StandardF4SV2 = "Standard_F4s_v2",
+  StandardF8SV2 = "Standard_F8s_v2",
+  StandardF16SV2 = "Standard_F16s_v2",
+  StandardF32SV2 = "Standard_F32s_v2",
+  StandardF64SV2 = "Standard_F64s_v2",
+  StandardF72SV2 = "Standard_F72s_v2",
+  StandardG1 = "Standard_G1",
+  StandardG2 = "Standard_G2",
+  StandardG3 = "Standard_G3",
+  StandardG4 = "Standard_G4",
+  StandardG5 = "Standard_G5",
+  StandardGS1 = "Standard_GS1",
+  StandardGS2 = "Standard_GS2",
+  StandardGS3 = "Standard_GS3",
+  StandardGS4 = "Standard_GS4",
+  StandardGS5 = "Standard_GS5",
+  StandardGS48 = "Standard_GS4-8",
+  StandardGS44 = "Standard_GS4-4",
+  StandardGS516 = "Standard_GS5-16",
+  StandardGS58 = "Standard_GS5-8",
+  StandardH8 = "Standard_H8",
+  StandardH16 = "Standard_H16",
+  StandardH8M = "Standard_H8m",
+  StandardH16M = "Standard_H16m",
+  StandardH16R = "Standard_H16r",
+  StandardH16Mr = "Standard_H16mr",
+  StandardL4S = "Standard_L4s",
+  StandardL8S = "Standard_L8s",
+  StandardL16S = "Standard_L16s",
+  StandardL32S = "Standard_L32s",
+  StandardM64S = "Standard_M64s",
+  StandardM64Ms = "Standard_M64ms",
+  StandardM128S = "Standard_M128s",
+  StandardM128Ms = "Standard_M128ms",
+  StandardM6432Ms = "Standard_M64-32ms",
+  StandardM6416Ms = "Standard_M64-16ms",
+  StandardM12864Ms = "Standard_M128-64ms",
+  StandardM12832Ms = "Standard_M128-32ms",
+  StandardNC6 = "Standard_NC6",
+  StandardNC12 = "Standard_NC12",
+  StandardNC24 = "Standard_NC24",
+  StandardNC24R = "Standard_NC24r",
+  StandardNC6SV2 = "Standard_NC6s_v2",
+  StandardNC12SV2 = "Standard_NC12s_v2",
+  StandardNC24SV2 = "Standard_NC24s_v2",
+  StandardNC24RsV2 = "Standard_NC24rs_v2",
+  StandardNC6SV3 = "Standard_NC6s_v3",
+  StandardNC12SV3 = "Standard_NC12s_v3",
+  StandardNC24SV3 = "Standard_NC24s_v3",
+  StandardNC24RsV3 = "Standard_NC24rs_v3",
+  StandardND6S = "Standard_ND6s",
+  StandardND12S = "Standard_ND12s",
+  StandardND24S = "Standard_ND24s",
+  StandardND24Rs = "Standard_ND24rs",
+  StandardNV6 = "Standard_NV6",
+  StandardNV12 = "Standard_NV12",
+  StandardNV24 = "Standard_NV24"
+}
+
 /**
- * Defines values for DiskCreateOptionTypes.
+ * Defines values for VirtualMachineSizeTypes. \
+ * {@link KnownVirtualMachineSizeTypes} can be used interchangeably with VirtualMachineSizeTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Basic_A0** \
+ * **Basic_A1** \
+ * **Basic_A2** \
+ * **Basic_A3** \
+ * **Basic_A4** \
+ * **Standard_A0** \
+ * **Standard_A1** \
+ * **Standard_A2** \
+ * **Standard_A3** \
+ * **Standard_A4** \
+ * **Standard_A5** \
+ * **Standard_A6** \
+ * **Standard_A7** \
+ * **Standard_A8** \
+ * **Standard_A9** \
+ * **Standard_A10** \
+ * **Standard_A11** \
+ * **Standard_A1_v2** \
+ * **Standard_A2_v2** \
+ * **Standard_A4_v2** \
+ * **Standard_A8_v2** \
+ * **Standard_A2m_v2** \
+ * **Standard_A4m_v2** \
+ * **Standard_A8m_v2** \
+ * **Standard_B1s** \
+ * **Standard_B1ms** \
+ * **Standard_B2s** \
+ * **Standard_B2ms** \
+ * **Standard_B4ms** \
+ * **Standard_B8ms** \
+ * **Standard_D1** \
+ * **Standard_D2** \
+ * **Standard_D3** \
+ * **Standard_D4** \
+ * **Standard_D11** \
+ * **Standard_D12** \
+ * **Standard_D13** \
+ * **Standard_D14** \
+ * **Standard_D1_v2** \
+ * **Standard_D2_v2** \
+ * **Standard_D3_v2** \
+ * **Standard_D4_v2** \
+ * **Standard_D5_v2** \
+ * **Standard_D2_v3** \
+ * **Standard_D4_v3** \
+ * **Standard_D8_v3** \
+ * **Standard_D16_v3** \
+ * **Standard_D32_v3** \
+ * **Standard_D64_v3** \
+ * **Standard_D2s_v3** \
+ * **Standard_D4s_v3** \
+ * **Standard_D8s_v3** \
+ * **Standard_D16s_v3** \
+ * **Standard_D32s_v3** \
+ * **Standard_D64s_v3** \
+ * **Standard_D11_v2** \
+ * **Standard_D12_v2** \
+ * **Standard_D13_v2** \
+ * **Standard_D14_v2** \
+ * **Standard_D15_v2** \
+ * **Standard_DS1** \
+ * **Standard_DS2** \
+ * **Standard_DS3** \
+ * **Standard_DS4** \
+ * **Standard_DS11** \
+ * **Standard_DS12** \
+ * **Standard_DS13** \
+ * **Standard_DS14** \
+ * **Standard_DS1_v2** \
+ * **Standard_DS2_v2** \
+ * **Standard_DS3_v2** \
+ * **Standard_DS4_v2** \
+ * **Standard_DS5_v2** \
+ * **Standard_DS11_v2** \
+ * **Standard_DS12_v2** \
+ * **Standard_DS13_v2** \
+ * **Standard_DS14_v2** \
+ * **Standard_DS15_v2** \
+ * **Standard_DS13-4_v2** \
+ * **Standard_DS13-2_v2** \
+ * **Standard_DS14-8_v2** \
+ * **Standard_DS14-4_v2** \
+ * **Standard_E2_v3** \
+ * **Standard_E4_v3** \
+ * **Standard_E8_v3** \
+ * **Standard_E16_v3** \
+ * **Standard_E32_v3** \
+ * **Standard_E64_v3** \
+ * **Standard_E2s_v3** \
+ * **Standard_E4s_v3** \
+ * **Standard_E8s_v3** \
+ * **Standard_E16s_v3** \
+ * **Standard_E32s_v3** \
+ * **Standard_E64s_v3** \
+ * **Standard_E32-16_v3** \
+ * **Standard_E32-8s_v3** \
+ * **Standard_E64-32s_v3** \
+ * **Standard_E64-16s_v3** \
+ * **Standard_F1** \
+ * **Standard_F2** \
+ * **Standard_F4** \
+ * **Standard_F8** \
+ * **Standard_F16** \
+ * **Standard_F1s** \
+ * **Standard_F2s** \
+ * **Standard_F4s** \
+ * **Standard_F8s** \
+ * **Standard_F16s** \
+ * **Standard_F2s_v2** \
+ * **Standard_F4s_v2** \
+ * **Standard_F8s_v2** \
+ * **Standard_F16s_v2** \
+ * **Standard_F32s_v2** \
+ * **Standard_F64s_v2** \
+ * **Standard_F72s_v2** \
+ * **Standard_G1** \
+ * **Standard_G2** \
+ * **Standard_G3** \
+ * **Standard_G4** \
+ * **Standard_G5** \
+ * **Standard_GS1** \
+ * **Standard_GS2** \
+ * **Standard_GS3** \
+ * **Standard_GS4** \
+ * **Standard_GS5** \
+ * **Standard_GS4-8** \
+ * **Standard_GS4-4** \
+ * **Standard_GS5-16** \
+ * **Standard_GS5-8** \
+ * **Standard_H8** \
+ * **Standard_H16** \
+ * **Standard_H8m** \
+ * **Standard_H16m** \
+ * **Standard_H16r** \
+ * **Standard_H16mr** \
+ * **Standard_L4s** \
+ * **Standard_L8s** \
+ * **Standard_L16s** \
+ * **Standard_L32s** \
+ * **Standard_M64s** \
+ * **Standard_M64ms** \
+ * **Standard_M128s** \
+ * **Standard_M128ms** \
+ * **Standard_M64-32ms** \
+ * **Standard_M64-16ms** \
+ * **Standard_M128-64ms** \
+ * **Standard_M128-32ms** \
+ * **Standard_NC6** \
+ * **Standard_NC12** \
+ * **Standard_NC24** \
+ * **Standard_NC24r** \
+ * **Standard_NC6s_v2** \
+ * **Standard_NC12s_v2** \
+ * **Standard_NC24s_v2** \
+ * **Standard_NC24rs_v2** \
+ * **Standard_NC6s_v3** \
+ * **Standard_NC12s_v3** \
+ * **Standard_NC24s_v3** \
+ * **Standard_NC24rs_v3** \
+ * **Standard_ND6s** \
+ * **Standard_ND12s** \
+ * **Standard_ND24s** \
+ * **Standard_ND24rs** \
+ * **Standard_NV6** \
+ * **Standard_NV12** \
+ * **Standard_NV24**
  */
-export type DiskCreateOptionTypes = "FromImage" | "Empty" | "Attach" | string;
+export type VirtualMachineSizeTypes = string;
+
 /**
- * Defines values for StorageAccountTypes.
+ * Known values of {@link DiffDiskOptions} that the service accepts.
  */
-export type StorageAccountTypes =
-  | "Standard_LRS"
-  | "Premium_LRS"
-  | "StandardSSD_LRS"
-  | "UltraSSD_LRS"
-  | string;
+export const enum KnownDiffDiskOptions {
+  Local = "Local"
+}
+
 /**
- * Defines values for VirtualMachinePriorityTypes.
+ * Defines values for DiffDiskOptions. \
+ * {@link KnownDiffDiskOptions} can be used interchangeably with DiffDiskOptions,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Local**
  */
-export type VirtualMachinePriorityTypes = "Regular" | "Low" | "Spot" | string;
+export type DiffDiskOptions = string;
+
 /**
- * Defines values for VirtualMachineEvictionPolicyTypes.
+ * Known values of {@link DiffDiskPlacement} that the service accepts.
  */
-export type VirtualMachineEvictionPolicyTypes =
-  | "Deallocate"
-  | "Delete"
-  | string;
+export const enum KnownDiffDiskPlacement {
+  CacheDisk = "CacheDisk",
+  ResourceDisk = "ResourceDisk"
+}
+
 /**
- * Defines values for HyperVGenerationType.
+ * Defines values for DiffDiskPlacement. \
+ * {@link KnownDiffDiskPlacement} can be used interchangeably with DiffDiskPlacement,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **CacheDisk** \
+ * **ResourceDisk**
  */
-export type HyperVGenerationType = "V1" | "V2" | string;
+export type DiffDiskPlacement = string;
+
 /**
- * Defines values for IPVersion.
+ * Known values of {@link DiskCreateOptionTypes} that the service accepts.
  */
-export type IPVersion = "IPv4" | "IPv6" | string;
+export const enum KnownDiskCreateOptionTypes {
+  FromImage = "FromImage",
+  Empty = "Empty",
+  Attach = "Attach"
+}
+
 /**
- * Defines values for VirtualMachineScaleSetScaleInRules.
+ * Defines values for DiskCreateOptionTypes. \
+ * {@link KnownDiskCreateOptionTypes} can be used interchangeably with DiskCreateOptionTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **FromImage** \
+ * **Empty** \
+ * **Attach**
  */
-export type VirtualMachineScaleSetScaleInRules =
-  | "Default"
-  | "OldestVM"
-  | "NewestVM"
-  | string;
+export type DiskCreateOptionTypes = string;
+
 /**
- * Defines values for OrchestrationServiceNames.
+ * Known values of {@link StorageAccountTypes} that the service accepts.
  */
-export type OrchestrationServiceNames = "AutomaticRepairs" | string;
+export const enum KnownStorageAccountTypes {
+  StandardLRS = "Standard_LRS",
+  PremiumLRS = "Premium_LRS",
+  StandardSSDLRS = "StandardSSD_LRS",
+  UltraSSDLRS = "UltraSSD_LRS"
+}
+
 /**
- * Defines values for OrchestrationServiceState.
+ * Defines values for StorageAccountTypes. \
+ * {@link KnownStorageAccountTypes} can be used interchangeably with StorageAccountTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_LRS** \
+ * **Premium_LRS** \
+ * **StandardSSD_LRS** \
+ * **UltraSSD_LRS**
  */
-export type OrchestrationServiceState =
-  | "NotRunning"
-  | "Running"
-  | "Suspended"
-  | string;
+export type StorageAccountTypes = string;
+
 /**
- * Defines values for OrchestrationServiceStateAction.
+ * Known values of {@link VirtualMachinePriorityTypes} that the service accepts.
  */
-export type OrchestrationServiceStateAction = "Resume" | "Suspend" | string;
+export const enum KnownVirtualMachinePriorityTypes {
+  Regular = "Regular",
+  Low = "Low",
+  Spot = "Spot"
+}
+
 /**
- * Defines values for DiskStorageAccountTypes.
+ * Defines values for VirtualMachinePriorityTypes. \
+ * {@link KnownVirtualMachinePriorityTypes} can be used interchangeably with VirtualMachinePriorityTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Regular** \
+ * **Low** \
+ * **Spot**
  */
-export type DiskStorageAccountTypes =
-  | "Standard_LRS"
-  | "Premium_LRS"
-  | "StandardSSD_LRS"
-  | "UltraSSD_LRS"
-  | string;
+export type VirtualMachinePriorityTypes = string;
+
 /**
- * Defines values for HyperVGeneration.
+ * Known values of {@link VirtualMachineEvictionPolicyTypes} that the service accepts.
  */
-export type HyperVGeneration = "V1" | "V2" | string;
+export const enum KnownVirtualMachineEvictionPolicyTypes {
+  Deallocate = "Deallocate",
+  Delete = "Delete"
+}
+
 /**
- * Defines values for DiskCreateOption.
+ * Defines values for VirtualMachineEvictionPolicyTypes. \
+ * {@link KnownVirtualMachineEvictionPolicyTypes} can be used interchangeably with VirtualMachineEvictionPolicyTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Deallocate** \
+ * **Delete**
  */
-export type DiskCreateOption =
-  | "Empty"
-  | "Attach"
-  | "FromImage"
-  | "Import"
-  | "Copy"
-  | "Restore"
-  | "Upload"
-  | string;
+export type VirtualMachineEvictionPolicyTypes = string;
+
 /**
- * Defines values for DiskState.
+ * Known values of {@link HyperVGenerationType} that the service accepts.
  */
-export type DiskState =
-  | "Unattached"
-  | "Attached"
-  | "Reserved"
-  | "ActiveSAS"
-  | "ReadyToUpload"
-  | "ActiveUpload"
-  | string;
+export const enum KnownHyperVGenerationType {
+  V1 = "V1",
+  V2 = "V2"
+}
+
 /**
- * Defines values for EncryptionType.
+ * Defines values for HyperVGenerationType. \
+ * {@link KnownHyperVGenerationType} can be used interchangeably with HyperVGenerationType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **V1** \
+ * **V2**
  */
-export type EncryptionType =
-  | "EncryptionAtRestWithPlatformKey"
-  | "EncryptionAtRestWithCustomerKey"
-  | string;
+export type HyperVGenerationType = string;
+
 /**
- * Defines values for AccessLevel.
+ * Known values of {@link IPVersion} that the service accepts.
  */
-export type AccessLevel = "None" | "Read" | "Write" | string;
+export const enum KnownIPVersion {
+  IPv4 = "IPv4",
+  IPv6 = "IPv6"
+}
+
 /**
- * Defines values for SnapshotStorageAccountTypes.
+ * Defines values for IPVersion. \
+ * {@link KnownIPVersion} can be used interchangeably with IPVersion,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **IPv4** \
+ * **IPv6**
  */
-export type SnapshotStorageAccountTypes =
-  | "Standard_LRS"
-  | "Premium_LRS"
-  | "Standard_ZRS"
-  | string;
+export type IPVersion = string;
+
 /**
- * Defines values for DiskEncryptionSetIdentityType.
+ * Known values of {@link VirtualMachineScaleSetScaleInRules} that the service accepts.
  */
-export type DiskEncryptionSetIdentityType = "SystemAssigned" | string;
+export const enum KnownVirtualMachineScaleSetScaleInRules {
+  Default = "Default",
+  OldestVM = "OldestVM",
+  NewestVM = "NewestVM"
+}
+
 /**
- * Defines values for GalleryPropertiesProvisioningState.
+ * Defines values for VirtualMachineScaleSetScaleInRules. \
+ * {@link KnownVirtualMachineScaleSetScaleInRules} can be used interchangeably with VirtualMachineScaleSetScaleInRules,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Default** \
+ * **OldestVM** \
+ * **NewestVM**
  */
-export type GalleryPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Failed"
-  | "Succeeded"
-  | "Deleting"
-  | "Migrating"
-  | string;
+export type VirtualMachineScaleSetScaleInRules = string;
+
 /**
- * Defines values for GalleryImagePropertiesProvisioningState.
+ * Known values of {@link OrchestrationServiceNames} that the service accepts.
  */
-export type GalleryImagePropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Failed"
-  | "Succeeded"
-  | "Deleting"
-  | "Migrating"
-  | string;
+export const enum KnownOrchestrationServiceNames {
+  AutomaticRepairs = "AutomaticRepairs"
+}
+
 /**
- * Defines values for StorageAccountType.
+ * Defines values for OrchestrationServiceNames. \
+ * {@link KnownOrchestrationServiceNames} can be used interchangeably with OrchestrationServiceNames,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **AutomaticRepairs**
  */
-export type StorageAccountType =
-  | "Standard_LRS"
-  | "Standard_ZRS"
-  | "Premium_LRS"
-  | string;
+export type OrchestrationServiceNames = string;
+
 /**
- * Defines values for GalleryImageVersionPropertiesProvisioningState.
+ * Known values of {@link OrchestrationServiceState} that the service accepts.
  */
-export type GalleryImageVersionPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Failed"
-  | "Succeeded"
-  | "Deleting"
-  | "Migrating"
-  | string;
+export const enum KnownOrchestrationServiceState {
+  NotRunning = "NotRunning",
+  Running = "Running",
+  Suspended = "Suspended"
+}
+
 /**
- * Defines values for AggregatedReplicationState.
+ * Defines values for OrchestrationServiceState. \
+ * {@link KnownOrchestrationServiceState} can be used interchangeably with OrchestrationServiceState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **NotRunning** \
+ * **Running** \
+ * **Suspended**
  */
-export type AggregatedReplicationState =
-  | "Unknown"
-  | "InProgress"
-  | "Completed"
-  | "Failed"
-  | string;
+export type OrchestrationServiceState = string;
+
 /**
- * Defines values for ReplicationState.
+ * Known values of {@link OrchestrationServiceStateAction} that the service accepts.
  */
-export type ReplicationState =
-  | "Unknown"
-  | "Replicating"
-  | "Completed"
-  | "Failed"
-  | string;
+export const enum KnownOrchestrationServiceStateAction {
+  Resume = "Resume",
+  Suspend = "Suspend"
+}
+
 /**
- * Defines values for ReplicationStatusTypes.
+ * Defines values for OrchestrationServiceStateAction. \
+ * {@link KnownOrchestrationServiceStateAction} can be used interchangeably with OrchestrationServiceStateAction,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Resume** \
+ * **Suspend**
  */
-export type ReplicationStatusTypes = "ReplicationStatus" | string;
+export type OrchestrationServiceStateAction = string;
+
 /**
- * Defines values for GalleryApplicationVersionPropertiesProvisioningState.
+ * Known values of {@link DiskStorageAccountTypes} that the service accepts.
  */
-export type GalleryApplicationVersionPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Failed"
-  | "Succeeded"
-  | "Deleting"
-  | "Migrating"
-  | string;
+export const enum KnownDiskStorageAccountTypes {
+  /**
+   * Standard HDD locally redundant storage. Best for backup, non-critical, and infrequent access.
+   */
+  StandardLRS = "Standard_LRS",
+  /**
+   * Premium SSD locally redundant storage. Best for production and performance sensitive workloads.
+   */
+  PremiumLRS = "Premium_LRS",
+  /**
+   * Standard SSD locally redundant storage. Best for web servers, lightly used enterprise applications and dev/test.
+   */
+  StandardSSDLRS = "StandardSSD_LRS",
+  /**
+   * Ultra SSD locally redundant storage. Best for IO-intensive workloads such as SAP HANA, top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads.
+   */
+  UltraSSDLRS = "UltraSSD_LRS"
+}
+
 /**
- * Defines values for Enum31.
+ * Defines values for DiskStorageAccountTypes. \
+ * {@link KnownDiskStorageAccountTypes} can be used interchangeably with DiskStorageAccountTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_LRS**: Standard HDD locally redundant storage. Best for backup, non-critical, and infrequent access. \
+ * **Premium_LRS**: Premium SSD locally redundant storage. Best for production and performance sensitive workloads. \
+ * **StandardSSD_LRS**: Standard SSD locally redundant storage. Best for web servers, lightly used enterprise applications and dev/test. \
+ * **UltraSSD_LRS**: Ultra SSD locally redundant storage. Best for IO-intensive workloads such as SAP HANA, top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads.
  */
-export type Enum31 = 1 | 3 | 5 | number;
+export type DiskStorageAccountTypes = string;
+
 /**
- * Defines values for ContainerServiceVMSizeTypes.
+ * Known values of {@link HyperVGeneration} that the service accepts.
  */
-export type ContainerServiceVMSizeTypes =
-  | "Standard_A0"
-  | "Standard_A1"
-  | "Standard_A2"
-  | "Standard_A3"
-  | "Standard_A4"
-  | "Standard_A5"
-  | "Standard_A6"
-  | "Standard_A7"
-  | "Standard_A8"
-  | "Standard_A9"
-  | "Standard_A10"
-  | "Standard_A11"
-  | "Standard_D1"
-  | "Standard_D2"
-  | "Standard_D3"
-  | "Standard_D4"
-  | "Standard_D11"
-  | "Standard_D12"
-  | "Standard_D13"
-  | "Standard_D14"
-  | "Standard_D1_v2"
-  | "Standard_D2_v2"
-  | "Standard_D3_v2"
-  | "Standard_D4_v2"
-  | "Standard_D5_v2"
-  | "Standard_D11_v2"
-  | "Standard_D12_v2"
-  | "Standard_D13_v2"
-  | "Standard_D14_v2"
-  | "Standard_G1"
-  | "Standard_G2"
-  | "Standard_G3"
-  | "Standard_G4"
-  | "Standard_G5"
-  | "Standard_DS1"
-  | "Standard_DS2"
-  | "Standard_DS3"
-  | "Standard_DS4"
-  | "Standard_DS11"
-  | "Standard_DS12"
-  | "Standard_DS13"
-  | "Standard_DS14"
-  | "Standard_GS1"
-  | "Standard_GS2"
-  | "Standard_GS3"
-  | "Standard_GS4"
-  | "Standard_GS5"
-  | string;
+export const enum KnownHyperVGeneration {
+  V1 = "V1",
+  V2 = "V2"
+}
+
 /**
- * Defines values for AvailabilitySetSkuTypes.
+ * Defines values for HyperVGeneration. \
+ * {@link KnownHyperVGeneration} can be used interchangeably with HyperVGeneration,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **V1** \
+ * **V2**
  */
-export type AvailabilitySetSkuTypes = "Classic" | "Aligned" | string;
+export type HyperVGeneration = string;
+
+/**
+ * Known values of {@link DiskCreateOption} that the service accepts.
+ */
+export const enum KnownDiskCreateOption {
+  /**
+   * Create an empty data disk of a size given by diskSizeGB.
+   */
+  Empty = "Empty",
+  /**
+   * Disk will be attached to a VM.
+   */
+  Attach = "Attach",
+  /**
+   * Create a new disk from a platform image specified by the given imageReference or galleryImageReference.
+   */
+  FromImage = "FromImage",
+  /**
+   * Create a disk by importing from a blob specified by a sourceUri in a storage account specified by storageAccountId.
+   */
+  Import = "Import",
+  /**
+   * Create a new disk or snapshot by copying from a disk or snapshot specified by the given sourceResourceId.
+   */
+  Copy = "Copy",
+  /**
+   * Create a new disk by copying from a backup recovery point.
+   */
+  Restore = "Restore",
+  /**
+   * Create a new disk by obtaining a write token and using it to directly upload the contents of the disk.
+   */
+  Upload = "Upload"
+}
+
+/**
+ * Defines values for DiskCreateOption. \
+ * {@link KnownDiskCreateOption} can be used interchangeably with DiskCreateOption,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Empty**: Create an empty data disk of a size given by diskSizeGB. \
+ * **Attach**: Disk will be attached to a VM. \
+ * **FromImage**: Create a new disk from a platform image specified by the given imageReference or galleryImageReference. \
+ * **Import**: Create a disk by importing from a blob specified by a sourceUri in a storage account specified by storageAccountId. \
+ * **Copy**: Create a new disk or snapshot by copying from a disk or snapshot specified by the given sourceResourceId. \
+ * **Restore**: Create a new disk by copying from a backup recovery point. \
+ * **Upload**: Create a new disk by obtaining a write token and using it to directly upload the contents of the disk.
+ */
+export type DiskCreateOption = string;
+
+/**
+ * Known values of {@link DiskState} that the service accepts.
+ */
+export const enum KnownDiskState {
+  /**
+   * The disk is not being used and can be attached to a VM.
+   */
+  Unattached = "Unattached",
+  /**
+   * The disk is currently mounted to a running VM.
+   */
+  Attached = "Attached",
+  /**
+   * The disk is mounted to a stopped-deallocated VM
+   */
+  Reserved = "Reserved",
+  /**
+   * The disk currently has an Active SAS Uri associated with it.
+   */
+  ActiveSAS = "ActiveSAS",
+  /**
+   * A disk is ready to be created by upload by requesting a write token.
+   */
+  ReadyToUpload = "ReadyToUpload",
+  /**
+   * A disk is created for upload and a write token has been issued for uploading to it.
+   */
+  ActiveUpload = "ActiveUpload"
+}
+
+/**
+ * Defines values for DiskState. \
+ * {@link KnownDiskState} can be used interchangeably with DiskState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unattached**: The disk is not being used and can be attached to a VM. \
+ * **Attached**: The disk is currently mounted to a running VM. \
+ * **Reserved**: The disk is mounted to a stopped-deallocated VM \
+ * **ActiveSAS**: The disk currently has an Active SAS Uri associated with it. \
+ * **ReadyToUpload**: A disk is ready to be created by upload by requesting a write token. \
+ * **ActiveUpload**: A disk is created for upload and a write token has been issued for uploading to it.
+ */
+export type DiskState = string;
+
+/**
+ * Known values of {@link EncryptionType} that the service accepts.
+ */
+export const enum KnownEncryptionType {
+  /**
+   * Disk is encrypted with XStore managed key at rest. It is the default encryption type.
+   */
+  EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey",
+  /**
+   * Disk is encrypted with Customer managed key at rest.
+   */
+  EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey"
+}
+
+/**
+ * Defines values for EncryptionType. \
+ * {@link KnownEncryptionType} can be used interchangeably with EncryptionType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **EncryptionAtRestWithPlatformKey**: Disk is encrypted with XStore managed key at rest. It is the default encryption type. \
+ * **EncryptionAtRestWithCustomerKey**: Disk is encrypted with Customer managed key at rest.
+ */
+export type EncryptionType = string;
+
+/**
+ * Known values of {@link AccessLevel} that the service accepts.
+ */
+export const enum KnownAccessLevel {
+  None = "None",
+  Read = "Read",
+  Write = "Write"
+}
+
+/**
+ * Defines values for AccessLevel. \
+ * {@link KnownAccessLevel} can be used interchangeably with AccessLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **None** \
+ * **Read** \
+ * **Write**
+ */
+export type AccessLevel = string;
+
+/**
+ * Known values of {@link SnapshotStorageAccountTypes} that the service accepts.
+ */
+export const enum KnownSnapshotStorageAccountTypes {
+  /**
+   * Standard HDD locally redundant storage
+   */
+  StandardLRS = "Standard_LRS",
+  /**
+   * Premium SSD locally redundant storage
+   */
+  PremiumLRS = "Premium_LRS",
+  /**
+   * Standard zone redundant storage
+   */
+  StandardZRS = "Standard_ZRS"
+}
+
+/**
+ * Defines values for SnapshotStorageAccountTypes. \
+ * {@link KnownSnapshotStorageAccountTypes} can be used interchangeably with SnapshotStorageAccountTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_LRS**: Standard HDD locally redundant storage \
+ * **Premium_LRS**: Premium SSD locally redundant storage \
+ * **Standard_ZRS**: Standard zone redundant storage
+ */
+export type SnapshotStorageAccountTypes = string;
+
+/**
+ * Known values of {@link DiskEncryptionSetIdentityType} that the service accepts.
+ */
+export const enum KnownDiskEncryptionSetIdentityType {
+  SystemAssigned = "SystemAssigned"
+}
+
+/**
+ * Defines values for DiskEncryptionSetIdentityType. \
+ * {@link KnownDiskEncryptionSetIdentityType} can be used interchangeably with DiskEncryptionSetIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **SystemAssigned**
+ */
+export type DiskEncryptionSetIdentityType = string;
+
+/**
+ * Known values of {@link GalleryPropertiesProvisioningState} that the service accepts.
+ */
+export const enum KnownGalleryPropertiesProvisioningState {
+  Creating = "Creating",
+  Updating = "Updating",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+  Deleting = "Deleting",
+  Migrating = "Migrating"
+}
+
+/**
+ * Defines values for GalleryPropertiesProvisioningState. \
+ * {@link KnownGalleryPropertiesProvisioningState} can be used interchangeably with GalleryPropertiesProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **Updating** \
+ * **Failed** \
+ * **Succeeded** \
+ * **Deleting** \
+ * **Migrating**
+ */
+export type GalleryPropertiesProvisioningState = string;
+
+/**
+ * Known values of {@link GalleryImagePropertiesProvisioningState} that the service accepts.
+ */
+export const enum KnownGalleryImagePropertiesProvisioningState {
+  Creating = "Creating",
+  Updating = "Updating",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+  Deleting = "Deleting",
+  Migrating = "Migrating"
+}
+
+/**
+ * Defines values for GalleryImagePropertiesProvisioningState. \
+ * {@link KnownGalleryImagePropertiesProvisioningState} can be used interchangeably with GalleryImagePropertiesProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **Updating** \
+ * **Failed** \
+ * **Succeeded** \
+ * **Deleting** \
+ * **Migrating**
+ */
+export type GalleryImagePropertiesProvisioningState = string;
+
+/**
+ * Known values of {@link StorageAccountType} that the service accepts.
+ */
+export const enum KnownStorageAccountType {
+  StandardLRS = "Standard_LRS",
+  StandardZRS = "Standard_ZRS",
+  PremiumLRS = "Premium_LRS"
+}
+
+/**
+ * Defines values for StorageAccountType. \
+ * {@link KnownStorageAccountType} can be used interchangeably with StorageAccountType,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_LRS** \
+ * **Standard_ZRS** \
+ * **Premium_LRS**
+ */
+export type StorageAccountType = string;
+
+/**
+ * Known values of {@link GalleryImageVersionPropertiesProvisioningState} that the service accepts.
+ */
+export const enum KnownGalleryImageVersionPropertiesProvisioningState {
+  Creating = "Creating",
+  Updating = "Updating",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+  Deleting = "Deleting",
+  Migrating = "Migrating"
+}
+
+/**
+ * Defines values for GalleryImageVersionPropertiesProvisioningState. \
+ * {@link KnownGalleryImageVersionPropertiesProvisioningState} can be used interchangeably with GalleryImageVersionPropertiesProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **Updating** \
+ * **Failed** \
+ * **Succeeded** \
+ * **Deleting** \
+ * **Migrating**
+ */
+export type GalleryImageVersionPropertiesProvisioningState = string;
+
+/**
+ * Known values of {@link AggregatedReplicationState} that the service accepts.
+ */
+export const enum KnownAggregatedReplicationState {
+  Unknown = "Unknown",
+  InProgress = "InProgress",
+  Completed = "Completed",
+  Failed = "Failed"
+}
+
+/**
+ * Defines values for AggregatedReplicationState. \
+ * {@link KnownAggregatedReplicationState} can be used interchangeably with AggregatedReplicationState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **InProgress** \
+ * **Completed** \
+ * **Failed**
+ */
+export type AggregatedReplicationState = string;
+
+/**
+ * Known values of {@link ReplicationState} that the service accepts.
+ */
+export const enum KnownReplicationState {
+  Unknown = "Unknown",
+  Replicating = "Replicating",
+  Completed = "Completed",
+  Failed = "Failed"
+}
+
+/**
+ * Defines values for ReplicationState. \
+ * {@link KnownReplicationState} can be used interchangeably with ReplicationState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Unknown** \
+ * **Replicating** \
+ * **Completed** \
+ * **Failed**
+ */
+export type ReplicationState = string;
+
+/**
+ * Known values of {@link ReplicationStatusTypes} that the service accepts.
+ */
+export const enum KnownReplicationStatusTypes {
+  ReplicationStatus = "ReplicationStatus"
+}
+
+/**
+ * Defines values for ReplicationStatusTypes. \
+ * {@link KnownReplicationStatusTypes} can be used interchangeably with ReplicationStatusTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **ReplicationStatus**
+ */
+export type ReplicationStatusTypes = string;
+
+/**
+ * Known values of {@link GalleryApplicationVersionPropertiesProvisioningState} that the service accepts.
+ */
+export const enum KnownGalleryApplicationVersionPropertiesProvisioningState {
+  Creating = "Creating",
+  Updating = "Updating",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+  Deleting = "Deleting",
+  Migrating = "Migrating"
+}
+
+/**
+ * Defines values for GalleryApplicationVersionPropertiesProvisioningState. \
+ * {@link KnownGalleryApplicationVersionPropertiesProvisioningState} can be used interchangeably with GalleryApplicationVersionPropertiesProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Creating** \
+ * **Updating** \
+ * **Failed** \
+ * **Succeeded** \
+ * **Deleting** \
+ * **Migrating**
+ */
+export type GalleryApplicationVersionPropertiesProvisioningState = string;
+
+/**
+ * Known values of {@link Enum31} that the service accepts.
+ */
+export const enum KnownEnum31 {
+  One = 1,
+  Three = 3,
+  Five = 5
+}
+
+/**
+ * Defines values for Enum31. \
+ * {@link KnownEnum31} can be used interchangeably with Enum31,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **1** \
+ * **3** \
+ * **5**
+ */
+export type Enum31 = number;
+
+/**
+ * Known values of {@link ContainerServiceVMSizeTypes} that the service accepts.
+ */
+export const enum KnownContainerServiceVMSizeTypes {
+  StandardA0 = "Standard_A0",
+  StandardA1 = "Standard_A1",
+  StandardA2 = "Standard_A2",
+  StandardA3 = "Standard_A3",
+  StandardA4 = "Standard_A4",
+  StandardA5 = "Standard_A5",
+  StandardA6 = "Standard_A6",
+  StandardA7 = "Standard_A7",
+  StandardA8 = "Standard_A8",
+  StandardA9 = "Standard_A9",
+  StandardA10 = "Standard_A10",
+  StandardA11 = "Standard_A11",
+  StandardD1 = "Standard_D1",
+  StandardD2 = "Standard_D2",
+  StandardD3 = "Standard_D3",
+  StandardD4 = "Standard_D4",
+  StandardD11 = "Standard_D11",
+  StandardD12 = "Standard_D12",
+  StandardD13 = "Standard_D13",
+  StandardD14 = "Standard_D14",
+  StandardD1V2 = "Standard_D1_v2",
+  StandardD2V2 = "Standard_D2_v2",
+  StandardD3V2 = "Standard_D3_v2",
+  StandardD4V2 = "Standard_D4_v2",
+  StandardD5V2 = "Standard_D5_v2",
+  StandardD11V2 = "Standard_D11_v2",
+  StandardD12V2 = "Standard_D12_v2",
+  StandardD13V2 = "Standard_D13_v2",
+  StandardD14V2 = "Standard_D14_v2",
+  StandardG1 = "Standard_G1",
+  StandardG2 = "Standard_G2",
+  StandardG3 = "Standard_G3",
+  StandardG4 = "Standard_G4",
+  StandardG5 = "Standard_G5",
+  StandardDS1 = "Standard_DS1",
+  StandardDS2 = "Standard_DS2",
+  StandardDS3 = "Standard_DS3",
+  StandardDS4 = "Standard_DS4",
+  StandardDS11 = "Standard_DS11",
+  StandardDS12 = "Standard_DS12",
+  StandardDS13 = "Standard_DS13",
+  StandardDS14 = "Standard_DS14",
+  StandardGS1 = "Standard_GS1",
+  StandardGS2 = "Standard_GS2",
+  StandardGS3 = "Standard_GS3",
+  StandardGS4 = "Standard_GS4",
+  StandardGS5 = "Standard_GS5"
+}
+
+/**
+ * Defines values for ContainerServiceVMSizeTypes. \
+ * {@link KnownContainerServiceVMSizeTypes} can be used interchangeably with ContainerServiceVMSizeTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Standard_A0** \
+ * **Standard_A1** \
+ * **Standard_A2** \
+ * **Standard_A3** \
+ * **Standard_A4** \
+ * **Standard_A5** \
+ * **Standard_A6** \
+ * **Standard_A7** \
+ * **Standard_A8** \
+ * **Standard_A9** \
+ * **Standard_A10** \
+ * **Standard_A11** \
+ * **Standard_D1** \
+ * **Standard_D2** \
+ * **Standard_D3** \
+ * **Standard_D4** \
+ * **Standard_D11** \
+ * **Standard_D12** \
+ * **Standard_D13** \
+ * **Standard_D14** \
+ * **Standard_D1_v2** \
+ * **Standard_D2_v2** \
+ * **Standard_D3_v2** \
+ * **Standard_D4_v2** \
+ * **Standard_D5_v2** \
+ * **Standard_D11_v2** \
+ * **Standard_D12_v2** \
+ * **Standard_D13_v2** \
+ * **Standard_D14_v2** \
+ * **Standard_G1** \
+ * **Standard_G2** \
+ * **Standard_G3** \
+ * **Standard_G4** \
+ * **Standard_G5** \
+ * **Standard_DS1** \
+ * **Standard_DS2** \
+ * **Standard_DS3** \
+ * **Standard_DS4** \
+ * **Standard_DS11** \
+ * **Standard_DS12** \
+ * **Standard_DS13** \
+ * **Standard_DS14** \
+ * **Standard_GS1** \
+ * **Standard_GS2** \
+ * **Standard_GS3** \
+ * **Standard_GS4** \
+ * **Standard_GS5**
+ */
+export type ContainerServiceVMSizeTypes = string;
+
+/**
+ * Known values of {@link AvailabilitySetSkuTypes} that the service accepts.
+ */
+export const enum KnownAvailabilitySetSkuTypes {
+  Classic = "Classic",
+  Aligned = "Aligned"
+}
+
+/**
+ * Defines values for AvailabilitySetSkuTypes. \
+ * {@link KnownAvailabilitySetSkuTypes} can be used interchangeably with AvailabilitySetSkuTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Classic** \
+ * **Aligned**
+ */
+export type AvailabilitySetSkuTypes = string;
 /**
  * Defines values for StatusLevelTypes.
  */

@@ -176,21 +176,40 @@ export interface FlattenParameterGroup {
 }
 
 /**
- * Defines values for FlattenedProductPropertiesProvisioningStateValues.
+ * Known values of {@link FlattenedProductPropertiesProvisioningStateValues} that the service accepts.
  */
-export type FlattenedProductPropertiesProvisioningStateValues =
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "Accepted"
-  | "Creating"
-  | "Created"
-  | "Updating"
-  | "Updated"
-  | "Deleting"
-  | "Deleted"
-  | "OK"
-  | string;
+export const enum KnownFlattenedProductPropertiesProvisioningStateValues {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "canceled",
+  Accepted = "Accepted",
+  Creating = "Creating",
+  Created = "Created",
+  Updating = "Updating",
+  Updated = "Updated",
+  Deleting = "Deleting",
+  Deleted = "Deleted",
+  OK = "OK"
+}
+
+/**
+ * Defines values for FlattenedProductPropertiesProvisioningStateValues. \
+ * {@link KnownFlattenedProductPropertiesProvisioningStateValues} can be used interchangeably with FlattenedProductPropertiesProvisioningStateValues,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **canceled** \
+ * **Accepted** \
+ * **Creating** \
+ * **Created** \
+ * **Updating** \
+ * **Updated** \
+ * **Deleting** \
+ * **Deleted** \
+ * **OK**
+ */
+export type FlattenedProductPropertiesProvisioningStateValues = string;
 
 /**
  * Optional parameters.

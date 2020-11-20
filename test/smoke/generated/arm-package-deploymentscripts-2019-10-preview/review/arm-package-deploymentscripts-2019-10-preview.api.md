@@ -74,7 +74,7 @@ export interface AzureResourceBase {
 }
 
 // @public
-export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration" | string;
+export type CleanupOptions = string;
 
 // @public
 export interface ContainerConfiguration {
@@ -82,7 +82,7 @@ export interface ContainerConfiguration {
 }
 
 // @public
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key" | string;
+export type CreatedByType = string;
 
 // @public
 export type DeploymentScript = AzureResourceBase & {
@@ -261,6 +261,58 @@ export interface ErrorResponse {
 }
 
 // @public
+export const enum KnownCleanupOptions {
+    // (undocumented)
+    Always = "Always",
+    // (undocumented)
+    OnExpiration = "OnExpiration",
+    // (undocumented)
+    OnSuccess = "OnSuccess"
+}
+
+// @public
+export const enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public
+export const enum KnownManagedServiceIdentityType {
+    // (undocumented)
+    UserAssigned = "UserAssigned"
+}
+
+// @public
+export const enum KnownScriptProvisioningState {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    ProvisioningResources = "ProvisioningResources",
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public
+export const enum KnownScriptType {
+    // (undocumented)
+    AzureCLI = "AzureCLI",
+    // (undocumented)
+    AzurePowerShell = "AzurePowerShell"
+}
+
+// @public
 export interface ManagedServiceIdentity {
     type?: ManagedServiceIdentityType;
     userAssignedIdentities?: {
@@ -269,7 +321,7 @@ export interface ManagedServiceIdentity {
 }
 
 // @public
-export type ManagedServiceIdentityType = "UserAssigned" | string;
+export type ManagedServiceIdentityType = string;
 
 // @public
 export interface ScriptConfigurationBase {
@@ -294,7 +346,7 @@ export interface ScriptLogsList {
 }
 
 // @public
-export type ScriptProvisioningState = "Creating" | "ProvisioningResources" | "Running" | "Succeeded" | "Failed" | "Canceled" | string;
+export type ScriptProvisioningState = string;
 
 // @public
 export interface ScriptStatus {
@@ -307,7 +359,7 @@ export interface ScriptStatus {
 }
 
 // @public
-export type ScriptType = "AzurePowerShell" | "AzureCLI" | string;
+export type ScriptType = string;
 
 // @public
 export interface StorageAccountConfiguration {
@@ -334,7 +386,7 @@ export interface UserAssignedIdentity {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:583:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:653:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -355,7 +355,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type",
-          "docComment": "/**\n * Defines values for CleanupOptions.\n */\n",
+          "docComment": "/**\n * Defines values for CleanupOptions. \\ {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions, this enum contains the known values that the service supports. ### Know values supported by the service **Always** \\ **OnSuccess** \\ **OnExpiration**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -363,7 +363,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Always\" | \"OnSuccess\" | \"OnExpiration\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -421,7 +421,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type",
-          "docComment": "/**\n * Defines values for CreatedByType.\n */\n",
+          "docComment": "/**\n * Defines values for CreatedByType. \\ {@link KnownCreatedByType} can be used interchangeably with CreatedByType, this enum contains the known values that the service supports. ### Know values supported by the service **User** \\ **Application** \\ **ManagedIdentity** \\ **Key**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -429,7 +429,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"User\" | \"Application\" | \"ManagedIdentity\" | \"Key\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2153,6 +2153,417 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions:enum",
+          "docComment": "/**\n * Known values of {@link CleanupOptions} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCleanupOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCleanupOptions",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.Always:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Always = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Always\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Always",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnExpiration:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "OnExpiration = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"OnExpiration\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "OnExpiration",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnSuccess:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "OnSuccess = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"OnSuccess\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "OnSuccess",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType:enum",
+          "docComment": "/**\n * Known values of {@link CreatedByType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownCreatedByType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownCreatedByType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Application:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Application = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Application\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Application",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Key:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Key = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Key\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Key",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.ManagedIdentity:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ManagedIdentity = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ManagedIdentity\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ManagedIdentity",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.User:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "User = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"User\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "User",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType:enum",
+          "docComment": "/**\n * Known values of {@link ManagedServiceIdentityType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownManagedServiceIdentityType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownManagedServiceIdentityType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType.UserAssigned:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "UserAssigned = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"UserAssigned\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "UserAssigned",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState:enum",
+          "docComment": "/**\n * Known values of {@link ScriptProvisioningState} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownScriptProvisioningState "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownScriptProvisioningState",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Canceled:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Canceled = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Canceled\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Canceled",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Creating:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Creating = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Creating\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Creating",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Failed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Failed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Failed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Failed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.ProvisioningResources:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ProvisioningResources = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"ProvisioningResources\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ProvisioningResources",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Running:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Running = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Running\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Running",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Succeeded:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Succeeded = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Succeeded\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Succeeded",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType:enum",
+          "docComment": "/**\n * Known values of {@link ScriptType} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare const enum KnownScriptType "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownScriptType",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzureCLI:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AzureCLI = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AzureCLI\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AzureCLI",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzurePowerShell:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "AzurePowerShell = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"AzurePowerShell\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AzurePowerShell",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface",
           "docComment": "/**\n * Managed identity generic object.\n */\n",
@@ -2231,7 +2642,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type",
-          "docComment": "/**\n * Defines values for ManagedServiceIdentityType.\n */\n",
+          "docComment": "/**\n * Defines values for ManagedServiceIdentityType. \\ {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType, this enum contains the known values that the service supports. ### Know values supported by the service **UserAssigned**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2239,7 +2650,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"UserAssigned\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2553,7 +2964,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type",
-          "docComment": "/**\n * Defines values for ScriptProvisioningState.\n */\n",
+          "docComment": "/**\n * Defines values for ScriptProvisioningState. \\ {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Creating** \\ **ProvisioningResources** \\ **Running** \\ **Succeeded** \\ **Failed** \\ **Canceled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2561,7 +2972,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Creating\" | \"ProvisioningResources\" | \"Running\" | \"Succeeded\" | \"Failed\" | \"Canceled\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",
@@ -2748,7 +3159,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type",
-          "docComment": "/**\n * Defines values for ScriptType.\n */\n",
+          "docComment": "/**\n * Defines values for ScriptType. \\ {@link KnownScriptType} can be used interchangeably with ScriptType, this enum contains the known values that the service supports. ### Know values supported by the service **AzurePowerShell** \\ **AzureCLI**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2756,7 +3167,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzurePowerShell\" | \"AzureCLI\" | string"
+              "text": "string"
             },
             {
               "kind": "Content",

@@ -9,13 +9,52 @@
 import * as coreHttp from "@azure/core-http";
 
 /**
- * Defines values for IntEnum.
+ * Known values of {@link IntEnum} that the service accepts.
  */
-export type IntEnum = 200 | 403 | 405 | 406 | 429 | number;
+export const enum KnownIntEnum {
+  TwoHundred = 200,
+  FourHundredThree = 403,
+  FourHundredFive = 405,
+  FourHundredSix = 406,
+  FourHundredTwentyNine = 429
+}
+
 /**
- * Defines values for FloatEnum.
+ * Defines values for IntEnum. \
+ * {@link KnownIntEnum} can be used interchangeably with IntEnum,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **200** \
+ * **403** \
+ * **405** \
+ * **406** \
+ * **429**
  */
-export type FloatEnum = 200.4 | 403.4 | 405.3 | 406.2 | 429.1 | number;
+export type IntEnum = number;
+
+/**
+ * Known values of {@link FloatEnum} that the service accepts.
+ */
+export const enum KnownFloatEnum {
+  TwoHundred4 = 200.4,
+  FourHundredThree4 = 403.4,
+  FourHundredFive3 = 405.3,
+  FourHundredSix2 = 406.2,
+  FourHundredTwentyNine1 = 429.1
+}
+
+/**
+ * Defines values for FloatEnum. \
+ * {@link KnownFloatEnum} can be used interchangeably with FloatEnum,
+ *  this enum contains the known values that the service supports.
+ * ### Know values supported by the service
+ * **200.4** \
+ * **403.4** \
+ * **405.3** \
+ * **406.2** \
+ * **429.1**
+ */
+export type FloatEnum = number;
 
 /**
  * Optional parameters.
