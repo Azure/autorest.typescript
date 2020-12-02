@@ -3,6 +3,7 @@ import {
   AzureSpecialPropertiesClientOptionalParams
 } from "./generated/azureSpecialProperties/src";
 import { assert } from "chai";
+
 import {
   OperationOptions,
   RestError,
@@ -11,6 +12,35 @@ import {
   TokenCredential,
   HttpHeaders
 } from "@azure/core-http";
+
+describe.only("auth validation", () => {
+  it("should add authorization header", async () => {
+    const mockCredential: TokenCredential = {
+      getToken: async _scopes => {
+        return {
+          token: "test-token",
+          expiresOnTimestamp: 111111
+        };
+      }
+    };
+
+    const client = new AzureSpecialPropertiesClient(
+      mockCredential,
+      "1234-5678-9012-3456"
+    );
+
+    const result = await client.apiVersionDefault.getMethodGlobalValid();
+
+    // Validate operation
+    assert.equal(result._response.status, 200);
+
+    // Validate auth header
+    assert.equal(
+      result._response.request.headers.get("authorization"),
+      "Bearer test-token"
+    );
+  });
+});
 
 describe("AzureSpecialProperties", () => {
   let client: AzureSpecialPropertiesClient;

@@ -14,12 +14,12 @@ export enum AutorestParams {
 
 const getArmReadmes = (): SpecDefinition[] => {
   const armTags = [
-    "package-features-2015-12",
-    "package-locks-2016-09",
-    "package-policy-2019-09",
+    // "package-features-2015-12",
+    // "package-locks-2016-09",
+    // "package-policy-2019-09",
     "package-resources-2019-08",
-    "package-subscriptions-2019-06",
-    "package-links-2016-09",
+    // "package-subscriptions-2019-06",
+    // "package-links-2016-09",
     "package-managedapplications-2018-06",
     "package-deploymentscripts-2019-10-preview"
   ];
@@ -27,7 +27,7 @@ const getArmReadmes = (): SpecDefinition[] => {
     path: "./.tmp/specs/specification/resources/resource-manager/readme.md",
     params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
-    buildTag: "ci_1"
+    buildTag: "debug"
   }));
 };
 
@@ -36,11 +36,11 @@ export const readmes: SpecDefinition[] = [
   {
     path: "./.tmp/specs/specification/sql/resource-manager/readme.md",
     params: [AutorestParams.ModelDedup],
-    buildTag: "ci_1"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/web/resource-manager/readme.md",
-    buildTag: "ci_2"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/monitor/data-plane/readme.md",
@@ -53,7 +53,7 @@ export const readmes: SpecDefinition[] = [
   {
     path: "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md",
     params: [AutorestParams.ModelDedup],
-    buildTag: "ci_2"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/compute/resource-manager/readme.md",
@@ -61,16 +61,16 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/network/resource-manager/readme.md",
-    buildTag: "ci_3"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/keyvault/resource-manager/readme.md",
-    buildTag: "ci_3"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/storage/resource-manager/readme.md",
     params: [AutorestParams.ModelDedup],
-    buildTag: "ci_3"
+    buildTag: "debug"
   },
   {
     path: "./.tmp/specs/specification/msi/resource-manager/readme.md",
