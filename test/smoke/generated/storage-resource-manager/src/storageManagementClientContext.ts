@@ -46,7 +46,7 @@ export class StorageManagementClientContext extends coreHttp.ServiceClient {
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
-    // Building the rquest policy fatories based on the passed factories and the
+    // Building the request policy fatories based on the passed factories and the
     // any required factories needed by the client.
     if (Array.isArray(options.requestPolicyFactories)) {
       // When an array of factories is passed in, we'll just add the required factories,
