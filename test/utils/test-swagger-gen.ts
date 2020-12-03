@@ -7,6 +7,7 @@ interface SwaggerConfig {
   packageName: string;
   addCredentials?: boolean;
   licenseHeader?: boolean;
+  credentialScopes?: string;
   tracing?: TracingInfo;
   disableAsyncIterators?: boolean;
 }
@@ -44,7 +45,9 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "AzureSpecialPropertiesClient",
     packageName: "azure-special-properties",
     licenseHeader: true,
-    addCredentials: true
+    addCredentials: true,
+    credentialScopes:
+      "https://microsoft.com/.default,http://microsoft.com/.default"
   },
   bodyArray: {
     swagger: "body-array.json",
@@ -373,13 +376,18 @@ const generateSwaggers = async (
       packageName,
       licenseHeader,
       tracing,
-      disableAsyncIterators
+      disableAsyncIterators,
+      credentialScopes
     } = testSwaggers[name];
 
     let swaggerPath = swagger;
 
     const tracingInfo = tracing
       ? `--tracing-info.namespace=${tracing.namespace} --tracing-info.packagePrefix=${tracing.packagePrefix}`
+      : "";
+
+    const credentialScopesInfo = credentialScopes
+      ? `--credential-scopes=${credentialScopes}`
       : "";
 
     const disableIterators = disableAsyncIterators
@@ -391,7 +399,7 @@ const generateSwaggers = async (
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;
