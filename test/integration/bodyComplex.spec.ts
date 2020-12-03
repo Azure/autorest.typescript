@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { assert } from "chai";
 import * as moment from "moment";
 import { BodyComplexWithTracing } from "./generated/bodyComplexWithTracing/src";
 import {
@@ -14,10 +14,12 @@ import {
   DotSalmon
 } from "./generated/bodyComplex/src";
 import { nameof } from "@azure-tools/codegen";
+import { RequestPolicyFactory } from "@azure/core-http";
 
 const clientOptions = {
   endpoint: "http://localhost:3000"
 };
+
 [BodyComplexWithTracing, BodyComplexClient].forEach(Client => {
   describe(`${Client.name}`, function() {
     describe("Swagger Complex Type BAT", function() {
@@ -324,7 +326,10 @@ const clientOptions = {
         });
 
         it("should get valid basic type properties", async () => {
-          const result = await testClient.inheritance.getValid();
+          const {
+            _response,
+            ...result
+          } = await testClient.inheritance.getValid();
           assert.deepEqual(result, siamese);
           await testClient.inheritance.putValid(siamese);
           assert.ok("putValid succeeded");
@@ -397,13 +402,13 @@ const clientOptions = {
             location: "sweden",
             iswild: false,
             species: "king"
-          });
+          } as DotSalmon);
 
           assert.deepStrictEqual(result.sampleFish, {
             location: "australia",
             iswild: false,
             species: "king"
-          });
+          } as DotSalmon);
 
           assert.deepStrictEqual(result.salmons, [
             {
@@ -416,7 +421,7 @@ const clientOptions = {
               iswild: true,
               species: "king"
             }
-          ]);
+          ] as DotSalmon[]);
 
           assert.deepStrictEqual(result.fishes, [
             {
@@ -429,7 +434,7 @@ const clientOptions = {
               iswild: true,
               species: "king"
             }
-          ]);
+          ] as DotSalmon[]);
         });
 
         it("should handle getComposedWithDiscriminator", async () => {
@@ -480,7 +485,10 @@ const clientOptions = {
         });
 
         it("should get valid polymorphic properties", async function() {
-          const getResult = await testClient.polymorphism.getValid();
+          const {
+            _response,
+            ...getResult
+          } = await testClient.polymorphism.getValid();
           const actualBytes = (getResult.siblings![1] as Sawshark)!.picture;
           assert.strictEqual(!!actualBytes, true);
           assert.strictEqual(actualBytes!.length, 5);
@@ -599,8 +607,7 @@ const clientOptions = {
         });
 
         it("should put polymorphic types missing discriminator", async function() {
-          const requestBody = getFish();
-          delete requestBody.fishtype;
+          const { fishtype, ...requestBody } = getFish();
 
           const response = await testClient.polymorphism.putMissingDiscriminator(
             requestBody as Salmon
@@ -724,5 +731,71 @@ const clientOptions = {
         });
       });
     });
+  });
+});
+
+describe("Validate pipelines", () => {
+  let customPolicy: RequestPolicyFactory;
+  let calledCustomPolicy: boolean;
+
+  beforeEach(() => {
+    calledCustomPolicy = false;
+    customPolicy = {
+      create: next => ({
+        sendRequest: req => {
+          calledCustomPolicy = true;
+          return next.sendRequest(req);
+        }
+      })
+    };
+  });
+
+  it("should execute custom pipeline when passed in a factory array", async () => {
+    const client = new BodyComplexClient({
+      endpoint: "http://localhost:3000",
+      requestPolicyFactories: [customPolicy]
+    });
+    const result = await client.basic.getValid();
+
+    // Valiedate Operation
+    // Verify that the operation works as expected
+    // since the custom pipeline was passed as an array
+    // and deserialize was not included in the array the result
+    // will be in _response.parsedBody
+    assert.deepStrictEqual(JSON.parse(result._response.bodyAsText), {
+      id: 2,
+      name: "abc",
+      color: "YELLOW"
+    });
+
+    // Verify that a custom policy was executed
+    assert.isTrue(calledCustomPolicy);
+
+    // Verify that a default policy was executed
+    assert.isDefined(
+      result._response.request.headers.contains("x-ms-client-request-id")
+    );
+  });
+
+  it("should execute custom pipeline when passed in a factory function", async () => {
+    const client = new BodyComplexClient({
+      endpoint: "http://localhost:3000",
+      requestPolicyFactories: defaultPolicies => [
+        customPolicy,
+        ...defaultPolicies
+      ]
+    });
+    const { _response, ...result } = await client.basic.getValid();
+
+    // Valiedate Operation
+    assert.deepStrictEqual(result, { id: 2, name: "abc", color: "YELLOW" });
+
+    // Verify that a custom policy was executed
+    assert.isTrue(calledCustomPolicy);
+
+    // Verify that a default policy was executed
+    assert.isDefined(
+      _response.request.headers.contains("x-ms-client-request-id")
+    );
   });
 });

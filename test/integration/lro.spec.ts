@@ -1,6 +1,10 @@
 import { LROClient, Product } from "./generated/lro/src";
 import { assert } from "chai";
-import { InternalPipelineOptions, OperationOptions } from "@azure/core-http";
+import {
+  InternalPipelineOptions,
+  OperationOptions,
+  RequestPolicyFactory
+} from "@azure/core-http";
 import { LROSYM } from "./generated/lro/src/lro/models";
 
 describe("LROs", () => {
@@ -8,6 +12,75 @@ describe("LROs", () => {
 
   beforeEach(() => {
     client = new LROClient();
+  });
+
+  describe("Pipeline validation", () => {
+    it("should execute custom pipeline when passed in a factory array", async () => {
+      let calledCustomPolicy = false;
+      const customPolicy: RequestPolicyFactory = {
+        create: next => ({
+          sendRequest: req => {
+            calledCustomPolicy = true;
+            return next.sendRequest(req);
+          }
+        })
+      };
+      client = new LROClient({ requestPolicyFactories: [customPolicy] });
+      const poller = await client.lROs.put200Succeeded({ requestOptions: {} });
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+
+      // Verify that the operation works as expected
+      // since the custom pipeline was passed as an array
+      // and deserialize was not included in the array the result
+      // will be in _response.parsedBody
+      assert.equal(
+        JSON.parse(result._response.bodyAsText).properties.provisioningState,
+        "Succeeded"
+      );
+
+      // Verify that a custom policy was executed
+      assert.isTrue(calledCustomPolicy);
+
+      // Verify that a default policy was executed
+      assert.isDefined(
+        result._response.request.headers.contains("x-ms-client-request-id")
+      );
+    });
+
+    it("should execute custom pipeline when passed in as a function", async () => {
+      let calledCustomPolicy = false;
+      // Prevents caching redirects
+      const customPolicy: RequestPolicyFactory = {
+        create: next => ({
+          sendRequest: req => {
+            calledCustomPolicy = true;
+            return next.sendRequest(req);
+          }
+        })
+      };
+
+      client = new LROClient({
+        requestPolicyFactories: defaultFactories => {
+          return [...defaultFactories, customPolicy];
+        }
+      });
+
+      const poller = await client.lROs.put200Succeeded();
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+
+      // Verify that the operation works as expected
+      assert.equal(result.provisioningState, "Succeeded");
+
+      // Verify that a custom policy was executed
+      assert.isTrue(calledCustomPolicy);
+
+      // Verify that a default policy was executed
+      assert.isDefined(
+        result._response.request.headers.contains("x-ms-client-request-id")
+      );
+    });
   });
 
   describe("BodyPolling Strategy", () => {
