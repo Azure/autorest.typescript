@@ -144,7 +144,8 @@ function writeConstructorBody(
     writeStatement(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
-        hasLRO
+        hasLRO,
+        clientDetails
       )
     ),
     writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
@@ -173,7 +174,29 @@ const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
   shouldAddBlankLine && writer.blankLine();
 };
 
-function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
+function getCredentialScopesValue(credentialScopes?: string | string[]) {
+  if (Array.isArray(credentialScopes)) {
+    return `[${credentialScopes.map(scope => `"${scope}"`).join()}]`;
+  } else if (typeof credentialScopes === "string") {
+    return `"${credentialScopes}"`;
+  }
+
+  return credentialScopes;
+}
+
+function writeDefaultOptions(
+  hasCredentials: boolean,
+  hasLRO: boolean,
+  clientDetails: ClientDetails
+) {
+  const credentialScopes = getCredentialScopesValue(
+    clientDetails.options.credentialScopes
+  );
+  const addScopes = credentialScopes
+    ? `if(!options.credentialScopes) {
+    options.credentialScopes = ${credentialScopes}
+  }`
+    : "";
   const addLROPolicy = hasLRO
     ? `
     // Building the request policy fatories based on the passed factories and the
@@ -211,6 +234,8 @@ function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
      options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
    }
+
+   ${addScopes}
 
   ${addLROPolicy}
 

@@ -13,10 +13,16 @@ import {
   HttpHeaders
 } from "@azure/core-http";
 
-describe.only("auth validation", () => {
+describe("auth validation", () => {
   it("should add authorization header", async () => {
+    const expectedScopes = [
+      "https://microsoft.com/.default",
+      "http://microsoft.com/.default"
+    ];
+
     const mockCredential: TokenCredential = {
-      getToken: async _scopes => {
+      getToken: async scopes => {
+        assert.deepEqual(scopes, expectedScopes);
         return {
           token: "test-token",
           expiresOnTimestamp: 111111

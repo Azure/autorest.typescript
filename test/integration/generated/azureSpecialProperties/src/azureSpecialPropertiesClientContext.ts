@@ -46,6 +46,13 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
+    if (!options.credentialScopes) {
+      options.credentialScopes = [
+        "https://microsoft.com/.default",
+        "http://microsoft.com/.default"
+      ];
+    }
+
     super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
