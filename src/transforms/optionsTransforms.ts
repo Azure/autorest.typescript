@@ -51,7 +51,7 @@ export async function getCredentialScopes(
 
   if (credentialScopes && !addCredentials) {
     throw new Error(
-      "--credential-scopes must be used with the --add-credential flag"
+      "--credential-scopes must be used with the --add-credentials flag"
     );
   }
 
@@ -63,7 +63,7 @@ export async function getCredentialScopes(
         Channel: Channel.Warning,
         Text: `You have default credential policy BearerTokenCredentialPolicy
       but not the --credential-scopes flag set while generating non-management plane code.
-      This is not recommend because it forces the customer to pass credential scopes
+      This is not recommended because it forces the customer to pass credential scopes
       through kwargs if they want to authenticate.`
       });
     }
