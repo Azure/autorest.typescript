@@ -26,7 +26,7 @@ describe("transformOptions", () => {
       } catch (error) {
         assert.include(
           error.message,
-          "--credential-scopes must be used with the --add-credential flag"
+          "--credential-scopes must be used with the --add-credentials flag"
         );
       }
     });
