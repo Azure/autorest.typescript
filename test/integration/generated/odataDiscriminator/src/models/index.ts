@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 export type LexicalAnalyzerUnion =
+  | LexicalAnalyzer
   | PatternAnalyzer
   | LuceneStandardAnalyzer
   | StopAnalyzer;

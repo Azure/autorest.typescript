@@ -8,11 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type FishUnion = SalmonUnion | SharkUnion;
-export type DotFishUnion = DotSalmon;
-export type MyBaseTypeUnion = MyDerivedType;
-export type SalmonUnion = SmartSalmon;
-export type SharkUnion = Sawshark | Goblinshark | Cookiecuttershark;
+export type FishUnion = Fish | SalmonUnion | SharkUnion;
+export type DotFishUnion = DotFish | DotSalmon;
+export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
+export type SalmonUnion = Salmon | SmartSalmon;
+export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
 export interface Basic {
   /**
@@ -159,21 +159,37 @@ export type Cat = Pet & {
 };
 
 export type Salmon = Fish & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "salmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type Shark = Fish & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "shark";
   age?: number;
   birthday: Date;
 };
 
 export type DotSalmon = DotFish & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishType: "DotSalmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type MyDerivedType = MyBaseType & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  kind: "Kind1";
   propD1?: string;
 };
 
@@ -183,6 +199,10 @@ export type Siamese = Cat & {
 
 export type SmartSalmon = Salmon & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "smart_salmon";
+  /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
    */
   [property: string]: any;
@@ -190,10 +210,18 @@ export type SmartSalmon = Salmon & {
 };
 
 export type Sawshark = Shark & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "sawshark";
   picture?: Uint8Array;
 };
 
 export type Goblinshark = Shark & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "goblin";
   jawsize?: number;
   /**
    * Colors possible
@@ -201,7 +229,12 @@ export type Goblinshark = Shark & {
   color?: GoblinSharkColor;
 };
 
-export type Cookiecuttershark = Shark & {};
+export type Cookiecuttershark = Shark & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  fishtype: "cookiecuttershark";
+};
 
 /**
  * Known values of {@link CMYKColors} that the service accepts.

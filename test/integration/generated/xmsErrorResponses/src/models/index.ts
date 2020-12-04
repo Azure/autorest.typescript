@@ -8,9 +8,12 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type NotFoundErrorBaseUnion = LinkNotFound | AnimalNotFound;
-export type PetActionErrorUnion = PetSadErrorUnion;
-export type PetSadErrorUnion = PetHungryOrThirstyError;
+export type NotFoundErrorBaseUnion =
+  | NotFoundErrorBase
+  | LinkNotFound
+  | AnimalNotFound;
+export type PetActionErrorUnion = PetActionError | PetSadErrorUnion;
+export type PetSadErrorUnion = PetSadError | PetHungryOrThirstyError;
 
 export interface Animal {
   aniType?: string;
