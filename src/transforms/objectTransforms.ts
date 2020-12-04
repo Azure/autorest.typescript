@@ -266,8 +266,9 @@ function transformPolymorphicObject(
   if (schema === uberParent && schema.children) {
     // When the object is a top level parent, its discriminatorPath is itself
     discriminatorPath = `${uberParentName}`;
-    const discriminatorProperty = uberParent.discriminator!.property.language
-      .default.name;
+    const discriminatorProperty = getLanguageMetadata(
+      uberParent.discriminator!.property.language
+    ).name;
 
     const children = schema.children.all;
     const childDiscriminators = children
@@ -287,11 +288,12 @@ function transformPolymorphicObject(
       : { [`"${discriminatorProperty}"`]: childDiscriminators };
   } else {
     discriminatorPath = `${uberParentName}.${schema.discriminatorValue}`;
-    discriminatorValues = {
-      [uberParent.discriminator!.property.language.default.name]: [
-        schema.discriminatorValue!
-      ]
-    };
+    if (uberParent.discriminator) {
+      discriminatorValues = {
+        [getLanguageMetadata(uberParent.discriminator.property.language)
+          .name]: [schema.discriminatorValue!]
+      };
+    }
   }
 
   return {

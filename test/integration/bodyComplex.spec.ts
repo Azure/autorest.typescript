@@ -506,31 +506,32 @@ const clientOptions = {
 
           await testClient.polymorphism.putValid(getFish());
         });
-        const getBadfish = (): FishUnion => ({
-          fishtype: "sawshark",
-          species: "snaggle toothed",
-          length: 18.5,
-          age: 2,
-          birthday: new Date("2013-06-01T01:00:00Z"),
-          location: "alaska",
-          picture: new Uint8Array([255, 255, 255, 255, 254]),
-          siblings: [
-            {
-              fishtype: "shark",
-              species: "predator",
-              birthday: new Date("2012-01-05T01:00:00Z"),
-              length: 20,
-              age: 6
-            } as Shark,
-            {
-              fishtype: "sawshark",
-              species: "dangerous",
-              picture: new Uint8Array([255, 255, 255, 255, 254]),
-              length: 10,
-              age: 105
-            } as Sawshark
-          ]
-        });
+        const getBadfish = (): FishUnion =>
+          ({
+            fishtype: "sawshark",
+            species: "snaggle toothed",
+            length: 18.5,
+            age: 2,
+            birthday: new Date("2013-06-01T01:00:00Z"),
+            location: "alaska",
+            picture: new Uint8Array([255, 255, 255, 255, 254]),
+            siblings: [
+              {
+                fishtype: "shark",
+                species: "predator",
+                birthday: new Date("2012-01-05T01:00:00Z"),
+                length: 20,
+                age: 6
+              } as Shark,
+              {
+                fishtype: "sawshark",
+                species: "dangerous",
+                picture: new Uint8Array([255, 255, 255, 255, 254]),
+                length: 10,
+                age: 105
+              } as Sawshark
+            ]
+          } as Sawshark);
         it("should throw when required fields are omitted from polymorphic types", async function() {
           try {
             await testClient.polymorphism.putValidMissingRequired(getBadfish());

@@ -536,9 +536,7 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
     .forEach(obj => {
       const polymorphicObject = obj as PolymorphicObjectDetails;
       const childrenNames = [
-        ...(isPolymorphicParentInUnion(polymorphicObject)
-          ? [polymorphicObject.name]
-          : []),
+        [polymorphicObject.name],
         ...polymorphicObject.children.map(c => {
           return c.schema.children && c.schema.children.immediate.length
             ? `${c.name}Union`
