@@ -351,6 +351,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "XmsErrorResponsesClient",
     packageName: "xms-error-responses",
     licenseHeader: true
+  },
+  odataDiscriminator: {
+    swagger: "test/integration/swaggers/odata-discriminator.json",
+    clientName: "ODataDiscriminatorClient",
+    packageName: "odata-discriminator",
+    licenseHeader: true
   }
 };
 
