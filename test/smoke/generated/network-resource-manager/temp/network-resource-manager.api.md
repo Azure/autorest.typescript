@@ -656,6 +656,7 @@ export interface ApplicationGatewayWebApplicationFirewallConfiguration {
 
 // @public
 export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
+    ruleConditionType: "ApplicationRuleCondition";
     sourceAddresses?: string[];
     destinationAddresses?: string[];
     protocols?: FirewallPolicyRuleConditionApplicationProtocol[];
@@ -3099,6 +3100,7 @@ export interface FirewallPolicyCertificateAuthority {
 
 // @public
 export type FirewallPolicyFilterRule = FirewallPolicyRule & {
+    ruleType: "FirewallPolicyFilterRule";
     action?: FirewallPolicyFilterRuleAction;
     ruleConditions?: FirewallPolicyRuleConditionUnion[];
 };
@@ -3122,6 +3124,7 @@ export interface FirewallPolicyListResult {
 
 // @public
 export type FirewallPolicyNatRule = FirewallPolicyRule & {
+    ruleType: "FirewallPolicyNatRule";
     action?: FirewallPolicyNatRuleAction;
     translatedAddress?: string;
     translatedPort?: string;
@@ -3166,7 +3169,7 @@ export type FirewallPolicyRuleConditionNetworkProtocol = string;
 export type FirewallPolicyRuleConditionType = string;
 
 // @public (undocumented)
-export type FirewallPolicyRuleConditionUnion = ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
+export type FirewallPolicyRuleConditionUnion = FirewallPolicyRuleCondition | ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
 
 // @public
 export type FirewallPolicyRuleGroup = SubResource & {
@@ -3221,7 +3224,7 @@ export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListRe
 export type FirewallPolicyRuleType = string;
 
 // @public (undocumented)
-export type FirewallPolicyRuleUnion = FirewallPolicyNatRule | FirewallPolicyFilterRule;
+export type FirewallPolicyRuleUnion = FirewallPolicyRule | FirewallPolicyNatRule | FirewallPolicyFilterRule;
 
 // @public
 export interface FirewallPolicyThreatIntelWhitelist {
@@ -5880,6 +5883,7 @@ export type NatGatewaysUpdateTagsResponse = NatGateway & {
 
 // @public
 export type NatRuleCondition = FirewallPolicyRuleCondition & {
+    ruleConditionType: "NatRuleCondition";
     ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
     sourceAddresses?: string[];
     destinationAddresses?: string[];
@@ -6832,6 +6836,7 @@ export type NetworkProfilesUpdateTagsResponse = NetworkProfile & {
 
 // @public
 export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
+    ruleConditionType: "NetworkRuleCondition";
     ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
     sourceAddresses?: string[];
     destinationAddresses?: string[];
@@ -10909,7 +10914,7 @@ export type WebApplicationFirewallTransform = string;
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:15227:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:15249:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

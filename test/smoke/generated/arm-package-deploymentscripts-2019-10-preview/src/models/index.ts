@@ -9,7 +9,10 @@
 import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
-export type DeploymentScriptUnion = AzurePowerShellScript | AzureCliScript;
+export type DeploymentScriptUnion =
+  | DeploymentScript
+  | AzurePowerShellScript
+  | AzureCliScript;
 
 /**
  * Managed identity generic object.
