@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SearchServiceClient",
+    "description": "Client that can be used to manage and query indexes and documents, as well as manage other resources, on a search service.",
+    "version": "2020-06-30",
+    "x-ms-code-generation-settings": {
+      "useDateTimeOffset": true
+    }
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/v1/value": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/globalApiVersion"
+        }
+      ],
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": { "description": "Success", "schema": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LexicalAnalyzer": {
+      "discriminator": "@odata.type",
+      "properties": {
+        "@odata.type": {
+          "type": "string",
+          "description": "Identifies the concrete type of the analyzer."
+        },
+        "name": {
+          "type": "string",
+          "externalDocs": {
+            "url": "https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search#index-attribute-reference"
+          },
+          "description": "The name of the analyzer. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters."
+        }
+      },
+      "required": ["@odata.type", "name"],
+      "description": "Base type for analyzers."
+    },
+    "PatternAnalyzer": {
+      "x-ms-discriminator-value": "#Microsoft.Azure.Search.PatternAnalyzer",
+      "allOf": [
+        {
+          "$ref": "#/definitions/LexicalAnalyzer"
+        }
+      ],
+      "properties": {
+        "lowercase": {
+          "x-ms-client-name": "LowerCaseTerms",
+          "type": "boolean",
+          "default": true,
+          "description": "A value indicating whether terms should be lower-cased. Default is true."
+        },
+        "pattern": {
+          "type": "string",
+          "default": "\\W+",
+          "description": "A regular expression pattern to match token separators. Default is an expression that matches one or more non-word characters."
+        },
+        "stopwords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of stopwords."
+        }
+      },
+      "description": "Flexibly separates text into terms via a regular expression pattern. This analyzer is implemented using Apache Lucene.",
+      "externalDocs": {
+        "url": "http://lucene.apache.org/core/4_10_3/analyzers-common/org/apache/lucene/analysis/miscellaneous/PatternAnalyzer.html"
+      }
+    },
+    "LuceneStandardAnalyzer": {
+      "x-ms-discriminator-value": "#Microsoft.Azure.Search.StandardAnalyzer",
+      "allOf": [
+        {
+          "$ref": "#/definitions/LexicalAnalyzer"
+        }
+      ],
+      "properties": {
+        "maxTokenLength": {
+          "type": "integer",
+          "format": "int32",
+          "default": 255,
+          "maximum": 300,
+          "description": "The maximum token length. Default is 255. Tokens longer than the maximum length are split. The maximum token length that can be used is 300 characters."
+        },
+        "stopwords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of stopwords."
+        }
+      },
+      "description": "Standard Apache Lucene analyzer; Composed of the standard tokenizer, lowercase filter and stop filter.",
+      "externalDocs": {
+        "url": "http://lucene.apache.org/core/4_10_3/analyzers-common/org/apache/lucene/analysis/standard/StandardAnalyzer.html"
+      }
+    },
+    "StopAnalyzer": {
+      "x-ms-discriminator-value": "#Microsoft.Azure.Search.StopAnalyzer",
+      "allOf": [
+        {
+          "$ref": "#/definitions/LexicalAnalyzer"
+        }
+      ],
+      "properties": {
+        "stopwords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of stopwords."
+        }
+      },
+      "description": "Divides text at non-letters; Applies the lowercase and stopword token filters. This analyzer is implemented using Apache Lucene.",
+      "externalDocs": {
+        "url": "http://lucene.apache.org/core/4_10_3/analyzers-common/org/apache/lucene/analysis/core/StopAnalyzer.html"
+      }
+    },
+    "PathHierarchyTokenizerV2": {
+      "properties": {
+        "delimiter": {
+          "type": "string",
+          "format": "char",
+          "default": "/",
+          "description": "The delimiter character to use. Default is \"/\"."
+        },
+        "replacement": {
+          "type": "string",
+          "format": "char",
+          "default": "/",
+          "description": "A value that, if set, replaces the delimiter character. Default is \"/\"."
+        }
+      },
+      "description": "Tokenizer for path-like hierarchies. This tokenizer is implemented using Apache Lucene.",
+      "externalDocs": {
+        "url": "http://lucene.apache.org/core/4_10_3/analyzers-common/org/apache/lucene/analysis/path/PathHierarchyTokenizer.html"
+      }
+    }
+  },
+  "parameters": {
+    "globalApiVersion": {
+      "name": "api-version",
+      "in": "header",
+      "type": "string",
+      "enum": ["one", "two"],
+      "required": true
+    }
+  }
+}

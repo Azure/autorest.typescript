@@ -10,9 +10,11 @@ import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export type FirewallPolicyRuleUnion =
+  | FirewallPolicyRule
   | FirewallPolicyNatRule
   | FirewallPolicyFilterRule;
 export type FirewallPolicyRuleConditionUnion =
+  | FirewallPolicyRuleCondition
   | ApplicationRuleCondition
   | NatRuleCondition
   | NetworkRuleCondition;
@@ -12084,6 +12086,10 @@ export type Vm = Resource & {};
  */
 export type FirewallPolicyNatRule = FirewallPolicyRule & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  ruleType: "FirewallPolicyNatRule";
+  /**
    * The action type of a Nat rule.
    */
   action?: FirewallPolicyNatRuleAction;
@@ -12105,6 +12111,10 @@ export type FirewallPolicyNatRule = FirewallPolicyRule & {
  * Firewall Policy Filter Rule.
  */
 export type FirewallPolicyFilterRule = FirewallPolicyRule & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  ruleType: "FirewallPolicyFilterRule";
   /**
    * The action type of a Filter rule.
    */
@@ -12167,6 +12177,10 @@ export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
  */
 export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  ruleConditionType: "ApplicationRuleCondition";
+  /**
    * List of source IP addresses for this rule.
    */
   sourceAddresses?: string[];
@@ -12201,6 +12215,10 @@ export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
  */
 export type NatRuleCondition = FirewallPolicyRuleCondition & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  ruleConditionType: "NatRuleCondition";
+  /**
    * Array of FirewallPolicyRuleConditionNetworkProtocols.
    */
   ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
@@ -12230,6 +12248,10 @@ export type NatRuleCondition = FirewallPolicyRuleCondition & {
  * Rule condition of type network.
  */
 export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  ruleConditionType: "NetworkRuleCondition";
   /**
    * Array of FirewallPolicyRuleConditionNetworkProtocols.
    */

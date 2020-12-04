@@ -114,7 +114,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    displayName?: string;\n    mailEnabled?: boolean;\n    mailNickname?: string;\n    securityEnabled?: boolean;\n    mail?: string;\n}"
+              "text": " & {\n    objectType: \"Group\";\n    displayName?: string;\n    mailEnabled?: boolean;\n    mailNickname?: string;\n    securityEnabled?: boolean;\n    mail?: string;\n}"
             },
             {
               "kind": "Content",
@@ -144,7 +144,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    appId?: string;\n    allowGuestsSignIn?: boolean;\n    allowPassthroughUsers?: boolean;\n    appLogoUrl?: string;\n    appRoles?: "
+              "text": " & {\n    objectType: \"Application\";\n    appId?: string;\n    allowGuestsSignIn?: boolean;\n    allowPassthroughUsers?: boolean;\n    appLogoUrl?: string;\n    appRoles?: "
             },
             {
               "kind": "Reference",
@@ -2436,6 +2436,15 @@
             },
             {
               "kind": "Reference",
+              "text": "DirectoryObject",
+              "canonicalReference": "graphrbac-data-plane!DirectoryObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
               "text": "User",
               "canonicalReference": "graphrbac-data-plane!User:type"
             },
@@ -2475,7 +2484,7 @@
           "name": "DirectoryObjectUnion",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 8
+            "endIndex": 10
           }
         },
         {
@@ -7254,7 +7263,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    accountEnabled?: boolean;\n    alternativeNames?: string[];\n    readonly appDisplayName?: string;\n    appId?: string;\n    readonly appOwnerTenantId?: string;\n    appRoleAssignmentRequired?: boolean;\n    appRoles?: "
+              "text": " & {\n    objectType: \"ServicePrincipal\";\n    accountEnabled?: boolean;\n    alternativeNames?: string[];\n    readonly appDisplayName?: string;\n    appId?: string;\n    readonly appOwnerTenantId?: string;\n    appRoleAssignmentRequired?: boolean;\n    appRoles?: "
             },
             {
               "kind": "Reference",
@@ -8388,7 +8397,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    immutableId?: string;\n    usageLocation?: string;\n    givenName?: string;\n    surname?: string;\n    userType?: "
+              "text": " & {\n    objectType: \"User\";\n    immutableId?: string;\n    usageLocation?: string;\n    givenName?: string;\n    surname?: string;\n    userType?: "
             },
             {
               "kind": "Reference",

@@ -5301,7 +5301,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    sourceAddresses?: string[];\n    destinationAddresses?: string[];\n    protocols?: "
+              "text": " & {\n    ruleConditionType: \"ApplicationRuleCondition\";\n    sourceAddresses?: string[];\n    destinationAddresses?: string[];\n    protocols?: "
             },
             {
               "kind": "Reference",
@@ -27796,7 +27796,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    action?: "
+              "text": " & {\n    ruleType: \"FirewallPolicyFilterRule\";\n    action?: "
             },
             {
               "kind": "Reference",
@@ -28007,7 +28007,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    action?: "
+              "text": " & {\n    ruleType: \"FirewallPolicyNatRule\";\n    action?: "
             },
             {
               "kind": "Reference",
@@ -28441,6 +28441,15 @@
             },
             {
               "kind": "Reference",
+              "text": "FirewallPolicyRuleCondition",
+              "canonicalReference": "network-resource-manager!FirewallPolicyRuleCondition:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
               "text": "ApplicationRuleCondition",
               "canonicalReference": "network-resource-manager!ApplicationRuleCondition:type"
             },
@@ -28471,7 +28480,7 @@
           "name": "FirewallPolicyRuleConditionUnion",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 8
           }
         },
         {
@@ -28839,6 +28848,15 @@
             },
             {
               "kind": "Reference",
+              "text": "FirewallPolicyRule",
+              "canonicalReference": "network-resource-manager!FirewallPolicyRule:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
               "text": "FirewallPolicyNatRule",
               "canonicalReference": "network-resource-manager!FirewallPolicyNatRule:type"
             },
@@ -28860,7 +28878,7 @@
           "name": "FirewallPolicyRuleUnion",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -50771,7 +50789,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    ipProtocols?: "
+              "text": " & {\n    ruleConditionType: \"NatRuleCondition\";\n    ipProtocols?: "
             },
             {
               "kind": "Reference",
@@ -58590,7 +58608,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    ipProtocols?: "
+              "text": " & {\n    ruleConditionType: \"NetworkRuleCondition\";\n    ipProtocols?: "
             },
             {
               "kind": "Reference",

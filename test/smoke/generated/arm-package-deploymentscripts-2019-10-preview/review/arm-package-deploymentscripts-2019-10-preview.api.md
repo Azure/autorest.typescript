@@ -229,7 +229,7 @@ export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion & {
 };
 
 // @public (undocumented)
-export type DeploymentScriptUnion = AzurePowerShellScript | AzureCliScript;
+export type DeploymentScriptUnion = DeploymentScript | AzurePowerShellScript | AzureCliScript;
 
 // @public
 export type DeploymentScriptUpdateParameter = AzureResourceBase & {
@@ -386,7 +386,7 @@ export interface UserAssignedIdentity {
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:653:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:656:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

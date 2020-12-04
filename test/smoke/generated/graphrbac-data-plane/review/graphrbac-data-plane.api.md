@@ -15,6 +15,7 @@ export interface AddOwnerParameters {
 
 // @public
 export type ADGroup = DirectoryObject & {
+    objectType: "Group";
     displayName?: string;
     mailEnabled?: boolean;
     mailNickname?: string;
@@ -24,6 +25,7 @@ export type ADGroup = DirectoryObject & {
 
 // @public
 export type Application = DirectoryObject & {
+    objectType: "Application";
     appId?: string;
     allowGuestsSignIn?: boolean;
     allowPassthroughUsers?: boolean;
@@ -256,7 +258,7 @@ export interface DirectoryObjectListResult {
 }
 
 // @public (undocumented)
-export type DirectoryObjectUnion = User | Application | ADGroup | ServicePrincipal;
+export type DirectoryObjectUnion = DirectoryObject | User | Application | ADGroup | ServicePrincipal;
 
 // @public
 export interface Domain {
@@ -699,6 +701,7 @@ export interface ResourceAccess {
 
 // @public
 export type ServicePrincipal = DirectoryObject & {
+    objectType: "ServicePrincipal";
     accountEnabled?: boolean;
     alternativeNames?: string[];
     readonly appDisplayName?: string;
@@ -854,6 +857,7 @@ export interface SignInName {
 
 // @public
 export type User = DirectoryObject & {
+    objectType: "User";
     immutableId?: string;
     usageLocation?: string;
     givenName?: string;

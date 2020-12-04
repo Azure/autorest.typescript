@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 export type DirectoryObjectUnion =
+  | DirectoryObject
   | User
   | Application
   | ADGroup
@@ -917,6 +918,10 @@ export interface OAuth2PermissionGrant {
  */
 export type User = DirectoryObject & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  objectType: "User";
+  /**
    * This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object.
    */
   immutableId?: string;
@@ -966,6 +971,10 @@ export type User = DirectoryObject & {
  * Active Directory application information.
  */
 export type Application = DirectoryObject & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  objectType: "Application";
   /**
    * The application ID.
    */
@@ -1101,6 +1110,10 @@ export type Application = DirectoryObject & {
  */
 export type ADGroup = DirectoryObject & {
   /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  objectType: "Group";
+  /**
    * The display name of the group.
    */
   displayName?: string;
@@ -1126,6 +1139,10 @@ export type ADGroup = DirectoryObject & {
  * Active Directory service principal information.
  */
 export type ServicePrincipal = DirectoryObject & {
+  /**
+   * Polymorphic discriminator, which specifies the different types this object can be
+   */
+  objectType: "ServicePrincipal";
   /**
    * whether or not the service principal account is enabled
    */

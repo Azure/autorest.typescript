@@ -168,6 +168,7 @@ export function getTypeForSchema(
       usedModels.push(typeName);
       break;
     case SchemaType.String:
+    case SchemaType.Char:
     case SchemaType.Time:
     case SchemaType.Uuid:
     case SchemaType.Uri:
