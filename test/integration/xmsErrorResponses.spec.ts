@@ -2,7 +2,7 @@ import { assert } from "chai";
 import {
   AnimalNotFound,
   LinkNotFound,
-  PetGetPetByIdResponse,
+  PetopGetPetByIdResponse,
   PetHungryOrThirstyError,
   PetSadError,
   XmsErrorResponsesClient
@@ -21,7 +21,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an animal not found error", async () => {
     try {
-      const response: any = await client.pet.getPetById("coyoteUgly");
+      const response: any = await client.petop.getPetById("coyoteUgly");
       assert.fail();
     } catch (ex) {
       const expected: AnimalNotFound = {
@@ -36,10 +36,10 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
   });
 
   it("should get an animal without error", async () => {
-    const response: PetGetPetByIdResponse = await client.pet.getPetById(
+    const response: PetopGetPetByIdResponse = await client.petop.getPetById(
       "tommy"
     );
-    const expected: Partial<PetGetPetByIdResponse> = {
+    const expected: Partial<PetopGetPetByIdResponse> = {
       name: "Tommy Tomson",
       aniType: "Dog"
     };
@@ -49,7 +49,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an animal hungry/thirsty error", async () => {
     try {
-      const response: any = await client.pet.doSomething("fetch");
+      const response: any = await client.petop.doSomething("fetch");
       assert.fail();
     } catch (ex) {
       const expected: PetHungryOrThirstyError = {
@@ -67,7 +67,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an animal sad error", async () => {
     try {
-      const response: any = await client.pet.doSomething("jump");
+      const response: any = await client.petop.doSomething("jump");
       assert.fail();
     } catch (ex) {
       const expected: PetSadError = {
@@ -84,7 +84,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get a link found error", async () => {
     try {
-      const response: any = await client.pet.getPetById("weirdAlYankovic");
+      const response: any = await client.petop.getPetById("weirdAlYankovic");
       assert.fail();
     } catch (ex) {
       const expected: LinkNotFound = {
@@ -100,7 +100,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an unexpected int error", async () => {
     try {
-      const response: any = await client.pet.getPetById("alien123");
+      const response: any = await client.petop.getPetById("alien123");
       assert.fail();
     } catch (ex) {
       assert.deepEqual(JSON.parse(ex.message), 123);
@@ -110,7 +110,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an bad requested string error", async () => {
     try {
-      const response: any = await client.pet.getPetById("ringo");
+      const response: any = await client.petop.getPetById("ringo");
       assert.fail();
     } catch (ex) {
       assert.deepEqual(JSON.parse(ex.message), "ringo is missing");

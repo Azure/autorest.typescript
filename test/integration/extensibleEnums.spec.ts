@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import {
   ExtensibleEnumsClient,
-  PetGetByPetIdResponse
+  PetopGetByPetIdResponse
 } from "./generated/extensibleEnums/src";
 
 describe("Integration tests for extensible enums", () => {
@@ -12,8 +12,8 @@ describe("Integration tests for extensible enums", () => {
   });
 
   it("sends an unexpected enum value successfully", async () => {
-    const response = await client.pet.getByPetId("casper");
-    const expected: Partial<PetGetByPetIdResponse> = {
+    const response = await client.petop.getByPetId("casper");
+    const expected: Partial<PetopGetByPetIdResponse> = {
       daysOfWeek: "Weekend",
       intEnum: "2",
       name: "Casper Ghosty"
@@ -23,8 +23,8 @@ describe("Integration tests for extensible enums", () => {
   });
 
   it("sends an expected enum value successfully", async () => {
-    const response = await client.pet.getByPetId("tommy");
-    const expected: Partial<PetGetByPetIdResponse> = {
+    const response = await client.petop.getByPetId("tommy");
+    const expected: Partial<PetopGetByPetIdResponse> = {
       daysOfWeek: "Monday",
       intEnum: "1",
       name: "Tommy Tomson"
@@ -34,8 +34,8 @@ describe("Integration tests for extensible enums", () => {
   });
 
   it("sends an allowed enum value successfully", async () => {
-    const response = await client.pet.getByPetId("scooby");
-    const expected: Partial<PetGetByPetIdResponse> = {
+    const response = await client.petop.getByPetId("scooby");
+    const expected: Partial<PetopGetByPetIdResponse> = {
       daysOfWeek: "Thursday",
       intEnum: "2.1",
       name: "Scooby Scarface"
@@ -45,13 +45,13 @@ describe("Integration tests for extensible enums", () => {
   });
 
   it("sends and receives enum value successfully", async () => {
-    const expected: Partial<PetGetByPetIdResponse> = {
+    const expected: Partial<PetopGetByPetIdResponse> = {
       name: "Retriever",
       intEnum: "3",
       daysOfWeek: "Sunday"
     };
 
-    const response = await client.pet.addPet({
+    const response = await client.petop.addPet({
       petParam: {
         name: "Retriever",
         intEnum: "3",

@@ -74,13 +74,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true
   },
   bodyComplex: {
-    swagger: "body-complex.json",
+    swagger: "test/integration/swaggers/body-complex.json",
     clientName: "BodyComplexClient",
     packageName: "body-complex",
     licenseHeader: true
   },
   bodyComplexWithTracing: {
-    swagger: "body-complex.json",
+    swagger: "test/integration/swaggers/body-complex.json",
     clientName: "bodyComplexWithTracing",
     packageName: "body-complex-tracing",
     licenseHeader: true,
@@ -344,13 +344,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true
   },
   extensibleEnums: {
-    swagger: "extensible-enums-swagger.json",
+    swagger: "test/integration/swaggers/extensible-enums-swagger.json",
     clientName: "ExtensibleEnumsClient",
     packageName: "extensible-enums",
     licenseHeader: true
   },
   xmsErrorResponses: {
-    swagger: "xms-error-responses.json",
+    swagger: "test/integration/swaggers/xms-error-responses.json",
     clientName: "XmsErrorResponsesClient",
     packageName: "xms-error-responses",
     licenseHeader: true

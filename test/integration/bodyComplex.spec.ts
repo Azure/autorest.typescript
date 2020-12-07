@@ -29,12 +29,12 @@ const clientOptions = {
           testClient = new Client(clientOptions);
         });
         it("should get and put valid basic type properties", async function() {
-          const result = await testClient.basic.getValid();
+          const result = await testClient.basicop.getValid();
           assert.strictEqual(result.id, 2);
           assert.strictEqual(result.name, "abc");
           assert.strictEqual(result.color, "YELLOW");
 
-          const putResult = await testClient.basic.putValid({
+          const putResult = await testClient.basicop.putValid({
             id: 2,
             name: "abc",
             color: "Magenta"
@@ -44,25 +44,25 @@ const clientOptions = {
         });
 
         it("should get null basic type properties", async function() {
-          const result = await testClient.basic.getNull();
+          const result = await testClient.basicop.getNull();
           assert.strictEqual(null, result.id);
           assert.strictEqual(null, result.name);
         });
 
         it("should get empty basic type properties", async () => {
-          const result = await testClient.basic.getEmpty();
+          const result = await testClient.basicop.getEmpty();
           assert.strictEqual(result.id, undefined);
           assert.strictEqual(result.name, undefined);
         });
 
         it("should get basic type properties when the payload is empty", async () => {
-          await testClient.basic.getNotProvided();
+          await testClient.basicop.getNotProvided();
           assert.ok("Request succeeded with no errors");
         });
 
         it("should deserialize invalid basic types without throwing", async () => {
           // TODO double check
-          const result = await testClient.basic.getInvalid();
+          const result = await testClient.basicop.getInvalid();
           assert.ok("Deserialized invalid basic types without throwing");
         });
       });
@@ -756,7 +756,7 @@ describe("Validate pipelines", () => {
       endpoint: "http://localhost:3000",
       requestPolicyFactories: [customPolicy]
     });
-    const result = await client.basic.getValid();
+    const result = await client.basicop.getValid();
 
     // Valiedate Operation
     // Verify that the operation works as expected
@@ -786,7 +786,7 @@ describe("Validate pipelines", () => {
         ...defaultPolicies
       ]
     });
-    const { _response, ...result } = await client.basic.getValid();
+    const { _response, ...result } = await client.basicop.getValid();
 
     // Valiedate Operation
     assert.deepStrictEqual(result, { id: 2, name: "abc", color: "YELLOW" });
