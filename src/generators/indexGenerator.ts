@@ -52,10 +52,10 @@ export function generateIndexFile(
 
 function isOperationsAvailable(
   operationGroups: OperationGroupDetails[],
-  sourceFileName: string
+  className: string
 ): boolean {
   for (let og of operationGroups) {
-    if (og.name !== sourceFileName) {
+    if (og.name !== className) {
       return true;
     }
   }
