@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./basic";
+export * from "./basicop";
 export * from "./primitive";
 export * from "./array";
 export * from "./dictionary";

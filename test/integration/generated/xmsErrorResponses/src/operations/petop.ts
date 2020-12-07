@@ -10,16 +10,20 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmsErrorResponsesClient } from "../xmsErrorResponsesClient";
-import { PetGetPetByIdResponse, PetDoSomethingResponse } from "../models";
+import {
+  PetopGetPetByIdResponse,
+  PetopDoSomethingResponse,
+  PetopHasModelsParamOptionalParams
+} from "../models";
 
 /**
- * Class representing a Pet.
+ * Class representing a Petop.
  */
-export class Pet {
+export class Petop {
   private readonly client: XmsErrorResponsesClient;
 
   /**
-   * Initialize a new instance of the class Pet class.
+   * Initialize a new instance of the class Petop class.
    * @param client Reference to the service client
    */
   constructor(client: XmsErrorResponsesClient) {
@@ -34,7 +38,7 @@ export class Pet {
   getPetById(
     petId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<PetGetPetByIdResponse> {
+  ): Promise<PetopGetPetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -42,7 +46,7 @@ export class Pet {
     return this.client.sendOperationRequest(
       operationArguments,
       getPetByIdOperationSpec
-    ) as Promise<PetGetPetByIdResponse>;
+    ) as Promise<PetopGetPetByIdResponse>;
   }
 
   /**
@@ -53,7 +57,7 @@ export class Pet {
   doSomething(
     whatAction: string,
     options?: coreHttp.OperationOptions
-  ): Promise<PetDoSomethingResponse> {
+  ): Promise<PetopDoSomethingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       whatAction,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -61,7 +65,24 @@ export class Pet {
     return this.client.sendOperationRequest(
       operationArguments,
       doSomethingOperationSpec
-    ) as Promise<PetDoSomethingResponse>;
+    ) as Promise<PetopDoSomethingResponse>;
+  }
+
+  /**
+   * Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
+   * conflict with the input param name 'models'
+   * @param options The options parameters.
+   */
+  hasModelsParam(
+    options?: PetopHasModelsParamOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      hasModelsParamOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
@@ -110,6 +131,24 @@ const doSomethingOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.whatAction],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const hasModelsParamOperationSpec: coreHttp.OperationSpec = {
+  path: "/errorStatusCodes/Pets/hasModelsParam",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    500: {
+      bodyMapper: Mappers.PetActionError,
+      isError: true
+    },
+    default: {
+      bodyMapper: Mappers.PetActionError
+    }
+  },
+  queryParameters: [Parameters.models],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

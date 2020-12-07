@@ -6,7 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import {
+  OperationParameter,
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -48,6 +52,16 @@ export const whatAction: OperationURLParameter = {
   mapper: {
     serializedName: "whatAction",
     required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const models: OperationQueryParameter = {
+  parameterPath: ["options", "models"],
+  mapper: {
+    serializedName: "models",
     type: {
       name: "String"
     }

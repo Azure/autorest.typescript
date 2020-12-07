@@ -307,7 +307,7 @@ export type GoblinSharkColor = string;
 /**
  * Contains response data for the getValid operation.
  */
-export type BasicGetValidResponse = Basic & {
+export type BasicopGetValidResponse = Basic & {
   /**
    * The underlying HTTP response.
    */
@@ -327,7 +327,7 @@ export type BasicGetValidResponse = Basic & {
 /**
  * Contains response data for the getInvalid operation.
  */
-export type BasicGetInvalidResponse = Basic & {
+export type BasicopGetInvalidResponse = Basic & {
   /**
    * The underlying HTTP response.
    */
@@ -347,7 +347,7 @@ export type BasicGetInvalidResponse = Basic & {
 /**
  * Contains response data for the getEmpty operation.
  */
-export type BasicGetEmptyResponse = Basic & {
+export type BasicopGetEmptyResponse = Basic & {
   /**
    * The underlying HTTP response.
    */
@@ -367,7 +367,7 @@ export type BasicGetEmptyResponse = Basic & {
 /**
  * Contains response data for the getNull operation.
  */
-export type BasicGetNullResponse = Basic & {
+export type BasicopGetNullResponse = Basic & {
   /**
    * The underlying HTTP response.
    */
@@ -387,7 +387,7 @@ export type BasicGetNullResponse = Basic & {
 /**
  * Contains response data for the getNotProvided operation.
  */
-export type BasicGetNotProvidedResponse = Basic & {
+export type BasicopGetNotProvidedResponse = Basic & {
   /**
    * The underlying HTTP response.
    */

@@ -80,7 +80,7 @@ export type IntEnum = string;
 /**
  * Contains response data for the getByPetId operation.
  */
-export type PetGetByPetIdResponse = Pet & {
+export type PetopGetByPetIdResponse = Pet & {
   /**
    * The underlying HTTP response.
    */
@@ -100,7 +100,7 @@ export type PetGetByPetIdResponse = Pet & {
 /**
  * Optional parameters.
  */
-export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
+export interface PetopAddPetOptionalParams extends coreHttp.OperationOptions {
   /**
    * pet param
    */
@@ -110,7 +110,7 @@ export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
 /**
  * Contains response data for the addPet operation.
  */
-export type PetAddPetResponse = Pet & {
+export type PetopAddPetResponse = Pet & {
   /**
    * The underlying HTTP response.
    */

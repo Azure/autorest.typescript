@@ -76,7 +76,7 @@ export type PetHungryOrThirstyError = PetSadError & {
 /**
  * Contains response data for the getPetById operation.
  */
-export type PetGetPetByIdResponse = Pet & {
+export type PetopGetPetByIdResponse = Pet & {
   /**
    * The underlying HTTP response.
    */
@@ -96,7 +96,7 @@ export type PetGetPetByIdResponse = Pet & {
 /**
  * Contains response data for the doSomething operation.
  */
-export type PetDoSomethingResponse = PetAction & {
+export type PetopDoSomethingResponse = PetAction & {
   /**
    * The underlying HTTP response.
    */
@@ -112,6 +112,17 @@ export type PetDoSomethingResponse = PetAction & {
     parsedBody: PetAction;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PetopHasModelsParamOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Make sure model deserialization doesn't conflict with this param name, which has input name 'models'. Use client default value in call
+   */
+  models?: string;
+}
 
 /**
  * Optional parameters.

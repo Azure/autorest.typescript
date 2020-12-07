@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+export * from "./operations";
 export * from "./models";
 export { BodyDateTimeRfc1123Client } from "./bodyDateTimeRfc1123Client";
 export { BodyDateTimeRfc1123ClientContext } from "./bodyDateTimeRfc1123ClientContext";

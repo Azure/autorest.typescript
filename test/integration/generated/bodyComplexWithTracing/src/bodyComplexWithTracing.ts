@@ -7,7 +7,7 @@
  */
 
 import {
-  Basic,
+  Basicop,
   Primitive,
   Array,
   Dictionary,
@@ -27,7 +27,7 @@ export class BodyComplexWithTracing extends BodyComplexWithTracingContext {
    */
   constructor(options?: BodyComplexWithTracingOptionalParams) {
     super(options);
-    this.basic = new Basic(this);
+    this.basicop = new Basicop(this);
     this.primitive = new Primitive(this);
     this.array = new Array(this);
     this.dictionary = new Dictionary(this);
@@ -38,7 +38,7 @@ export class BodyComplexWithTracing extends BodyComplexWithTracingContext {
     this.flattencomplex = new Flattencomplex(this);
   }
 
-  basic: Basic;
+  basicop: Basicop;
   primitive: Primitive;
   array: Array;
   dictionary: Dictionary;

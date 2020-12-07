@@ -13,22 +13,22 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
-  BasicGetValidResponse,
-  Basic as BasicModel,
-  BasicGetInvalidResponse,
-  BasicGetEmptyResponse,
-  BasicGetNullResponse,
-  BasicGetNotProvidedResponse
+  BasicopGetValidResponse,
+  Basic,
+  BasicopGetInvalidResponse,
+  BasicopGetEmptyResponse,
+  BasicopGetNullResponse,
+  BasicopGetNotProvidedResponse
 } from "../models";
 
 /**
- * Class representing a Basic.
+ * Class representing a Basicop.
  */
-export class Basic {
+export class Basicop {
   private readonly client: BodyComplexWithTracing;
 
   /**
-   * Initialize a new instance of the class Basic class.
+   * Initialize a new instance of the class Basicop class.
    * @param client Reference to the service client
    */
   constructor(client: BodyComplexWithTracing) {
@@ -41,7 +41,7 @@ export class Basic {
    */
   async getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetValidResponse> {
+  ): Promise<BasicopGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -54,7 +54,7 @@ export class Basic {
         operationArguments,
         getValidOperationSpec
       );
-      return result as BasicGetValidResponse;
+      return result as BasicopGetValidResponse;
     } catch (error) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
@@ -72,7 +72,7 @@ export class Basic {
    * @param options The options parameters.
    */
   async putValid(
-    complexBody: BasicModel,
+    complexBody: Basic,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
@@ -106,7 +106,7 @@ export class Basic {
    */
   async getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetInvalidResponse> {
+  ): Promise<BasicopGetInvalidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getInvalid",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -119,7 +119,7 @@ export class Basic {
         operationArguments,
         getInvalidOperationSpec
       );
-      return result as BasicGetInvalidResponse;
+      return result as BasicopGetInvalidResponse;
     } catch (error) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
@@ -137,7 +137,7 @@ export class Basic {
    */
   async getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetEmptyResponse> {
+  ): Promise<BasicopGetEmptyResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getEmpty",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -150,7 +150,7 @@ export class Basic {
         operationArguments,
         getEmptyOperationSpec
       );
-      return result as BasicGetEmptyResponse;
+      return result as BasicopGetEmptyResponse;
     } catch (error) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
@@ -168,7 +168,7 @@ export class Basic {
    */
   async getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetNullResponse> {
+  ): Promise<BasicopGetNullResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNull",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -181,7 +181,7 @@ export class Basic {
         operationArguments,
         getNullOperationSpec
       );
-      return result as BasicGetNullResponse;
+      return result as BasicopGetNullResponse;
     } catch (error) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
@@ -199,7 +199,7 @@ export class Basic {
    */
   async getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetNotProvidedResponse> {
+  ): Promise<BasicopGetNotProvidedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNotProvided",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -212,7 +212,7 @@ export class Basic {
         operationArguments,
         getNotProvidedOperationSpec
       );
-      return result as BasicGetNotProvidedResponse;
+      return result as BasicopGetNotProvidedResponse;
     } catch (error) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,

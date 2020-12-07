@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Pet } from "./operations";
+import { Petop } from "./operations";
 import { XmsErrorResponsesClientContext } from "./xmsErrorResponsesClientContext";
 import { XmsErrorResponsesClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class XmsErrorResponsesClient extends XmsErrorResponsesClientContext {
    */
   constructor(options?: XmsErrorResponsesClientOptionalParams) {
     super(options);
-    this.pet = new Pet(this);
+    this.petop = new Petop(this);
   }
 
-  pet: Pet;
+  petop: Petop;
 }

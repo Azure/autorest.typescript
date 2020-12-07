@@ -11,22 +11,22 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 import {
-  BasicGetValidResponse,
-  Basic as BasicModel,
-  BasicGetInvalidResponse,
-  BasicGetEmptyResponse,
-  BasicGetNullResponse,
-  BasicGetNotProvidedResponse
+  BasicopGetValidResponse,
+  Basic,
+  BasicopGetInvalidResponse,
+  BasicopGetEmptyResponse,
+  BasicopGetNullResponse,
+  BasicopGetNotProvidedResponse
 } from "../models";
 
 /**
- * Class representing a Basic.
+ * Class representing a Basicop.
  */
-export class Basic {
+export class Basicop {
   private readonly client: BodyComplexClient;
 
   /**
-   * Initialize a new instance of the class Basic class.
+   * Initialize a new instance of the class Basicop class.
    * @param client Reference to the service client
    */
   constructor(client: BodyComplexClient) {
@@ -39,14 +39,14 @@ export class Basic {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetValidResponse> {
+  ): Promise<BasicopGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       getValidOperationSpec
-    ) as Promise<BasicGetValidResponse>;
+    ) as Promise<BasicopGetValidResponse>;
   }
 
   /**
@@ -55,7 +55,7 @@ export class Basic {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: BasicModel,
+    complexBody: Basic,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -74,14 +74,14 @@ export class Basic {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetInvalidResponse> {
+  ): Promise<BasicopGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       getInvalidOperationSpec
-    ) as Promise<BasicGetInvalidResponse>;
+    ) as Promise<BasicopGetInvalidResponse>;
   }
 
   /**
@@ -90,28 +90,30 @@ export class Basic {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetEmptyResponse> {
+  ): Promise<BasicopGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       getEmptyOperationSpec
-    ) as Promise<BasicGetEmptyResponse>;
+    ) as Promise<BasicopGetEmptyResponse>;
   }
 
   /**
    * Get a basic complex type whose properties are null
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<BasicGetNullResponse> {
+  getNull(
+    options?: coreHttp.OperationOptions
+  ): Promise<BasicopGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       getNullOperationSpec
-    ) as Promise<BasicGetNullResponse>;
+    ) as Promise<BasicopGetNullResponse>;
   }
 
   /**
@@ -120,14 +122,14 @@ export class Basic {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<BasicGetNotProvidedResponse> {
+  ): Promise<BasicopGetNotProvidedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       getNotProvidedOperationSpec
-    ) as Promise<BasicGetNotProvidedResponse>;
+    ) as Promise<BasicopGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

@@ -7,6 +7,7 @@
  */
 
 /// <reference lib="esnext.asynciterable" />
+export * from "./operations";
 export * from "./models";
 export { CustomUrlPagingClient } from "./customUrlPagingClient";
 export { CustomUrlPagingClientContext } from "./customUrlPagingClientContext";

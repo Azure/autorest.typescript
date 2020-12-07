@@ -11,19 +11,19 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ExtensibleEnumsClient } from "../extensibleEnumsClient";
 import {
-  PetGetByPetIdResponse,
-  PetAddPetOptionalParams,
-  PetAddPetResponse
+  PetopGetByPetIdResponse,
+  PetopAddPetOptionalParams,
+  PetopAddPetResponse
 } from "../models";
 
 /**
- * Class representing a Pet.
+ * Class representing a Petop.
  */
-export class Pet {
+export class Petop {
   private readonly client: ExtensibleEnumsClient;
 
   /**
-   * Initialize a new instance of the class Pet class.
+   * Initialize a new instance of the class Petop class.
    * @param client Reference to the service client
    */
   constructor(client: ExtensibleEnumsClient) {
@@ -38,7 +38,7 @@ export class Pet {
   getByPetId(
     petId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<PetGetByPetIdResponse> {
+  ): Promise<PetopGetByPetIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -46,21 +46,21 @@ export class Pet {
     return this.client.sendOperationRequest(
       operationArguments,
       getByPetIdOperationSpec
-    ) as Promise<PetGetByPetIdResponse>;
+    ) as Promise<PetopGetByPetIdResponse>;
   }
 
   /**
    * add pet
    * @param options The options parameters.
    */
-  addPet(options?: PetAddPetOptionalParams): Promise<PetAddPetResponse> {
+  addPet(options?: PetopAddPetOptionalParams): Promise<PetopAddPetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       addPetOperationSpec
-    ) as Promise<PetAddPetResponse>;
+    ) as Promise<PetopAddPetResponse>;
   }
 }
 // Operation Specifications

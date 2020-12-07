@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Pet } from "./operations";
+import { Petop } from "./operations";
 import { ExtensibleEnumsClientContext } from "./extensibleEnumsClientContext";
 import { ExtensibleEnumsClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class ExtensibleEnumsClient extends ExtensibleEnumsClientContext {
    */
   constructor(options?: ExtensibleEnumsClientOptionalParams) {
     super(options);
-    this.pet = new Pet(this);
+    this.petop = new Petop(this);
   }
 
-  pet: Pet;
+  petop: Petop;
 }

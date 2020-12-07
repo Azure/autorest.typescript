@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+export * from "./operations";
 export * from "./models";
 export { BodyDateClient } from "./bodyDateClient";
 export { BodyDateClientContext } from "./bodyDateClientContext";

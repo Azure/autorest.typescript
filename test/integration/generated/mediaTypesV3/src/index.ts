@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+export * from "./operations";
 export * from "./models";
 export { MediaTypesV3Client } from "./mediaTypesV3Client";
 export { MediaTypesV3ClientContext } from "./mediaTypesV3ClientContext";
