@@ -15,15 +15,14 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  */
 const config = {
   input: "./esm/modelFlatteningClient.js",
-  external: ["@azure/core-http", "@azure/core-arm"],
+  external: ["@azure/core-http"],
   output: {
     file: "./dist/model-flattening.js",
     format: "umd",
     name: "ModelFlattening",
     sourcemap: true,
     globals: {
-      "@azure/core-http": "coreHttp",
-      "@azure/core-arm": "coreArm"
+      "@azure/core-http": "coreHttp"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.

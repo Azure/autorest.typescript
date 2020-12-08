@@ -15,15 +15,14 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  */
 const config = {
   input: "./esm/managementLockClient.js",
-  external: ["@azure/core-http", "@azure/core-arm"],
+  external: ["@azure/core-http"],
   output: {
     file: "./dist/arm-package-locks-2016-09.js",
     format: "umd",
     name: "ArmPackageLocks201609",
     sourcemap: true,
     globals: {
-      "@azure/core-http": "coreHttp",
-      "@azure/core-arm": "coreArm"
+      "@azure/core-http": "coreHttp"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.
