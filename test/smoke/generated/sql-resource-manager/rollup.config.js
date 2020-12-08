@@ -15,15 +15,14 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  */
 const config = {
   input: "./esm/sqlManagementClient.js",
-  external: ["@azure/core-http", "@azure/core-arm"],
+  external: ["@azure/core-http"],
   output: {
     file: "./dist/sql-resource-manager.js",
     format: "umd",
     name: "SqlResourceManager",
     sourcemap: true,
     globals: {
-      "@azure/core-http": "coreHttp",
-      "@azure/core-arm": "coreArm"
+      "@azure/core-http": "coreHttp"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.

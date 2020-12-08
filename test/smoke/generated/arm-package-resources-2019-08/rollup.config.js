@@ -15,15 +15,14 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  */
 const config = {
   input: "./esm/resourceManagementClient.js",
-  external: ["@azure/core-http", "@azure/core-arm"],
+  external: ["@azure/core-http"],
   output: {
     file: "./dist/arm-package-resources-2019-08.js",
     format: "umd",
     name: "ArmPackageResources201908",
     sourcemap: true,
     globals: {
-      "@azure/core-http": "coreHttp",
-      "@azure/core-arm": "coreArm"
+      "@azure/core-http": "coreHttp"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.

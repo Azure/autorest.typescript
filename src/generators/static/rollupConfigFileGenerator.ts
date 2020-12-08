@@ -36,8 +36,7 @@ export function generateRollupConfig(
   const rollupConfig = `{
     input: "./esm/${clientDetails.sourceFileName}.js",
     external: [
-      "@azure/core-http",
-      "@azure/core-arm"
+      "@azure/core-http"
     ],
     output: {
       file: "./dist/${packageDetails.nameWithoutScope}.js",
@@ -45,8 +44,7 @@ export function generateRollupConfig(
       name: "${browserNameSpace}",
       sourcemap: true,
       globals: {
-        "@azure/core-http": "coreHttp",
-        "@azure/core-arm": "coreArm"
+        "@azure/core-http": "coreHttp"
       },
       banner: \`/*
  * Copyright (c) Microsoft Corporation. All rights reserved.

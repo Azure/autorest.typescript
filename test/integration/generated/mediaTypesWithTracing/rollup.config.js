@@ -15,15 +15,14 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  */
 const config = {
   input: "./esm/mediaTypesWithTracingClient.js",
-  external: ["@azure/core-http", "@azure/core-arm"],
+  external: ["@azure/core-http"],
   output: {
     file: "./dist/media-types-service-tracing.js",
     format: "umd",
     name: "MediaTypesServiceTracing",
     sourcemap: true,
     globals: {
-      "@azure/core-http": "coreHttp",
-      "@azure/core-arm": "coreArm"
+      "@azure/core-http": "coreHttp"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.
