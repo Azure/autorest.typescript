@@ -10,12 +10,14 @@
 import * as Models from "./models";
 import * as msRest from "@azure/ms-rest-js";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
+import { TokenCredential } from "@azure/identity";
+import { AzureIdentityCredentialAdapter } from "./azureIdentityCredentialAdapter";
 
 const packageName = "";
 const packageVersion = "";
 
 export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: msRest.ServiceClientCredentials | msRest.TokenCredentials;
   subscriptionId: string;
   apiVersion?: string;
 
@@ -26,37 +28,74 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
+  constructor(
+    credentials: msRest.ServiceClientCredentials | TokenCredential,
+    subscriptionId: string,
+    options?: Models.AutoRestAzureSpecialParametersTestClientOptions
+  ) {
     if (credentials == undefined) {
-      throw new Error('\'credentials\' cannot be null.');
+      throw new Error("'credentials' cannot be null.");
     }
     if (subscriptionId == undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
+      throw new Error("'subscriptionId' cannot be null.");
     }
 
     if (!options) {
       options = {};
     }
-    if(!options.userAgent) {
+    if (!options.userAgent) {
       const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
-    super(credentials, options);
+    let credential: msRest.ServiceClientCredentials;
 
-    this.apiVersion = '2015-07-01-preview';
-    this.acceptLanguage = 'en-US';
+    if (isTokenCredential(credentials)) {
+      credential = new AzureIdentityCredentialAdapter();
+    } else {
+      credential = credentials;
+    }
+
+    super(credential, options);
+
+    this.apiVersion = "2015-07-01-preview";
+    this.acceptLanguage = "en-US";
     this.longRunningOperationRetryTimeout = 30;
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
-    this.credentials = credentials;
+    this.credentials = credential;
     this.subscriptionId = subscriptionId;
 
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
+    if (
+      options.acceptLanguage !== null &&
+      options.acceptLanguage !== undefined
+    ) {
       this.acceptLanguage = options.acceptLanguage;
     }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
+    if (
+      options.longRunningOperationRetryTimeout !== null &&
+      options.longRunningOperationRetryTimeout !== undefined
+    ) {
+      this.longRunningOperationRetryTimeout =
+        options.longRunningOperationRetryTimeout;
     }
   }
+}
+
+/**
+ * Tests an object to determine whether it implements TokenCredential.
+ *
+ * @param credential The assumed TokenCredential to be tested.
+ */
+function isTokenCredential(credential: any): credential is TokenCredential {
+  // Check for an object with a 'getToken' function and possibly with
+  // a 'signRequest' function.  We do this check to make sure that
+  // a ServiceClientCredentials implementor (like TokenClientCredentials
+  // in ms-rest-nodeauth) doesn't get mistaken for a TokenCredential if
+  // it doesn't actually implement TokenCredential also.
+  return (
+    credential &&
+    typeof credential.getToken === "function" &&
+    (credential.signRequest === undefined || credential.getToken.length > 0)
+  );
 }
