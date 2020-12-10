@@ -56,27 +56,40 @@ function processHeaders(
     if (headers) {
       const headerSchema = headersToSchema(headers, operationName, isException);
       if (headerSchema) {
-        let pushHeaderSchema: boolean = true;
-        for (let responseHeader of responseHeaders) {
-          if (
-            getLanguageMetadata(responseHeader.language).name ==
-            getLanguageMetadata(headerSchema.language).name
-          ) {
-            if (headerSchema.properties) {
-              if (responseHeader.properties) {
-                responseHeader.properties.concat(headerSchema.properties);
-              } else {
-                responseHeader.properties = headerSchema.properties;
-              }
-              pushHeaderSchema = false;
-            }
-          }
-        }
-
-        if (pushHeaderSchema) {
-          responseHeaders.push(headerSchema);
-        }
+        updateResponseHeaders(headerSchema, responseHeaders);
       }
     }
   });
+}
+
+/*
+ * Checks if there is an existing schema as the headersSchema
+ * in the responseHeaders. If there is one, then merge its
+ * properties and properties of headersSchema. If there is none,
+ * then push the headerSchema to the responseHeaders.
+ */
+function updateResponseHeaders(
+  headerSchema: ObjectSchema,
+  responseHeaders: ObjectSchema[]
+) {
+  let pushHeaderSchema: boolean = true;
+  for (let responseHeader of responseHeaders) {
+    if (
+      getLanguageMetadata(responseHeader.language).name ==
+      getLanguageMetadata(headerSchema.language).name
+    ) {
+      if (headerSchema.properties) {
+        if (responseHeader.properties) {
+          responseHeader.properties.concat(headerSchema.properties);
+        } else {
+          responseHeader.properties = headerSchema.properties;
+        }
+        pushHeaderSchema = false;
+      }
+    }
+  }
+
+  if (pushHeaderSchema) {
+    responseHeaders.push(headerSchema);
+  }
 }
