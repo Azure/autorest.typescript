@@ -28,22 +28,18 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(
-    credentials: msRest.ServiceClientCredentials | TokenCredential,
-    subscriptionId: string,
-    options?: Models.AutoRestAzureSpecialParametersTestClientOptions
-  ) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     if (credentials == undefined) {
-      throw new Error("'credentials' cannot be null.");
+      throw new Error('\'credentials\' cannot be null.');
     }
     if (subscriptionId == undefined) {
-      throw new Error("'subscriptionId' cannot be null.");
+      throw new Error('\'subscriptionId\' cannot be null.');
     }
 
     if (!options) {
       options = {};
     }
-    if (!options.userAgent) {
+    if(!options.userAgent) {
       const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
@@ -66,16 +62,11 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     this.credentials = credential;
     this.subscriptionId = subscriptionId;
 
-    if (
-      options.acceptLanguage !== null &&
-      options.acceptLanguage !== undefined
-    ) {
+    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }
-    if (
-      options.longRunningOperationRetryTimeout !== null &&
-      options.longRunningOperationRetryTimeout !== undefined
-    ) {
+     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
+      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
       this.longRunningOperationRetryTimeout =
         options.longRunningOperationRetryTimeout;
     }

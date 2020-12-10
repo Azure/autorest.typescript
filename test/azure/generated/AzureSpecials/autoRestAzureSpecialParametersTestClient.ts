@@ -32,16 +32,10 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(
-    credentials: msRest.ServiceClientCredentials | TokenCredential,
-    subscriptionId: string,
-    options?: Models.AutoRestAzureSpecialParametersTestClientOptions
-  ) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     super(credentials, subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
-    this.subscriptionInCredentials = new operations.SubscriptionInCredentials(
-      this
-    );
+    this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);
     this.subscriptionInMethod = new operations.SubscriptionInMethod(this);
     this.apiVersionDefault = new operations.ApiVersionDefault(this);
     this.apiVersionLocal = new operations.ApiVersionLocal(this);
