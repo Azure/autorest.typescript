@@ -360,6 +360,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ODataDiscriminatorClient",
     packageName: "odata-discriminator",
     licenseHeader: true
+  },
+  appconfiguration: {
+    swagger: "test/integration/swaggers/appconfiguration.json",
+    clientName: "AppConfigurationClient",
+    packageName: "appconfiguration",
+    licenseHeader: true
   }
 };
 
