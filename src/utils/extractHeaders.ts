@@ -6,6 +6,7 @@ import {
 } from "@azure-tools/codemodel";
 import { getOperationFullName } from "./nameUtils";
 import { headersToSchema } from "./headersToSchema";
+import { getLanguageMetadata } from "./languageHelpers";
 
 export function extractHeaders(
   operationGroups: OperationGroup[],
@@ -54,7 +55,28 @@ function processHeaders(
     const headers = response.protocol.http?.headers;
     if (headers) {
       const headerSchema = headersToSchema(headers, operationName, isException);
-      headerSchema && responseHeaders.push(headerSchema);
+      if (headerSchema) {
+        let pushHeaderSchema: boolean = true;
+        for (let responseHeader of responseHeaders) {
+          if (
+            getLanguageMetadata(responseHeader.language).name ==
+            getLanguageMetadata(headerSchema.language).name
+          ) {
+            if (headerSchema.properties) {
+              if (responseHeader.properties) {
+                responseHeader.properties.concat(headerSchema.properties);
+              } else {
+                responseHeader.properties = headerSchema.properties;
+              }
+              pushHeaderSchema = false;
+            }
+          }
+        }
+
+        if (pushHeaderSchema) {
+          responseHeaders.push(headerSchema);
+        }
+      }
     }
   });
 }

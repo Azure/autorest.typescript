@@ -148,8 +148,15 @@ export function normalizeName(
     )
     .join("");
 
-  const normalized = `${normalizedFirstPart}${normalizedParts}`;
+  const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);
   return shouldGuard ? guardReservedNames(normalized, nameType) : normalized;
+}
+
+function checkBeginning(name: string): string {
+  if (name.startsWith("@")) {
+    return name.substring(1);
+  }
+  return name;
 }
 
 function sanitizeName(name: string): string {
