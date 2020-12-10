@@ -51,6 +51,6 @@ export {
   AutoRestAzureSpecialParametersTestClient,
   AutoRestAzureSpecialParametersTestClientContext,
   Models as AutoRestAzureSpecialParametersTestModels,
-  Mappers as AutoRestAzureSpecialParametersTestMappers,
+  Mappers as AutoRestAzureSpecialParametersTestMappers
 };
 export * from "./operations";

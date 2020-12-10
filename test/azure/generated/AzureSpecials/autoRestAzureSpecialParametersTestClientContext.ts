@@ -17,7 +17,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials | msRest.TokenCredentials;
+  credentials: msRest.ServiceClientCredentials
   subscriptionId: string;
   apiVersion?: string;
 
@@ -65,7 +65,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }
-     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
+    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
       this.longRunningOperationRetryTimeout =
         options.longRunningOperationRetryTimeout;
