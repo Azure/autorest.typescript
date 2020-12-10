@@ -12,6 +12,7 @@ import * as msRest from "@azure/ms-rest-js";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 import { TokenCredential } from "@azure/identity";
 import { AzureIdentityCredentialAdapter } from "./azureIdentityCredentialAdapter";
+import { isTokenCredential } from "@azure/core-auth";
 
 const packageName = "";
 const packageVersion = "";
@@ -47,7 +48,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     let credential: msRest.ServiceClientCredentials;
 
     if (isTokenCredential(credentials)) {
-      credential = new AzureIdentityCredentialAdapter();
+      credential = new AzureIdentityCredentialAdapter(credentials);
     } else {
       credential = credentials;
     }
@@ -73,20 +74,3 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
   }
 }
 
-/**
- * Tests an object to determine whether it implements TokenCredential.
- *
- * @param credential The assumed TokenCredential to be tested.
- */
-function isTokenCredential(credential: any): credential is TokenCredential {
-  // Check for an object with a 'getToken' function and possibly with
-  // a 'signRequest' function.  We do this check to make sure that
-  // a ServiceClientCredentials implementor (like TokenClientCredentials
-  // in ms-rest-nodeauth) doesn't get mistaken for a TokenCredential if
-  // it doesn't actually implement TokenCredential also.
-  return (
-    credential &&
-    typeof credential.getToken === "function" &&
-    (credential.signRequest === undefined || credential.getToken.length > 0)
-  );
-}

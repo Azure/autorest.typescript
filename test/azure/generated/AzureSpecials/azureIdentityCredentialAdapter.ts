@@ -1,4 +1,4 @@
-import { DefaultAzureCredential, TokenCredential } from "@azure/identity";
+import { TokenCredential } from "@azure/core-auth";
 import {
   ServiceClientCredentials,
   Constants as MSRestConstants,
@@ -17,7 +17,7 @@ export class AzureIdentityCredentialAdapter
   private azureTokenCredential: TokenCredential;
   private scopes: string | string[];
   constructor(
-    azureTokenCredential = new DefaultAzureCredential(),
+    azureTokenCredential: TokenCredential,
     scopes: string | string[] = "https://management.azure.com/.default"
   ) {
     this.azureTokenCredential = azureTokenCredential;
