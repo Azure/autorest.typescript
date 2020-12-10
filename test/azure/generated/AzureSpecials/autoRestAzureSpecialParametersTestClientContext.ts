@@ -10,7 +10,7 @@
 import * as Models from "./models";
 import * as msRest from "@azure/ms-rest-js";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
-import { TokenCredential } from "@azure/identity";
+import { TokenCredential } from "@azure/core-auth";
 import { AzureIdentityCredentialAdapter } from "./azureIdentityCredentialAdapter";
 import { isTokenCredential } from "@azure/core-auth";
 
@@ -18,7 +18,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials
+  credentials: msRest.ServiceClientCredentials;
   subscriptionId: string;
   apiVersion?: string;
 

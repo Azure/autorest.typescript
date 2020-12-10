@@ -12,7 +12,7 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestAzureSpecialParametersTestClientContext } from "./autoRestAzureSpecialParametersTestClientContext";
-import { TokenCredential } from "@azure/identity";
+import { TokenCredential } from "@azure/core-auth";
 
 class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParametersTestClientContext {
   // Operation groups
