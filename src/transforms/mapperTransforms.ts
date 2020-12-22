@@ -28,6 +28,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { extractHeaders } from "../utils/extractHeaders";
+import { MapperTypes } from "../utils/valueHelpers";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { ClientOptions } from "../models/clientDetails";
 import {
@@ -771,7 +772,9 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Object:
       return MapperType.Object;
     case SchemaType.Any:
-      return "any";
+      return MapperTypes.any;
+    case SchemaType.Uuid;
+      return MapperTypes.Uuid;
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);
   }
