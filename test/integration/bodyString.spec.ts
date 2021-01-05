@@ -125,6 +125,16 @@ describe("Integration tests for BodyString", () => {
       }
     });
 
+    it("should send an UTF8 string in the request body lowlevel", async () => {
+      const result = await client.invoke({
+        method: "PUT",
+        pathTemplate: "/string/mbcs",
+        body:
+          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+      });
+      deepStrictEqual(result.status, 200);
+    });
+
     it("should send an UTF8 string in the request body", async () => {
       try {
         await client.string.putMbcs();
