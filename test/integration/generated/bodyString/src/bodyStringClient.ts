@@ -9,6 +9,7 @@
 import { StringOperations, Enum } from "./operations";
 import { BodyStringClientContext } from "./bodyStringClientContext";
 import { BodyStringClientOptionalParams } from "./models";
+import { RequestPrepareOptions } from "@azure/core-http";
 
 export class BodyStringClient extends BodyStringClientContext {
   /**
@@ -19,6 +20,12 @@ export class BodyStringClient extends BodyStringClientContext {
     super(options);
     this.string = new StringOperations(this);
     this.enum = new Enum(this);
+  }
+
+  invoke(request: RequestPrepareOptions) {
+    request.baseUrl = request.baseUrl || this.baseUri;
+
+    return this.sendRequest(request);
   }
 
   string: StringOperations;

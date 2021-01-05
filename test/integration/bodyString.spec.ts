@@ -102,6 +102,17 @@ describe("Integration tests for BodyString", () => {
   });
 
   describe("Mbcs", () => {
+    it("should receive an UTF8 string in the response body with low level client", async () => {
+      const result = await client.invoke({
+        method: "GET",
+        pathTemplate: "/string/mbcs"
+      });
+      deepStrictEqual(
+        result.parsedBody,
+        "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+      );
+    });
+
     it("should receive an UTF8 string in the response body", async () => {
       try {
         const result = await client.string.getMbcs();
