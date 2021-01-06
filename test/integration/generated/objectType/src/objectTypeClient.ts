@@ -13,6 +13,7 @@ import {
   ObjectTypeClientOptionalParams,
   ObjectTypeClientGetResponse
 } from "./models";
+import { RequestPrepareOptions } from "@azure/core-http";
 
 export class ObjectTypeClient extends ObjectTypeClientContext {
   /**
@@ -21,6 +22,12 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    */
   constructor(options?: ObjectTypeClientOptionalParams) {
     super(options);
+  }
+
+  invoke(request: RequestPrepareOptions) {
+    request.baseUrl = request.baseUrl || this.baseUri;
+
+    return this.sendRequest(request);
   }
 
   /**

@@ -20,6 +20,15 @@ describe("ObjectType", () => {
     assert.strictEqual(result._response.status, 200);
   });
 
+  it("should put an object, low level client", async () => {
+    const result = await client.invoke({
+      method: "PUT",
+      pathTemplate: "/objectType/put",
+      body: { foo: "bar" }
+    });
+    assert.strictEqual(result.status, 200);
+  });
+
   it("should throw puttin and invalid object", async () => {
     try {
       await client.put({ bar: "foo" });
