@@ -1248,8 +1248,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "msi-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "msi-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",

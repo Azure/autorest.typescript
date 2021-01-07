@@ -988,7 +988,7 @@ export interface Encryption {
 // @public
 export interface EncryptionImages {
     dataDiskImages?: DataDiskImageEncryption[];
-    osDiskImage?: DiskImageEncryption;
+    osDiskImage?: OSDiskImageEncryption;
 }
 
 // @public
@@ -1358,7 +1358,7 @@ export type GalleryImageUpdate = UpdateResourceDefinition & {
 
 // @public
 export type GalleryImageVersion = Resource & {
-    publishingProfile?: GalleryArtifactPublishingProfileBase;
+    publishingProfile?: GalleryImageVersionPublishingProfile;
     readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
     storageProfile?: GalleryImageVersionStorageProfile;
     readonly replicationStatus?: ReplicationStatus;
@@ -1417,7 +1417,7 @@ export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersion
 // @public
 export interface GalleryImageVersionStorageProfile {
     dataDiskImages?: GalleryDataDiskImage[];
-    osDiskImage?: GalleryDiskImage;
+    osDiskImage?: GalleryOSDiskImage;
     source?: GalleryArtifactVersionSource;
 }
 
@@ -1432,7 +1432,7 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
 
 // @public
 export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
-    publishingProfile?: GalleryArtifactPublishingProfileBase;
+    publishingProfile?: GalleryImageVersionPublishingProfile;
     readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
     storageProfile?: GalleryImageVersionStorageProfile;
     readonly replicationStatus?: ReplicationStatus;
@@ -1500,7 +1500,7 @@ export type ImageDataDisk = ImageDisk & {
 export interface ImageDisk {
     blobUri?: string;
     caching?: CachingTypes;
-    diskEncryptionSet?: SubResource;
+    diskEncryptionSet?: DiskEncryptionSetParameters;
     diskSizeGB?: number;
     managedDisk?: SubResource;
     snapshot?: SubResource;
@@ -2479,7 +2479,7 @@ export interface ManagedArtifact {
 // @public
 export type ManagedDiskParameters = SubResource & {
     storageAccountType?: StorageAccountTypes;
-    diskEncryptionSet?: SubResource;
+    diskEncryptionSet?: DiskEncryptionSetParameters;
 };
 
 // @public
@@ -3823,7 +3823,7 @@ export interface VirtualMachineScaleSetListWithLinkResult {
 
 // @public
 export interface VirtualMachineScaleSetManagedDiskParameters {
-    diskEncryptionSet?: SubResource;
+    diskEncryptionSet?: DiskEncryptionSetParameters;
     storageAccountType?: StorageAccountTypes;
 }
 
@@ -3890,7 +3890,7 @@ export interface VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings {
 }
 
 // @public
-export type VirtualMachineScaleSetReimageParameters = VirtualMachineReimageParameters & {
+export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMReimageParameters & {
     instanceIds?: string[];
 };
 
@@ -4353,7 +4353,7 @@ export interface VirtualMachineScaleSetVMsPowerOffOptionalParams extends coreHtt
 
 // @public
 export interface VirtualMachineScaleSetVMsReimageOptionalParams extends coreHttp.OperationOptions {
-    vmScaleSetVMReimageInput?: VirtualMachineReimageParameters;
+    vmScaleSetVMReimageInput?: VirtualMachineScaleSetVMReimageParameters;
 }
 
 // @public

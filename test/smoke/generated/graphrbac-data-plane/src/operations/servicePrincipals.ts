@@ -20,7 +20,7 @@ import {
   ServicePrincipalCreateParameters,
   ServicePrincipalsCreateResponse,
   ServicePrincipalsListResponse,
-  ServicePrincipalBase,
+  ServicePrincipalUpdateParameters,
   ServicePrincipalsGetResponse,
   ServicePrincipalsListOwnersResponse,
   ServicePrincipalsListKeyCredentialsResponse,
@@ -306,7 +306,7 @@ export class ServicePrincipals {
    */
   update(
     objectId: string,
-    parameters: ServicePrincipalBase,
+    parameters: ServicePrincipalUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {

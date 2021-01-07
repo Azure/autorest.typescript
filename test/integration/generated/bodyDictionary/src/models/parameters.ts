@@ -173,7 +173,9 @@ export const arrayBody10: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "any" } }
+      value: {
+        type: { name: "Dictionary", value: { type: { name: "String" } } }
+      }
     }
   }
 };

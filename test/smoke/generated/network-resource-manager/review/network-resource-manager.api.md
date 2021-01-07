@@ -1375,7 +1375,7 @@ export interface BastionShareableLink {
     readonly bsl?: string;
     readonly createdAt?: string;
     readonly message?: string;
-    vm: Resource;
+    vm: Vm;
 }
 
 // @public
@@ -1797,7 +1797,7 @@ export type ContainerNetworkInterface = SubResource & {
     readonly type?: string;
     readonly etag?: string;
     readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
-    container?: SubResource;
+    container?: Container;
     readonly ipConfigurations?: ContainerNetworkInterfaceIpConfiguration[];
     readonly provisioningState?: ProvisioningState;
 };
@@ -7755,8 +7755,8 @@ export type PrivateLinkService = Resource & {
     readonly networkInterfaces?: NetworkInterface[];
     readonly provisioningState?: ProvisioningState;
     readonly privateEndpointConnections?: PrivateEndpointConnection[];
-    visibility?: ResourceSet;
-    autoApproval?: ResourceSet;
+    visibility?: PrivateLinkServicePropertiesVisibility;
+    autoApproval?: PrivateLinkServicePropertiesAutoApproval;
     fqdns?: string[];
     readonly alias?: string;
     enableProxyProtocol?: boolean;

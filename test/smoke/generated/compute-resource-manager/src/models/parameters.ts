@@ -15,7 +15,7 @@ import {
   AvailabilitySet as AvailabilitySetMapper,
   AvailabilitySetUpdate as AvailabilitySetUpdateMapper,
   ProximityPlacementGroup as ProximityPlacementGroupMapper,
-  UpdateResource as UpdateResourceMapper,
+  ProximityPlacementGroupUpdate as ProximityPlacementGroupUpdateMapper,
   DedicatedHostGroup as DedicatedHostGroupMapper,
   DedicatedHostGroupUpdate as DedicatedHostGroupUpdateMapper,
   DedicatedHost as DedicatedHostMapper,
@@ -40,9 +40,10 @@ import {
   OrchestrationServiceStateInput as OrchestrationServiceStateInputMapper,
   VirtualMachineScaleSetExtension as VirtualMachineScaleSetExtensionMapper,
   VirtualMachineScaleSetExtensionUpdate as VirtualMachineScaleSetExtensionUpdateMapper,
+  VirtualMachineScaleSetVMReimageParameters as VirtualMachineScaleSetVMReimageParametersMapper,
   VirtualMachineScaleSetVM as VirtualMachineScaleSetVMMapper,
   RequestRateByIntervalInput as RequestRateByIntervalInputMapper,
-  LogAnalyticsInputBase as LogAnalyticsInputBaseMapper,
+  ThrottledRequestsInput as ThrottledRequestsInputMapper,
   Disk as DiskMapper,
   DiskUpdate as DiskUpdateMapper,
   GrantAccessData as GrantAccessDataMapper,
@@ -194,7 +195,7 @@ export const proximityPlacementGroupName: OperationURLParameter = {
 
 export const parameters3: OperationParameter = {
   parameterPath: "parameters",
-  mapper: UpdateResourceMapper
+  mapper: ProximityPlacementGroupUpdateMapper
 };
 
 export const includeColocationStatus: OperationQueryParameter = {
@@ -593,7 +594,7 @@ export const instanceId: OperationURLParameter = {
 
 export const vmScaleSetVMReimageInput: OperationParameter = {
   parameterPath: ["options", "vmScaleSetVMReimageInput"],
-  mapper: VirtualMachineReimageParametersMapper
+  mapper: VirtualMachineScaleSetVMReimageParametersMapper
 };
 
 export const parameters21: OperationParameter = {
@@ -629,7 +630,7 @@ export const parameters22: OperationParameter = {
 
 export const parameters23: OperationParameter = {
   parameterPath: "parameters",
-  mapper: LogAnalyticsInputBaseMapper
+  mapper: ThrottledRequestsInputMapper
 };
 
 export const commandId: OperationURLParameter = {

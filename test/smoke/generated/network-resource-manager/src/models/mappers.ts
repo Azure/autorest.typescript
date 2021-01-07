@@ -2260,7 +2260,7 @@ export const BastionShareableLink: coreHttp.CompositeMapper = {
         serializedName: "vm",
         type: {
           name: "Composite",
-          className: "Resource"
+          className: "Vm"
         }
       },
       bsl: {
@@ -15648,6 +15648,16 @@ export const ContainerNetworkInterfaceConfiguration: coreHttp.CompositeMapper = 
   }
 };
 
+export const Container: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Container",
+    modelProperties: {
+      ...SubResource.type.modelProperties
+    }
+  }
+};
+
 export const ContainerNetworkInterface: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -15685,7 +15695,7 @@ export const ContainerNetworkInterface: coreHttp.CompositeMapper = {
         serializedName: "properties.container",
         type: {
           name: "Composite",
-          className: "SubResource"
+          className: "Container"
         }
       },
       ipConfigurations: {
@@ -16773,16 +16783,6 @@ export const HubRouteTable: coreHttp.CompositeMapper = {
           name: "String"
         }
       }
-    }
-  }
-};
-
-export const Container: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Container",
-    modelProperties: {
-      ...SubResource.type.modelProperties
     }
   }
 };
@@ -18315,6 +18315,16 @@ export const BastionHost: coreHttp.CompositeMapper = {
   }
 };
 
+export const Vm: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Vm",
+    modelProperties: {
+      ...Resource.type.modelProperties
+    }
+  }
+};
+
 export const DdosCustomPolicy: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -19453,14 +19463,14 @@ export const PrivateLinkService: coreHttp.CompositeMapper = {
         serializedName: "properties.visibility",
         type: {
           name: "Composite",
-          className: "ResourceSet"
+          className: "PrivateLinkServicePropertiesVisibility"
         }
       },
       autoApproval: {
         serializedName: "properties.autoApproval",
         type: {
           name: "Composite",
-          className: "ResourceSet"
+          className: "PrivateLinkServicePropertiesAutoApproval"
         }
       },
       fqdns: {
@@ -21045,16 +21055,6 @@ export const WebApplicationFirewallPolicy: coreHttp.CompositeMapper = {
           }
         }
       }
-    }
-  }
-};
-
-export const Vm: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Vm",
-    modelProperties: {
-      ...Resource.type.modelProperties
     }
   }
 };

@@ -11831,8 +11831,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Resource",
-                  "canonicalReference": "network-resource-manager!Resource:interface"
+                  "text": "Vm",
+                  "canonicalReference": "network-resource-manager!Vm:type"
                 },
                 {
                   "kind": "Content",
@@ -17185,8 +17185,8 @@
             },
             {
               "kind": "Reference",
-              "text": "SubResource",
-              "canonicalReference": "network-resource-manager!SubResource:interface"
+              "text": "Container",
+              "canonicalReference": "network-resource-manager!Container:type"
             },
             {
               "kind": "Content",
@@ -66180,8 +66180,8 @@
             },
             {
               "kind": "Reference",
-              "text": "ResourceSet",
-              "canonicalReference": "network-resource-manager!ResourceSet:interface"
+              "text": "PrivateLinkServicePropertiesVisibility",
+              "canonicalReference": "network-resource-manager!PrivateLinkServicePropertiesVisibility:type"
             },
             {
               "kind": "Content",
@@ -66189,8 +66189,8 @@
             },
             {
               "kind": "Reference",
-              "text": "ResourceSet",
-              "canonicalReference": "network-resource-manager!ResourceSet:interface"
+              "text": "PrivateLinkServicePropertiesAutoApproval",
+              "canonicalReference": "network-resource-manager!PrivateLinkServicePropertiesAutoApproval:type"
             },
             {
               "kind": "Content",

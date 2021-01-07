@@ -2044,7 +2044,7 @@ export const ImageDisk: coreHttp.CompositeMapper = {
         serializedName: "diskEncryptionSet",
         type: {
           name: "Composite",
-          className: "SubResource"
+          className: "DiskEncryptionSetParameters"
         }
       }
     }
@@ -2616,7 +2616,7 @@ export const VirtualMachineScaleSetManagedDiskParameters: coreHttp.CompositeMapp
         serializedName: "diskEncryptionSet",
         type: {
           name: "Composite",
-          className: "SubResource"
+          className: "DiskEncryptionSetParameters"
         }
       }
     }
@@ -5641,7 +5641,7 @@ export const EncryptionImages: coreHttp.CompositeMapper = {
         serializedName: "osDiskImage",
         type: {
           name: "Composite",
-          className: "DiskImageEncryption"
+          className: "OSDiskImageEncryption"
         }
       },
       dataDiskImages: {
@@ -5691,7 +5691,7 @@ export const GalleryImageVersionStorageProfile: coreHttp.CompositeMapper = {
         serializedName: "osDiskImage",
         type: {
           name: "Composite",
-          className: "GalleryDiskImage"
+          className: "GalleryOSDiskImage"
         }
       },
       dataDiskImages: {
@@ -6401,6 +6401,16 @@ export const ImageReference: coreHttp.CompositeMapper = {
   }
 };
 
+export const DiskEncryptionSetParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DiskEncryptionSetParameters",
+    modelProperties: {
+      ...SubResource.type.modelProperties
+    }
+  }
+};
+
 export const ManagedDiskParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -6417,7 +6427,7 @@ export const ManagedDiskParameters: coreHttp.CompositeMapper = {
         serializedName: "diskEncryptionSet",
         type: {
           name: "Composite",
-          className: "SubResource"
+          className: "DiskEncryptionSetParameters"
         }
       }
     }
@@ -6781,16 +6791,6 @@ export const VirtualMachineScaleSetUpdateNetworkConfiguration: coreHttp.Composit
           name: "Boolean"
         }
       }
-    }
-  }
-};
-
-export const DiskEncryptionSetParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DiskEncryptionSetParameters",
-    modelProperties: {
-      ...SubResource.type.modelProperties
     }
   }
 };
@@ -8138,7 +8138,7 @@ export const GalleryImageVersion: coreHttp.CompositeMapper = {
         serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
-          className: "GalleryArtifactPublishingProfileBase"
+          className: "GalleryImageVersionPublishingProfile"
         }
       },
       provisioningState: {
@@ -8379,6 +8379,16 @@ export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
           }
         }
       }
+    }
+  }
+};
+
+export const ProximityPlacementGroupUpdate: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProximityPlacementGroupUpdate",
+    modelProperties: {
+      ...UpdateResource.type.modelProperties
     }
   }
 };
@@ -8852,16 +8862,6 @@ export const VirtualMachineScaleSetUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProximityPlacementGroupUpdate: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProximityPlacementGroupUpdate",
-    modelProperties: {
-      ...UpdateResource.type.modelProperties
-    }
-  }
-};
-
 export const VirtualMachineScaleSetExtension: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -9066,27 +9066,6 @@ export const ImageDataDisk: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const VirtualMachineScaleSetReimageParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "VirtualMachineScaleSetReimageParameters",
-    modelProperties: {
-      ...VirtualMachineReimageParameters.type.modelProperties,
-      instanceIds: {
-        serializedName: "instanceIds",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "String"
-            }
-          }
         }
       }
     }
@@ -9300,7 +9279,7 @@ export const GalleryImageVersionUpdate: coreHttp.CompositeMapper = {
         serializedName: "properties.publishingProfile",
         type: {
           name: "Composite",
-          className: "GalleryArtifactPublishingProfileBase"
+          className: "GalleryImageVersionPublishingProfile"
         }
       },
       provisioningState: {
@@ -9406,6 +9385,16 @@ export const GalleryApplicationVersionUpdate: coreHttp.CompositeMapper = {
   }
 };
 
+export const GalleryImageVersionPublishingProfile: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GalleryImageVersionPublishingProfile",
+    modelProperties: {
+      ...GalleryArtifactPublishingProfileBase.type.modelProperties
+    }
+  }
+};
+
 export const GalleryApplicationVersionPublishingProfile: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -9435,12 +9424,12 @@ export const GalleryApplicationVersionPublishingProfile: coreHttp.CompositeMappe
   }
 };
 
-export const GalleryImageVersionPublishingProfile: coreHttp.CompositeMapper = {
+export const OSDiskImageEncryption: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "GalleryImageVersionPublishingProfile",
+    className: "OSDiskImageEncryption",
     modelProperties: {
-      ...GalleryArtifactPublishingProfileBase.type.modelProperties
+      ...DiskImageEncryption.type.modelProperties
     }
   }
 };
@@ -9462,12 +9451,12 @@ export const DataDiskImageEncryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const OSDiskImageEncryption: coreHttp.CompositeMapper = {
+export const GalleryOSDiskImage: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "OSDiskImageEncryption",
+    className: "GalleryOSDiskImage",
     modelProperties: {
-      ...DiskImageEncryption.type.modelProperties
+      ...GalleryDiskImage.type.modelProperties
     }
   }
 };
@@ -9485,16 +9474,6 @@ export const GalleryDataDiskImage: coreHttp.CompositeMapper = {
           name: "Number"
         }
       }
-    }
-  }
-};
-
-export const GalleryOSDiskImage: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GalleryOSDiskImage",
-    modelProperties: {
-      ...GalleryDiskImage.type.modelProperties
     }
   }
 };
@@ -9542,6 +9521,27 @@ export const VirtualMachineImage: coreHttp.CompositeMapper = {
         serializedName: "properties.hyperVGeneration",
         type: {
           name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const VirtualMachineScaleSetReimageParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VirtualMachineScaleSetReimageParameters",
+    modelProperties: {
+      ...VirtualMachineScaleSetVMReimageParameters.type.modelProperties,
+      instanceIds: {
+        serializedName: "instanceIds",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "String"
+            }
+          }
         }
       }
     }

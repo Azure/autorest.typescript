@@ -99,7 +99,7 @@ export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTe
 };
 
 // @public
-export type BackupLongTermRetentionPolicy = Resource & {
+export type BackupLongTermRetentionPolicy = ProxyResource & {
     weeklyRetention?: string;
     monthlyRetention?: string;
     yearlyRetention?: string;
@@ -149,7 +149,7 @@ export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRete
 };
 
 // @public
-export type BackupShortTermRetentionPolicy = Resource & {
+export type BackupShortTermRetentionPolicy = ProxyResource & {
     retentionDays?: number;
 };
 
@@ -258,7 +258,7 @@ export type Database = TrackedResource & {
 };
 
 // @public
-export type DatabaseAutomaticTuning = Resource & {
+export type DatabaseAutomaticTuning = ProxyResource & {
     desiredState?: AutomaticTuningMode;
     readonly actualState?: AutomaticTuningMode;
     options?: {
@@ -315,7 +315,7 @@ export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAud
 };
 
 // @public
-export type DatabaseBlobAuditingPolicy = Resource & {
+export type DatabaseBlobAuditingPolicy = ProxyResource & {
     readonly kind?: string;
     state?: BlobAuditingPolicyState;
     storageEndpoint?: string;
@@ -347,7 +347,7 @@ export interface DatabaseListResult {
 }
 
 // @public
-export type DatabaseOperation = Resource & {
+export type DatabaseOperation = ProxyResource & {
     readonly databaseName?: string;
     readonly operation?: string;
     readonly operationFriendlyName?: string;
@@ -408,7 +408,7 @@ export type DatabasesCreateOrUpdateResponse = Database & {
 };
 
 // @public
-export type DatabaseSecurityAlertPolicy = Resource & {
+export type DatabaseSecurityAlertPolicy = ProxyResource & {
     location?: string;
     readonly kind?: string;
     state?: SecurityAlertPolicyState;
@@ -613,7 +613,7 @@ export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
 };
 
 // @public
-export type DatabaseVulnerabilityAssessment = Resource & {
+export type DatabaseVulnerabilityAssessment = ProxyResource & {
     storageContainerPath?: string;
     storageContainerSasKey?: string;
     storageAccountAccessKey?: string;
@@ -627,7 +627,7 @@ export interface DatabaseVulnerabilityAssessmentListResult {
 }
 
 // @public
-export type DatabaseVulnerabilityAssessmentRuleBaseline = Resource & {
+export type DatabaseVulnerabilityAssessmentRuleBaseline = ProxyResource & {
     baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
 };
 
@@ -653,7 +653,7 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVu
 };
 
 // @public
-export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
+export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
     readonly exportedReportLocation?: string;
 };
 
@@ -741,7 +741,7 @@ export type DataMaskingPoliciesGetResponse = DataMaskingPolicy & {
 };
 
 // @public
-export type DataMaskingPolicy = Resource & {
+export type DataMaskingPolicy = ProxyResource & {
     readonly location?: string;
     readonly kind?: string;
     dataMaskingState?: DataMaskingState;
@@ -751,7 +751,7 @@ export type DataMaskingPolicy = Resource & {
 };
 
 // @public
-export type DataMaskingRule = Resource & {
+export type DataMaskingRule = ProxyResource & {
     readonly location?: string;
     readonly kind?: string;
     readonly idPropertiesId?: string;
@@ -827,7 +827,7 @@ export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivity
 };
 
 // @public
-export type ElasticPoolActivity = Resource & {
+export type ElasticPoolActivity = ProxyResource & {
     location?: string;
     readonly endTime?: Date;
     readonly errorCode?: number;
@@ -865,7 +865,7 @@ export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPool
 };
 
 // @public
-export type ElasticPoolDatabaseActivity = Resource & {
+export type ElasticPoolDatabaseActivity = ProxyResource & {
     location?: string;
     readonly databaseName?: string;
     readonly endTime?: Date;
@@ -911,7 +911,7 @@ export interface ElasticPoolListResult {
 }
 
 // @public
-export type ElasticPoolOperation = Resource & {
+export type ElasticPoolOperation = ProxyResource & {
     readonly elasticPoolName?: string;
     readonly operation?: string;
     readonly operationFriendlyName?: string;
@@ -1072,7 +1072,7 @@ export interface ElasticPoolUpdate {
 }
 
 // @public
-export type EncryptionProtector = Resource & {
+export type EncryptionProtector = ProxyResource & {
     readonly kind?: string;
     readonly location?: string;
     readonly subregion?: string;
@@ -1170,7 +1170,7 @@ export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = Extende
 };
 
 // @public
-export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
+export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
     predicateExpression?: string;
     state?: BlobAuditingPolicyState;
     storageEndpoint?: string;
@@ -1223,7 +1223,7 @@ export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedSer
 };
 
 // @public
-export type ExtendedServerBlobAuditingPolicy = Resource & {
+export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
     predicateExpression?: string;
     state?: BlobAuditingPolicyState;
     storageEndpoint?: string;
@@ -1246,7 +1246,7 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
 export type ExtensionName = string;
 
 // @public
-export type FailoverGroup = Resource & {
+export type FailoverGroup = ProxyResource & {
     readonly location?: string;
     tags?: {
         [propertyName: string]: string;
@@ -1350,7 +1350,7 @@ export interface FailoverGroupUpdate {
 }
 
 // @public
-export type FirewallRule = Resource & {
+export type FirewallRule = ProxyResource & {
     readonly kind?: string;
     readonly location?: string;
     startIpAddress?: string;
@@ -1411,7 +1411,7 @@ export type GeoBackupPoliciesListByDatabaseResponse = GeoBackupPolicyListResult 
 };
 
 // @public
-export type GeoBackupPolicy = Resource & {
+export type GeoBackupPolicy = ProxyResource & {
     readonly kind?: string;
     readonly location?: string;
     state: GeoBackupPolicyState;
@@ -1433,7 +1433,7 @@ export type GeoBackupPolicyState = "Disabled" | "Enabled";
 export type IdentityType = string;
 
 // @public
-export type ImportExportResponse = Resource & {
+export type ImportExportResponse = ProxyResource & {
     readonly requestType?: string;
     readonly requestId?: string;
     readonly serverName?: string;
@@ -1472,7 +1472,7 @@ export type ImportRequest = ExportRequest & {
 };
 
 // @public
-export type InstanceFailoverGroup = Resource & {
+export type InstanceFailoverGroup = ProxyResource & {
     readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
     readOnlyEndpoint?: InstanceFailoverGroupReadOnlyEndpoint;
     readonly replicationRole?: InstanceFailoverGroupReplicationRole;
@@ -1661,7 +1661,7 @@ export interface InstancePoolVcoresCapability {
 }
 
 // @public
-export type Job = Resource & {
+export type Job = ProxyResource & {
     description?: string;
     readonly version?: number;
     schedule?: JobSchedule;
@@ -1733,7 +1733,7 @@ export interface JobAgentUpdate {
 }
 
 // @public
-export type JobCredential = Resource & {
+export type JobCredential = ProxyResource & {
     username?: string;
     password?: string;
 };
@@ -1777,7 +1777,7 @@ export type JobCredentialsListByAgentResponse = JobCredentialListResult & {
 };
 
 // @public
-export type JobExecution = Resource & {
+export type JobExecution = ProxyResource & {
     readonly jobVersion?: number;
     readonly stepName?: string;
     readonly stepId?: number;
@@ -1962,7 +1962,7 @@ export type JobsListByAgentResponse = JobListResult & {
 };
 
 // @public
-export type JobStep = Resource & {
+export type JobStep = ProxyResource & {
     stepId?: number;
     targetGroup?: string;
     credential?: string;
@@ -2212,7 +2212,7 @@ export type JobTargetExecutionsListByStepResponse = JobExecutionListResult & {
 };
 
 // @public
-export type JobTargetGroup = Resource & {
+export type JobTargetGroup = ProxyResource & {
     members?: JobTarget[];
 };
 
@@ -2261,19 +2261,19 @@ export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
 export type JobTargetType = string;
 
 // @public
-export type JobVersion = Resource & {};
+export type JobVersion = ProxyResource & {};
 
 // @public
 export interface JobVersionListResult {
     readonly nextLink?: string;
-    readonly value?: Resource[];
+    readonly value?: JobVersion[];
 }
 
 // @public
-export type JobVersionsGetResponse = Resource & {
+export type JobVersionsGetResponse = JobVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: Resource;
+        parsedBody: JobVersion;
     };
 };
 
@@ -3291,7 +3291,7 @@ export interface LogSizeCapability {
 export type LogSizeUnit = string;
 
 // @public
-export type LongTermRetentionBackup = Resource & {
+export type LongTermRetentionBackup = ProxyResource & {
     readonly serverName?: string;
     readonly serverCreateTime?: Date;
     readonly databaseName?: string;
@@ -3723,7 +3723,7 @@ export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBacku
 };
 
 // @public
-export type ManagedBackupShortTermRetentionPolicy = Resource & {
+export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
     retentionDays?: number;
 };
 
@@ -3770,7 +3770,7 @@ export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDet
 };
 
 // @public
-export type ManagedDatabaseRestoreDetailsResult = Resource & {
+export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
     readonly status?: string;
     readonly currentRestoringFileName?: string;
     readonly lastRestoredFileName?: string;
@@ -3825,7 +3825,7 @@ export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = Managed
 };
 
 // @public
-export type ManagedDatabaseSecurityAlertPolicy = Resource & {
+export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
     state?: SecurityAlertPolicyState;
     disabledAlerts?: string[];
     emailAddresses?: string[];
@@ -4096,7 +4096,7 @@ export type ManagedInstance = TrackedResource & {
 };
 
 // @public
-export type ManagedInstanceAdministrator = Resource & {
+export type ManagedInstanceAdministrator = ProxyResource & {
     administratorType?: ManagedInstanceAdministratorType;
     login?: string;
     sid?: string;
@@ -4154,7 +4154,7 @@ export interface ManagedInstanceEditionCapability {
 }
 
 // @public
-export type ManagedInstanceEncryptionProtector = Resource & {
+export type ManagedInstanceEncryptionProtector = ProxyResource & {
     readonly kind?: string;
     serverKeyName?: string;
     serverKeyType?: ServerKeyType;
@@ -4212,7 +4212,7 @@ export interface ManagedInstanceFamilyCapability {
 }
 
 // @public
-export type ManagedInstanceKey = Resource & {
+export type ManagedInstanceKey = ProxyResource & {
     readonly kind?: string;
     serverKeyType?: ServerKeyType;
     uri?: string;
@@ -4279,7 +4279,7 @@ export interface ManagedInstanceListResult {
 }
 
 // @public
-export type ManagedInstanceLongTermRetentionBackup = Resource & {
+export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
     readonly managedInstanceName?: string;
     readonly managedInstanceCreateTime?: Date;
     readonly databaseName?: string;
@@ -4328,7 +4328,7 @@ export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = Man
 };
 
 // @public
-export type ManagedInstanceLongTermRetentionPolicy = Resource & {
+export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
     weeklyRetention?: string;
     monthlyRetention?: string;
     yearlyRetention?: string;
@@ -4345,7 +4345,7 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
 export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 // @public
-export type ManagedInstanceOperation = Resource & {
+export type ManagedInstanceOperation = ProxyResource & {
     readonly managedInstanceName?: string;
     readonly operation?: string;
     readonly operationFriendlyName?: string;
@@ -4523,7 +4523,7 @@ export interface ManagedInstanceVersionCapability {
 }
 
 // @public
-export type ManagedInstanceVulnerabilityAssessment = Resource & {
+export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
     storageContainerPath?: string;
     storageContainerSasKey?: string;
     storageAccountAccessKey?: string;
@@ -4647,7 +4647,7 @@ export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedSe
 };
 
 // @public
-export type ManagedServerSecurityAlertPolicy = Resource & {
+export type ManagedServerSecurityAlertPolicy = ProxyResource & {
     state?: SecurityAlertPolicyState;
     disabledAlerts?: string[];
     emailAddresses?: string[];
@@ -4833,7 +4833,7 @@ export type PerformanceLevelUnit = string;
 export type PrimaryAggregationType = string;
 
 // @public
-export type PrivateEndpointConnection = Resource & {
+export type PrivateEndpointConnection = ProxyResource & {
     privateEndpoint?: PrivateEndpointProperty;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
     readonly provisioningState?: string;
@@ -4894,7 +4894,7 @@ export interface PrivateEndpointProperty {
 export type PrivateEndpointProvisioningState = string;
 
 // @public
-export type PrivateLinkResource = Resource & {
+export type PrivateLinkResource = ProxyResource & {
     readonly properties?: PrivateLinkResourceProperties;
 };
 
@@ -4974,7 +4974,7 @@ export interface ReadScaleCapability {
 export type ReadWriteEndpointFailoverPolicy = string;
 
 // @public
-export type RecommendedElasticPool = Resource & {
+export type RecommendedElasticPool = ProxyResource & {
     readonly databaseEdition?: ElasticPoolEdition;
     dtu?: number;
     databaseDtuMin?: number;
@@ -5030,7 +5030,7 @@ export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolL
 };
 
 // @public
-export type RecommendedIndex = Resource & {
+export type RecommendedIndex = ProxyResource & {
     readonly action?: RecommendedIndexAction;
     readonly state?: RecommendedIndexState;
     readonly created?: Date;
@@ -5055,7 +5055,7 @@ export type RecommendedIndexState = "Active" | "Pending" | "Executing" | "Verify
 export type RecommendedIndexType = "CLUSTERED" | "NONCLUSTERED" | "COLUMNSTORE" | "CLUSTERED COLUMNSTORE";
 
 // @public
-export type RecoverableDatabase = Resource & {
+export type RecoverableDatabase = ProxyResource & {
     readonly edition?: string;
     readonly serviceLevelObjective?: string;
     readonly elasticPoolName?: string;
@@ -5084,7 +5084,7 @@ export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListRe
 };
 
 // @public
-export type RecoverableManagedDatabase = Resource & {
+export type RecoverableManagedDatabase = ProxyResource & {
     readonly lastAvailableBackupDate?: string;
 };
 
@@ -5119,7 +5119,7 @@ export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManag
 };
 
 // @public
-export type ReplicationLink = Resource & {
+export type ReplicationLink = ProxyResource & {
     readonly location?: string;
     readonly isTerminationAllowed?: boolean;
     readonly replicationMode?: string;
@@ -5183,7 +5183,7 @@ export interface ResourceMoveDefinition {
 }
 
 // @public
-export type RestorableDroppedDatabase = Resource & {
+export type RestorableDroppedDatabase = ProxyResource & {
     readonly location?: string;
     readonly databaseName?: string;
     readonly edition?: string;
@@ -5258,7 +5258,7 @@ export type RestorableDroppedManagedDatabasesListByInstanceResponse = Restorable
 export type RestoreDetailsName = string;
 
 // @public
-export type RestorePoint = Resource & {
+export type RestorePoint = ProxyResource & {
     readonly location?: string;
     readonly restorePointType?: RestorePointType;
     readonly earliestRestoreDate?: Date;
@@ -5319,7 +5319,7 @@ export type SecurityAlertPolicyState = "New" | "Enabled" | "Disabled";
 export type SecurityAlertPolicyUseServerDefault = "Enabled" | "Disabled";
 
 // @public
-export type SensitivityLabel = Resource & {
+export type SensitivityLabel = ProxyResource & {
     labelName?: string;
     labelId?: string;
     informationType?: string;
@@ -5429,7 +5429,7 @@ export type Server = TrackedResource & {
 };
 
 // @public
-export type ServerAutomaticTuning = Resource & {
+export type ServerAutomaticTuning = ProxyResource & {
     desiredState?: AutomaticTuningServerMode;
     readonly actualState?: AutomaticTuningServerMode;
     options?: {
@@ -5454,7 +5454,7 @@ export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning & {
 };
 
 // @public
-export type ServerAzureADAdministrator = Resource & {
+export type ServerAzureADAdministrator = ProxyResource & {
     administratorType?: AdministratorType;
     login?: string;
     sid?: string;
@@ -5538,7 +5538,7 @@ export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingP
 };
 
 // @public
-export type ServerBlobAuditingPolicy = Resource & {
+export type ServerBlobAuditingPolicy = ProxyResource & {
     state?: BlobAuditingPolicyState;
     storageEndpoint?: string;
     storageAccountAccessKey?: string;
@@ -5557,7 +5557,7 @@ export interface ServerBlobAuditingPolicyListResult {
 }
 
 // @public
-export type ServerCommunicationLink = Resource & {
+export type ServerCommunicationLink = ProxyResource & {
     readonly location?: string;
     readonly kind?: string;
     readonly state?: string;
@@ -5611,7 +5611,7 @@ export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy & {
 };
 
 // @public
-export type ServerConnectionPolicy = Resource & {
+export type ServerConnectionPolicy = ProxyResource & {
     readonly kind?: string;
     readonly location?: string;
     connectionType?: ServerConnectionType;
@@ -5621,7 +5621,7 @@ export type ServerConnectionPolicy = Resource & {
 export type ServerConnectionType = "Default" | "Proxy" | "Redirect";
 
 // @public
-export type ServerDnsAlias = Resource & {
+export type ServerDnsAlias = ProxyResource & {
     readonly azureDnsRecord?: string;
 };
 
@@ -5670,7 +5670,7 @@ export interface ServerDnsAliasListResult {
 }
 
 // @public
-export type ServerKey = Resource & {
+export type ServerKey = ProxyResource & {
     kind?: string;
     readonly location?: string;
     readonly subregion?: string;
@@ -5788,7 +5788,7 @@ export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecur
 };
 
 // @public
-export type ServerSecurityAlertPolicy = Resource & {
+export type ServerSecurityAlertPolicy = ProxyResource & {
     state?: SecurityAlertPolicyState;
     disabledAlerts?: string[];
     emailAddresses?: string[];
@@ -5897,7 +5897,7 @@ export interface ServerVersionCapability {
 }
 
 // @public
-export type ServerVulnerabilityAssessment = Resource & {
+export type ServerVulnerabilityAssessment = ProxyResource & {
     storageContainerPath?: string;
     storageContainerSasKey?: string;
     storageAccountAccessKey?: string;
@@ -5943,7 +5943,7 @@ export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabi
 };
 
 // @public
-export type ServiceObjective = Resource & {
+export type ServiceObjective = ProxyResource & {
     readonly serviceObjectiveName?: string;
     readonly isDefault?: boolean;
     readonly isSystem?: boolean;
@@ -5993,7 +5993,7 @@ export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult &
 };
 
 // @public
-export type ServiceTierAdvisor = Resource & {
+export type ServiceTierAdvisor = ProxyResource & {
     readonly observationPeriodStart?: Date;
     readonly observationPeriodEnd?: Date;
     readonly activeTimeRatio?: number;
@@ -6453,7 +6453,7 @@ export type StorageCapabilityStorageAccountType = string;
 export type StorageKeyType = "StorageAccessKey" | "SharedAccessKey";
 
 // @public
-export type SubscriptionUsage = Resource & {
+export type SubscriptionUsage = ProxyResource & {
     readonly displayName?: string;
     readonly currentValue?: number;
     readonly limit?: number;
@@ -6491,7 +6491,7 @@ export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResu
 };
 
 // @public
-export type SyncAgent = Resource & {
+export type SyncAgent = ProxyResource & {
     readonly namePropertiesName?: string;
     syncDatabaseId?: string;
     readonly lastAliveTime?: Date;
@@ -6507,7 +6507,7 @@ export interface SyncAgentKeyProperties {
 }
 
 // @public
-export type SyncAgentLinkedDatabase = Resource & {
+export type SyncAgentLinkedDatabase = ProxyResource & {
     readonly databaseType?: SyncMemberDbType;
     readonly databaseId?: string;
     readonly description?: string;
@@ -6638,7 +6638,7 @@ export interface SyncFullSchemaTableColumn {
 }
 
 // @public
-export type SyncGroup = Resource & {
+export type SyncGroup = ProxyResource & {
     interval?: number;
     readonly lastSyncTime?: Date;
     conflictResolutionPolicy?: SyncConflictResolutionPolicy;
@@ -6797,7 +6797,7 @@ export type SyncGroupsUpdateResponse = SyncGroup & {
 };
 
 // @public
-export type SyncMember = Resource & {
+export type SyncMember = ProxyResource & {
     databaseType?: SyncMemberDbType;
     syncAgentId?: string;
     sqlServerDatabaseId?: string;
@@ -6880,7 +6880,7 @@ export type SyncMembersUpdateResponse = SyncMember & {
 };
 
 // @public
-export type TdeCertificate = Resource & {
+export type TdeCertificate = ProxyResource & {
     privateBlob?: string;
     certPassword?: string;
 };
@@ -6894,7 +6894,7 @@ export type TrackedResource = Resource & {
 };
 
 // @public
-export type TransparentDataEncryption = Resource & {
+export type TransparentDataEncryption = ProxyResource & {
     readonly location?: string;
     status?: TransparentDataEncryptionStatus;
 };
@@ -6908,7 +6908,7 @@ export type TransparentDataEncryptionActivitiesListByConfigurationResponse = Tra
 };
 
 // @public
-export type TransparentDataEncryptionActivity = Resource & {
+export type TransparentDataEncryptionActivity = ProxyResource & {
     readonly location?: string;
     readonly status?: TransparentDataEncryptionActivityStatus;
     readonly percentComplete?: number;
@@ -7071,7 +7071,7 @@ export interface VirtualClusterUpdate {
 }
 
 // @public
-export type VirtualNetworkRule = Resource & {
+export type VirtualNetworkRule = ProxyResource & {
     virtualNetworkSubnetId?: string;
     ignoreMissingVnetServiceEndpoint?: boolean;
     readonly state?: VirtualNetworkRuleState;
@@ -7139,7 +7139,7 @@ export interface VulnerabilityAssessmentScanError {
 }
 
 // @public
-export type VulnerabilityAssessmentScanRecord = Resource & {
+export type VulnerabilityAssessmentScanRecord = ProxyResource & {
     readonly scanId?: string;
     readonly triggerType?: VulnerabilityAssessmentScanTriggerType;
     readonly state?: VulnerabilityAssessmentScanState;
@@ -7163,7 +7163,7 @@ export type VulnerabilityAssessmentScanState = string;
 export type VulnerabilityAssessmentScanTriggerType = string;
 
 // @public
-export type WorkloadClassifier = Resource & {
+export type WorkloadClassifier = ProxyResource & {
     memberName?: string;
     label?: string;
     context?: string;
@@ -7212,7 +7212,7 @@ export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierL
 };
 
 // @public
-export type WorkloadGroup = Resource & {
+export type WorkloadGroup = ProxyResource & {
     minResourcePercent?: number;
     maxResourcePercent?: number;
     minResourcePercentPerRequest?: number;

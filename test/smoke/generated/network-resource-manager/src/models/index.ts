@@ -775,8 +775,10 @@ export interface BastionShareableLinkListRequest {
 
 /** Bastion Shareable Link. */
 export interface BastionShareableLink {
-  /** Reference of the virtual machine resource. */
-  vm: Resource;
+  /**
+   * Reference of the virtual machine resource.
+   */
+  vm: Vm;
   /**
    * The unique Bastion Shareable Link to the virtual machine.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5845,7 +5847,14 @@ export type ContainerNetworkInterfaceConfiguration = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/** Container network interface child resource. */
+/**
+ * Reference to container resource in remote resource provider.
+ */
+export type Container = SubResource & {};
+
+/**
+ * Container network interface child resource.
+ */
 export type ContainerNetworkInterface = SubResource & {
   /** The name of the resource. This name can be used to access the resource. */
   name?: string;
@@ -5864,8 +5873,10 @@ export type ContainerNetworkInterface = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
-  /** Reference to the container to which this container network interface is attached. */
-  container?: SubResource;
+  /**
+   * Reference to the container to which this container network interface is attached.
+   */
+  container?: Container;
   /**
    * Reference to the ip configuration on this container nic.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6344,10 +6355,9 @@ export type HubRouteTable = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/** Reference to container resource in remote resource provider. */
-export type Container = SubResource & {};
-
-/** Route Filter Rule Resource. */
+/**
+ * Route Filter Rule Resource.
+ */
 export type PatchRouteFilterRule = SubResource & {
   /**
    * The name of the resource that is unique within a resource group. This name can be used to access the resource.
@@ -6931,7 +6941,14 @@ export type BastionHost = Resource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/** A DDoS custom policy in a resource group. */
+/**
+ * Describes a Virtual Machine.
+ */
+export type Vm = Resource & {};
+
+/**
+ * A DDoS custom policy in a resource group.
+ */
 export type DdosCustomPolicy = Resource & {
   /**
    * A unique read-only string that changes whenever the resource is updated.
@@ -7390,11 +7407,17 @@ export type PrivateLinkService = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /** The visibility list of the private link service. */
-  visibility?: ResourceSet;
-  /** The auto-approval list of the private link service. */
-  autoApproval?: ResourceSet;
-  /** The list of Fqdn. */
+  /**
+   * The visibility list of the private link service.
+   */
+  visibility?: PrivateLinkServicePropertiesVisibility;
+  /**
+   * The auto-approval list of the private link service.
+   */
+  autoApproval?: PrivateLinkServicePropertiesAutoApproval;
+  /**
+   * The list of Fqdn.
+   */
   fqdns?: string[];
   /**
    * The alias of the private link service.
@@ -8022,10 +8045,9 @@ export type WebApplicationFirewallPolicy = Resource & {
   readonly pathBasedRules?: SubResource[];
 };
 
-/** Describes a Virtual Machine. */
-export type Vm = Resource & {};
-
-/** Firewall Policy NAT Rule. */
+/**
+ * Firewall Policy NAT Rule.
+ */
 export type FirewallPolicyNatRule = FirewallPolicyRule & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   ruleType: "FirewallPolicyNatRule";

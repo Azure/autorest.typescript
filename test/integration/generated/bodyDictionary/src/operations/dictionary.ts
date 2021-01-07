@@ -1172,7 +1172,7 @@ export class Dictionary {
    * @param options The options parameters.
    */
   putDictionaryValid(
-    arrayBody: { [propertyName: string]: any },
+    arrayBody: { [propertyName: string]: { [propertyName: string]: string } },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -2212,7 +2212,12 @@ const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
+        type: {
+          name: "Dictionary",
+          value: {
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
+          }
+        }
       }
     },
     default: {
@@ -2229,7 +2234,12 @@ const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
+        type: {
+          name: "Dictionary",
+          value: {
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
+          }
+        }
       }
     },
     default: {
@@ -2246,7 +2256,12 @@ const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
+        type: {
+          name: "Dictionary",
+          value: {
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
+          }
+        }
       }
     },
     default: {
@@ -2263,7 +2278,12 @@ const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
+        type: {
+          name: "Dictionary",
+          value: {
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
+          }
+        }
       }
     },
     default: {
@@ -2280,7 +2300,12 @@ const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
+        type: {
+          name: "Dictionary",
+          value: {
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
+          }
+        }
       }
     },
     default: {

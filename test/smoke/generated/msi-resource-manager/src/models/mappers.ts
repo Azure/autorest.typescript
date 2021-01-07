@@ -202,54 +202,12 @@ export const UserAssignedIdentitiesListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
+export const ProxyResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "SystemAssignedIdentity",
+    className: "ProxyResource",
     modelProperties: {
-      ...Resource.type.modelProperties,
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      },
-      tenantId: {
-        serializedName: "properties.tenantId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      principalId: {
-        serializedName: "properties.principalId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      clientId: {
-        serializedName: "properties.clientId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      clientSecretUrl: {
-        serializedName: "properties.clientSecretUrl",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
+      ...Resource.type.modelProperties
     }
   }
 };
@@ -322,12 +280,54 @@ export const IdentityUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProxyResource: coreHttp.CompositeMapper = {
+export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ProxyResource",
+    className: "SystemAssignedIdentity",
     modelProperties: {
-      ...Resource.type.modelProperties
+      ...ProxyResource.type.modelProperties,
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      },
+      tenantId: {
+        serializedName: "properties.tenantId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      },
+      principalId: {
+        serializedName: "properties.principalId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      },
+      clientId: {
+        serializedName: "properties.clientId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      },
+      clientSecretUrl: {
+        serializedName: "properties.clientSecretUrl",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

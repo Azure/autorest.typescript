@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  Resource,
+  JobVersion,
   JobVersionsListByJobResponse,
   JobVersionsGetResponse,
   JobVersionsListByJobNextResponse
@@ -45,7 +45,7 @@ export class JobVersions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<Resource> {
+  ): PagedAsyncIterableIterator<JobVersion> {
     const iter = this.listByJobPagingAll(
       resourceGroupName,
       serverName,
@@ -78,7 +78,7 @@ export class JobVersions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<Resource[]> {
+  ): AsyncIterableIterator<JobVersion[]> {
     let result = await this._listByJob(
       resourceGroupName,
       serverName,
@@ -108,7 +108,7 @@ export class JobVersions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<Resource> {
+  ): AsyncIterableIterator<JobVersion> {
     for await (const page of this.listByJobPagingPage(
       resourceGroupName,
       serverName,
@@ -244,7 +244,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Resource
+      bodyMapper: Mappers.JobVersion
     },
     default: {}
   },

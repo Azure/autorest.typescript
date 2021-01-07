@@ -128,7 +128,7 @@ export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity 
 };
 
 // @public
-export type SystemAssignedIdentity = Resource & {
+export type SystemAssignedIdentity = ProxyResource & {
     location: string;
     tags?: {
         [propertyName: string]: string;

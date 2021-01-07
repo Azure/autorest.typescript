@@ -8525,7 +8525,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!EncryptionImages#osDiskImage:member",
-              "docComment": "/**\n * This is the disk image encryption base class.\n */\n",
+              "docComment": "/**\n * Contains encryption settings for an OS disk image.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8533,8 +8533,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DiskImageEncryption",
-                  "canonicalReference": "compute-resource-manager!DiskImageEncryption:interface"
+                  "text": "OSDiskImageEncryption",
+                  "canonicalReference": "compute-resource-manager!OSDiskImageEncryption:type"
                 },
                 {
                   "kind": "Content",
@@ -11431,8 +11431,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GalleryArtifactPublishingProfileBase",
-              "canonicalReference": "compute-resource-manager!GalleryArtifactPublishingProfileBase:interface"
+              "text": "GalleryImageVersionPublishingProfile",
+              "canonicalReference": "compute-resource-manager!GalleryImageVersionPublishingProfile:type"
             },
             {
               "kind": "Content",
@@ -11919,7 +11919,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "compute-resource-manager!GalleryImageVersionStorageProfile#osDiskImage:member",
-              "docComment": "/**\n * This is the disk image base class.\n */\n",
+              "docComment": "/**\n * This is the OS disk image.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -11927,8 +11927,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GalleryDiskImage",
-                  "canonicalReference": "compute-resource-manager!GalleryDiskImage:interface"
+                  "text": "GalleryOSDiskImage",
+                  "canonicalReference": "compute-resource-manager!GalleryOSDiskImage:type"
                 },
                 {
                   "kind": "Content",
@@ -12057,8 +12057,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GalleryArtifactPublishingProfileBase",
-              "canonicalReference": "compute-resource-manager!GalleryArtifactPublishingProfileBase:interface"
+              "text": "GalleryImageVersionPublishingProfile",
+              "canonicalReference": "compute-resource-manager!GalleryImageVersionPublishingProfile:type"
             },
             {
               "kind": "Content",
@@ -12648,8 +12648,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "SubResource",
-                  "canonicalReference": "compute-resource-manager!SubResource:interface"
+                  "text": "DiskEncryptionSetParameters",
+                  "canonicalReference": "compute-resource-manager!DiskEncryptionSetParameters:type"
                 },
                 {
                   "kind": "Content",
@@ -22128,8 +22128,8 @@
             },
             {
               "kind": "Reference",
-              "text": "SubResource",
-              "canonicalReference": "compute-resource-manager!SubResource:interface"
+              "text": "DiskEncryptionSetParameters",
+              "canonicalReference": "compute-resource-manager!DiskEncryptionSetParameters:type"
             },
             {
               "kind": "Content",
@@ -35009,8 +35009,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "SubResource",
-                  "canonicalReference": "compute-resource-manager!SubResource:interface"
+                  "text": "DiskEncryptionSetParameters",
+                  "canonicalReference": "compute-resource-manager!DiskEncryptionSetParameters:type"
                 },
                 {
                   "kind": "Content",
@@ -35919,8 +35919,8 @@
             },
             {
               "kind": "Reference",
-              "text": "VirtualMachineReimageParameters",
-              "canonicalReference": "compute-resource-manager!VirtualMachineReimageParameters:interface"
+              "text": "VirtualMachineScaleSetVMReimageParameters",
+              "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetVMReimageParameters:type"
             },
             {
               "kind": "Content",
@@ -40497,8 +40497,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "VirtualMachineReimageParameters",
-                  "canonicalReference": "compute-resource-manager!VirtualMachineReimageParameters:interface"
+                  "text": "VirtualMachineScaleSetVMReimageParameters",
+                  "canonicalReference": "compute-resource-manager!VirtualMachineScaleSetVMReimageParameters:type"
                 },
                 {
                   "kind": "Content",

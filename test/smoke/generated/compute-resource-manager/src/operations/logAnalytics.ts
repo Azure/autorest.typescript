@@ -14,7 +14,7 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   RequestRateByIntervalInput,
   LogAnalyticsExportRequestRateByIntervalResponse,
-  LogAnalyticsInputBase,
+  ThrottledRequestsInput,
   LogAnalyticsExportThrottledRequestsResponse
 } from "../models";
 
@@ -77,7 +77,7 @@ export class LogAnalytics {
    */
   async exportThrottledRequests(
     location: string,
-    parameters: LogAnalyticsInputBase,
+    parameters: ThrottledRequestsInput,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>> {
     const operationArguments: coreHttp.OperationArguments = {
