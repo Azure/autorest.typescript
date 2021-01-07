@@ -28,7 +28,7 @@ More information about these can be found [here](https://github.com/Azure/autore
 ```yaml
 version: 3.0.6320
 use-extension:
-  "@autorest/modelerfour": "4.15.421"
+  "@autorest/modelerfour": "4.15.448"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -85,7 +85,6 @@ help-content:
         description: Whether to generate extra metadata in your package. For instance, generates a README file, license file etc if set to true.
       - key: disable-async-iterators
         description: Whether to generate pageable methods as AsyncIterators. Defaults to true.
-      -
 ```
 
 ## Language Specific Requirements: TypeScript
