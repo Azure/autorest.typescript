@@ -22,9 +22,7 @@ Next, on to initialization. Your constructor can take any number of parameters. 
 ```js
 import { PetsClient } from "@azure/pets";
 
-let client: PetsClient;
-
-client = new PetsClient();
+const client: PetsClient = new PetsClient();
 ```
 
 If you generate with flag `--add-credentials`, your client wil be generated with an [Azure Active Directory (AAD) token credential][aad_authentication]. We always recommend
@@ -37,9 +35,7 @@ As an installation note, the [`@azure/identity`][azure_identity_library] library
 import { DefaultAzureCredential } from "@azure/identity";
 import { PetsClient } from "@azure/pets";
 
-let client: PetsClient;
-
-client = new PetsClient(new DefaultAzureCredential());
+const client: PetsClient = new PetsClient(new DefaultAzureCredential());
 ```
 
 <!-- LINKS -->

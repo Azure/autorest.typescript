@@ -18,13 +18,13 @@ Since there is no explicit context you need to pass, you can create your usual O
 The following example uses the [Zipkin][zipkin] exporter.
 
 ```js
-const tracing = require("@opencensus/nodejs");
-const { ZipkinTraceExporter } = require("@opencensus/exporter-zipkin");
-const {
+import tracing from "@opencensus/nodejs");
+import { ZipkinTraceExporter } from "@opencensus/exporter-zipkin";
+import {
   setTracer,
   OpenCensusTracerWrapper,
   OpenCensusSpanWrapper
-} = require("@azure/core-tracing");
+} from "@azure/core-tracing";
 
 const tracer = tracing.start({ samplingRate: 1 }).tracer;
 
@@ -46,17 +46,17 @@ tracer.startRootSpan({ name: "root" }, async (rootSpanEx) => {
 
 First step is to install our [`OpenTelemetry` library][our_open_telemetry_library]:
 
-```python
-pip install azure-core-tracing-opentelemetry
+```bash
+npm install --save @azure/core-tracing
 ```
 
 Since there is no explicit context you need to pass, you can create your usual OpenTelemetry tracer and call the generated SDKs.
 The following example uses the [Zipkin][zipkin] exporter.
 ```js
-const opentelemetry = require("@opentelemetry/core");
-const { BasicTracer, SimpleSpanProcessor } = require("@opentelemetry/tracing");
-const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
-const { setTracer } = require("@azure/core-tracing");
+import opentelemetry from "@opentelemetry/core";
+import { BasicTracer, SimpleSpanProcessor } from "@opentelemetry/tracing";
+import { ZipkinExporter } = from "@opentelemetry/exporter-zipkin";
+import { setTracer } from "@azure/core-tracing";
 
 const exporter = new ZipkinExporter({
   serviceName: "azure-tracing-sample"

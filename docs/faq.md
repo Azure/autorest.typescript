@@ -2,7 +2,7 @@
 
 1. What version of AutoRest Typescript should I use?
 
-    CURRENTLY NO AUTOREST TYPESCRIPT ION NPM
+    CURRENTLY NO AUTOREST TYPESCRIPT ON NPM
 
     We highly recommend you use the latest AutoRest Typescript version published to [npm][autorest_npm]. The latest version
     is the default if you use flag `--typescript`, though you may need to run an `autorest --reset` if it seems

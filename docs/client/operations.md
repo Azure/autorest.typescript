@@ -1,6 +1,6 @@
 # <img align="center" src="../images/logo.png">  Calling Operations with Your Typescript Client
 
-AutoRest provides both synchronous and asynchronous method overloads for each service operation.
+AutoRest provides asynchronous method overloads for each service operation.
 Depending on your swagger definition, operations can be accessed through operation groups (TODO: link to swagger docs) on the client,
 or directly on the client.
 
@@ -14,22 +14,13 @@ itself, i.e. `client.getDog()`.
 
 ## Regular Operations
 
-### Sync Operations
-
-We don't generate sync operations, all of our operations are async.
-
-### Async Operations
-
-When calling our async operations, we use our async client, which is in a different module. Following the [example above](#sync-operations Sync Operations),
-our call to `getDog` looks like this:
+When calling our async operations, we go through our client
 
 ```js
 import { DefaultAzureCredential } from "@azure/identity";
 import { PetsClient } from "@azure/pets";
 
-let client: PetsClient;
-
-client = new PetsClient(new DefaultAzureCredential());
+const client: PetsClient = new PetsClient(new DefaultAzureCredential());
 const dog = await client.getDog();
 ```
 
@@ -41,12 +32,6 @@ In concurrence with our [typescript guidelines][poller_guidelines], all of our l
 
 For our example, we will use the long running operation generated from [this][example_swagger] swagger. Let's say we generated this swagger with package name `@azure/lro`.
 
-### Sync Long Running Operations
-
-We don't generate sync operations, all of our operations are async.
-
-### Async Long Running Operations
-
 By default, our async long running operations return an [`Poller`][poller] polling object, though there [are ways][custom_poller] of changing this. Calling `.pollUntilDone()`
 on the poller will wait until the long running operation finishes then return the final result.
 
@@ -54,12 +39,9 @@ on the poller will wait until the long running operation finishes then return th
 import { DefaultAzureCredential } from "@azure/identity";
 import { Product, PollingPagingExampleClient } from "@azure/lro";
 
-let client: PollingPagingExampleClient;
-let inputProduct: Product;
+const client: PollingPagingExampleClient = new PollingPagingExampleClient(new DefaultAzureCredential());
 
-client = new PollingPagingExampleClient(new DefaultAzureCredential());
-
-inputProduct = {
+const inputProduct: Product = {
     id: 1;
     name: "My Polling example"
 };
@@ -75,13 +57,7 @@ is initially called.
 
 For our example, we will use the long running operation generated from [this][example_swagger] swagger. Let's say we generated this swagger with package name `@azure/paging`.
 
-### Sync Paging Operations
-
-We don't generate sync operations, all of our operations are async.
-
-### Async Paging Operations
-
-By default, our sync paging operations return an [`PagedAsyncIterableIterator`][paged_async_iterable_iterator] pager. Since network calls aren't
+By default, our async paging operations return an [`PagedAsyncIterableIterator`][paged_async_iterable_iterator] pager. Since network calls aren't
 made until starting to page, our generated operation is synchronous, and there's no need to wait the initial call to the function. Since network calls are made when iterating,
 we have to do async looping.
 
@@ -89,9 +65,7 @@ we have to do async looping.
 import { DefaultAzureCredential } from "@azure/identity";
 import { PollingPagingExampleClient } from "@azure/paging";
 
-let client: PollingPagingExampleClient;
-
-client = new PollingPagingExampleClient(new DefaultAzureCredential());
+const client: PollingPagingExampleClient = new PollingPagingExampleClient(new DefaultAzureCredential());
 
 const pager = client.basicPaging();
 for await (const product of pager) {

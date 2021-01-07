@@ -2,7 +2,6 @@
 
 These documents are Typescript-specific, see [our main docs][main_docs] for more general information
 
-
 1. Generating Typescript Clients with AutoRest
     - How do I generate code? Main documents are [here][main_generate], while here are the [typescript-specific docs][typescript_generate]
 

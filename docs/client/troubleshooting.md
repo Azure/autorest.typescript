@@ -10,9 +10,7 @@ A very basic form of error handling looks like this
 import { DefaultAzureCredential } from "@azure/identity";
 import { PetsClient } from "@azure/pets";
 
-let client: PetsClient;
-
-client = new PetsClient(new DefaultAzureCredential());
+const client: PetsClient = new PetsClient(new DefaultAzureCredential());
 try {
     const dog = await client.getDog();
 } catch (err) {
