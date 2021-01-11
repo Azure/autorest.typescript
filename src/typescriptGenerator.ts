@@ -76,10 +76,8 @@ export async function generateTypeScriptLibrary(
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
 
-  // Indicates whether the SDK has a custom layer on top of generated layer.
-  // This value could be used to determine if certain classes need to be hidden.
-  const hasCustomLayer: boolean =
-    (await host.GetValue("has-custom-layer")) || false;
+  const hideClient: boolean =
+    (await host.GetValue("hide-client")) || false;
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
@@ -91,8 +89,8 @@ export async function generateTypeScriptLibrary(
     generateApiExtractorConfig(clientDetails, project);
   }
 
-  generateClient(clientDetails, project, hasCustomLayer);
-  generateClientContext(clientDetails, packageDetails, project, hasCustomLayer);
+  generateClient(clientDetails, project, hideClient);
+  generateClientContext(clientDetails, packageDetails, project, hideClient);
   generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);

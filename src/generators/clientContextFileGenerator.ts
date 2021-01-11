@@ -21,7 +21,7 @@ export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project,
-  hasCustomLayer: boolean
+  hideClient: boolean
 ) {
   const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
@@ -50,7 +50,7 @@ export function generateClientContext(
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
 
-  if(hasCustomLayer) {
+  if(hideClient) {
     contextClass.addJsDoc({
       tags: [{
           tagName: "hidden"
