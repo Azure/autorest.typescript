@@ -76,6 +76,8 @@ export async function generateTypeScriptLibrary(
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
 
+  // Indicates whether the SDK has a custom layer on top of generated layer.
+  // This value could be used to determine if certain classes need to be hidden.
   const hasCustomLayer: boolean =
     (await host.GetValue("has-custom-layer")) || false;
 
