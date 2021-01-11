@@ -37,7 +37,9 @@
     "test/integration/generated/noLicenseHeader/*.ts",
     "test/integration/generated/licenseHeader/*.ts",
     "test/integration/generated/bodyFormData/*.ts",
+    "test/integration/generated/appconfigurationexport/*.ts",
     "test/integration/licenseHeader.spec.ts",
-    "test/integration/bodyFormData.spec.ts"
+    "test/integration/bodyFormData.spec.ts",
+    "test/integration/appConfigurationExport.spec.ts"
   ]
 }

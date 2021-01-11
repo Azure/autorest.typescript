@@ -17,9 +17,7 @@ import {
   RestorableDroppedDatabasesListByServerResponse
 } from "../models";
 
-/**
- * Class representing a RestorableDroppedDatabases.
- */
+/** Class representing a RestorableDroppedDatabases. */
 export class RestorableDroppedDatabases {
   private readonly client: SqlManagementClient;
 
@@ -143,7 +141,6 @@ export class RestorableDroppedDatabases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -28,9 +28,7 @@ import {
   DatetimeGetLocalNoOffsetMinDateTimeResponse
 } from "../models";
 
-/**
- * Class representing a Datetime.
- */
+/** Class representing a Datetime. */
 export class Datetime {
   private readonly client: BodyDateTimeClient;
 
@@ -418,7 +416,6 @@ export class Datetime {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

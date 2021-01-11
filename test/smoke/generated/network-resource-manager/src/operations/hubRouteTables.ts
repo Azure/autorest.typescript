@@ -20,9 +20,7 @@ import {
   HubRouteTablesListNextResponse
 } from "../models";
 
-/**
- * Class representing a HubRouteTables.
- */
+/** Class representing a HubRouteTables. */
 export class HubRouteTables {
   private readonly client: NetworkManagementClient;
 
@@ -263,7 +261,6 @@ export class HubRouteTables {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

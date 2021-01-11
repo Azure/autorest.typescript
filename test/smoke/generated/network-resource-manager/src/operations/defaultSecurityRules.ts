@@ -18,9 +18,7 @@ import {
   DefaultSecurityRulesListNextResponse
 } from "../models";
 
-/**
- * Class representing a DefaultSecurityRules.
- */
+/** Class representing a DefaultSecurityRules. */
 export class DefaultSecurityRules {
   private readonly client: NetworkManagementClient;
 
@@ -176,7 +174,6 @@ export class DefaultSecurityRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

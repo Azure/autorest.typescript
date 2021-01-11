@@ -22,9 +22,7 @@ import {
   BackupShortTermRetentionPoliciesListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a BackupShortTermRetentionPolicies.
- */
+/** Class representing a BackupShortTermRetentionPolicies. */
 export class BackupShortTermRetentionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -310,7 +308,6 @@ export class BackupShortTermRetentionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

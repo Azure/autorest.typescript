@@ -19,9 +19,7 @@ import {
   UsagesListByInstancePoolNextResponse
 } from "../models";
 
-/**
- * Class representing a Usages.
- */
+/** Class representing a Usages. */
 export class Usages {
   private readonly client: SqlManagementClient;
 
@@ -155,7 +153,6 @@ export class Usages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {

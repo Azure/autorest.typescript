@@ -46,9 +46,7 @@ import {
   NetworkWatchersGetNetworkConfigurationDiagnosticResponse
 } from "../models";
 
-/**
- * Class representing a NetworkWatchers.
- */
+/** Class representing a NetworkWatchers. */
 export class NetworkWatchers {
   private readonly client: NetworkManagementClient;
 
@@ -780,7 +778,6 @@ export class NetworkWatchers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

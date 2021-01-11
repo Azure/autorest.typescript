@@ -24,9 +24,7 @@ import {
   SyncAgentsListLinkedDatabasesNextResponse
 } from "../models";
 
-/**
- * Class representing a SyncAgents.
- */
+/** Class representing a SyncAgents. */
 export class SyncAgents {
   private readonly client: SqlManagementClient;
 
@@ -445,7 +443,6 @@ export class SyncAgents {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

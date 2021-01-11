@@ -15,9 +15,7 @@ import {
   ManagedDatabaseRestoreDetailsGetResponse
 } from "../models";
 
-/**
- * Class representing a ManagedDatabaseRestoreDetails.
- */
+/** Class representing a ManagedDatabaseRestoreDetails. */
 export class ManagedDatabaseRestoreDetails {
   private readonly client: SqlManagementClient;
 
@@ -59,7 +57,6 @@ export class ManagedDatabaseRestoreDetails {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

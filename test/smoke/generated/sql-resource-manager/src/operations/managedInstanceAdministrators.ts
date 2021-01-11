@@ -20,9 +20,7 @@ import {
   ManagedInstanceAdministratorsListByInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstanceAdministrators.
- */
+/** Class representing a ManagedInstanceAdministrators. */
 export class ManagedInstanceAdministrators {
   private readonly client: SqlManagementClient;
 
@@ -270,7 +268,6 @@ export class ManagedInstanceAdministrators {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByInstanceOperationSpec: coreHttp.OperationSpec = {

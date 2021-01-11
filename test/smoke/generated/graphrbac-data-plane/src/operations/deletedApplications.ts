@@ -19,9 +19,7 @@ import {
   DeletedApplicationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a DeletedApplications.
- */
+/** Class representing a DeletedApplications. */
 export class DeletedApplications {
   private readonly client: GraphRbacManagementClient;
 
@@ -195,7 +193,6 @@ export class DeletedApplications {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const restoreOperationSpec: coreHttp.OperationSpec = {

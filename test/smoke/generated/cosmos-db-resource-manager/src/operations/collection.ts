@@ -21,9 +21,7 @@ import {
   CollectionListMetricDefinitionsResponse
 } from "../models";
 
-/**
- * Class representing a Collection.
- */
+/** Class representing a Collection. */
 export class Collection {
   private readonly client: CosmosDBManagementClient;
 
@@ -363,7 +361,6 @@ export class Collection {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

@@ -19,9 +19,7 @@ import {
   GeoBackupPoliciesListByDatabaseResponse
 } from "../models";
 
-/**
- * Class representing a GeoBackupPolicies.
- */
+/** Class representing a GeoBackupPolicies. */
 export class GeoBackupPolicies {
   private readonly client: SqlManagementClient;
 
@@ -190,7 +188,6 @@ export class GeoBackupPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

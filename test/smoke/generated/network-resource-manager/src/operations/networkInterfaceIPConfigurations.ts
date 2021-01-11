@@ -18,9 +18,7 @@ import {
   NetworkInterfaceIPConfigurationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a NetworkInterfaceIPConfigurations.
- */
+/** Class representing a NetworkInterfaceIPConfigurations. */
 export class NetworkInterfaceIPConfigurations {
   private readonly client: NetworkManagementClient;
 
@@ -176,7 +174,6 @@ export class NetworkInterfaceIPConfigurations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

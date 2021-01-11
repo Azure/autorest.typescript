@@ -20,9 +20,7 @@ import {
   ExtendedServerBlobAuditingPoliciesListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a ExtendedServerBlobAuditingPolicies.
- */
+/** Class representing a ExtendedServerBlobAuditingPolicies. */
 export class ExtendedServerBlobAuditingPolicies {
   private readonly client: SqlManagementClient;
 
@@ -234,7 +232,6 @@ export class ExtendedServerBlobAuditingPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

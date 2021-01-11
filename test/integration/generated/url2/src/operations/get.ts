@@ -11,9 +11,7 @@ import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
 import { GetUrlResponse } from "../models";
 
-/**
- * Class representing a Get.
- */
+/** Class representing a Get. */
 export class Get {
   private readonly client: UrlClient;
 
@@ -44,7 +42,6 @@ export class Get {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const urlOperationSpec: coreHttp.OperationSpec = {

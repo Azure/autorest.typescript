@@ -20,9 +20,7 @@ import {
   WorkloadGroupsListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a WorkloadGroups.
- */
+/** Class representing a WorkloadGroups. */
 export class WorkloadGroups {
   private readonly client: SqlManagementClient;
 
@@ -303,7 +301,6 @@ export class WorkloadGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

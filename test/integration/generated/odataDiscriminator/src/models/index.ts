@@ -14,94 +14,56 @@ export type LexicalAnalyzerUnion =
   | LuceneStandardAnalyzer
   | StopAnalyzer;
 
-/**
- * Base type for analyzers.
- */
+/** Base type for analyzers. */
 export interface LexicalAnalyzer {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType:
     | "#Microsoft.Azure.Search.PatternAnalyzer"
     | "#Microsoft.Azure.Search.StandardAnalyzer"
     | "#Microsoft.Azure.Search.StopAnalyzer";
-  /**
-   * The name of the analyzer. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters.
-   */
+  /** The name of the analyzer. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters. */
   name: string;
 }
 
-/**
- * Tokenizer for path-like hierarchies. This tokenizer is implemented using Apache Lucene.
- */
+/** Tokenizer for path-like hierarchies. This tokenizer is implemented using Apache Lucene. */
 export interface PathHierarchyTokenizerV2 {
-  /**
-   * The delimiter character to use. Default is "/".
-   */
+  /** The delimiter character to use. Default is "/". */
   delimiter?: string;
-  /**
-   * A value that, if set, replaces the delimiter character. Default is "/".
-   */
+  /** A value that, if set, replaces the delimiter character. Default is "/". */
   replacement?: string;
 }
 
-/**
- * Flexibly separates text into terms via a regular expression pattern. This analyzer is implemented using Apache Lucene.
- */
+/** Flexibly separates text into terms via a regular expression pattern. This analyzer is implemented using Apache Lucene. */
 export type PatternAnalyzer = LexicalAnalyzer & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.PatternAnalyzer";
-  /**
-   * A value indicating whether terms should be lower-cased. Default is true.
-   */
+  /** A value indicating whether terms should be lower-cased. Default is true. */
   lowerCaseTerms?: boolean;
-  /**
-   * A regular expression pattern to match token separators. Default is an expression that matches one or more non-word characters.
-   */
+  /** A regular expression pattern to match token separators. Default is an expression that matches one or more non-word characters. */
   pattern?: string;
-  /**
-   * A list of stopwords.
-   */
+  /** A list of stopwords. */
   stopwords?: string[];
 };
 
-/**
- * Standard Apache Lucene analyzer; Composed of the standard tokenizer, lowercase filter and stop filter.
- */
+/** Standard Apache Lucene analyzer; Composed of the standard tokenizer, lowercase filter and stop filter. */
 export type LuceneStandardAnalyzer = LexicalAnalyzer & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.StandardAnalyzer";
-  /**
-   * The maximum token length. Default is 255. Tokens longer than the maximum length are split. The maximum token length that can be used is 300 characters.
-   */
+  /** The maximum token length. Default is 255. Tokens longer than the maximum length are split. The maximum token length that can be used is 300 characters. */
   maxTokenLength?: number;
-  /**
-   * A list of stopwords.
-   */
+  /** A list of stopwords. */
   stopwords?: string[];
 };
 
-/**
- * Divides text at non-letters; Applies the lowercase and stopword token filters. This analyzer is implemented using Apache Lucene.
- */
+/** Divides text at non-letters; Applies the lowercase and stopword token filters. This analyzer is implemented using Apache Lucene. */
 export type StopAnalyzer = LexicalAnalyzer & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.StopAnalyzer";
-  /**
-   * A list of stopwords.
-   */
+  /** A list of stopwords. */
   stopwords?: string[];
 };
 
-/**
- * Known values of {@link Enum0} that the service accepts.
- */
+/** Known values of {@link Enum0} that the service accepts. */
 export const enum KnownEnum0 {
   One = "one",
   Two = "two"
@@ -117,38 +79,24 @@ export const enum KnownEnum0 {
  */
 export type Enum0 = string;
 
-/**
- * Contains response data for the apiV1ValueGet operation.
- */
+/** Contains response data for the apiV1ValueGet operation. */
 export type ODataDiscriminatorClientApiV1ValueGetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ODataDiscriminatorClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

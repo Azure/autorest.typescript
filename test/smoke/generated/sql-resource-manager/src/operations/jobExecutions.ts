@@ -27,9 +27,7 @@ import {
   JobExecutionsListByJobNextResponse
 } from "../models";
 
-/**
- * Class representing a JobExecutions.
- */
+/** Class representing a JobExecutions. */
 export class JobExecutions {
   private readonly client: SqlManagementClient;
 
@@ -496,7 +494,6 @@ export class JobExecutions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByAgentOperationSpec: coreHttp.OperationSpec = {

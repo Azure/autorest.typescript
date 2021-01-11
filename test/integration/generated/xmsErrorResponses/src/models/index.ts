@@ -24,9 +24,7 @@ export interface BaseError {
 }
 
 export interface PetAction {
-  /**
-   * action feedback
-   */
+  /** action feedback */
   actionResponse?: string;
 }
 
@@ -45,9 +43,7 @@ export type NotFoundErrorBase = BaseError & {
 
 export type PetActionError = PetAction & {
   errorType: string;
-  /**
-   * the error message
-   */
+  /** the error message */
   errorMessage?: string;
 };
 
@@ -60,70 +56,44 @@ export type AnimalNotFound = NotFoundErrorBase & {
 };
 
 export type PetSadError = PetActionError & {
-  /**
-   * why is the pet sad
-   */
+  /** why is the pet sad */
   reason?: string;
 };
 
 export type PetHungryOrThirstyError = PetSadError & {
-  /**
-   * is the pet hungry or thirsty or both
-   */
+  /** is the pet hungry or thirsty or both */
   hungryOrThirsty?: string;
 };
 
-/**
- * Contains response data for the getPetById operation.
- */
+/** Contains response data for the getPetById operation. */
 export type PetGetPetByIdResponse = Pet & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Pet;
   };
 };
 
-/**
- * Contains response data for the doSomething operation.
- */
+/** Contains response data for the doSomething operation. */
 export type PetDoSomethingResponse = PetAction & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAction;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface XmsErrorResponsesClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

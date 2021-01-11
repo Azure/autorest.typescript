@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { OdataGetWithFilterOptionalParams } from "../models";
 
-/**
- * Class representing a Odata.
- */
+/** Class representing a Odata. */
 export class Odata {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -43,7 +41,6 @@ export class Odata {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getWithFilterOperationSpec: coreHttp.OperationSpec = {

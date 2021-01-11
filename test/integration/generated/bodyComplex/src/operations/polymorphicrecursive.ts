@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 import { PolymorphicrecursiveGetValidResponse, FishUnion } from "../models";
 
-/**
- * Class representing a Polymorphicrecursive.
- */
+/** Class representing a Polymorphicrecursive. */
 export class Polymorphicrecursive {
   private readonly client: BodyComplexClient;
 
@@ -114,7 +112,6 @@ export class Polymorphicrecursive {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

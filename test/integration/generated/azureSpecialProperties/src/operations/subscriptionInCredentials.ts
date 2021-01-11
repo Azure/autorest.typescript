@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 
-/**
- * Class representing a SubscriptionInCredentials.
- */
+/** Class representing a SubscriptionInCredentials. */
 export class SubscriptionInCredentials {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -111,7 +109,6 @@ export class SubscriptionInCredentials {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const postMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {

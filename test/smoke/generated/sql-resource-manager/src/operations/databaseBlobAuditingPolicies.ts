@@ -19,9 +19,7 @@ import {
   DatabaseBlobAuditingPoliciesListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a DatabaseBlobAuditingPolicies.
- */
+/** Class representing a DatabaseBlobAuditingPolicies. */
 export class DatabaseBlobAuditingPolicies {
   private readonly client: SqlManagementClient;
 
@@ -225,7 +223,6 @@ export class DatabaseBlobAuditingPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

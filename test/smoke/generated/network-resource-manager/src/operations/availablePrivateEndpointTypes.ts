@@ -19,9 +19,7 @@ import {
   AvailablePrivateEndpointTypesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailablePrivateEndpointTypes.
- */
+/** Class representing a AvailablePrivateEndpointTypes. */
 export class AvailablePrivateEndpointTypes {
   private readonly client: NetworkManagementClient;
 
@@ -243,7 +241,6 @@ export class AvailablePrivateEndpointTypes {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -54,9 +54,7 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
     ) as Promise<ArrayConstraintsClientPostValueResponse>;
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   apiV1ValueGet(
     options?: ArrayConstraintsClientApiV1ValueGetOptionalParams
   ): Promise<ArrayConstraintsClientApiV1ValueGetResponse> {
@@ -70,7 +68,6 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const postValueOperationSpec: coreHttp.OperationSpec = {

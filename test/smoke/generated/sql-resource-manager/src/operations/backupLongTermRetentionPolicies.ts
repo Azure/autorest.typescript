@@ -19,9 +19,7 @@ import {
   BackupLongTermRetentionPoliciesListByDatabaseResponse
 } from "../models";
 
-/**
- * Class representing a BackupLongTermRetentionPolicies.
- */
+/** Class representing a BackupLongTermRetentionPolicies. */
 export class BackupLongTermRetentionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -148,7 +146,6 @@ export class BackupLongTermRetentionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

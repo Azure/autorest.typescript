@@ -18,9 +18,7 @@ import {
   JobVersionsListByJobNextResponse
 } from "../models";
 
-/**
- * Class representing a JobVersions.
- */
+/** Class representing a JobVersions. */
 export class JobVersions {
   private readonly client: SqlManagementClient;
 
@@ -216,7 +214,6 @@ export class JobVersions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByJobOperationSpec: coreHttp.OperationSpec = {

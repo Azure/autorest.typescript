@@ -16,9 +16,7 @@ import {
   ElasticPoolActivitiesListByElasticPoolResponse
 } from "../models";
 
-/**
- * Class representing a ElasticPoolActivities.
- */
+/** Class representing a ElasticPoolActivities. */
 export class ElasticPoolActivities {
   private readonly client: SqlManagementClient;
 
@@ -126,7 +124,6 @@ export class ElasticPoolActivities {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {

@@ -22,9 +22,7 @@ import {
   JobStepsListByJobNextResponse
 } from "../models";
 
-/**
- * Class representing a JobSteps.
- */
+/** Class representing a JobSteps. */
 export class JobSteps {
   private readonly client: SqlManagementClient;
 
@@ -488,7 +486,6 @@ export class JobSteps {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByVersionOperationSpec: coreHttp.OperationSpec = {

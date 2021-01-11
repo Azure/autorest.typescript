@@ -9,65 +9,37 @@
 import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
-/**
- * Plan for the managed application.
- */
+/** Plan for the managed application. */
 export interface Plan {
-  /**
-   * The plan name.
-   */
+  /** The plan name. */
   name: string;
-  /**
-   * The publisher ID.
-   */
+  /** The publisher ID. */
   publisher: string;
-  /**
-   * The product code.
-   */
+  /** The product code. */
   product: string;
-  /**
-   * The promotion code.
-   */
+  /** The promotion code. */
   promotionCode?: string;
-  /**
-   * The plan's version.
-   */
+  /** The plan's version. */
   version: string;
 }
 
-/**
- * SKU for the resource.
- */
+/** SKU for the resource. */
 export interface Sku {
-  /**
-   * The SKU name.
-   */
+  /** The SKU name. */
   name: string;
-  /**
-   * The SKU tier.
-   */
+  /** The SKU tier. */
   tier?: string;
-  /**
-   * The SKU size.
-   */
+  /** The SKU size. */
   size?: string;
-  /**
-   * The SKU family.
-   */
+  /** The SKU family. */
   family?: string;
-  /**
-   * The SKU model.
-   */
+  /** The SKU model. */
   model?: string;
-  /**
-   * The SKU capacity.
-   */
+  /** The SKU capacity. */
   capacity?: number;
 }
 
-/**
- * Identity for the resource.
- */
+/** Identity for the resource. */
 export interface Identity {
   /**
    * The principal ID of resource identity.
@@ -79,15 +51,11 @@ export interface Identity {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
-  /**
-   * The identity type.
-   */
+  /** The identity type. */
   type?: "SystemAssigned";
 }
 
-/**
- * Resource information.
- */
+/** Resource information. */
 export interface Resource {
   /**
    * Resource ID
@@ -104,161 +72,91 @@ export interface Resource {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * Resource location
-   */
+  /** Resource location */
   location?: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * Error response indicates managed application is not able to process the incoming request. The reason is provided in the error message.
- */
+/** Error response indicates managed application is not able to process the incoming request. The reason is provided in the error message. */
 export interface ErrorResponse {
-  /**
-   * Http status code.
-   */
+  /** Http status code. */
   httpStatus?: string;
-  /**
-   * Error code.
-   */
+  /** Error code. */
   errorCode?: string;
-  /**
-   * Error message indicating why the operation failed.
-   */
+  /** Error message indicating why the operation failed. */
   errorMessage?: string;
 }
 
-/**
- * The managed application provider authorization.
- */
+/** The managed application provider authorization. */
 export interface ApplicationProviderAuthorization {
-  /**
-   * The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the managed application resources.
-   */
+  /** The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the managed application resources. */
   principalId: string;
-  /**
-   * The provider's role definition identifier. This role will define all the permissions that the provider must have on the managed application's container resource group. This role definition cannot have permission to delete the resource group.
-   */
+  /** The provider's role definition identifier. This role will define all the permissions that the provider must have on the managed application's container resource group. This role definition cannot have permission to delete the resource group. */
   roleDefinitionId: string;
 }
 
-/**
- * Managed application artifact.
- */
+/** Managed application artifact. */
 export interface ApplicationArtifact {
-  /**
-   * The managed application artifact name.
-   */
+  /** The managed application artifact name. */
   name?: string;
-  /**
-   * The managed application artifact blob uri.
-   */
+  /** The managed application artifact blob uri. */
   uri?: string;
-  /**
-   * The managed application artifact type.
-   */
+  /** The managed application artifact type. */
   type?: ApplicationArtifactType;
 }
 
-/**
- * List of managed application definitions.
- */
+/** List of managed application definitions. */
 export interface ApplicationDefinitionListResult {
-  /**
-   * The array of managed application definitions.
-   */
+  /** The array of managed application definitions. */
   value?: ApplicationDefinition[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * List of managed applications.
- */
+/** List of managed applications. */
 export interface ApplicationListResult {
-  /**
-   * The array of managed applications.
-   */
+  /** The array of managed applications. */
   value?: Application[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * Plan for the managed application.
- */
+/** Plan for the managed application. */
 export interface PlanPatchable {
-  /**
-   * The plan name.
-   */
+  /** The plan name. */
   name?: string;
-  /**
-   * The publisher ID.
-   */
+  /** The publisher ID. */
   publisher?: string;
-  /**
-   * The product code.
-   */
+  /** The product code. */
   product?: string;
-  /**
-   * The promotion code.
-   */
+  /** The promotion code. */
   promotionCode?: string;
-  /**
-   * The plan's version.
-   */
+  /** The plan's version. */
   version?: string;
 }
 
-/**
- * Resource information.
- */
+/** Resource information. */
 export type GenericResource = Resource & {
-  /**
-   * ID of the resource that manages this resource.
-   */
+  /** ID of the resource that manages this resource. */
   managedBy?: string;
-  /**
-   * The SKU of the resource.
-   */
+  /** The SKU of the resource. */
   sku?: Sku;
-  /**
-   * The identity of the resource.
-   */
+  /** The identity of the resource. */
   identity?: Identity;
 };
 
-/**
- * Information about managed application.
- */
+/** Information about managed application. */
 export type Application = GenericResource & {
-  /**
-   * The plan information.
-   */
+  /** The plan information. */
   plan?: Plan;
-  /**
-   * The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
-   */
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
   kind: string;
-  /**
-   * The managed resource group Id.
-   */
+  /** The managed resource group Id. */
   managedResourceGroupId: string;
-  /**
-   * The fully qualified path of managed application definition Id.
-   */
+  /** The fully qualified path of managed application definition Id. */
   applicationDefinitionId?: string;
-  /**
-   * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string.
-   */
+  /** Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string. */
   parameters?: any;
   /**
    * Name and value pairs that define the managed application outputs.
@@ -272,71 +170,39 @@ export type Application = GenericResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/**
- * Information about managed application definition.
- */
+/** Information about managed application definition. */
 export type ApplicationDefinition = GenericResource & {
-  /**
-   * The managed application lock level.
-   */
+  /** The managed application lock level. */
   lockLevel: ApplicationLockLevel;
-  /**
-   * The managed application definition display name.
-   */
+  /** The managed application definition display name. */
   displayName?: string;
-  /**
-   * A value indicating whether the package is enabled or not.
-   */
+  /** A value indicating whether the package is enabled or not. */
   isEnabled?: string;
-  /**
-   * The managed application provider authorizations.
-   */
+  /** The managed application provider authorizations. */
   authorizations: ApplicationProviderAuthorization[];
-  /**
-   * The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition.
-   */
+  /** The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition. */
   artifacts?: ApplicationArtifact[];
-  /**
-   * The managed application definition description.
-   */
+  /** The managed application definition description. */
   description?: string;
-  /**
-   * The managed application definition package file Uri. Use this element
-   */
+  /** The managed application definition package file Uri. Use this element */
   packageFileUri?: string;
-  /**
-   * The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string.
-   */
+  /** The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string. */
   mainTemplate?: any;
-  /**
-   * The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string.
-   */
+  /** The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string. */
   createUiDefinition?: any;
 };
 
-/**
- * Information about managed application.
- */
+/** Information about managed application. */
 export type ApplicationPatchable = GenericResource & {
-  /**
-   * The plan information.
-   */
+  /** The plan information. */
   plan?: PlanPatchable;
-  /**
-   * The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
-   */
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
   kind?: string;
-  /**
-   * The managed resource group Id.
-   */
+  /** The managed resource group Id. */
   managedResourceGroupId?: string;
-  /**
-   * The fully qualified path of managed application definition Id.
-   */
+  /** The fully qualified path of managed application definition Id. */
   applicationDefinitionId?: string;
-  /**
-   * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string.
-   */
+  /** Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string. */
   parameters?: any;
   /**
    * Name and value pairs that define the managed application outputs.
@@ -350,9 +216,7 @@ export type ApplicationPatchable = GenericResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/**
- * Known values of {@link ProvisioningState} that the service accepts.
- */
+/** Known values of {@link ProvisioningState} that the service accepts. */
 export const enum KnownProvisioningState {
   Accepted = "Accepted",
   Running = "Running",
@@ -385,388 +249,232 @@ export const enum KnownProvisioningState {
  * **Updating**
  */
 export type ProvisioningState = string;
-/**
- * Defines values for ApplicationLockLevel.
- */
+/** Defines values for ApplicationLockLevel. */
 export type ApplicationLockLevel = "CanNotDelete" | "ReadOnly" | "None";
-/**
- * Defines values for ApplicationArtifactType.
- */
+/** Defines values for ApplicationArtifactType. */
 export type ApplicationArtifactType = "Template" | "Custom";
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ApplicationsGetResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ApplicationsCreateOrUpdateResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ApplicationsUpdateOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameters supplied to update an existing managed application.
-   */
+  /** Parameters supplied to update an existing managed application. */
   parameters?: Application;
 }
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ApplicationsUpdateResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type ApplicationsListByResourceGroupResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the listBySubscription operation.
- */
+/** Contains response data for the listBySubscription operation. */
 export type ApplicationsListBySubscriptionResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the getById operation.
- */
+/** Contains response data for the getById operation. */
 export type ApplicationsGetByIdResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateById operation.
- */
+/** Contains response data for the createOrUpdateById operation. */
 export type ApplicationsCreateOrUpdateByIdResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ApplicationsUpdateByIdOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameters supplied to update an existing managed application.
-   */
+  /** Parameters supplied to update an existing managed application. */
   parameters?: Application;
 }
 
-/**
- * Contains response data for the updateById operation.
- */
+/** Contains response data for the updateById operation. */
 export type ApplicationsUpdateByIdResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the listBySubscriptionNext operation.
- */
+/** Contains response data for the listBySubscriptionNext operation. */
 export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ApplicationDefinitionsGetResponse = ApplicationDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the getById operation.
- */
+/** Contains response data for the getById operation. */
 export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateById operation.
- */
+/** Contains response data for the createOrUpdateById operation. */
 export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinitionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ApplicationClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

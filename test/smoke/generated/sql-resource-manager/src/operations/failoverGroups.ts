@@ -24,9 +24,7 @@ import {
   FailoverGroupsListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a FailoverGroups.
- */
+/** Class representing a FailoverGroups. */
 export class FailoverGroups {
   private readonly client: SqlManagementClient;
 
@@ -409,7 +407,6 @@ export class FailoverGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

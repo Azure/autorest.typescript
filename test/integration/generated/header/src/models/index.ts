@@ -13,405 +13,245 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Defines headers for Header_responseExistingKey operation.
- */
+/** Defines headers for Header_responseExistingKey operation. */
 export interface HeaderResponseExistingKeyHeaders {
-  /**
-   * response with header value "User-Agent": "overwrite"
-   */
+  /** response with header value "User-Agent": "overwrite" */
   userAgent?: string;
 }
 
-/**
- * Defines headers for Header_responseProtectedKey operation.
- */
+/** Defines headers for Header_responseProtectedKey operation. */
 export interface HeaderResponseProtectedKeyHeaders {
-  /**
-   * response with header value "Content-Type": "text/html"
-   */
+  /** response with header value "Content-Type": "text/html" */
   contentType?: string;
 }
 
-/**
- * Defines headers for Header_responseInteger operation.
- */
+/** Defines headers for Header_responseInteger operation. */
 export interface HeaderResponseIntegerHeaders {
-  /**
-   * response with header value "value": 1 or -2
-   */
+  /** response with header value "value": 1 or -2 */
   value?: number;
 }
 
-/**
- * Defines headers for Header_responseLong operation.
- */
+/** Defines headers for Header_responseLong operation. */
 export interface HeaderResponseLongHeaders {
-  /**
-   * response with header value "value": 105 or -2
-   */
+  /** response with header value "value": 105 or -2 */
   value?: number;
 }
 
-/**
- * Defines headers for Header_responseFloat operation.
- */
+/** Defines headers for Header_responseFloat operation. */
 export interface HeaderResponseFloatHeaders {
-  /**
-   * response with header value "value": 0.07 or -3.0
-   */
+  /** response with header value "value": 0.07 or -3.0 */
   value?: number;
 }
 
-/**
- * Defines headers for Header_responseDouble operation.
- */
+/** Defines headers for Header_responseDouble operation. */
 export interface HeaderResponseDoubleHeaders {
-  /**
-   * response with header value "value": 7e120 or -3.0
-   */
+  /** response with header value "value": 7e120 or -3.0 */
   value?: number;
 }
 
-/**
- * Defines headers for Header_responseBool operation.
- */
+/** Defines headers for Header_responseBool operation. */
 export interface HeaderResponseBoolHeaders {
-  /**
-   * response with header value "value": true or false
-   */
+  /** response with header value "value": true or false */
   value?: boolean;
 }
 
-/**
- * Defines headers for Header_responseString operation.
- */
+/** Defines headers for Header_responseString operation. */
 export interface HeaderResponseStringHeaders {
-  /**
-   * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
-   */
+  /** response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   value?: string;
 }
 
-/**
- * Defines headers for Header_responseDate operation.
- */
+/** Defines headers for Header_responseDate operation. */
 export interface HeaderResponseDateHeaders {
-  /**
-   * response with header values "2010-01-01" or "0001-01-01"
-   */
+  /** response with header values "2010-01-01" or "0001-01-01" */
   value?: Date;
 }
 
-/**
- * Defines headers for Header_responseDatetime operation.
- */
+/** Defines headers for Header_responseDatetime operation. */
 export interface HeaderResponseDatetimeHeaders {
-  /**
-   * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
-   */
+  /** response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
   value?: Date;
 }
 
-/**
- * Defines headers for Header_responseDatetimeRfc1123 operation.
- */
+/** Defines headers for Header_responseDatetimeRfc1123 operation. */
 export interface HeaderResponseDatetimeRfc1123Headers {
-  /**
-   * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
-   */
+  /** response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   value?: Date;
 }
 
-/**
- * Defines headers for Header_responseDuration operation.
- */
+/** Defines headers for Header_responseDuration operation. */
 export interface HeaderResponseDurationHeaders {
-  /**
-   * response with header values "P123DT22H14M12.011S"
-   */
+  /** response with header values "P123DT22H14M12.011S" */
   value?: string;
 }
 
-/**
- * Defines headers for Header_responseByte operation.
- */
+/** Defines headers for Header_responseByte operation. */
 export interface HeaderResponseByteHeaders {
-  /**
-   * response with header values "啊齄丂狛狜隣郎隣兀﨩"
-   */
+  /** response with header values "啊齄丂狛狜隣郎隣兀﨩" */
   value?: Uint8Array;
 }
 
-/**
- * Defines headers for Header_responseEnum operation.
- */
+/** Defines headers for Header_responseEnum operation. */
 export interface HeaderResponseEnumHeaders {
-  /**
-   * response with header values "GREY" or null
-   */
+  /** response with header values "GREY" or null */
   value?: GreyscaleColors;
 }
 
-/**
- * Defines values for GreyscaleColors.
- */
+/** Defines values for GreyscaleColors. */
 export type GreyscaleColors = "White" | "black" | "GREY";
 
-/**
- * Contains response data for the responseExistingKey operation.
- */
+/** Contains response data for the responseExistingKey operation. */
 export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseExistingKeyHeaders;
   };
 };
 
-/**
- * Contains response data for the responseProtectedKey operation.
- */
+/** Contains response data for the responseProtectedKey operation. */
 export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseProtectedKeyHeaders;
   };
 };
 
-/**
- * Contains response data for the responseInteger operation.
- */
+/** Contains response data for the responseInteger operation. */
 export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseIntegerHeaders;
   };
 };
 
-/**
- * Contains response data for the responseLong operation.
- */
+/** Contains response data for the responseLong operation. */
 export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseLongHeaders;
   };
 };
 
-/**
- * Contains response data for the responseFloat operation.
- */
+/** Contains response data for the responseFloat operation. */
 export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseFloatHeaders;
   };
 };
 
-/**
- * Contains response data for the responseDouble operation.
- */
+/** Contains response data for the responseDouble operation. */
 export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseDoubleHeaders;
   };
 };
 
-/**
- * Contains response data for the responseBool operation.
- */
+/** Contains response data for the responseBool operation. */
 export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseBoolHeaders;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface HeaderParamStringOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
-   */
+  /** Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   value?: string;
 }
 
-/**
- * Contains response data for the responseString operation.
- */
+/** Contains response data for the responseString operation. */
 export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseStringHeaders;
   };
 };
 
-/**
- * Contains response data for the responseDate operation.
- */
+/** Contains response data for the responseDate operation. */
 export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseDateHeaders;
   };
 };
 
-/**
- * Contains response data for the responseDatetime operation.
- */
+/** Contains response data for the responseDatetime operation. */
 export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseDatetimeHeaders;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface HeaderParamDatetimeRfc1123OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
-   */
+  /** Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   value?: Date;
 }
 
-/**
- * Contains response data for the responseDatetimeRfc1123 operation.
- */
+/** Contains response data for the responseDatetimeRfc1123 operation. */
 export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
   };
 };
 
-/**
- * Contains response data for the responseDuration operation.
- */
+/** Contains response data for the responseDuration operation. */
 export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseDurationHeaders;
   };
 };
 
-/**
- * Contains response data for the responseByte operation.
- */
+/** Contains response data for the responseByte operation. */
 export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseByteHeaders;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface HeaderParamEnumOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Send a post request with header values 'GREY'
-   */
+  /** Send a post request with header values 'GREY' */
   value?: GreyscaleColors;
 }
 
-/**
- * Contains response data for the responseEnum operation.
- */
+/** Contains response data for the responseEnum operation. */
 export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderResponseEnumHeaders;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface HeaderClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

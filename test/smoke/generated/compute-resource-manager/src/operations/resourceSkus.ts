@@ -19,9 +19,7 @@ import {
   ResourceSkusListNextResponse
 } from "../models";
 
-/**
- * Class representing a ResourceSkus.
- */
+/** Class representing a ResourceSkus. */
 export class ResourceSkus {
   private readonly client: ComputeManagementClient;
 
@@ -111,7 +109,6 @@ export class ResourceSkus {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

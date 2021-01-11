@@ -27,9 +27,7 @@ import {
   ExpressRouteCrossConnectionsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteCrossConnections.
- */
+/** Class representing a ExpressRouteCrossConnections. */
 export class ExpressRouteCrossConnections {
   private readonly client: NetworkManagementClient;
 
@@ -449,7 +447,6 @@ export class ExpressRouteCrossConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

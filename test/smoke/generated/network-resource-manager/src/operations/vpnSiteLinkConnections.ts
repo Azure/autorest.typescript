@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { VpnSiteLinkConnectionsGetResponse } from "../models";
 
-/**
- * Class representing a VpnSiteLinkConnections.
- */
+/** Class representing a VpnSiteLinkConnections. */
 export class VpnSiteLinkConnections {
   private readonly client: NetworkManagementClient;
 
@@ -55,7 +53,6 @@ export class VpnSiteLinkConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

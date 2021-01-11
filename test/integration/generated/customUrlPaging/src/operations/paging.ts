@@ -19,9 +19,7 @@ import {
   PagingGetPagesPartialUrlNextResponse
 } from "../models";
 
-/**
- * Class representing a Paging.
- */
+/** Class representing a Paging. */
 export class Paging {
   private readonly client: CustomUrlPagingClient;
 
@@ -295,7 +293,6 @@ export class Paging {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getPagesPartialUrlOperationSpec: coreHttp.OperationSpec = {

@@ -23,9 +23,7 @@ import {
   ResourceLinksListAtSourceScopeNextResponse
 } from "../models";
 
-/**
- * Class representing a ResourceLinks.
- */
+/** Class representing a ResourceLinks. */
 export class ResourceLinks {
   private readonly client: ManagementLinkClient;
 
@@ -279,7 +277,6 @@ export class ResourceLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

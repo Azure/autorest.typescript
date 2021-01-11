@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClient } from "../keyVaultManagementClient";
 import { PrivateLinkResourcesListByVaultResponse } from "../models";
 
-/**
- * Class representing a PrivateLinkResources.
- */
+/** Class representing a PrivateLinkResources. */
 export class PrivateLinkResources {
   private readonly client: KeyVaultManagementClient;
 
@@ -49,7 +47,6 @@ export class PrivateLinkResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByVaultOperationSpec: coreHttp.OperationSpec = {

@@ -24,9 +24,7 @@ import {
   ProximityPlacementGroupsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a ProximityPlacementGroups.
- */
+/** Class representing a ProximityPlacementGroups. */
 export class ProximityPlacementGroups {
   private readonly client: ComputeManagementClient;
 
@@ -304,7 +302,6 @@ export class ProximityPlacementGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

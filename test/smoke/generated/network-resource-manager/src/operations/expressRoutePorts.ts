@@ -24,9 +24,7 @@ import {
   ExpressRoutePortsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRoutePorts.
- */
+/** Class representing a ExpressRoutePorts. */
 export class ExpressRoutePorts {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class ExpressRoutePorts {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

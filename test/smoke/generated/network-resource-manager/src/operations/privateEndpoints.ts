@@ -23,9 +23,7 @@ import {
   PrivateEndpointsListBySubscriptionNextResponse
 } from "../models";
 
-/**
- * Class representing a PrivateEndpoints.
- */
+/** Class representing a PrivateEndpoints. */
 export class PrivateEndpoints {
   private readonly client: NetworkManagementClient;
 
@@ -319,7 +317,6 @@ export class PrivateEndpoints {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -27,9 +27,7 @@ import {
   DeploymentScriptsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a DeploymentScripts.
- */
+/** Class representing a DeploymentScripts. */
 export class DeploymentScripts {
   private readonly client: DeploymentScriptsClient;
 
@@ -375,7 +373,6 @@ export class DeploymentScripts {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

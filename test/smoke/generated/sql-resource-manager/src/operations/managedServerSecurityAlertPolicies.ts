@@ -21,9 +21,7 @@ import {
   ManagedServerSecurityAlertPoliciesListByInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedServerSecurityAlertPolicies.
- */
+/** Class representing a ManagedServerSecurityAlertPolicies. */
 export class ManagedServerSecurityAlertPolicies {
   private readonly client: SqlManagementClient;
 
@@ -241,7 +239,6 @@ export class ManagedServerSecurityAlertPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

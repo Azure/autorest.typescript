@@ -37,9 +37,7 @@ import {
   DomainsListOwnershipIdentifiersNextResponse
 } from "../models";
 
-/**
- * Class representing a Domains.
- */
+/** Class representing a Domains. */
 export class Domains {
   private readonly client: WebSiteManagementClient;
 
@@ -722,7 +720,6 @@ export class Domains {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const checkAvailabilityOperationSpec: coreHttp.OperationSpec = {

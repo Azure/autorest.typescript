@@ -18,9 +18,7 @@ import {
   ExpressRouteConnectionsListResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteConnections.
- */
+/** Class representing a ExpressRouteConnections. */
 export class ExpressRouteConnections {
   private readonly client: NetworkManagementClient;
 
@@ -178,7 +176,6 @@ export class ExpressRouteConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

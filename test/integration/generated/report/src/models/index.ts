@@ -13,83 +13,53 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ReportClientGetReportOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
-   */
+  /** If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports. */
   qualifier?: string;
 }
 
-/**
- * Contains response data for the getReport operation.
- */
+/** Contains response data for the getReport operation. */
 export type ReportClientGetReportResponse = {
   [propertyName: string]: number;
 } & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: number };
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ReportClientGetOptionalReportOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
-   */
+  /** If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports. */
   qualifier?: string;
 }
 
-/**
- * Contains response data for the getOptionalReport operation.
- */
+/** Contains response data for the getOptionalReport operation. */
 export type ReportClientGetOptionalReportResponse = {
   [propertyName: string]: number;
 } & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: number };
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ReportClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

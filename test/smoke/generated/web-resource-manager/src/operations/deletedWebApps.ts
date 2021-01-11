@@ -20,9 +20,7 @@ import {
   DeletedWebAppsListByLocationNextResponse
 } from "../models";
 
-/**
- * Class representing a DeletedWebApps.
- */
+/** Class representing a DeletedWebApps. */
 export class DeletedWebApps {
   private readonly client: WebSiteManagementClient;
 
@@ -225,7 +223,6 @@ export class DeletedWebApps {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

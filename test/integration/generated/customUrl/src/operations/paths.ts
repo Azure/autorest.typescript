@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CustomUrlClient } from "../customUrlClient";
 
-/**
- * Class representing a Paths.
- */
+/** Class representing a Paths. */
 export class Paths {
   private readonly client: CustomUrlClient;
 
@@ -45,7 +43,6 @@ export class Paths {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getEmptyOperationSpec: coreHttp.OperationSpec = {

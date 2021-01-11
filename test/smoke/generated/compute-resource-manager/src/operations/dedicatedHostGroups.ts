@@ -23,9 +23,7 @@ import {
   DedicatedHostGroupsListBySubscriptionNextResponse
 } from "../models";
 
-/**
- * Class representing a DedicatedHostGroups.
- */
+/** Class representing a DedicatedHostGroups. */
 export class DedicatedHostGroups {
   private readonly client: ComputeManagementClient;
 
@@ -308,7 +306,6 @@ export class DedicatedHostGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

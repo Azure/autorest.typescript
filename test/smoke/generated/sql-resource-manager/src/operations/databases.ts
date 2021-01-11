@@ -39,9 +39,7 @@ import {
   DatabasesListByElasticPoolNextResponse
 } from "../models";
 
-/**
- * Class representing a Databases.
- */
+/** Class representing a Databases. */
 export class Databases {
   private readonly client: SqlManagementClient;
 
@@ -1005,7 +1003,6 @@ export class Databases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const importOperationSpec: coreHttp.OperationSpec = {

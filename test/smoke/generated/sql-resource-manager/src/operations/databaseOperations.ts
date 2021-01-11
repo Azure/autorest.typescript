@@ -17,9 +17,7 @@ import {
   DatabaseOperationsListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a DatabaseOperations.
- */
+/** Class representing a DatabaseOperations. */
 export class DatabaseOperations {
   private readonly client: SqlManagementClient;
 
@@ -197,7 +195,6 @@ export class DatabaseOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const cancelOperationSpec: coreHttp.OperationSpec = {

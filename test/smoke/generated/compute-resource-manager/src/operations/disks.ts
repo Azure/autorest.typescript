@@ -26,9 +26,7 @@ import {
   DisksListNextResponse
 } from "../models";
 
-/**
- * Class representing a Disks.
- */
+/** Class representing a Disks. */
 export class Disks {
   private readonly client: ComputeManagementClient;
 
@@ -454,7 +452,6 @@ export class Disks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

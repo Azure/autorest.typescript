@@ -42,9 +42,7 @@ import {
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse
 } from "../models";
 
-/**
- * Class representing a LongTermRetentionManagedInstanceBackups.
- */
+/** Class representing a LongTermRetentionManagedInstanceBackups. */
 export class LongTermRetentionManagedInstanceBackups {
   private readonly client: SqlManagementClient;
 
@@ -1015,7 +1013,6 @@ export class LongTermRetentionManagedInstanceBackups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

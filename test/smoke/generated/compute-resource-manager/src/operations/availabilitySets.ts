@@ -27,9 +27,7 @@ import {
   AvailabilitySetsListNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailabilitySets.
- */
+/** Class representing a AvailabilitySets. */
 export class AvailabilitySets {
   private readonly client: ComputeManagementClient;
 
@@ -388,7 +386,6 @@ export class AvailabilitySets {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

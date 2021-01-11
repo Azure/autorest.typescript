@@ -18,9 +18,7 @@ import {
   RefColorConstant
 } from "../models";
 
-/**
- * Class representing a Enum.
- */
+/** Class representing a Enum. */
 export class Enum {
   private readonly client: BodyStringClient;
 
@@ -138,7 +136,6 @@ export class Enum {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNotExpandableOperationSpec: coreHttp.OperationSpec = {

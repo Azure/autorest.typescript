@@ -20,9 +20,7 @@ import {
   VirtualRouterPeeringsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualRouterPeerings.
- */
+/** Class representing a VirtualRouterPeerings. */
 export class VirtualRouterPeerings {
   private readonly client: NetworkManagementClient;
 
@@ -275,7 +273,6 @@ export class VirtualRouterPeerings {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

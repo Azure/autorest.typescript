@@ -24,9 +24,7 @@ import {
   SshPublicKeysListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a SshPublicKeys.
- */
+/** Class representing a SshPublicKeys. */
 export class SshPublicKeys {
   private readonly client: ComputeManagementClient;
 
@@ -332,7 +330,6 @@ export class SshPublicKeys {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {

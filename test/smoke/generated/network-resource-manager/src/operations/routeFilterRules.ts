@@ -20,9 +20,7 @@ import {
   RouteFilterRulesListByRouteFilterNextResponse
 } from "../models";
 
-/**
- * Class representing a RouteFilterRules.
- */
+/** Class representing a RouteFilterRules. */
 export class RouteFilterRules {
   private readonly client: NetworkManagementClient;
 
@@ -276,7 +274,6 @@ export class RouteFilterRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

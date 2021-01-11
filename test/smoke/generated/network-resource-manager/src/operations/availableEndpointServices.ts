@@ -17,9 +17,7 @@ import {
   AvailableEndpointServicesListNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailableEndpointServices.
- */
+/** Class representing a AvailableEndpointServices. */
 export class AvailableEndpointServices {
   private readonly client: NetworkManagementClient;
 
@@ -119,7 +117,6 @@ export class AvailableEndpointServices {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

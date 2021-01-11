@@ -13,50 +13,32 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringMultiNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * a null array of string using the multi-array format
-   */
+  /** a null array of string using the multi-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringMultiEmptyOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an empty array [] of string using the multi-array format
-   */
+  /** an empty array [] of string using the multi-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringMultiValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format
-   */
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format */
   arrayQuery?: (string | null)[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface UrlMultiClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

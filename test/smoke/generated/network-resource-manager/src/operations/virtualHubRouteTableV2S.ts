@@ -20,9 +20,7 @@ import {
   VirtualHubRouteTableV2SListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualHubRouteTableV2S.
- */
+/** Class representing a VirtualHubRouteTableV2S. */
 export class VirtualHubRouteTableV2S {
   private readonly client: NetworkManagementClient;
 
@@ -265,7 +263,6 @@ export class VirtualHubRouteTableV2S {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

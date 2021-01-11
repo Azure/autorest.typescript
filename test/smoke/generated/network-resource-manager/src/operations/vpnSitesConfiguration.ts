@@ -13,9 +13,7 @@ import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { GetVpnSitesConfigurationRequest } from "../models";
 
-/**
- * Class representing a VpnSitesConfiguration.
- */
+/** Class representing a VpnSitesConfiguration. */
 export class VpnSitesConfiguration {
   private readonly client: NetworkManagementClient;
 
@@ -81,7 +79,6 @@ export class VpnSitesConfiguration {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const downloadOperationSpec: coreHttp.OperationSpec = {

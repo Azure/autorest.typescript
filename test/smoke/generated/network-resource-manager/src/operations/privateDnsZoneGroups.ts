@@ -20,9 +20,7 @@ import {
   PrivateDnsZoneGroupsListNextResponse
 } from "../models";
 
-/**
- * Class representing a PrivateDnsZoneGroups.
- */
+/** Class representing a PrivateDnsZoneGroups. */
 export class PrivateDnsZoneGroups {
   private readonly client: NetworkManagementClient;
 
@@ -275,7 +273,6 @@ export class PrivateDnsZoneGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

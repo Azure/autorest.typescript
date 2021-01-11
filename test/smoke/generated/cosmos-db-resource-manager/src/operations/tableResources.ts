@@ -23,9 +23,7 @@ import {
   TableResourcesUpdateTableThroughputResponse
 } from "../models";
 
-/**
- * Class representing a TableResources.
- */
+/** Class representing a TableResources. */
 export class TableResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -310,7 +308,6 @@ export class TableResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listTablesOperationSpec: coreHttp.OperationSpec = {

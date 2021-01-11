@@ -50,139 +50,99 @@ export interface ArrayOptionalWrapper {
   value?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ImplicitPutOptionalQueryOptionalParams
   extends coreHttp.OperationOptions {
   queryParameter?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ImplicitPutOptionalHeaderOptionalParams
   extends coreHttp.OperationOptions {
   queryParameter?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ImplicitPutOptionalBodyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalIntegerParameterOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalIntegerPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: IntOptionalWrapper;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalIntegerHeaderOptionalParams
   extends coreHttp.OperationOptions {
   headerParameter?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalStringParameterOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalStringPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: StringOptionalWrapper;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalStringHeaderOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalClassParameterOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: Product;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalClassPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: ClassOptionalWrapper;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalArrayParameterOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Array of String
-   */
+  /** Array of String */
   bodyParameter?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalArrayPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: ArrayOptionalWrapper;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExplicitPostOptionalArrayHeaderOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Array of String
-   */
+  /** Array of String */
   headerParameter?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface RequiredOptionalClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * number of items to skip
-   */
+  /** number of items to skip */
   optionalGlobalQuery?: number;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -21,9 +21,7 @@ import {
   ServerDnsAliasesListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a ServerDnsAliases.
- */
+/** Class representing a ServerDnsAliases. */
 export class ServerDnsAliases {
   private readonly client: SqlManagementClient;
 
@@ -321,7 +319,6 @@ export class ServerDnsAliases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

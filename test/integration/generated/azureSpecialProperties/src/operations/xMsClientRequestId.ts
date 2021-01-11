@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 
-/**
- * Class representing a XMsClientRequestId.
- */
+/** Class representing a XMsClientRequestId. */
 export class XMsClientRequestId {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -62,7 +60,6 @@ export class XMsClientRequestId {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

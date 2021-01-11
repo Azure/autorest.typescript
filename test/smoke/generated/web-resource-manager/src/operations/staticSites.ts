@@ -49,9 +49,7 @@ import {
   StaticSitesListStaticSiteFunctionsNextResponse
 } from "../models";
 
-/**
- * Class representing a StaticSites.
- */
+/** Class representing a StaticSites. */
 export class StaticSites {
   private readonly client: WebSiteManagementClient;
 
@@ -1349,7 +1347,6 @@ export class StaticSites {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

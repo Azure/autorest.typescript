@@ -18,9 +18,7 @@ import {
   FooApiPostSendResponse
 } from "../models";
 
-/**
- * Class representing a FooApi.
- */
+/** Class representing a FooApi. */
 export class FooApi {
   private readonly client: MediaTypesV3Client;
 
@@ -170,7 +168,6 @@ export class FooApi {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const postSendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {

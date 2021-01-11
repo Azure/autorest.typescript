@@ -9,82 +9,52 @@
 import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3LROClientSend$binaryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3LROClientSend$textOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Contains response data for the send operation.
- */
+/** Contains response data for the send operation. */
 export type MediaTypesV3LROClientSendResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3LROClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

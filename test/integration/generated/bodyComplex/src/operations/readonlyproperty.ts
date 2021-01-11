@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
 
-/**
- * Class representing a Readonlyproperty.
- */
+/** Class representing a Readonlyproperty. */
 export class Readonlyproperty {
   private readonly client: BodyComplexClient;
 
@@ -62,7 +60,6 @@ export class Readonlyproperty {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

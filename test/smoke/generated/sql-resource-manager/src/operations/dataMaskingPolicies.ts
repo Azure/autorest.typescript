@@ -16,9 +16,7 @@ import {
   DataMaskingPoliciesGetResponse
 } from "../models";
 
-/**
- * Class representing a DataMaskingPolicies.
- */
+/** Class representing a DataMaskingPolicies. */
 export class DataMaskingPolicies {
   private readonly client: SqlManagementClient;
 
@@ -86,7 +84,6 @@ export class DataMaskingPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

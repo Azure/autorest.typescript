@@ -25,9 +25,7 @@ import {
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "../models";
 
-/**
- * Class representing a Pets.
- */
+/** Class representing a Pets. */
 export class Pets {
   private readonly client: AdditionalPropertiesClient;
 
@@ -154,7 +152,6 @@ export class Pets {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createAPTrueOperationSpec: coreHttp.OperationSpec = {

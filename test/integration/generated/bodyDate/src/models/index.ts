@@ -13,167 +13,101 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type DateGetNullResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getInvalidDate operation.
- */
+/** Contains response data for the getInvalidDate operation. */
 export type DateGetInvalidDateResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getOverflowDate operation.
- */
+/** Contains response data for the getOverflowDate operation. */
 export type DateGetOverflowDateResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getUnderflowDate operation.
- */
+/** Contains response data for the getUnderflowDate operation. */
 export type DateGetUnderflowDateResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getMaxDate operation.
- */
+/** Contains response data for the getMaxDate operation. */
 export type DateGetMaxDateResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getMinDate operation.
- */
+/** Contains response data for the getMinDate operation. */
 export type DateGetMinDateResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyDateClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

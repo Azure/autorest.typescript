@@ -23,9 +23,7 @@ import {
   GalleryImageVersionsListByGalleryImageNextResponse
 } from "../models";
 
-/**
- * Class representing a GalleryImageVersions.
- */
+/** Class representing a GalleryImageVersions. */
 export class GalleryImageVersions {
   private readonly client: ComputeManagementClient;
 
@@ -356,7 +354,6 @@ export class GalleryImageVersions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

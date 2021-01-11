@@ -17,9 +17,7 @@ import {
   ByteGetInvalidResponse
 } from "../models";
 
-/**
- * Class representing a Byte.
- */
+/** Class representing a Byte. */
 export class Byte {
   private readonly client: BodyByteClient;
 
@@ -111,7 +109,6 @@ export class Byte {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

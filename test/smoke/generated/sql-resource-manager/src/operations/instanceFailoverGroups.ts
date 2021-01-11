@@ -22,9 +22,7 @@ import {
   InstanceFailoverGroupsListByLocationNextResponse
 } from "../models";
 
-/**
- * Class representing a InstanceFailoverGroups.
- */
+/** Class representing a InstanceFailoverGroups. */
 export class InstanceFailoverGroups {
   private readonly client: SqlManagementClient;
 
@@ -366,7 +364,6 @@ export class InstanceFailoverGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -24,9 +24,7 @@ import {
   VirtualHubsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualHubs.
- */
+/** Class representing a VirtualHubs. */
 export class VirtualHubs {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class VirtualHubs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

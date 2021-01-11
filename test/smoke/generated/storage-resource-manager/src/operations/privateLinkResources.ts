@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import { PrivateLinkResourcesListByStorageAccountResponse } from "../models";
 
-/**
- * Class representing a PrivateLinkResources.
- */
+/** Class representing a PrivateLinkResources. */
 export class PrivateLinkResources {
   private readonly client: StorageManagementClient;
 
@@ -52,7 +50,6 @@ export class PrivateLinkResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByStorageAccountOperationSpec: coreHttp.OperationSpec = {

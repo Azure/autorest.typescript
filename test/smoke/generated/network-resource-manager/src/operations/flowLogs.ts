@@ -20,9 +20,7 @@ import {
   FlowLogsListNextResponse
 } from "../models";
 
-/**
- * Class representing a FlowLogs.
- */
+/** Class representing a FlowLogs. */
 export class FlowLogs {
   private readonly client: NetworkManagementClient;
 
@@ -275,7 +273,6 @@ export class FlowLogs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

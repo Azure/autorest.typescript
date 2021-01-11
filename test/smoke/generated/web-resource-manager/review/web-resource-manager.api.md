@@ -8588,7 +8588,7 @@ export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3
 
 // Warnings were encountered during analysis:
 //
-// src/models/index.ts:9675:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
+// src/models/index.ts:6701:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

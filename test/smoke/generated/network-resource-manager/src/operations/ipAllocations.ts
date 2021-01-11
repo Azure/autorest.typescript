@@ -25,9 +25,7 @@ import {
   IpAllocationsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a IpAllocations.
- */
+/** Class representing a IpAllocations. */
 export class IpAllocations {
   private readonly client: NetworkManagementClient;
 
@@ -349,7 +347,6 @@ export class IpAllocations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

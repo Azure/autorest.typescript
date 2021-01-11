@@ -38,9 +38,7 @@ import {
   AppServiceCertificateOrdersListCertificatesNextResponse
 } from "../models";
 
-/**
- * Class representing a AppServiceCertificateOrders.
- */
+/** Class representing a AppServiceCertificateOrders. */
 export class AppServiceCertificateOrders {
   private readonly client: WebSiteManagementClient;
 
@@ -797,7 +795,6 @@ export class AppServiceCertificateOrders {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

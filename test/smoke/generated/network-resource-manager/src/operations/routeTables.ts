@@ -25,9 +25,7 @@ import {
   RouteTablesListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a RouteTables.
- */
+/** Class representing a RouteTables. */
 export class RouteTables {
   private readonly client: NetworkManagementClient;
 
@@ -346,7 +344,6 @@ export class RouteTables {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

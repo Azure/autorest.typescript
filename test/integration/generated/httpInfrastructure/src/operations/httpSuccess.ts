@@ -15,9 +15,7 @@ import {
   HttpSuccessOptions200Response
 } from "../models";
 
-/**
- * Class representing a HttpSuccess.
- */
+/** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: HttpInfrastructureClient;
 
@@ -312,7 +310,6 @@ export class HttpSuccess {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const head200OperationSpec: coreHttp.OperationSpec = {

@@ -17,9 +17,7 @@ import {
   DataMaskingRulesListByDatabaseResponse
 } from "../models";
 
-/**
- * Class representing a DataMaskingRules.
- */
+/** Class representing a DataMaskingRules. */
 export class DataMaskingRules {
   private readonly client: SqlManagementClient;
 
@@ -159,7 +157,6 @@ export class DataMaskingRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

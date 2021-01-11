@@ -18,9 +18,7 @@ import {
   LoadBalancerFrontendIPConfigurationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a LoadBalancerFrontendIPConfigurations.
- */
+/** Class representing a LoadBalancerFrontendIPConfigurations. */
 export class LoadBalancerFrontendIPConfigurations {
   private readonly client: NetworkManagementClient;
 
@@ -172,7 +170,6 @@ export class LoadBalancerFrontendIPConfigurations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

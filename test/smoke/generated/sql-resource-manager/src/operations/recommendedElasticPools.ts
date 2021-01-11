@@ -19,9 +19,7 @@ import {
   RecommendedElasticPoolsListMetricsResponse
 } from "../models";
 
-/**
- * Class representing a RecommendedElasticPools.
- */
+/** Class representing a RecommendedElasticPools. */
 export class RecommendedElasticPools {
   private readonly client: SqlManagementClient;
 
@@ -239,7 +237,6 @@ export class RecommendedElasticPools {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

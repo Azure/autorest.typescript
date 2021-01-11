@@ -15,9 +15,7 @@ import {
   CapabilitiesListByLocationResponse
 } from "../models";
 
-/**
- * Class representing a Capabilities.
- */
+/** Class representing a Capabilities. */
 export class Capabilities {
   private readonly client: SqlManagementClient;
 
@@ -49,7 +47,6 @@ export class Capabilities {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByLocationOperationSpec: coreHttp.OperationSpec = {

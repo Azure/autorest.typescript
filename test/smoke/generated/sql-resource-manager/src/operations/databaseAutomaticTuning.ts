@@ -16,9 +16,7 @@ import {
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
-/**
- * Class representing a DatabaseAutomaticTuning.
- */
+/** Class representing a DatabaseAutomaticTuning. */
 export class DatabaseAutomaticTuning {
   private readonly client: SqlManagementClient;
 
@@ -86,7 +84,6 @@ export class DatabaseAutomaticTuning {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -9,9 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 export interface AzureMetricsDocument {
-  /**
-   * Gets or sets Time property (in ISO 8601 format)
-   */
+  /** Gets or sets Time property (in ISO 8601 format) */
   time: string;
   data: AzureMetricsData;
 }
@@ -21,51 +19,31 @@ export interface AzureMetricsData {
 }
 
 export interface AzureMetricsBaseData {
-  /**
-   * Gets or sets the Metric name
-   */
+  /** Gets or sets the Metric name */
   metric: string;
-  /**
-   * Gets or sets the Metric namespace
-   */
+  /** Gets or sets the Metric namespace */
   namespace: string;
-  /**
-   * Gets or sets the list of dimension names (optional)
-   */
+  /** Gets or sets the list of dimension names (optional) */
   dimNames?: string[];
-  /**
-   * Gets or sets the list of time series data for the metric (one per unique dimension combination)
-   */
+  /** Gets or sets the list of time series data for the metric (one per unique dimension combination) */
   series: AzureTimeSeriesData[];
 }
 
 export interface AzureTimeSeriesData {
-  /**
-   * Gets or sets dimension values
-   */
+  /** Gets or sets dimension values */
   dimValues?: string[];
-  /**
-   * Gets or sets Min value
-   */
+  /** Gets or sets Min value */
   min: number;
-  /**
-   * Gets or sets Max value
-   */
+  /** Gets or sets Max value */
   max: number;
-  /**
-   * Gets or sets Sum value
-   */
+  /** Gets or sets Sum value */
   sum: number;
-  /**
-   * Gets or sets Count value
-   */
+  /** Gets or sets Count value */
   count: number;
 }
 
 export interface AzureMetricsResult {
-  /**
-   * Http status code response
-   */
+  /** Http status code response */
   statusCode?: number;
   apiFailureResponse?: ApiFailureResponse;
 }
@@ -75,47 +53,29 @@ export interface ApiFailureResponse {
 }
 
 export interface ApiError {
-  /**
-   * Gets or sets the azure metrics error code
-   */
+  /** Gets or sets the azure metrics error code */
   code?: string;
-  /**
-   * Gets or sets the azure metrics error message
-   */
+  /** Gets or sets the azure metrics error message */
   message?: string;
 }
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type MetricsCreateResponse = AzureMetricsResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: AzureMetricsResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MonitorClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

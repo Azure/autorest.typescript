@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { SubscriptionIdApiVersionClient } from "../subscriptionIdApiVersionClient";
 import { GroupGetSampleResourceGroupResponse } from "../models";
 
-/**
- * Class representing a Group.
- */
+/** Class representing a Group. */
 export class Group {
   private readonly client: SubscriptionIdApiVersionClient;
 
@@ -46,7 +44,6 @@ export class Group {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getSampleResourceGroupOperationSpec: coreHttp.OperationSpec = {

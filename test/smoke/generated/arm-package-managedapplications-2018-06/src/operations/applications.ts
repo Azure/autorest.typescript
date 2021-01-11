@@ -28,9 +28,7 @@ import {
   ApplicationsListBySubscriptionNextResponse
 } from "../models";
 
-/**
- * Class representing a Applications.
- */
+/** Class representing a Applications. */
 export class Applications {
   private readonly client: ApplicationClient;
 
@@ -466,7 +464,6 @@ export class Applications {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

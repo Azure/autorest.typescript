@@ -29,9 +29,7 @@ import {
   VirtualNetworksListUsageNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworks.
- */
+/** Class representing a VirtualNetworks. */
 export class VirtualNetworks {
   private readonly client: NetworkManagementClient;
 
@@ -493,7 +491,6 @@ export class VirtualNetworks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -14,9 +14,7 @@ import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import { FlattencomplexGetValidResponse } from "../models";
 
-/**
- * Class representing a Flattencomplex.
- */
+/** Class representing a Flattencomplex. */
 export class Flattencomplex {
   private readonly client: BodyComplexWithTracing;
 
@@ -28,9 +26,7 @@ export class Flattencomplex {
     this.client = client;
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   async getValid(
     options?: coreHttp.OperationOptions
   ): Promise<FlattencomplexGetValidResponse> {
@@ -59,7 +55,6 @@ export class Flattencomplex {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

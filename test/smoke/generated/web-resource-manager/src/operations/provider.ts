@@ -26,9 +26,7 @@ import {
   ProviderGetAvailableStacksOnPremNextResponse
 } from "../models";
 
-/**
- * Class representing a Provider.
- */
+/** Class representing a Provider. */
 export class Provider {
   private readonly client: WebSiteManagementClient;
 
@@ -278,7 +276,6 @@ export class Provider {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getAvailableStacksOperationSpec: coreHttp.OperationSpec = {

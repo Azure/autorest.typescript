@@ -112,7 +112,6 @@ export class MediaTypesClient extends MediaTypesClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {

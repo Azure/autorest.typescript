@@ -39,9 +39,7 @@ import {
   ManagementLocksListByScopeNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagementLocks.
- */
+/** Class representing a ManagementLocks. */
 export class ManagementLocks {
   private readonly client: ManagementLockClient;
 
@@ -831,7 +829,6 @@ export class ManagementLocks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {

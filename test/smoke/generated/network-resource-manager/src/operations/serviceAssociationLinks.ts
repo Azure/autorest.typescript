@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { ServiceAssociationLinksListResponse } from "../models";
 
-/**
- * Class representing a ServiceAssociationLinks.
- */
+/** Class representing a ServiceAssociationLinks. */
 export class ServiceAssociationLinks {
   private readonly client: NetworkManagementClient;
 
@@ -52,7 +50,6 @@ export class ServiceAssociationLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

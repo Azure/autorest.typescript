@@ -18,9 +18,7 @@ import {
   PeerExpressRouteCircuitConnectionsListNextResponse
 } from "../models";
 
-/**
- * Class representing a PeerExpressRouteCircuitConnections.
- */
+/** Class representing a PeerExpressRouteCircuitConnections. */
 export class PeerExpressRouteCircuitConnections {
   private readonly client: NetworkManagementClient;
 
@@ -196,7 +194,6 @@ export class PeerExpressRouteCircuitConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

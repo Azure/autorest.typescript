@@ -25,9 +25,7 @@ import {
   NetworkVirtualAppliancesListNextResponse
 } from "../models";
 
-/**
- * Class representing a NetworkVirtualAppliances.
- */
+/** Class representing a NetworkVirtualAppliances. */
 export class NetworkVirtualAppliances {
   private readonly client: NetworkManagementClient;
 
@@ -349,7 +347,6 @@ export class NetworkVirtualAppliances {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -15,9 +15,7 @@ import {
   FloatGetResponse
 } from "../models";
 
-/**
- * Class representing a Float.
- */
+/** Class representing a Float. */
 export class Float {
   private readonly client: NonStringEnumClient;
 
@@ -58,7 +56,6 @@ export class Float {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const putOperationSpec: coreHttp.OperationSpec = {

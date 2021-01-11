@@ -13,117 +13,71 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getTrue operation.
- */
+/** Contains response data for the getTrue operation. */
 export type BoolGetTrueResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the getFalse operation.
- */
+/** Contains response data for the getFalse operation. */
 export type BoolGetFalseResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type BoolGetNullResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the getInvalid operation.
- */
+/** Contains response data for the getInvalid operation. */
 export type BoolGetInvalidResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyBooleanQuirksClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

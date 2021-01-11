@@ -20,9 +20,7 @@ import {
   WorkloadClassifiersListByWorkloadGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a WorkloadClassifiers.
- */
+/** Class representing a WorkloadClassifiers. */
 export class WorkloadClassifiers {
   private readonly client: SqlManagementClient;
 
@@ -327,7 +325,6 @@ export class WorkloadClassifiers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

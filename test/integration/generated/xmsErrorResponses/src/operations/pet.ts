@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { XmsErrorResponsesClient } from "../xmsErrorResponsesClient";
 import { PetGetPetByIdResponse, PetDoSomethingResponse } from "../models";
 
-/**
- * Class representing a Pet.
- */
+/** Class representing a Pet. */
 export class Pet {
   private readonly client: XmsErrorResponsesClient;
 
@@ -65,7 +63,6 @@ export class Pet {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getPetByIdOperationSpec: coreHttp.OperationSpec = {

@@ -35,242 +35,146 @@ export type Kitten = Cat & {
   eatsMiceYet?: boolean;
 };
 
-/**
- * Contains response data for the getHorse operation.
- */
+/** Contains response data for the getHorse operation. */
 export type MultipleInheritanceClientGetHorseResponse = Horse & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Horse;
   };
 };
 
-/**
- * Contains response data for the putHorse operation.
- */
+/** Contains response data for the putHorse operation. */
 export type MultipleInheritanceClientPutHorseResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getPet operation.
- */
+/** Contains response data for the getPet operation. */
 export type MultipleInheritanceClientGetPetResponse = Pet & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Pet;
   };
 };
 
-/**
- * Contains response data for the putPet operation.
- */
+/** Contains response data for the putPet operation. */
 export type MultipleInheritanceClientPutPetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getFeline operation.
- */
+/** Contains response data for the getFeline operation. */
 export type MultipleInheritanceClientGetFelineResponse = Feline & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Feline;
   };
 };
 
-/**
- * Contains response data for the putFeline operation.
- */
+/** Contains response data for the putFeline operation. */
 export type MultipleInheritanceClientPutFelineResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getCat operation.
- */
+/** Contains response data for the getCat operation. */
 export type MultipleInheritanceClientGetCatResponse = Cat & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Cat;
   };
 };
 
-/**
- * Contains response data for the putCat operation.
- */
+/** Contains response data for the putCat operation. */
 export type MultipleInheritanceClientPutCatResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getKitten operation.
- */
+/** Contains response data for the getKitten operation. */
 export type MultipleInheritanceClientGetKittenResponse = Kitten & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Kitten;
   };
 };
 
-/**
- * Contains response data for the putKitten operation.
- */
+/** Contains response data for the putKitten operation. */
 export type MultipleInheritanceClientPutKittenResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MultipleInheritanceClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -21,9 +21,7 @@ import {
   DatabaseListMetricDefinitionsResponse
 } from "../models";
 
-/**
- * Class representing a Database.
- */
+/** Class representing a Database. */
 export class Database {
   private readonly client: CosmosDBManagementClient;
 
@@ -330,7 +328,6 @@ export class Database {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

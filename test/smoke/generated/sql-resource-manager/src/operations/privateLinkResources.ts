@@ -18,9 +18,7 @@ import {
   PrivateLinkResourcesListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a PrivateLinkResources.
- */
+/** Class representing a PrivateLinkResources. */
 export class PrivateLinkResources {
   private readonly client: SqlManagementClient;
 
@@ -180,7 +178,6 @@ export class PrivateLinkResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByServerOperationSpec: coreHttp.OperationSpec = {

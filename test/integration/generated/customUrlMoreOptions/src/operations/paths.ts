@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { CustomUrlMoreOptionsClient } from "../customUrlMoreOptionsClient";
 import { PathsGetEmptyOptionalParams } from "../models";
 
-/**
- * Class representing a Paths.
- */
+/** Class representing a Paths. */
 export class Paths {
   private readonly client: CustomUrlMoreOptionsClient;
 
@@ -52,7 +50,6 @@ export class Paths {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getEmptyOperationSpec: coreHttp.OperationSpec = {

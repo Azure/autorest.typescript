@@ -16,9 +16,7 @@ import {
   PartitionKeyRangeIdListMetricsResponse
 } from "../models";
 
-/**
- * Class representing a PartitionKeyRangeId.
- */
+/** Class representing a PartitionKeyRangeId. */
 export class PartitionKeyRangeId {
   private readonly client: CosmosDBManagementClient;
 
@@ -161,7 +159,6 @@ export class PartitionKeyRangeId {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

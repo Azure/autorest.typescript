@@ -424,9 +424,7 @@ import {
   WebAppsListWebJobsNextResponse
 } from "../models";
 
-/**
- * Class representing a WebApps.
- */
+/** Class representing a WebApps. */
 export class WebApps {
   private readonly client: WebSiteManagementClient;
 
@@ -16481,7 +16479,6 @@ export class WebApps {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

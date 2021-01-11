@@ -23,9 +23,7 @@ import {
   ConnectionMonitorsListResponse
 } from "../models";
 
-/**
- * Class representing a ConnectionMonitors.
- */
+/** Class representing a ConnectionMonitors. */
 export class ConnectionMonitors {
   private readonly client: NetworkManagementClient;
 
@@ -393,7 +391,6 @@ export class ConnectionMonitors {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

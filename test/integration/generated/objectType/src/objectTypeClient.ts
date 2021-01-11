@@ -61,7 +61,6 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

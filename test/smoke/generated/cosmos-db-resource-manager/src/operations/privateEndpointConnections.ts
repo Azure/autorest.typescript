@@ -19,9 +19,7 @@ import {
   PrivateEndpointConnectionsCreateOrUpdateResponse
 } from "../models";
 
-/**
- * Class representing a PrivateEndpointConnections.
- */
+/** Class representing a PrivateEndpointConnections. */
 export class PrivateEndpointConnections {
   private readonly client: CosmosDBManagementClient;
 
@@ -236,7 +234,6 @@ export class PrivateEndpointConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {

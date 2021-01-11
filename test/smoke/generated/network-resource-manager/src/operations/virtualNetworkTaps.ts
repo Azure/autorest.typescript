@@ -24,9 +24,7 @@ import {
   VirtualNetworkTapsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworkTaps.
- */
+/** Class representing a VirtualNetworkTaps. */
 export class VirtualNetworkTaps {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class VirtualNetworkTaps {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

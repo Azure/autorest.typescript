@@ -23,9 +23,7 @@ import {
   UserAssignedIdentitiesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a UserAssignedIdentities.
- */
+/** Class representing a UserAssignedIdentities. */
 export class UserAssignedIdentities {
   private readonly client: ManagedServiceIdentityClient;
 
@@ -303,7 +301,6 @@ export class UserAssignedIdentities {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {

@@ -13,9 +13,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { TdeCertificate } from "../models";
 
-/**
- * Class representing a TdeCertificates.
- */
+/** Class representing a TdeCertificates. */
 export class TdeCertificates {
   private readonly client: SqlManagementClient;
 
@@ -81,7 +79,6 @@ export class TdeCertificates {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

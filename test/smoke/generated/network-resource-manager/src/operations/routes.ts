@@ -20,9 +20,7 @@ import {
   RoutesListNextResponse
 } from "../models";
 
-/**
- * Class representing a Routes.
- */
+/** Class representing a Routes. */
 export class Routes {
   private readonly client: NetworkManagementClient;
 
@@ -263,7 +261,6 @@ export class Routes {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

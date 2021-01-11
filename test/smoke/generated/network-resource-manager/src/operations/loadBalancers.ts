@@ -25,9 +25,7 @@ import {
   LoadBalancersListNextResponse
 } from "../models";
 
-/**
- * Class representing a LoadBalancers.
- */
+/** Class representing a LoadBalancers. */
 export class LoadBalancers {
   private readonly client: NetworkManagementClient;
 
@@ -346,7 +344,6 @@ export class LoadBalancers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

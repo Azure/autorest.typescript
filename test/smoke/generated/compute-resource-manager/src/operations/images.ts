@@ -25,9 +25,7 @@ import {
   ImagesListNextResponse
 } from "../models";
 
-/**
- * Class representing a Images.
- */
+/** Class representing a Images. */
 export class Images {
   private readonly client: ComputeManagementClient;
 
@@ -364,7 +362,6 @@ export class Images {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

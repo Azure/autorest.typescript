@@ -203,7 +203,6 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const sendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {

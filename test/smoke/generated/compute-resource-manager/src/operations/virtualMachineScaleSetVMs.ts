@@ -27,9 +27,7 @@ import {
   VirtualMachineScaleSetVMsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineScaleSetVMs.
- */
+/** Class representing a VirtualMachineScaleSetVMs. */
 export class VirtualMachineScaleSetVMs {
   private readonly client: ComputeManagementClient;
 
@@ -701,7 +699,6 @@ export class VirtualMachineScaleSetVMs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const reimageOperationSpec: coreHttp.OperationSpec = {

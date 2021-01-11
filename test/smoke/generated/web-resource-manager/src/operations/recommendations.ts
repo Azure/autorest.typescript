@@ -39,9 +39,7 @@ import {
   RecommendationsListRecommendedRulesForWebAppNextResponse
 } from "../models";
 
-/**
- * Class representing a Recommendations.
- */
+/** Class representing a Recommendations. */
 export class Recommendations {
   private readonly client: WebSiteManagementClient;
 
@@ -844,7 +842,6 @@ export class Recommendations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

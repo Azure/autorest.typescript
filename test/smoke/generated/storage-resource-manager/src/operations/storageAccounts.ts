@@ -36,9 +36,7 @@ import {
   StorageAccountsListNextResponse
 } from "../models";
 
-/**
- * Class representing a StorageAccounts.
- */
+/** Class representing a StorageAccounts. */
 export class StorageAccounts {
   private readonly client: StorageManagementClient;
 
@@ -583,7 +581,6 @@ export class StorageAccounts {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {

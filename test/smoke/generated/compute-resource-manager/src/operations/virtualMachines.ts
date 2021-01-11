@@ -37,9 +37,7 @@ import {
   VirtualMachinesListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachines.
- */
+/** Class representing a VirtualMachines. */
 export class VirtualMachines {
   private readonly client: ComputeManagementClient;
 
@@ -1040,7 +1038,6 @@ export class VirtualMachines {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByLocationOperationSpec: coreHttp.OperationSpec = {

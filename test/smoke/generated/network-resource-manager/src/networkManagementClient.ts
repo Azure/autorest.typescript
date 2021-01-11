@@ -1070,7 +1070,6 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {

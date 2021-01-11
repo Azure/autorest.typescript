@@ -17,9 +17,7 @@ import {
   DomainRegistrationProviderListOperationsNextResponse
 } from "../models";
 
-/**
- * Class representing a DomainRegistrationProvider.
- */
+/** Class representing a DomainRegistrationProvider. */
 export class DomainRegistrationProvider {
   private readonly client: WebSiteManagementClient;
 
@@ -111,7 +109,6 @@ export class DomainRegistrationProvider {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationsOperationSpec: coreHttp.OperationSpec = {

@@ -25,9 +25,7 @@ import {
   IpGroupsListNextResponse
 } from "../models";
 
-/**
- * Class representing a IpGroups.
- */
+/** Class representing a IpGroups. */
 export class IpGroups {
   private readonly client: NetworkManagementClient;
 
@@ -349,7 +347,6 @@ export class IpGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

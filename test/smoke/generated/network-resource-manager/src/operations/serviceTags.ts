@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { ServiceTagsListResponse } from "../models";
 
-/**
- * Class representing a ServiceTags.
- */
+/** Class representing a ServiceTags. */
 export class ServiceTags {
   private readonly client: NetworkManagementClient;
 
@@ -48,7 +46,6 @@ export class ServiceTags {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

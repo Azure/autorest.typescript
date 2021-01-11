@@ -19,9 +19,7 @@ import {
   CollectionPartitionListUsagesResponse
 } from "../models";
 
-/**
- * Class representing a CollectionPartition.
- */
+/** Class representing a CollectionPartition. */
 export class CollectionPartition {
   private readonly client: CosmosDBManagementClient;
 
@@ -257,7 +255,6 @@ export class CollectionPartition {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

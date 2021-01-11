@@ -17,9 +17,7 @@ import {
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 } from "../models";
 
-/**
- * Class representing a ParameterGrouping.
- */
+/** Class representing a ParameterGrouping. */
 export class ParameterGrouping {
   private readonly client: AzureParameterGroupingClient;
 
@@ -99,7 +97,6 @@ export class ParameterGrouping {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const postRequiredOperationSpec: coreHttp.OperationSpec = {

@@ -24,9 +24,7 @@ import {
   SyncMembersListMemberSchemasNextResponse
 } from "../models";
 
-/**
- * Class representing a SyncMembers.
- */
+/** Class representing a SyncMembers. */
 export class SyncMembers {
   private readonly client: SqlManagementClient;
 
@@ -594,7 +592,6 @@ export class SyncMembers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

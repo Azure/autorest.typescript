@@ -24,9 +24,7 @@ import {
   VpnSitesListNextResponse
 } from "../models";
 
-/**
- * Class representing a VpnSites.
- */
+/** Class representing a VpnSites. */
 export class VpnSites {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class VpnSites {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

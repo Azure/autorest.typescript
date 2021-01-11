@@ -35,9 +35,7 @@ import {
   ByteWrapper
 } from "../models";
 
-/**
- * Class representing a Primitive.
- */
+/** Class representing a Primitive. */
 export class Primitive {
   private readonly client: BodyComplexClient;
 
@@ -436,7 +434,6 @@ export class Primitive {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getIntOperationSpec: coreHttp.OperationSpec = {

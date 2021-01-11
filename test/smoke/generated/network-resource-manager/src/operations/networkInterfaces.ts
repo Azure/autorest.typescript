@@ -40,9 +40,7 @@ import {
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse
 } from "../models";
 
-/**
- * Class representing a NetworkInterfaces.
- */
+/** Class representing a NetworkInterfaces. */
 export class NetworkInterfaces {
   private readonly client: NetworkManagementClient;
 
@@ -932,7 +930,6 @@ export class NetworkInterfaces {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

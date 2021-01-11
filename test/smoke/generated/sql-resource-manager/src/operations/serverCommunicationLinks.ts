@@ -19,9 +19,7 @@ import {
   ServerCommunicationLinksListByServerResponse
 } from "../models";
 
-/**
- * Class representing a ServerCommunicationLinks.
- */
+/** Class representing a ServerCommunicationLinks. */
 export class ServerCommunicationLinks {
   private readonly client: SqlManagementClient;
 
@@ -226,7 +224,6 @@ export class ServerCommunicationLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   ObjectsGetObjectsByObjectIdsNextResponse
 } from "../models";
 
-/**
- * Class representing a Objects.
- */
+/** Class representing a Objects. */
 export class Objects {
   private readonly client: GraphRbacManagementClient;
 
@@ -177,7 +175,6 @@ export class Objects {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getObjectsByObjectIdsOperationSpec: coreHttp.OperationSpec = {

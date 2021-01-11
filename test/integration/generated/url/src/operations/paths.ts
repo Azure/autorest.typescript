@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
 import { UriColor } from "../models";
 
-/**
- * Class representing a Paths.
- */
+/** Class representing a Paths. */
 export class Paths {
   private readonly client: UrlClient;
 
@@ -492,7 +490,6 @@ export class Paths {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {

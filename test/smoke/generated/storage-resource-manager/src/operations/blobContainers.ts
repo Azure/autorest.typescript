@@ -36,9 +36,7 @@ import {
   BlobContainersListNextResponse
 } from "../models";
 
-/**
- * Class representing a BlobContainers.
- */
+/** Class representing a BlobContainers. */
 export class BlobContainers {
   private readonly client: StorageManagementClient;
 
@@ -580,7 +578,6 @@ export class BlobContainers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

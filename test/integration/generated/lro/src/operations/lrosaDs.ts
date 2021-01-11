@@ -57,9 +57,7 @@ import {
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
 } from "../models";
 
-/**
- * Class representing a LrosaDs.
- */
+/** Class representing a LrosaDs. */
 export class LrosaDs {
   private readonly client: LROClient;
 
@@ -920,7 +918,6 @@ export class LrosaDs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const putNonRetry400OperationSpec: coreHttp.OperationSpec = {

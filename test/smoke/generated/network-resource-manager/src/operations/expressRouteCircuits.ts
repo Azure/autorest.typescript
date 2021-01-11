@@ -29,9 +29,7 @@ import {
   ExpressRouteCircuitsListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteCircuits.
- */
+/** Class representing a ExpressRouteCircuits. */
 export class ExpressRouteCircuits {
   private readonly client: NetworkManagementClient;
 
@@ -532,7 +530,6 @@ export class ExpressRouteCircuits {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

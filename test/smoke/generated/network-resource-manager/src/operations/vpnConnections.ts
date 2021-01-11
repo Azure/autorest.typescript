@@ -20,9 +20,7 @@ import {
   VpnConnectionsListByVpnGatewayNextResponse
 } from "../models";
 
-/**
- * Class representing a VpnConnections.
- */
+/** Class representing a VpnConnections. */
 export class VpnConnections {
   private readonly client: NetworkManagementClient;
 
@@ -276,7 +274,6 @@ export class VpnConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

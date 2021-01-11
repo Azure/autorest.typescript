@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { VirtualMachineSize, VirtualMachineSizesListResponse } from "../models";
 
-/**
- * Class representing a VirtualMachineSizes.
- */
+/** Class representing a VirtualMachineSizes. */
 export class VirtualMachineSizes {
   private readonly client: ComputeManagementClient;
 
@@ -89,7 +87,6 @@ export class VirtualMachineSizes {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

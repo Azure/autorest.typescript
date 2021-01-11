@@ -64,9 +64,7 @@ import {
   DictionaryGetDictionaryValidResponse
 } from "../models";
 
-/**
- * Class representing a Dictionary.
- */
+/** Class representing a Dictionary. */
 export class Dictionary {
   private readonly client: BodyDictionaryClient;
 
@@ -1188,7 +1186,6 @@ export class Dictionary {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

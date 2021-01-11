@@ -17,9 +17,7 @@ import {
   DatabaseThreatDetectionPoliciesCreateOrUpdateResponse
 } from "../models";
 
-/**
- * Class representing a DatabaseThreatDetectionPolicies.
- */
+/** Class representing a DatabaseThreatDetectionPolicies. */
 export class DatabaseThreatDetectionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -93,7 +91,6 @@ export class DatabaseThreatDetectionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

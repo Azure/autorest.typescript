@@ -18,9 +18,7 @@ import {
   VirtualMachineRunCommandsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineRunCommands.
- */
+/** Class representing a VirtualMachineRunCommands. */
 export class VirtualMachineRunCommands {
   private readonly client: ComputeManagementClient;
 
@@ -142,7 +140,6 @@ export class VirtualMachineRunCommands {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

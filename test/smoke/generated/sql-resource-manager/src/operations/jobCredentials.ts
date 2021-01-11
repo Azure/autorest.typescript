@@ -19,9 +19,7 @@ import {
   JobCredentialsListByAgentNextResponse
 } from "../models";
 
-/**
- * Class representing a JobCredentials.
- */
+/** Class representing a JobCredentials. */
 export class JobCredentials {
   private readonly client: SqlManagementClient;
 
@@ -260,7 +258,6 @@ export class JobCredentials {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByAgentOperationSpec: coreHttp.OperationSpec = {

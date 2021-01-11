@@ -40,9 +40,7 @@ import {
   DeploymentOperationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a DeploymentOperations.
- */
+/** Class representing a DeploymentOperations. */
 export class DeploymentOperations {
   private readonly client: ResourceManagementClient;
 
@@ -694,7 +692,6 @@ export class DeploymentOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getAtScopeOperationSpec: coreHttp.OperationSpec = {

@@ -17,9 +17,7 @@ import {
   FileServicesGetServicePropertiesResponse
 } from "../models";
 
-/**
- * Class representing a FileServices.
- */
+/** Class representing a FileServices. */
 export class FileServices {
   private readonly client: StorageManagementClient;
 
@@ -113,7 +111,6 @@ export class FileServices {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

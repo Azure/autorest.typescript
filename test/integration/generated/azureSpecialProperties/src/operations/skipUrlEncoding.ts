@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { SkipUrlEncodingGetMethodQueryNullOptionalParams } from "../models";
 
-/**
- * Class representing a SkipUrlEncoding.
- */
+/** Class representing a SkipUrlEncoding. */
 export class SkipUrlEncoding {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -151,7 +149,6 @@ export class SkipUrlEncoding {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getMethodPathValidOperationSpec: coreHttp.OperationSpec = {

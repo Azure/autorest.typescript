@@ -24,9 +24,7 @@ import {
   VpnServerConfigurationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VpnServerConfigurations.
- */
+/** Class representing a VpnServerConfigurations. */
 export class VpnServerConfigurations {
   private readonly client: NetworkManagementClient;
 
@@ -350,7 +348,6 @@ export class VpnServerConfigurations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

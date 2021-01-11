@@ -22,9 +22,7 @@ import {
   ServerAzureADAdministratorsListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a ServerAzureADAdministrators.
- */
+/** Class representing a ServerAzureADAdministrators. */
 export class ServerAzureADAdministrators {
   private readonly client: SqlManagementClient;
 
@@ -324,7 +322,6 @@ export class ServerAzureADAdministrators {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -22,9 +22,7 @@ import {
   NotebookWorkspacesListConnectionInfoResponse
 } from "../models";
 
-/**
- * Class representing a NotebookWorkspaces.
- */
+/** Class representing a NotebookWorkspaces. */
 export class NotebookWorkspaces {
   private readonly client: CosmosDBManagementClient;
 
@@ -345,7 +343,6 @@ export class NotebookWorkspaces {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {

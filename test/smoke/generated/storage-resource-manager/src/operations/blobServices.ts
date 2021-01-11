@@ -18,9 +18,7 @@ import {
   BlobServicesGetServicePropertiesResponse
 } from "../models";
 
-/**
- * Class representing a BlobServices.
- */
+/** Class representing a BlobServices. */
 export class BlobServices {
   private readonly client: StorageManagementClient;
 
@@ -165,7 +163,6 @@ export class BlobServices {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

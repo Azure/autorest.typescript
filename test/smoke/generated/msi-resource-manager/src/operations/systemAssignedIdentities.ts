@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClient } from "../managedServiceIdentityClient";
 import { SystemAssignedIdentitiesGetByScopeResponse } from "../models";
 
-/**
- * Class representing a SystemAssignedIdentities.
- */
+/** Class representing a SystemAssignedIdentities. */
 export class SystemAssignedIdentities {
   private readonly client: ManagedServiceIdentityClient;
 
@@ -47,7 +45,6 @@ export class SystemAssignedIdentities {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getByScopeOperationSpec: coreHttp.OperationSpec = {

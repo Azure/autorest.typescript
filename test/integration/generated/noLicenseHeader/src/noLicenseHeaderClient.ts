@@ -22,9 +22,7 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
     super($host, apiVersion, options);
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<NoLicenseHeaderClientApiV1ValueGetResponse> {
@@ -38,7 +36,6 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {

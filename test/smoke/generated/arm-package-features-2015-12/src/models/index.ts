@@ -8,293 +8,173 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * Result of the request to list Microsoft.Features operations. It contains a list of operations and a URL link to get the next set of results.
- */
+/** Result of the request to list Microsoft.Features operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
-  /**
-   * List of Microsoft.Features operations.
-   */
+  /** List of Microsoft.Features operations. */
   value?: Operation[];
-  /**
-   * URL to get the next set of operation list results if there are any.
-   */
+  /** URL to get the next set of operation list results if there are any. */
   nextLink?: string;
 }
 
-/**
- * Microsoft.Features operation
- */
+/** Microsoft.Features operation */
 export interface Operation {
-  /**
-   * Operation name: {provider}/{resource}/{operation}
-   */
+  /** Operation name: {provider}/{resource}/{operation} */
   name?: string;
-  /**
-   * The object that represents the operation.
-   */
+  /** The object that represents the operation. */
   display?: OperationDisplay;
 }
 
-/**
- * The object that represents the operation.
- */
+/** The object that represents the operation. */
 export interface OperationDisplay {
-  /**
-   * Service provider: Microsoft.Features
-   */
+  /** Service provider: Microsoft.Features */
   provider?: string;
-  /**
-   * Resource on which the operation is performed: Profile, endpoint, etc.
-   */
+  /** Resource on which the operation is performed: Profile, endpoint, etc. */
   resource?: string;
-  /**
-   * Operation type: Read, write, delete, etc.
-   */
+  /** Operation type: Read, write, delete, etc. */
   operation?: string;
 }
 
-/**
- * List of previewed features.
- */
+/** List of previewed features. */
 export interface FeatureOperationsListResult {
-  /**
-   * The array of features.
-   */
+  /** The array of features. */
   value?: FeatureResult[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * Previewed feature information.
- */
+/** Previewed feature information. */
 export interface FeatureResult {
-  /**
-   * The name of the feature.
-   */
+  /** The name of the feature. */
   name?: string;
-  /**
-   * Properties of the previewed feature.
-   */
+  /** Properties of the previewed feature. */
   properties?: FeatureProperties;
-  /**
-   * The resource ID of the feature.
-   */
+  /** The resource ID of the feature. */
   id?: string;
-  /**
-   * The resource type of the feature.
-   */
+  /** The resource type of the feature. */
   type?: string;
 }
 
-/**
- * Information about feature.
- */
+/** Information about feature. */
 export interface FeatureProperties {
-  /**
-   * The registration state of the feature for the subscription.
-   */
+  /** The registration state of the feature for the subscription. */
   state?: string;
 }
 
-/**
- * Contains response data for the listOperations operation.
- */
+/** Contains response data for the listOperations operation. */
 export type FeatureClientListOperationsResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listOperationsNext operation.
- */
+/** Contains response data for the listOperationsNext operation. */
 export type FeatureClientListOperationsNextResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listAll operation.
- */
+/** Contains response data for the listAll operation. */
 export type FeaturesListAllResponse = FeatureOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type FeaturesListResponse = FeatureOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type FeaturesGetResponse = FeatureResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureResult;
   };
 };
 
-/**
- * Contains response data for the register operation.
- */
+/** Contains response data for the register operation. */
 export type FeaturesRegisterResponse = FeatureResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureResult;
   };
 };
 
-/**
- * Contains response data for the unregister operation.
- */
+/** Contains response data for the unregister operation. */
 export type FeaturesUnregisterResponse = FeatureResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureResult;
   };
 };
 
-/**
- * Contains response data for the listAllNext operation.
- */
+/** Contains response data for the listAllNext operation. */
 export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type FeaturesListNextResponse = FeatureOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FeatureOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FeatureClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

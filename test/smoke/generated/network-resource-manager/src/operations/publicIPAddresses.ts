@@ -31,9 +31,7 @@ import {
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse
 } from "../models";
 
-/**
- * Class representing a PublicIPAddresses.
- */
+/** Class representing a PublicIPAddresses. */
 export class PublicIPAddresses {
   private readonly client: NetworkManagementClient;
 
@@ -691,7 +689,6 @@ export class PublicIPAddresses {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -38,9 +38,7 @@ import {
   ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse
 } from "../models";
 
-/**
- * Class representing a ApplicationGateways.
- */
+/** Class representing a ApplicationGateways. */
 export class ApplicationGateways {
   private readonly client: NetworkManagementClient;
 
@@ -701,7 +699,6 @@ export class ApplicationGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

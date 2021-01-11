@@ -29,9 +29,7 @@ import {
   ProvidersListAtTenantScopeNextResponse
 } from "../models";
 
-/**
- * Class representing a Providers.
- */
+/** Class representing a Providers. */
 export class Providers {
   private readonly client: ResourceManagementClient;
 
@@ -274,7 +272,6 @@ export class Providers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const unregisterOperationSpec: coreHttp.OperationSpec = {

@@ -23,9 +23,7 @@ import {
   FirewallPoliciesListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a FirewallPolicies.
- */
+/** Class representing a FirewallPolicies. */
 export class FirewallPolicies {
   private readonly client: NetworkManagementClient;
 
@@ -319,7 +317,6 @@ export class FirewallPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

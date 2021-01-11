@@ -9,20 +9,14 @@
 import * as coreHttp from "@azure/core-http";
 
 export interface Pet {
-  /**
-   * name
-   */
+  /** name */
   name?: string;
-  /**
-   * Type of Pet
-   */
+  /** Type of Pet */
   daysOfWeek?: DaysOfWeekExtensibleEnum;
   intEnum: IntEnum;
 }
 
-/**
- * Known values of {@link DaysOfWeekExtensibleEnum} that the service accepts.
- */
+/** Known values of {@link DaysOfWeekExtensibleEnum} that the service accepts. */
 export const enum KnownDaysOfWeekExtensibleEnum {
   Monday = "Monday",
   Tuesday = "Tuesday",
@@ -48,21 +42,13 @@ export const enum KnownDaysOfWeekExtensibleEnum {
  */
 export type DaysOfWeekExtensibleEnum = string;
 
-/**
- * Known values of {@link IntEnum} that the service accepts.
- */
+/** Known values of {@link IntEnum} that the service accepts. */
 export const enum KnownIntEnum {
-  /**
-   * one
-   */
+  /** one */
   One = "1",
-  /**
-   * two
-   */
+  /** two */
   Two = "2",
-  /**
-   * three
-   */
+  /** three */
   Three = "3"
 }
 
@@ -77,67 +63,41 @@ export const enum KnownIntEnum {
  */
 export type IntEnum = string;
 
-/**
- * Contains response data for the getByPetId operation.
- */
+/** Contains response data for the getByPetId operation. */
 export type PetGetByPetIdResponse = Pet & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Pet;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * pet param
-   */
+  /** pet param */
   petParam?: Pet;
 }
 
-/**
- * Contains response data for the addPet operation.
- */
+/** Contains response data for the addPet operation. */
 export type PetAddPetResponse = Pet & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Pet;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ExtensibleEnumsClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

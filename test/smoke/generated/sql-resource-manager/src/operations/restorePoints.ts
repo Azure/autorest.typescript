@@ -20,9 +20,7 @@ import {
   RestorePointsGetResponse
 } from "../models";
 
-/**
- * Class representing a RestorePoints.
- */
+/** Class representing a RestorePoints. */
 export class RestorePoints {
   private readonly client: SqlManagementClient;
 
@@ -244,7 +242,6 @@ export class RestorePoints {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

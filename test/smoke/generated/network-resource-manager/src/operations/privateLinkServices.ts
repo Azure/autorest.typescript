@@ -37,9 +37,7 @@ import {
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a PrivateLinkServices.
- */
+/** Class representing a PrivateLinkServices. */
 export class PrivateLinkServices {
   private readonly client: NetworkManagementClient;
 
@@ -839,7 +837,6 @@ export class PrivateLinkServices {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

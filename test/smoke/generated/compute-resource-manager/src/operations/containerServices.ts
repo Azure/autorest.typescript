@@ -22,9 +22,7 @@ import {
   ContainerServicesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a ContainerServices.
- */
+/** Class representing a ContainerServices. */
 export class ContainerServices {
   private readonly client: ComputeManagementClient;
 
@@ -336,7 +334,6 @@ export class ContainerServices {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

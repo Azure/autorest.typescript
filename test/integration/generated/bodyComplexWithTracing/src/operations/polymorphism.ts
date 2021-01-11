@@ -23,9 +23,7 @@ import {
   PolymorphismPutMissingDiscriminatorResponse
 } from "../models";
 
-/**
- * Class representing a Polymorphism.
- */
+/** Class representing a Polymorphism. */
 export class Polymorphism {
   private readonly client: BodyComplexWithTracing;
 
@@ -394,7 +392,6 @@ export class Polymorphism {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

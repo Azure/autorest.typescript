@@ -26,9 +26,7 @@ import {
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedDatabaseSensitivityLabels.
- */
+/** Class representing a ManagedDatabaseSensitivityLabels. */
 export class ManagedDatabaseSensitivityLabels {
   private readonly client: SqlManagementClient;
 
@@ -508,7 +506,6 @@ export class ManagedDatabaseSensitivityLabels {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

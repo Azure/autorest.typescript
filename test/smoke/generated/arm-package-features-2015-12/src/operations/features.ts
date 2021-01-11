@@ -22,9 +22,7 @@ import {
   FeaturesListNextResponse
 } from "../models";
 
-/**
- * Class representing a Features.
- */
+/** Class representing a Features. */
 export class Features {
   private readonly client: FeatureClient;
 
@@ -276,7 +274,6 @@ export class Features {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listAllOperationSpec: coreHttp.OperationSpec = {

@@ -43,9 +43,7 @@ import {
   VaultsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Vaults.
- */
+/** Class representing a Vaults. */
 export class Vaults {
   private readonly client: KeyVaultManagementClient;
 
@@ -612,7 +610,6 @@ export class Vaults {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

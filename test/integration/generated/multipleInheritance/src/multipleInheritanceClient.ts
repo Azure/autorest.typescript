@@ -216,7 +216,6 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getHorseOperationSpec: coreHttp.OperationSpec = {

@@ -26,9 +26,7 @@ import {
   ResourceGroupsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ResourceGroups.
- */
+/** Class representing a ResourceGroups. */
 export class ResourceGroups {
   private readonly client: ResourceManagementClient;
 
@@ -289,7 +287,6 @@ export class ResourceGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const checkExistenceOperationSpec: coreHttp.OperationSpec = {

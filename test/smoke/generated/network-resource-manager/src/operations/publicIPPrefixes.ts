@@ -25,9 +25,7 @@ import {
   PublicIPPrefixesListNextResponse
 } from "../models";
 
-/**
- * Class representing a PublicIPPrefixes.
- */
+/** Class representing a PublicIPPrefixes. */
 export class PublicIPPrefixes {
   private readonly client: NetworkManagementClient;
 
@@ -346,7 +344,6 @@ export class PublicIPPrefixes {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

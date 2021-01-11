@@ -20,9 +20,7 @@ import {
   ExpressRouteCircuitPeeringsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteCircuitPeerings.
- */
+/** Class representing a ExpressRouteCircuitPeerings. */
 export class ExpressRouteCircuitPeerings {
   private readonly client: NetworkManagementClient;
 
@@ -264,7 +262,6 @@ export class ExpressRouteCircuitPeerings {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

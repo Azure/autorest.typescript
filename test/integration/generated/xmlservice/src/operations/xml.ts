@@ -38,9 +38,7 @@ import {
   XmlGetXMsTextResponse
 } from "../models";
 
-/**
- * Class representing a Xml.
- */
+/** Class representing a Xml. */
 export class Xml {
   private readonly client: XmlServiceClient;
 
@@ -572,7 +570,6 @@ export class Xml {
   }
 }
 // Operation Specifications
-
 const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);

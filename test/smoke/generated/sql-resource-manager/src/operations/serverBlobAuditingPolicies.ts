@@ -20,9 +20,7 @@ import {
   ServerBlobAuditingPoliciesListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a ServerBlobAuditingPolicies.
- */
+/** Class representing a ServerBlobAuditingPolicies. */
 export class ServerBlobAuditingPolicies {
   private readonly client: SqlManagementClient;
 
@@ -232,7 +230,6 @@ export class ServerBlobAuditingPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

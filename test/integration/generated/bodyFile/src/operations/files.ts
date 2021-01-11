@@ -16,9 +16,7 @@ import {
   FilesGetEmptyFileResponse
 } from "../models";
 
-/**
- * Class representing a Files.
- */
+/** Class representing a Files. */
 export class Files {
   private readonly client: BodyFileClient;
 
@@ -77,7 +75,6 @@ export class Files {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getFileOperationSpec: coreHttp.OperationSpec = {

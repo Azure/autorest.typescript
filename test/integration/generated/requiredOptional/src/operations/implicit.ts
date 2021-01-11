@@ -16,9 +16,7 @@ import {
   ImplicitPutOptionalBodyOptionalParams
 } from "../models";
 
-/**
- * Class representing a Implicit.
- */
+/** Class representing a Implicit. */
 export class Implicit {
   private readonly client: RequiredOptionalClient;
 
@@ -146,7 +144,6 @@ export class Implicit {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getRequiredPathOperationSpec: coreHttp.OperationSpec = {

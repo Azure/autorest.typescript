@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { ComputeOperationValue, OperationsListResponse } from "../models";
 
-/**
- * Class representing a Operations.
- */
+/** Class representing a Operations. */
 export class Operations {
   private readonly client: ComputeManagementClient;
 
@@ -80,7 +78,6 @@ export class Operations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

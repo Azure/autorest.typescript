@@ -78,9 +78,7 @@ import {
   LROsPostAsyncRetrycanceledResponse
 } from "../models";
 
-/**
- * Class representing a LROs.
- */
+/** Class representing a LROs. */
 export class LROs {
   private readonly client: LROClient;
 
@@ -1433,7 +1431,6 @@ export class LROs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const put200SucceededOperationSpec: coreHttp.OperationSpec = {

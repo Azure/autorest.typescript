@@ -20,9 +20,7 @@ import {
   NetworkInterfaceTapConfigurationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a NetworkInterfaceTapConfigurations.
- */
+/** Class representing a NetworkInterfaceTapConfigurations. */
 export class NetworkInterfaceTapConfigurations {
   private readonly client: NetworkManagementClient;
 
@@ -278,7 +276,6 @@ export class NetworkInterfaceTapConfigurations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   FirewallRulesListByServerResponse
 } from "../models";
 
-/**
- * Class representing a FirewallRules.
- */
+/** Class representing a FirewallRules. */
 export class FirewallRules {
   private readonly client: SqlManagementClient;
 
@@ -198,7 +196,6 @@ export class FirewallRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

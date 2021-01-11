@@ -21,9 +21,7 @@ import {
   BasicGetNotProvidedResponse
 } from "../models";
 
-/**
- * Class representing a Basic.
- */
+/** Class representing a Basic. */
 export class Basic {
   private readonly client: BodyComplexWithTracing;
 
@@ -225,7 +223,6 @@ export class Basic {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

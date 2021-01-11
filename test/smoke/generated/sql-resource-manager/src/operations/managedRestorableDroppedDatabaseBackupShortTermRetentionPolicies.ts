@@ -22,9 +22,7 @@ import {
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.
- */
+/** Class representing a ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies. */
 export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -329,7 +327,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   SubscriptionUsagesListByLocationNextResponse
 } from "../models";
 
-/**
- * Class representing a SubscriptionUsages.
- */
+/** Class representing a SubscriptionUsages. */
 export class SubscriptionUsages {
   private readonly client: SqlManagementClient;
 
@@ -149,7 +147,6 @@ export class SubscriptionUsages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByLocationOperationSpec: coreHttp.OperationSpec = {

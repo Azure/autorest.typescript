@@ -16,9 +16,7 @@ import {
   PetAddPetResponse
 } from "../models";
 
-/**
- * Class representing a Pet.
- */
+/** Class representing a Pet. */
 export class Pet {
   private readonly client: ExtensibleEnumsClient;
 
@@ -64,7 +62,6 @@ export class Pet {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getByPetIdOperationSpec: coreHttp.OperationSpec = {

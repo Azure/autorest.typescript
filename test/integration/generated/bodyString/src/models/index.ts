@@ -14,312 +14,188 @@ export interface ErrorModel {
 }
 
 export interface RefColorConstant {
-  /**
-   * Referenced Color Constant Description.
-   */
+  /** Referenced Color Constant Description. */
   colorConstant: "green-color";
-  /**
-   * Sample string.
-   */
+  /** Sample string. */
   field1?: string;
 }
 
-/**
- * Defines values for Colors.
- */
+/** Defines values for Colors. */
 export type Colors = "red color" | "green-color" | "blue_color";
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type StringGetNullResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface StringPutNullOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * string body
-   */
+  /** string body */
   stringBody?: string;
 }
 
-/**
- * Contains response data for the getEmpty operation.
- */
+/** Contains response data for the getEmpty operation. */
 export type StringGetEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getMbcs operation.
- */
+/** Contains response data for the getMbcs operation. */
 export type StringGetMbcsResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getWhitespace operation.
- */
+/** Contains response data for the getWhitespace operation. */
 export type StringGetWhitespaceResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getNotProvided operation.
- */
+/** Contains response data for the getNotProvided operation. */
 export type StringGetNotProvidedResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the getBase64Encoded operation.
- */
+/** Contains response data for the getBase64Encoded operation. */
 export type StringGetBase64EncodedResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Uint8Array;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Uint8Array;
   };
 };
 
-/**
- * Contains response data for the getBase64UrlEncoded operation.
- */
+/** Contains response data for the getBase64UrlEncoded operation. */
 export type StringGetBase64UrlEncodedResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Uint8Array;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Uint8Array;
   };
 };
 
-/**
- * Contains response data for the getNullBase64UrlEncoded operation.
- */
+/** Contains response data for the getNullBase64UrlEncoded operation. */
 export type StringGetNullBase64UrlEncodedResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Uint8Array;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Uint8Array;
   };
 };
 
-/**
- * Contains response data for the getNotExpandable operation.
- */
+/** Contains response data for the getNotExpandable operation. */
 export type EnumGetNotExpandableResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Colors;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Colors;
   };
 };
 
-/**
- * Contains response data for the getReferenced operation.
- */
+/** Contains response data for the getReferenced operation. */
 export type EnumGetReferencedResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Colors;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Colors;
   };
 };
 
-/**
- * Contains response data for the getReferencedConstant operation.
- */
+/** Contains response data for the getReferencedConstant operation. */
 export type EnumGetReferencedConstantResponse = RefColorConstant & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RefColorConstant;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyStringClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

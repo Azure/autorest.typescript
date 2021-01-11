@@ -20,7 +20,8 @@ import { formatJsDocParam } from "./utils/parameterUtils";
 export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
-  project: Project
+  project: Project,
+  hideClients: boolean
 ) {
   const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
@@ -48,6 +49,15 @@ export function generateClientContext(
   writePackageInfo(sourceFile, packageDetails);
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
+
+  if(hideClients) {
+    contextClass.addJsDoc({
+      tags: [{
+          tagName: "hidden"
+      }],
+    });
+  }
+
   writeClassProperties(contextClass, clientParams, importedModels);
 
   const classConstructor = buildConstructor(contextClass, {

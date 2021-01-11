@@ -18,9 +18,7 @@ import {
   ExpressRouteLinksListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteLinks.
- */
+/** Class representing a ExpressRouteLinks. */
 export class ExpressRouteLinks {
   private readonly client: NetworkManagementClient;
 
@@ -176,7 +174,6 @@ export class ExpressRouteLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

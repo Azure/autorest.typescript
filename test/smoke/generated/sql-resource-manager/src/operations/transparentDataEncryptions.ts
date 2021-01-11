@@ -17,9 +17,7 @@ import {
   TransparentDataEncryptionsGetResponse
 } from "../models";
 
-/**
- * Class representing a TransparentDataEncryptions.
- */
+/** Class representing a TransparentDataEncryptions. */
 export class TransparentDataEncryptions {
   private readonly client: SqlManagementClient;
 
@@ -94,7 +92,6 @@ export class TransparentDataEncryptions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

@@ -42,9 +42,7 @@ import {
   LongTermRetentionBackupsListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a LongTermRetentionBackups.
- */
+/** Class representing a LongTermRetentionBackups. */
 export class LongTermRetentionBackups {
   private readonly client: SqlManagementClient;
 
@@ -979,7 +977,6 @@ export class LongTermRetentionBackups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {

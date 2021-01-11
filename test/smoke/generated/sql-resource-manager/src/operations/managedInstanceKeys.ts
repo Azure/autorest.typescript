@@ -22,9 +22,7 @@ import {
   ManagedInstanceKeysListByInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstanceKeys.
- */
+/** Class representing a ManagedInstanceKeys. */
 export class ManagedInstanceKeys {
   private readonly client: SqlManagementClient;
 
@@ -281,7 +279,6 @@ export class ManagedInstanceKeys {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByInstanceOperationSpec: coreHttp.OperationSpec = {
