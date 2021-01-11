@@ -77,7 +77,7 @@ export async function generateTypeScriptLibrary(
     (await host.GetValue("license-header")) || false;
 
   const hideClients: boolean =
-    (await host.GetValue("hide-client")) || false;
+    (await host.GetValue("hide-clients")) || false;
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
