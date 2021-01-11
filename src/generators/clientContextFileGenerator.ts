@@ -21,7 +21,7 @@ export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project,
-  hideClient: boolean
+  hideClients: boolean
 ) {
   const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
@@ -50,7 +50,7 @@ export function generateClientContext(
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
 
-  if(hideClient) {
+  if(hideClients) {
     contextClass.addJsDoc({
       tags: [{
           tagName: "hidden"

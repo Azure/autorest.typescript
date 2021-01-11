@@ -27,7 +27,7 @@ import { addPagingImports } from "./utils/pagingOperations";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
-export function generateClient(clientDetails: ClientDetails, project: Project, hideClient: boolean) {
+export function generateClient(clientDetails: ClientDetails, project: Project, hideClients: boolean) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -123,7 +123,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project, h
     isExported: true
   });
 
-  if(hideClient) {
+  if(hideClients) {
     clientClass.addJsDoc({
       tags: [{
           tagName: "hidden"

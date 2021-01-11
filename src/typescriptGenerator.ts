@@ -76,7 +76,7 @@ export async function generateTypeScriptLibrary(
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
 
-  const hideClient: boolean =
+  const hideClients: boolean =
     (await host.GetValue("hide-client")) || false;
 
   // Skip metadata generation if `generate-metadata` is explicitly false
@@ -89,8 +89,8 @@ export async function generateTypeScriptLibrary(
     generateApiExtractorConfig(clientDetails, project);
   }
 
-  generateClient(clientDetails, project, hideClient);
-  generateClientContext(clientDetails, packageDetails, project, hideClient);
+  generateClient(clientDetails, project, hideClients);
+  generateClientContext(clientDetails, packageDetails, project, hideClients);
   generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);
