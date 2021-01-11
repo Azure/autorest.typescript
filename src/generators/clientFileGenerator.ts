@@ -27,7 +27,7 @@ import { addPagingImports } from "./utils/pagingOperations";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
-export function generateClient(clientDetails: ClientDetails, project: Project) {
+export function generateClient(clientDetails: ClientDetails, project: Project, hasCustomLayer: boolean) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -122,6 +122,14 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: clientContextClassName,
     isExported: true
   });
+
+  if(hasCustomLayer) {
+    clientClass.addJsDoc({
+      tags: [{
+          tagName: "hidden"
+      }],
+    });
+  }
 
   const importedModels = new Set<string>();
 

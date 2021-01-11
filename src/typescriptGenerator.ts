@@ -48,7 +48,7 @@ export async function generateTypeScriptLibrary(
   host: Host
 ): Promise<void> {
   const project = new Project({
-    useVirtualFileSystem: true,
+    useInMemoryFileSystem: true,
     manipulationSettings: {
       indentationText: IndentationText.TwoSpaces
     }
@@ -76,6 +76,9 @@ export async function generateTypeScriptLibrary(
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
 
+  const hasCustomLayer: boolean =
+    (await host.GetValue("has-custom-layer")) || false;
+
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
     generatePackageJson(clientDetails, packageDetails, project);
@@ -86,8 +89,8 @@ export async function generateTypeScriptLibrary(
     generateApiExtractorConfig(clientDetails, project);
   }
 
-  generateClient(clientDetails, project);
-  generateClientContext(clientDetails, packageDetails, project);
+  generateClient(clientDetails, project, hasCustomLayer);
+  generateClientContext(clientDetails, packageDetails, project, hasCustomLayer);
   generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);
