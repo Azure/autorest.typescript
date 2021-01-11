@@ -10,6 +10,7 @@ interface SwaggerConfig {
   credentialScopes?: string;
   tracing?: TracingInfo;
   disableAsyncIterators?: boolean;
+  hasCustomLayer?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -366,6 +367,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "AppConfigurationClient",
     packageName: "appconfiguration",
     licenseHeader: true
+  },
+  appconfigurationexport: {
+    swagger: "test/integration/swaggers/appconfiguration.json",
+    clientName: "AppConfigurationClient",
+    packageName: "appconfiguration",
+    licenseHeader: true,
+    hasCustomLayer: true
   }
 };
 
@@ -389,7 +397,8 @@ const generateSwaggers = async (
       licenseHeader,
       tracing,
       disableAsyncIterators,
-      credentialScopes
+      credentialScopes,
+      hasCustomLayer
     } = testSwaggers[name];
 
     let swaggerPath = swagger;
@@ -411,7 +420,7 @@ const generateSwaggers = async (
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand:string = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version} --has-custom-layer=${!!hasCustomLayer}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;
