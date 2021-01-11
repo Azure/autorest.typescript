@@ -20,9 +20,7 @@ import {
   VirtualNetworkRulesListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworkRules.
- */
+/** Class representing a VirtualNetworkRules. */
 export class VirtualNetworkRules {
   private readonly client: SqlManagementClient;
 
@@ -279,7 +277,6 @@ export class VirtualNetworkRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

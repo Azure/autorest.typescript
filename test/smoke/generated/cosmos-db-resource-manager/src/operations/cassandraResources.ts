@@ -30,9 +30,7 @@ import {
   CassandraResourcesUpdateCassandraTableThroughputResponse
 } from "../models";
 
-/**
- * Class representing a CassandraResources.
- */
+/** Class representing a CassandraResources. */
 export class CassandraResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -612,7 +610,6 @@ export class CassandraResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listCassandraKeyspacesOperationSpec: coreHttp.OperationSpec = {

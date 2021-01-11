@@ -30,9 +30,7 @@ import {
   P2SVpnGatewaysListNextResponse
 } from "../models";
 
-/**
- * Class representing a P2SVpnGateways.
- */
+/** Class representing a P2SVpnGateways. */
 export class P2SVpnGateways {
   private readonly client: NetworkManagementClient;
 
@@ -520,7 +518,6 @@ export class P2SVpnGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

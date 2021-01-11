@@ -43,9 +43,7 @@ import {
   VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineScaleSets.
- */
+/** Class representing a VirtualMachineScaleSets. */
 export class VirtualMachineScaleSets {
   private readonly client: ComputeManagementClient;
 
@@ -1123,7 +1121,6 @@ export class VirtualMachineScaleSets {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

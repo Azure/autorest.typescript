@@ -25,9 +25,7 @@ import {
   NatGatewaysListNextResponse
 } from "../models";
 
-/**
- * Class representing a NatGateways.
- */
+/** Class representing a NatGateways. */
 export class NatGateways {
   private readonly client: NetworkManagementClient;
 
@@ -346,7 +344,6 @@ export class NatGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

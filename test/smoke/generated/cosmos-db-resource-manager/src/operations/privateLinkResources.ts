@@ -17,9 +17,7 @@ import {
   PrivateLinkResourcesGetResponse
 } from "../models";
 
-/**
- * Class representing a PrivateLinkResources.
- */
+/** Class representing a PrivateLinkResources. */
 export class PrivateLinkResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -139,7 +137,6 @@ export class PrivateLinkResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {

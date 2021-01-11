@@ -24,9 +24,7 @@ import {
   DdosProtectionPlansListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a DdosProtectionPlans.
- */
+/** Class representing a DdosProtectionPlans. */
 export class DdosProtectionPlans {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class DdosProtectionPlans {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

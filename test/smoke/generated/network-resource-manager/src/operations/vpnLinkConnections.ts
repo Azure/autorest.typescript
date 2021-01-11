@@ -17,9 +17,7 @@ import {
   VpnLinkConnectionsListByVpnConnectionNextResponse
 } from "../models";
 
-/**
- * Class representing a VpnLinkConnections.
- */
+/** Class representing a VpnLinkConnections. */
 export class VpnLinkConnections {
   private readonly client: NetworkManagementClient;
 
@@ -165,7 +163,6 @@ export class VpnLinkConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByVpnConnectionOperationSpec: coreHttp.OperationSpec = {

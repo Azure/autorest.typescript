@@ -18,9 +18,7 @@ import {
   SignedInUserListOwnedObjectsNextResponse
 } from "../models";
 
-/**
- * Class representing a SignedInUser.
- */
+/** Class representing a SignedInUser. */
 export class SignedInUser {
   private readonly client: GraphRbacManagementClient;
 
@@ -173,7 +171,6 @@ export class SignedInUser {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

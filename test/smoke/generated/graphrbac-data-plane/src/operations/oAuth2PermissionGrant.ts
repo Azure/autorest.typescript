@@ -20,9 +20,7 @@ import {
   OAuth2PermissionGrantListNextResponse
 } from "../models";
 
-/**
- * Class representing a OAuth2PermissionGrant.
- */
+/** Class representing a OAuth2PermissionGrant. */
 export class OAuth2PermissionGrant {
   private readonly client: GraphRbacManagementClient;
 
@@ -193,7 +191,6 @@ export class OAuth2PermissionGrant {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

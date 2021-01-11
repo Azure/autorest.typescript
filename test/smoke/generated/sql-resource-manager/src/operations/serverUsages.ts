@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { ServerUsage, ServerUsagesListByServerResponse } from "../models";
 
-/**
- * Class representing a ServerUsages.
- */
+/** Class representing a ServerUsages. */
 export class ServerUsages {
   private readonly client: SqlManagementClient;
 
@@ -112,7 +110,6 @@ export class ServerUsages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByServerOperationSpec: coreHttp.OperationSpec = {

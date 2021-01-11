@@ -21,9 +21,7 @@ import {
   EncryptionProtectorsListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a EncryptionProtectors.
- */
+/** Class representing a EncryptionProtectors. */
 export class EncryptionProtectors {
   private readonly client: SqlManagementClient;
 
@@ -280,7 +278,6 @@ export class EncryptionProtectors {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const revalidateOperationSpec: coreHttp.OperationSpec = {

@@ -17,9 +17,7 @@ import {
   ServerConnectionPoliciesGetResponse
 } from "../models";
 
-/**
- * Class representing a ServerConnectionPolicies.
- */
+/** Class representing a ServerConnectionPolicies. */
 export class ServerConnectionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -87,7 +85,6 @@ export class ServerConnectionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

@@ -22,9 +22,7 @@ import {
   GalleryImagesListByGalleryNextResponse
 } from "../models";
 
-/**
- * Class representing a GalleryImages.
- */
+/** Class representing a GalleryImages. */
 export class GalleryImages {
   private readonly client: ComputeManagementClient;
 
@@ -329,7 +327,6 @@ export class GalleryImages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

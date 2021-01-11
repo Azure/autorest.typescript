@@ -19,9 +19,7 @@ import {
   VirtualMachineImagesListSkusResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineImages.
- */
+/** Class representing a VirtualMachineImages. */
 export class VirtualMachineImages {
   private readonly client: ComputeManagementClient;
 
@@ -160,7 +158,6 @@ export class VirtualMachineImages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

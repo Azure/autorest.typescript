@@ -19,9 +19,7 @@ import {
   AvailableServiceAliasesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailableServiceAliases.
- */
+/** Class representing a AvailableServiceAliases. */
 export class AvailableServiceAliases {
   private readonly client: NetworkManagementClient;
 
@@ -239,7 +237,6 @@ export class AvailableServiceAliases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -21,9 +21,7 @@ import {
   ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstanceLongTermRetentionPolicies.
- */
+/** Class representing a ManagedInstanceLongTermRetentionPolicies. */
 export class ManagedInstanceLongTermRetentionPolicies {
   private readonly client: SqlManagementClient;
 
@@ -268,7 +266,6 @@ export class ManagedInstanceLongTermRetentionPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

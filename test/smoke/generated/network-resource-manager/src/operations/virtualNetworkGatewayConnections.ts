@@ -31,9 +31,7 @@ import {
   VirtualNetworkGatewayConnectionsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworkGatewayConnections.
- */
+/** Class representing a VirtualNetworkGatewayConnections. */
 export class VirtualNetworkGatewayConnections {
   private readonly client: NetworkManagementClient;
 
@@ -494,7 +492,6 @@ export class VirtualNetworkGatewayConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

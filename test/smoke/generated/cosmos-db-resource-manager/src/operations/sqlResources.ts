@@ -45,9 +45,7 @@ import {
   SqlResourcesCreateUpdateSqlTriggerResponse
 } from "../models";
 
-/**
- * Class representing a SqlResources.
- */
+/** Class representing a SqlResources. */
 export class SqlResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -1311,7 +1309,6 @@ export class SqlResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listSqlDatabasesOperationSpec: coreHttp.OperationSpec = {

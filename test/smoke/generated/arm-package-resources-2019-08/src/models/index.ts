@@ -9,69 +9,41 @@
 import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
-/**
- * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.
- */
+/** Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
-  /**
-   * List of Microsoft.Resources operations.
-   */
+  /** List of Microsoft.Resources operations. */
   value?: Operation[];
-  /**
-   * URL to get the next set of operation list results if there are any.
-   */
+  /** URL to get the next set of operation list results if there are any. */
   nextLink?: string;
 }
 
-/**
- * Microsoft.Resources operation
- */
+/** Microsoft.Resources operation */
 export interface Operation {
-  /**
-   * Operation name: {provider}/{resource}/{operation}
-   */
+  /** Operation name: {provider}/{resource}/{operation} */
   name?: string;
-  /**
-   * The object that represents the operation.
-   */
+  /** The object that represents the operation. */
   display?: OperationDisplay;
 }
 
-/**
- * The object that represents the operation.
- */
+/** The object that represents the operation. */
 export interface OperationDisplay {
-  /**
-   * Service provider: Microsoft.Resources
-   */
+  /** Service provider: Microsoft.Resources */
   provider?: string;
-  /**
-   * Resource on which the operation is performed: Profile, endpoint, etc.
-   */
+  /** Resource on which the operation is performed: Profile, endpoint, etc. */
   resource?: string;
-  /**
-   * Operation type: Read, write, delete, etc.
-   */
+  /** Operation type: Read, write, delete, etc. */
   operation?: string;
-  /**
-   * Description of the operation.
-   */
+  /** Description of the operation. */
   description?: string;
 }
 
-/**
- * An error response for a resource management request.
- */
+/** An error response for a resource management request. */
 export interface CloudError {
-  /**
-   * The resource management error response.
-   */
+  /** The resource management error response. */
   error?: ErrorResponse;
 }
 
-/**
- * The resource management error response.
- */
+/** The resource management error response. */
 export interface ErrorResponse {
   /**
    * The error code.
@@ -100,9 +72,7 @@ export interface ErrorResponse {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
-/**
- * The resource management error additional info.
- */
+/** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /**
    * The additional info type.
@@ -116,109 +86,63 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-/**
- * Deployment operation parameters.
- */
+/** Deployment operation parameters. */
 export interface Deployment {
-  /**
-   * The location to store the deployment data.
-   */
+  /** The location to store the deployment data. */
   location?: string;
-  /**
-   * The deployment properties.
-   */
+  /** The deployment properties. */
   properties: DeploymentProperties;
 }
 
-/**
- * Deployment properties.
- */
+/** Deployment properties. */
 export interface DeploymentProperties {
-  /**
-   * The template content. You use this element when you want to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both.
-   */
+  /** The template content. You use this element when you want to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
   template?: any;
-  /**
-   * The URI of the template. Use either the templateLink property or the template property, but not both.
-   */
+  /** The URI of the template. Use either the templateLink property or the template property, but not both. */
   templateLink?: TemplateLink;
-  /**
-   * Name and value pairs that define the deployment parameters for the template. You use this element when you want to provide the parameter values directly in the request rather than link to an existing parameter file. Use either the parametersLink property or the parameters property, but not both. It can be a JObject or a well formed JSON string.
-   */
+  /** Name and value pairs that define the deployment parameters for the template. You use this element when you want to provide the parameter values directly in the request rather than link to an existing parameter file. Use either the parametersLink property or the parameters property, but not both. It can be a JObject or a well formed JSON string. */
   parameters?: any;
-  /**
-   * The URI of parameters file. You use this element to link to an existing parameters file. Use either the parametersLink property or the parameters property, but not both.
-   */
+  /** The URI of parameters file. You use this element to link to an existing parameters file. Use either the parametersLink property or the parameters property, but not both. */
   parametersLink?: ParametersLink;
-  /**
-   * The mode that is used to deploy resources. This value can be either Incremental or Complete. In Incremental mode, resources are deployed without deleting existing resources that are not included in the template. In Complete mode, resources are deployed and existing resources in the resource group that are not included in the template are deleted. Be careful when using Complete mode as you may unintentionally delete resources.
-   */
+  /** The mode that is used to deploy resources. This value can be either Incremental or Complete. In Incremental mode, resources are deployed without deleting existing resources that are not included in the template. In Complete mode, resources are deployed and existing resources in the resource group that are not included in the template are deleted. Be careful when using Complete mode as you may unintentionally delete resources. */
   mode: DeploymentMode;
-  /**
-   * The debug setting of the deployment.
-   */
+  /** The debug setting of the deployment. */
   debugSetting?: DebugSetting;
-  /**
-   * The deployment on error behavior.
-   */
+  /** The deployment on error behavior. */
   onErrorDeployment?: OnErrorDeployment;
 }
 
-/**
- * Entity representing the reference to the template.
- */
+/** Entity representing the reference to the template. */
 export interface TemplateLink {
-  /**
-   * The URI of the template to deploy.
-   */
+  /** The URI of the template to deploy. */
   uri: string;
-  /**
-   * If included, must match the ContentVersion in the template.
-   */
+  /** If included, must match the ContentVersion in the template. */
   contentVersion?: string;
 }
 
-/**
- * Entity representing the reference to the deployment parameters.
- */
+/** Entity representing the reference to the deployment parameters. */
 export interface ParametersLink {
-  /**
-   * The URI of the parameters file.
-   */
+  /** The URI of the parameters file. */
   uri: string;
-  /**
-   * If included, must match the ContentVersion in the template.
-   */
+  /** If included, must match the ContentVersion in the template. */
   contentVersion?: string;
 }
 
-/**
- * The debug setting.
- */
+/** The debug setting. */
 export interface DebugSetting {
-  /**
-   * Specifies the type of information to log for debugging. The permitted values are none, requestContent, responseContent, or both requestContent and responseContent separated by a comma. The default is none. When setting this value, carefully consider the type of information you are passing in during deployment. By logging information about the request or response, you could potentially expose sensitive data that is retrieved through the deployment operations.
-   */
+  /** Specifies the type of information to log for debugging. The permitted values are none, requestContent, responseContent, or both requestContent and responseContent separated by a comma. The default is none. When setting this value, carefully consider the type of information you are passing in during deployment. By logging information about the request or response, you could potentially expose sensitive data that is retrieved through the deployment operations. */
   detailLevel?: string;
 }
 
-/**
- * Deployment on error behavior.
- */
+/** Deployment on error behavior. */
 export interface OnErrorDeployment {
-  /**
-   * The deployment on error behavior type. Possible values are LastSuccessful and SpecificDeployment.
-   */
+  /** The deployment on error behavior type. Possible values are LastSuccessful and SpecificDeployment. */
   type?: OnErrorDeploymentType;
-  /**
-   * The deployment to be used on error case.
-   */
+  /** The deployment to be used on error case. */
   deploymentName?: string;
 }
 
-/**
- * Deployment information.
- */
+/** Deployment information. */
 export interface DeploymentExtended {
   /**
    * The ID of the deployment.
@@ -235,19 +159,13 @@ export interface DeploymentExtended {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * the location of the deployment.
-   */
+  /** the location of the deployment. */
   location?: string;
-  /**
-   * Deployment properties.
-   */
+  /** Deployment properties. */
   properties?: DeploymentPropertiesExtended;
 }
 
-/**
- * Deployment properties with additional details.
- */
+/** Deployment properties with additional details. */
 export interface DeploymentPropertiesExtended {
   /**
    * The state of the provisioning.
@@ -269,60 +187,36 @@ export interface DeploymentPropertiesExtended {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly duration?: string;
-  /**
-   * Key/value pairs that represent deployment output.
-   */
+  /** Key/value pairs that represent deployment output. */
   outputs?: any;
-  /**
-   * The list of resource providers needed for the deployment.
-   */
+  /** The list of resource providers needed for the deployment. */
   providers?: Provider[];
-  /**
-   * The list of deployment dependencies.
-   */
+  /** The list of deployment dependencies. */
   dependencies?: Dependency[];
-  /**
-   * The template content. Use only one of Template or TemplateLink.
-   */
+  /** The template content. Use only one of Template or TemplateLink. */
   template?: any;
-  /**
-   * The URI referencing the template. Use only one of Template or TemplateLink.
-   */
+  /** The URI referencing the template. Use only one of Template or TemplateLink. */
   templateLink?: TemplateLink;
-  /**
-   * Deployment parameters. Use only one of Parameters or ParametersLink.
-   */
+  /** Deployment parameters. Use only one of Parameters or ParametersLink. */
   parameters?: any;
-  /**
-   * The URI referencing the parameters. Use only one of Parameters or ParametersLink.
-   */
+  /** The URI referencing the parameters. Use only one of Parameters or ParametersLink. */
   parametersLink?: ParametersLink;
-  /**
-   * The deployment mode. Possible values are Incremental and Complete.
-   */
+  /** The deployment mode. Possible values are Incremental and Complete. */
   mode?: DeploymentMode;
-  /**
-   * The debug setting of the deployment.
-   */
+  /** The debug setting of the deployment. */
   debugSetting?: DebugSetting;
-  /**
-   * The deployment on error behavior.
-   */
+  /** The deployment on error behavior. */
   onErrorDeployment?: OnErrorDeploymentExtended;
 }
 
-/**
- * Resource provider information.
- */
+/** Resource provider information. */
 export interface Provider {
   /**
    * The provider ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
-  /**
-   * The namespace of the resource provider.
-   */
+  /** The namespace of the resource provider. */
   namespace?: string;
   /**
    * The registration state of the resource provider.
@@ -341,154 +235,90 @@ export interface Provider {
   readonly resourceTypes?: ProviderResourceType[];
 }
 
-/**
- * Resource type managed by the resource provider.
- */
+/** Resource type managed by the resource provider. */
 export interface ProviderResourceType {
-  /**
-   * The resource type.
-   */
+  /** The resource type. */
   resourceType?: string;
-  /**
-   * The collection of locations where this resource type can be created.
-   */
+  /** The collection of locations where this resource type can be created. */
   locations?: string[];
-  /**
-   * The aliases that are supported by this resource type.
-   */
+  /** The aliases that are supported by this resource type. */
   aliases?: AliasType[];
-  /**
-   * The API version.
-   */
+  /** The API version. */
   apiVersions?: string[];
-  /**
-   * The additional capabilities offered by this resource type.
-   */
+  /** The additional capabilities offered by this resource type. */
   capabilities?: string;
-  /**
-   * The properties.
-   */
+  /** The properties. */
   properties?: { [propertyName: string]: string };
 }
 
-/**
- * The alias type.
- */
+/** The alias type. */
 export interface AliasType {
-  /**
-   * The alias name.
-   */
+  /** The alias name. */
   name?: string;
-  /**
-   * The paths for an alias.
-   */
+  /** The paths for an alias. */
   paths?: AliasPathType[];
 }
 
-/**
- * The type of the paths for alias.
- */
+/** The type of the paths for alias. */
 export interface AliasPathType {
-  /**
-   * The path of an alias.
-   */
+  /** The path of an alias. */
   path?: string;
-  /**
-   * The API versions.
-   */
+  /** The API versions. */
   apiVersions?: string[];
 }
 
-/**
- * Deployment dependency information.
- */
+/** Deployment dependency information. */
 export interface Dependency {
-  /**
-   * The list of dependencies.
-   */
+  /** The list of dependencies. */
   dependsOn?: BasicDependency[];
-  /**
-   * The ID of the dependency.
-   */
+  /** The ID of the dependency. */
   id?: string;
-  /**
-   * The dependency resource type.
-   */
+  /** The dependency resource type. */
   resourceType?: string;
-  /**
-   * The dependency resource name.
-   */
+  /** The dependency resource name. */
   resourceName?: string;
 }
 
-/**
- * Deployment dependency information.
- */
+/** Deployment dependency information. */
 export interface BasicDependency {
-  /**
-   * The ID of the dependency.
-   */
+  /** The ID of the dependency. */
   id?: string;
-  /**
-   * The dependency resource type.
-   */
+  /** The dependency resource type. */
   resourceType?: string;
-  /**
-   * The dependency resource name.
-   */
+  /** The dependency resource name. */
   resourceName?: string;
 }
 
-/**
- * Deployment on error behavior with additional details.
- */
+/** Deployment on error behavior with additional details. */
 export interface OnErrorDeploymentExtended {
   /**
    * The state of the provisioning for the on error deployment.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
-  /**
-   * The deployment on error behavior type. Possible values are LastSuccessful and SpecificDeployment.
-   */
+  /** The deployment on error behavior type. Possible values are LastSuccessful and SpecificDeployment. */
   type?: OnErrorDeploymentType;
-  /**
-   * The deployment to be used on error case.
-   */
+  /** The deployment to be used on error case. */
   deploymentName?: string;
 }
 
-/**
- * Information from validate template deployment response.
- */
+/** Information from validate template deployment response. */
 export interface DeploymentValidateResult {
-  /**
-   * The deployment validation error.
-   */
+  /** The deployment validation error. */
   error?: ErrorResponse;
-  /**
-   * The template deployment properties.
-   */
+  /** The template deployment properties. */
   properties?: DeploymentPropertiesExtended;
 }
 
-/**
- * The deployment export result.
- */
+/** The deployment export result. */
 export interface DeploymentExportResult {
-  /**
-   * The template content.
-   */
+  /** The template content. */
   template?: any;
 }
 
-/**
- * List of deployments.
- */
+/** List of deployments. */
 export interface DeploymentListResult {
-  /**
-   * An array of deployments.
-   */
+  /** An array of deployments. */
   value?: DeploymentExtended[];
   /**
    * The URL to use for getting the next set of results.
@@ -497,121 +327,69 @@ export interface DeploymentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Deployment operation parameters.
- */
+/** Deployment operation parameters. */
 export interface ScopedDeployment {
-  /**
-   * The location to store the deployment data.
-   */
+  /** The location to store the deployment data. */
   location: string;
-  /**
-   * The deployment properties.
-   */
+  /** The deployment properties. */
   properties: DeploymentProperties;
 }
 
-/**
- * Deployment What-if operation parameters.
- */
+/** Deployment What-if operation parameters. */
 export interface DeploymentWhatIf {
-  /**
-   * The location to store the deployment data.
-   */
+  /** The location to store the deployment data. */
   location?: string;
-  /**
-   * The deployment properties.
-   */
+  /** The deployment properties. */
   properties: DeploymentWhatIfProperties;
 }
 
-/**
- * Deployment What-If operation settings.
- */
+/** Deployment What-If operation settings. */
 export interface DeploymentWhatIfSettings {
-  /**
-   * The format of the What-If results
-   */
+  /** The format of the What-If results */
   resultFormat?: WhatIfResultFormat;
 }
 
-/**
- * Result of the What-If operation. Contains a list of predicted changes and a URL link to get to the next set of results.
- */
+/** Result of the What-If operation. Contains a list of predicted changes and a URL link to get to the next set of results. */
 export interface WhatIfOperationResult {
-  /**
-   * Status of the What-If operation.
-   */
+  /** Status of the What-If operation. */
   status?: string;
-  /**
-   * Error when What-If operation fails.
-   */
+  /** Error when What-If operation fails. */
   error?: ErrorResponse;
-  /**
-   * List of resource changes predicted by What-If operation.
-   */
+  /** List of resource changes predicted by What-If operation. */
   changes?: WhatIfChange[];
 }
 
-/**
- * Information about a single resource change predicted by What-If operation.
- */
+/** Information about a single resource change predicted by What-If operation. */
 export interface WhatIfChange {
-  /**
-   * Resource ID
-   */
+  /** Resource ID */
   resourceId: string;
-  /**
-   * Type of change that will be made to the resource when the deployment is executed.
-   */
+  /** Type of change that will be made to the resource when the deployment is executed. */
   changeType: ChangeType;
-  /**
-   * The snapshot of the resource before the deployment is executed.
-   */
+  /** The snapshot of the resource before the deployment is executed. */
   before?: any;
-  /**
-   * The predicted snapshot of the resource after the deployment is executed.
-   */
+  /** The predicted snapshot of the resource after the deployment is executed. */
   after?: any;
-  /**
-   * The predicted changes to resource properties.
-   */
+  /** The predicted changes to resource properties. */
   delta?: WhatIfPropertyChange[];
 }
 
-/**
- * The predicted change to the resource property.
- */
+/** The predicted change to the resource property. */
 export interface WhatIfPropertyChange {
-  /**
-   * The path of the property.
-   */
+  /** The path of the property. */
   path: string;
-  /**
-   * The type of property change.
-   */
+  /** The type of property change. */
   propertyChangeType: PropertyChangeType;
-  /**
-   * The value of the property before the deployment is executed.
-   */
+  /** The value of the property before the deployment is executed. */
   before?: any;
-  /**
-   * The value of the property after the deployment is executed.
-   */
+  /** The value of the property after the deployment is executed. */
   after?: any;
-  /**
-   * Nested property changes.
-   */
+  /** Nested property changes. */
   children?: WhatIfPropertyChange[];
 }
 
-/**
- * List of resource providers.
- */
+/** List of resource providers. */
 export interface ProviderListResult {
-  /**
-   * An array of resource providers.
-   */
+  /** An array of resource providers. */
   value?: Provider[];
   /**
    * The URL to use for getting the next set of results.
@@ -620,13 +398,9 @@ export interface ProviderListResult {
   readonly nextLink?: string;
 }
 
-/**
- * List of resource groups.
- */
+/** List of resource groups. */
 export interface ResourceListResult {
-  /**
-   * An array of resources.
-   */
+  /** An array of resources. */
   value?: GenericResourceExpanded[];
   /**
    * The URL to use for getting the next set of results.
@@ -635,65 +409,37 @@ export interface ResourceListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Plan for the resource.
- */
+/** Plan for the resource. */
 export interface Plan {
-  /**
-   * The plan ID.
-   */
+  /** The plan ID. */
   name?: string;
-  /**
-   * The publisher ID.
-   */
+  /** The publisher ID. */
   publisher?: string;
-  /**
-   * The offer ID.
-   */
+  /** The offer ID. */
   product?: string;
-  /**
-   * The promotion code.
-   */
+  /** The promotion code. */
   promotionCode?: string;
-  /**
-   * The plan's version.
-   */
+  /** The plan's version. */
   version?: string;
 }
 
-/**
- * SKU for the resource.
- */
+/** SKU for the resource. */
 export interface Sku {
-  /**
-   * The SKU name.
-   */
+  /** The SKU name. */
   name?: string;
-  /**
-   * The SKU tier.
-   */
+  /** The SKU tier. */
   tier?: string;
-  /**
-   * The SKU size.
-   */
+  /** The SKU size. */
   size?: string;
-  /**
-   * The SKU family.
-   */
+  /** The SKU family. */
   family?: string;
-  /**
-   * The SKU model.
-   */
+  /** The SKU model. */
   model?: string;
-  /**
-   * The SKU capacity.
-   */
+  /** The SKU capacity. */
   capacity?: number;
 }
 
-/**
- * Identity for the resource.
- */
+/** Identity for the resource. */
 export interface Identity {
   /**
    * The principal ID of resource identity.
@@ -705,13 +451,9 @@ export interface Identity {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
-  /**
-   * The identity type.
-   */
+  /** The identity type. */
   type?: ResourceIdentityType;
-  /**
-   * The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-   */
+  /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: {
     [propertyName: string]: ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties;
   };
@@ -730,9 +472,7 @@ export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentities
   readonly clientId?: string;
 }
 
-/**
- * Specified resource.
- */
+/** Specified resource. */
 export interface Resource {
   /**
    * Resource ID
@@ -749,19 +489,13 @@ export interface Resource {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * Resource location
-   */
+  /** Resource location */
   location?: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * Resource group information.
- */
+/** Resource group information. */
 export interface ResourceGroup {
   /**
    * The ID of the resource group.
@@ -778,27 +512,17 @@ export interface ResourceGroup {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * The resource group properties.
-   */
+  /** The resource group properties. */
   properties?: ResourceGroupProperties;
-  /**
-   * The location of the resource group. It cannot be changed after the resource group has been created. It must be one of the supported Azure locations.
-   */
+  /** The location of the resource group. It cannot be changed after the resource group has been created. It must be one of the supported Azure locations. */
   location: string;
-  /**
-   * The ID of the resource that manages this resource group.
-   */
+  /** The ID of the resource that manages this resource group. */
   managedBy?: string;
-  /**
-   * The tags attached to the resource group.
-   */
+  /** The tags attached to the resource group. */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * The resource group properties.
- */
+/** The resource group properties. */
 export interface ResourceGroupProperties {
   /**
    * The provisioning state.
@@ -807,63 +531,37 @@ export interface ResourceGroupProperties {
   readonly provisioningState?: string;
 }
 
-/**
- * Resource group information.
- */
+/** Resource group information. */
 export interface ResourceGroupPatchable {
-  /**
-   * The name of the resource group.
-   */
+  /** The name of the resource group. */
   name?: string;
-  /**
-   * The resource group properties.
-   */
+  /** The resource group properties. */
   properties?: ResourceGroupProperties;
-  /**
-   * The ID of the resource that manages this resource group.
-   */
+  /** The ID of the resource that manages this resource group. */
   managedBy?: string;
-  /**
-   * The tags attached to the resource group.
-   */
+  /** The tags attached to the resource group. */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * Export resource group template request parameters.
- */
+/** Export resource group template request parameters. */
 export interface ExportTemplateRequest {
-  /**
-   * The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'.
-   */
+  /** The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'. */
   resources?: string[];
-  /**
-   * The export template options. A CSV-formatted list containing zero or more of the following: 'IncludeParameterDefaultValue', 'IncludeComments', 'SkipResourceNameParameterization', 'SkipAllParameterization'
-   */
+  /** The export template options. A CSV-formatted list containing zero or more of the following: 'IncludeParameterDefaultValue', 'IncludeComments', 'SkipResourceNameParameterization', 'SkipAllParameterization' */
   options?: string;
 }
 
-/**
- * Resource group export result.
- */
+/** Resource group export result. */
 export interface ResourceGroupExportResult {
-  /**
-   * The template content.
-   */
+  /** The template content. */
   template?: any;
-  /**
-   * The template export error.
-   */
+  /** The template export error. */
   error?: ErrorResponse;
 }
 
-/**
- * List of resource groups.
- */
+/** List of resource groups. */
 export interface ResourceGroupListResult {
-  /**
-   * An array of resource groups.
-   */
+  /** An array of resource groups. */
   value?: ResourceGroup[];
   /**
    * The URL to use for getting the next set of results.
@@ -872,83 +570,53 @@ export interface ResourceGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Parameters of move resources.
- */
+/** Parameters of move resources. */
 export interface ResourcesMoveInfo {
-  /**
-   * The IDs of the resources.
-   */
+  /** The IDs of the resources. */
   resources?: string[];
-  /**
-   * The target resource group.
-   */
+  /** The target resource group. */
   targetResourceGroup?: string;
 }
 
-/**
- * Tag information.
- */
+/** Tag information. */
 export interface TagValue {
   /**
    * The tag ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
-  /**
-   * The tag value.
-   */
+  /** The tag value. */
   tagValue?: string;
-  /**
-   * The tag value count.
-   */
+  /** The tag value count. */
   count?: TagCount;
 }
 
-/**
- * Tag count.
- */
+/** Tag count. */
 export interface TagCount {
-  /**
-   * Type of count.
-   */
+  /** Type of count. */
   type?: string;
-  /**
-   * Value of count.
-   */
+  /** Value of count. */
   value?: number;
 }
 
-/**
- * Tag details.
- */
+/** Tag details. */
 export interface TagDetails {
   /**
    * The tag ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
-  /**
-   * The tag name.
-   */
+  /** The tag name. */
   tagName?: string;
-  /**
-   * The total number of resources that use the resource tag. When a tag is initially created and has no associated resources, the value is 0.
-   */
+  /** The total number of resources that use the resource tag. When a tag is initially created and has no associated resources, the value is 0. */
   count?: TagCount;
-  /**
-   * The list of tag values.
-   */
+  /** The list of tag values. */
   values?: TagValue[];
 }
 
-/**
- * List of subscription tags.
- */
+/** List of subscription tags. */
 export interface TagsListResult {
-  /**
-   * An array of tags.
-   */
+  /** An array of tags. */
   value?: TagDetails[];
   /**
    * The URL to use for getting the next set of results.
@@ -957,9 +625,7 @@ export interface TagsListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Deployment operation information.
- */
+/** Deployment operation information. */
 export interface DeploymentOperation {
   /**
    * Full deployment operation ID.
@@ -971,15 +637,11 @@ export interface DeploymentOperation {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationId?: string;
-  /**
-   * Deployment properties.
-   */
+  /** Deployment properties. */
   properties?: DeploymentOperationProperties;
 }
 
-/**
- * Deployment operation properties.
- */
+/** Deployment operation properties. */
 export interface DeploymentOperationProperties {
   /**
    * The state of the provisioning.
@@ -1028,41 +690,25 @@ export interface DeploymentOperationProperties {
   readonly response?: HttpMessage;
 }
 
-/**
- * Target resource.
- */
+/** Target resource. */
 export interface TargetResource {
-  /**
-   * The ID of the resource.
-   */
+  /** The ID of the resource. */
   id?: string;
-  /**
-   * The name of the resource.
-   */
+  /** The name of the resource. */
   resourceName?: string;
-  /**
-   * The type of the resource.
-   */
+  /** The type of the resource. */
   resourceType?: string;
 }
 
-/**
- * HTTP message.
- */
+/** HTTP message. */
 export interface HttpMessage {
-  /**
-   * HTTP message content.
-   */
+  /** HTTP message content. */
   content?: any;
 }
 
-/**
- * List of deployment operations.
- */
+/** List of deployment operations. */
 export interface DeploymentOperationsListResult {
-  /**
-   * An array of deployment operations.
-   */
+  /** An array of deployment operations. */
   value?: DeploymentOperation[];
   /**
    * The URL to use for getting the next set of results.
@@ -1071,141 +717,81 @@ export interface DeploymentOperationsListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Result of the request to calculate template hash. It contains a string of minified template and its hash.
- */
+/** Result of the request to calculate template hash. It contains a string of minified template and its hash. */
 export interface TemplateHashResult {
-  /**
-   * The minified template string.
-   */
+  /** The minified template string. */
   minifiedTemplate?: string;
-  /**
-   * The template hash.
-   */
+  /** The template hash. */
   templateHash?: string;
 }
 
-/**
- * Deployment filter.
- */
+/** Deployment filter. */
 export interface DeploymentExtendedFilter {
-  /**
-   * The provisioning state.
-   */
+  /** The provisioning state. */
   provisioningState?: string;
 }
 
-/**
- * Resource filter.
- */
+/** Resource filter. */
 export interface GenericResourceFilter {
-  /**
-   * The resource type.
-   */
+  /** The resource type. */
   resourceType?: string;
-  /**
-   * The tag name.
-   */
+  /** The tag name. */
   tagname?: string;
-  /**
-   * The tag value.
-   */
+  /** The tag value. */
   tagvalue?: string;
 }
 
-/**
- * Resource group filter.
- */
+/** Resource group filter. */
 export interface ResourceGroupFilter {
-  /**
-   * The tag name.
-   */
+  /** The tag name. */
   tagName?: string;
-  /**
-   * The tag value.
-   */
+  /** The tag value. */
   tagValue?: string;
 }
 
-/**
- * Resource provider operation's display properties.
- */
+/** Resource provider operation's display properties. */
 export interface ResourceProviderOperationDisplayProperties {
-  /**
-   * Operation description.
-   */
+  /** Operation description. */
   publisher?: string;
-  /**
-   * Operation provider.
-   */
+  /** Operation provider. */
   provider?: string;
-  /**
-   * Operation resource.
-   */
+  /** Operation resource. */
   resource?: string;
-  /**
-   * Resource provider operation.
-   */
+  /** Resource provider operation. */
   operation?: string;
-  /**
-   * Operation description.
-   */
+  /** Operation description. */
   description?: string;
 }
 
-/**
- * Sub-resource.
- */
+/** Sub-resource. */
 export interface SubResource {
-  /**
-   * Resource ID
-   */
+  /** Resource ID */
   id?: string;
 }
 
-/**
- * Deployment What-if properties.
- */
+/** Deployment What-if properties. */
 export type DeploymentWhatIfProperties = DeploymentProperties & {
-  /**
-   * Optional What-If operation settings.
-   */
+  /** Optional What-If operation settings. */
   whatIfSettings?: DeploymentWhatIfSettings;
 };
 
-/**
- * Resource information.
- */
+/** Resource information. */
 export type GenericResource = Resource & {
-  /**
-   * The plan of the resource.
-   */
+  /** The plan of the resource. */
   plan?: Plan;
-  /**
-   * The resource properties.
-   */
+  /** The resource properties. */
   properties?: any;
-  /**
-   * The kind of the resource.
-   */
+  /** The kind of the resource. */
   kind?: string;
-  /**
-   * ID of the resource that manages this resource.
-   */
+  /** ID of the resource that manages this resource. */
   managedBy?: string;
-  /**
-   * The SKU of the resource.
-   */
+  /** The SKU of the resource. */
   sku?: Sku;
-  /**
-   * The identity of the resource.
-   */
+  /** The identity of the resource. */
   identity?: Identity;
 };
 
-/**
- * Resource information.
- */
+/** Resource information. */
 export type GenericResourceExpanded = GenericResource & {
   /**
    * The created time of the resource. This is only present if requested via the $expand query parameter.
@@ -1224,49 +810,29 @@ export type GenericResourceExpanded = GenericResource & {
   readonly provisioningState?: string;
 };
 
-/**
- * Defines headers for Deployments_whatIfAtSubscriptionScope operation.
- */
+/** Defines headers for Deployments_whatIfAtSubscriptionScope operation. */
 export interface DeploymentsWhatIfAtSubscriptionScopeHeaders {
-  /**
-   * URL to get status of this long-running operation.
-   */
+  /** URL to get status of this long-running operation. */
   location?: string;
-  /**
-   * Number of seconds to wait before polling for status.
-   */
+  /** Number of seconds to wait before polling for status. */
   retryAfter?: string;
 }
 
-/**
- * Defines headers for Deployments_whatIf operation.
- */
+/** Defines headers for Deployments_whatIf operation. */
 export interface DeploymentsWhatIfHeaders {
-  /**
-   * URL to get status of this long-running operation.
-   */
+  /** URL to get status of this long-running operation. */
   location?: string;
-  /**
-   * Number of seconds to wait before polling for status.
-   */
+  /** Number of seconds to wait before polling for status. */
   retryAfter?: string;
 }
 
-/**
- * Defines values for DeploymentMode.
- */
+/** Defines values for DeploymentMode. */
 export type DeploymentMode = "Incremental" | "Complete";
-/**
- * Defines values for OnErrorDeploymentType.
- */
+/** Defines values for OnErrorDeploymentType. */
 export type OnErrorDeploymentType = "LastSuccessful" | "SpecificDeployment";
-/**
- * Defines values for WhatIfResultFormat.
- */
+/** Defines values for WhatIfResultFormat. */
 export type WhatIfResultFormat = "ResourceIdOnly" | "FullResourcePayloads";
-/**
- * Defines values for ChangeType.
- */
+/** Defines values for ChangeType. */
 export type ChangeType =
   | "Create"
   | "Delete"
@@ -1274,2087 +840,1251 @@ export type ChangeType =
   | "Deploy"
   | "NoChange"
   | "Modify";
-/**
- * Defines values for PropertyChangeType.
- */
+/** Defines values for PropertyChangeType. */
 export type PropertyChangeType = "Create" | "Delete" | "Modify" | "Array";
-/**
- * Defines values for ResourceIdentityType.
- */
+/** Defines values for ResourceIdentityType. */
 export type ResourceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtScope operation.
- */
+/** Contains response data for the createOrUpdateAtScope operation. */
 export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the getAtScope operation.
- */
+/** Contains response data for the getAtScope operation. */
 export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
   };
 };
 
-/**
- * Contains response data for the validateAtScope operation.
- */
+/** Contains response data for the validateAtScope operation. */
 export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentValidateResult;
   };
 };
 
-/**
- * Contains response data for the exportTemplateAtScope operation.
- */
+/** Contains response data for the exportTemplateAtScope operation. */
 export type DeploymentsExportTemplateAtScopeResponse = DeploymentExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExportResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtScope operation.
- */
+/** Contains response data for the listAtScope operation. */
 export type DeploymentsListAtScopeResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtTenantScope operation.
- */
+/** Contains response data for the createOrUpdateAtTenantScope operation. */
 export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the getAtTenantScope operation.
- */
+/** Contains response data for the getAtTenantScope operation. */
 export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
   };
 };
 
-/**
- * Contains response data for the validateAtTenantScope operation.
- */
+/** Contains response data for the validateAtTenantScope operation. */
 export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentValidateResult;
   };
 };
 
-/**
- * Contains response data for the exportTemplateAtTenantScope operation.
- */
+/** Contains response data for the exportTemplateAtTenantScope operation. */
 export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExportResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtTenantScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtTenantScope operation.
- */
+/** Contains response data for the listAtTenantScope operation. */
 export type DeploymentsListAtTenantScopeResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtManagementGroupScope operation.
- */
+/** Contains response data for the createOrUpdateAtManagementGroupScope operation. */
 export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the getAtManagementGroupScope operation.
- */
+/** Contains response data for the getAtManagementGroupScope operation. */
 export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
   };
 };
 
-/**
- * Contains response data for the validateAtManagementGroupScope operation.
- */
+/** Contains response data for the validateAtManagementGroupScope operation. */
 export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentValidateResult;
   };
 };
 
-/**
- * Contains response data for the exportTemplateAtManagementGroupScope operation.
- */
+/** Contains response data for the exportTemplateAtManagementGroupScope operation. */
 export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExportResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtManagementGroupScope operation.
- */
+/** Contains response data for the listAtManagementGroupScope operation. */
 export type DeploymentsListAtManagementGroupScopeResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtSubscriptionScope operation.
- */
+/** Contains response data for the createOrUpdateAtSubscriptionScope operation. */
 export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the getAtSubscriptionScope operation.
- */
+/** Contains response data for the getAtSubscriptionScope operation. */
 export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
   };
 };
 
-/**
- * Contains response data for the validateAtSubscriptionScope operation.
- */
+/** Contains response data for the validateAtSubscriptionScope operation. */
 export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentValidateResult;
   };
 };
 
-/**
- * Contains response data for the whatIfAtSubscriptionScope operation.
- */
+/** Contains response data for the whatIfAtSubscriptionScope operation. */
 export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WhatIfOperationResult;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the exportTemplateAtSubscriptionScope operation.
- */
+/** Contains response data for the exportTemplateAtSubscriptionScope operation. */
 export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExportResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtSubscriptionScope operation.
- */
+/** Contains response data for the listAtSubscriptionScope operation. */
 export type DeploymentsListAtSubscriptionScopeResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DeploymentsGetResponse = DeploymentExtended & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
   };
 };
 
-/**
- * Contains response data for the validate operation.
- */
+/** Contains response data for the validate operation. */
 export type DeploymentsValidateResponse = DeploymentValidateResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentValidateResult;
   };
 };
 
-/**
- * Contains response data for the whatIf operation.
- */
+/** Contains response data for the whatIf operation. */
 export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WhatIfOperationResult;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the exportTemplate operation.
- */
+/** Contains response data for the exportTemplate operation. */
 export type DeploymentsExportTemplateResponse = DeploymentExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExportResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListByResourceGroupOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type DeploymentsListByResourceGroupResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the calculateTemplateHash operation.
- */
+/** Contains response data for the calculateTemplateHash operation. */
 export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TemplateHashResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtScopeNext operation.
- */
+/** Contains response data for the listAtScopeNext operation. */
 export type DeploymentsListAtScopeNextResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtTenantScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtTenantScopeNext operation.
- */
+/** Contains response data for the listAtTenantScopeNext operation. */
 export type DeploymentsListAtTenantScopeNextResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtManagementGroupScopeNext operation.
- */
+/** Contains response data for the listAtManagementGroupScopeNext operation. */
 export type DeploymentsListAtManagementGroupScopeNextResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtSubscriptionScopeNext operation.
- */
+/** Contains response data for the listAtSubscriptionScopeNext operation. */
 export type DeploymentsListAtSubscriptionScopeNextResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentsListByResourceGroupNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'.
-   */
+  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
-  /**
-   * The number of results to get. If null is passed, returns all deployments.
-   */
+  /** The number of results to get. If null is passed, returns all deployments. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type DeploymentsListByResourceGroupNextResponse = DeploymentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentListResult;
   };
 };
 
-/**
- * Contains response data for the unregister operation.
- */
+/** Contains response data for the unregister operation. */
 export type ProvidersUnregisterResponse = Provider & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Provider;
   };
 };
 
-/**
- * Contains response data for the register operation.
- */
+/** Contains response data for the register operation. */
 export type ProvidersRegisterResponse = Provider & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Provider;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersListOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return. If null is passed returns all deployments.
-   */
+  /** The number of results to return. If null is passed returns all deployments. */
   top?: number;
-  /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ProvidersListResponse = ProviderListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProviderListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersListAtTenantScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return. If null is passed returns all providers.
-   */
+  /** The number of results to return. If null is passed returns all providers. */
   top?: number;
-  /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listAtTenantScope operation.
- */
+/** Contains response data for the listAtTenantScope operation. */
 export type ProvidersListAtTenantScopeResponse = ProviderListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProviderListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersGetOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ProvidersGetResponse = Provider & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Provider;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersGetAtTenantScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the getAtTenantScope operation.
- */
+/** Contains response data for the getAtTenantScope operation. */
 export type ProvidersGetAtTenantScopeResponse = Provider & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Provider;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersListNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return. If null is passed returns all deployments.
-   */
+  /** The number of results to return. If null is passed returns all deployments. */
   top?: number;
-  /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ProvidersListNextResponse = ProviderListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProviderListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ProvidersListAtTenantScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return. If null is passed returns all providers.
-   */
+  /** The number of results to return. If null is passed returns all providers. */
   top?: number;
-  /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
+  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listAtTenantScopeNext operation.
- */
+/** Contains response data for the listAtTenantScopeNext operation. */
 export type ProvidersListAtTenantScopeNextResponse = ProviderListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProviderListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourcesListByResourceGroupOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId.
-   */
+  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resources.
-   */
+  /** The number of results to return. If null is passed, returns all resources. */
   top?: number;
-  /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
+  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type ResourcesListByResourceGroupResponse = ResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourcesListOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId.
-   */
+  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
+  /** The number of results to return. If null is passed, returns all resource groups. */
   top?: number;
-  /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
+  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
   expand?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ResourcesListResponse = ResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ResourcesCreateOrUpdateResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ResourcesUpdateResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ResourcesGetResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateById operation.
- */
+/** Contains response data for the createOrUpdateById operation. */
 export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the updateById operation.
- */
+/** Contains response data for the updateById operation. */
 export type ResourcesUpdateByIdResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the getById operation.
- */
+/** Contains response data for the getById operation. */
 export type ResourcesGetByIdResponse = GenericResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourcesListByResourceGroupNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId.
-   */
+  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resources.
-   */
+  /** The number of results to return. If null is passed, returns all resources. */
   top?: number;
-  /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
+  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type ResourcesListByResourceGroupNextResponse = ResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourcesListNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId.
-   */
+  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
+  /** The number of results to return. If null is passed, returns all resource groups. */
   top?: number;
-  /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
+  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
   expand?: string;
 }
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ResourcesListNextResponse = ResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroup;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ResourceGroupsGetResponse = ResourceGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroup;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ResourceGroupsUpdateResponse = ResourceGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroup;
   };
 };
 
-/**
- * Contains response data for the exportTemplate operation.
- */
+/** Contains response data for the exportTemplate operation. */
 export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroupExportResult;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourceGroupsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'
-   */
+  /** The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1' */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
+  /** The number of results to return. If null is passed, returns all resource groups. */
   top?: number;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ResourceGroupsListResponse = ResourceGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourceGroupsListNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'
-   */
+  /** The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1' */
   filter?: string;
-  /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
+  /** The number of results to return. If null is passed, returns all resource groups. */
   top?: number;
 }
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ResourceGroupsListNextResponse = ResourceGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroupListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateValue operation.
- */
+/** Contains response data for the createOrUpdateValue operation. */
 export type TagsCreateOrUpdateValueResponse = TagValue & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TagValue;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type TagsCreateOrUpdateResponse = TagDetails & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TagDetails;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type TagsListResponse = TagsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TagsListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type TagsListNextResponse = TagsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TagsListResult;
   };
 };
 
-/**
- * Contains response data for the getAtScope operation.
- */
+/** Contains response data for the getAtScope operation. */
 export type DeploymentOperationsGetAtScopeResponse = DeploymentOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperation;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtScope operation.
- */
+/** Contains response data for the listAtScope operation. */
 export type DeploymentOperationsListAtScopeResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the getAtTenantScope operation.
- */
+/** Contains response data for the getAtTenantScope operation. */
 export type DeploymentOperationsGetAtTenantScopeResponse = DeploymentOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperation;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtTenantScope operation.
- */
+/** Contains response data for the listAtTenantScope operation. */
 export type DeploymentOperationsListAtTenantScopeResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the getAtManagementGroupScope operation.
- */
+/** Contains response data for the getAtManagementGroupScope operation. */
 export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperation;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtManagementGroupScope operation.
- */
+/** Contains response data for the listAtManagementGroupScope operation. */
 export type DeploymentOperationsListAtManagementGroupScopeResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the getAtSubscriptionScope operation.
- */
+/** Contains response data for the getAtSubscriptionScope operation. */
 export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperation;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtSubscriptionScope operation.
- */
+/** Contains response data for the listAtSubscriptionScope operation. */
 export type DeploymentOperationsListAtSubscriptionScopeResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DeploymentOperationsGetResponse = DeploymentOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperation;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type DeploymentOperationsListResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtScopeNext operation.
- */
+/** Contains response data for the listAtScopeNext operation. */
 export type DeploymentOperationsListAtScopeNextResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtTenantScopeNext operation.
- */
+/** Contains response data for the listAtTenantScopeNext operation. */
 export type DeploymentOperationsListAtTenantScopeNextResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtManagementGroupScopeNext operation.
- */
+/** Contains response data for the listAtManagementGroupScopeNext operation. */
 export type DeploymentOperationsListAtManagementGroupScopeNextResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listAtSubscriptionScopeNext operation.
- */
+/** Contains response data for the listAtSubscriptionScopeNext operation. */
 export type DeploymentOperationsListAtSubscriptionScopeNextResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeploymentOperationsListNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of results to return.
-   */
+  /** The number of results to return. */
   top?: number;
 }
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type DeploymentOperationsListNextResponse = DeploymentOperationsListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DeploymentOperationsListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ResourceManagementClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

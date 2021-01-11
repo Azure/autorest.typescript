@@ -32,9 +32,7 @@ import {
   ResourcesListNextResponse
 } from "../models";
 
-/**
- * Class representing a Resources.
- */
+/** Class representing a Resources. */
 export class Resources {
   private readonly client: ResourceManagementClient;
 
@@ -709,7 +707,6 @@ export class Resources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {

@@ -17,9 +17,7 @@ import {
   TenantsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Tenants.
- */
+/** Class representing a Tenants. */
 export class Tenants {
   private readonly client: SubscriptionClient;
 
@@ -109,7 +107,6 @@ export class Tenants {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

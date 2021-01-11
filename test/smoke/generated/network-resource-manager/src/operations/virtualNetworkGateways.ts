@@ -47,9 +47,7 @@ import {
   VirtualNetworkGatewaysListConnectionsNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworkGateways.
- */
+/** Class representing a VirtualNetworkGateways. */
 export class VirtualNetworkGateways {
   private readonly client: NetworkManagementClient;
 
@@ -1044,7 +1042,6 @@ export class VirtualNetworkGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

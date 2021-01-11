@@ -16,9 +16,7 @@ import {
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
-/**
- * Class representing a ServerAutomaticTuning.
- */
+/** Class representing a ServerAutomaticTuning. */
 export class ServerAutomaticTuning {
   private readonly client: SqlManagementClient;
 
@@ -80,7 +78,6 @@ export class ServerAutomaticTuning {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

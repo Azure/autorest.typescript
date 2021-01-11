@@ -20,9 +20,7 @@ import {
   LoadBalancerBackendAddressPoolsListNextResponse
 } from "../models";
 
-/**
- * Class representing a LoadBalancerBackendAddressPools.
- */
+/** Class representing a LoadBalancerBackendAddressPools. */
 export class LoadBalancerBackendAddressPools {
   private readonly client: NetworkManagementClient;
 
@@ -272,7 +270,6 @@ export class LoadBalancerBackendAddressPools {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

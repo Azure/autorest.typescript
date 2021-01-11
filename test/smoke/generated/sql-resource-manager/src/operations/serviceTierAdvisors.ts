@@ -17,9 +17,7 @@ import {
   ServiceTierAdvisorsListByDatabaseResponse
 } from "../models";
 
-/**
- * Class representing a ServiceTierAdvisors.
- */
+/** Class representing a ServiceTierAdvisors. */
 export class ServiceTierAdvisors {
   private readonly client: SqlManagementClient;
 
@@ -156,7 +154,6 @@ export class ServiceTierAdvisors {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

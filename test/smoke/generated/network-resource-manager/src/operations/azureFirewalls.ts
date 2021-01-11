@@ -24,9 +24,7 @@ import {
   AzureFirewallsListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a AzureFirewalls.
- */
+/** Class representing a AzureFirewalls. */
 export class AzureFirewalls {
   private readonly client: NetworkManagementClient;
 
@@ -361,7 +359,6 @@ export class AzureFirewalls {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

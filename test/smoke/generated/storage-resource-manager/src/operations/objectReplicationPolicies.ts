@@ -18,9 +18,7 @@ import {
   ObjectReplicationPoliciesCreateOrUpdateResponse
 } from "../models";
 
-/**
- * Class representing a ObjectReplicationPolicies.
- */
+/** Class representing a ObjectReplicationPolicies. */
 export class ObjectReplicationPolicies {
   private readonly client: StorageManagementClient;
 
@@ -200,7 +198,6 @@ export class ObjectReplicationPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

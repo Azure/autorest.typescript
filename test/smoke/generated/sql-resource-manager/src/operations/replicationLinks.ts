@@ -19,9 +19,7 @@ import {
   ReplicationLinksListByDatabaseResponse
 } from "../models";
 
-/**
- * Class representing a ReplicationLinks.
- */
+/** Class representing a ReplicationLinks. */
 export class ReplicationLinks {
   private readonly client: SqlManagementClient;
 
@@ -335,7 +333,6 @@ export class ReplicationLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   LoadBalancerLoadBalancingRulesListNextResponse
 } from "../models";
 
-/**
- * Class representing a LoadBalancerLoadBalancingRules.
- */
+/** Class representing a LoadBalancerLoadBalancingRules. */
 export class LoadBalancerLoadBalancingRules {
   private readonly client: NetworkManagementClient;
 
@@ -172,7 +170,6 @@ export class LoadBalancerLoadBalancingRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -37,9 +37,7 @@ import {
   DatabaseAccountsListMetricDefinitionsResponse
 } from "../models";
 
-/**
- * Class representing a DatabaseAccounts.
- */
+/** Class representing a DatabaseAccounts. */
 export class DatabaseAccounts {
   private readonly client: CosmosDBManagementClient;
 
@@ -850,7 +848,6 @@ export class DatabaseAccounts {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   HubVirtualNetworkConnectionsListNextResponse
 } from "../models";
 
-/**
- * Class representing a HubVirtualNetworkConnections.
- */
+/** Class representing a HubVirtualNetworkConnections. */
 export class HubVirtualNetworkConnections {
   private readonly client: NetworkManagementClient;
 
@@ -164,7 +162,6 @@ export class HubVirtualNetworkConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -18,9 +18,7 @@ import {
   LogAnalyticsExportThrottledRequestsResponse
 } from "../models";
 
-/**
- * Class representing a LogAnalytics.
- */
+/** Class representing a LogAnalytics. */
 export class LogAnalytics {
   private readonly client: ComputeManagementClient;
 
@@ -122,7 +120,6 @@ export class LogAnalytics {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const exportRequestRateByIntervalOperationSpec: coreHttp.OperationSpec = {

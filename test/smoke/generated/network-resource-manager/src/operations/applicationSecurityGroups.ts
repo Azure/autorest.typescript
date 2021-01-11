@@ -24,9 +24,7 @@ import {
   ApplicationSecurityGroupsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ApplicationSecurityGroups.
- */
+/** Class representing a ApplicationSecurityGroups. */
 export class ApplicationSecurityGroups {
   private readonly client: NetworkManagementClient;
 
@@ -345,7 +343,6 @@ export class ApplicationSecurityGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

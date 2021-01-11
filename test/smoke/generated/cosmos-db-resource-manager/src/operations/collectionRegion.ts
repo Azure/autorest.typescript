@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { Metric, CollectionRegionListMetricsResponse } from "../models";
 
-/**
- * Class representing a CollectionRegion.
- */
+/** Class representing a CollectionRegion. */
 export class CollectionRegion {
   private readonly client: CosmosDBManagementClient;
 
@@ -160,7 +158,6 @@ export class CollectionRegion {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

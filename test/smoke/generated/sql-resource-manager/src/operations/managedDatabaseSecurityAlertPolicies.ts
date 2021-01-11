@@ -20,9 +20,7 @@ import {
   ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedDatabaseSecurityAlertPolicies.
- */
+/** Class representing a ManagedDatabaseSecurityAlertPolicies. */
 export class ManagedDatabaseSecurityAlertPolicies {
   private readonly client: SqlManagementClient;
 
@@ -237,7 +235,6 @@ export class ManagedDatabaseSecurityAlertPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

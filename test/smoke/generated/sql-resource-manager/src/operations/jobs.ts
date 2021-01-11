@@ -19,9 +19,7 @@ import {
   JobsListByAgentNextResponse
 } from "../models";
 
-/**
- * Class representing a Jobs.
- */
+/** Class representing a Jobs. */
 export class Jobs {
   private readonly client: SqlManagementClient;
 
@@ -260,7 +258,6 @@ export class Jobs {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByAgentOperationSpec: coreHttp.OperationSpec = {

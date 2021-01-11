@@ -16,9 +16,7 @@ import {
   CollectionPartitionRegionListMetricsResponse
 } from "../models";
 
-/**
- * Class representing a CollectionPartitionRegion.
- */
+/** Class representing a CollectionPartitionRegion. */
 export class CollectionPartitionRegion {
   private readonly client: CosmosDBManagementClient;
 
@@ -163,7 +161,6 @@ export class CollectionPartitionRegion {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

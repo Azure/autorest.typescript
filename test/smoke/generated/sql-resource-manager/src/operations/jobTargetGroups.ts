@@ -19,9 +19,7 @@ import {
   JobTargetGroupsListByAgentNextResponse
 } from "../models";
 
-/**
- * Class representing a JobTargetGroups.
- */
+/** Class representing a JobTargetGroups. */
 export class JobTargetGroups {
   private readonly client: SqlManagementClient;
 
@@ -260,7 +258,6 @@ export class JobTargetGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByAgentOperationSpec: coreHttp.OperationSpec = {

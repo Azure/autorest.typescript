@@ -17,9 +17,7 @@ import {
   RecoverableDatabasesListByServerResponse
 } from "../models";
 
-/**
- * Class representing a RecoverableDatabases.
- */
+/** Class representing a RecoverableDatabases. */
 export class RecoverableDatabases {
   private readonly client: SqlManagementClient;
 
@@ -142,7 +140,6 @@ export class RecoverableDatabases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

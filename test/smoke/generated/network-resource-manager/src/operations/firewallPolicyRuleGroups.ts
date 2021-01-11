@@ -20,9 +20,7 @@ import {
   FirewallPolicyRuleGroupsListNextResponse
 } from "../models";
 
-/**
- * Class representing a FirewallPolicyRuleGroups.
- */
+/** Class representing a FirewallPolicyRuleGroups. */
 export class FirewallPolicyRuleGroups {
   private readonly client: NetworkManagementClient;
 
@@ -275,7 +273,6 @@ export class FirewallPolicyRuleGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

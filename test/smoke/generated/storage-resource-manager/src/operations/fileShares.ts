@@ -24,9 +24,7 @@ import {
   FileSharesListNextResponse
 } from "../models";
 
-/**
- * Class representing a FileShares.
- */
+/** Class representing a FileShares. */
 export class FileShares {
   private readonly client: StorageManagementClient;
 
@@ -316,7 +314,6 @@ export class FileShares {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

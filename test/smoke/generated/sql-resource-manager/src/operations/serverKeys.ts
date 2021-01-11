@@ -20,9 +20,7 @@ import {
   ServerKeysListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a ServerKeys.
- */
+/** Class representing a ServerKeys. */
 export class ServerKeys {
   private readonly client: SqlManagementClient;
 
@@ -282,7 +280,6 @@ export class ServerKeys {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByServerOperationSpec: coreHttp.OperationSpec = {

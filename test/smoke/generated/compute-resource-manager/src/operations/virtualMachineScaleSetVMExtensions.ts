@@ -22,9 +22,7 @@ import {
   VirtualMachineScaleSetVMExtensionsListResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineScaleSetVMExtensions.
- */
+/** Class representing a VirtualMachineScaleSetVMExtensions. */
 export class VirtualMachineScaleSetVMExtensions {
   private readonly client: ComputeManagementClient;
 
@@ -239,7 +237,6 @@ export class VirtualMachineScaleSetVMExtensions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

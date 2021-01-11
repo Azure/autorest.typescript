@@ -35,9 +35,7 @@ import {
   PolicyAssignmentsListNextResponse
 } from "../models";
 
-/**
- * Class representing a PolicyAssignments.
- */
+/** Class representing a PolicyAssignments. */
 export class PolicyAssignments {
   private readonly client: PolicyClient;
 
@@ -766,7 +764,6 @@ export class PolicyAssignments {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -24,9 +24,7 @@ import {
   UsersListNextResponse
 } from "../models";
 
-/**
- * Class representing a Users.
- */
+/** Class representing a Users. */
 export class Users {
   private readonly client: GraphRbacManagementClient;
 
@@ -309,7 +307,6 @@ export class Users {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

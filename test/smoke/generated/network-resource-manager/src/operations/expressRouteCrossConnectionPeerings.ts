@@ -20,9 +20,7 @@ import {
   ExpressRouteCrossConnectionPeeringsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteCrossConnectionPeerings.
- */
+/** Class representing a ExpressRouteCrossConnectionPeerings. */
 export class ExpressRouteCrossConnectionPeerings {
   private readonly client: NetworkManagementClient;
 
@@ -278,7 +276,6 @@ export class ExpressRouteCrossConnectionPeerings {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

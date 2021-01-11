@@ -32,9 +32,7 @@ import {
   GroupsListOwnersNextResponse
 } from "../models";
 
-/**
- * Class representing a Groups.
- */
+/** Class representing a Groups. */
 export class Groups {
   private readonly client: GraphRbacManagementClient;
 
@@ -630,7 +628,6 @@ export class Groups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const isMemberOfOperationSpec: coreHttp.OperationSpec = {

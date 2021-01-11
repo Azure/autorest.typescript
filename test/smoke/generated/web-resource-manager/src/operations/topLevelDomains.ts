@@ -22,9 +22,7 @@ import {
   TopLevelDomainsListAgreementsNextResponse
 } from "../models";
 
-/**
- * Class representing a TopLevelDomains.
- */
+/** Class representing a TopLevelDomains. */
 export class TopLevelDomains {
   private readonly client: WebSiteManagementClient;
 
@@ -239,7 +237,6 @@ export class TopLevelDomains {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

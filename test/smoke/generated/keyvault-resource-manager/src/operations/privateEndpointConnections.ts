@@ -18,9 +18,7 @@ import {
   PrivateEndpointConnectionsDeleteResponse
 } from "../models";
 
-/**
- * Class representing a PrivateEndpointConnections.
- */
+/** Class representing a PrivateEndpointConnections. */
 export class PrivateEndpointConnections {
   private readonly client: KeyVaultManagementClient;
 
@@ -141,7 +139,6 @@ export class PrivateEndpointConnections {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

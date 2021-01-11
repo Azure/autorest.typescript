@@ -115,7 +115,6 @@ export class FeatureClient extends FeatureClientContext {
   features: Features;
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationsOperationSpec: coreHttp.OperationSpec = {

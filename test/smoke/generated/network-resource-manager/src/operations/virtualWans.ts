@@ -24,9 +24,7 @@ import {
   VirtualWansListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualWans.
- */
+/** Class representing a VirtualWans. */
 export class VirtualWans {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class VirtualWans {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -20,9 +20,7 @@ import {
   EncryptionScopesListNextResponse
 } from "../models";
 
-/**
- * Class representing a EncryptionScopes.
- */
+/** Class representing a EncryptionScopes. */
 export class EncryptionScopes {
   private readonly client: StorageManagementClient;
 
@@ -252,7 +250,6 @@ export class EncryptionScopes {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const putOperationSpec: coreHttp.OperationSpec = {

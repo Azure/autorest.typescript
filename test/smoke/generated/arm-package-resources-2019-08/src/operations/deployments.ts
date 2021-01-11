@@ -62,9 +62,7 @@ import {
   DeploymentsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a Deployments.
- */
+/** Class representing a Deployments. */
 export class Deployments {
   private readonly client: ResourceManagementClient;
 
@@ -1585,7 +1583,6 @@ export class Deployments {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteAtScopeOperationSpec: coreHttp.OperationSpec = {

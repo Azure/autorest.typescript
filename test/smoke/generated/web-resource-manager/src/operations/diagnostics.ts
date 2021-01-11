@@ -56,9 +56,7 @@ import {
   DiagnosticsListSiteDetectorsSlotNextResponse
 } from "../models";
 
-/**
- * Class representing a Diagnostics.
- */
+/** Class representing a Diagnostics. */
 export class Diagnostics {
   private readonly client: WebSiteManagementClient;
 
@@ -1627,7 +1625,6 @@ export class Diagnostics {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listHostingEnvironmentDetectorResponsesOperationSpec: coreHttp.OperationSpec = {

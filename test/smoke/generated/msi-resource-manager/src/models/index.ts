@@ -26,113 +26,65 @@ export interface Resource {
   readonly type?: string;
 }
 
-/**
- * An error response from the ManagedServiceIdentity service.
- */
+/** An error response from the ManagedServiceIdentity service. */
 export interface CloudError {
-  /**
-   * A list of additional details about the error.
-   */
+  /** A list of additional details about the error. */
   error?: CloudErrorBody;
 }
 
-/**
- * An error response from the ManagedServiceIdentity service.
- */
+/** An error response from the ManagedServiceIdentity service. */
 export interface CloudErrorBody {
-  /**
-   * An identifier for the error.
-   */
+  /** An identifier for the error. */
   code?: string;
-  /**
-   * A message describing the error, intended to be suitable for display in a user interface.
-   */
+  /** A message describing the error, intended to be suitable for display in a user interface. */
   message?: string;
-  /**
-   * The target of the particular error. For example, the name of the property in error.
-   */
+  /** The target of the particular error. For example, the name of the property in error. */
   target?: string;
-  /**
-   * A list of additional details about the error.
-   */
+  /** A list of additional details about the error. */
   details?: CloudErrorBody[];
 }
 
-/**
- * A list of operations supported by Microsoft.ManagedIdentity Resource Provider.
- */
+/** A list of operations supported by Microsoft.ManagedIdentity Resource Provider. */
 export interface OperationListResult {
-  /**
-   * A list of operations supported by Microsoft.ManagedIdentity Resource Provider.
-   */
+  /** A list of operations supported by Microsoft.ManagedIdentity Resource Provider. */
   value?: Operation[];
-  /**
-   * The url to get the next page of results, if any.
-   */
+  /** The url to get the next page of results, if any. */
   nextLink?: string;
 }
 
-/**
- * Operation supported by the Microsoft.ManagedIdentity REST API.
- */
+/** Operation supported by the Microsoft.ManagedIdentity REST API. */
 export interface Operation {
-  /**
-   * The name of the REST Operation. This is of the format {provider}/{resource}/{operation}.
-   */
+  /** The name of the REST Operation. This is of the format {provider}/{resource}/{operation}. */
   name?: string;
-  /**
-   * The object that describes the operation.
-   */
+  /** The object that describes the operation. */
   display?: OperationDisplay;
 }
 
-/**
- * The object that describes the operation.
- */
+/** The object that describes the operation. */
 export interface OperationDisplay {
-  /**
-   * Friendly name of the resource provider.
-   */
+  /** Friendly name of the resource provider. */
   provider?: string;
-  /**
-   * The type of operation. For example: read, write, delete.
-   */
+  /** The type of operation. For example: read, write, delete. */
   operation?: string;
-  /**
-   * The resource type on which the operation is performed.
-   */
+  /** The resource type on which the operation is performed. */
   resource?: string;
-  /**
-   * A description of the operation.
-   */
+  /** A description of the operation. */
   description?: string;
 }
 
-/**
- * Values returned by the List operation.
- */
+/** Values returned by the List operation. */
 export interface UserAssignedIdentitiesListResult {
-  /**
-   * The collection of userAssignedIdentities returned by the listing operation.
-   */
+  /** The collection of userAssignedIdentities returned by the listing operation. */
   value?: Identity[];
-  /**
-   * The url to get the next page of results, if any.
-   */
+  /** The url to get the next page of results, if any. */
   nextLink?: string;
 }
 
-/**
- * Describes a system assigned identity resource.
- */
+/** Describes a system assigned identity resource. */
 export type SystemAssignedIdentity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
   /**
    * The id of the tenant which the identity belongs to.
@@ -156,31 +108,19 @@ export type SystemAssignedIdentity = Resource & {
   readonly clientSecretUrl?: string;
 };
 
-/**
- * The resource model definition for a ARM tracked top level resource
- */
+/** The resource model definition for a ARM tracked top level resource */
 export type TrackedResource = Resource & {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location: string;
 };
 
-/**
- * Describes an identity resource.
- */
+/** Describes an identity resource. */
 export type IdentityUpdate = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
   /**
    * The id of the tenant which the identity belongs to.
@@ -199,14 +139,10 @@ export type IdentityUpdate = Resource & {
   readonly clientId?: string;
 };
 
-/**
- * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
- */
+/** The resource model definition for a ARM proxy resource. It will have everything other than required location and tags */
 export type ProxyResource = Resource & {};
 
-/**
- * Describes an identity resource.
- */
+/** Describes an identity resource. */
 export type Identity = TrackedResource & {
   /**
    * The id of the tenant which the identity belongs to.
@@ -225,221 +161,133 @@ export type Identity = TrackedResource & {
   readonly clientId?: string;
 };
 
-/**
- * Contains response data for the getByScope operation.
- */
+/** Contains response data for the getByScope operation. */
 export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SystemAssignedIdentity;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listBySubscription operation.
- */
+/** Contains response data for the listBySubscription operation. */
 export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Identity;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type UserAssignedIdentitiesUpdateResponse = Identity & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Identity;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type UserAssignedIdentitiesGetResponse = Identity & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Identity;
   };
 };
 
-/**
- * Contains response data for the listBySubscriptionNext operation.
- */
+/** Contains response data for the listBySubscriptionNext operation. */
 export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedServiceIdentityClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

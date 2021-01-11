@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { MonitorClient } from "../monitorClient";
 import { AzureMetricsDocument, MetricsCreateResponse } from "../models";
 
-/**
- * Class representing a Metrics.
- */
+/** Class representing a Metrics. */
 export class Metrics {
   private readonly client: MonitorClient;
 
@@ -71,7 +69,6 @@ export class Metrics {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

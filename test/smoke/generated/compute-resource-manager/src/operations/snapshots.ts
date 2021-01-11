@@ -26,9 +26,7 @@ import {
   SnapshotsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Snapshots.
- */
+/** Class representing a Snapshots. */
 export class Snapshots {
   private readonly client: ComputeManagementClient;
 
@@ -454,7 +452,6 @@ export class Snapshots {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

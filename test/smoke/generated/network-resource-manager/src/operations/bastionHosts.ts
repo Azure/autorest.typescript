@@ -22,9 +22,7 @@ import {
   BastionHostsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a BastionHosts.
- */
+/** Class representing a BastionHosts. */
 export class BastionHosts {
   private readonly client: NetworkManagementClient;
 
@@ -321,7 +319,6 @@ export class BastionHosts {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

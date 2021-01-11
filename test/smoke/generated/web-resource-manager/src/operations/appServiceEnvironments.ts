@@ -88,9 +88,7 @@ import {
   AppServiceEnvironmentsListWebWorkerUsagesNextResponse
 } from "../models";
 
-/**
- * Class representing a AppServiceEnvironments.
- */
+/** Class representing a AppServiceEnvironments. */
 export class AppServiceEnvironments {
   private readonly client: WebSiteManagementClient;
 
@@ -3085,7 +3083,6 @@ export class AppServiceEnvironments {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

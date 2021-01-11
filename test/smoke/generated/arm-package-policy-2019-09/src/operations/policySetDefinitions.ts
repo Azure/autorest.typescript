@@ -26,9 +26,7 @@ import {
   PolicySetDefinitionsListByManagementGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a PolicySetDefinitions.
- */
+/** Class representing a PolicySetDefinitions. */
 export class PolicySetDefinitions {
   private readonly client: PolicyClient;
 
@@ -443,7 +441,6 @@ export class PolicySetDefinitions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

@@ -26,9 +26,7 @@ import {
   ServersListNextResponse
 } from "../models";
 
-/**
- * Class representing a Servers.
- */
+/** Class representing a Servers. */
 export class Servers {
   private readonly client: SqlManagementClient;
 
@@ -389,7 +387,6 @@ export class Servers {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {

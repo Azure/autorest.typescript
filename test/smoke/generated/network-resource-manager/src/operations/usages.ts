@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { Usage, UsagesListResponse, UsagesListNextResponse } from "../models";
 
-/**
- * Class representing a Usages.
- */
+/** Class representing a Usages. */
 export class Usages {
   private readonly client: NetworkManagementClient;
 
@@ -115,7 +113,6 @@ export class Usages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -17,9 +17,7 @@ import {
   LoadBalancerNetworkInterfacesListNextResponse
 } from "../models";
 
-/**
- * Class representing a LoadBalancerNetworkInterfaces.
- */
+/** Class representing a LoadBalancerNetworkInterfaces. */
 export class LoadBalancerNetworkInterfaces {
   private readonly client: NetworkManagementClient;
 
@@ -146,7 +144,6 @@ export class LoadBalancerNetworkInterfaces {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -16,9 +16,7 @@ import {
   PercentileTargetListMetricsResponse
 } from "../models";
 
-/**
- * Class representing a PercentileTarget.
- */
+/** Class representing a PercentileTarget. */
 export class PercentileTarget {
   private readonly client: CosmosDBManagementClient;
 
@@ -143,7 +141,6 @@ export class PercentileTarget {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

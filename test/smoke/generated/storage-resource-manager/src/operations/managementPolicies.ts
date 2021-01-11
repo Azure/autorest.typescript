@@ -17,9 +17,7 @@ import {
   ManagementPoliciesCreateOrUpdateResponse
 } from "../models";
 
-/**
- * Class representing a ManagementPolicies.
- */
+/** Class representing a ManagementPolicies. */
 export class ManagementPolicies {
   private readonly client: StorageManagementClient;
 
@@ -122,7 +120,6 @@ export class ManagementPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

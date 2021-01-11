@@ -13,9 +13,7 @@ import { ComputeManagementClient } from "../computeManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
 
-/**
- * Class representing a VirtualMachineScaleSetRollingUpgrades.
- */
+/** Class representing a VirtualMachineScaleSetRollingUpgrades. */
 export class VirtualMachineScaleSetRollingUpgrades {
   private readonly client: ComputeManagementClient;
 
@@ -177,7 +175,6 @@ export class VirtualMachineScaleSetRollingUpgrades {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const cancelOperationSpec: coreHttp.OperationSpec = {

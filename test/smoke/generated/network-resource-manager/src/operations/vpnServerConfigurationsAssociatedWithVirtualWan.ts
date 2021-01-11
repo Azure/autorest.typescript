@@ -13,9 +13,7 @@ import { NetworkManagementClient } from "../networkManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
 
-/**
- * Class representing a VpnServerConfigurationsAssociatedWithVirtualWan.
- */
+/** Class representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
 export class VpnServerConfigurationsAssociatedWithVirtualWan {
   private readonly client: NetworkManagementClient;
 
@@ -80,7 +78,6 @@ export class VpnServerConfigurationsAssociatedWithVirtualWan {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

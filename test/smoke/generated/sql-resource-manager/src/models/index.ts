@@ -9,9 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import { LROSYM, LROResponseInfo } from "../lro/models";
 
-/**
- * ARM resource.
- */
+/** ARM resource. */
 export interface Resource {
   /**
    * Resource ID.
@@ -30,141 +28,81 @@ export interface Resource {
   readonly type?: string;
 }
 
-/**
- * The response to a list recoverable databases request
- */
+/** The response to a list recoverable databases request */
 export interface RecoverableDatabaseListResult {
-  /**
-   * A list of recoverable databases
-   */
+  /** A list of recoverable databases */
   value: RecoverableDatabase[];
 }
 
-/**
- * The response to a list restorable dropped databases request
- */
+/** The response to a list restorable dropped databases request */
 export interface RestorableDroppedDatabaseListResult {
-  /**
-   * A list of restorable dropped databases
-   */
+  /** A list of restorable dropped databases */
   value: RestorableDroppedDatabase[];
 }
 
-/**
- * The response to a list data masking rules request.
- */
+/** The response to a list data masking rules request. */
 export interface DataMaskingRuleListResult {
-  /**
-   * The list of database data masking rules.
-   */
+  /** The list of database data masking rules. */
   value?: DataMaskingRule[];
 }
 
-/**
- * Represents the response to a List Firewall Rules request.
- */
+/** Represents the response to a List Firewall Rules request. */
 export interface FirewallRuleListResult {
-  /**
-   * The list of server firewall rules.
-   */
+  /** The list of server firewall rules. */
   value?: FirewallRule[];
 }
 
-/**
- * The response to a list geo backup policies request.
- */
+/** The response to a list geo backup policies request. */
 export interface GeoBackupPolicyListResult {
-  /**
-   * The list of geo backup policies.
-   */
+  /** The list of geo backup policies. */
   value?: GeoBackupPolicy[];
 }
 
-/**
- * Export database parameters.
- */
+/** Export database parameters. */
 export interface ExportRequest {
-  /**
-   * The type of the storage key to use.
-   */
+  /** The type of the storage key to use. */
   storageKeyType: StorageKeyType;
-  /**
-   * The storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?."
-   */
+  /** The storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?." */
   storageKey: string;
-  /**
-   * The storage uri to use.
-   */
+  /** The storage uri to use. */
   storageUri: string;
-  /**
-   * The name of the SQL administrator.
-   */
+  /** The name of the SQL administrator. */
   administratorLogin: string;
-  /**
-   * The password of the SQL administrator.
-   */
+  /** The password of the SQL administrator. */
   administratorLoginPassword: string;
-  /**
-   * The authentication type.
-   */
+  /** The authentication type. */
   authenticationType?: AuthenticationType;
 }
 
-/**
- * Import database parameters.
- */
+/** Import database parameters. */
 export interface ImportExtensionRequest {
-  /**
-   * The name of the extension.
-   */
+  /** The name of the extension. */
   name?: string;
-  /**
-   * The type of the extension.
-   */
+  /** The type of the extension. */
   type?: string;
-  /**
-   * The type of the storage key to use.
-   */
+  /** The type of the storage key to use. */
   storageKeyType?: StorageKeyType;
-  /**
-   * The storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?."
-   */
+  /** The storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?." */
   storageKey?: string;
-  /**
-   * The storage uri to use.
-   */
+  /** The storage uri to use. */
   storageUri?: string;
-  /**
-   * The name of the SQL administrator.
-   */
+  /** The name of the SQL administrator. */
   administratorLogin?: string;
-  /**
-   * The password of the SQL administrator.
-   */
+  /** The password of the SQL administrator. */
   administratorLoginPassword?: string;
-  /**
-   * The authentication type.
-   */
+  /** The authentication type. */
   authenticationType?: AuthenticationType;
-  /**
-   * The type of import operation being performed. This is always Import.
-   */
+  /** The type of import operation being performed. This is always Import. */
   operationMode?: "Import";
 }
 
-/**
- * The response to a list database metrics request.
- */
+/** The response to a list database metrics request. */
 export interface MetricListResult {
-  /**
-   * The list of metrics for the database.
-   */
+  /** The list of metrics for the database. */
   value: Metric[];
 }
 
-/**
- * Database metrics.
- */
+/** Database metrics. */
 export interface Metric {
   /**
    * The start time for the metric (ISO-8601 format).
@@ -198,9 +136,7 @@ export interface Metric {
   readonly metricValues?: MetricValue[];
 }
 
-/**
- * A database metric name.
- */
+/** A database metric name. */
 export interface MetricName {
   /**
    * The name of the database metric.
@@ -214,9 +150,7 @@ export interface MetricName {
   readonly localizedValue?: string;
 }
 
-/**
- * Represents database metrics.
- */
+/** Represents database metrics. */
 export interface MetricValue {
   /**
    * The number of values for the metric.
@@ -250,19 +184,13 @@ export interface MetricValue {
   readonly total?: number;
 }
 
-/**
- * The response to a list database metric definitions request.
- */
+/** The response to a list database metric definitions request. */
 export interface MetricDefinitionListResult {
-  /**
-   * The list of metric definitions for the database.
-   */
+  /** The list of metric definitions for the database. */
   value: MetricDefinition[];
 }
 
-/**
- * A database metric definition.
- */
+/** A database metric definition. */
 export interface MetricDefinition {
   /**
    * The name information for the metric.
@@ -291,9 +219,7 @@ export interface MetricDefinition {
   readonly metricAvailabilities?: MetricAvailability[];
 }
 
-/**
- * A metric availability value.
- */
+/** A metric availability value. */
 export interface MetricAvailability {
   /**
    * The length of retention for the database metric.
@@ -307,107 +233,65 @@ export interface MetricAvailability {
   readonly timeGrain?: string;
 }
 
-/**
- * Represents recommended elastic pool metric.
- */
+/** Represents recommended elastic pool metric. */
 export interface RecommendedElasticPoolMetric {
-  /**
-   * The time of metric (ISO8601 format).
-   */
+  /** The time of metric (ISO8601 format). */
   dateTime?: Date;
-  /**
-   * Gets or sets the DTUs (Database Transaction Units). See https://azure.microsoft.com/documentation/articles/sql-database-what-is-a-dtu/
-   */
+  /** Gets or sets the DTUs (Database Transaction Units). See https://azure.microsoft.com/documentation/articles/sql-database-what-is-a-dtu/ */
   dtu?: number;
-  /**
-   * Gets or sets size in gigabytes.
-   */
+  /** Gets or sets size in gigabytes. */
   sizeGB?: number;
 }
 
-/**
- * Represents the response to a list recommended elastic pool request.
- */
+/** Represents the response to a list recommended elastic pool request. */
 export interface RecommendedElasticPoolListResult {
-  /**
-   * The list of recommended elastic pools hosted in the server.
-   */
+  /** The list of recommended elastic pools hosted in the server. */
   value: RecommendedElasticPool[];
 }
 
-/**
- * Represents the response to a list recommended elastic pool metrics request.
- */
+/** Represents the response to a list recommended elastic pool metrics request. */
 export interface RecommendedElasticPoolListMetricsResult {
-  /**
-   * The list of recommended elastic pools metrics.
-   */
+  /** The list of recommended elastic pools metrics. */
   value: RecommendedElasticPoolMetric[];
 }
 
-/**
- * Represents the parameters for Unlink Replication Link request.
- */
+/** Represents the parameters for Unlink Replication Link request. */
 export interface UnlinkParameters {
-  /**
-   * Determines whether link will be terminated in a forced or a friendly way.
-   */
+  /** Determines whether link will be terminated in a forced or a friendly way. */
   forcedTermination?: boolean;
 }
 
-/**
- * Represents the response to a List database replication link request.
- */
+/** Represents the response to a List database replication link request. */
 export interface ReplicationLinkListResult {
-  /**
-   * The list of database replication links housed in the database.
-   */
+  /** The list of database replication links housed in the database. */
   value?: ReplicationLink[];
 }
 
-/**
- * A list of server communication links.
- */
+/** A list of server communication links. */
 export interface ServerCommunicationLinkListResult {
-  /**
-   * The list of server communication links.
-   */
+  /** The list of server communication links. */
   value?: ServerCommunicationLink[];
 }
 
-/**
- * Represents the response to a get database service objectives request.
- */
+/** Represents the response to a get database service objectives request. */
 export interface ServiceObjectiveListResult {
-  /**
-   * The list of database service objectives.
-   */
+  /** The list of database service objectives. */
   value: ServiceObjective[];
 }
 
-/**
- * Represents the response to a list elastic pool activity request.
- */
+/** Represents the response to a list elastic pool activity request. */
 export interface ElasticPoolActivityListResult {
-  /**
-   * The list of elastic pool activities.
-   */
+  /** The list of elastic pool activities. */
   value: ElasticPoolActivity[];
 }
 
-/**
- * Represents the response to a list elastic pool database activity request.
- */
+/** Represents the response to a list elastic pool database activity request. */
 export interface ElasticPoolDatabaseActivityListResult {
-  /**
-   * The list of elastic pool database activities.
-   */
+  /** The list of elastic pool database activities. */
   value: ElasticPoolDatabaseActivity[];
 }
 
-/**
- * A Slo Usage Metric.
- */
+/** A Slo Usage Metric. */
 export interface SloUsageMetric {
   /**
    * The serviceLevelObjective for SLO usage metric.
@@ -426,39 +310,25 @@ export interface SloUsageMetric {
   readonly inRangeTimeRatio?: number;
 }
 
-/**
- * Represents the response to a list service tier advisor request.
- */
+/** Represents the response to a list service tier advisor request. */
 export interface ServiceTierAdvisorListResult {
-  /**
-   * The list of service tier advisors for specified database.
-   */
+  /** The list of service tier advisors for specified database. */
   value: ServiceTierAdvisor[];
 }
 
-/**
- * Represents the response to a list database transparent data encryption activity request.
- */
+/** Represents the response to a list database transparent data encryption activity request. */
 export interface TransparentDataEncryptionActivityListResult {
-  /**
-   * The list of database transparent data encryption activities.
-   */
+  /** The list of database transparent data encryption activities. */
   value: TransparentDataEncryptionActivity[];
 }
 
-/**
- * Represents the response to a list server metrics request.
- */
+/** Represents the response to a list server metrics request. */
 export interface ServerUsageListResult {
-  /**
-   * The list of server metrics for the server.
-   */
+  /** The list of server metrics for the server. */
   value: ServerUsage[];
 }
 
-/**
- * Represents server metrics.
- */
+/** Represents server metrics. */
 export interface ServerUsage {
   /**
    * Name of the server usage metric.
@@ -497,19 +367,13 @@ export interface ServerUsage {
   readonly nextResetTime?: Date;
 }
 
-/**
- * The response to a list database metrics request.
- */
+/** The response to a list database metrics request. */
 export interface DatabaseUsageListResult {
-  /**
-   * The list of database usages for the database.
-   */
+  /** The list of database usages for the database. */
   value: DatabaseUsage[];
 }
 
-/**
- * The database usages.
- */
+/** The database usages. */
 export interface DatabaseUsage {
   /**
    * The name of the usage metric.
@@ -548,13 +412,9 @@ export interface DatabaseUsage {
   readonly nextResetTime?: Date;
 }
 
-/**
- * Automatic tuning properties for individual advisors.
- */
+/** Automatic tuning properties for individual advisors. */
 export interface AutomaticTuningOptions {
-  /**
-   * Automatic tuning option desired state.
-   */
+  /** Automatic tuning option desired state. */
   desiredState?: AutomaticTuningOptionModeDesired;
   /**
    * Automatic tuning option actual state.
@@ -573,9 +433,7 @@ export interface AutomaticTuningOptions {
   readonly reasonDesc?: AutomaticTuningDisabledReason;
 }
 
-/**
- * A list of server encryption protectors.
- */
+/** A list of server encryption protectors. */
 export interface EncryptionProtectorListResult {
   /**
    * Array of results.
@@ -589,37 +447,23 @@ export interface EncryptionProtectorListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Read-write endpoint of the failover group instance.
- */
+/** Read-write endpoint of the failover group instance. */
 export interface FailoverGroupReadWriteEndpoint {
-  /**
-   * Failover policy of the read-write endpoint for the failover group. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required.
-   */
+  /** Failover policy of the read-write endpoint for the failover group. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required. */
   failoverPolicy: ReadWriteEndpointFailoverPolicy;
-  /**
-   * Grace period before failover with data loss is attempted for the read-write endpoint. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required.
-   */
+  /** Grace period before failover with data loss is attempted for the read-write endpoint. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required. */
   failoverWithDataLossGracePeriodMinutes?: number;
 }
 
-/**
- * Read-only endpoint of the failover group instance.
- */
+/** Read-only endpoint of the failover group instance. */
 export interface FailoverGroupReadOnlyEndpoint {
-  /**
-   * Failover policy of the read-only endpoint for the failover group.
-   */
+  /** Failover policy of the read-only endpoint for the failover group. */
   failoverPolicy?: ReadOnlyEndpointFailoverPolicy;
 }
 
-/**
- * Partner server information for the failover group.
- */
+/** Partner server information for the failover group. */
 export interface PartnerInfo {
-  /**
-   * Resource identifier of the partner server.
-   */
+  /** Resource identifier of the partner server. */
   id: string;
   /**
    * Geo location of the partner server.
@@ -633,31 +477,19 @@ export interface PartnerInfo {
   readonly replicationRole?: FailoverGroupReplicationRole;
 }
 
-/**
- * A failover group update request.
- */
+/** A failover group update request. */
 export interface FailoverGroupUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
+  /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: FailoverGroupReadWriteEndpoint;
-  /**
-   * Read-only endpoint of the failover group instance.
-   */
+  /** Read-only endpoint of the failover group instance. */
   readOnlyEndpoint?: FailoverGroupReadOnlyEndpoint;
-  /**
-   * List of databases in the failover group.
-   */
+  /** List of databases in the failover group. */
   databases?: string[];
 }
 
-/**
- * A list of failover groups.
- */
+/** A list of failover groups. */
 export interface FailoverGroupListResult {
   /**
    * Array of results.
@@ -671,9 +503,7 @@ export interface FailoverGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Result of the request to list SQL operations.
- */
+/** Result of the request to list SQL operations. */
 export interface OperationListResult {
   /**
    * Array of results.
@@ -687,9 +517,7 @@ export interface OperationListResult {
   readonly nextLink?: string;
 }
 
-/**
- * SQL REST API operation definition.
- */
+/** SQL REST API operation definition. */
 export interface Operation {
   /**
    * The name of the operation being performed on this particular object.
@@ -713,9 +541,7 @@ export interface Operation {
   readonly properties?: { [propertyName: string]: any };
 }
 
-/**
- * Display metadata associated with the operation.
- */
+/** Display metadata associated with the operation. */
 export interface OperationDisplay {
   /**
    * The localized friendly form of the resource provider name.
@@ -739,9 +565,7 @@ export interface OperationDisplay {
   readonly description?: string;
 }
 
-/**
- * A list of server keys.
- */
+/** A list of server keys. */
 export interface ServerKeyListResult {
   /**
    * Array of results.
@@ -755,9 +579,7 @@ export interface ServerKeyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of sync agents.
- */
+/** A list of sync agents. */
 export interface SyncAgentListResult {
   /**
    * Array of results.
@@ -771,9 +593,7 @@ export interface SyncAgentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of an Azure SQL Database sync agent key.
- */
+/** Properties of an Azure SQL Database sync agent key. */
 export interface SyncAgentKeyProperties {
   /**
    * Key of sync agent.
@@ -782,9 +602,7 @@ export interface SyncAgentKeyProperties {
   readonly syncAgentKey?: string;
 }
 
-/**
- * A list of sync agent linked databases.
- */
+/** A list of sync agent linked databases. */
 export interface SyncAgentLinkedDatabaseListResult {
   /**
    * Array of results.
@@ -798,9 +616,7 @@ export interface SyncAgentLinkedDatabaseListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of sync database ID properties.
- */
+/** A list of sync database ID properties. */
 export interface SyncDatabaseIdListResult {
   /**
    * Array of results.
@@ -814,9 +630,7 @@ export interface SyncDatabaseIdListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of the sync database id.
- */
+/** Properties of the sync database id. */
 export interface SyncDatabaseIdProperties {
   /**
    * ARM resource id of sync database.
@@ -825,9 +639,7 @@ export interface SyncDatabaseIdProperties {
   readonly id?: string;
 }
 
-/**
- * A list of sync schema properties.
- */
+/** A list of sync schema properties. */
 export interface SyncFullSchemaPropertiesListResult {
   /**
    * Array of results.
@@ -841,9 +653,7 @@ export interface SyncFullSchemaPropertiesListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of the database full schema.
- */
+/** Properties of the database full schema. */
 export interface SyncFullSchemaProperties {
   /**
    * List of tables in the database full schema.
@@ -857,9 +667,7 @@ export interface SyncFullSchemaProperties {
   readonly lastUpdateTime?: Date;
 }
 
-/**
- * Properties of the table in the database full schema.
- */
+/** Properties of the table in the database full schema. */
 export interface SyncFullSchemaTable {
   /**
    * List of columns in the table of database full schema.
@@ -888,9 +696,7 @@ export interface SyncFullSchemaTable {
   readonly quotedName?: string;
 }
 
-/**
- * Properties of the column in the table of database full schema.
- */
+/** Properties of the column in the table of database full schema. */
 export interface SyncFullSchemaTableColumn {
   /**
    * Data size of the column.
@@ -929,9 +735,7 @@ export interface SyncFullSchemaTableColumn {
   readonly quotedName?: string;
 }
 
-/**
- * A list of sync group log properties.
- */
+/** A list of sync group log properties. */
 export interface SyncGroupLogListResult {
   /**
    * Array of results.
@@ -945,9 +749,7 @@ export interface SyncGroupLogListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of an Azure SQL Database sync group log.
- */
+/** Properties of an Azure SQL Database sync group log. */
 export interface SyncGroupLogProperties {
   /**
    * Timestamp of the sync group log.
@@ -981,55 +783,33 @@ export interface SyncGroupLogProperties {
   readonly operationStatus?: string;
 }
 
-/**
- * Properties of sync group schema.
- */
+/** Properties of sync group schema. */
 export interface SyncGroupSchema {
-  /**
-   * List of tables in sync group schema.
-   */
+  /** List of tables in sync group schema. */
   tables?: SyncGroupSchemaTable[];
-  /**
-   * Name of master sync member where the schema is from.
-   */
+  /** Name of master sync member where the schema is from. */
   masterSyncMemberName?: string;
 }
 
-/**
- * Properties of table in sync group schema.
- */
+/** Properties of table in sync group schema. */
 export interface SyncGroupSchemaTable {
-  /**
-   * List of columns in sync group schema.
-   */
+  /** List of columns in sync group schema. */
   columns?: SyncGroupSchemaTableColumn[];
-  /**
-   * Quoted name of sync group schema table.
-   */
+  /** Quoted name of sync group schema table. */
   quotedName?: string;
 }
 
-/**
- * Properties of column in sync group table.
- */
+/** Properties of column in sync group table. */
 export interface SyncGroupSchemaTableColumn {
-  /**
-   * Quoted name of sync group table column.
-   */
+  /** Quoted name of sync group table column. */
   quotedName?: string;
-  /**
-   * Data size of the column.
-   */
+  /** Data size of the column. */
   dataSize?: string;
-  /**
-   * Data type of the column.
-   */
+  /** Data type of the column. */
   dataType?: string;
 }
 
-/**
- * A list of sync groups.
- */
+/** A list of sync groups. */
 export interface SyncGroupListResult {
   /**
    * Array of results.
@@ -1043,9 +823,7 @@ export interface SyncGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of Azure SQL Database sync members.
- */
+/** A list of Azure SQL Database sync members. */
 export interface SyncMemberListResult {
   /**
    * Array of results.
@@ -1059,9 +837,7 @@ export interface SyncMemberListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of subscription usage metrics in a location.
- */
+/** A list of subscription usage metrics in a location. */
 export interface SubscriptionUsageListResult {
   /**
    * Array of results.
@@ -1075,9 +851,7 @@ export interface SubscriptionUsageListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of virtual clusters.
- */
+/** A list of virtual clusters. */
 export interface VirtualClusterListResult {
   /**
    * Array of results.
@@ -1091,22 +865,16 @@ export interface VirtualClusterListResult {
   readonly nextLink?: string;
 }
 
-/**
- * An update request for an Azure SQL Database virtual cluster.
- */
+/** An update request for an Azure SQL Database virtual cluster. */
 export interface VirtualClusterUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
   /**
    * Subnet resource ID for the virtual cluster.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnetId?: string;
-  /**
-   * If the service has different generations of hardware, for the same SKU, then that can be captured here.
-   */
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
   family?: string;
   /**
    * List of resources in this virtual cluster.
@@ -1115,9 +883,7 @@ export interface VirtualClusterUpdate {
   readonly childResources?: string[];
 }
 
-/**
- * A list of virtual network rules.
- */
+/** A list of virtual network rules. */
 export interface VirtualNetworkRuleListResult {
   /**
    * Array of results.
@@ -1131,9 +897,7 @@ export interface VirtualNetworkRuleListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of database extended auditing settings.
- */
+/** A list of database extended auditing settings. */
 export interface ExtendedDatabaseBlobAuditingPolicyListResult {
   /**
    * Array of results.
@@ -1147,9 +911,7 @@ export interface ExtendedDatabaseBlobAuditingPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of server extended auditing settings.
- */
+/** A list of server extended auditing settings. */
 export interface ExtendedServerBlobAuditingPolicyListResult {
   /**
    * Array of results.
@@ -1163,9 +925,7 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of server auditing settings.
- */
+/** A list of server auditing settings. */
 export interface ServerBlobAuditingPolicyListResult {
   /**
    * Array of results.
@@ -1179,9 +939,7 @@ export interface ServerBlobAuditingPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of database auditing settings.
- */
+/** A list of database auditing settings. */
 export interface DatabaseBlobAuditingPolicyListResult {
   /**
    * Array of results.
@@ -1195,37 +953,23 @@ export interface DatabaseBlobAuditingPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties for an Azure SQL Database Vulnerability Assessment rule baseline's result.
- */
+/** Properties for an Azure SQL Database Vulnerability Assessment rule baseline's result. */
 export interface DatabaseVulnerabilityAssessmentRuleBaselineItem {
-  /**
-   * The rule baseline result
-   */
+  /** The rule baseline result */
   result: string[];
 }
 
-/**
- * Properties of a Vulnerability Assessment recurring scans.
- */
+/** Properties of a Vulnerability Assessment recurring scans. */
 export interface VulnerabilityAssessmentRecurringScansProperties {
-  /**
-   * Recurring scans state.
-   */
+  /** Recurring scans state. */
   isEnabled?: boolean;
-  /**
-   * Specifies that the schedule scan notification will be is sent to the subscription administrators.
-   */
+  /** Specifies that the schedule scan notification will be is sent to the subscription administrators. */
   emailSubscriptionAdmins?: boolean;
-  /**
-   * Specifies an array of e-mail addresses to which the scan notification is sent.
-   */
+  /** Specifies an array of e-mail addresses to which the scan notification is sent. */
   emails?: string[];
 }
 
-/**
- * A list of the database's vulnerability assessments.
- */
+/** A list of the database's vulnerability assessments. */
 export interface DatabaseVulnerabilityAssessmentListResult {
   /**
    * Array of results.
@@ -1239,9 +983,7 @@ export interface DatabaseVulnerabilityAssessmentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of Azure SQL job agents.
- */
+/** A list of Azure SQL job agents. */
 export interface JobAgentListResult {
   /**
    * Array of results.
@@ -1255,45 +997,27 @@ export interface JobAgentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * An ARM Resource SKU.
- */
+/** An ARM Resource SKU. */
 export interface Sku {
-  /**
-   * The name of the SKU, typically, a letter + Number code, e.g. P3.
-   */
+  /** The name of the SKU, typically, a letter + Number code, e.g. P3. */
   name: string;
-  /**
-   * The tier or edition of the particular SKU, e.g. Basic, Premium.
-   */
+  /** The tier or edition of the particular SKU, e.g. Basic, Premium. */
   tier?: string;
-  /**
-   * Size of the particular SKU
-   */
+  /** Size of the particular SKU */
   size?: string;
-  /**
-   * If the service has different generations of hardware, for the same SKU, then that can be captured here.
-   */
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
   family?: string;
-  /**
-   * Capacity of the particular SKU.
-   */
+  /** Capacity of the particular SKU. */
   capacity?: number;
 }
 
-/**
- * An update to an Azure SQL job agent.
- */
+/** An update to an Azure SQL job agent. */
 export interface JobAgentUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * A list of job credentials.
- */
+/** A list of job credentials. */
 export interface JobCredentialListResult {
   /**
    * Array of results.
@@ -1307,9 +1031,7 @@ export interface JobCredentialListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of job executions.
- */
+/** A list of job executions. */
 export interface JobExecutionListResult {
   /**
    * Array of results.
@@ -1323,9 +1045,7 @@ export interface JobExecutionListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The target that a job execution is executed on.
- */
+/** The target that a job execution is executed on. */
 export interface JobExecutionTarget {
   /**
    * The type of the target.
@@ -1344,9 +1064,7 @@ export interface JobExecutionTarget {
   readonly databaseName?: string;
 }
 
-/**
- * A list of jobs.
- */
+/** A list of jobs. */
 export interface JobListResult {
   /**
    * Array of results.
@@ -1360,35 +1078,21 @@ export interface JobListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Scheduling properties of a job.
- */
+/** Scheduling properties of a job. */
 export interface JobSchedule {
-  /**
-   * Schedule start time.
-   */
+  /** Schedule start time. */
   startTime?: Date;
-  /**
-   * Schedule end time.
-   */
+  /** Schedule end time. */
   endTime?: Date;
-  /**
-   * Schedule interval type
-   */
+  /** Schedule interval type */
   type?: JobScheduleType;
-  /**
-   * Whether or not the schedule is enabled.
-   */
+  /** Whether or not the schedule is enabled. */
   enabled?: boolean;
-  /**
-   * Value of the schedule's recurring interval, if the schedule type is recurring. ISO8601 duration format.
-   */
+  /** Value of the schedule's recurring interval, if the schedule type is recurring. ISO8601 duration format. */
   interval?: string;
 }
 
-/**
- * A list of job steps.
- */
+/** A list of job steps. */
 export interface JobStepListResult {
   /**
    * Array of results.
@@ -1402,91 +1106,51 @@ export interface JobStepListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The action to be executed by a job step.
- */
+/** The action to be executed by a job step. */
 export interface JobStepAction {
-  /**
-   * Type of action being executed by the job step.
-   */
+  /** Type of action being executed by the job step. */
   type?: JobStepActionType;
-  /**
-   * The source of the action to execute.
-   */
+  /** The source of the action to execute. */
   source?: JobStepActionSource;
-  /**
-   * The action value, for example the text of the T-SQL script to execute.
-   */
+  /** The action value, for example the text of the T-SQL script to execute. */
   value: string;
 }
 
-/**
- * The output configuration of a job step.
- */
+/** The output configuration of a job step. */
 export interface JobStepOutput {
-  /**
-   * The output destination type.
-   */
+  /** The output destination type. */
   type?: JobStepOutputType;
-  /**
-   * The output destination subscription id.
-   */
+  /** The output destination subscription id. */
   subscriptionId?: string;
-  /**
-   * The output destination resource group.
-   */
+  /** The output destination resource group. */
   resourceGroupName?: string;
-  /**
-   * The output destination server name.
-   */
+  /** The output destination server name. */
   serverName: string;
-  /**
-   * The output destination database.
-   */
+  /** The output destination database. */
   databaseName: string;
-  /**
-   * The output destination schema.
-   */
+  /** The output destination schema. */
   schemaName?: string;
-  /**
-   * The output destination table.
-   */
+  /** The output destination table. */
   tableName: string;
-  /**
-   * The resource ID of the credential to use to connect to the output destination.
-   */
+  /** The resource ID of the credential to use to connect to the output destination. */
   credential: string;
 }
 
-/**
- * The execution options of a job step.
- */
+/** The execution options of a job step. */
 export interface JobStepExecutionOptions {
-  /**
-   * Execution timeout for the job step.
-   */
+  /** Execution timeout for the job step. */
   timeoutSeconds?: number;
-  /**
-   * Maximum number of times the job step will be reattempted if the first attempt fails.
-   */
+  /** Maximum number of times the job step will be reattempted if the first attempt fails. */
   retryAttempts?: number;
-  /**
-   * Initial delay between retries for job step execution.
-   */
+  /** Initial delay between retries for job step execution. */
   initialRetryIntervalSeconds?: number;
-  /**
-   * The maximum amount of time to wait between retries for job step execution.
-   */
+  /** The maximum amount of time to wait between retries for job step execution. */
   maximumRetryIntervalSeconds?: number;
-  /**
-   * The backoff multiplier for the time between retries.
-   */
+  /** The backoff multiplier for the time between retries. */
   retryIntervalBackoffMultiplier?: number;
 }
 
-/**
- * A list of target groups.
- */
+/** A list of target groups. */
 export interface JobTargetGroupListResult {
   /**
    * Array of results.
@@ -1500,43 +1164,25 @@ export interface JobTargetGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A job target, for example a specific database or a container of databases that is evaluated during job execution.
- */
+/** A job target, for example a specific database or a container of databases that is evaluated during job execution. */
 export interface JobTarget {
-  /**
-   * Whether the target is included or excluded from the group.
-   */
+  /** Whether the target is included or excluded from the group. */
   membershipType?: JobTargetGroupMembershipType;
-  /**
-   * The target type.
-   */
+  /** The target type. */
   type: JobTargetType;
-  /**
-   * The target server name.
-   */
+  /** The target server name. */
   serverName?: string;
-  /**
-   * The target database name.
-   */
+  /** The target database name. */
   databaseName?: string;
-  /**
-   * The target elastic pool name.
-   */
+  /** The target elastic pool name. */
   elasticPoolName?: string;
-  /**
-   * The target shard map.
-   */
+  /** The target shard map. */
   shardMapName?: string;
-  /**
-   * The resource ID of the credential that is used during job execution to connect to the target and determine the list of databases inside the target.
-   */
+  /** The resource ID of the credential that is used during job execution to connect to the target and determine the list of databases inside the target. */
   refreshCredential?: string;
 }
 
-/**
- * A list of job versions.
- */
+/** A list of job versions. */
 export interface JobVersionListResult {
   /**
    * Array of results.
@@ -1550,9 +1196,7 @@ export interface JobVersionListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of long term retention backups.
- */
+/** A list of long term retention backups. */
 export interface LongTermRetentionBackupListResult {
   /**
    * Array of results.
@@ -1566,9 +1210,7 @@ export interface LongTermRetentionBackupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of short term retention policies.
- */
+/** A list of short term retention policies. */
 export interface ManagedBackupShortTermRetentionPolicyListResult {
   /**
    * Array of results.
@@ -1582,13 +1224,9 @@ export interface ManagedBackupShortTermRetentionPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Automatic tuning properties for individual advisors.
- */
+/** Automatic tuning properties for individual advisors. */
 export interface AutomaticTuningServerOptions {
-  /**
-   * Automatic tuning option desired state.
-   */
+  /** Automatic tuning option desired state. */
   desiredState?: AutomaticTuningOptionModeDesired;
   /**
    * Automatic tuning option actual state.
@@ -1607,9 +1245,7 @@ export interface AutomaticTuningServerOptions {
   readonly reasonDesc?: AutomaticTuningServerReason;
 }
 
-/**
- * A list of server DNS aliases.
- */
+/** A list of server DNS aliases. */
 export interface ServerDnsAliasListResult {
   /**
    * Array of results.
@@ -1623,19 +1259,13 @@ export interface ServerDnsAliasListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A server DNS alias acquisition request.
- */
+/** A server DNS alias acquisition request. */
 export interface ServerDnsAliasAcquisition {
-  /**
-   * The id of the server alias that will be acquired to point to this server instead.
-   */
+  /** The id of the server alias that will be acquired to point to this server instead. */
   oldServerDnsAliasId?: string;
 }
 
-/**
- * A list of the server's security alert policies.
- */
+/** A list of the server's security alert policies. */
 export interface LogicalServerSecurityAlertPolicyListResult {
   /**
    * Array of results.
@@ -1649,9 +1279,7 @@ export interface LogicalServerSecurityAlertPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of restorable dropped managed databases.
- */
+/** A list of restorable dropped managed databases. */
 export interface RestorableDroppedManagedDatabaseListResult {
   /**
    * Array of results.
@@ -1665,9 +1293,7 @@ export interface RestorableDroppedManagedDatabaseListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of long term retention backups.
- */
+/** A list of long term retention backups. */
 export interface RestorePointListResult {
   /**
    * Array of results.
@@ -1681,19 +1307,13 @@ export interface RestorePointListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Contains the information necessary to perform a create database restore point operation.
- */
+/** Contains the information necessary to perform a create database restore point operation. */
 export interface CreateDatabaseRestorePointDefinition {
-  /**
-   * The restore point label to apply
-   */
+  /** The restore point label to apply */
   restorePointLabel: string;
 }
 
-/**
- * A list of the managed database's security alert policies.
- */
+/** A list of the managed database's security alert policies. */
 export interface ManagedDatabaseSecurityAlertPolicyListResult {
   /**
    * Array of results.
@@ -1707,9 +1327,7 @@ export interface ManagedDatabaseSecurityAlertPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of the managed Server's security alert policies.
- */
+/** A list of the managed Server's security alert policies. */
 export interface ManagedServerSecurityAlertPolicyListResult {
   /**
    * Array of results.
@@ -1723,9 +1341,7 @@ export interface ManagedServerSecurityAlertPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of sensitivity labels.
- */
+/** A list of sensitivity labels. */
 export interface SensitivityLabelListResult {
   /**
    * Array of results.
@@ -1739,9 +1355,7 @@ export interface SensitivityLabelListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of managed instance administrators.
- */
+/** A list of managed instance administrators. */
 export interface ManagedInstanceAdministratorListResult {
   /**
    * Array of results.
@@ -1755,9 +1369,7 @@ export interface ManagedInstanceAdministratorListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The response to a list database operations request
- */
+/** The response to a list database operations request */
 export interface DatabaseOperationListResult {
   /**
    * Array of results.
@@ -1771,9 +1383,7 @@ export interface DatabaseOperationListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The response to a list elastic pool operations request
- */
+/** The response to a list elastic pool operations request */
 export interface ElasticPoolOperationListResult {
   /**
    * Array of results.
@@ -1787,9 +1397,7 @@ export interface ElasticPoolOperationListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of databases.
- */
+/** A list of databases. */
 export interface DatabaseListResult {
   /**
    * Array of results.
@@ -1803,17 +1411,11 @@ export interface DatabaseListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A database resource.
- */
+/** A database resource. */
 export interface DatabaseUpdate {
-  /**
-   * The name and tier of the SKU.
-   */
+  /** The name and tier of the SKU. */
   sku?: Sku;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
   /**
    * Specifies the mode of database creation.
@@ -1835,25 +1437,15 @@ export interface DatabaseUpdate {
    * Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition.
    */
   createMode?: CreateMode;
-  /**
-   * The collation of the database.
-   */
+  /** The collation of the database. */
   collation?: string;
-  /**
-   * The max size of the database expressed in bytes.
-   */
+  /** The max size of the database expressed in bytes. */
   maxSizeBytes?: number;
-  /**
-   * The name of the sample schema to apply when creating this database.
-   */
+  /** The name of the sample schema to apply when creating this database. */
   sampleName?: SampleName;
-  /**
-   * The resource identifier of the elastic pool containing this database.
-   */
+  /** The resource identifier of the elastic pool containing this database. */
   elasticPoolId?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
+  /** The resource identifier of the source database associated with create operation of this database. */
   sourceDatabaseId?: string;
   /**
    * The status of the database.
@@ -1890,41 +1482,23 @@ export interface DatabaseUpdate {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
-  /**
-   * Specifies the time that the database was deleted.
-   */
+  /** Specifies the time that the database was deleted. */
   sourceDatabaseDeletionDate?: Date;
-  /**
-   * The resource identifier of the recovery point associated with create operation of this database.
-   */
+  /** The resource identifier of the recovery point associated with create operation of this database. */
   recoveryServicesRecoveryPointId?: string;
-  /**
-   * The resource identifier of the long term retention backup associated with create operation of this database.
-   */
+  /** The resource identifier of the long term retention backup associated with create operation of this database. */
   longTermRetentionBackupResourceId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
+  /** The resource identifier of the recoverable database associated with create operation of this database. */
   recoverableDatabaseId?: string;
-  /**
-   * The resource identifier of the restorable dropped database associated with create operation of this database.
-   */
+  /** The resource identifier of the restorable dropped database associated with create operation of this database. */
   restorableDroppedDatabaseId?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
+  /** Collation of the metadata catalog. */
   catalogCollation?: CatalogCollationType;
-  /**
-   * Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
-   */
+  /** Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. */
   zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this database.
-   */
+  /** The license type to apply for this database. */
   licenseType?: DatabaseLicenseType;
   /**
    * The max log size for this database.
@@ -1936,26 +1510,18 @@ export interface DatabaseUpdate {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
-  /**
-   * If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases.
-   */
+  /** If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases. */
   readScale?: DatabaseReadScale;
-  /**
-   * The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases.
-   */
+  /** The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases. */
   readReplicaCount?: number;
   /**
    * The name and tier of the SKU.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentSku?: Sku;
-  /**
-   * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
-   */
+  /** Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled */
   autoPauseDelay?: number;
-  /**
-   * Minimal capacity that database will always have allocated, if not paused
-   */
+  /** Minimal capacity that database will always have allocated, if not paused */
   minCapacity?: number;
   /**
    * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
@@ -1969,19 +1535,13 @@ export interface DatabaseUpdate {
   readonly resumedDate?: Date;
 }
 
-/**
- * Contains the information necessary to perform a resource move (rename).
- */
+/** Contains the information necessary to perform a resource move (rename). */
 export interface ResourceMoveDefinition {
-  /**
-   * The target ID for the resource
-   */
+  /** The target ID for the resource */
   id: string;
 }
 
-/**
- * The result of an elastic pool list request.
- */
+/** The result of an elastic pool list request. */
 export interface ElasticPoolListResult {
   /**
    * Array of results.
@@ -1995,53 +1555,31 @@ export interface ElasticPoolListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Per database settings of an elastic pool.
- */
+/** Per database settings of an elastic pool. */
 export interface ElasticPoolPerDatabaseSettings {
-  /**
-   * The minimum capacity all databases are guaranteed.
-   */
+  /** The minimum capacity all databases are guaranteed. */
   minCapacity?: number;
-  /**
-   * The maximum capacity any one database can consume.
-   */
+  /** The maximum capacity any one database can consume. */
   maxCapacity?: number;
 }
 
-/**
- * An elastic pool update.
- */
+/** An elastic pool update. */
 export interface ElasticPoolUpdate {
-  /**
-   * An ARM Resource SKU.
-   */
+  /** An ARM Resource SKU. */
   sku?: Sku;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * The storage limit for the database elastic pool in bytes.
-   */
+  /** The storage limit for the database elastic pool in bytes. */
   maxSizeBytes?: number;
-  /**
-   * The per database settings for the elastic pool.
-   */
+  /** The per database settings for the elastic pool. */
   perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
-  /**
-   * Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
-   */
+  /** Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones. */
   zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this elastic pool.
-   */
+  /** The license type to apply for this elastic pool. */
   licenseType?: ElasticPoolLicenseType;
 }
 
-/**
- * A list of vulnerability assessment scan records.
- */
+/** A list of vulnerability assessment scan records. */
 export interface VulnerabilityAssessmentScanRecordListResult {
   /**
    * Array of results.
@@ -2055,9 +1593,7 @@ export interface VulnerabilityAssessmentScanRecordListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of a vulnerability assessment scan error.
- */
+/** Properties of a vulnerability assessment scan error. */
 export interface VulnerabilityAssessmentScanError {
   /**
    * The error code.
@@ -2071,37 +1607,23 @@ export interface VulnerabilityAssessmentScanError {
   readonly message?: string;
 }
 
-/**
- * Read-write endpoint of the failover group instance.
- */
+/** Read-write endpoint of the failover group instance. */
 export interface InstanceFailoverGroupReadWriteEndpoint {
-  /**
-   * Failover policy of the read-write endpoint for the failover group. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required.
-   */
+  /** Failover policy of the read-write endpoint for the failover group. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required. */
   failoverPolicy: ReadWriteEndpointFailoverPolicy;
-  /**
-   * Grace period before failover with data loss is attempted for the read-write endpoint. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required.
-   */
+  /** Grace period before failover with data loss is attempted for the read-write endpoint. If failoverPolicy is Automatic then failoverWithDataLossGracePeriodMinutes is required. */
   failoverWithDataLossGracePeriodMinutes?: number;
 }
 
-/**
- * Read-only endpoint of the failover group instance.
- */
+/** Read-only endpoint of the failover group instance. */
 export interface InstanceFailoverGroupReadOnlyEndpoint {
-  /**
-   * Failover policy of the read-only endpoint for the failover group.
-   */
+  /** Failover policy of the read-only endpoint for the failover group. */
   failoverPolicy?: ReadOnlyEndpointFailoverPolicy;
 }
 
-/**
- * Partner region information for the failover group.
- */
+/** Partner region information for the failover group. */
 export interface PartnerRegionInfo {
-  /**
-   * Geo location of the partner managed instances.
-   */
+  /** Geo location of the partner managed instances. */
   location?: string;
   /**
    * Replication role of the partner managed instances.
@@ -2110,23 +1632,15 @@ export interface PartnerRegionInfo {
   readonly replicationRole?: InstanceFailoverGroupReplicationRole;
 }
 
-/**
- * Pairs of Managed Instances in the failover group.
- */
+/** Pairs of Managed Instances in the failover group. */
 export interface ManagedInstancePairInfo {
-  /**
-   * Id of Primary Managed Instance in pair.
-   */
+  /** Id of Primary Managed Instance in pair. */
   primaryManagedInstanceId?: string;
-  /**
-   * Id of Partner Managed Instance in pair.
-   */
+  /** Id of Partner Managed Instance in pair. */
   partnerManagedInstanceId?: string;
 }
 
-/**
- * A list of instance failover groups.
- */
+/** A list of instance failover groups. */
 export interface InstanceFailoverGroupListResult {
   /**
    * Array of results.
@@ -2140,9 +1654,7 @@ export interface InstanceFailoverGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of short term retention policies.
- */
+/** A list of short term retention policies. */
 export interface BackupShortTermRetentionPolicyListResult {
   /**
    * Array of results.
@@ -2156,9 +1668,7 @@ export interface BackupShortTermRetentionPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of managed instance keys.
- */
+/** A list of managed instance keys. */
 export interface ManagedInstanceKeyListResult {
   /**
    * Array of results.
@@ -2172,9 +1682,7 @@ export interface ManagedInstanceKeyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of managed instance encryption protectors.
- */
+/** A list of managed instance encryption protectors. */
 export interface ManagedInstanceEncryptionProtectorListResult {
   /**
    * Array of results.
@@ -2188,9 +1696,7 @@ export interface ManagedInstanceEncryptionProtectorListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of recoverable managed databases.
- */
+/** A list of recoverable managed databases. */
 export interface RecoverableManagedDatabaseListResult {
   /**
    * Array of results.
@@ -2204,9 +1710,7 @@ export interface RecoverableManagedDatabaseListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of the ManagedInstance's vulnerability assessments.
- */
+/** A list of the ManagedInstance's vulnerability assessments. */
 export interface ManagedInstanceVulnerabilityAssessmentListResult {
   /**
    * Array of results.
@@ -2220,9 +1724,7 @@ export interface ManagedInstanceVulnerabilityAssessmentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of the server's vulnerability assessments.
- */
+/** A list of the server's vulnerability assessments. */
 export interface ServerVulnerabilityAssessmentListResult {
   /**
    * Array of results.
@@ -2236,19 +1738,13 @@ export interface ServerVulnerabilityAssessmentListResult {
   readonly nextLink?: string;
 }
 
-/**
- * An update to an Instance pool.
- */
+/** An update to an Instance pool. */
 export interface InstancePoolUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
 }
 
-/**
- * A list of Azure SQL instance pools.
- */
+/** A list of Azure SQL instance pools. */
 export interface InstancePoolListResult {
   /**
    * Array of results.
@@ -2262,9 +1758,7 @@ export interface InstancePoolListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of usages.
- */
+/** A list of usages. */
 export interface UsageListResult {
   /**
    * Array of results.
@@ -2278,9 +1772,7 @@ export interface UsageListResult {
   readonly nextLink?: string;
 }
 
-/**
- * ARM usage.
- */
+/** ARM usage. */
 export interface Usage {
   /**
    * Resource ID.
@@ -2319,23 +1811,15 @@ export interface Usage {
   readonly requestedLimit?: number;
 }
 
-/**
- * ARM Usage Name
- */
+/** ARM Usage Name */
 export interface Name {
-  /**
-   * Usage name value
-   */
+  /** Usage name value */
   value?: string;
-  /**
-   * Usage name localized value.
-   */
+  /** Usage name localized value. */
   localizedValue?: string;
 }
 
-/**
- * A list of managed instances.
- */
+/** A list of managed instances. */
 export interface ManagedInstanceListResult {
   /**
    * Array of results.
@@ -2349,18 +1833,14 @@ export interface ManagedInstanceListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Azure Active Directory identity configuration for a resource.
- */
+/** Azure Active Directory identity configuration for a resource. */
 export interface ResourceIdentity {
   /**
    * The Azure Active Directory principal id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly principalId?: string;
-  /**
-   * The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource.
-   */
+  /** The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource. */
   type?: IdentityType;
   /**
    * The Azure Active Directory tenant id.
@@ -2369,17 +1849,11 @@ export interface ResourceIdentity {
   readonly tenantId?: string;
 }
 
-/**
- * An update request for an Azure SQL Database managed instance.
- */
+/** An update request for an Azure SQL Database managed instance. */
 export interface ManagedInstanceUpdate {
-  /**
-   * Managed instance sku
-   */
+  /** Managed instance sku */
   sku?: Sku;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
   /**
    * Specifies the mode of database creation.
@@ -2394,63 +1868,39 @@ export interface ManagedInstanceUpdate {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fullyQualifiedDomainName?: string;
-  /**
-   * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
-   */
+  /** Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation). */
   administratorLogin?: string;
-  /**
-   * The administrator login password (required for managed instance creation).
-   */
+  /** The administrator login password (required for managed instance creation). */
   administratorLoginPassword?: string;
-  /**
-   * Subnet resource ID for the managed instance.
-   */
+  /** Subnet resource ID for the managed instance. */
   subnetId?: string;
   /**
    * The state of the managed instance.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
-  /**
-   * The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses).
-   */
+  /** The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses). */
   licenseType?: ManagedInstanceLicenseType;
-  /**
-   * The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80.
-   */
+  /** The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80. */
   vCores?: number;
-  /**
-   * Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only.
-   */
+  /** Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only. */
   storageSizeInGB?: number;
-  /**
-   * Collation of the managed instance.
-   */
+  /** Collation of the managed instance. */
   collation?: string;
   /**
    * The Dns Zone that the managed instance is in.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dnsZone?: string;
-  /**
-   * The resource id of another managed instance whose DNS zone this managed instance will share after creation.
-   */
+  /** The resource id of another managed instance whose DNS zone this managed instance will share after creation. */
   dnsZonePartner?: string;
-  /**
-   * Whether or not the public data endpoint is enabled.
-   */
+  /** Whether or not the public data endpoint is enabled. */
   publicDataEndpointEnabled?: boolean;
-  /**
-   * The resource identifier of the source managed instance associated with create operation of this instance.
-   */
+  /** The resource identifier of the source managed instance associated with create operation of this instance. */
   sourceManagedInstanceId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
-  /**
-   * Connection type used for connecting to the instance.
-   */
+  /** Connection type used for connecting to the instance. */
   proxyOverride?: ManagedInstanceProxyOverride;
   /**
    * Id of the timezone. Allowed values are timezones supported by Windows.
@@ -2461,31 +1911,21 @@ export interface ManagedInstanceUpdate {
    * An example of valid timezone id is "Pacific Standard Time" or "W. Europe Standard Time".
    */
   timezoneId?: string;
-  /**
-   * The Id of the instance pool this managed server belongs to.
-   */
+  /** The Id of the instance pool this managed server belongs to. */
   instancePoolId?: string;
-  /**
-   * Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2'
-   */
+  /** Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2' */
   minimalTlsVersion?: string;
 }
 
 export interface PrivateEndpointProperty {
-  /**
-   * Resource id of the private endpoint.
-   */
+  /** Resource id of the private endpoint. */
   id?: string;
 }
 
 export interface PrivateLinkServiceConnectionStateProperty {
-  /**
-   * The private link service connection status.
-   */
+  /** The private link service connection status. */
   status: string;
-  /**
-   * The private link service connection description.
-   */
+  /** The private link service connection description. */
   description: string;
   /**
    * The actions required for private link service connection.
@@ -2494,9 +1934,7 @@ export interface PrivateLinkServiceConnectionStateProperty {
   readonly actionsRequired?: string;
 }
 
-/**
- * A list of private endpoint connections.
- */
+/** A list of private endpoint connections. */
 export interface PrivateEndpointConnectionListResult {
   /**
    * Array of results.
@@ -2510,9 +1948,7 @@ export interface PrivateEndpointConnectionListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of private link resources
- */
+/** A list of private link resources */
 export interface PrivateLinkResourceListResult {
   /**
    * Array of results.
@@ -2526,9 +1962,7 @@ export interface PrivateLinkResourceListResult {
   readonly nextLink?: string;
 }
 
-/**
- * Properties of a private link resource.
- */
+/** Properties of a private link resource. */
 export interface PrivateLinkResourceProperties {
   /**
    * The private link resource group id.
@@ -2542,9 +1976,7 @@ export interface PrivateLinkResourceProperties {
   readonly requiredMembers?: string[];
 }
 
-/**
- * A list of servers.
- */
+/** A list of servers. */
 export interface ServerListResult {
   /**
    * Array of results.
@@ -2558,9 +1990,7 @@ export interface ServerListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A private endpoint connection under a server
- */
+/** A private endpoint connection under a server */
 export interface ServerPrivateEndpointConnection {
   /**
    * Resource ID.
@@ -2574,17 +2004,11 @@ export interface ServerPrivateEndpointConnection {
   readonly properties?: PrivateEndpointConnectionProperties;
 }
 
-/**
- * Properties of a private endpoint connection.
- */
+/** Properties of a private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
-  /**
-   * Private endpoint which the connection belongs to.
-   */
+  /** Private endpoint which the connection belongs to. */
   privateEndpoint?: PrivateEndpointProperty;
-  /**
-   * Connection state of the private endpoint connection.
-   */
+  /** Connection state of the private endpoint connection. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStatePropertyAutoGenerated;
   /**
    * State of the private endpoint connection.
@@ -2594,13 +2018,9 @@ export interface PrivateEndpointConnectionProperties {
 }
 
 export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
-  /**
-   * The private link service connection status.
-   */
+  /** The private link service connection status. */
   status: PrivateLinkServiceConnectionStateStatus;
-  /**
-   * The private link service connection description.
-   */
+  /** The private link service connection description. */
   description: string;
   /**
    * The actions required for private link service connection.
@@ -2609,25 +2029,15 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
   readonly actionsRequired?: PrivateLinkServiceConnectionStateActionsRequire;
 }
 
-/**
- * An update request for an Azure SQL Database server.
- */
+/** An update request for an Azure SQL Database server. */
 export interface ServerUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * Administrator username for the server. Once created it cannot be changed.
-   */
+  /** Administrator username for the server. Once created it cannot be changed. */
   administratorLogin?: string;
-  /**
-   * The administrator login password (required for server creation).
-   */
+  /** The administrator login password (required for server creation). */
   administratorLoginPassword?: string;
-  /**
-   * The version of the server.
-   */
+  /** The version of the server. */
   version?: string;
   /**
    * The state of the server.
@@ -2644,27 +2054,19 @@ export interface ServerUpdate {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
-  /**
-   * Minimal TLS version. Allowed values: '1.0', '1.1', '1.2'
-   */
+  /** Minimal TLS version. Allowed values: '1.0', '1.1', '1.2' */
   minimalTlsVersion?: string;
-  /**
-   * Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled'
-   */
+  /** Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled' */
   publicNetworkAccess?: ServerPublicNetworkAccess;
 }
 
-/**
- * A request to check whether the specified name for a resource is available.
- */
+/** A request to check whether the specified name for a resource is available. */
 export interface CheckNameAvailabilityRequest {
   name: string;
   type: "Microsoft.Sql/servers";
 }
 
-/**
- * The result of a name availability check.
- */
+/** The result of a name availability check. */
 export interface CheckNameAvailabilityResponse {
   /**
    * The name whose availability was checked.
@@ -2688,9 +2090,7 @@ export interface CheckNameAvailabilityResponse {
   readonly message?: string;
 }
 
-/**
- * The location capability.
- */
+/** The location capability. */
 export interface LocationCapabilities {
   /**
    * The location name.
@@ -2712,15 +2112,11 @@ export interface LocationCapabilities {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The server capability
- */
+/** The server capability */
 export interface ServerVersionCapability {
   /**
    * The server version name.
@@ -2742,15 +2138,11 @@ export interface ServerVersionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The edition capability.
- */
+/** The edition capability. */
 export interface EditionCapability {
   /**
    * The database edition name.
@@ -2782,15 +2174,11 @@ export interface EditionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The service objectives capability.
- */
+/** The service objectives capability. */
 export interface ServiceObjectiveCapability {
   /**
    * The unique ID of the service objective.
@@ -2852,15 +2240,11 @@ export interface ServiceObjectiveCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The maximum size range capability.
- */
+/** The maximum size range capability. */
 export interface MaxSizeRangeCapability {
   /**
    * Minimum value.
@@ -2887,15 +2271,11 @@ export interface MaxSizeRangeCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The maximum size capability.
- */
+/** The maximum size capability. */
 export interface MaxSizeCapability {
   /**
    * The maximum size limit (see 'unit' for the units).
@@ -2909,9 +2289,7 @@ export interface MaxSizeCapability {
   readonly unit?: MaxSizeUnit;
 }
 
-/**
- * The log size capability.
- */
+/** The log size capability. */
 export interface LogSizeCapability {
   /**
    * The log size limit (see 'unit' for the units).
@@ -2925,9 +2303,7 @@ export interface LogSizeCapability {
   readonly unit?: LogSizeUnit;
 }
 
-/**
- * The performance level capability.
- */
+/** The performance level capability. */
 export interface PerformanceLevelCapability {
   /**
    * Performance level value.
@@ -2941,9 +2317,7 @@ export interface PerformanceLevelCapability {
   readonly unit?: PerformanceLevelUnit;
 }
 
-/**
- * The license type capability
- */
+/** The license type capability */
 export interface LicenseTypeCapability {
   /**
    * License type identifier.
@@ -2955,15 +2329,11 @@ export interface LicenseTypeCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * Supported auto pause delay time range
- */
+/** Supported auto pause delay time range */
 export interface AutoPauseDelayTimeRange {
   /**
    * Minimum value
@@ -2997,9 +2367,7 @@ export interface AutoPauseDelayTimeRange {
   readonly doNotPauseValue?: number;
 }
 
-/**
- * The min capacity capability
- */
+/** The min capacity capability */
 export interface MinCapacityCapability {
   /**
    * Min capacity value
@@ -3011,15 +2379,11 @@ export interface MinCapacityCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The read scale capability.
- */
+/** The read scale capability. */
 export interface ReadScaleCapability {
   /**
    * The maximum number of read scale replicas.
@@ -3031,15 +2395,11 @@ export interface ReadScaleCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The storage account type capability.
- */
+/** The storage account type capability. */
 export interface StorageCapability {
   /**
    * The storage account type for the database's backups.
@@ -3051,15 +2411,11 @@ export interface StorageCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The elastic pool edition capability.
- */
+/** The elastic pool edition capability. */
 export interface ElasticPoolEditionCapability {
   /**
    * The elastic pool edition name.
@@ -3081,15 +2437,11 @@ export interface ElasticPoolEditionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The Elastic Pool performance level capability.
- */
+/** The Elastic Pool performance level capability. */
 export interface ElasticPoolPerformanceLevelCapability {
   /**
    * The performance level for the pool.
@@ -3141,15 +2493,11 @@ export interface ElasticPoolPerformanceLevelCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The max per-database performance level capability.
- */
+/** The max per-database performance level capability. */
 export interface ElasticPoolPerDatabaseMaxPerformanceLevelCapability {
   /**
    * The maximum performance level per database.
@@ -3171,15 +2519,11 @@ export interface ElasticPoolPerDatabaseMaxPerformanceLevelCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The minimum per-database performance level capability.
- */
+/** The minimum per-database performance level capability. */
 export interface ElasticPoolPerDatabaseMinPerformanceLevelCapability {
   /**
    * The minimum performance level per database.
@@ -3196,15 +2540,11 @@ export interface ElasticPoolPerDatabaseMinPerformanceLevelCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The managed instance capability
- */
+/** The managed instance capability */
 export interface ManagedInstanceVersionCapability {
   /**
    * The server version name.
@@ -3226,15 +2566,11 @@ export interface ManagedInstanceVersionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The managed server capability
- */
+/** The managed server capability */
 export interface ManagedInstanceEditionCapability {
   /**
    * The managed server version name.
@@ -3251,15 +2587,11 @@ export interface ManagedInstanceEditionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The managed server family capability.
- */
+/** The managed server family capability. */
 export interface ManagedInstanceFamilyCapability {
   /**
    * Family name.
@@ -3286,15 +2618,11 @@ export interface ManagedInstanceFamilyCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The managed instance virtual cores capability.
- */
+/** The managed instance virtual cores capability. */
 export interface ManagedInstanceVcoresCapability {
   /**
    * The virtual cores identifier.
@@ -3331,15 +2659,11 @@ export interface ManagedInstanceVcoresCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The instance pool capability
- */
+/** The instance pool capability */
 export interface InstancePoolEditionCapability {
   /**
    * The instance pool version name.
@@ -3356,15 +2680,11 @@ export interface InstancePoolEditionCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The instance pool family capability.
- */
+/** The instance pool family capability. */
 export interface InstancePoolFamilyCapability {
   /**
    * Family name.
@@ -3386,15 +2706,11 @@ export interface InstancePoolFamilyCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * The managed instance virtual cores capability.
- */
+/** The managed instance virtual cores capability. */
 export interface InstancePoolVcoresCapability {
   /**
    * The virtual cores identifier.
@@ -3416,15 +2732,11 @@ export interface InstancePoolVcoresCapability {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: CapabilityStatus;
-  /**
-   * The reason for the capability not being available.
-   */
+  /** The reason for the capability not being available. */
   reason?: string;
 }
 
-/**
- * A list of long term retention backups for managed database(s).
- */
+/** A list of long term retention backups for managed database(s). */
 export interface ManagedInstanceLongTermRetentionBackupListResult {
   /**
    * Array of results.
@@ -3438,9 +2750,7 @@ export interface ManagedInstanceLongTermRetentionBackupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of long term retention policies.
- */
+/** A list of long term retention policies. */
 export interface ManagedInstanceLongTermRetentionPolicyListResult {
   /**
    * Array of results.
@@ -3454,9 +2764,7 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of workload groups.
- */
+/** A list of workload groups. */
 export interface WorkloadGroupListResult {
   /**
    * Array of results.
@@ -3470,9 +2778,7 @@ export interface WorkloadGroupListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of workload classifiers for a workload group.
- */
+/** A list of workload classifiers for a workload group. */
 export interface WorkloadClassifierListResult {
   /**
    * Array of results.
@@ -3486,9 +2792,7 @@ export interface WorkloadClassifierListResult {
   readonly nextLink?: string;
 }
 
-/**
- * A list of managed databases.
- */
+/** A list of managed databases. */
 export interface ManagedDatabaseListResult {
   /**
    * Array of results.
@@ -3502,17 +2806,11 @@ export interface ManagedDatabaseListResult {
   readonly nextLink?: string;
 }
 
-/**
- * An managed database update.
- */
+/** An managed database update. */
 export interface ManagedDatabaseUpdate {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * Collation of the managed database.
-   */
+  /** Collation of the managed database. */
   collation?: string;
   /**
    * Status of the database.
@@ -3529,67 +2827,43 @@ export interface ManagedDatabaseUpdate {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestorePoint?: Date;
-  /**
-   * Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
   /**
    * Geo paired region.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultSecondaryLocation?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
+  /** Collation of the metadata catalog. */
   catalogCollation?: CatalogCollationType;
-  /**
-   * Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore.
-   */
+  /** Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore. */
   createMode?: ManagedDatabaseCreateMode;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
-   */
+  /** Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored. */
   storageContainerUri?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
+  /** The resource identifier of the source database associated with create operation of this database. */
   sourceDatabaseId?: string;
-  /**
-   * The restorable dropped database resource id to restore when creating this database.
-   */
+  /** The restorable dropped database resource id to restore when creating this database. */
   restorableDroppedDatabaseId?: string;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
-   */
+  /** Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token. */
   storageContainerSasToken?: string;
   /**
    * Instance Failover Group resource identifier that this managed database belongs to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
+  /** The resource identifier of the recoverable database associated with create operation of this database. */
   recoverableDatabaseId?: string;
-  /**
-   * The name of the Long Term Retention backup to be used for restore of this managed database.
-   */
+  /** The name of the Long Term Retention backup to be used for restore of this managed database. */
   longTermRetentionBackupResourceId?: string;
 }
 
-/**
- * Contains the information necessary to perform a complete database restore operation.
- */
+/** Contains the information necessary to perform a complete database restore operation. */
 export interface CompleteDatabaseRestoreDefinition {
-  /**
-   * The last backup name to apply
-   */
+  /** The last backup name to apply */
   lastBackupName: string;
 }
 
-/**
- * A list of active directory administrators.
- */
+/** A list of active directory administrators. */
 export interface AdministratorListResult {
   /**
    * Array of results.
@@ -3603,9 +2877,7 @@ export interface AdministratorListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The response to a list managed instance operations request
- */
+/** The response to a list managed instance operations request */
 export interface ManagedInstanceOperationListResult {
   /**
    * Array of results.
@@ -3619,9 +2891,7 @@ export interface ManagedInstanceOperationListResult {
   readonly nextLink?: string;
 }
 
-/**
- * The impact of an operation, both in absolute and relative terms.
- */
+/** The impact of an operation, both in absolute and relative terms. */
 export interface OperationImpact {
   /**
    * The name of the impact dimension.
@@ -3645,9 +2915,7 @@ export interface OperationImpact {
   readonly changeValueRelative?: number;
 }
 
-/**
- * A recoverable database
- */
+/** A recoverable database */
 export type RecoverableDatabase = Resource & {
   /**
    * The edition of the database
@@ -3671,9 +2939,7 @@ export type RecoverableDatabase = Resource & {
   readonly lastAvailableBackupDate?: Date;
 };
 
-/**
- * A restorable dropped database
- */
+/** A restorable dropped database */
 export type RestorableDroppedDatabase = Resource & {
   /**
    * The geo-location where the resource lives
@@ -3722,9 +2988,7 @@ export type RestorableDroppedDatabase = Resource & {
   readonly earliestRestoreDate?: Date;
 };
 
-/**
- * A server secure connection policy.
- */
+/** A server secure connection policy. */
 export type ServerConnectionPolicy = Resource & {
   /**
    * Metadata used for the Azure portal experience.
@@ -3736,62 +3000,38 @@ export type ServerConnectionPolicy = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
-  /**
-   * The server connection type.
-   */
+  /** The server connection type. */
   connectionType?: ServerConnectionType;
 };
 
-/**
- * Contains information about a database Threat Detection policy.
- */
+/** Contains information about a database Threat Detection policy. */
 export type DatabaseSecurityAlertPolicy = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. */
   state?: SecurityAlertPolicyState;
-  /**
-   * Specifies the semicolon-separated list of alerts that are disabled, or empty string to disable no alerts. Possible values: Sql_Injection; Sql_Injection_Vulnerability; Access_Anomaly; Data_Exfiltration; Unsafe_Action.
-   */
+  /** Specifies the semicolon-separated list of alerts that are disabled, or empty string to disable no alerts. Possible values: Sql_Injection; Sql_Injection_Vulnerability; Access_Anomaly; Data_Exfiltration; Unsafe_Action. */
   disabledAlerts?: string;
-  /**
-   * Specifies the semicolon-separated list of e-mail addresses to which the alert is sent.
-   */
+  /** Specifies the semicolon-separated list of e-mail addresses to which the alert is sent. */
   emailAddresses?: string;
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
+  /** Specifies that the alert is sent to the account administrators. */
   emailAccountAdmins?: SecurityAlertPolicyEmailAccountAdmins;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. If state is Enabled, storageEndpoint is required.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. If state is Enabled, storageEndpoint is required. */
   storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account. If state is Enabled, storageAccountAccessKey is required.
-   */
+  /** Specifies the identifier key of the Threat Detection audit storage account. If state is Enabled, storageAccountAccessKey is required. */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
+  /** Specifies the number of days to keep in the Threat Detection audit logs. */
   retentionDays?: number;
-  /**
-   * Specifies whether to use the default server policy.
-   */
+  /** Specifies whether to use the default server policy. */
   useServerDefault?: SecurityAlertPolicyUseServerDefault;
 };
 
-/**
- * Represents a database data masking policy.
- */
+/** Represents a database data masking policy. */
 export type DataMaskingPolicy = Resource & {
   /**
    * The location of the data masking policy.
@@ -3803,13 +3043,9 @@ export type DataMaskingPolicy = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * The state of the data masking policy.
-   */
+  /** The state of the data masking policy. */
   dataMaskingState?: DataMaskingState;
-  /**
-   * The list of the exempt principals. Specifies the semicolon-separated list of database users for which the data masking policy does not apply. The specified users receive data results without masking for all of the database queries.
-   */
+  /** The list of the exempt principals. Specifies the semicolon-separated list of database users for which the data masking policy does not apply. The specified users receive data results without masking for all of the database queries. */
   exemptPrincipals?: string;
   /**
    * The list of the application principals. This is a legacy parameter and is no longer used.
@@ -3823,9 +3059,7 @@ export type DataMaskingPolicy = Resource & {
   readonly maskingLevel?: string;
 };
 
-/**
- * Represents a database data masking rule.
- */
+/** Represents a database data masking rule. */
 export type DataMaskingRule = Resource & {
   /**
    * The location of the data masking rule.
@@ -3842,55 +3076,31 @@ export type DataMaskingRule = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly idPropertiesId?: string;
-  /**
-   * The alias name. This is a legacy parameter and is no longer used.
-   */
+  /** The alias name. This is a legacy parameter and is no longer used. */
   aliasName?: string;
-  /**
-   * The rule state. Used to delete a rule. To delete an existing rule, specify the schemaName, tableName, columnName, maskingFunction, and specify ruleState as disabled. However, if the rule doesn't already exist, the rule will be created with ruleState set to enabled, regardless of the provided value of ruleState.
-   */
+  /** The rule state. Used to delete a rule. To delete an existing rule, specify the schemaName, tableName, columnName, maskingFunction, and specify ruleState as disabled. However, if the rule doesn't already exist, the rule will be created with ruleState set to enabled, regardless of the provided value of ruleState. */
   ruleState?: DataMaskingRuleState;
-  /**
-   * The schema name on which the data masking rule is applied.
-   */
+  /** The schema name on which the data masking rule is applied. */
   schemaName?: string;
-  /**
-   * The table name on which the data masking rule is applied.
-   */
+  /** The table name on which the data masking rule is applied. */
   tableName?: string;
-  /**
-   * The column name on which the data masking rule is applied.
-   */
+  /** The column name on which the data masking rule is applied. */
   columnName?: string;
-  /**
-   * The masking function that is used for the data masking rule.
-   */
+  /** The masking function that is used for the data masking rule. */
   maskingFunction?: DataMaskingFunction;
-  /**
-   * The numberFrom property of the masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
-   */
+  /** The numberFrom property of the masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored. */
   numberFrom?: string;
-  /**
-   * The numberTo property of the data masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
-   */
+  /** The numberTo property of the data masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored. */
   numberTo?: string;
-  /**
-   * If maskingFunction is set to Text, the number of characters to show unmasked in the beginning of the string. Otherwise, this parameter will be ignored.
-   */
+  /** If maskingFunction is set to Text, the number of characters to show unmasked in the beginning of the string. Otherwise, this parameter will be ignored. */
   prefixSize?: string;
-  /**
-   * If maskingFunction is set to Text, the number of characters to show unmasked at the end of the string. Otherwise, this parameter will be ignored.
-   */
+  /** If maskingFunction is set to Text, the number of characters to show unmasked at the end of the string. Otherwise, this parameter will be ignored. */
   suffixSize?: string;
-  /**
-   * If maskingFunction is set to Text, the character to use for masking the unexposed part of the string. Otherwise, this parameter will be ignored.
-   */
+  /** If maskingFunction is set to Text, the character to use for masking the unexposed part of the string. Otherwise, this parameter will be ignored. */
   replacementString?: string;
 };
 
-/**
- * Represents a server firewall rule.
- */
+/** Represents a server firewall rule. */
 export type FirewallRule = Resource & {
   /**
    * Kind of server that contains this firewall rule.
@@ -3902,19 +3112,13 @@ export type FirewallRule = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
-  /**
-   * The start IP address of the firewall rule. Must be IPv4 format. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
-   */
+  /** The start IP address of the firewall rule. Must be IPv4 format. Use value '0.0.0.0' to represent all Azure-internal IP addresses. */
   startIpAddress?: string;
-  /**
-   * The end IP address of the firewall rule. Must be IPv4 format. Must be greater than or equal to startIpAddress. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
-   */
+  /** The end IP address of the firewall rule. Must be IPv4 format. Must be greater than or equal to startIpAddress. Use value '0.0.0.0' to represent all Azure-internal IP addresses. */
   endIpAddress?: string;
 };
 
-/**
- * A database geo backup policy.
- */
+/** A database geo backup policy. */
 export type GeoBackupPolicy = Resource & {
   /**
    * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
@@ -3926,9 +3130,7 @@ export type GeoBackupPolicy = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
-  /**
-   * The state of the geo backup policy.
-   */
+  /** The state of the geo backup policy. */
   state: GeoBackupPolicyState;
   /**
    * The storage type of the geo backup policy.
@@ -3937,9 +3139,7 @@ export type GeoBackupPolicy = Resource & {
   readonly storageType?: string;
 };
 
-/**
- * Response for Import/Export Get operation.
- */
+/** Response for Import/Export Get operation. */
 export type ImportExportResponse = Resource & {
   /**
    * The request type of the operation.
@@ -3988,44 +3188,28 @@ export type ImportExportResponse = Resource & {
   readonly errorMessage?: string;
 };
 
-/**
- * ARM tracked top level resource.
- */
+/** ARM tracked top level resource. */
 export type TrackedResource = Resource & {
-  /**
-   * Resource location.
-   */
+  /** Resource location. */
   location: string;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
 };
 
-/**
- * Represents a recommended elastic pool.
- */
+/** Represents a recommended elastic pool. */
 export type RecommendedElasticPool = Resource & {
   /**
    * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly databaseEdition?: ElasticPoolEdition;
-  /**
-   * The DTU for the recommended elastic pool.
-   */
+  /** The DTU for the recommended elastic pool. */
   dtu?: number;
-  /**
-   * The minimum DTU for the database.
-   */
+  /** The minimum DTU for the database. */
   databaseDtuMin?: number;
-  /**
-   * The maximum DTU for the database.
-   */
+  /** The maximum DTU for the database. */
   databaseDtuMax?: number;
-  /**
-   * Gets storage size in megabytes.
-   */
+  /** Gets storage size in megabytes. */
   storageMB?: number;
   /**
    * The observation period start (ISO8601 format).
@@ -4059,9 +3243,7 @@ export type RecommendedElasticPool = Resource & {
   readonly metrics?: RecommendedElasticPoolMetric[];
 };
 
-/**
- * Represents a database replication link.
- */
+/** Represents a database replication link. */
 export type ReplicationLink = Resource & {
   /**
    * Location of the server that contains this firewall rule.
@@ -4120,9 +3302,7 @@ export type ReplicationLink = Resource & {
   readonly replicationState?: ReplicationState;
 };
 
-/**
- * Server communication link.
- */
+/** Server communication link. */
 export type ServerCommunicationLink = Resource & {
   /**
    * Communication link location.
@@ -4139,15 +3319,11 @@ export type ServerCommunicationLink = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
-  /**
-   * The name of the partner server.
-   */
+  /** The name of the partner server. */
   partnerServer?: string;
 };
 
-/**
- * Represents a database service objective.
- */
+/** Represents a database service objective. */
 export type ServiceObjective = Resource & {
   /**
    * The name for the service objective.
@@ -4176,13 +3352,9 @@ export type ServiceObjective = Resource & {
   readonly enabled?: boolean;
 };
 
-/**
- * Represents the activity on an elastic pool.
- */
+/** Represents the activity on an elastic pool. */
 export type ElasticPoolActivity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * The time the operation finished (ISO8601 format).
@@ -4286,13 +3458,9 @@ export type ElasticPoolActivity = Resource & {
   readonly requestedDtuGuarantee?: number;
 };
 
-/**
- * Represents the activity on an elastic pool.
- */
+/** Represents the activity on an elastic pool. */
 export type ElasticPoolDatabaseActivity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * The database name.
@@ -4371,9 +3539,7 @@ export type ElasticPoolDatabaseActivity = Resource & {
   readonly state?: string;
 };
 
-/**
- * Represents a Service Tier Advisor.
- */
+/** Represents a Service Tier Advisor. */
 export type ServiceTierAdvisor = Resource & {
   /**
    * The observation period start (ISO8601 format).
@@ -4472,24 +3638,18 @@ export type ServiceTierAdvisor = Resource & {
   readonly confidence?: number;
 };
 
-/**
- * Represents a database transparent data encryption configuration.
- */
+/** Represents a database transparent data encryption configuration. */
 export type TransparentDataEncryption = Resource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
-  /**
-   * The status of the database transparent data encryption.
-   */
+  /** The status of the database transparent data encryption. */
   status?: TransparentDataEncryptionStatus;
 };
 
-/**
- * Represents a database transparent data encryption Scan.
- */
+/** Represents a database transparent data encryption Scan. */
 export type TransparentDataEncryptionActivity = Resource & {
   /**
    * Resource location.
@@ -4508,28 +3668,20 @@ export type TransparentDataEncryptionActivity = Resource & {
   readonly percentComplete?: number;
 };
 
-/**
- * Database-level Automatic Tuning.
- */
+/** Database-level Automatic Tuning. */
 export type DatabaseAutomaticTuning = Resource & {
-  /**
-   * Automatic tuning desired state.
-   */
+  /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
    * Automatic tuning actual state.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actualState?: AutomaticTuningMode;
-  /**
-   * Automatic tuning options definition.
-   */
+  /** Automatic tuning options definition. */
   options?: { [propertyName: string]: AutomaticTuningOptions };
 };
 
-/**
- * The server encryption protector.
- */
+/** The server encryption protector. */
 export type EncryptionProtector = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
@@ -4546,13 +3698,9 @@ export type EncryptionProtector = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subregion?: string;
-  /**
-   * The name of the server key.
-   */
+  /** The name of the server key. */
   serverKeyName?: string;
-  /**
-   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
-   */
+  /** The encryption protector type like 'ServiceManaged', 'AzureKeyVault'. */
   serverKeyType?: ServerKeyType;
   /**
    * The URI of the server key.
@@ -4566,26 +3714,18 @@ export type EncryptionProtector = Resource & {
   readonly thumbprint?: string;
 };
 
-/**
- * A failover group.
- */
+/** A failover group. */
 export type FailoverGroup = Resource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly location?: string;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
+  /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: FailoverGroupReadWriteEndpoint;
-  /**
-   * Read-only endpoint of the failover group instance.
-   */
+  /** Read-only endpoint of the failover group instance. */
   readOnlyEndpoint?: FailoverGroupReadOnlyEndpoint;
   /**
    * Local replication role of the failover group instance.
@@ -4597,23 +3737,15 @@ export type FailoverGroup = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationState?: string;
-  /**
-   * List of partner server information for the failover group.
-   */
+  /** List of partner server information for the failover group. */
   partnerServers?: PartnerInfo[];
-  /**
-   * List of databases in the failover group.
-   */
+  /** List of databases in the failover group. */
   databases?: string[];
 };
 
-/**
- * A server key.
- */
+/** A server key. */
 export type ServerKey = Resource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
+  /** Kind of encryption protector. This is metadata used for the Azure portal experience. */
   kind?: string;
   /**
    * Resource location.
@@ -4625,36 +3757,24 @@ export type ServerKey = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subregion?: string;
-  /**
-   * The server key type like 'ServiceManaged', 'AzureKeyVault'.
-   */
+  /** The server key type like 'ServiceManaged', 'AzureKeyVault'. */
   serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the server key.
-   */
+  /** The URI of the server key. */
   uri?: string;
-  /**
-   * Thumbprint of the server key.
-   */
+  /** Thumbprint of the server key. */
   thumbprint?: string;
-  /**
-   * The server key creation date.
-   */
+  /** The server key creation date. */
   creationDate?: Date;
 };
 
-/**
- * An Azure SQL Database sync agent.
- */
+/** An Azure SQL Database sync agent. */
 export type SyncAgent = Resource & {
   /**
    * Name of the sync agent.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly namePropertiesName?: string;
-  /**
-   * ARM resource id of the sync database in the sync agent.
-   */
+  /** ARM resource id of the sync database in the sync agent. */
   syncDatabaseId?: string;
   /**
    * Last alive time of the sync agent.
@@ -4683,9 +3803,7 @@ export type SyncAgent = Resource & {
   readonly version?: string;
 };
 
-/**
- * An Azure SQL Database sync agent linked database.
- */
+/** An Azure SQL Database sync agent linked database. */
 export type SyncAgentLinkedDatabase = Resource & {
   /**
    * Type of the sync agent linked database.
@@ -4719,81 +3837,49 @@ export type SyncAgentLinkedDatabase = Resource & {
   readonly userName?: string;
 };
 
-/**
- * An Azure SQL Database sync group.
- */
+/** An Azure SQL Database sync group. */
 export type SyncGroup = Resource & {
-  /**
-   * Sync interval of the sync group.
-   */
+  /** Sync interval of the sync group. */
   interval?: number;
   /**
    * Last sync time of the sync group.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastSyncTime?: Date;
-  /**
-   * Conflict resolution policy of the sync group.
-   */
+  /** Conflict resolution policy of the sync group. */
   conflictResolutionPolicy?: SyncConflictResolutionPolicy;
-  /**
-   * ARM resource id of the sync database in the sync group.
-   */
+  /** ARM resource id of the sync database in the sync group. */
   syncDatabaseId?: string;
-  /**
-   * User name for the sync group hub database credential.
-   */
+  /** User name for the sync group hub database credential. */
   hubDatabaseUserName?: string;
-  /**
-   * Password for the sync group hub database credential.
-   */
+  /** Password for the sync group hub database credential. */
   hubDatabasePassword?: string;
   /**
    * Sync state of the sync group.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly syncState?: SyncGroupState;
-  /**
-   * Sync schema of the sync group.
-   */
+  /** Sync schema of the sync group. */
   schema?: SyncGroupSchema;
 };
 
-/**
- * An Azure SQL Database sync member.
- */
+/** An Azure SQL Database sync member. */
 export type SyncMember = Resource & {
-  /**
-   * Database type of the sync member.
-   */
+  /** Database type of the sync member. */
   databaseType?: SyncMemberDbType;
-  /**
-   * ARM resource id of the sync agent in the sync member.
-   */
+  /** ARM resource id of the sync agent in the sync member. */
   syncAgentId?: string;
-  /**
-   * SQL Server database id of the sync member.
-   */
+  /** SQL Server database id of the sync member. */
   sqlServerDatabaseId?: string;
-  /**
-   * Server name of the member database in the sync member
-   */
+  /** Server name of the member database in the sync member */
   serverName?: string;
-  /**
-   * Database name of the member database in the sync member.
-   */
+  /** Database name of the member database in the sync member. */
   databaseName?: string;
-  /**
-   * User name of the member database in the sync member.
-   */
+  /** User name of the member database in the sync member. */
   userName?: string;
-  /**
-   * Password of the member database in the sync member.
-   */
+  /** Password of the member database in the sync member. */
   password?: string;
-  /**
-   * Sync direction of the sync member.
-   */
+  /** Sync direction of the sync member. */
   syncDirection?: SyncDirection;
   /**
    * Sync state of the sync member.
@@ -4802,9 +3888,7 @@ export type SyncMember = Resource & {
   readonly syncState?: SyncMemberState;
 };
 
-/**
- * Usage Metric of a Subscription in a Location.
- */
+/** Usage Metric of a Subscription in a Location. */
 export type SubscriptionUsage = Resource & {
   /**
    * User-readable name of the metric.
@@ -4828,17 +3912,11 @@ export type SubscriptionUsage = Resource & {
   readonly unit?: string;
 };
 
-/**
- * A virtual network rule.
- */
+/** A virtual network rule. */
 export type VirtualNetworkRule = Resource & {
-  /**
-   * The ARM resource id of the virtual network subnet.
-   */
+  /** The ARM resource id of the virtual network subnet. */
   virtualNetworkSubnetId?: string;
-  /**
-   * Create firewall rule before the virtual network has vnet service endpoint enabled.
-   */
+  /** Create firewall rule before the virtual network has vnet service endpoint enabled. */
   ignoreMissingVnetServiceEndpoint?: boolean;
   /**
    * Virtual Network Rule State
@@ -4847,21 +3925,13 @@ export type VirtualNetworkRule = Resource & {
   readonly state?: VirtualNetworkRuleState;
 };
 
-/**
- * An extended database blob auditing policy.
- */
+/** An extended database blob auditing policy. */
 export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
+  /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
   storageEndpoint?: string;
   /**
    * Specifies the identifier key of the auditing storage account.
@@ -4872,9 +3942,7 @@ export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
    * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
    */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
+  /** Specifies the number of days to keep in the audit logs in the storage account. */
   retentionDays?: number;
   /**
    * Specifies the Actions-Groups and Actions to audit.
@@ -4936,13 +4004,9 @@ export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
    * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
    */
   auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
+  /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
+  /** Specifies whether storageAccountAccessKey value is the storage's secondary key. */
   isStorageSecondaryKeyInUse?: boolean;
   /**
    * Specifies whether audit events are sent to Azure Monitor.
@@ -4966,21 +4030,13 @@ export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
   queueDelayMs?: number;
 };
 
-/**
- * An extended server blob auditing policy.
- */
+/** An extended server blob auditing policy. */
 export type ExtendedServerBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
+  /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
   storageEndpoint?: string;
   /**
    * Specifies the identifier key of the auditing storage account.
@@ -4991,9 +4047,7 @@ export type ExtendedServerBlobAuditingPolicy = Resource & {
    * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
    */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
+  /** Specifies the number of days to keep in the audit logs in the storage account. */
   retentionDays?: number;
   /**
    * Specifies the Actions-Groups and Actions to audit.
@@ -5055,13 +4109,9 @@ export type ExtendedServerBlobAuditingPolicy = Resource & {
    * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
    */
   auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
+  /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
+  /** Specifies whether storageAccountAccessKey value is the storage's secondary key. */
   isStorageSecondaryKeyInUse?: boolean;
   /**
    * Specifies whether audit events are sent to Azure Monitor.
@@ -5085,17 +4135,11 @@ export type ExtendedServerBlobAuditingPolicy = Resource & {
   queueDelayMs?: number;
 };
 
-/**
- * A server blob auditing policy.
- */
+/** A server blob auditing policy. */
 export type ServerBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
   storageEndpoint?: string;
   /**
    * Specifies the identifier key of the auditing storage account.
@@ -5106,9 +4150,7 @@ export type ServerBlobAuditingPolicy = Resource & {
    * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
    */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
+  /** Specifies the number of days to keep in the audit logs in the storage account. */
   retentionDays?: number;
   /**
    * Specifies the Actions-Groups and Actions to audit.
@@ -5170,13 +4212,9 @@ export type ServerBlobAuditingPolicy = Resource & {
    * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
    */
   auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
+  /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
+  /** Specifies whether storageAccountAccessKey value is the storage's secondary key. */
   isStorageSecondaryKeyInUse?: boolean;
   /**
    * Specifies whether audit events are sent to Azure Monitor.
@@ -5200,22 +4238,16 @@ export type ServerBlobAuditingPolicy = Resource & {
   queueDelayMs?: number;
 };
 
-/**
- * A database blob auditing policy.
- */
+/** A database blob auditing policy. */
 export type DatabaseBlobAuditingPolicy = Resource & {
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
   storageEndpoint?: string;
   /**
    * Specifies the identifier key of the auditing storage account.
@@ -5226,9 +4258,7 @@ export type DatabaseBlobAuditingPolicy = Resource & {
    * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
    */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
+  /** Specifies the number of days to keep in the audit logs in the storage account. */
   retentionDays?: number;
   /**
    * Specifies the Actions-Groups and Actions to audit.
@@ -5290,13 +4320,9 @@ export type DatabaseBlobAuditingPolicy = Resource & {
    * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
    */
   auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
+  /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
+  /** Specifies whether storageAccountAccessKey value is the storage's secondary key. */
   isStorageSecondaryKeyInUse?: boolean;
   /**
    * Specifies whether audit events are sent to Azure Monitor.
@@ -5320,55 +4346,33 @@ export type DatabaseBlobAuditingPolicy = Resource & {
   queueDelayMs?: number;
 };
 
-/**
- * A database vulnerability assessment rule baseline.
- */
+/** A database vulnerability assessment rule baseline. */
 export type DatabaseVulnerabilityAssessmentRuleBaseline = Resource & {
-  /**
-   * The rule baseline result
-   */
+  /** The rule baseline result */
   baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
 };
 
-/**
- * A database vulnerability assessment.
- */
+/** A database vulnerability assessment. */
 export type DatabaseVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set */
   storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
+  /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
+  /** Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required. */
   storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
+  /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A stored credential that can be used by a job to connect to target databases.
- */
+/** A stored credential that can be used by a job to connect to target databases. */
 export type JobCredential = Resource & {
-  /**
-   * The credential user name.
-   */
+  /** The credential user name. */
   username?: string;
-  /**
-   * The credential password.
-   */
+  /** The credential password. */
   password?: string;
 };
 
-/**
- * An execution of a job
- */
+/** An execution of a job */
 export type JobExecution = Resource & {
   /**
    * The job version number.
@@ -5415,9 +4419,7 @@ export type JobExecution = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly endTime?: Date;
-  /**
-   * Number of times the job execution has been attempted.
-   */
+  /** Number of times the job execution has been attempted. */
   currentAttempts?: number;
   /**
    * Start time of the current attempt.
@@ -5436,68 +4438,42 @@ export type JobExecution = Resource & {
   readonly target?: JobExecutionTarget;
 };
 
-/**
- * A job.
- */
+/** A job. */
 export type Job = Resource & {
-  /**
-   * User-defined description of the job.
-   */
+  /** User-defined description of the job. */
   description?: string;
   /**
    * The job version number.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: number;
-  /**
-   * Schedule properties of the job.
-   */
+  /** Schedule properties of the job. */
   schedule?: JobSchedule;
 };
 
-/**
- * A job step.
- */
+/** A job step. */
 export type JobStep = Resource & {
-  /**
-   * The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified.
-   */
+  /** The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified. */
   stepId?: number;
-  /**
-   * The resource ID of the target group that the job step will be executed on.
-   */
+  /** The resource ID of the target group that the job step will be executed on. */
   targetGroup?: string;
-  /**
-   * The resource ID of the job credential that will be used to connect to the targets.
-   */
+  /** The resource ID of the job credential that will be used to connect to the targets. */
   credential?: string;
-  /**
-   * The action payload of the job step.
-   */
+  /** The action payload of the job step. */
   action?: JobStepAction;
-  /**
-   * Output destination properties of the job step.
-   */
+  /** Output destination properties of the job step. */
   output?: JobStepOutput;
-  /**
-   * Execution options for the job step.
-   */
+  /** Execution options for the job step. */
   executionOptions?: JobStepExecutionOptions;
 };
 
-/**
- * A group of job targets.
- */
+/** A group of job targets. */
 export type JobTargetGroup = Resource & {
-  /**
-   * Members of the target group.
-   */
+  /** Members of the target group. */
   members?: JobTarget[];
 };
 
-/**
- * A long term retention backup.
- */
+/** A long term retention backup. */
 export type LongTermRetentionBackup = Resource & {
   /**
    * The server name that the backup database belong to.
@@ -5531,60 +4507,38 @@ export type LongTermRetentionBackup = Resource & {
   readonly backupExpirationTime?: Date;
 };
 
-/**
- * A long term retention policy.
- */
+/** A long term retention policy. */
 export type BackupLongTermRetentionPolicy = Resource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
-  /**
-   * The monthly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
   monthlyRetention?: string;
-  /**
-   * The yearly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The yearly retention policy for an LTR backup in an ISO 8601 format. */
   yearlyRetention?: string;
-  /**
-   * The week of year to take the yearly backup in an ISO 8601 format.
-   */
+  /** The week of year to take the yearly backup in an ISO 8601 format. */
   weekOfYear?: number;
 };
 
-/**
- * A short term retention policy.
- */
+/** A short term retention policy. */
 export type ManagedBackupShortTermRetentionPolicy = Resource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
+  /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
-/**
- * Server-level Automatic Tuning.
- */
+/** Server-level Automatic Tuning. */
 export type ServerAutomaticTuning = Resource & {
-  /**
-   * Automatic tuning desired state.
-   */
+  /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
    * Automatic tuning actual state.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly actualState?: AutomaticTuningServerMode;
-  /**
-   * Automatic tuning options definition.
-   */
+  /** Automatic tuning options definition. */
   options?: { [propertyName: string]: AutomaticTuningServerOptions };
 };
 
-/**
- * A server DNS alias.
- */
+/** A server DNS alias. */
 export type ServerDnsAlias = Resource & {
   /**
    * The fully qualified DNS record for alias
@@ -5593,37 +4547,21 @@ export type ServerDnsAlias = Resource & {
   readonly azureDnsRecord?: string;
 };
 
-/**
- * A server security alert policy.
- */
+/** A server security alert policy. */
 export type ServerSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
+  /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
+  /** Specifies an array of e-mail addresses to which the alert is sent. */
   emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
+  /** Specifies that the alert is sent to the account administrators. */
   emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. */
   storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
+  /** Specifies the identifier key of the Threat Detection audit storage account. */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
+  /** Specifies the number of days to keep in the Threat Detection audit logs. */
   retentionDays?: number;
   /**
    * Specifies the UTC creation time of the policy.
@@ -5632,9 +4570,7 @@ export type ServerSecurityAlertPolicy = Resource & {
   readonly creationTime?: Date;
 };
 
-/**
- * Database restore points.
- */
+/** Database restore points. */
 export type RestorePoint = Resource & {
   /**
    * Resource location.
@@ -5663,37 +4599,21 @@ export type RestorePoint = Resource & {
   readonly restorePointLabel?: string;
 };
 
-/**
- * A managed database security alert policy.
- */
+/** A managed database security alert policy. */
 export type ManagedDatabaseSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
+  /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
+  /** Specifies an array of e-mail addresses to which the alert is sent. */
   emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
+  /** Specifies that the alert is sent to the account administrators. */
   emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. */
   storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
+  /** Specifies the identifier key of the Threat Detection audit storage account. */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
+  /** Specifies the number of days to keep in the Threat Detection audit logs. */
   retentionDays?: number;
   /**
    * Specifies the UTC creation time of the policy.
@@ -5702,37 +4622,21 @@ export type ManagedDatabaseSecurityAlertPolicy = Resource & {
   readonly creationTime?: Date;
 };
 
-/**
- * A managed server security alert policy.
- */
+/** A managed server security alert policy. */
 export type ManagedServerSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
+  /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
+  /** Specifies an array of e-mail addresses to which the alert is sent. */
   emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
+  /** Specifies that the alert is sent to the account administrators. */
   emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
+  /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. */
   storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
+  /** Specifies the identifier key of the Threat Detection audit storage account. */
   storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
+  /** Specifies the number of days to keep in the Threat Detection audit logs. */
   retentionDays?: number;
   /**
    * Specifies the UTC creation time of the policy.
@@ -5741,25 +4645,15 @@ export type ManagedServerSecurityAlertPolicy = Resource & {
   readonly creationTime?: Date;
 };
 
-/**
- * A sensitivity label.
- */
+/** A sensitivity label. */
 export type SensitivityLabel = Resource & {
-  /**
-   * The label name.
-   */
+  /** The label name. */
   labelName?: string;
-  /**
-   * The label ID.
-   */
+  /** The label ID. */
   labelId?: string;
-  /**
-   * The information type.
-   */
+  /** The information type. */
   informationType?: string;
-  /**
-   * The information type ID.
-   */
+  /** The information type ID. */
   informationTypeId?: string;
   /**
    * Is sensitivity recommendation disabled. Applicable for recommended sensitivity label only. Specifies whether the sensitivity recommendation on this column is disabled (dismissed) or not.
@@ -5769,31 +4663,19 @@ export type SensitivityLabel = Resource & {
   rank?: SensitivityLabelRank;
 };
 
-/**
- * An Azure SQL managed instance administrator.
- */
+/** An Azure SQL managed instance administrator. */
 export type ManagedInstanceAdministrator = Resource & {
-  /**
-   * Type of the managed instance administrator.
-   */
+  /** Type of the managed instance administrator. */
   administratorType?: ManagedInstanceAdministratorType;
-  /**
-   * Login name of the managed instance administrator.
-   */
+  /** Login name of the managed instance administrator. */
   login?: string;
-  /**
-   * SID (object ID) of the managed instance administrator.
-   */
+  /** SID (object ID) of the managed instance administrator. */
   sid?: string;
-  /**
-   * Tenant ID of the managed instance administrator.
-   */
+  /** Tenant ID of the managed instance administrator. */
   tenantId?: string;
 };
 
-/**
- * A database operation.
- */
+/** A database operation. */
 export type DatabaseOperation = Resource & {
   /**
    * The name of the database the operation is being performed on.
@@ -5867,9 +4749,7 @@ export type DatabaseOperation = Resource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * A elastic pool operation.
- */
+/** A elastic pool operation. */
 export type ElasticPoolOperation = Resource & {
   /**
    * The name of the elastic pool the operation is being performed on.
@@ -5943,9 +4823,7 @@ export type ElasticPoolOperation = Resource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * A vulnerability assessment scan record.
- */
+/** A vulnerability assessment scan record. */
 export type VulnerabilityAssessmentScanRecord = Resource & {
   /**
    * The scan ID.
@@ -5989,9 +4867,7 @@ export type VulnerabilityAssessmentScanRecord = Resource & {
   readonly numberOfFailedSecurityChecks?: number;
 };
 
-/**
- * A database Vulnerability Assessment scan export resource.
- */
+/** A database Vulnerability Assessment scan export resource. */
 export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
@@ -6000,17 +4876,11 @@ export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
   readonly exportedReportLocation?: string;
 };
 
-/**
- * An instance failover group.
- */
+/** An instance failover group. */
 export type InstanceFailoverGroup = Resource & {
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
+  /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
-  /**
-   * Read-only endpoint of the failover group instance.
-   */
+  /** Read-only endpoint of the failover group instance. */
   readOnlyEndpoint?: InstanceFailoverGroupReadOnlyEndpoint;
   /**
    * Local replication role of the failover group instance.
@@ -6022,56 +4892,36 @@ export type InstanceFailoverGroup = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationState?: string;
-  /**
-   * Partner region information for the failover group.
-   */
+  /** Partner region information for the failover group. */
   partnerRegions?: PartnerRegionInfo[];
-  /**
-   * List of managed instance pairs in the failover group.
-   */
+  /** List of managed instance pairs in the failover group. */
   managedInstancePairs?: ManagedInstancePairInfo[];
 };
 
-/**
- * A short term retention policy.
- */
+/** A short term retention policy. */
 export type BackupShortTermRetentionPolicy = Resource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
+  /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
-/**
- * A TDE certificate that can be uploaded into a server.
- */
+/** A TDE certificate that can be uploaded into a server. */
 export type TdeCertificate = Resource & {
-  /**
-   * The base64 encoded certificate private blob.
-   */
+  /** The base64 encoded certificate private blob. */
   privateBlob?: string;
-  /**
-   * The certificate password.
-   */
+  /** The certificate password. */
   certPassword?: string;
 };
 
-/**
- * A managed instance key.
- */
+/** A managed instance key. */
 export type ManagedInstanceKey = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * The key type like 'ServiceManaged', 'AzureKeyVault'.
-   */
+  /** The key type like 'ServiceManaged', 'AzureKeyVault'. */
   serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the key. If the ServerKeyType is AzureKeyVault, then the URI is required.
-   */
+  /** The URI of the key. If the ServerKeyType is AzureKeyVault, then the URI is required. */
   uri?: string;
   /**
    * Thumbprint of the key.
@@ -6085,22 +4935,16 @@ export type ManagedInstanceKey = Resource & {
   readonly creationDate?: Date;
 };
 
-/**
- * The managed instance encryption protector.
- */
+/** The managed instance encryption protector. */
 export type ManagedInstanceEncryptionProtector = Resource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * The name of the managed instance key.
-   */
+  /** The name of the managed instance key. */
   serverKeyName?: string;
-  /**
-   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
-   */
+  /** The encryption protector type like 'ServiceManaged', 'AzureKeyVault'. */
   serverKeyType?: ServerKeyType;
   /**
    * The URI of the server key.
@@ -6114,9 +4958,7 @@ export type ManagedInstanceEncryptionProtector = Resource & {
   readonly thumbprint?: string;
 };
 
-/**
- * A recoverable managed database resource.
- */
+/** A recoverable managed database resource. */
 export type RecoverableManagedDatabase = Resource & {
   /**
    * The last available backup date.
@@ -6125,61 +4967,35 @@ export type RecoverableManagedDatabase = Resource & {
   readonly lastAvailableBackupDate?: string;
 };
 
-/**
- * A managed instance vulnerability assessment.
- */
+/** A managed instance vulnerability assessment. */
 export type ManagedInstanceVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
+  /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
+  /** Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required. */
   storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
+  /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A server vulnerability assessment.
- */
+/** A server vulnerability assessment. */
 export type ServerVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
+  /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
+  /** Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required. */
   storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
+  /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A private endpoint connection
- */
+/** A private endpoint connection */
 export type PrivateEndpointConnection = Resource & {
-  /**
-   * Private endpoint which the connection belongs to.
-   */
+  /** Private endpoint which the connection belongs to. */
   privateEndpoint?: PrivateEndpointProperty;
-  /**
-   * Connection state of the private endpoint connection.
-   */
+  /** Connection state of the private endpoint connection. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
   /**
    * State of the private endpoint connection.
@@ -6188,9 +5004,7 @@ export type PrivateEndpointConnection = Resource & {
   readonly provisioningState?: string;
 };
 
-/**
- * A private link resource
- */
+/** A private link resource */
 export type PrivateLinkResource = Resource & {
   /**
    * The private link resource group id.
@@ -6199,9 +5013,7 @@ export type PrivateLinkResource = Resource & {
   readonly properties?: PrivateLinkResourceProperties;
 };
 
-/**
- * A long term retention backup for a managed database.
- */
+/** A long term retention backup for a managed database. */
 export type ManagedInstanceLongTermRetentionBackup = Resource & {
   /**
    * The managed instance that the backup database belongs to.
@@ -6235,91 +5047,51 @@ export type ManagedInstanceLongTermRetentionBackup = Resource & {
   readonly backupExpirationTime?: Date;
 };
 
-/**
- * A long term retention policy.
- */
+/** A long term retention policy. */
 export type ManagedInstanceLongTermRetentionPolicy = Resource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
-  /**
-   * The monthly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
   monthlyRetention?: string;
-  /**
-   * The yearly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The yearly retention policy for an LTR backup in an ISO 8601 format. */
   yearlyRetention?: string;
-  /**
-   * The week of year to take the yearly backup in an ISO 8601 format.
-   */
+  /** The week of year to take the yearly backup in an ISO 8601 format. */
   weekOfYear?: number;
 };
 
-/**
- * Workload group operations for a data warehouse
- */
+/** Workload group operations for a data warehouse */
 export type WorkloadGroup = Resource & {
-  /**
-   * The workload group minimum percentage resource.
-   */
+  /** The workload group minimum percentage resource. */
   minResourcePercent?: number;
-  /**
-   * The workload group cap percentage resource.
-   */
+  /** The workload group cap percentage resource. */
   maxResourcePercent?: number;
-  /**
-   * The workload group request minimum grant percentage.
-   */
+  /** The workload group request minimum grant percentage. */
   minResourcePercentPerRequest?: number;
-  /**
-   * The workload group request maximum grant percentage.
-   */
+  /** The workload group request maximum grant percentage. */
   maxResourcePercentPerRequest?: number;
-  /**
-   * The workload group importance level.
-   */
+  /** The workload group importance level. */
   importance?: string;
-  /**
-   * The workload group query execution timeout.
-   */
+  /** The workload group query execution timeout. */
   queryExecutionTimeout?: number;
 };
 
-/**
- * Workload classifier operations for a data warehouse
- */
+/** Workload classifier operations for a data warehouse */
 export type WorkloadClassifier = Resource & {
-  /**
-   * The workload classifier member name.
-   */
+  /** The workload classifier member name. */
   memberName?: string;
-  /**
-   * The workload classifier label.
-   */
+  /** The workload classifier label. */
   label?: string;
-  /**
-   * The workload classifier context.
-   */
+  /** The workload classifier context. */
   context?: string;
-  /**
-   * The workload classifier start time for classification.
-   */
+  /** The workload classifier start time for classification. */
   startTime?: string;
-  /**
-   * The workload classifier end time for classification.
-   */
+  /** The workload classifier end time for classification. */
   endTime?: string;
-  /**
-   * The workload classifier importance.
-   */
+  /** The workload classifier importance. */
   importance?: string;
 };
 
-/**
- * A managed database restore details.
- */
+/** A managed database restore details. */
 export type ManagedDatabaseRestoreDetailsResult = Resource & {
   /**
    * Restore status.
@@ -6373,35 +5145,21 @@ export type ManagedDatabaseRestoreDetailsResult = Resource & {
   readonly blockReason?: string;
 };
 
-/**
- * Azure Active Directory administrator.
- */
+/** Azure Active Directory administrator. */
 export type ServerAzureADAdministrator = Resource & {
-  /**
-   * Type of the sever administrator.
-   */
+  /** Type of the sever administrator. */
   administratorType?: AdministratorType;
-  /**
-   * Login name of the server administrator.
-   */
+  /** Login name of the server administrator. */
   login?: string;
-  /**
-   * SID (object ID) of the server administrator.
-   */
+  /** SID (object ID) of the server administrator. */
   sid?: string;
-  /**
-   * Tenant ID of the administrator.
-   */
+  /** Tenant ID of the administrator. */
   tenantId?: string;
-  /**
-   * Azure Active Directory only Authentication enabled.
-   */
+  /** Azure Active Directory only Authentication enabled. */
   azureADOnlyAuthentication?: boolean;
 };
 
-/**
- * A managed instance operation.
- */
+/** A managed instance operation. */
 export type ManagedInstanceOperation = Resource & {
   /**
    * The name of the managed instance the operation is being performed on.
@@ -6470,9 +5228,7 @@ export type ManagedInstanceOperation = Resource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * Represents a database recommended index.
- */
+/** Represents a database recommended index. */
 export type RecommendedIndex = Resource & {
   /**
    * The proposed index action. You can create a missing index, drop an unused index, or rebuild an existing index to improve its performance.
@@ -6536,23 +5292,15 @@ export type RecommendedIndex = Resource & {
   readonly reportedImpact?: OperationImpact[];
 };
 
-/**
- * A job version.
- */
+/** A job version. */
 export type JobVersion = Resource & {};
 
-/**
- * ARM proxy resource.
- */
+/** ARM proxy resource. */
 export type ProxyResource = Resource & {};
 
-/**
- * Import database parameters.
- */
+/** Import database parameters. */
 export type ImportRequest = ExportRequest & {
-  /**
-   * The name of the database to import.
-   */
+  /** The name of the database to import. */
   databaseName: string;
   /**
    * The edition for the database being created.
@@ -6569,38 +5317,26 @@ export type ImportRequest = ExportRequest & {
    *
    */
   edition: DatabaseEdition;
-  /**
-   * The name of the service objective to assign to the database.
-   */
+  /** The name of the service objective to assign to the database. */
   serviceObjectiveName: ServiceObjectiveName;
-  /**
-   * The maximum size for the newly imported database.
-   */
+  /** The maximum size for the newly imported database. */
   maxSizeBytes: string;
 };
 
-/**
- * Represents the properties for an import operation
- */
+/** Represents the properties for an import operation */
 export type ImportExtensionProperties = ExportRequest & {
-  /**
-   * The type of import operation being performed. This is always Import.
-   */
+  /** The type of import operation being performed. This is always Import. */
   operationMode: "Import";
 };
 
-/**
- * An Azure SQL virtual cluster.
- */
+/** An Azure SQL virtual cluster. */
 export type VirtualCluster = TrackedResource & {
   /**
    * Subnet resource ID for the virtual cluster.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly subnetId?: string;
-  /**
-   * If the service has different generations of hardware, for the same SKU, then that can be captured here.
-   */
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
   family?: string;
   /**
    * List of resources in this virtual cluster.
@@ -6609,17 +5345,11 @@ export type VirtualCluster = TrackedResource & {
   readonly childResources?: string[];
 };
 
-/**
- * An Azure SQL job agent.
- */
+/** An Azure SQL job agent. */
 export type JobAgent = TrackedResource & {
-  /**
-   * The name and tier of the SKU.
-   */
+  /** The name and tier of the SKU. */
   sku?: Sku;
-  /**
-   * Resource ID of the database to store job metadata in.
-   */
+  /** Resource ID of the database to store job metadata in. */
   databaseId?: string;
   /**
    * The state of the job agent.
@@ -6628,9 +5358,7 @@ export type JobAgent = TrackedResource & {
   readonly state?: JobAgentState;
 };
 
-/**
- * A restorable dropped managed database resource.
- */
+/** A restorable dropped managed database resource. */
 export type RestorableDroppedManagedDatabase = TrackedResource & {
   /**
    * The name of the database.
@@ -6654,9 +5382,7 @@ export type RestorableDroppedManagedDatabase = TrackedResource & {
   readonly earliestRestoreDate?: Date;
 };
 
-/**
- * A database resource.
- */
+/** A database resource. */
 export type Database = TrackedResource & {
   /**
    * The database SKU.
@@ -6703,25 +5429,15 @@ export type Database = TrackedResource & {
    * Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition.
    */
   createMode?: CreateMode;
-  /**
-   * The collation of the database.
-   */
+  /** The collation of the database. */
   collation?: string;
-  /**
-   * The max size of the database expressed in bytes.
-   */
+  /** The max size of the database expressed in bytes. */
   maxSizeBytes?: number;
-  /**
-   * The name of the sample schema to apply when creating this database.
-   */
+  /** The name of the sample schema to apply when creating this database. */
   sampleName?: SampleName;
-  /**
-   * The resource identifier of the elastic pool containing this database.
-   */
+  /** The resource identifier of the elastic pool containing this database. */
   elasticPoolId?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
+  /** The resource identifier of the source database associated with create operation of this database. */
   sourceDatabaseId?: string;
   /**
    * The status of the database.
@@ -6758,41 +5474,23 @@ export type Database = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
-  /**
-   * Specifies the time that the database was deleted.
-   */
+  /** Specifies the time that the database was deleted. */
   sourceDatabaseDeletionDate?: Date;
-  /**
-   * The resource identifier of the recovery point associated with create operation of this database.
-   */
+  /** The resource identifier of the recovery point associated with create operation of this database. */
   recoveryServicesRecoveryPointId?: string;
-  /**
-   * The resource identifier of the long term retention backup associated with create operation of this database.
-   */
+  /** The resource identifier of the long term retention backup associated with create operation of this database. */
   longTermRetentionBackupResourceId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
+  /** The resource identifier of the recoverable database associated with create operation of this database. */
   recoverableDatabaseId?: string;
-  /**
-   * The resource identifier of the restorable dropped database associated with create operation of this database.
-   */
+  /** The resource identifier of the restorable dropped database associated with create operation of this database. */
   restorableDroppedDatabaseId?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
+  /** Collation of the metadata catalog. */
   catalogCollation?: CatalogCollationType;
-  /**
-   * Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
-   */
+  /** Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. */
   zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this database.
-   */
+  /** The license type to apply for this database. */
   licenseType?: DatabaseLicenseType;
   /**
    * The max log size for this database.
@@ -6804,26 +5502,18 @@ export type Database = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
-  /**
-   * If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases.
-   */
+  /** If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases. */
   readScale?: DatabaseReadScale;
-  /**
-   * The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases.
-   */
+  /** The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases. */
   readReplicaCount?: number;
   /**
    * The name and tier of the SKU.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly currentSku?: Sku;
-  /**
-   * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
-   */
+  /** Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled */
   autoPauseDelay?: number;
-  /**
-   * Minimal capacity that database will always have allocated, if not paused
-   */
+  /** Minimal capacity that database will always have allocated, if not paused */
   minCapacity?: number;
   /**
    * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
@@ -6837,9 +5527,7 @@ export type Database = TrackedResource & {
   readonly resumedDate?: Date;
 };
 
-/**
- * An elastic pool.
- */
+/** An elastic pool. */
 export type ElasticPool = TrackedResource & {
   /**
    * The elastic pool SKU.
@@ -6867,57 +5555,33 @@ export type ElasticPool = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationDate?: Date;
-  /**
-   * The storage limit for the database elastic pool in bytes.
-   */
+  /** The storage limit for the database elastic pool in bytes. */
   maxSizeBytes?: number;
-  /**
-   * The per database settings for the elastic pool.
-   */
+  /** The per database settings for the elastic pool. */
   perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
-  /**
-   * Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
-   */
+  /** Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones. */
   zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this elastic pool.
-   */
+  /** The license type to apply for this elastic pool. */
   licenseType?: ElasticPoolLicenseType;
 };
 
-/**
- * An Azure SQL instance pool.
- */
+/** An Azure SQL instance pool. */
 export type InstancePool = TrackedResource & {
-  /**
-   * The name and tier of the SKU.
-   */
+  /** The name and tier of the SKU. */
   sku?: Sku;
-  /**
-   * Resource ID of the subnet to place this instance pool in.
-   */
+  /** Resource ID of the subnet to place this instance pool in. */
   subnetId?: string;
-  /**
-   * Count of vCores belonging to this instance pool.
-   */
+  /** Count of vCores belonging to this instance pool. */
   vCores?: number;
-  /**
-   * The license type. Possible values are 'LicenseIncluded' (price for SQL license is included) and 'BasePrice' (without SQL license price).
-   */
+  /** The license type. Possible values are 'LicenseIncluded' (price for SQL license is included) and 'BasePrice' (without SQL license price). */
   licenseType?: InstancePoolLicenseType;
 };
 
-/**
- * An Azure SQL managed instance.
- */
+/** An Azure SQL managed instance. */
 export type ManagedInstance = TrackedResource & {
-  /**
-   * The Azure Active Directory identity of the managed instance.
-   */
+  /** The Azure Active Directory identity of the managed instance. */
   identity?: ResourceIdentity;
-  /**
-   * Managed instance SKU. Allowed values for sku.name: GP_Gen4, GP_Gen5, BC_Gen4, BC_Gen5
-   */
+  /** Managed instance SKU. Allowed values for sku.name: GP_Gen4, GP_Gen5, BC_Gen4, BC_Gen5 */
   sku?: Sku;
   /**
    * Specifies the mode of database creation.
@@ -6932,63 +5596,39 @@ export type ManagedInstance = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fullyQualifiedDomainName?: string;
-  /**
-   * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
-   */
+  /** Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation). */
   administratorLogin?: string;
-  /**
-   * The administrator login password (required for managed instance creation).
-   */
+  /** The administrator login password (required for managed instance creation). */
   administratorLoginPassword?: string;
-  /**
-   * Subnet resource ID for the managed instance.
-   */
+  /** Subnet resource ID for the managed instance. */
   subnetId?: string;
   /**
    * The state of the managed instance.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
-  /**
-   * The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses).
-   */
+  /** The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses). */
   licenseType?: ManagedInstanceLicenseType;
-  /**
-   * The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80.
-   */
+  /** The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80. */
   vCores?: number;
-  /**
-   * Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only.
-   */
+  /** Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only. */
   storageSizeInGB?: number;
-  /**
-   * Collation of the managed instance.
-   */
+  /** Collation of the managed instance. */
   collation?: string;
   /**
    * The Dns Zone that the managed instance is in.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly dnsZone?: string;
-  /**
-   * The resource id of another managed instance whose DNS zone this managed instance will share after creation.
-   */
+  /** The resource id of another managed instance whose DNS zone this managed instance will share after creation. */
   dnsZonePartner?: string;
-  /**
-   * Whether or not the public data endpoint is enabled.
-   */
+  /** Whether or not the public data endpoint is enabled. */
   publicDataEndpointEnabled?: boolean;
-  /**
-   * The resource identifier of the source managed instance associated with create operation of this instance.
-   */
+  /** The resource identifier of the source managed instance associated with create operation of this instance. */
   sourceManagedInstanceId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
-  /**
-   * Connection type used for connecting to the instance.
-   */
+  /** Connection type used for connecting to the instance. */
   proxyOverride?: ManagedInstanceProxyOverride;
   /**
    * Id of the timezone. Allowed values are timezones supported by Windows.
@@ -6999,40 +5639,26 @@ export type ManagedInstance = TrackedResource & {
    * An example of valid timezone id is "Pacific Standard Time" or "W. Europe Standard Time".
    */
   timezoneId?: string;
-  /**
-   * The Id of the instance pool this managed server belongs to.
-   */
+  /** The Id of the instance pool this managed server belongs to. */
   instancePoolId?: string;
-  /**
-   * Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2'
-   */
+  /** Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2' */
   minimalTlsVersion?: string;
 };
 
-/**
- * An Azure SQL Database server.
- */
+/** An Azure SQL Database server. */
 export type Server = TrackedResource & {
-  /**
-   * The Azure Active Directory identity of the server.
-   */
+  /** The Azure Active Directory identity of the server. */
   identity?: ResourceIdentity;
   /**
    * Kind of sql server. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly kind?: string;
-  /**
-   * Administrator username for the server. Once created it cannot be changed.
-   */
+  /** Administrator username for the server. Once created it cannot be changed. */
   administratorLogin?: string;
-  /**
-   * The administrator login password (required for server creation).
-   */
+  /** The administrator login password (required for server creation). */
   administratorLoginPassword?: string;
-  /**
-   * The version of the server.
-   */
+  /** The version of the server. */
   version?: string;
   /**
    * The state of the server.
@@ -7049,23 +5675,15 @@ export type Server = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
-  /**
-   * Minimal TLS version. Allowed values: '1.0', '1.1', '1.2'
-   */
+  /** Minimal TLS version. Allowed values: '1.0', '1.1', '1.2' */
   minimalTlsVersion?: string;
-  /**
-   * Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled'
-   */
+  /** Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled' */
   publicNetworkAccess?: ServerPublicNetworkAccess;
 };
 
-/**
- * A managed database resource.
- */
+/** A managed database resource. */
 export type ManagedDatabase = TrackedResource & {
-  /**
-   * Collation of the managed database.
-   */
+  /** Collation of the managed database. */
   collation?: string;
   /**
    * Status of the database.
@@ -7082,57 +5700,37 @@ export type ManagedDatabase = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestorePoint?: Date;
-  /**
-   * Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
+  /** Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. */
   restorePointInTime?: Date;
   /**
    * Geo paired region.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly defaultSecondaryLocation?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
+  /** Collation of the metadata catalog. */
   catalogCollation?: CatalogCollationType;
-  /**
-   * Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore.
-   */
+  /** Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore. */
   createMode?: ManagedDatabaseCreateMode;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
-   */
+  /** Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored. */
   storageContainerUri?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
+  /** The resource identifier of the source database associated with create operation of this database. */
   sourceDatabaseId?: string;
-  /**
-   * The restorable dropped database resource id to restore when creating this database.
-   */
+  /** The restorable dropped database resource id to restore when creating this database. */
   restorableDroppedDatabaseId?: string;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
-   */
+  /** Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token. */
   storageContainerSasToken?: string;
   /**
    * Instance Failover Group resource identifier that this managed database belongs to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly failoverGroupId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
+  /** The resource identifier of the recoverable database associated with create operation of this database. */
   recoverableDatabaseId?: string;
-  /**
-   * The name of the Long Term Retention backup to be used for restore of this managed database.
-   */
+  /** The name of the Long Term Retention backup to be used for restore of this managed database. */
   longTermRetentionBackupResourceId?: string;
 };
 
-/**
- * Known values of {@link ConnectionPolicyName} that the service accepts.
- */
+/** Known values of {@link ConnectionPolicyName} that the service accepts. */
 export const enum KnownConnectionPolicyName {
   Default = "default"
 }
@@ -7146,9 +5744,7 @@ export const enum KnownConnectionPolicyName {
  */
 export type ConnectionPolicyName = string;
 
-/**
- * Known values of {@link SecurityAlertPolicyName} that the service accepts.
- */
+/** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
 export const enum KnownSecurityAlertPolicyName {
   Default = "default"
 }
@@ -7162,9 +5758,7 @@ export const enum KnownSecurityAlertPolicyName {
  */
 export type SecurityAlertPolicyName = string;
 
-/**
- * Known values of {@link GeoBackupPolicyName} that the service accepts.
- */
+/** Known values of {@link GeoBackupPolicyName} that the service accepts. */
 export const enum KnownGeoBackupPolicyName {
   Default = "Default"
 }
@@ -7178,9 +5772,7 @@ export const enum KnownGeoBackupPolicyName {
  */
 export type GeoBackupPolicyName = string;
 
-/**
- * Known values of {@link DatabaseEdition} that the service accepts.
- */
+/** Known values of {@link DatabaseEdition} that the service accepts. */
 export const enum KnownDatabaseEdition {
   Web = "Web",
   Business = "Business",
@@ -7220,9 +5812,7 @@ export const enum KnownDatabaseEdition {
  */
 export type DatabaseEdition = string;
 
-/**
- * Known values of {@link ServiceObjectiveName} that the service accepts.
- */
+/** Known values of {@link ServiceObjectiveName} that the service accepts. */
 export const enum KnownServiceObjectiveName {
   System = "System",
   System0 = "System0",
@@ -7364,9 +5954,7 @@ export const enum KnownServiceObjectiveName {
  */
 export type ServiceObjectiveName = string;
 
-/**
- * Known values of {@link ExtensionName} that the service accepts.
- */
+/** Known values of {@link ExtensionName} that the service accepts. */
 export const enum KnownExtensionName {
   Import = "import"
 }
@@ -7380,9 +5968,7 @@ export const enum KnownExtensionName {
  */
 export type ExtensionName = string;
 
-/**
- * Known values of {@link UnitType} that the service accepts.
- */
+/** Known values of {@link UnitType} that the service accepts. */
 export const enum KnownUnitType {
   Count = "count",
   Bytes = "bytes",
@@ -7406,9 +5992,7 @@ export const enum KnownUnitType {
  */
 export type UnitType = string;
 
-/**
- * Known values of {@link PrimaryAggregationType} that the service accepts.
- */
+/** Known values of {@link PrimaryAggregationType} that the service accepts. */
 export const enum KnownPrimaryAggregationType {
   None = "None",
   Average = "Average",
@@ -7432,9 +6016,7 @@ export const enum KnownPrimaryAggregationType {
  */
 export type PrimaryAggregationType = string;
 
-/**
- * Known values of {@link UnitDefinitionType} that the service accepts.
- */
+/** Known values of {@link UnitDefinitionType} that the service accepts. */
 export const enum KnownUnitDefinitionType {
   Count = "Count",
   Bytes = "Bytes",
@@ -7458,9 +6040,7 @@ export const enum KnownUnitDefinitionType {
  */
 export type UnitDefinitionType = string;
 
-/**
- * Known values of {@link ElasticPoolEdition} that the service accepts.
- */
+/** Known values of {@link ElasticPoolEdition} that the service accepts. */
 export const enum KnownElasticPoolEdition {
   Basic = "Basic",
   Standard = "Standard",
@@ -7482,9 +6062,7 @@ export const enum KnownElasticPoolEdition {
  */
 export type ElasticPoolEdition = string;
 
-/**
- * Known values of {@link ReplicationState} that the service accepts.
- */
+/** Known values of {@link ReplicationState} that the service accepts. */
 export const enum KnownReplicationState {
   Pending = "PENDING",
   Seeding = "SEEDING",
@@ -7504,9 +6082,7 @@ export const enum KnownReplicationState {
  */
 export type ReplicationState = string;
 
-/**
- * Known values of {@link TransparentDataEncryptionName} that the service accepts.
- */
+/** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
 export const enum KnownTransparentDataEncryptionName {
   Current = "current"
 }
@@ -7520,9 +6096,7 @@ export const enum KnownTransparentDataEncryptionName {
  */
 export type TransparentDataEncryptionName = string;
 
-/**
- * Known values of {@link TransparentDataEncryptionActivityStatus} that the service accepts.
- */
+/** Known values of {@link TransparentDataEncryptionActivityStatus} that the service accepts. */
 export const enum KnownTransparentDataEncryptionActivityStatus {
   Encrypting = "Encrypting",
   Decrypting = "Decrypting"
@@ -7538,9 +6112,7 @@ export const enum KnownTransparentDataEncryptionActivityStatus {
  */
 export type TransparentDataEncryptionActivityStatus = string;
 
-/**
- * Known values of {@link EncryptionProtectorName} that the service accepts.
- */
+/** Known values of {@link EncryptionProtectorName} that the service accepts. */
 export const enum KnownEncryptionProtectorName {
   Current = "current"
 }
@@ -7554,9 +6126,7 @@ export const enum KnownEncryptionProtectorName {
  */
 export type EncryptionProtectorName = string;
 
-/**
- * Known values of {@link ServerKeyType} that the service accepts.
- */
+/** Known values of {@link ServerKeyType} that the service accepts. */
 export const enum KnownServerKeyType {
   ServiceManaged = "ServiceManaged",
   AzureKeyVault = "AzureKeyVault"
@@ -7572,9 +6142,7 @@ export const enum KnownServerKeyType {
  */
 export type ServerKeyType = string;
 
-/**
- * Known values of {@link ReadWriteEndpointFailoverPolicy} that the service accepts.
- */
+/** Known values of {@link ReadWriteEndpointFailoverPolicy} that the service accepts. */
 export const enum KnownReadWriteEndpointFailoverPolicy {
   Manual = "Manual",
   Automatic = "Automatic"
@@ -7590,9 +6158,7 @@ export const enum KnownReadWriteEndpointFailoverPolicy {
  */
 export type ReadWriteEndpointFailoverPolicy = string;
 
-/**
- * Known values of {@link ReadOnlyEndpointFailoverPolicy} that the service accepts.
- */
+/** Known values of {@link ReadOnlyEndpointFailoverPolicy} that the service accepts. */
 export const enum KnownReadOnlyEndpointFailoverPolicy {
   Disabled = "Disabled",
   Enabled = "Enabled"
@@ -7608,9 +6174,7 @@ export const enum KnownReadOnlyEndpointFailoverPolicy {
  */
 export type ReadOnlyEndpointFailoverPolicy = string;
 
-/**
- * Known values of {@link FailoverGroupReplicationRole} that the service accepts.
- */
+/** Known values of {@link FailoverGroupReplicationRole} that the service accepts. */
 export const enum KnownFailoverGroupReplicationRole {
   Primary = "Primary",
   Secondary = "Secondary"
@@ -7626,9 +6190,7 @@ export const enum KnownFailoverGroupReplicationRole {
  */
 export type FailoverGroupReplicationRole = string;
 
-/**
- * Known values of {@link OperationOrigin} that the service accepts.
- */
+/** Known values of {@link OperationOrigin} that the service accepts. */
 export const enum KnownOperationOrigin {
   User = "user",
   System = "system"
@@ -7644,9 +6206,7 @@ export const enum KnownOperationOrigin {
  */
 export type OperationOrigin = string;
 
-/**
- * Known values of {@link SyncAgentState} that the service accepts.
- */
+/** Known values of {@link SyncAgentState} that the service accepts. */
 export const enum KnownSyncAgentState {
   Online = "Online",
   Offline = "Offline",
@@ -7664,9 +6224,7 @@ export const enum KnownSyncAgentState {
  */
 export type SyncAgentState = string;
 
-/**
- * Known values of {@link SyncMemberDbType} that the service accepts.
- */
+/** Known values of {@link SyncMemberDbType} that the service accepts. */
 export const enum KnownSyncMemberDbType {
   AzureSqlDatabase = "AzureSqlDatabase",
   SqlServerDatabase = "SqlServerDatabase"
@@ -7682,9 +6240,7 @@ export const enum KnownSyncMemberDbType {
  */
 export type SyncMemberDbType = string;
 
-/**
- * Known values of {@link Enum21} that the service accepts.
- */
+/** Known values of {@link Enum21} that the service accepts. */
 export const enum KnownEnum21 {
   All = "All",
   Error = "Error",
@@ -7704,9 +6260,7 @@ export const enum KnownEnum21 {
  */
 export type Enum21 = string;
 
-/**
- * Known values of {@link SyncGroupLogType} that the service accepts.
- */
+/** Known values of {@link SyncGroupLogType} that the service accepts. */
 export const enum KnownSyncGroupLogType {
   All = "All",
   Error = "Error",
@@ -7726,9 +6280,7 @@ export const enum KnownSyncGroupLogType {
  */
 export type SyncGroupLogType = string;
 
-/**
- * Known values of {@link SyncConflictResolutionPolicy} that the service accepts.
- */
+/** Known values of {@link SyncConflictResolutionPolicy} that the service accepts. */
 export const enum KnownSyncConflictResolutionPolicy {
   HubWin = "HubWin",
   MemberWin = "MemberWin"
@@ -7744,9 +6296,7 @@ export const enum KnownSyncConflictResolutionPolicy {
  */
 export type SyncConflictResolutionPolicy = string;
 
-/**
- * Known values of {@link SyncGroupState} that the service accepts.
- */
+/** Known values of {@link SyncGroupState} that the service accepts. */
 export const enum KnownSyncGroupState {
   NotReady = "NotReady",
   Error = "Error",
@@ -7768,9 +6318,7 @@ export const enum KnownSyncGroupState {
  */
 export type SyncGroupState = string;
 
-/**
- * Known values of {@link SyncDirection} that the service accepts.
- */
+/** Known values of {@link SyncDirection} that the service accepts. */
 export const enum KnownSyncDirection {
   Bidirectional = "Bidirectional",
   OneWayMemberToHub = "OneWayMemberToHub",
@@ -7788,9 +6336,7 @@ export const enum KnownSyncDirection {
  */
 export type SyncDirection = string;
 
-/**
- * Known values of {@link SyncMemberState} that the service accepts.
- */
+/** Known values of {@link SyncMemberState} that the service accepts. */
 export const enum KnownSyncMemberState {
   SyncInProgress = "SyncInProgress",
   SyncSucceeded = "SyncSucceeded",
@@ -7838,9 +6384,7 @@ export const enum KnownSyncMemberState {
  */
 export type SyncMemberState = string;
 
-/**
- * Known values of {@link VirtualNetworkRuleState} that the service accepts.
- */
+/** Known values of {@link VirtualNetworkRuleState} that the service accepts. */
 export const enum KnownVirtualNetworkRuleState {
   Initializing = "Initializing",
   InProgress = "InProgress",
@@ -7862,9 +6406,7 @@ export const enum KnownVirtualNetworkRuleState {
  */
 export type VirtualNetworkRuleState = string;
 
-/**
- * Known values of {@link VulnerabilityAssessmentName} that the service accepts.
- */
+/** Known values of {@link VulnerabilityAssessmentName} that the service accepts. */
 export const enum KnownVulnerabilityAssessmentName {
   Default = "default"
 }
@@ -7878,9 +6420,7 @@ export const enum KnownVulnerabilityAssessmentName {
  */
 export type VulnerabilityAssessmentName = string;
 
-/**
- * Known values of {@link JobAgentState} that the service accepts.
- */
+/** Known values of {@link JobAgentState} that the service accepts. */
 export const enum KnownJobAgentState {
   Creating = "Creating",
   Ready = "Ready",
@@ -7902,9 +6442,7 @@ export const enum KnownJobAgentState {
  */
 export type JobAgentState = string;
 
-/**
- * Known values of {@link JobExecutionLifecycle} that the service accepts.
- */
+/** Known values of {@link JobExecutionLifecycle} that the service accepts. */
 export const enum KnownJobExecutionLifecycle {
   Created = "Created",
   InProgress = "InProgress",
@@ -7936,9 +6474,7 @@ export const enum KnownJobExecutionLifecycle {
  */
 export type JobExecutionLifecycle = string;
 
-/**
- * Known values of {@link ProvisioningState} that the service accepts.
- */
+/** Known values of {@link ProvisioningState} that the service accepts. */
 export const enum KnownProvisioningState {
   Created = "Created",
   InProgress = "InProgress",
@@ -7960,9 +6496,7 @@ export const enum KnownProvisioningState {
  */
 export type ProvisioningState = string;
 
-/**
- * Known values of {@link JobTargetType} that the service accepts.
- */
+/** Known values of {@link JobTargetType} that the service accepts. */
 export const enum KnownJobTargetType {
   TargetGroup = "TargetGroup",
   SqlDatabase = "SqlDatabase",
@@ -7984,9 +6518,7 @@ export const enum KnownJobTargetType {
  */
 export type JobTargetType = string;
 
-/**
- * Known values of {@link JobStepActionType} that the service accepts.
- */
+/** Known values of {@link JobStepActionType} that the service accepts. */
 export const enum KnownJobStepActionType {
   TSql = "TSql"
 }
@@ -8000,9 +6532,7 @@ export const enum KnownJobStepActionType {
  */
 export type JobStepActionType = string;
 
-/**
- * Known values of {@link JobStepActionSource} that the service accepts.
- */
+/** Known values of {@link JobStepActionSource} that the service accepts. */
 export const enum KnownJobStepActionSource {
   Inline = "Inline"
 }
@@ -8016,9 +6546,7 @@ export const enum KnownJobStepActionSource {
  */
 export type JobStepActionSource = string;
 
-/**
- * Known values of {@link JobStepOutputType} that the service accepts.
- */
+/** Known values of {@link JobStepOutputType} that the service accepts. */
 export const enum KnownJobStepOutputType {
   SqlDatabase = "SqlDatabase"
 }
@@ -8032,9 +6560,7 @@ export const enum KnownJobStepOutputType {
  */
 export type JobStepOutputType = string;
 
-/**
- * Known values of {@link LongTermRetentionDatabaseState} that the service accepts.
- */
+/** Known values of {@link LongTermRetentionDatabaseState} that the service accepts. */
 export const enum KnownLongTermRetentionDatabaseState {
   All = "All",
   Live = "Live",
@@ -8052,9 +6578,7 @@ export const enum KnownLongTermRetentionDatabaseState {
  */
 export type LongTermRetentionDatabaseState = string;
 
-/**
- * Known values of {@link LongTermRetentionPolicyName} that the service accepts.
- */
+/** Known values of {@link LongTermRetentionPolicyName} that the service accepts. */
 export const enum KnownLongTermRetentionPolicyName {
   Default = "default"
 }
@@ -8068,9 +6592,7 @@ export const enum KnownLongTermRetentionPolicyName {
  */
 export type LongTermRetentionPolicyName = string;
 
-/**
- * Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts.
- */
+/** Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts. */
 export const enum KnownManagedShortTermRetentionPolicyName {
   Default = "default"
 }
@@ -8084,9 +6606,7 @@ export const enum KnownManagedShortTermRetentionPolicyName {
  */
 export type ManagedShortTermRetentionPolicyName = string;
 
-/**
- * Known values of {@link SecurityAlertPolicyNameAutoGenerated} that the service accepts.
- */
+/** Known values of {@link SecurityAlertPolicyNameAutoGenerated} that the service accepts. */
 export const enum KnownSecurityAlertPolicyNameAutoGenerated {
   Default = "Default"
 }
@@ -8100,9 +6620,7 @@ export const enum KnownSecurityAlertPolicyNameAutoGenerated {
  */
 export type SecurityAlertPolicyNameAutoGenerated = string;
 
-/**
- * Known values of {@link ManagedInstanceAdministratorType} that the service accepts.
- */
+/** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
 export const enum KnownManagedInstanceAdministratorType {
   ActiveDirectory = "ActiveDirectory"
 }
@@ -8116,9 +6634,7 @@ export const enum KnownManagedInstanceAdministratorType {
  */
 export type ManagedInstanceAdministratorType = string;
 
-/**
- * Known values of {@link ManagementOperationState} that the service accepts.
- */
+/** Known values of {@link ManagementOperationState} that the service accepts. */
 export const enum KnownManagementOperationState {
   Pending = "Pending",
   InProgress = "InProgress",
@@ -8142,9 +6658,7 @@ export const enum KnownManagementOperationState {
  */
 export type ManagementOperationState = string;
 
-/**
- * Known values of {@link CreateMode} that the service accepts.
- */
+/** Known values of {@link CreateMode} that the service accepts. */
 export const enum KnownCreateMode {
   Default = "Default",
   Copy = "Copy",
@@ -8176,9 +6690,7 @@ export const enum KnownCreateMode {
  */
 export type CreateMode = string;
 
-/**
- * Known values of {@link SampleName} that the service accepts.
- */
+/** Known values of {@link SampleName} that the service accepts. */
 export const enum KnownSampleName {
   AdventureWorksLT = "AdventureWorksLT",
   WideWorldImportersStd = "WideWorldImportersStd",
@@ -8196,9 +6708,7 @@ export const enum KnownSampleName {
  */
 export type SampleName = string;
 
-/**
- * Known values of {@link DatabaseStatus} that the service accepts.
- */
+/** Known values of {@link DatabaseStatus} that the service accepts. */
 export const enum KnownDatabaseStatus {
   Online = "Online",
   Restoring = "Restoring",
@@ -8252,9 +6762,7 @@ export const enum KnownDatabaseStatus {
  */
 export type DatabaseStatus = string;
 
-/**
- * Known values of {@link CatalogCollationType} that the service accepts.
- */
+/** Known values of {@link CatalogCollationType} that the service accepts. */
 export const enum KnownCatalogCollationType {
   DatabaseDefault = "DATABASE_DEFAULT",
   SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
@@ -8270,9 +6778,7 @@ export const enum KnownCatalogCollationType {
  */
 export type CatalogCollationType = string;
 
-/**
- * Known values of {@link DatabaseLicenseType} that the service accepts.
- */
+/** Known values of {@link DatabaseLicenseType} that the service accepts. */
 export const enum KnownDatabaseLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
@@ -8288,9 +6794,7 @@ export const enum KnownDatabaseLicenseType {
  */
 export type DatabaseLicenseType = string;
 
-/**
- * Known values of {@link DatabaseReadScale} that the service accepts.
- */
+/** Known values of {@link DatabaseReadScale} that the service accepts. */
 export const enum KnownDatabaseReadScale {
   Enabled = "Enabled",
   Disabled = "Disabled"
@@ -8306,9 +6810,7 @@ export const enum KnownDatabaseReadScale {
  */
 export type DatabaseReadScale = string;
 
-/**
- * Known values of {@link ElasticPoolState} that the service accepts.
- */
+/** Known values of {@link ElasticPoolState} that the service accepts. */
 export const enum KnownElasticPoolState {
   Creating = "Creating",
   Ready = "Ready",
@@ -8326,9 +6828,7 @@ export const enum KnownElasticPoolState {
  */
 export type ElasticPoolState = string;
 
-/**
- * Known values of {@link ElasticPoolLicenseType} that the service accepts.
- */
+/** Known values of {@link ElasticPoolLicenseType} that the service accepts. */
 export const enum KnownElasticPoolLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
@@ -8344,9 +6844,7 @@ export const enum KnownElasticPoolLicenseType {
  */
 export type ElasticPoolLicenseType = string;
 
-/**
- * Known values of {@link VulnerabilityAssessmentScanTriggerType} that the service accepts.
- */
+/** Known values of {@link VulnerabilityAssessmentScanTriggerType} that the service accepts. */
 export const enum KnownVulnerabilityAssessmentScanTriggerType {
   OnDemand = "OnDemand",
   Recurring = "Recurring"
@@ -8362,9 +6860,7 @@ export const enum KnownVulnerabilityAssessmentScanTriggerType {
  */
 export type VulnerabilityAssessmentScanTriggerType = string;
 
-/**
- * Known values of {@link VulnerabilityAssessmentScanState} that the service accepts.
- */
+/** Known values of {@link VulnerabilityAssessmentScanState} that the service accepts. */
 export const enum KnownVulnerabilityAssessmentScanState {
   Passed = "Passed",
   Failed = "Failed",
@@ -8384,9 +6880,7 @@ export const enum KnownVulnerabilityAssessmentScanState {
  */
 export type VulnerabilityAssessmentScanState = string;
 
-/**
- * Known values of {@link InstanceFailoverGroupReplicationRole} that the service accepts.
- */
+/** Known values of {@link InstanceFailoverGroupReplicationRole} that the service accepts. */
 export const enum KnownInstanceFailoverGroupReplicationRole {
   Primary = "Primary",
   Secondary = "Secondary"
@@ -8402,9 +6896,7 @@ export const enum KnownInstanceFailoverGroupReplicationRole {
  */
 export type InstanceFailoverGroupReplicationRole = string;
 
-/**
- * Known values of {@link ShortTermRetentionPolicyName} that the service accepts.
- */
+/** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
 export const enum KnownShortTermRetentionPolicyName {
   Default = "default"
 }
@@ -8418,9 +6910,7 @@ export const enum KnownShortTermRetentionPolicyName {
  */
 export type ShortTermRetentionPolicyName = string;
 
-/**
- * Known values of {@link InstancePoolLicenseType} that the service accepts.
- */
+/** Known values of {@link InstancePoolLicenseType} that the service accepts. */
 export const enum KnownInstancePoolLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
@@ -8436,9 +6926,7 @@ export const enum KnownInstancePoolLicenseType {
  */
 export type InstancePoolLicenseType = string;
 
-/**
- * Known values of {@link IdentityType} that the service accepts.
- */
+/** Known values of {@link IdentityType} that the service accepts. */
 export const enum KnownIdentityType {
   SystemAssigned = "SystemAssigned"
 }
@@ -8452,9 +6940,7 @@ export const enum KnownIdentityType {
  */
 export type IdentityType = string;
 
-/**
- * Known values of {@link ManagedServerCreateMode} that the service accepts.
- */
+/** Known values of {@link ManagedServerCreateMode} that the service accepts. */
 export const enum KnownManagedServerCreateMode {
   Default = "Default",
   PointInTimeRestore = "PointInTimeRestore"
@@ -8470,9 +6956,7 @@ export const enum KnownManagedServerCreateMode {
  */
 export type ManagedServerCreateMode = string;
 
-/**
- * Known values of {@link ManagedInstanceLicenseType} that the service accepts.
- */
+/** Known values of {@link ManagedInstanceLicenseType} that the service accepts. */
 export const enum KnownManagedInstanceLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
@@ -8488,9 +6972,7 @@ export const enum KnownManagedInstanceLicenseType {
  */
 export type ManagedInstanceLicenseType = string;
 
-/**
- * Known values of {@link ManagedInstanceProxyOverride} that the service accepts.
- */
+/** Known values of {@link ManagedInstanceProxyOverride} that the service accepts. */
 export const enum KnownManagedInstanceProxyOverride {
   Proxy = "Proxy",
   Redirect = "Redirect",
@@ -8508,9 +6990,7 @@ export const enum KnownManagedInstanceProxyOverride {
  */
 export type ManagedInstanceProxyOverride = string;
 
-/**
- * Known values of {@link ReplicaType} that the service accepts.
- */
+/** Known values of {@link ReplicaType} that the service accepts. */
 export const enum KnownReplicaType {
   Primary = "Primary",
   ReadableSecondary = "ReadableSecondary"
@@ -8526,9 +7006,7 @@ export const enum KnownReplicaType {
  */
 export type ReplicaType = string;
 
-/**
- * Known values of {@link PrivateLinkServiceConnectionStateStatus} that the service accepts.
- */
+/** Known values of {@link PrivateLinkServiceConnectionStateStatus} that the service accepts. */
 export const enum KnownPrivateLinkServiceConnectionStateStatus {
   Approved = "Approved",
   Pending = "Pending",
@@ -8548,9 +7026,7 @@ export const enum KnownPrivateLinkServiceConnectionStateStatus {
  */
 export type PrivateLinkServiceConnectionStateStatus = string;
 
-/**
- * Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts.
- */
+/** Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts. */
 export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
   None = "None"
 }
@@ -8564,9 +7040,7 @@ export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
  */
 export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
-/**
- * Known values of {@link PrivateEndpointProvisioningState} that the service accepts.
- */
+/** Known values of {@link PrivateEndpointProvisioningState} that the service accepts. */
 export const enum KnownPrivateEndpointProvisioningState {
   Approving = "Approving",
   Ready = "Ready",
@@ -8588,9 +7062,7 @@ export const enum KnownPrivateEndpointProvisioningState {
  */
 export type PrivateEndpointProvisioningState = string;
 
-/**
- * Known values of {@link ServerPublicNetworkAccess} that the service accepts.
- */
+/** Known values of {@link ServerPublicNetworkAccess} that the service accepts. */
 export const enum KnownServerPublicNetworkAccess {
   Enabled = "Enabled",
   Disabled = "Disabled"
@@ -8606,9 +7078,7 @@ export const enum KnownServerPublicNetworkAccess {
  */
 export type ServerPublicNetworkAccess = string;
 
-/**
- * Known values of {@link CapabilityGroup} that the service accepts.
- */
+/** Known values of {@link CapabilityGroup} that the service accepts. */
 export const enum KnownCapabilityGroup {
   SupportedEditions = "supportedEditions",
   SupportedElasticPoolEditions = "supportedElasticPoolEditions",
@@ -8630,9 +7100,7 @@ export const enum KnownCapabilityGroup {
  */
 export type CapabilityGroup = string;
 
-/**
- * Known values of {@link MaxSizeUnit} that the service accepts.
- */
+/** Known values of {@link MaxSizeUnit} that the service accepts. */
 export const enum KnownMaxSizeUnit {
   Megabytes = "Megabytes",
   Gigabytes = "Gigabytes",
@@ -8652,9 +7120,7 @@ export const enum KnownMaxSizeUnit {
  */
 export type MaxSizeUnit = string;
 
-/**
- * Known values of {@link LogSizeUnit} that the service accepts.
- */
+/** Known values of {@link LogSizeUnit} that the service accepts. */
 export const enum KnownLogSizeUnit {
   Megabytes = "Megabytes",
   Gigabytes = "Gigabytes",
@@ -8676,9 +7142,7 @@ export const enum KnownLogSizeUnit {
  */
 export type LogSizeUnit = string;
 
-/**
- * Known values of {@link PerformanceLevelUnit} that the service accepts.
- */
+/** Known values of {@link PerformanceLevelUnit} that the service accepts. */
 export const enum KnownPerformanceLevelUnit {
   DTU = "DTU",
   VCores = "VCores"
@@ -8694,9 +7158,7 @@ export const enum KnownPerformanceLevelUnit {
  */
 export type PerformanceLevelUnit = string;
 
-/**
- * Known values of {@link PauseDelayTimeUnit} that the service accepts.
- */
+/** Known values of {@link PauseDelayTimeUnit} that the service accepts. */
 export const enum KnownPauseDelayTimeUnit {
   Minutes = "Minutes"
 }
@@ -8710,9 +7172,7 @@ export const enum KnownPauseDelayTimeUnit {
  */
 export type PauseDelayTimeUnit = string;
 
-/**
- * Known values of {@link StorageCapabilityStorageAccountType} that the service accepts.
- */
+/** Known values of {@link StorageCapabilityStorageAccountType} that the service accepts. */
 export const enum KnownStorageCapabilityStorageAccountType {
   GRS = "GRS",
   LRS = "LRS",
@@ -8730,9 +7190,7 @@ export const enum KnownStorageCapabilityStorageAccountType {
  */
 export type StorageCapabilityStorageAccountType = string;
 
-/**
- * Known values of {@link DatabaseState} that the service accepts.
- */
+/** Known values of {@link DatabaseState} that the service accepts. */
 export const enum KnownDatabaseState {
   All = "All",
   Live = "Live",
@@ -8750,9 +7208,7 @@ export const enum KnownDatabaseState {
  */
 export type DatabaseState = string;
 
-/**
- * Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts.
- */
+/** Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts. */
 export const enum KnownManagedInstanceLongTermRetentionPolicyName {
   Default = "default"
 }
@@ -8766,9 +7222,7 @@ export const enum KnownManagedInstanceLongTermRetentionPolicyName {
  */
 export type ManagedInstanceLongTermRetentionPolicyName = string;
 
-/**
- * Known values of {@link RestoreDetailsName} that the service accepts.
- */
+/** Known values of {@link RestoreDetailsName} that the service accepts. */
 export const enum KnownRestoreDetailsName {
   Default = "Default"
 }
@@ -8782,9 +7236,7 @@ export const enum KnownRestoreDetailsName {
  */
 export type RestoreDetailsName = string;
 
-/**
- * Known values of {@link ManagedDatabaseStatus} that the service accepts.
- */
+/** Known values of {@link ManagedDatabaseStatus} that the service accepts. */
 export const enum KnownManagedDatabaseStatus {
   Online = "Online",
   Offline = "Offline",
@@ -8810,9 +7262,7 @@ export const enum KnownManagedDatabaseStatus {
  */
 export type ManagedDatabaseStatus = string;
 
-/**
- * Known values of {@link ManagedDatabaseCreateMode} that the service accepts.
- */
+/** Known values of {@link ManagedDatabaseCreateMode} that the service accepts. */
 export const enum KnownManagedDatabaseCreateMode {
   Default = "Default",
   RestoreExternalBackup = "RestoreExternalBackup",
@@ -8834,9 +7284,7 @@ export const enum KnownManagedDatabaseCreateMode {
  */
 export type ManagedDatabaseCreateMode = string;
 
-/**
- * Known values of {@link AdministratorName} that the service accepts.
- */
+/** Known values of {@link AdministratorName} that the service accepts. */
 export const enum KnownAdministratorName {
   ActiveDirectory = "ActiveDirectory"
 }
@@ -8850,9 +7298,7 @@ export const enum KnownAdministratorName {
  */
 export type AdministratorName = string;
 
-/**
- * Known values of {@link AdministratorType} that the service accepts.
- */
+/** Known values of {@link AdministratorType} that the service accepts. */
 export const enum KnownAdministratorType {
   ActiveDirectory = "ActiveDirectory"
 }
@@ -8865,33 +7311,19 @@ export const enum KnownAdministratorType {
  * **ActiveDirectory**
  */
 export type AdministratorType = string;
-/**
- * Defines values for ServerConnectionType.
- */
+/** Defines values for ServerConnectionType. */
 export type ServerConnectionType = "Default" | "Proxy" | "Redirect";
-/**
- * Defines values for SecurityAlertPolicyState.
- */
+/** Defines values for SecurityAlertPolicyState. */
 export type SecurityAlertPolicyState = "New" | "Enabled" | "Disabled";
-/**
- * Defines values for SecurityAlertPolicyEmailAccountAdmins.
- */
+/** Defines values for SecurityAlertPolicyEmailAccountAdmins. */
 export type SecurityAlertPolicyEmailAccountAdmins = "Enabled" | "Disabled";
-/**
- * Defines values for SecurityAlertPolicyUseServerDefault.
- */
+/** Defines values for SecurityAlertPolicyUseServerDefault. */
 export type SecurityAlertPolicyUseServerDefault = "Enabled" | "Disabled";
-/**
- * Defines values for DataMaskingState.
- */
+/** Defines values for DataMaskingState. */
 export type DataMaskingState = "Disabled" | "Enabled";
-/**
- * Defines values for DataMaskingRuleState.
- */
+/** Defines values for DataMaskingRuleState. */
 export type DataMaskingRuleState = "Disabled" | "Enabled";
-/**
- * Defines values for DataMaskingFunction.
- */
+/** Defines values for DataMaskingFunction. */
 export type DataMaskingFunction =
   | "Default"
   | "CCN"
@@ -8899,46 +7331,28 @@ export type DataMaskingFunction =
   | "Number"
   | "SSN"
   | "Text";
-/**
- * Defines values for GeoBackupPolicyState.
- */
+/** Defines values for GeoBackupPolicyState. */
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
-/**
- * Defines values for StorageKeyType.
- */
+/** Defines values for StorageKeyType. */
 export type StorageKeyType = "StorageAccessKey" | "SharedAccessKey";
-/**
- * Defines values for AuthenticationType.
- */
+/** Defines values for AuthenticationType. */
 export type AuthenticationType = "SQL" | "ADPassword";
-/**
- * Defines values for ReplicationRole.
- */
+/** Defines values for ReplicationRole. */
 export type ReplicationRole =
   | "Primary"
   | "Secondary"
   | "NonReadableSecondary"
   | "Source"
   | "Copy";
-/**
- * Defines values for TransparentDataEncryptionStatus.
- */
+/** Defines values for TransparentDataEncryptionStatus. */
 export type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
-/**
- * Defines values for AutomaticTuningMode.
- */
+/** Defines values for AutomaticTuningMode. */
 export type AutomaticTuningMode = "Inherit" | "Custom" | "Auto" | "Unspecified";
-/**
- * Defines values for AutomaticTuningOptionModeDesired.
- */
+/** Defines values for AutomaticTuningOptionModeDesired. */
 export type AutomaticTuningOptionModeDesired = "Off" | "On" | "Default";
-/**
- * Defines values for AutomaticTuningOptionModeActual.
- */
+/** Defines values for AutomaticTuningOptionModeActual. */
 export type AutomaticTuningOptionModeActual = "Off" | "On";
-/**
- * Defines values for AutomaticTuningDisabledReason.
- */
+/** Defines values for AutomaticTuningDisabledReason. */
 export type AutomaticTuningDisabledReason =
   | "Default"
   | "Disabled"
@@ -8947,65 +7361,39 @@ export type AutomaticTuningDisabledReason =
   | "QueryStoreOff"
   | "QueryStoreReadOnly"
   | "NotSupported";
-/**
- * Defines values for BlobAuditingPolicyState.
- */
+/** Defines values for BlobAuditingPolicyState. */
 export type BlobAuditingPolicyState = "Enabled" | "Disabled";
-/**
- * Defines values for VulnerabilityAssessmentPolicyBaselineName.
- */
+/** Defines values for VulnerabilityAssessmentPolicyBaselineName. */
 export type VulnerabilityAssessmentPolicyBaselineName = "master" | "default";
-/**
- * Defines values for JobScheduleType.
- */
+/** Defines values for JobScheduleType. */
 export type JobScheduleType = "Once" | "Recurring";
-/**
- * Defines values for JobTargetGroupMembershipType.
- */
+/** Defines values for JobTargetGroupMembershipType. */
 export type JobTargetGroupMembershipType = "Include" | "Exclude";
-/**
- * Defines values for AutomaticTuningServerMode.
- */
+/** Defines values for AutomaticTuningServerMode. */
 export type AutomaticTuningServerMode = "Custom" | "Auto" | "Unspecified";
-/**
- * Defines values for AutomaticTuningServerReason.
- */
+/** Defines values for AutomaticTuningServerReason. */
 export type AutomaticTuningServerReason =
   | "Default"
   | "Disabled"
   | "AutoConfigured";
-/**
- * Defines values for RestorePointType.
- */
+/** Defines values for RestorePointType. */
 export type RestorePointType = "CONTINUOUS" | "DISCRETE";
-/**
- * Defines values for SensitivityLabelRank.
- */
+/** Defines values for SensitivityLabelRank. */
 export type SensitivityLabelRank =
   | "None"
   | "Low"
   | "Medium"
   | "High"
   | "Critical";
-/**
- * Defines values for SensitivityLabelSource.
- */
+/** Defines values for SensitivityLabelSource. */
 export type SensitivityLabelSource = "current" | "recommended";
-/**
- * Defines values for CheckNameAvailabilityReason.
- */
+/** Defines values for CheckNameAvailabilityReason. */
 export type CheckNameAvailabilityReason = "Invalid" | "AlreadyExists";
-/**
- * Defines values for CapabilityStatus.
- */
+/** Defines values for CapabilityStatus. */
 export type CapabilityStatus = "Visible" | "Available" | "Default" | "Disabled";
-/**
- * Defines values for RecommendedIndexAction.
- */
+/** Defines values for RecommendedIndexAction. */
 export type RecommendedIndexAction = "Create" | "Drop" | "Rebuild";
-/**
- * Defines values for RecommendedIndexState.
- */
+/** Defines values for RecommendedIndexState. */
 export type RecommendedIndexState =
   | "Active"
   | "Pending"
@@ -9018,8594 +7406,5122 @@ export type RecommendedIndexState =
   | "Expired"
   | "Blocked"
   | "Success";
-/**
- * Defines values for RecommendedIndexType.
- */
+/** Defines values for RecommendedIndexType. */
 export type RecommendedIndexType =
   | "CLUSTERED"
   | "NONCLUSTERED"
   | "COLUMNSTORE"
   | "CLUSTERED COLUMNSTORE";
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RecoverableDatabasesGetResponse = RecoverableDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecoverableDatabase;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecoverableDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorableDroppedDatabase;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type RestorableDroppedDatabasesListByServerResponse = RestorableDroppedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorableDroppedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerConnectionPolicy;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerConnectionPolicy;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseThreatDetectionPoliciesGetResponse = DatabaseSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DataMaskingPoliciesCreateOrUpdateResponse = DataMaskingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DataMaskingPolicy;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DataMaskingPoliciesGetResponse = DataMaskingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DataMaskingPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DataMaskingRulesCreateOrUpdateResponse = DataMaskingRule & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DataMaskingRule;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DataMaskingRulesListByDatabaseResponse = DataMaskingRuleListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DataMaskingRuleListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type FirewallRulesCreateOrUpdateResponse = FirewallRule & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FirewallRule;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type FirewallRulesGetResponse = FirewallRule & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FirewallRule;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FirewallRuleListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type GeoBackupPoliciesCreateOrUpdateResponse = GeoBackupPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GeoBackupPolicy;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type GeoBackupPoliciesGetResponse = GeoBackupPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GeoBackupPolicy;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type GeoBackupPoliciesListByDatabaseResponse = GeoBackupPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GeoBackupPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the import operation.
- */
+/** Contains response data for the import operation. */
 export type DatabasesImportResponse = ImportExportResponse & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the createImportOperation operation.
- */
+/** Contains response data for the createImportOperation operation. */
 export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the export operation.
- */
+/** Contains response data for the export operation. */
 export type DatabasesExportResponse = ImportExportResponse & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listMetrics operation.
- */
+/** Contains response data for the listMetrics operation. */
 export type DatabasesListMetricsResponse = MetricListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MetricListResult;
   };
 };
 
-/**
- * Contains response data for the listMetricDefinitions operation.
- */
+/** Contains response data for the listMetricDefinitions operation. */
 export type DatabasesListMetricDefinitionsResponse = MetricDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MetricDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type DatabasesListByServerResponse = DatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabasesGetResponse = Database & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Database;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DatabasesCreateOrUpdateResponse = Database & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type DatabasesUpdateResponse = Database & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByElasticPool operation.
- */
+/** Contains response data for the listByElasticPool operation. */
 export type DatabasesListByElasticPoolResponse = DatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the pause operation.
- */
+/** Contains response data for the pause operation. */
 export type DatabasesPauseResponse = Database & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the resume operation.
- */
+/** Contains response data for the resume operation. */
 export type DatabasesResumeResponse = Database & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DatabasesFailoverOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The type of replica to be failed over.
-   */
+  /** The type of replica to be failed over. */
   replicaType?: ReplicaType;
 }
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type DatabasesListByServerNextResponse = DatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listByElasticPoolNext operation.
- */
+/** Contains response data for the listByElasticPoolNext operation. */
 export type DatabasesListByElasticPoolNextResponse = DatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listMetrics operation.
- */
+/** Contains response data for the listMetrics operation. */
 export type ElasticPoolsListMetricsResponse = MetricListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MetricListResult;
   };
 };
 
-/**
- * Contains response data for the listMetricDefinitions operation.
- */
+/** Contains response data for the listMetricDefinitions operation. */
 export type ElasticPoolsListMetricDefinitionsResponse = MetricDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MetricDefinitionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ElasticPoolsListByServerOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
 }
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ElasticPoolsListByServerResponse = ElasticPoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ElasticPoolsGetResponse = ElasticPool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPool;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPool;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ElasticPoolsUpdateResponse = ElasticPool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPool;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ElasticPoolsListByServerNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
 }
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ElasticPoolsListByServerNextResponse = ElasticPoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecommendedElasticPool;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type RecommendedElasticPoolsListByServerResponse = RecommendedElasticPoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecommendedElasticPoolListResult;
   };
 };
 
-/**
- * Contains response data for the listMetrics operation.
- */
+/** Contains response data for the listMetrics operation. */
 export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolListMetricsResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecommendedElasticPoolListMetricsResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ReplicationLinksGetResponse = ReplicationLink & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ReplicationLink;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ReplicationLinkListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerCommunicationLinksGetResponse = ServerCommunicationLink & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerCommunicationLink;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunicationLink & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerCommunicationLink;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLinkListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerCommunicationLinkListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServiceObjectivesGetResponse = ServiceObjective & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServiceObjective;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServiceObjectiveListResult;
   };
 };
 
-/**
- * Contains response data for the listByElasticPool operation.
- */
+/** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivityListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolActivityListResult;
   };
 };
 
-/**
- * Contains response data for the listByElasticPool operation.
- */
+/** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPoolDatabaseActivityListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolDatabaseActivityListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServiceTierAdvisor;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServiceTierAdvisorListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TransparentDataEncryption;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TransparentDataEncryption;
   };
 };
 
-/**
- * Contains response data for the listByConfiguration operation.
- */
+/** Contains response data for the listByConfiguration operation. */
 export type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: TransparentDataEncryptionActivityListResult;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerUsagesListByServerResponse = ServerUsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerUsageListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseUsageListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseAutomaticTuning;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseAutomaticTuning;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: EncryptionProtectorListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type EncryptionProtectorsGetResponse = EncryptionProtector & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: EncryptionProtector;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: EncryptionProtector;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: EncryptionProtectorListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type FailoverGroupsGetResponse = FailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type FailoverGroupsUpdateResponse = FailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type FailoverGroupsListByServerResponse = FailoverGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroupListResult;
   };
 };
 
-/**
- * Contains response data for the failover operation.
- */
+/** Contains response data for the failover operation. */
 export type FailoverGroupsFailoverResponse = FailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the forceFailoverAllowDataLoss operation.
- */
+/** Contains response data for the forceFailoverAllowDataLoss operation. */
 export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type FailoverGroupsListByServerNextResponse = FailoverGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroupListResult;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OperationListResult;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerKeysListByServerResponse = ServerKeyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerKeyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerKeysGetResponse = ServerKey & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerKey;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerKeysCreateOrUpdateResponse = ServerKey & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerKey;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerKeysListByServerNextResponse = ServerKeyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerKeyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SyncAgentsGetResponse = SyncAgent & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgent;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgent;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type SyncAgentsListByServerResponse = SyncAgentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgentListResult;
   };
 };
 
-/**
- * Contains response data for the generateKey operation.
- */
+/** Contains response data for the generateKey operation. */
 export type SyncAgentsGenerateKeyResponse = SyncAgentKeyProperties & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgentKeyProperties;
   };
 };
 
-/**
- * Contains response data for the listLinkedDatabases operation.
- */
+/** Contains response data for the listLinkedDatabases operation. */
 export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgentLinkedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type SyncAgentsListByServerNextResponse = SyncAgentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgentListResult;
   };
 };
 
-/**
- * Contains response data for the listLinkedDatabasesNext operation.
- */
+/** Contains response data for the listLinkedDatabasesNext operation. */
 export type SyncAgentsListLinkedDatabasesNextResponse = SyncAgentLinkedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncAgentLinkedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listSyncDatabaseIds operation.
- */
+/** Contains response data for the listSyncDatabaseIds operation. */
 export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncDatabaseIdListResult;
   };
 };
 
-/**
- * Contains response data for the listHubSchemas operation.
- */
+/** Contains response data for the listHubSchemas operation. */
 export type SyncGroupsListHubSchemasResponse = SyncFullSchemaPropertiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SyncGroupsListLogsOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The continuation token for this operation.
-   */
+  /** The continuation token for this operation. */
   continuationToken?: string;
 }
 
-/**
- * Contains response data for the listLogs operation.
- */
+/** Contains response data for the listLogs operation. */
 export type SyncGroupsListLogsResponse = SyncGroupLogListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroupLogListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SyncGroupsGetResponse = SyncGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroup;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type SyncGroupsUpdateResponse = SyncGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type SyncGroupsListByDatabaseResponse = SyncGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroupListResult;
   };
 };
 
-/**
- * Contains response data for the listSyncDatabaseIdsNext operation.
- */
+/** Contains response data for the listSyncDatabaseIdsNext operation. */
 export type SyncGroupsListSyncDatabaseIdsNextResponse = SyncDatabaseIdListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncDatabaseIdListResult;
   };
 };
 
-/**
- * Contains response data for the listHubSchemasNext operation.
- */
+/** Contains response data for the listHubSchemasNext operation. */
 export type SyncGroupsListHubSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SyncGroupsListLogsNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The continuation token for this operation.
-   */
+  /** The continuation token for this operation. */
   continuationToken?: string;
 }
 
-/**
- * Contains response data for the listLogsNext operation.
- */
+/** Contains response data for the listLogsNext operation. */
 export type SyncGroupsListLogsNextResponse = SyncGroupLogListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroupLogListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type SyncGroupsListByDatabaseNextResponse = SyncGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncGroupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SyncMembersGetResponse = SyncMember & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncMember;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type SyncMembersCreateOrUpdateResponse = SyncMember & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncMember;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type SyncMembersUpdateResponse = SyncMember & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncMember;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listBySyncGroup operation.
- */
+/** Contains response data for the listBySyncGroup operation. */
 export type SyncMembersListBySyncGroupResponse = SyncMemberListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncMemberListResult;
   };
 };
 
-/**
- * Contains response data for the listMemberSchemas operation.
- */
+/** Contains response data for the listMemberSchemas operation. */
 export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
 
-/**
- * Contains response data for the listBySyncGroupNext operation.
- */
+/** Contains response data for the listBySyncGroupNext operation. */
 export type SyncMembersListBySyncGroupNextResponse = SyncMemberListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncMemberListResult;
   };
 };
 
-/**
- * Contains response data for the listMemberSchemasNext operation.
- */
+/** Contains response data for the listMemberSchemasNext operation. */
 export type SyncMembersListMemberSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
 
-/**
- * Contains response data for the listByLocation operation.
- */
+/** Contains response data for the listByLocation operation. */
 export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SubscriptionUsageListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SubscriptionUsagesGetResponse = SubscriptionUsage & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SubscriptionUsage;
   };
 };
 
-/**
- * Contains response data for the listByLocationNext operation.
- */
+/** Contains response data for the listByLocationNext operation. */
 export type SubscriptionUsagesListByLocationNextResponse = SubscriptionUsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SubscriptionUsageListResult;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type VirtualClustersListResponse = VirtualClusterListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualClusterListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualClusterListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type VirtualClustersGetResponse = VirtualCluster & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualCluster;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type VirtualClustersUpdateResponse = VirtualCluster & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualCluster;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type VirtualClustersListNextResponse = VirtualClusterListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualClusterListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type VirtualClustersListByResourceGroupNextResponse = VirtualClusterListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualClusterListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type VirtualNetworkRulesGetResponse = VirtualNetworkRule & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualNetworkRule;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualNetworkRule;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualNetworkRuleListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type VirtualNetworkRulesListByServerNextResponse = VirtualNetworkRuleListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VirtualNetworkRuleListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedDatabaseBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedDatabaseBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedDatabaseBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedDatabaseBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedDatabaseBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedServerBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedServerBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedServerBlobAuditingPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedServerBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedServerBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse = ExtendedServerBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ExtendedServerBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerBlobAuditingPoliciesGetResponse = ServerBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerBlobAuditingPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerBlobAuditingPoliciesListByServerNextResponse = ServerBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAuditingPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseBlobAuditingPolicy;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse = DatabaseBlobAuditingPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseBlobAuditingPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type JobAgentsListByServerResponse = JobAgentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobAgentListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobAgentsGetResponse = JobAgent & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobAgent;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobAgentsCreateOrUpdateResponse = JobAgent & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobAgent;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type JobAgentsUpdateResponse = JobAgent & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobAgent;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type JobAgentsListByServerNextResponse = JobAgentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobAgentListResult;
   };
 };
 
-/**
- * Contains response data for the listByAgent operation.
- */
+/** Contains response data for the listByAgent operation. */
 export type JobCredentialsListByAgentResponse = JobCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobCredentialListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobCredentialsGetResponse = JobCredential & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobCredential;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobCredentialsCreateOrUpdateResponse = JobCredential & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobCredential;
   };
 };
 
-/**
- * Contains response data for the listByAgentNext operation.
- */
+/** Contains response data for the listByAgentNext operation. */
 export type JobCredentialsListByAgentNextResponse = JobCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobCredentialListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobExecutionsListByAgentOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByAgent operation.
- */
+/** Contains response data for the listByAgent operation. */
 export type JobExecutionsListByAgentResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type JobExecutionsCreateResponse = JobExecution & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobExecutionsListByJobOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJob operation.
- */
+/** Contains response data for the listByJob operation. */
 export type JobExecutionsListByJobResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobExecutionsGetResponse = JobExecution & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobExecutionsListByAgentNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByAgentNext operation.
- */
+/** Contains response data for the listByAgentNext operation. */
 export type JobExecutionsListByAgentNextResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobExecutionsListByJobNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJobNext operation.
- */
+/** Contains response data for the listByJobNext operation. */
 export type JobExecutionsListByJobNextResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the listByAgent operation.
- */
+/** Contains response data for the listByAgent operation. */
 export type JobsListByAgentResponse = JobListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobsGetResponse = Job & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Job;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobsCreateOrUpdateResponse = Job & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Job;
   };
 };
 
-/**
- * Contains response data for the listByAgentNext operation.
- */
+/** Contains response data for the listByAgentNext operation. */
 export type JobsListByAgentNextResponse = JobListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobStepExecutionsListByJobExecutionOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJobExecution operation.
- */
+/** Contains response data for the listByJobExecution operation. */
 export type JobStepExecutionsListByJobExecutionResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobStepExecutionsGetResponse = JobExecution & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobStepExecutionsListByJobExecutionNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJobExecutionNext operation.
- */
+/** Contains response data for the listByJobExecutionNext operation. */
 export type JobStepExecutionsListByJobExecutionNextResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the listByVersion operation.
- */
+/** Contains response data for the listByVersion operation. */
 export type JobStepsListByVersionResponse = JobStepListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStepListResult;
   };
 };
 
-/**
- * Contains response data for the getByVersion operation.
- */
+/** Contains response data for the getByVersion operation. */
 export type JobStepsGetByVersionResponse = JobStep & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStep;
   };
 };
 
-/**
- * Contains response data for the listByJob operation.
- */
+/** Contains response data for the listByJob operation. */
 export type JobStepsListByJobResponse = JobStepListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStepListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobStepsGetResponse = JobStep & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStep;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobStepsCreateOrUpdateResponse = JobStep & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStep;
   };
 };
 
-/**
- * Contains response data for the listByVersionNext operation.
- */
+/** Contains response data for the listByVersionNext operation. */
 export type JobStepsListByVersionNextResponse = JobStepListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStepListResult;
   };
 };
 
-/**
- * Contains response data for the listByJobNext operation.
- */
+/** Contains response data for the listByJobNext operation. */
 export type JobStepsListByJobNextResponse = JobStepListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobStepListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobTargetExecutionsListByJobExecutionOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJobExecution operation.
- */
+/** Contains response data for the listByJobExecution operation. */
 export type JobTargetExecutionsListByJobExecutionResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobTargetExecutionsListByStepOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByStep operation.
- */
+/** Contains response data for the listByStep operation. */
 export type JobTargetExecutionsListByStepResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobTargetExecutionsGetResponse = JobExecution & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobTargetExecutionsListByJobExecutionNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByJobExecutionNext operation.
- */
+/** Contains response data for the listByJobExecutionNext operation. */
 export type JobTargetExecutionsListByJobExecutionNextResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface JobTargetExecutionsListByStepNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The number of elements in the collection to skip.
-   */
+  /** The number of elements in the collection to skip. */
   skip?: number;
-  /**
-   * If specified, only job executions created at or after the specified time are included.
-   */
+  /** If specified, only job executions created at or after the specified time are included. */
   createTimeMin?: Date;
-  /**
-   * If specified, only job executions created before the specified time are included.
-   */
+  /** If specified, only job executions created before the specified time are included. */
   createTimeMax?: Date;
-  /**
-   * If specified, only job executions completed at or after the specified time are included.
-   */
+  /** If specified, only job executions completed at or after the specified time are included. */
   endTimeMin?: Date;
-  /**
-   * If specified, only job executions completed before the specified time are included.
-   */
+  /** If specified, only job executions completed before the specified time are included. */
   endTimeMax?: Date;
-  /**
-   * If specified, only active or only completed job executions are included.
-   */
+  /** If specified, only active or only completed job executions are included. */
   isActive?: boolean;
-  /**
-   * The number of elements to return from the collection.
-   */
+  /** The number of elements to return from the collection. */
   top?: number;
 }
 
-/**
- * Contains response data for the listByStepNext operation.
- */
+/** Contains response data for the listByStepNext operation. */
 export type JobTargetExecutionsListByStepNextResponse = JobExecutionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobExecutionListResult;
   };
 };
 
-/**
- * Contains response data for the listByAgent operation.
- */
+/** Contains response data for the listByAgent operation. */
 export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobTargetGroupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobTargetGroupsGetResponse = JobTargetGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobTargetGroup;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type JobTargetGroupsCreateOrUpdateResponse = JobTargetGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobTargetGroup;
   };
 };
 
-/**
- * Contains response data for the listByAgentNext operation.
- */
+/** Contains response data for the listByAgentNext operation. */
 export type JobTargetGroupsListByAgentNextResponse = JobTargetGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobTargetGroupListResult;
   };
 };
 
-/**
- * Contains response data for the listByJob operation.
- */
+/** Contains response data for the listByJob operation. */
 export type JobVersionsListByJobResponse = JobVersionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobVersionListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobVersionsGetResponse = Resource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Resource;
   };
 };
 
-/**
- * Contains response data for the listByJobNext operation.
- */
+/** Contains response data for the listByJobNext operation. */
 export type JobVersionsListByJobNextResponse = JobVersionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobVersionListResult;
   };
 };
 
-/**
- * Contains response data for the getByResourceGroup operation.
- */
+/** Contains response data for the getByResourceGroup operation. */
 export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetentionBackup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupDatabase operation.
- */
+/** Contains response data for the listByResourceGroupDatabase operation. */
 export type LongTermRetentionBackupsListByResourceGroupDatabaseResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupLocation operation.
- */
+/** Contains response data for the listByResourceGroupLocation operation. */
 export type LongTermRetentionBackupsListByResourceGroupLocationResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupServerOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupServer operation.
- */
+/** Contains response data for the listByResourceGroupServer operation. */
 export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type LongTermRetentionBackupsListByDatabaseResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByLocation operation.
- */
+/** Contains response data for the listByLocation operation. */
 export type LongTermRetentionBackupsListByLocationResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByServerOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupDatabaseNext operation.
- */
+/** Contains response data for the listByResourceGroupDatabaseNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupLocationNext operation.
- */
+/** Contains response data for the listByResourceGroupLocationNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupLocationNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupServerNext operation.
- */
+/** Contains response data for the listByResourceGroupServerNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupServerNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type LongTermRetentionBackupsListByDatabaseNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByLocationNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByLocationNext operation.
- */
+/** Contains response data for the listByLocationNext operation. */
 export type LongTermRetentionBackupsListByLocationNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionBackupsListByServerNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: LongTermRetentionDatabaseState;
 }
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type LongTermRetentionBackupsListByServerNextResponse = LongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupLongTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupLongTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupLongTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByRestorableDroppedDatabase operation.
- */
+/** Contains response data for the listByRestorableDroppedDatabase operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByRestorableDroppedDatabaseNext operation.
- */
+/** Contains response data for the listByRestorableDroppedDatabaseNext operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerAutomaticTuningGetResponse = ServerAutomaticTuning & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerAutomaticTuning;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerAutomaticTuning;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerDnsAliasesGetResponse = ServerDnsAlias & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerDnsAlias;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerDnsAlias;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerDnsAliasesListByServerResponse = ServerDnsAliasListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerDnsAliasListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerDnsAliasesListByServerNextResponse = ServerDnsAliasListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerDnsAliasListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerSecurityAlertPoliciesGetResponse = ServerSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerSecurityAlertPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LogicalServerSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerSecurityAlertPoliciesListByServerNextResponse = LogicalServerSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LogicalServerSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type RestorableDroppedManagedDatabasesListByInstanceResponse = RestorableDroppedManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorableDroppedManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RestorableDroppedManagedDatabasesGetResponse = RestorableDroppedManagedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorableDroppedManagedDatabase;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type RestorableDroppedManagedDatabasesListByInstanceNextResponse = RestorableDroppedManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorableDroppedManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorePointListResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type RestorePointsCreateResponse = RestorePoint & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorePoint;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RestorePointsGetResponse = RestorePoint & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RestorePoint;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = ManagedDatabaseSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedServerSecurityAlertPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedServerSecurityAlertPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedServerSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedServerSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedServerSecurityAlertPoliciesListByInstanceNextResponse = ManagedServerSecurityAlertPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedServerSecurityAlertPolicyListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SensitivityLabelsListCurrentByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listCurrentByDatabase operation.
- */
+/** Contains response data for the listCurrentByDatabase operation. */
 export type SensitivityLabelsListCurrentByDatabaseResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SensitivityLabelsListRecommendedByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
-  /**
-   * Specifies whether to include disabled recommendations or not.
-   */
+  /** Specifies whether to include disabled recommendations or not. */
   includeDisabledRecommendations?: boolean;
   skipToken?: string;
 }
 
-/**
- * Contains response data for the listRecommendedByDatabase operation.
- */
+/** Contains response data for the listRecommendedByDatabase operation. */
 export type SensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SensitivityLabelsGetResponse = SensitivityLabel & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabel;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type SensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabel;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listCurrentByDatabaseNext operation.
- */
+/** Contains response data for the listCurrentByDatabaseNext operation. */
 export type SensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
-  /**
-   * Specifies whether to include disabled recommendations or not.
-   */
+  /** Specifies whether to include disabled recommendations or not. */
   includeDisabledRecommendations?: boolean;
   skipToken?: string;
 }
 
-/**
- * Contains response data for the listRecommendedByDatabaseNext operation.
- */
+/** Contains response data for the listRecommendedByDatabaseNext operation. */
 export type SensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanceAdministratorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceAdministratorListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministrator & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceAdministrator;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanceAdministrator & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceAdministrator;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceAdministratorsListByInstanceNextResponse = ManagedInstanceAdministratorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceAdministratorListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseOperationListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseOperationListResult;
   };
 };
 
-/**
- * Contains response data for the listByElasticPool operation.
- */
+/** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolOperationsListByElasticPoolResponse = ElasticPoolOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolOperationListResult;
   };
 };
 
-/**
- * Contains response data for the listByElasticPoolNext operation.
- */
+/** Contains response data for the listByElasticPoolNext operation. */
 export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ElasticPoolOperationListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecord;
   };
 };
 
-/**
- * Contains response data for the export operation.
- */
+/** Contains response data for the export operation. */
 export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentScansExport;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecord;
   };
 };
 
-/**
- * Contains response data for the export operation.
- */
+/** Contains response data for the export operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentScansExport;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type InstanceFailoverGroupsGetResponse = InstanceFailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByLocation operation.
- */
+/** Contains response data for the listByLocation operation. */
 export type InstanceFailoverGroupsListByLocationResponse = InstanceFailoverGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroupListResult;
   };
 };
 
-/**
- * Contains response data for the failover operation.
- */
+/** Contains response data for the failover operation. */
 export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the forceFailoverAllowDataLoss operation.
- */
+/** Contains response data for the forceFailoverAllowDataLoss operation. */
 export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceFailoverGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByLocationNext operation.
- */
+/** Contains response data for the listByLocationNext operation. */
 export type InstanceFailoverGroupsListByLocationNextResponse = InstanceFailoverGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse = BackupShortTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedInstanceKeysListByInstanceResponse = ManagedInstanceKeyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceKeyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceKeysGetResponse = ManagedInstanceKey & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceKey;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceKey;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceKeysListByInstanceNextResponse = ManagedInstanceKeyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceKeyListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedInstanceEncryptionProtectorsListByInstanceResponse = ManagedInstanceEncryptionProtectorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceEncryptionProtectorListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncryptionProtector & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceEncryptionProtector;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedInstanceEncryptionProtector & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceEncryptionProtector;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = ManagedInstanceEncryptionProtectorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceEncryptionProtectorListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecoverableManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type RecoverableManagedDatabasesGetResponse = RecoverableManagedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecoverableManagedDatabase;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type RecoverableManagedDatabasesListByInstanceNextResponse = RecoverableManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: RecoverableManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstanceVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = ManagedInstanceVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse = ServerVulnerabilityAssessment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerVulnerabilityAssessment;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerVulnerabilityAssessmentsListByServerNextResponse = ServerVulnerabilityAssessmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerVulnerabilityAssessmentListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabel;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabel;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listCurrentByDatabase operation.
- */
+/** Contains response data for the listCurrentByDatabase operation. */
 export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
-  /**
-   * Specifies whether to include disabled recommendations or not.
-   */
+  /** Specifies whether to include disabled recommendations or not. */
   includeDisabledRecommendations?: boolean;
   skipToken?: string;
 }
 
-/**
- * Contains response data for the listRecommendedByDatabase operation.
- */
+/** Contains response data for the listRecommendedByDatabase operation. */
 export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listCurrentByDatabaseNext operation.
- */
+/** Contains response data for the listCurrentByDatabaseNext operation. */
 export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * An OData filter expression that filters elements in the collection.
-   */
+  /** An OData filter expression that filters elements in the collection. */
   filter?: string;
-  /**
-   * Specifies whether to include disabled recommendations or not.
-   */
+  /** Specifies whether to include disabled recommendations or not. */
   includeDisabledRecommendations?: boolean;
   skipToken?: string;
 }
 
-/**
- * Contains response data for the listRecommendedByDatabaseNext operation.
- */
+/** Contains response data for the listRecommendedByDatabaseNext operation. */
 export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SensitivityLabelListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type InstancePoolsGetResponse = InstancePool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePool;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePool;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type InstancePoolsUpdateResponse = InstancePool & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePool;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type InstancePoolsListByResourceGroupResponse = InstancePoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePoolListResult;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type InstancePoolsListResponse = InstancePoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePoolListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type InstancePoolsListByResourceGroupNextResponse = InstancePoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePoolListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type InstancePoolsListNextResponse = InstancePoolListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: InstancePoolListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface UsagesListByInstancePoolOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Optional request parameter to include managed instance usages within the instance pool.
-   */
+  /** Optional request parameter to include managed instance usages within the instance pool. */
   expandChildren?: boolean;
 }
 
-/**
- * Contains response data for the listByInstancePool operation.
- */
+/** Contains response data for the listByInstancePool operation. */
 export type UsagesListByInstancePoolResponse = UsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UsageListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface UsagesListByInstancePoolNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Optional request parameter to include managed instance usages within the instance pool.
-   */
+  /** Optional request parameter to include managed instance usages within the instance pool. */
   expandChildren?: boolean;
 }
 
-/**
- * Contains response data for the listByInstancePoolNext operation.
- */
+/** Contains response data for the listByInstancePoolNext operation. */
 export type UsagesListByInstancePoolNextResponse = UsageListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UsageListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstancePool operation.
- */
+/** Contains response data for the listByInstancePool operation. */
 export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstancesGetResponse = ManagedInstance & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstance;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstance;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ManagedInstancesUpdateResponse = ManagedInstance & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstance;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ManagedInstancesListResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstancePoolNext operation.
- */
+/** Contains response data for the listByInstancePoolNext operation. */
 export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ManagedInstancesListNextResponse = ManagedInstanceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnection;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnection & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnection;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type PrivateEndpointConnectionsListByServerResponse = PrivateEndpointConnectionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnectionListResult;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type PrivateEndpointConnectionsListByServerNextResponse = PrivateEndpointConnectionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnectionListResult;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateLinkResourceListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type PrivateLinkResourcesGetResponse = PrivateLinkResource & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateLinkResource;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type PrivateLinkResourcesListByServerNextResponse = PrivateLinkResourceListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PrivateLinkResourceListResult;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroup operation.
- */
+/** Contains response data for the listByResourceGroup operation. */
 export type ServersListByResourceGroupResponse = ServerListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServersGetResponse = Server & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Server;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServersCreateOrUpdateResponse = Server & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Server;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ServersUpdateResponse = Server & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Server;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ServersListResponse = ServerListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerListResult;
   };
 };
 
-/**
- * Contains response data for the checkNameAvailability operation.
- */
+/** Contains response data for the checkNameAvailability operation. */
 export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: CheckNameAvailabilityResponse;
   };
 };
 
-/**
- * Contains response data for the listByResourceGroupNext operation.
- */
+/** Contains response data for the listByResourceGroupNext operation. */
 export type ServersListByResourceGroupNextResponse = ServerListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ServersListNextResponse = ServerListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface CapabilitiesListByLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * If specified, restricts the response to only include the selected item.
-   */
+  /** If specified, restricts the response to only include the selected item. */
   include?: CapabilityGroup;
 }
 
-/**
- * Contains response data for the listByLocation operation.
- */
+/** Contains response data for the listByLocation operation. */
 export type CapabilitiesListByLocationResponse = LocationCapabilities & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LocationCapabilities;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstanceLongTermRetentionBackup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type LongTermRetentionManagedInstanceBackupsListByDatabaseResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type LongTermRetentionManagedInstanceBackupsListByInstanceResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByLocation operation.
- */
+/** Contains response data for the listByLocation operation. */
 export type LongTermRetentionManagedInstanceBackupsListByLocationResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Contains response data for the getByResourceGroup operation.
- */
+/** Contains response data for the getByResourceGroup operation. */
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupDatabase operation.
- */
+/** Contains response data for the listByResourceGroupDatabase operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupInstance operation.
- */
+/** Contains response data for the listByResourceGroupInstance operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupLocation operation.
- */
+/** Contains response data for the listByResourceGroupLocation operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByLocationNext operation.
- */
+/** Contains response data for the listByLocationNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupDatabaseNext operation.
- */
+/** Contains response data for the listByResourceGroupDatabaseNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupInstanceNext operation.
- */
+/** Contains response data for the listByResourceGroupInstanceNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Whether or not to only get the latest backup for each database.
-   */
+  /** Whether or not to only get the latest backup for each database. */
   onlyLatestPerDatabase?: boolean;
-  /**
-   * Whether to query against just live databases, just deleted databases, or all databases.
-   */
+  /** Whether to query against just live databases, just deleted databases, or all databases. */
   databaseState?: DatabaseState;
 }
 
-/**
- * Contains response data for the listByResourceGroupLocationNext operation.
- */
+/** Contains response data for the listByResourceGroupLocationNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionBackupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanceLongTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionPolicy;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = ManagedInstanceLongTermRetentionPolicy & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionPolicy;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionPolicyListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type WorkloadGroupsGetResponse = WorkloadGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadGroup;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadGroup;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByDatabase operation.
- */
+/** Contains response data for the listByDatabase operation. */
 export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadGroupListResult;
   };
 };
 
-/**
- * Contains response data for the listByDatabaseNext operation.
- */
+/** Contains response data for the listByDatabaseNext operation. */
 export type WorkloadGroupsListByDatabaseNextResponse = WorkloadGroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadGroupListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type WorkloadClassifiersGetResponse = WorkloadClassifier & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadClassifier;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadClassifier;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByWorkloadGroup operation.
- */
+/** Contains response data for the listByWorkloadGroup operation. */
 export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadClassifierListResult;
   };
 };
 
-/**
- * Contains response data for the listByWorkloadGroupNext operation.
- */
+/** Contains response data for the listByWorkloadGroupNext operation. */
 export type WorkloadClassifiersListByWorkloadGroupNextResponse = WorkloadClassifierListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: WorkloadClassifierListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDetailsResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseRestoreDetailsResult;
   };
 };
 
-/**
- * Contains response data for the listByInstance operation.
- */
+/** Contains response data for the listByInstance operation. */
 export type ManagedDatabasesListByInstanceResponse = ManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedDatabasesGetResponse = ManagedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabase;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabase;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the update operation.
- */
+/** Contains response data for the update operation. */
 export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabase;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listInaccessibleByInstance operation.
- */
+/** Contains response data for the listInaccessibleByInstance operation. */
 export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listByInstanceNext operation.
- */
+/** Contains response data for the listByInstanceNext operation. */
 export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the listInaccessibleByInstanceNext operation.
- */
+/** Contains response data for the listInaccessibleByInstanceNext operation. */
 export type ManagedDatabasesListInaccessibleByInstanceNextResponse = ManagedDatabaseListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabaseListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServerAzureADAdministratorsGetResponse = ServerAzureADAdministrator & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerAzureADAdministrator;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdministrator & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerAzureADAdministrator;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServer operation.
- */
+/** Contains response data for the listByServer operation. */
 export type ServerAzureADAdministratorsListByServerResponse = AdministratorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: AdministratorListResult;
   };
 };
 
-/**
- * Contains response data for the disableAzureADOnlyAuthentication operation.
- */
+/** Contains response data for the disableAzureADOnlyAuthentication operation. */
 export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse = ServerAzureADAdministrator & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServerAzureADAdministrator;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the listByServerNext operation.
- */
+/** Contains response data for the listByServerNext operation. */
 export type ServerAzureADAdministratorsListByServerNextResponse = AdministratorListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: AdministratorListResult;
   };
 };
 
-/**
- * Contains response data for the listByManagedInstance operation.
- */
+/** Contains response data for the listByManagedInstance operation. */
 export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInstanceOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceOperationListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ManagedInstanceOperationsGetResponse = ManagedInstanceOperation & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceOperation;
   };
 };
 
-/**
- * Contains response data for the listByManagedInstanceNext operation.
- */
+/** Contains response data for the listByManagedInstanceNext operation. */
 export type ManagedInstanceOperationsListByManagedInstanceNextResponse = ManagedInstanceOperationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceOperationListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SqlManagementClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

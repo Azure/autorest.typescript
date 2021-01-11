@@ -17,9 +17,7 @@ import {
   ServiceObjectivesListByServerResponse
 } from "../models";
 
-/**
- * Class representing a ServiceObjectives.
- */
+/** Class representing a ServiceObjectives. */
 export class ServiceObjectives {
   private readonly client: SqlManagementClient;
 
@@ -142,7 +140,6 @@ export class ServiceObjectives {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

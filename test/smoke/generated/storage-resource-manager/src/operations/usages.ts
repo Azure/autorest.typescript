@@ -13,9 +13,7 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import { Usage, UsagesListByLocationResponse } from "../models";
 
-/**
- * Class representing a Usages.
- */
+/** Class representing a Usages. */
 export class Usages {
   private readonly client: StorageManagementClient;
 
@@ -87,7 +85,6 @@ export class Usages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByLocationOperationSpec: coreHttp.OperationSpec = {

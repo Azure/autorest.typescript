@@ -22,9 +22,7 @@ import {
   ApplicationDefinitionsListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a ApplicationDefinitions.
- */
+/** Class representing a ApplicationDefinitions. */
 export class ApplicationDefinitions {
   private readonly client: ApplicationClient;
 
@@ -341,7 +339,6 @@ export class ApplicationDefinitions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

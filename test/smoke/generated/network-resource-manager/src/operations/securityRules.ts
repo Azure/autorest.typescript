@@ -20,9 +20,7 @@ import {
   SecurityRulesListNextResponse
 } from "../models";
 
-/**
- * Class representing a SecurityRules.
- */
+/** Class representing a SecurityRules. */
 export class SecurityRules {
   private readonly client: NetworkManagementClient;
 
@@ -276,7 +274,6 @@ export class SecurityRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

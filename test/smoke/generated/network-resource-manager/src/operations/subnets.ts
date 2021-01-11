@@ -23,9 +23,7 @@ import {
   SubnetsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Subnets.
- */
+/** Class representing a Subnets. */
 export class Subnets {
   private readonly client: NetworkManagementClient;
 
@@ -368,7 +366,6 @@ export class Subnets {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

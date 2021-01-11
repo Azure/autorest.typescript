@@ -17,9 +17,7 @@ import {
   AzureFirewallFqdnTagsListAllNextResponse
 } from "../models";
 
-/**
- * Class representing a AzureFirewallFqdnTags.
- */
+/** Class representing a AzureFirewallFqdnTags. */
 export class AzureFirewallFqdnTags {
   private readonly client: NetworkManagementClient;
 
@@ -109,7 +107,6 @@ export class AzureFirewallFqdnTags {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listAllOperationSpec: coreHttp.OperationSpec = {

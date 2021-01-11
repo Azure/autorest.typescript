@@ -20,9 +20,7 @@ import {
   ExpressRouteCircuitAuthorizationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteCircuitAuthorizations.
- */
+/** Class representing a ExpressRouteCircuitAuthorizations. */
 export class ExpressRouteCircuitAuthorizations {
   private readonly client: NetworkManagementClient;
 
@@ -266,7 +264,6 @@ export class ExpressRouteCircuitAuthorizations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

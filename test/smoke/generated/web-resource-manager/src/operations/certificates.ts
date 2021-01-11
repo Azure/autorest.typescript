@@ -23,9 +23,7 @@ import {
   CertificatesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a Certificates.
- */
+/** Class representing a Certificates. */
 export class Certificates {
   private readonly client: WebSiteManagementClient;
 
@@ -303,7 +301,6 @@ export class Certificates {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

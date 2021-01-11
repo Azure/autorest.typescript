@@ -25,9 +25,7 @@ import {
   ManagedDatabasesListInaccessibleByInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedDatabases.
- */
+/** Class representing a ManagedDatabases. */
 export class ManagedDatabases {
   private readonly client: SqlManagementClient;
 
@@ -494,7 +492,6 @@ export class ManagedDatabases {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByInstanceOperationSpec: coreHttp.OperationSpec = {

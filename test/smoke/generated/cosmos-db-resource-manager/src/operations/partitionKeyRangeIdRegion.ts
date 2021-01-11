@@ -16,9 +16,7 @@ import {
   PartitionKeyRangeIdRegionListMetricsResponse
 } from "../models";
 
-/**
- * Class representing a PartitionKeyRangeIdRegion.
- */
+/** Class representing a PartitionKeyRangeIdRegion. */
 export class PartitionKeyRangeIdRegion {
   private readonly client: CosmosDBManagementClient;
 
@@ -174,7 +172,6 @@ export class PartitionKeyRangeIdRegion {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreHttp.OperationSpec = {

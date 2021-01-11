@@ -15,35 +15,21 @@ export type DirectoryObjectUnion =
   | ADGroup
   | ServicePrincipal;
 
-/**
- * Contains information about a sign-in name of a local account user in an Azure Active Directory B2C tenant.
- */
+/** Contains information about a sign-in name of a local account user in an Azure Active Directory B2C tenant. */
 export interface SignInName {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * A string value that can be used to classify user sign-in types in your directory, such as 'emailAddress' or 'userName'.
-   */
+  /** A string value that can be used to classify user sign-in types in your directory, such as 'emailAddress' or 'userName'. */
   type?: string;
-  /**
-   * The sign-in used by the local account. Must be unique across the company/tenant. For example, 'johnc@example.com'.
-   */
+  /** The sign-in used by the local account. Must be unique across the company/tenant. For example, 'johnc@example.com'. */
   value?: string;
 }
 
-/**
- * Represents an Azure Active Directory object.
- */
+/** Represents an Azure Active Directory object. */
 export interface DirectoryObject {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "User" | "Application" | "Group" | "ServicePrincipal";
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   /**
    * The object ID.
@@ -57,787 +43,435 @@ export interface DirectoryObject {
   readonly deletionTimestamp?: Date;
 }
 
-/**
- * Active Directory error information.
- */
+/** Active Directory error information. */
 export interface GraphError {
-  /**
-   * Error code.
-   */
+  /** Error code. */
   code?: string;
-  /**
-   * Error message value.
-   */
+  /** Error message value. */
   message?: string;
 }
 
-/**
- * DirectoryObject list operation result.
- */
+/** DirectoryObject list operation result. */
 export interface DirectoryObjectListResult {
-  /**
-   * A collection of DirectoryObject.
-   */
+  /** A collection of DirectoryObject. */
   value?: DirectoryObjectUnion[];
-  /**
-   * The URL to get the next set of results.
-   */
+  /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-/**
- * Active Directive Application common properties shared among GET, POST and PATCH
- */
+/** Active Directive Application common properties shared among GET, POST and PATCH */
 export interface ApplicationBase {
-  /**
-   * A property on the application to indicate if the application accepts other IDPs or not or partially accepts.
-   */
+  /** A property on the application to indicate if the application accepts other IDPs or not or partially accepts. */
   allowGuestsSignIn?: boolean;
-  /**
-   * Indicates that the application supports pass through users who have no presence in the resource tenant.
-   */
+  /** Indicates that the application supports pass through users who have no presence in the resource tenant. */
   allowPassthroughUsers?: boolean;
-  /**
-   * The url for the application logo image stored in a CDN.
-   */
+  /** The url for the application logo image stored in a CDN. */
   appLogoUrl?: string;
-  /**
-   * The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals.
-   */
+  /** The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals. */
   appRoles?: AppRole[];
-  /**
-   * The application permissions.
-   */
+  /** The application permissions. */
   appPermissions?: string[];
-  /**
-   * Whether the application is available to other tenants.
-   */
+  /** Whether the application is available to other tenants. */
   availableToOtherTenants?: boolean;
-  /**
-   * A URL provided by the author of the application to report errors when using the application.
-   */
+  /** A URL provided by the author of the application to report errors when using the application. */
   errorUrl?: string;
-  /**
-   * Configures the groups claim issued in a user or OAuth 2.0 access token that the app expects.
-   */
+  /** Configures the groups claim issued in a user or OAuth 2.0 access token that the app expects. */
   groupMembershipClaims?: GroupMembershipClaimTypes;
-  /**
-   * The home page of the application.
-   */
+  /** The home page of the application. */
   homepage?: string;
-  /**
-   * URLs with more information about the application.
-   */
+  /** URLs with more information about the application. */
   informationalUrls?: InformationalUrl;
-  /**
-   * Specifies whether this application supports device authentication without a user. The default is false.
-   */
+  /** Specifies whether this application supports device authentication without a user. The default is false. */
   isDeviceOnlyAuthSupported?: boolean;
-  /**
-   * A collection of KeyCredential objects.
-   */
+  /** A collection of KeyCredential objects. */
   keyCredentials?: KeyCredential[];
-  /**
-   * Client applications that are tied to this resource application. Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource).
-   */
+  /** Client applications that are tied to this resource application. Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource). */
   knownClientApplications?: string[];
-  /**
-   * the url of the logout page
-   */
+  /** the url of the logout page */
   logoutUrl?: string;
-  /**
-   * Whether to allow implicit grant flow for OAuth2
-   */
+  /** Whether to allow implicit grant flow for OAuth2 */
   oauth2AllowImplicitFlow?: boolean;
-  /**
-   * Specifies whether during a token Request Azure AD will allow path matching of the redirect URI against the applications collection of replyURLs. The default is false.
-   */
+  /** Specifies whether during a token Request Azure AD will allow path matching of the redirect URI against the applications collection of replyURLs. The default is false. */
   oauth2AllowUrlPathMatching?: boolean;
-  /**
-   * The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications. These permission scopes may be granted to client applications during consent.
-   */
+  /** The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications. These permission scopes may be granted to client applications during consent. */
   oauth2Permissions?: OAuth2Permission[];
-  /**
-   * Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow POST requests, as opposed to GET requests. The default is false, which specifies that only GET requests will be allowed.
-   */
+  /** Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow POST requests, as opposed to GET requests. The default is false, which specifies that only GET requests will be allowed. */
   oauth2RequirePostResponse?: boolean;
-  /**
-   * A list of tenants allowed to access application.
-   */
+  /** A list of tenants allowed to access application. */
   orgRestrictions?: string[];
-  /**
-   * Specifying the claims to be included in the token.
-   */
+  /** Specifying the claims to be included in the token. */
   optionalClaims?: OptionalClaims;
-  /**
-   * A collection of PasswordCredential objects
-   */
+  /** A collection of PasswordCredential objects */
   passwordCredentials?: PasswordCredential[];
-  /**
-   * list of pre-authorized applications.
-   */
+  /** list of pre-authorized applications. */
   preAuthorizedApplications?: PreAuthorizedApplication[];
-  /**
-   * Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is false.
-   */
+  /** Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is false. */
   publicClient?: boolean;
-  /**
-   * Reliable domain which can be used to identify an application.
-   */
+  /** Reliable domain which can be used to identify an application. */
   publisherDomain?: string;
-  /**
-   * A collection of reply URLs for the application.
-   */
+  /** A collection of reply URLs for the application. */
   replyUrls?: string[];
-  /**
-   * Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources. This pre-configuration of required resource access drives the consent experience.
-   */
+  /** Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources. This pre-configuration of required resource access drives the consent experience. */
   requiredResourceAccess?: RequiredResourceAccess[];
-  /**
-   * The URL to the SAML metadata for the application.
-   */
+  /** The URL to the SAML metadata for the application. */
   samlMetadataUrl?: string;
-  /**
-   * Audience for signing in to the application (AzureADMyOrganization, AzureADAllOrganizations, AzureADAndMicrosoftAccounts).
-   */
+  /** Audience for signing in to the application (AzureADMyOrganization, AzureADAllOrganizations, AzureADAndMicrosoftAccounts). */
   signInAudience?: string;
-  /**
-   * The primary Web page.
-   */
+  /** The primary Web page. */
   wwwHomepage?: string;
 }
 
 export interface AppRole {
-  /**
-   * Unique role identifier inside the appRoles collection.
-   */
+  /** Unique role identifier inside the appRoles collection. */
   id?: string;
-  /**
-   * Specifies whether this app role definition can be assigned to users and groups by setting to 'User', or to other applications (that are accessing this application in daemon service scenarios) by setting to 'Application', or to both.
-   */
+  /** Specifies whether this app role definition can be assigned to users and groups by setting to 'User', or to other applications (that are accessing this application in daemon service scenarios) by setting to 'Application', or to both. */
   allowedMemberTypes?: string[];
-  /**
-   * Permission help text that appears in the admin app assignment and consent experiences.
-   */
+  /** Permission help text that appears in the admin app assignment and consent experiences. */
   description?: string;
-  /**
-   * Display name for the permission that appears in the admin consent and app assignment experiences.
-   */
+  /** Display name for the permission that appears in the admin consent and app assignment experiences. */
   displayName?: string;
-  /**
-   * When creating or updating a role definition, this must be set to true (which is the default). To delete a role, this must first be set to false. At that point, in a subsequent call, this role may be removed.
-   */
+  /** When creating or updating a role definition, this must be set to true (which is the default). To delete a role, this must first be set to false. At that point, in a subsequent call, this role may be removed. */
   isEnabled?: boolean;
-  /**
-   * Specifies the value of the roles claim that the application should expect in the authentication and access tokens.
-   */
+  /** Specifies the value of the roles claim that the application should expect in the authentication and access tokens. */
   value?: string;
 }
 
-/**
- * Represents a group of URIs that provide terms of service, marketing, support and privacy policy information about an application. The default value for each string is null.
- */
+/** Represents a group of URIs that provide terms of service, marketing, support and privacy policy information about an application. The default value for each string is null. */
 export interface InformationalUrl {
-  /**
-   * The terms of service URI
-   */
+  /** The terms of service URI */
   termsOfService?: string;
-  /**
-   * The marketing URI
-   */
+  /** The marketing URI */
   marketing?: string;
-  /**
-   * The privacy policy URI
-   */
+  /** The privacy policy URI */
   privacy?: string;
-  /**
-   * The support URI
-   */
+  /** The support URI */
   support?: string;
 }
 
-/**
- * Active Directory Key Credential information.
- */
+/** Active Directory Key Credential information. */
 export interface KeyCredential {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * Start date.
-   */
+  /** Start date. */
   startDate?: Date;
-  /**
-   * End date.
-   */
+  /** End date. */
   endDate?: Date;
-  /**
-   * Key value.
-   */
+  /** Key value. */
   value?: string;
-  /**
-   * Key ID.
-   */
+  /** Key ID. */
   keyId?: string;
-  /**
-   * Usage. Acceptable values are 'Verify' and 'Sign'.
-   */
+  /** Usage. Acceptable values are 'Verify' and 'Sign'. */
   usage?: string;
-  /**
-   * Type. Acceptable values are 'AsymmetricX509Cert' and 'Symmetric'.
-   */
+  /** Type. Acceptable values are 'AsymmetricX509Cert' and 'Symmetric'. */
   type?: string;
-  /**
-   * Custom Key Identifier
-   */
+  /** Custom Key Identifier */
   customKeyIdentifier?: string;
 }
 
-/**
- * Represents an OAuth 2.0 delegated permission scope. The specified OAuth 2.0 delegated permission scopes may be requested by client applications (through the requiredResourceAccess collection on the Application object) when calling a resource application. The oauth2Permissions property of the ServicePrincipal entity and of the Application entity is a collection of OAuth2Permission.
- */
+/** Represents an OAuth 2.0 delegated permission scope. The specified OAuth 2.0 delegated permission scopes may be requested by client applications (through the requiredResourceAccess collection on the Application object) when calling a resource application. The oauth2Permissions property of the ServicePrincipal entity and of the Application entity is a collection of OAuth2Permission. */
 export interface OAuth2Permission {
-  /**
-   * Permission help text that appears in the admin consent and app assignment experiences.
-   */
+  /** Permission help text that appears in the admin consent and app assignment experiences. */
   adminConsentDescription?: string;
-  /**
-   * Display name for the permission that appears in the admin consent and app assignment experiences.
-   */
+  /** Display name for the permission that appears in the admin consent and app assignment experiences. */
   adminConsentDisplayName?: string;
-  /**
-   * Unique scope permission identifier inside the oauth2Permissions collection.
-   */
+  /** Unique scope permission identifier inside the oauth2Permissions collection. */
   id?: string;
-  /**
-   * When creating or updating a permission, this property must be set to true (which is the default). To delete a permission, this property must first be set to false. At that point, in a subsequent call, the permission may be removed.
-   */
+  /** When creating or updating a permission, this property must be set to true (which is the default). To delete a permission, this property must first be set to false. At that point, in a subsequent call, the permission may be removed. */
   isEnabled?: boolean;
-  /**
-   * Specifies whether this scope permission can be consented to by an end user, or whether it is a tenant-wide permission that must be consented to by a Company Administrator. Possible values are "User" or "Admin".
-   */
+  /** Specifies whether this scope permission can be consented to by an end user, or whether it is a tenant-wide permission that must be consented to by a Company Administrator. Possible values are "User" or "Admin". */
   type?: string;
-  /**
-   * Permission help text that appears in the end user consent experience.
-   */
+  /** Permission help text that appears in the end user consent experience. */
   userConsentDescription?: string;
-  /**
-   * Display name for the permission that appears in the end user consent experience.
-   */
+  /** Display name for the permission that appears in the end user consent experience. */
   userConsentDisplayName?: string;
-  /**
-   * The value of the scope claim that the resource application should expect in the OAuth 2.0 access token.
-   */
+  /** The value of the scope claim that the resource application should expect in the OAuth 2.0 access token. */
   value?: string;
 }
 
-/**
- * Specifying the claims to be included in the token.
- */
+/** Specifying the claims to be included in the token. */
 export interface OptionalClaims {
-  /**
-   * Optional claims requested to be included in the id token.
-   */
+  /** Optional claims requested to be included in the id token. */
   idToken?: OptionalClaim[];
-  /**
-   * Optional claims requested to be included in the access token.
-   */
+  /** Optional claims requested to be included in the access token. */
   accessToken?: OptionalClaim[];
-  /**
-   * Optional claims requested to be included in the saml token.
-   */
+  /** Optional claims requested to be included in the saml token. */
   samlToken?: OptionalClaim[];
 }
 
-/**
- * Specifying the claims to be included in a token.
- */
+/** Specifying the claims to be included in a token. */
 export interface OptionalClaim {
-  /**
-   * Claim name.
-   */
+  /** Claim name. */
   name?: string;
-  /**
-   * Claim source.
-   */
+  /** Claim source. */
   source?: string;
-  /**
-   * Is this a required claim.
-   */
+  /** Is this a required claim. */
   essential?: boolean;
-  /**
-   * Any object
-   */
+  /** Any object */
   additionalProperties?: any;
 }
 
-/**
- * Active Directory Password Credential information.
- */
+/** Active Directory Password Credential information. */
 export interface PasswordCredential {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * Start date.
-   */
+  /** Start date. */
   startDate?: Date;
-  /**
-   * End date.
-   */
+  /** End date. */
   endDate?: Date;
-  /**
-   * Key ID.
-   */
+  /** Key ID. */
   keyId?: string;
-  /**
-   * Key value.
-   */
+  /** Key value. */
   value?: string;
-  /**
-   * Custom Key Identifier
-   */
+  /** Custom Key Identifier */
   customKeyIdentifier?: Uint8Array;
 }
 
-/**
- * Contains information about pre authorized client application.
- */
+/** Contains information about pre authorized client application. */
 export interface PreAuthorizedApplication {
-  /**
-   * Represents the application id.
-   */
+  /** Represents the application id. */
   appId?: string;
-  /**
-   * Collection of required app permissions/entitlements from the resource application.
-   */
+  /** Collection of required app permissions/entitlements from the resource application. */
   permissions?: PreAuthorizedApplicationPermission[];
-  /**
-   * Collection of extensions from the resource application.
-   */
+  /** Collection of extensions from the resource application. */
   extensions?: PreAuthorizedApplicationExtension[];
 }
 
-/**
- * Contains information about the pre-authorized permissions.
- */
+/** Contains information about the pre-authorized permissions. */
 export interface PreAuthorizedApplicationPermission {
-  /**
-   * Indicates whether the permission set is DirectAccess or impersonation.
-   */
+  /** Indicates whether the permission set is DirectAccess or impersonation. */
   directAccessGrant?: boolean;
-  /**
-   * The list of permissions.
-   */
+  /** The list of permissions. */
   accessGrants?: string[];
 }
 
-/**
- * Representation of an app PreAuthorizedApplicationExtension required by a pre authorized client app.
- */
+/** Representation of an app PreAuthorizedApplicationExtension required by a pre authorized client app. */
 export interface PreAuthorizedApplicationExtension {
-  /**
-   * The extension's conditions.
-   */
+  /** The extension's conditions. */
   conditions?: string[];
 }
 
-/**
- * Specifies the set of OAuth 2.0 permission scopes and app roles under the specified resource that an application requires access to. The specified OAuth 2.0 permission scopes may be requested by client applications (through the requiredResourceAccess collection) when calling a resource application. The requiredResourceAccess property of the Application entity is a collection of RequiredResourceAccess.
- */
+/** Specifies the set of OAuth 2.0 permission scopes and app roles under the specified resource that an application requires access to. The specified OAuth 2.0 permission scopes may be requested by client applications (through the requiredResourceAccess collection) when calling a resource application. The requiredResourceAccess property of the Application entity is a collection of RequiredResourceAccess. */
 export interface RequiredResourceAccess {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * The list of OAuth2.0 permission scopes and app roles that the application requires from the specified resource.
-   */
+  /** The list of OAuth2.0 permission scopes and app roles that the application requires from the specified resource. */
   resourceAccess: ResourceAccess[];
-  /**
-   * The unique identifier for the resource that the application requires access to. This should be equal to the appId declared on the target resource application.
-   */
+  /** The unique identifier for the resource that the application requires access to. This should be equal to the appId declared on the target resource application. */
   resourceAppId?: string;
 }
 
-/**
- * Specifies an OAuth 2.0 permission scope or an app role that an application requires. The resourceAccess property of the RequiredResourceAccess type is a collection of ResourceAccess.
- */
+/** Specifies an OAuth 2.0 permission scope or an app role that an application requires. The resourceAccess property of the RequiredResourceAccess type is a collection of ResourceAccess. */
 export interface ResourceAccess {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * The unique identifier for one of the OAuth2Permission or AppRole instances that the resource application exposes.
-   */
+  /** The unique identifier for one of the OAuth2Permission or AppRole instances that the resource application exposes. */
   id: string;
-  /**
-   * Specifies whether the id property references an OAuth2Permission or an AppRole. Possible values are "scope" or "role".
-   */
+  /** Specifies whether the id property references an OAuth2Permission or an AppRole. Possible values are "scope" or "role". */
   type?: string;
 }
 
-/**
- * Application list operation result.
- */
+/** Application list operation result. */
 export interface ApplicationListResult {
-  /**
-   * A collection of applications.
-   */
+  /** A collection of applications. */
   value?: Application[];
-  /**
-   * The URL to get the next set of results.
-   */
+  /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-/**
- * Request parameters for adding a owner to an application.
- */
+/** Request parameters for adding a owner to an application. */
 export interface AddOwnerParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * A owner object URL, such as "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd", where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application, servicePrincipal, group) to be added.
-   */
+  /** A owner object URL, such as "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd", where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application, servicePrincipal, group) to be added. */
   url: string;
 }
 
-/**
- * KeyCredential list operation result.
- */
+/** KeyCredential list operation result. */
 export interface KeyCredentialListResult {
-  /**
-   * A collection of KeyCredentials.
-   */
+  /** A collection of KeyCredentials. */
   value?: KeyCredential[];
 }
 
-/**
- * Request parameters for a KeyCredentials update operation
- */
+/** Request parameters for a KeyCredentials update operation */
 export interface KeyCredentialsUpdateParameters {
-  /**
-   * A collection of KeyCredentials.
-   */
+  /** A collection of KeyCredentials. */
   value: KeyCredential[];
 }
 
-/**
- * PasswordCredential list operation result.
- */
+/** PasswordCredential list operation result. */
 export interface PasswordCredentialListResult {
-  /**
-   * A collection of PasswordCredentials.
-   */
+  /** A collection of PasswordCredentials. */
   value?: PasswordCredential[];
 }
 
-/**
- * Request parameters for a PasswordCredentials update operation.
- */
+/** Request parameters for a PasswordCredentials update operation. */
 export interface PasswordCredentialsUpdateParameters {
-  /**
-   * A collection of PasswordCredentials.
-   */
+  /** A collection of PasswordCredentials. */
   value: PasswordCredential[];
 }
 
-/**
- * Request parameters for IsMemberOf API call.
- */
+/** Request parameters for IsMemberOf API call. */
 export interface CheckGroupMembershipParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * The object ID of the group to check.
-   */
+  /** The object ID of the group to check. */
   groupId: string;
-  /**
-   * The object ID of the contact, group, user, or service principal to check for membership in the specified group.
-   */
+  /** The object ID of the contact, group, user, or service principal to check for membership in the specified group. */
   memberId: string;
 }
 
-/**
- * Server response for IsMemberOf API call
- */
+/** Server response for IsMemberOf API call */
 export interface CheckGroupMembershipResult {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * True if the specified user, group, contact, or service principal has either direct or transitive membership in the specified group; otherwise, false.
-   */
+  /** True if the specified user, group, contact, or service principal has either direct or transitive membership in the specified group; otherwise, false. */
   value?: boolean;
 }
 
-/**
- * Request parameters for adding a member to a group.
- */
+/** Request parameters for adding a member to a group. */
 export interface GroupAddMemberParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * A member object URL, such as "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd", where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the member (user, application, servicePrincipal, group) to be added.
-   */
+  /** A member object URL, such as "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd", where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the member (user, application, servicePrincipal, group) to be added. */
   url: string;
 }
 
-/**
- * Request parameters for creating a new group.
- */
+/** Request parameters for creating a new group. */
 export interface GroupCreateParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * Group display name
-   */
+  /** Group display name */
   displayName: string;
-  /**
-   * Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API.
-   */
+  /** Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API. */
   mailEnabled: "undefined";
-  /**
-   * Mail nickname
-   */
+  /** Mail nickname */
   mailNickname: string;
-  /**
-   * Whether the group is a security group. Must be true. This is because only pure security groups can be created using the Graph API.
-   */
+  /** Whether the group is a security group. Must be true. This is because only pure security groups can be created using the Graph API. */
   securityEnabled: "true";
 }
 
-/**
- * Server response for Get tenant groups API call
- */
+/** Server response for Get tenant groups API call */
 export interface GroupListResult {
-  /**
-   * A collection of Active Directory groups.
-   */
+  /** A collection of Active Directory groups. */
   value?: ADGroup[];
-  /**
-   * The URL to get the next set of results.
-   */
+  /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-/**
- * Request parameters for GetMemberGroups API call.
- */
+/** Request parameters for GetMemberGroups API call. */
 export interface GroupGetMemberGroupsParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * If true, only membership in security-enabled groups should be checked. Otherwise, membership in all groups should be checked.
-   */
+  /** If true, only membership in security-enabled groups should be checked. Otherwise, membership in all groups should be checked. */
   securityEnabledOnly: boolean;
 }
 
-/**
- * Server response for GetMemberGroups API call.
- */
+/** Server response for GetMemberGroups API call. */
 export interface GroupGetMemberGroupsResult {
-  /**
-   * A collection of group IDs of which the group is a member.
-   */
+  /** A collection of group IDs of which the group is a member. */
   value?: string[];
 }
 
-/**
- * Active Directory service principal common properties shared among GET, POST and PATCH
- */
+/** Active Directory service principal common properties shared among GET, POST and PATCH */
 export interface ServicePrincipalBase {
-  /**
-   * whether or not the service principal account is enabled
-   */
+  /** whether or not the service principal account is enabled */
   accountEnabled?: boolean;
-  /**
-   * Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application.
-   */
+  /** Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application. */
   appRoleAssignmentRequired?: boolean;
-  /**
-   * The collection of key credentials associated with the service principal.
-   */
+  /** The collection of key credentials associated with the service principal. */
   keyCredentials?: KeyCredential[];
-  /**
-   * The collection of password credentials associated with the service principal.
-   */
+  /** The collection of password credentials associated with the service principal. */
   passwordCredentials?: PasswordCredential[];
-  /**
-   * the type of the service principal
-   */
+  /** the type of the service principal */
   servicePrincipalType?: string;
-  /**
-   * Optional list of tags that you can apply to your service principals. Not nullable.
-   */
+  /** Optional list of tags that you can apply to your service principals. Not nullable. */
   tags?: string[];
 }
 
-/**
- * Server response for get tenant service principals API call.
- */
+/** Server response for get tenant service principals API call. */
 export interface ServicePrincipalListResult {
-  /**
-   * the list of service principals.
-   */
+  /** the list of service principals. */
   value?: ServicePrincipal[];
-  /**
-   * the URL to get the next set of results.
-   */
+  /** the URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-/**
- * Service Principal Object Result.
- */
+/** Service Principal Object Result. */
 export interface ServicePrincipalObjectResult {
-  /**
-   * The Object ID of the service principal with the specified application ID.
-   */
+  /** The Object ID of the service principal with the specified application ID. */
   value?: string;
-  /**
-   * The URL representing edm equivalent.
-   */
+  /** The URL representing edm equivalent. */
   odataMetadata?: string;
 }
 
-/**
- * The password profile associated with a user.
- */
+/** The password profile associated with a user. */
 export interface PasswordProfile {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * Password
-   */
+  /** Password */
   password: string;
-  /**
-   * Whether to force a password change on next login.
-   */
+  /** Whether to force a password change on next login. */
   forceChangePasswordNextLogin?: boolean;
 }
 
 export interface UserBase {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object.
-   */
+  /** This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object. */
   immutableId?: string;
-  /**
-   * A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. Examples include: "US", "JP", and "GB".
-   */
+  /** A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. Examples include: "US", "JP", and "GB". */
   usageLocation?: string;
-  /**
-   * The given name for the user.
-   */
+  /** The given name for the user. */
   givenName?: string;
-  /**
-   * The user's surname (family name or last name).
-   */
+  /** The user's surname (family name or last name). */
   surname?: string;
-  /**
-   * A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
-   */
+  /** A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. */
   userType?: UserType;
 }
 
-/**
- * Server response for Get tenant users API call.
- */
+/** Server response for Get tenant users API call. */
 export interface UserListResult {
-  /**
-   * the list of users.
-   */
+  /** the list of users. */
   value?: User[];
-  /**
-   * The URL to get the next set of results.
-   */
+  /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-/**
- * Request parameters for GetMemberGroups API call.
- */
+/** Request parameters for GetMemberGroups API call. */
 export interface UserGetMemberGroupsParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * If true, only membership in security-enabled groups should be checked. Otherwise, membership in all groups should be checked.
-   */
+  /** If true, only membership in security-enabled groups should be checked. Otherwise, membership in all groups should be checked. */
   securityEnabledOnly: boolean;
 }
 
-/**
- * Server response for GetMemberGroups API call.
- */
+/** Server response for GetMemberGroups API call. */
 export interface UserGetMemberGroupsResult {
-  /**
-   * A collection of group IDs of which the user is a member.
-   */
+  /** A collection of group IDs of which the user is a member. */
   value?: string[];
 }
 
-/**
- * Request parameters for the GetObjectsByObjectIds API.
- */
+/** Request parameters for the GetObjectsByObjectIds API. */
 export interface GetObjectsParameters {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * The requested object IDs.
-   */
+  /** The requested object IDs. */
   objectIds?: string[];
-  /**
-   * The requested object types.
-   */
+  /** The requested object types. */
   types?: string[];
-  /**
-   * If true, also searches for object IDs in the partner tenant.
-   */
+  /** If true, also searches for object IDs in the partner tenant. */
   includeDirectoryObjectReferences?: boolean;
 }
 
-/**
- * Server response for Get tenant domains API call.
- */
+/** Server response for Get tenant domains API call. */
 export interface DomainListResult {
-  /**
-   * the list of domains.
-   */
+  /** the list of domains. */
   value?: Domain[];
 }
 
-/**
- * Active Directory Domain information.
- */
+/** Active Directory Domain information. */
 export interface Domain {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   /**
    * the type of the authentication into the domain.
@@ -854,485 +488,263 @@ export interface Domain {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isVerified?: boolean;
-  /**
-   * the domain name.
-   */
+  /** the domain name. */
   name: string;
 }
 
-/**
- * Server response for get oauth2 permissions grants
- */
+/** Server response for get oauth2 permissions grants */
 export interface OAuth2PermissionGrantListResult {
-  /**
-   * the list of oauth2 permissions grants
-   */
+  /** the list of oauth2 permissions grants */
   value?: OAuth2PermissionGrant[];
-  /**
-   * the URL to get the next set of results.
-   */
+  /** the URL to get the next set of results. */
   odataNextLink?: string;
 }
 
 export interface OAuth2PermissionGrant {
-  /**
-   * Microsoft.DirectoryServices.OAuth2PermissionGrant
-   */
+  /** Microsoft.DirectoryServices.OAuth2PermissionGrant */
   odataType?: string;
-  /**
-   * The id of the resource's service principal granted consent to impersonate the user when accessing the resource (represented by the resourceId property).
-   */
+  /** The id of the resource's service principal granted consent to impersonate the user when accessing the resource (represented by the resourceId property). */
   clientId?: string;
-  /**
-   * The id of the permission grant
-   */
+  /** The id of the permission grant */
   objectId?: string;
-  /**
-   * Indicates if consent was provided by the administrator (on behalf of the organization) or by an individual.
-   */
+  /** Indicates if consent was provided by the administrator (on behalf of the organization) or by an individual. */
   consentType?: ConsentType;
-  /**
-   * When consent type is Principal, this property specifies the id of the user that granted consent and applies only for that user.
-   */
+  /** When consent type is Principal, this property specifies the id of the user that granted consent and applies only for that user. */
   principalId?: string;
-  /**
-   * Object Id of the resource you want to grant
-   */
+  /** Object Id of the resource you want to grant */
   resourceId?: string;
-  /**
-   * Specifies the value of the scope claim that the resource application should expect in the OAuth 2.0 access token. For example, User.Read
-   */
+  /** Specifies the value of the scope claim that the resource application should expect in the OAuth 2.0 access token. For example, User.Read */
   scope?: string;
-  /**
-   * Start time for TTL
-   */
+  /** Start time for TTL */
   startTime?: string;
-  /**
-   * Expiry time for TTL
-   */
+  /** Expiry time for TTL */
   expiryTime?: string;
 }
 
-/**
- * Active Directory user information.
- */
+/** Active Directory user information. */
 export type User = DirectoryObject & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "User";
-  /**
-   * This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object.
-   */
+  /** This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object. */
   immutableId?: string;
-  /**
-   * A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. Examples include: "US", "JP", and "GB".
-   */
+  /** A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. Examples include: "US", "JP", and "GB". */
   usageLocation?: string;
-  /**
-   * The given name for the user.
-   */
+  /** The given name for the user. */
   givenName?: string;
-  /**
-   * The user's surname (family name or last name).
-   */
+  /** The user's surname (family name or last name). */
   surname?: string;
-  /**
-   * A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
-   */
+  /** A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. */
   userType?: UserType;
-  /**
-   * Whether the account is enabled.
-   */
+  /** Whether the account is enabled. */
   accountEnabled?: boolean;
-  /**
-   * The display name of the user.
-   */
+  /** The display name of the user. */
   displayName?: string;
-  /**
-   * The principal name of the user.
-   */
+  /** The principal name of the user. */
   userPrincipalName?: string;
-  /**
-   * The mail alias for the user.
-   */
+  /** The mail alias for the user. */
   mailNickname?: string;
-  /**
-   * The primary email address of the user.
-   */
+  /** The primary email address of the user. */
   mail?: string;
-  /**
-   * The sign-in names of the user.
-   */
+  /** The sign-in names of the user. */
   signInNames?: SignInName[];
 };
 
-/**
- * Active Directory application information.
- */
+/** Active Directory application information. */
 export type Application = DirectoryObject & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "Application";
-  /**
-   * The application ID.
-   */
+  /** The application ID. */
   appId?: string;
-  /**
-   * A property on the application to indicate if the application accepts other IDPs or not or partially accepts.
-   */
+  /** A property on the application to indicate if the application accepts other IDPs or not or partially accepts. */
   allowGuestsSignIn?: boolean;
-  /**
-   * Indicates that the application supports pass through users who have no presence in the resource tenant.
-   */
+  /** Indicates that the application supports pass through users who have no presence in the resource tenant. */
   allowPassthroughUsers?: boolean;
-  /**
-   * The url for the application logo image stored in a CDN.
-   */
+  /** The url for the application logo image stored in a CDN. */
   appLogoUrl?: string;
-  /**
-   * The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals.
-   */
+  /** The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals. */
   appRoles?: AppRole[];
-  /**
-   * The application permissions.
-   */
+  /** The application permissions. */
   appPermissions?: string[];
-  /**
-   * Whether the application is available to other tenants.
-   */
+  /** Whether the application is available to other tenants. */
   availableToOtherTenants?: boolean;
-  /**
-   * The display name of the application.
-   */
+  /** The display name of the application. */
   displayName?: string;
-  /**
-   * A URL provided by the author of the application to report errors when using the application.
-   */
+  /** A URL provided by the author of the application to report errors when using the application. */
   errorUrl?: string;
-  /**
-   * Configures the groups claim issued in a user or OAuth 2.0 access token that the app expects.
-   */
+  /** Configures the groups claim issued in a user or OAuth 2.0 access token that the app expects. */
   groupMembershipClaims?: GroupMembershipClaimTypes;
-  /**
-   * The home page of the application.
-   */
+  /** The home page of the application. */
   homepage?: string;
-  /**
-   * A collection of URIs for the application.
-   */
+  /** A collection of URIs for the application. */
   identifierUris?: string[];
-  /**
-   * URLs with more information about the application.
-   */
+  /** URLs with more information about the application. */
   informationalUrls?: InformationalUrl;
-  /**
-   * Specifies whether this application supports device authentication without a user. The default is false.
-   */
+  /** Specifies whether this application supports device authentication without a user. The default is false. */
   isDeviceOnlyAuthSupported?: boolean;
-  /**
-   * A collection of KeyCredential objects.
-   */
+  /** A collection of KeyCredential objects. */
   keyCredentials?: KeyCredential[];
-  /**
-   * Client applications that are tied to this resource application. Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource).
-   */
+  /** Client applications that are tied to this resource application. Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource). */
   knownClientApplications?: string[];
-  /**
-   * the url of the logout page
-   */
+  /** the url of the logout page */
   logoutUrl?: string;
-  /**
-   * Whether to allow implicit grant flow for OAuth2
-   */
+  /** Whether to allow implicit grant flow for OAuth2 */
   oauth2AllowImplicitFlow?: boolean;
-  /**
-   * Specifies whether during a token Request Azure AD will allow path matching of the redirect URI against the applications collection of replyURLs. The default is false.
-   */
+  /** Specifies whether during a token Request Azure AD will allow path matching of the redirect URI against the applications collection of replyURLs. The default is false. */
   oauth2AllowUrlPathMatching?: boolean;
-  /**
-   * The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications. These permission scopes may be granted to client applications during consent.
-   */
+  /** The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications. These permission scopes may be granted to client applications during consent. */
   oauth2Permissions?: OAuth2Permission[];
-  /**
-   * Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow POST requests, as opposed to GET requests. The default is false, which specifies that only GET requests will be allowed.
-   */
+  /** Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow POST requests, as opposed to GET requests. The default is false, which specifies that only GET requests will be allowed. */
   oauth2RequirePostResponse?: boolean;
-  /**
-   * A list of tenants allowed to access application.
-   */
+  /** A list of tenants allowed to access application. */
   orgRestrictions?: string[];
-  /**
-   * Specifying the claims to be included in the token.
-   */
+  /** Specifying the claims to be included in the token. */
   optionalClaims?: OptionalClaims;
-  /**
-   * A collection of PasswordCredential objects
-   */
+  /** A collection of PasswordCredential objects */
   passwordCredentials?: PasswordCredential[];
-  /**
-   * list of pre-authorized applications.
-   */
+  /** list of pre-authorized applications. */
   preAuthorizedApplications?: PreAuthorizedApplication[];
-  /**
-   * Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is false.
-   */
+  /** Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is false. */
   publicClient?: boolean;
-  /**
-   * Reliable domain which can be used to identify an application.
-   */
+  /** Reliable domain which can be used to identify an application. */
   publisherDomain?: string;
-  /**
-   * A collection of reply URLs for the application.
-   */
+  /** A collection of reply URLs for the application. */
   replyUrls?: string[];
-  /**
-   * Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources. This pre-configuration of required resource access drives the consent experience.
-   */
+  /** Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources. This pre-configuration of required resource access drives the consent experience. */
   requiredResourceAccess?: RequiredResourceAccess[];
-  /**
-   * The URL to the SAML metadata for the application.
-   */
+  /** The URL to the SAML metadata for the application. */
   samlMetadataUrl?: string;
-  /**
-   * Audience for signing in to the application (AzureADMyOrganization, AzureADAllOrganizations, AzureADAndMicrosoftAccounts).
-   */
+  /** Audience for signing in to the application (AzureADMyOrganization, AzureADAllOrganizations, AzureADAndMicrosoftAccounts). */
   signInAudience?: string;
-  /**
-   * The primary Web page.
-   */
+  /** The primary Web page. */
   wwwHomepage?: string;
 };
 
-/**
- * Active Directory group information.
- */
+/** Active Directory group information. */
 export type ADGroup = DirectoryObject & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "Group";
-  /**
-   * The display name of the group.
-   */
+  /** The display name of the group. */
   displayName?: string;
-  /**
-   * Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API.
-   */
+  /** Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API. */
   mailEnabled?: boolean;
-  /**
-   * The mail alias for the group.
-   */
+  /** The mail alias for the group. */
   mailNickname?: string;
-  /**
-   * Whether the group is security-enable.
-   */
+  /** Whether the group is security-enable. */
   securityEnabled?: boolean;
-  /**
-   * The primary email address of the group.
-   */
+  /** The primary email address of the group. */
   mail?: string;
 };
 
-/**
- * Active Directory service principal information.
- */
+/** Active Directory service principal information. */
 export type ServicePrincipal = DirectoryObject & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "ServicePrincipal";
-  /**
-   * whether or not the service principal account is enabled
-   */
+  /** whether or not the service principal account is enabled */
   accountEnabled?: boolean;
-  /**
-   * alternative names
-   */
+  /** alternative names */
   alternativeNames?: string[];
   /**
    * The display name exposed by the associated application.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly appDisplayName?: string;
-  /**
-   * The application ID.
-   */
+  /** The application ID. */
   appId?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly appOwnerTenantId?: string;
-  /**
-   * Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application.
-   */
+  /** Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application. */
   appRoleAssignmentRequired?: boolean;
-  /**
-   * The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals.
-   */
+  /** The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals. */
   appRoles?: AppRole[];
-  /**
-   * The display name of the service principal.
-   */
+  /** The display name of the service principal. */
   displayName?: string;
-  /**
-   * A URL provided by the author of the associated application to report errors when using the application.
-   */
+  /** A URL provided by the author of the associated application to report errors when using the application. */
   errorUrl?: string;
-  /**
-   * The URL to the homepage of the associated application.
-   */
+  /** The URL to the homepage of the associated application. */
   homepage?: string;
-  /**
-   * The collection of key credentials associated with the service principal.
-   */
+  /** The collection of key credentials associated with the service principal. */
   keyCredentials?: KeyCredential[];
-  /**
-   * A URL provided by the author of the associated application to logout
-   */
+  /** A URL provided by the author of the associated application to logout */
   logoutUrl?: string;
   /**
    * The OAuth 2.0 permissions exposed by the associated application.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly oauth2Permissions?: OAuth2Permission[];
-  /**
-   * The collection of password credentials associated with the service principal.
-   */
+  /** The collection of password credentials associated with the service principal. */
   passwordCredentials?: PasswordCredential[];
-  /**
-   * The thumbprint of preferred certificate to sign the token
-   */
+  /** The thumbprint of preferred certificate to sign the token */
   preferredTokenSigningKeyThumbprint?: string;
-  /**
-   * The publisher's name of the associated application
-   */
+  /** The publisher's name of the associated application */
   publisherName?: string;
-  /**
-   * The URLs that user tokens are sent to for sign in with the associated application.  The redirect URIs that the oAuth 2.0 authorization code and access tokens are sent to for the associated application.
-   */
+  /** The URLs that user tokens are sent to for sign in with the associated application.  The redirect URIs that the oAuth 2.0 authorization code and access tokens are sent to for the associated application. */
   replyUrls?: string[];
-  /**
-   * The URL to the SAML metadata of the associated application
-   */
+  /** The URL to the SAML metadata of the associated application */
   samlMetadataUrl?: string;
-  /**
-   * A collection of service principal names.
-   */
+  /** A collection of service principal names. */
   servicePrincipalNames?: string[];
-  /**
-   * the type of the service principal
-   */
+  /** the type of the service principal */
   servicePrincipalType?: string;
-  /**
-   * Optional list of tags that you can apply to your service principals. Not nullable.
-   */
+  /** Optional list of tags that you can apply to your service principals. Not nullable. */
   tags?: string[];
 };
 
-/**
- * Request parameters for creating a new application.
- */
+/** Request parameters for creating a new application. */
 export type ApplicationCreateParameters = ApplicationBase & {
-  /**
-   * The display name of the application.
-   */
+  /** The display name of the application. */
   displayName: string;
-  /**
-   * A collection of URIs for the application.
-   */
+  /** A collection of URIs for the application. */
   identifierUris?: string[];
 };
 
-/**
- * Request parameters for updating a new application.
- */
+/** Request parameters for updating a new application. */
 export type ApplicationUpdateParameters = ApplicationBase & {
-  /**
-   * The display name of the application.
-   */
+  /** The display name of the application. */
   displayName?: string;
-  /**
-   * A collection of URIs for the application.
-   */
+  /** A collection of URIs for the application. */
   identifierUris?: string[];
 };
 
-/**
- * Request parameters for creating a new service principal.
- */
+/** Request parameters for creating a new service principal. */
 export type ServicePrincipalCreateParameters = ServicePrincipalBase & {
-  /**
-   * The application ID.
-   */
+  /** The application ID. */
   appId: string;
 };
 
-/**
- * Request parameters for update an existing service principal.
- */
+/** Request parameters for update an existing service principal. */
 export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
 
-/**
- * Request parameters for creating a new work or school account user.
- */
+/** Request parameters for creating a new work or school account user. */
 export type UserCreateParameters = UserBase & {
-  /**
-   * Whether the account is enabled.
-   */
+  /** Whether the account is enabled. */
   accountEnabled: boolean;
-  /**
-   * The display name of the user.
-   */
+  /** The display name of the user. */
   displayName: string;
-  /**
-   * Password Profile
-   */
+  /** Password Profile */
   passwordProfile: PasswordProfile;
-  /**
-   * The user principal name (someuser@contoso.com). It must contain one of the verified domains for the tenant.
-   */
+  /** The user principal name (someuser@contoso.com). It must contain one of the verified domains for the tenant. */
   userPrincipalName: string;
-  /**
-   * The mail alias for the user.
-   */
+  /** The mail alias for the user. */
   mailNickname: string;
-  /**
-   * The primary email address of the user.
-   */
+  /** The primary email address of the user. */
   mail?: string;
 };
 
-/**
- * Request parameters for updating an existing work or school account user.
- */
+/** Request parameters for updating an existing work or school account user. */
 export type UserUpdateParameters = UserBase & {
-  /**
-   * Whether the account is enabled.
-   */
+  /** Whether the account is enabled. */
   accountEnabled?: boolean;
-  /**
-   * The display name of the user.
-   */
+  /** The display name of the user. */
   displayName?: string;
-  /**
-   * The password profile of the user.
-   */
+  /** The password profile of the user. */
   passwordProfile?: PasswordProfile;
-  /**
-   * The user principal name (someuser@contoso.com). It must contain one of the verified domains for the tenant.
-   */
+  /** The user principal name (someuser@contoso.com). It must contain one of the verified domains for the tenant. */
   userPrincipalName?: string;
-  /**
-   * The mail alias for the user.
-   */
+  /** The mail alias for the user. */
   mailNickname?: string;
 };
 
-/**
- * Known values of {@link UserType} that the service accepts.
- */
+/** Known values of {@link UserType} that the service accepts. */
 export const enum KnownUserType {
   Member = "Member",
   Guest = "Guest"
@@ -1348,9 +760,7 @@ export const enum KnownUserType {
  */
 export type UserType = string;
 
-/**
- * Known values of {@link GroupMembershipClaimTypes} that the service accepts.
- */
+/** Known values of {@link GroupMembershipClaimTypes} that the service accepts. */
 export const enum KnownGroupMembershipClaimTypes {
   None = "None",
   SecurityGroup = "SecurityGroup",
@@ -1368,9 +778,7 @@ export const enum KnownGroupMembershipClaimTypes {
  */
 export type GroupMembershipClaimTypes = string;
 
-/**
- * Known values of {@link ConsentType} that the service accepts.
- */
+/** Known values of {@link ConsentType} that the service accepts. */
 export const enum KnownConsentType {
   AllPrincipals = "AllPrincipals",
   Principal = "Principal"
@@ -1386,1010 +794,608 @@ export const enum KnownConsentType {
  */
 export type ConsentType = string;
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type SignedInUserGetResponse = User & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: User;
   };
 };
 
-/**
- * Contains response data for the listOwnedObjects operation.
- */
+/** Contains response data for the listOwnedObjects operation. */
 export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the listOwnedObjectsNext operation.
- */
+/** Contains response data for the listOwnedObjectsNext operation. */
 export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type ApplicationsCreateResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ApplicationsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filters to apply to the operation.
-   */
+  /** The filters to apply to the operation. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ApplicationsListResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ApplicationsGetResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Contains response data for the listOwners operation.
- */
+/** Contains response data for the listOwners operation. */
 export type ApplicationsListOwnersResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the listKeyCredentials operation.
- */
+/** Contains response data for the listKeyCredentials operation. */
 export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: KeyCredentialListResult;
   };
 };
 
-/**
- * Contains response data for the listPasswordCredentials operation.
- */
+/** Contains response data for the listPasswordCredentials operation. */
 export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PasswordCredentialListResult;
   };
 };
 
-/**
- * Contains response data for the getServicePrincipalsIdByAppId operation.
- */
+/** Contains response data for the getServicePrincipalsIdByAppId operation. */
 export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServicePrincipalObjectResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ApplicationsListNextResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the listOwnersNext operation.
- */
+/** Contains response data for the listOwnersNext operation. */
 export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the restore operation.
- */
+/** Contains response data for the restore operation. */
 export type DeletedApplicationsRestoreResponse = Application & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Application;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DeletedApplicationsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply to the operation.
-   */
+  /** The filter to apply to the operation. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type DeletedApplicationsListResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type DeletedApplicationsListNextResponse = ApplicationListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ApplicationListResult;
   };
 };
 
-/**
- * Contains response data for the isMemberOf operation.
- */
+/** Contains response data for the isMemberOf operation. */
 export type GroupsIsMemberOfResponse = CheckGroupMembershipResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: CheckGroupMembershipResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type GroupsCreateResponse = ADGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ADGroup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface GroupsListOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply to the operation.
-   */
+  /** The filter to apply to the operation. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type GroupsListResponse = GroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GroupListResult;
   };
 };
 
-/**
- * Contains response data for the getGroupMembers operation.
- */
+/** Contains response data for the getGroupMembers operation. */
 export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type GroupsGetResponse = ADGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ADGroup;
   };
 };
 
-/**
- * Contains response data for the getMemberGroups operation.
- */
+/** Contains response data for the getMemberGroups operation. */
 export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GroupGetMemberGroupsResult;
   };
 };
 
-/**
- * Contains response data for the listOwners operation.
- */
+/** Contains response data for the listOwners operation. */
 export type GroupsListOwnersResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type GroupsListNextResponse = GroupListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: GroupListResult;
   };
 };
 
-/**
- * Contains response data for the getGroupMembersNext operation.
- */
+/** Contains response data for the getGroupMembersNext operation. */
 export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the listOwnersNext operation.
- */
+/** Contains response data for the listOwnersNext operation. */
 export type GroupsListOwnersNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type ServicePrincipalsCreateResponse = ServicePrincipal & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServicePrincipal;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ServicePrincipalsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply to the operation.
-   */
+  /** The filter to apply to the operation. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type ServicePrincipalsListResponse = ServicePrincipalListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServicePrincipalListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ServicePrincipalsGetResponse = ServicePrincipal & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServicePrincipal;
   };
 };
 
-/**
- * Contains response data for the listOwners operation.
- */
+/** Contains response data for the listOwners operation. */
 export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the listKeyCredentials operation.
- */
+/** Contains response data for the listKeyCredentials operation. */
 export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: KeyCredentialListResult;
   };
 };
 
-/**
- * Contains response data for the listPasswordCredentials operation.
- */
+/** Contains response data for the listPasswordCredentials operation. */
 export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PasswordCredentialListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type ServicePrincipalsListNextResponse = ServicePrincipalListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ServicePrincipalListResult;
   };
 };
 
-/**
- * Contains response data for the listOwnersNext operation.
- */
+/** Contains response data for the listOwnersNext operation. */
 export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type UsersCreateResponse = User & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: User;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface UsersListOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply to the operation.
-   */
+  /** The filter to apply to the operation. */
   filter?: string;
-  /**
-   * The expand value for the operation result.
-   */
+  /** The expand value for the operation result. */
   expand?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type UsersListResponse = UserListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type UsersGetResponse = User & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: User;
   };
 };
 
-/**
- * Contains response data for the getMemberGroups operation.
- */
+/** Contains response data for the getMemberGroups operation. */
 export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserGetMemberGroupsResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type UsersListNextResponse = UserListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: UserListResult;
   };
 };
 
-/**
- * Contains response data for the getObjectsByObjectIds operation.
- */
+/** Contains response data for the getObjectsByObjectIds operation. */
 export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Contains response data for the getObjectsByObjectIdsNext operation.
- */
+/** Contains response data for the getObjectsByObjectIdsNext operation. */
 export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DirectoryObjectListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface DomainsListOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply to the operation.
-   */
+  /** The filter to apply to the operation. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type DomainsListResponse = DomainListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DomainListResult;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type DomainsGetResponse = Domain & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Domain;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface OAuth2PermissionGrantListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * This is the Service Principal ObjectId associated with the app
-   */
+  /** This is the Service Principal ObjectId associated with the app */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OAuth2PermissionGrantListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface OAuth2PermissionGrantCreateOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant.
-   */
+  /** The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant. */
   body?: OAuth2PermissionGrant;
 }
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrant & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OAuth2PermissionGrant;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: OAuth2PermissionGrantListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface GraphRbacManagementClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

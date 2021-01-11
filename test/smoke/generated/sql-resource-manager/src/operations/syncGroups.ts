@@ -33,9 +33,7 @@ import {
   SyncGroupsListByDatabaseNextResponse
 } from "../models";
 
-/**
- * Class representing a SyncGroups.
- */
+/** Class representing a SyncGroups. */
 export class SyncGroups {
   private readonly client: SqlManagementClient;
 
@@ -906,7 +904,6 @@ export class SyncGroups {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listSyncDatabaseIdsOperationSpec: coreHttp.OperationSpec = {

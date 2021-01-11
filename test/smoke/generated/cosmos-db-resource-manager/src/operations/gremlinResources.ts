@@ -30,9 +30,7 @@ import {
   GremlinResourcesUpdateGremlinGraphThroughputResponse
 } from "../models";
 
-/**
- * Class representing a GremlinResources.
- */
+/** Class representing a GremlinResources. */
 export class GremlinResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -607,7 +605,6 @@ export class GremlinResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listGremlinDatabasesOperationSpec: coreHttp.OperationSpec = {

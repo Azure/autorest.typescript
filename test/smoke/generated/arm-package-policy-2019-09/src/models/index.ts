@@ -8,9 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * The policy assignment.
- */
+/** The policy assignment. */
 export interface PolicyAssignment {
   /**
    * The ID of the policy assignment.
@@ -27,79 +25,45 @@ export interface PolicyAssignment {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
-  /**
-   * The policy sku. This property is optional, obsolete, and will be ignored.
-   */
+  /** The policy sku. This property is optional, obsolete, and will be ignored. */
   sku?: PolicySku;
-  /**
-   * The location of the policy assignment. Only required when utilizing managed identity.
-   */
+  /** The location of the policy assignment. Only required when utilizing managed identity. */
   location?: string;
-  /**
-   * The managed identity associated with the policy assignment.
-   */
+  /** The managed identity associated with the policy assignment. */
   identity?: Identity;
-  /**
-   * The display name of the policy assignment.
-   */
+  /** The display name of the policy assignment. */
   displayName?: string;
-  /**
-   * The ID of the policy definition or policy set definition being assigned.
-   */
+  /** The ID of the policy definition or policy set definition being assigned. */
   policyDefinitionId?: string;
-  /**
-   * The scope for the policy assignment.
-   */
+  /** The scope for the policy assignment. */
   scope?: string;
-  /**
-   * The policy's excluded scopes.
-   */
+  /** The policy's excluded scopes. */
   notScopes?: string[];
-  /**
-   * The parameter values for the assigned policy rule. The keys are the parameter names.
-   */
+  /** The parameter values for the assigned policy rule. The keys are the parameter names. */
   parameters?: { [propertyName: string]: ParameterValuesValue };
-  /**
-   * This message will be part of response in case of policy violation.
-   */
+  /** This message will be part of response in case of policy violation. */
   description?: string;
-  /**
-   * The policy assignment metadata. Metadata is an open ended object and is typically a collection of key value pairs.
-   */
+  /** The policy assignment metadata. Metadata is an open ended object and is typically a collection of key value pairs. */
   metadata?: any;
-  /**
-   * The policy assignment enforcement mode. Possible values are Default and DoNotEnforce.
-   */
+  /** The policy assignment enforcement mode. Possible values are Default and DoNotEnforce. */
   enforcementMode?: EnforcementMode;
 }
 
-/**
- * The value of a parameter.
- */
+/** The value of a parameter. */
 export interface ParameterValuesValue {
-  /**
-   * The value of the parameter.
-   */
+  /** The value of the parameter. */
   value?: any;
 }
 
-/**
- * The policy sku. This property is optional, obsolete, and will be ignored.
- */
+/** The policy sku. This property is optional, obsolete, and will be ignored. */
 export interface PolicySku {
-  /**
-   * The name of the policy sku. Possible values are A0 and A1.
-   */
+  /** The name of the policy sku. Possible values are A0 and A1. */
   name: string;
-  /**
-   * The policy sku tier. Possible values are Free and Standard.
-   */
+  /** The policy sku tier. Possible values are Free and Standard. */
   tier?: string;
 }
 
-/**
- * Identity for the resource.
- */
+/** Identity for the resource. */
 export interface Identity {
   /**
    * The principal ID of the resource identity.
@@ -111,25 +75,17 @@ export interface Identity {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tenantId?: string;
-  /**
-   * The identity type. This is the only required field when adding a system assigned identity to a resource.
-   */
+  /** The identity type. This is the only required field when adding a system assigned identity to a resource. */
   type?: ResourceIdentityType;
 }
 
-/**
- * An error response from a policy operation.
- */
+/** An error response from a policy operation. */
 export interface CloudError {
-  /**
-   * The resource management error response.
-   */
+  /** The resource management error response. */
   error?: ErrorResponse;
 }
 
-/**
- * The resource management error response.
- */
+/** The resource management error response. */
 export interface ErrorResponse {
   /**
    * The error code.
@@ -158,9 +114,7 @@ export interface ErrorResponse {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
-/**
- * The resource management error additional info.
- */
+/** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /**
    * The additional info type.
@@ -174,23 +128,15 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-/**
- * List of policy assignments.
- */
+/** List of policy assignments. */
 export interface PolicyAssignmentListResult {
-  /**
-   * An array of policy assignments.
-   */
+  /** An array of policy assignments. */
   value?: PolicyAssignment[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * The policy definition.
- */
+/** The policy definition. */
 export interface PolicyDefinition {
   /**
    * The ID of the policy definition.
@@ -207,93 +153,53 @@ export interface PolicyDefinition {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static.
-   */
+  /** The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
   policyType?: PolicyType;
-  /**
-   * The policy definition mode. Some examples are All, Indexed, Microsoft.KeyVault.Data.
-   */
+  /** The policy definition mode. Some examples are All, Indexed, Microsoft.KeyVault.Data. */
   mode?: string;
-  /**
-   * The display name of the policy definition.
-   */
+  /** The display name of the policy definition. */
   displayName?: string;
-  /**
-   * The policy definition description.
-   */
+  /** The policy definition description. */
   description?: string;
-  /**
-   * The policy rule.
-   */
+  /** The policy rule. */
   policyRule?: any;
-  /**
-   * The policy definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs.
-   */
+  /** The policy definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs. */
   metadata?: any;
-  /**
-   * The parameter definitions for parameters used in the policy rule. The keys are the parameter names.
-   */
+  /** The parameter definitions for parameters used in the policy rule. The keys are the parameter names. */
   parameters?: { [propertyName: string]: ParameterDefinitionsValue };
 }
 
-/**
- * The definition of a parameter that can be provided to the policy.
- */
+/** The definition of a parameter that can be provided to the policy. */
 export interface ParameterDefinitionsValue {
-  /**
-   * The data type of the parameter.
-   */
+  /** The data type of the parameter. */
   type?: ParameterType;
-  /**
-   * The allowed values for the parameter.
-   */
+  /** The allowed values for the parameter. */
   allowedValues?: any[];
-  /**
-   * The default value for the parameter if no value is provided.
-   */
+  /** The default value for the parameter if no value is provided. */
   defaultValue?: any;
-  /**
-   * General metadata for the parameter.
-   */
+  /** General metadata for the parameter. */
   metadata?: ParameterDefinitionsValueMetadata;
 }
 
-/**
- * General metadata for the parameter.
- */
+/** General metadata for the parameter. */
 export interface ParameterDefinitionsValueMetadata {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
-  /**
-   * The display name for the parameter.
-   */
+  /** The display name for the parameter. */
   displayName?: string;
-  /**
-   * The description of the parameter.
-   */
+  /** The description of the parameter. */
   description?: string;
 }
 
-/**
- * List of policy definitions.
- */
+/** List of policy definitions. */
 export interface PolicyDefinitionListResult {
-  /**
-   * An array of policy definitions.
-   */
+  /** An array of policy definitions. */
   value?: PolicyDefinition[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * The policy set definition.
- */
+/** The policy set definition. */
 export interface PolicySetDefinition {
   /**
    * The ID of the policy set definition.
@@ -310,109 +216,61 @@ export interface PolicySetDefinition {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static.
-   */
+  /** The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
   policyType?: PolicyType;
-  /**
-   * The display name of the policy set definition.
-   */
+  /** The display name of the policy set definition. */
   displayName?: string;
-  /**
-   * The policy set definition description.
-   */
+  /** The policy set definition description. */
   description?: string;
-  /**
-   * The policy set definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs.
-   */
+  /** The policy set definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs. */
   metadata?: any;
-  /**
-   * The policy set definition parameters that can be used in policy definition references.
-   */
+  /** The policy set definition parameters that can be used in policy definition references. */
   parameters?: { [propertyName: string]: ParameterDefinitionsValue };
-  /**
-   * An array of policy definition references.
-   */
+  /** An array of policy definition references. */
   policyDefinitions?: PolicyDefinitionReference[];
-  /**
-   * The metadata describing groups of policy definition references within the policy set definition.
-   */
+  /** The metadata describing groups of policy definition references within the policy set definition. */
   policyDefinitionGroups?: PolicyDefinitionGroup[];
 }
 
-/**
- * The policy definition reference.
- */
+/** The policy definition reference. */
 export interface PolicyDefinitionReference {
-  /**
-   * The ID of the policy definition or policy set definition.
-   */
+  /** The ID of the policy definition or policy set definition. */
   policyDefinitionId: string;
-  /**
-   * The parameter values for the referenced policy rule. The keys are the parameter names.
-   */
+  /** The parameter values for the referenced policy rule. The keys are the parameter names. */
   parameters?: { [propertyName: string]: ParameterValuesValue };
-  /**
-   * A unique id (within the policy set definition) for this policy definition reference.
-   */
+  /** A unique id (within the policy set definition) for this policy definition reference. */
   policyDefinitionReferenceId?: string;
-  /**
-   * The name of the groups that this policy definition reference belongs to.
-   */
+  /** The name of the groups that this policy definition reference belongs to. */
   groupNames?: string[];
 }
 
-/**
- * The policy definition group.
- */
+/** The policy definition group. */
 export interface PolicyDefinitionGroup {
-  /**
-   * The name of the group.
-   */
+  /** The name of the group. */
   name: string;
-  /**
-   * The group's display name.
-   */
+  /** The group's display name. */
   displayName?: string;
-  /**
-   * The group's category.
-   */
+  /** The group's category. */
   category?: string;
-  /**
-   * The group's description.
-   */
+  /** The group's description. */
   description?: string;
-  /**
-   * A resource ID of a resource that contains additional metadata about the group.
-   */
+  /** A resource ID of a resource that contains additional metadata about the group. */
   additionalMetadataId?: string;
 }
 
-/**
- * List of policy set definitions.
- */
+/** List of policy set definitions. */
 export interface PolicySetDefinitionListResult {
-  /**
-   * An array of policy set definitions.
-   */
+  /** An array of policy set definitions. */
   value?: PolicySetDefinition[];
-  /**
-   * The URL to use for getting the next set of results.
-   */
+  /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
 
-/**
- * Known values of {@link EnforcementMode} that the service accepts.
- */
+/** Known values of {@link EnforcementMode} that the service accepts. */
 export const enum KnownEnforcementMode {
-  /**
-   * The policy effect is enforced during resource creation or update.
-   */
+  /** The policy effect is enforced during resource creation or update. */
   Default = "Default",
-  /**
-   * The policy effect is not enforced during resource creation or update.
-   */
+  /** The policy effect is not enforced during resource creation or update. */
   DoNotEnforce = "DoNotEnforce"
 }
 
@@ -426,9 +284,7 @@ export const enum KnownEnforcementMode {
  */
 export type EnforcementMode = string;
 
-/**
- * Known values of {@link PolicyType} that the service accepts.
- */
+/** Known values of {@link PolicyType} that the service accepts. */
 export const enum KnownPolicyType {
   NotSpecified = "NotSpecified",
   BuiltIn = "BuiltIn",
@@ -448,9 +304,7 @@ export const enum KnownPolicyType {
  */
 export type PolicyType = string;
 
-/**
- * Known values of {@link ParameterType} that the service accepts.
- */
+/** Known values of {@link ParameterType} that the service accepts. */
 export const enum KnownParameterType {
   String = "String",
   Array = "Array",
@@ -475,812 +329,490 @@ export const enum KnownParameterType {
  * **DateTime**
  */
 export type ParameterType = string;
-/**
- * Defines values for ResourceIdentityType.
- */
+/** Defines values for ResourceIdentityType. */
 export type ResourceIdentityType = "SystemAssigned" | "None";
 
-/**
- * Contains response data for the delete operation.
- */
+/** Contains response data for the delete operation. */
 export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Contains response data for the create operation.
- */
+/** Contains response data for the create operation. */
 export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type PolicyAssignmentsGetResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListForResourceGroupOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listForResourceGroup operation.
- */
+/** Contains response data for the listForResourceGroup operation. */
 export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListForResourceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listForResource operation.
- */
+/** Contains response data for the listForResource operation. */
 export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Contains response data for the listForManagementGroup operation.
- */
+/** Contains response data for the listForManagementGroup operation. */
 export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type PolicyAssignmentsListResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Contains response data for the deleteById operation.
- */
+/** Contains response data for the deleteById operation. */
 export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Contains response data for the createById operation.
- */
+/** Contains response data for the createById operation. */
 export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Contains response data for the getById operation.
- */
+/** Contains response data for the getById operation. */
 export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignment;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListForResourceGroupNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listForResourceGroupNext operation.
- */
+/** Contains response data for the listForResourceGroupNext operation. */
 export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListForResourceNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listForResourceNext operation.
- */
+/** Contains response data for the listForResourceNext operation. */
 export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Contains response data for the listForManagementGroupNext operation.
- */
+/** Contains response data for the listForManagementGroupNext operation. */
 export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyAssignmentsListNextOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.
-   */
+  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyAssignmentListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinition;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type PolicyDefinitionsGetResponse = PolicyDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinition;
   };
 };
 
-/**
- * Contains response data for the getBuiltIn operation.
- */
+/** Contains response data for the getBuiltIn operation. */
 export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinition;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtManagementGroup operation.
- */
+/** Contains response data for the createOrUpdateAtManagementGroup operation. */
 export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinition;
   };
 };
 
-/**
- * Contains response data for the getAtManagementGroup operation.
- */
+/** Contains response data for the getAtManagementGroup operation. */
 export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinition;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listBuiltIn operation.
- */
+/** Contains response data for the listBuiltIn operation. */
 export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listByManagementGroup operation.
- */
+/** Contains response data for the listByManagementGroup operation. */
 export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listBuiltInNext operation.
- */
+/** Contains response data for the listBuiltInNext operation. */
 export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listByManagementGroupNext operation.
- */
+/** Contains response data for the listByManagementGroupNext operation. */
 export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicyDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdate operation.
- */
+/** Contains response data for the createOrUpdate operation. */
 export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinition;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinition;
   };
 };
 
-/**
- * Contains response data for the getBuiltIn operation.
- */
+/** Contains response data for the getBuiltIn operation. */
 export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinition;
   };
 };
 
-/**
- * Contains response data for the list operation.
- */
+/** Contains response data for the list operation. */
 export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listBuiltIn operation.
- */
+/** Contains response data for the listBuiltIn operation. */
 export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the createOrUpdateAtManagementGroup operation.
- */
+/** Contains response data for the createOrUpdateAtManagementGroup operation. */
 export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinition;
   };
 };
 
-/**
- * Contains response data for the getAtManagementGroup operation.
- */
+/** Contains response data for the getAtManagementGroup operation. */
 export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinition;
   };
 };
 
-/**
- * Contains response data for the listByManagementGroup operation.
- */
+/** Contains response data for the listByManagementGroup operation. */
 export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listNext operation.
- */
+/** Contains response data for the listNext operation. */
 export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listBuiltInNext operation.
- */
+/** Contains response data for the listBuiltInNext operation. */
 export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Contains response data for the listByManagementGroupNext operation.
- */
+/** Contains response data for the listByManagementGroupNext operation. */
 export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PolicySetDefinitionListResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PolicyClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -760,7 +760,6 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   resourceHealthMetadata: ResourceHealthMetadata;
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getPublishingUserOperationSpec: coreHttp.OperationSpec = {

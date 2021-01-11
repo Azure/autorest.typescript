@@ -17,9 +17,7 @@ import {
   TransparentDataEncryptionActivitiesListByConfigurationResponse
 } from "../models";
 
-/**
- * Class representing a TransparentDataEncryptionActivities.
- */
+/** Class representing a TransparentDataEncryptionActivities. */
 export class TransparentDataEncryptionActivities {
   private readonly client: SqlManagementClient;
 
@@ -140,7 +138,6 @@ export class TransparentDataEncryptionActivities {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByConfigurationOperationSpec: coreHttp.OperationSpec = {

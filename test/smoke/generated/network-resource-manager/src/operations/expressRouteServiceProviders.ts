@@ -17,9 +17,7 @@ import {
   ExpressRouteServiceProvidersListNextResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteServiceProviders.
- */
+/** Class representing a ExpressRouteServiceProviders. */
 export class ExpressRouteServiceProviders {
   private readonly client: NetworkManagementClient;
 
@@ -109,7 +107,6 @@ export class ExpressRouteServiceProviders {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

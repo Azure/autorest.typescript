@@ -17,9 +17,7 @@ import {
   VirtualMachineExtensionImagesListVersionsResponse
 } from "../models";
 
-/**
- * Class representing a VirtualMachineExtensionImages.
- */
+/** Class representing a VirtualMachineExtensionImages. */
 export class VirtualMachineExtensionImages {
   private readonly client: ComputeManagementClient;
 
@@ -107,7 +105,6 @@ export class VirtualMachineExtensionImages {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

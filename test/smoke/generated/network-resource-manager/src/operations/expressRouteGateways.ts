@@ -19,9 +19,7 @@ import {
   ExpressRouteGatewaysGetResponse
 } from "../models";
 
-/**
- * Class representing a ExpressRouteGateways.
- */
+/** Class representing a ExpressRouteGateways. */
 export class ExpressRouteGateways {
   private readonly client: NetworkManagementClient;
 
@@ -184,7 +182,6 @@ export class ExpressRouteGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {

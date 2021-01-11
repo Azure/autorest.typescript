@@ -24,9 +24,7 @@ import {
   InstancePoolsListNextResponse
 } from "../models";
 
-/**
- * Class representing a InstancePools.
- */
+/** Class representing a InstancePools. */
 export class InstancePools {
   private readonly client: SqlManagementClient;
 
@@ -368,7 +366,6 @@ export class InstancePools {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

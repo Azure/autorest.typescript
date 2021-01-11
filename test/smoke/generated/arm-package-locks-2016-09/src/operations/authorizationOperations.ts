@@ -17,9 +17,7 @@ import {
   AuthorizationOperationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a AuthorizationOperations.
- */
+/** Class representing a AuthorizationOperations. */
 export class AuthorizationOperations {
   private readonly client: ManagementLockClient;
 
@@ -109,7 +107,6 @@ export class AuthorizationOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

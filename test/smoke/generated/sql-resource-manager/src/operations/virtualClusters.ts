@@ -23,9 +23,7 @@ import {
   VirtualClustersListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualClusters.
- */
+/** Class representing a VirtualClusters. */
 export class VirtualClusters {
   private readonly client: SqlManagementClient;
 
@@ -326,7 +324,6 @@ export class VirtualClusters {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

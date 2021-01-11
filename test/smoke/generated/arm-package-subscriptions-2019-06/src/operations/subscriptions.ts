@@ -20,9 +20,7 @@ import {
   SubscriptionsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Subscriptions.
- */
+/** Class representing a Subscriptions. */
 export class Subscriptions {
   private readonly client: SubscriptionClient;
 
@@ -195,7 +193,6 @@ export class Subscriptions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listLocationsOperationSpec: coreHttp.OperationSpec = {

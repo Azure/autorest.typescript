@@ -21,9 +21,7 @@ import {
   ManagedInstanceEncryptionProtectorsListByInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstanceEncryptionProtectors.
- */
+/** Class representing a ManagedInstanceEncryptionProtectors. */
 export class ManagedInstanceEncryptionProtectors {
   private readonly client: SqlManagementClient;
 
@@ -282,7 +280,6 @@ export class ManagedInstanceEncryptionProtectors {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const revalidateOperationSpec: coreHttp.OperationSpec = {

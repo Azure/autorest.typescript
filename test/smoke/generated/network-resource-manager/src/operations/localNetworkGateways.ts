@@ -22,9 +22,7 @@ import {
   LocalNetworkGatewaysListNextResponse
 } from "../models";
 
-/**
- * Class representing a LocalNetworkGateways.
- */
+/** Class representing a LocalNetworkGateways. */
 export class LocalNetworkGateways {
   private readonly client: NetworkManagementClient;
 
@@ -266,7 +264,6 @@ export class LocalNetworkGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

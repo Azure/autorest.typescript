@@ -25,9 +25,7 @@ import {
   VpnGatewaysListNextResponse
 } from "../models";
 
-/**
- * Class representing a VpnGateways.
- */
+/** Class representing a VpnGateways. */
 export class VpnGateways {
   private readonly client: NetworkManagementClient;
 
@@ -387,7 +385,6 @@ export class VpnGateways {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

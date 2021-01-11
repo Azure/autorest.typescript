@@ -17,9 +17,7 @@ import {
   CertificateRegistrationProviderListOperationsNextResponse
 } from "../models";
 
-/**
- * Class representing a CertificateRegistrationProvider.
- */
+/** Class representing a CertificateRegistrationProvider. */
 export class CertificateRegistrationProvider {
   private readonly client: WebSiteManagementClient;
 
@@ -111,7 +109,6 @@ export class CertificateRegistrationProvider {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationsOperationSpec: coreHttp.OperationSpec = {

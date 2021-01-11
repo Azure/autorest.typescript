@@ -23,9 +23,7 @@ import {
   GalleryApplicationVersionsListByGalleryApplicationNextResponse
 } from "../models";
 
-/**
- * Class representing a GalleryApplicationVersions.
- */
+/** Class representing a GalleryApplicationVersions. */
 export class GalleryApplicationVersions {
   private readonly client: ComputeManagementClient;
 
@@ -369,7 +367,6 @@ export class GalleryApplicationVersions {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {

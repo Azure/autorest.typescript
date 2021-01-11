@@ -26,9 +26,7 @@ import {
   ManagedInstancesListNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstances.
- */
+/** Class representing a ManagedInstances. */
 export class ManagedInstances {
   private readonly client: SqlManagementClient;
 
@@ -491,7 +489,6 @@ export class ManagedInstances {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {

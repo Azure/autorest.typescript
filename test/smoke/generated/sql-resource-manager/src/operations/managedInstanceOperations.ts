@@ -18,9 +18,7 @@ import {
   ManagedInstanceOperationsListByManagedInstanceNextResponse
 } from "../models";
 
-/**
- * Class representing a ManagedInstanceOperations.
- */
+/** Class representing a ManagedInstanceOperations. */
 export class ManagedInstanceOperations {
   private readonly client: SqlManagementClient;
 
@@ -206,7 +204,6 @@ export class ManagedInstanceOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const cancelOperationSpec: coreHttp.OperationSpec = {

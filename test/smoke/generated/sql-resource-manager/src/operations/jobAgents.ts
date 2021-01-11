@@ -22,9 +22,7 @@ import {
   JobAgentsListByServerNextResponse
 } from "../models";
 
-/**
- * Class representing a JobAgents.
- */
+/** Class representing a JobAgents. */
 export class JobAgents {
   private readonly client: SqlManagementClient;
 
@@ -325,7 +323,6 @@ export class JobAgents {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listByServerOperationSpec: coreHttp.OperationSpec = {

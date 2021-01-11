@@ -25,9 +25,7 @@ import {
   NetworkProfilesListNextResponse
 } from "../models";
 
-/**
- * Class representing a NetworkProfiles.
- */
+/** Class representing a NetworkProfiles. */
 export class NetworkProfiles {
   private readonly client: NetworkManagementClient;
 
@@ -330,7 +328,6 @@ export class NetworkProfiles {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

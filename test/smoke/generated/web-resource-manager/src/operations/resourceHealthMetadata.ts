@@ -25,9 +25,7 @@ import {
   ResourceHealthMetadataListBySiteSlotNextResponse
 } from "../models";
 
-/**
- * Class representing a ResourceHealthMetadata.
- */
+/** Class representing a ResourceHealthMetadata. */
 export class ResourceHealthMetadata {
   private readonly client: WebSiteManagementClient;
 
@@ -503,7 +501,6 @@ export class ResourceHealthMetadata {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

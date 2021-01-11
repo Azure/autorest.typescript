@@ -17,9 +17,7 @@ import {
   AvailableResourceGroupDelegationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailableResourceGroupDelegations.
- */
+/** Class representing a AvailableResourceGroupDelegations. */
 export class AvailableResourceGroupDelegations {
   private readonly client: NetworkManagementClient;
 
@@ -138,7 +136,6 @@ export class AvailableResourceGroupDelegations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

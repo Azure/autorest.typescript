@@ -24,9 +24,7 @@ import {
   SecurityPartnerProvidersListNextResponse
 } from "../models";
 
-/**
- * Class representing a SecurityPartnerProviders.
- */
+/** Class representing a SecurityPartnerProviders. */
 export class SecurityPartnerProviders {
   private readonly client: NetworkManagementClient;
 
@@ -348,7 +346,6 @@ export class SecurityPartnerProviders {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

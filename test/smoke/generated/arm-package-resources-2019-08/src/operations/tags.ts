@@ -19,9 +19,7 @@ import {
   TagsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Tags.
- */
+/** Class representing a Tags. */
 export class Tags {
   private readonly client: ResourceManagementClient;
 
@@ -195,7 +193,6 @@ export class Tags {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteValueOperationSpec: coreHttp.OperationSpec = {

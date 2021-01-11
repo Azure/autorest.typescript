@@ -21,9 +21,7 @@ import {
   InboundNatRulesListNextResponse
 } from "../models";
 
-/**
- * Class representing a InboundNatRules.
- */
+/** Class representing a InboundNatRules. */
 export class InboundNatRules {
   private readonly client: NetworkManagementClient;
 
@@ -273,7 +271,6 @@ export class InboundNatRules {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

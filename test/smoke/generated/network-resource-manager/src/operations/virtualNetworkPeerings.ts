@@ -20,9 +20,7 @@ import {
   VirtualNetworkPeeringsListNextResponse
 } from "../models";
 
-/**
- * Class representing a VirtualNetworkPeerings.
- */
+/** Class representing a VirtualNetworkPeerings. */
 export class VirtualNetworkPeerings {
   private readonly client: NetworkManagementClient;
 
@@ -276,7 +274,6 @@ export class VirtualNetworkPeerings {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {

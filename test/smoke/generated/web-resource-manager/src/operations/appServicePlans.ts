@@ -57,9 +57,7 @@ import {
   AppServicePlansListUsagesNextResponse
 } from "../models";
 
-/**
- * Class representing a AppServicePlans.
- */
+/** Class representing a AppServicePlans. */
 export class AppServicePlans {
   private readonly client: WebSiteManagementClient;
 
@@ -1289,7 +1287,6 @@ export class AppServicePlans {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

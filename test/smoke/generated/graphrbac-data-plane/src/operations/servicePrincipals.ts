@@ -31,9 +31,7 @@ import {
   ServicePrincipalsListOwnersNextResponse
 } from "../models";
 
-/**
- * Class representing a ServicePrincipals.
- */
+/** Class representing a ServicePrincipals. */
 export class ServicePrincipals {
   private readonly client: GraphRbacManagementClient;
 
@@ -504,7 +502,6 @@ export class ServicePrincipals {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

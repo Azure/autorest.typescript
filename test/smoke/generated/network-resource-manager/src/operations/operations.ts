@@ -17,9 +17,7 @@ import {
   OperationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a Operations.
- */
+/** Class representing a Operations. */
 export class Operations {
   private readonly client: NetworkManagementClient;
 
@@ -109,7 +107,6 @@ export class Operations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -21,9 +21,7 @@ import {
   PacketCapturesListResponse
 } from "../models";
 
-/**
- * Class representing a PacketCaptures.
- */
+/** Class representing a PacketCaptures. */
 export class PacketCaptures {
   private readonly client: NetworkManagementClient;
 
@@ -322,7 +320,6 @@ export class PacketCaptures {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreHttp.OperationSpec = {

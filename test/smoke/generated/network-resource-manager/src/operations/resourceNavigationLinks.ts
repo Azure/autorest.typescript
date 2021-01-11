@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
 import { ResourceNavigationLinksListResponse } from "../models";
 
-/**
- * Class representing a ResourceNavigationLinks.
- */
+/** Class representing a ResourceNavigationLinks. */
 export class ResourceNavigationLinks {
   private readonly client: NetworkManagementClient;
 
@@ -52,7 +50,6 @@ export class ResourceNavigationLinks {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

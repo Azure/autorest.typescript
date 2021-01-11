@@ -17,9 +17,7 @@ import {
   AvailableDelegationsListNextResponse
 } from "../models";
 
-/**
- * Class representing a AvailableDelegations.
- */
+/** Class representing a AvailableDelegations. */
 export class AvailableDelegations {
   private readonly client: NetworkManagementClient;
 
@@ -119,7 +117,6 @@ export class AvailableDelegations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -30,9 +30,7 @@ import {
   MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
 } from "../models";
 
-/**
- * Class representing a MongoDBResources.
- */
+/** Class representing a MongoDBResources. */
 export class MongoDBResources {
   private readonly client: CosmosDBManagementClient;
 
@@ -610,7 +608,6 @@ export class MongoDBResources {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listMongoDBDatabasesOperationSpec: coreHttp.OperationSpec = {

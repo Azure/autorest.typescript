@@ -25,9 +25,7 @@ import {
   ServiceEndpointPoliciesListByResourceGroupNextResponse
 } from "../models";
 
-/**
- * Class representing a ServiceEndpointPolicies.
- */
+/** Class representing a ServiceEndpointPolicies. */
 export class ServiceEndpointPolicies {
   private readonly client: NetworkManagementClient;
 
@@ -349,7 +347,6 @@ export class ServiceEndpointPolicies {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreHttp.OperationSpec = {
