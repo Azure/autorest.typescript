@@ -147,7 +147,6 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {

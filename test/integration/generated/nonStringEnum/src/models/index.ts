@@ -8,9 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * Known values of {@link IntEnum} that the service accepts.
- */
+/** Known values of {@link IntEnum} that the service accepts. */
 export const enum KnownIntEnum {
   TwoHundred = 200,
   FourHundredThree = 403,
@@ -32,9 +30,7 @@ export const enum KnownIntEnum {
  */
 export type IntEnum = number;
 
-/**
- * Known values of {@link FloatEnum} that the service accepts.
- */
+/** Known values of {@link FloatEnum} that the service accepts. */
 export const enum KnownFloatEnum {
   TwoHundred4 = 200.4,
   FourHundredThree4 = 403.4,
@@ -56,137 +52,83 @@ export const enum KnownFloatEnum {
  */
 export type FloatEnum = number;
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface IntPutOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * Input int enum.
-   */
+  /** Input int enum. */
   input?: IntEnum;
 }
 
-/**
- * Contains response data for the put operation.
- */
+/** Contains response data for the put operation. */
 export type IntPutResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type IntGetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: IntEnum;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: IntEnum;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FloatPutOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * Input float enum.
-   */
+  /** Input float enum. */
   input?: FloatEnum;
 }
 
-/**
- * Contains response data for the put operation.
- */
+/** Contains response data for the put operation. */
 export type FloatPutResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type FloatGetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: FloatEnum;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FloatEnum;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface NonStringEnumClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -42,7 +42,6 @@ export class ReportClient extends ReportClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getReportOperationSpec: coreHttp.OperationSpec = {

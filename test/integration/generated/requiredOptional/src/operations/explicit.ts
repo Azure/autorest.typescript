@@ -29,9 +29,7 @@ import {
   ExplicitPostOptionalArrayHeaderOptionalParams
 } from "../models";
 
-/**
- * Class representing a Explicit.
- */
+/** Class representing a Explicit. */
 export class Explicit {
   private readonly client: RequiredOptionalClient;
 
@@ -440,7 +438,6 @@ export class Explicit {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const postRequiredIntegerParameterOperationSpec: coreHttp.OperationSpec = {

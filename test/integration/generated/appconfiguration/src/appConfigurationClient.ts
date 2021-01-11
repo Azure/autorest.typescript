@@ -554,7 +554,6 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getKeysOperationSpec: coreHttp.OperationSpec = {

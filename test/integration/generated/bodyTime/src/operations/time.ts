@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyTimeClient } from "../bodyTimeClient";
 import { TimeGetResponse, TimePutResponse } from "../models";
 
-/**
- * Class representing a Time.
- */
+/** Class representing a Time. */
 export class Time {
   private readonly client: BodyTimeClient;
 
@@ -62,7 +60,6 @@ export class Time {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreHttp.OperationSpec = {

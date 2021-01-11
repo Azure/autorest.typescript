@@ -8,42 +8,26 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type ObjectTypeClientGetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: any;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: any;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ObjectTypeClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

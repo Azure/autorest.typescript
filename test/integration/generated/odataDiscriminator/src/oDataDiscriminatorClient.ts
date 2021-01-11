@@ -31,9 +31,7 @@ export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
     super($host, apiVersion, options);
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<ODataDiscriminatorClientApiV1ValueGetResponse> {
@@ -47,7 +45,6 @@ export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {

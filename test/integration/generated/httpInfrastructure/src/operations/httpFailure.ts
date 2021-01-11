@@ -16,9 +16,7 @@ import {
   HttpFailureGetNoModelEmptyResponse
 } from "../models";
 
-/**
- * Class representing a HttpFailure.
- */
+/** Class representing a HttpFailure. */
 export class HttpFailure {
   private readonly client: HttpInfrastructureClient;
 
@@ -79,7 +77,6 @@ export class HttpFailure {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getEmptyErrorOperationSpec: coreHttp.OperationSpec = {

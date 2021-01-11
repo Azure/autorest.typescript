@@ -13,17 +13,11 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface CustomUrlClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * A string value that is used as a global part of the parameterized host
-   */
+  /** A string value that is used as a global part of the parameterized host */
   host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -13,242 +13,146 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type IntGetNullResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getInvalid operation.
- */
+/** Contains response data for the getInvalid operation. */
 export type IntGetInvalidResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getOverflowInt32 operation.
- */
+/** Contains response data for the getOverflowInt32 operation. */
 export type IntGetOverflowInt32Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getUnderflowInt32 operation.
- */
+/** Contains response data for the getUnderflowInt32 operation. */
 export type IntGetUnderflowInt32Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getOverflowInt64 operation.
- */
+/** Contains response data for the getOverflowInt64 operation. */
 export type IntGetOverflowInt64Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getUnderflowInt64 operation.
- */
+/** Contains response data for the getUnderflowInt64 operation. */
 export type IntGetUnderflowInt64Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: number;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: number;
   };
 };
 
-/**
- * Contains response data for the getUnixTime operation.
- */
+/** Contains response data for the getUnixTime operation. */
 export type IntGetUnixTimeResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getInvalidUnixTime operation.
- */
+/** Contains response data for the getInvalidUnixTime operation. */
 export type IntGetInvalidUnixTimeResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Contains response data for the getNullUnixTime operation.
- */
+/** Contains response data for the getNullUnixTime operation. */
 export type IntGetNullUnixTimeResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: Date;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Date;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyIntegerClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

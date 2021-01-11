@@ -27,9 +27,7 @@ import {
   NumberGetSmallDecimalResponse
 } from "../models";
 
-/**
- * Class representing a NumberOperations.
- */
+/** Class representing a NumberOperations. */
 export class NumberOperations {
   private readonly client: BodyNumberClient;
 
@@ -442,7 +440,6 @@ export class NumberOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

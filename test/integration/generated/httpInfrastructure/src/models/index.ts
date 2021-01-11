@@ -29,1001 +29,601 @@ export type B = MyException & {
   textStatusCode?: string;
 };
 
-/**
- * Defines headers for HttpRedirects_head300 operation.
- */
+/** Defines headers for HttpRedirects_head300 operation. */
 export interface HttpRedirectsHead300Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/head/200";
 }
 
-/**
- * Defines headers for HttpRedirects_get300 operation.
- */
+/** Defines headers for HttpRedirects_get300 operation. */
 export interface HttpRedirectsGet300Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/get/200";
 }
 
-/**
- * Defines headers for HttpRedirects_head301 operation.
- */
+/** Defines headers for HttpRedirects_head301 operation. */
 export interface HttpRedirectsHead301Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/head/200";
 }
 
-/**
- * Defines headers for HttpRedirects_get301 operation.
- */
+/** Defines headers for HttpRedirects_get301 operation. */
 export interface HttpRedirectsGet301Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/get/200";
 }
 
-/**
- * Defines headers for HttpRedirects_put301 operation.
- */
+/** Defines headers for HttpRedirects_put301 operation. */
 export interface HttpRedirectsPut301Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/failure/500";
 }
 
-/**
- * Defines headers for HttpRedirects_head302 operation.
- */
+/** Defines headers for HttpRedirects_head302 operation. */
 export interface HttpRedirectsHead302Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/head/200";
 }
 
-/**
- * Defines headers for HttpRedirects_get302 operation.
- */
+/** Defines headers for HttpRedirects_get302 operation. */
 export interface HttpRedirectsGet302Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/get/200";
 }
 
-/**
- * Defines headers for HttpRedirects_patch302 operation.
- */
+/** Defines headers for HttpRedirects_patch302 operation. */
 export interface HttpRedirectsPatch302Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/failure/500";
 }
 
-/**
- * Defines headers for HttpRedirects_post303 operation.
- */
+/** Defines headers for HttpRedirects_post303 operation. */
 export interface HttpRedirectsPost303Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/get/200";
 }
 
-/**
- * Defines headers for HttpRedirects_head307 operation.
- */
+/** Defines headers for HttpRedirects_head307 operation. */
 export interface HttpRedirectsHead307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/head/200";
 }
 
-/**
- * Defines headers for HttpRedirects_get307 operation.
- */
+/** Defines headers for HttpRedirects_get307 operation. */
 export interface HttpRedirectsGet307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/get/200";
 }
 
-/**
- * Defines headers for HttpRedirects_options307 operation.
- */
+/** Defines headers for HttpRedirects_options307 operation. */
 export interface HttpRedirectsOptions307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/options/200";
 }
 
-/**
- * Defines headers for HttpRedirects_put307 operation.
- */
+/** Defines headers for HttpRedirects_put307 operation. */
 export interface HttpRedirectsPut307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/put/200";
 }
 
-/**
- * Defines headers for HttpRedirects_patch307 operation.
- */
+/** Defines headers for HttpRedirects_patch307 operation. */
 export interface HttpRedirectsPatch307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/patch/200";
 }
 
-/**
- * Defines headers for HttpRedirects_post307 operation.
- */
+/** Defines headers for HttpRedirects_post307 operation. */
 export interface HttpRedirectsPost307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/post/200";
 }
 
-/**
- * Defines headers for HttpRedirects_delete307 operation.
- */
+/** Defines headers for HttpRedirects_delete307 operation. */
 export interface HttpRedirectsDelete307Headers {
-  /**
-   * The redirect location for this request
-   */
+  /** The redirect location for this request */
   location?: "/http/success/delete/200";
 }
 
-/**
- * Contains response data for the getEmptyError operation.
- */
+/** Contains response data for the getEmptyError operation. */
 export type HttpFailureGetEmptyErrorResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the getNoModelError operation.
- */
+/** Contains response data for the getNoModelError operation. */
 export type HttpFailureGetNoModelErrorResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the getNoModelEmpty operation.
- */
+/** Contains response data for the getNoModelEmpty operation. */
 export type HttpFailureGetNoModelEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the get200 operation.
- */
+/** Contains response data for the get200 operation. */
 export type HttpSuccessGet200Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the options200 operation.
- */
+/** Contains response data for the options200 operation. */
 export type HttpSuccessOptions200Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the head300 operation.
- */
+/** Contains response data for the head300 operation. */
 export type HttpRedirectsHead300Response = HttpRedirectsHead300Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsHead300Headers;
   };
 };
 
-/**
- * Contains response data for the get300 operation.
- */
+/** Contains response data for the get300 operation. */
 export type HttpRedirectsGet300Response = HttpRedirectsGet300Headers & {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string[];
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string[];
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsGet300Headers;
   };
 };
 
-/**
- * Contains response data for the head301 operation.
- */
+/** Contains response data for the head301 operation. */
 export type HttpRedirectsHead301Response = HttpRedirectsHead301Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsHead301Headers;
   };
 };
 
-/**
- * Contains response data for the get301 operation.
- */
+/** Contains response data for the get301 operation. */
 export type HttpRedirectsGet301Response = HttpRedirectsGet301Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsGet301Headers;
   };
 };
 
-/**
- * Contains response data for the put301 operation.
- */
+/** Contains response data for the put301 operation. */
 export type HttpRedirectsPut301Response = HttpRedirectsPut301Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPut301Headers;
   };
 };
 
-/**
- * Contains response data for the head302 operation.
- */
+/** Contains response data for the head302 operation. */
 export type HttpRedirectsHead302Response = HttpRedirectsHead302Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsHead302Headers;
   };
 };
 
-/**
- * Contains response data for the get302 operation.
- */
+/** Contains response data for the get302 operation. */
 export type HttpRedirectsGet302Response = HttpRedirectsGet302Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsGet302Headers;
   };
 };
 
-/**
- * Contains response data for the patch302 operation.
- */
+/** Contains response data for the patch302 operation. */
 export type HttpRedirectsPatch302Response = HttpRedirectsPatch302Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPatch302Headers;
   };
 };
 
-/**
- * Contains response data for the post303 operation.
- */
+/** Contains response data for the post303 operation. */
 export type HttpRedirectsPost303Response = HttpRedirectsPost303Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPost303Headers;
   };
 };
 
-/**
- * Contains response data for the head307 operation.
- */
+/** Contains response data for the head307 operation. */
 export type HttpRedirectsHead307Response = HttpRedirectsHead307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsHead307Headers;
   };
 };
 
-/**
- * Contains response data for the get307 operation.
- */
+/** Contains response data for the get307 operation. */
 export type HttpRedirectsGet307Response = HttpRedirectsGet307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsGet307Headers;
   };
 };
 
-/**
- * Contains response data for the options307 operation.
- */
+/** Contains response data for the options307 operation. */
 export type HttpRedirectsOptions307Response = HttpRedirectsOptions307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsOptions307Headers;
   };
 };
 
-/**
- * Contains response data for the put307 operation.
- */
+/** Contains response data for the put307 operation. */
 export type HttpRedirectsPut307Response = HttpRedirectsPut307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPut307Headers;
   };
 };
 
-/**
- * Contains response data for the patch307 operation.
- */
+/** Contains response data for the patch307 operation. */
 export type HttpRedirectsPatch307Response = HttpRedirectsPatch307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPatch307Headers;
   };
 };
 
-/**
- * Contains response data for the post307 operation.
- */
+/** Contains response data for the post307 operation. */
 export type HttpRedirectsPost307Response = HttpRedirectsPost307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsPost307Headers;
   };
 };
 
-/**
- * Contains response data for the delete307 operation.
- */
+/** Contains response data for the delete307 operation. */
 export type HttpRedirectsDelete307Response = HttpRedirectsDelete307Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HttpRedirectsDelete307Headers;
   };
 };
 
-/**
- * Contains response data for the options502 operation.
- */
+/** Contains response data for the options502 operation. */
 export type HttpRetryOptions502Response = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: boolean;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: boolean;
   };
 };
 
-/**
- * Contains response data for the get200Model204NoModelDefaultError200Valid operation.
- */
+/** Contains response data for the get200Model204NoModelDefaultError200Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model204NoModelDefaultError204Valid operation.
- */
+/** Contains response data for the get200Model204NoModelDefaultError204Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model204NoModelDefaultError201Invalid operation.
- */
+/** Contains response data for the get200Model204NoModelDefaultError201Invalid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model204NoModelDefaultError202None operation.
- */
+/** Contains response data for the get200Model204NoModelDefaultError202None operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model204NoModelDefaultError400Valid operation.
- */
+/** Contains response data for the get200Model204NoModelDefaultError400Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model201ModelDefaultError200Valid operation.
- */
+/** Contains response data for the get200Model201ModelDefaultError200Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model201ModelDefaultError201Valid operation.
- */
+/** Contains response data for the get200Model201ModelDefaultError201Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200Model201ModelDefaultError400Valid operation.
- */
+/** Contains response data for the get200Model201ModelDefaultError400Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA201ModelC404ModelDDefaultError200Valid operation.
- */
+/** Contains response data for the get200ModelA201ModelC404ModelDDefaultError200Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA201ModelC404ModelDDefaultError201Valid operation.
- */
+/** Contains response data for the get200ModelA201ModelC404ModelDDefaultError201Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA201ModelC404ModelDDefaultError404Valid operation.
- */
+/** Contains response data for the get200ModelA201ModelC404ModelDDefaultError404Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA201ModelC404ModelDDefaultError400Valid operation.
- */
+/** Contains response data for the get200ModelA201ModelC404ModelDDefaultError400Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the getDefaultModelA200Valid operation.
- */
+/** Contains response data for the getDefaultModelA200Valid operation. */
 export type MultipleResponsesGetDefaultModelA200ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the getDefaultModelA200None operation.
- */
+/** Contains response data for the getDefaultModelA200None operation. */
 export type MultipleResponsesGetDefaultModelA200NoneResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA200None operation.
- */
+/** Contains response data for the get200ModelA200None operation. */
 export type MultipleResponsesGet200ModelA200NoneResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA200Valid operation.
- */
+/** Contains response data for the get200ModelA200Valid operation. */
 export type MultipleResponsesGet200ModelA200ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA200Invalid operation.
- */
+/** Contains response data for the get200ModelA200Invalid operation. */
 export type MultipleResponsesGet200ModelA200InvalidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA400None operation.
- */
+/** Contains response data for the get200ModelA400None operation. */
 export type MultipleResponsesGet200ModelA400NoneResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA400Valid operation.
- */
+/** Contains response data for the get200ModelA400Valid operation. */
 export type MultipleResponsesGet200ModelA400ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA400Invalid operation.
- */
+/** Contains response data for the get200ModelA400Invalid operation. */
 export type MultipleResponsesGet200ModelA400InvalidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Contains response data for the get200ModelA202Valid operation.
- */
+/** Contains response data for the get200ModelA202Valid operation. */
 export type MultipleResponsesGet200ModelA202ValidResponse = MyException & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyException;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface HttpInfrastructureClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

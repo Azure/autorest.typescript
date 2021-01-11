@@ -27,97 +27,59 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getPagesPartialUrl operation.
- */
+/** Contains response data for the getPagesPartialUrl operation. */
 export type PagingGetPagesPartialUrlResponse = ProductResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
   };
 };
 
-/**
- * Contains response data for the getPagesPartialUrlOperation operation.
- */
+/** Contains response data for the getPagesPartialUrlOperation operation. */
 export type PagingGetPagesPartialUrlOperationResponse = ProductResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
   };
 };
 
-/**
- * Contains response data for the getPagesPartialUrlOperationNext operation.
- */
+/** Contains response data for the getPagesPartialUrlOperationNext operation. */
 export type PagingGetPagesPartialUrlOperationNextResponse = ProductResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
   };
 };
 
-/**
- * Contains response data for the getPagesPartialUrlNext operation.
- */
+/** Contains response data for the getPagesPartialUrlNext operation. */
 export type PagingGetPagesPartialUrlNextResponse = ProductResult & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface CustomUrlPagingClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * A string value that is used as a global part of the parameterized host
-   */
+  /** A string value that is used as a global part of the parameterized host */
   host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

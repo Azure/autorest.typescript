@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 import { InheritanceGetValidResponse, Siamese } from "../models";
 
-/**
- * Class representing a Inheritance.
- */
+/** Class representing a Inheritance. */
 export class Inheritance {
   private readonly client: BodyComplexClient;
 
@@ -64,7 +62,6 @@ export class Inheritance {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

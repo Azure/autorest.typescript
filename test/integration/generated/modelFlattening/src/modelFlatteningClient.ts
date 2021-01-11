@@ -223,7 +223,6 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const putArrayOperationSpec: coreHttp.OperationSpec = {

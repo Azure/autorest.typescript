@@ -9,13 +9,9 @@
 import * as coreHttp from "@azure/core-http";
 
 export interface SampleResourceGroup {
-  /**
-   * resource group name 'testgroup101'
-   */
+  /** resource group name 'testgroup101' */
   name?: string;
-  /**
-   * resource group location 'West US'
-   */
+  /** resource group location 'West US' */
   location?: string;
 }
 
@@ -24,41 +20,25 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getSampleResourceGroup operation.
- */
+/** Contains response data for the getSampleResourceGroup operation. */
 export type GroupGetSampleResourceGroupResponse = SampleResourceGroup & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SampleResourceGroup;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SubscriptionIdApiVersionClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

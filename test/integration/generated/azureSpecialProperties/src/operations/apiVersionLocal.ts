@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { ApiVersionLocalGetMethodLocalNullOptionalParams } from "../models";
 
-/**
- * Class representing a ApiVersionLocal.
- */
+/** Class representing a ApiVersionLocal. */
 export class ApiVersionLocal {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -91,7 +89,6 @@ export class ApiVersionLocal {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getMethodLocalValidOperationSpec: coreHttp.OperationSpec = {

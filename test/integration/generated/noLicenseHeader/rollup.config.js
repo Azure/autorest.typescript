@@ -2,9 +2,7 @@ import rollup from "rollup";
 import nodeResolve from "rollup-plugin-node-resolve";
 import sourcemaps from "rollup-plugin-sourcemaps";
 
-/**
- * @type {rollup.RollupFileOptions}
- */
+/** @type {rollup.RollupFileOptions} */
 const config = {
   input: "./esm/noLicenseHeaderClient.js",
   external: ["@azure/core-http"],

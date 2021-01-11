@@ -32,9 +32,7 @@ import {
   QueriesArrayStringPipesValidOptionalParams
 } from "../models";
 
-/**
- * Class representing a Queries.
- */
+/** Class representing a Queries. */
 export class Queries {
   private readonly client: UrlClient;
 
@@ -612,7 +610,6 @@ export class Queries {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {

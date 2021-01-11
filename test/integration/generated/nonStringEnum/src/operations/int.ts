@@ -15,9 +15,7 @@ import {
   IntGetResponse
 } from "../models";
 
-/**
- * Class representing a Int.
- */
+/** Class representing a Int. */
 export class Int {
   private readonly client: NonStringEnumClient;
 
@@ -58,7 +56,6 @@ export class Int {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const putOperationSpec: coreHttp.OperationSpec = {

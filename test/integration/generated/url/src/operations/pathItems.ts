@@ -17,9 +17,7 @@ import {
   PathItemsGetLocalPathItemQueryNullOptionalParams
 } from "../models";
 
-/**
- * Class representing a PathItems.
- */
+/** Class representing a PathItems. */
 export class PathItems {
   private readonly client: UrlClient;
 
@@ -128,7 +126,6 @@ export class PathItems {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {

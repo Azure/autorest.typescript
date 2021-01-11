@@ -14,26 +14,18 @@ export interface ErrorModel {
 }
 
 export interface Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema {
-  /**
-   * File to upload.
-   */
+  /** File to upload. */
   fileContent: coreHttp.HttpRequestBody;
-  /**
-   * File name to upload. Name has to be spelled exactly as written here.
-   */
+  /** File name to upload. Name has to be spelled exactly as written here. */
   fileName: string;
 }
 
 export interface Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema {
-  /**
-   * Files to upload.
-   */
+  /** Files to upload. */
   fileContent: coreHttp.HttpRequestBody[];
 }
 
-/**
- * Contains response data for the uploadFile operation.
- */
+/** Contains response data for the uploadFile operation. */
 export type FormdataUploadFileResponse = {
   /**
    * BROWSER ONLY
@@ -50,15 +42,11 @@ export type FormdataUploadFileResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Contains response data for the uploadFileViaBody operation.
- */
+/** Contains response data for the uploadFileViaBody operation. */
 export type FormdataUploadFileViaBodyResponse = {
   /**
    * BROWSER ONLY
@@ -75,15 +63,11 @@ export type FormdataUploadFileViaBodyResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Contains response data for the uploadFiles operation.
- */
+/** Contains response data for the uploadFiles operation. */
 export type FormdataUploadFilesResponse = {
   /**
    * BROWSER ONLY
@@ -100,23 +84,15 @@ export type FormdataUploadFilesResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyFormDataClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

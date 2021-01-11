@@ -59,9 +59,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
-/**
- * Class representing a Paging.
- */
+/** Class representing a Paging. */
 export class Paging {
   private readonly client: PagingClient;
 
@@ -2079,7 +2077,6 @@ export class Paging {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {

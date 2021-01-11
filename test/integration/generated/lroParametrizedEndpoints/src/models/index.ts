@@ -14,56 +14,34 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Defines headers for LroParametrizedEndpointsClient_pollWithParameterizedEndpoints operation.
- */
+/** Defines headers for LroParametrizedEndpointsClient_pollWithParameterizedEndpoints operation. */
 export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders {
-  /**
-   * Url to retrieve the final update resource. Is a relative link
-   */
+  /** Url to retrieve the final update resource. Is a relative link */
   location?: string;
 }
 
-/**
- * Contains response data for the pollWithParameterizedEndpoints operation.
- */
+/** Contains response data for the pollWithParameterizedEndpoints operation. */
 export type LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LroParametrizedEndpointsClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * A string value that is used as a global part of the parameterized host. Pass in 'host:3000' to pass test.
-   */
+  /** A string value that is used as a global part of the parameterized host. Pass in 'host:3000' to pass test. */
   host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

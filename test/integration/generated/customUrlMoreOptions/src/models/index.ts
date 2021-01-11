@@ -13,27 +13,17 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PathsGetEmptyOptionalParams extends coreHttp.OperationOptions {
-  /**
-   * The key version. Default value 'v1'.
-   */
+  /** The key version. Default value 'v1'. */
   keyVersion?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface CustomUrlMoreOptionsClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * A string value that is used as a global part of the parameterized host. Default value 'host'.
-   */
+  /** A string value that is used as a global part of the parameterized host. Default value 'host'. */
   dnsSuffix?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

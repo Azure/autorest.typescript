@@ -15,13 +15,9 @@ export type SalmonUnion = Salmon | SmartSalmon;
 export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
 export interface Basic {
-  /**
-   * Basic Id
-   */
+  /** Basic Id */
   id?: number | null;
-  /**
-   * Name property with a very long description that does not fit on a single line and a line break.
-   */
+  /** Name property with a very long description that does not fit on a single line and a line break. */
   name?: string;
   color?: CMYKColors;
 }
@@ -90,9 +86,7 @@ export interface ArrayWrapper {
 }
 
 export interface DictionaryWrapper {
-  /**
-   * Dictionary of <string>
-   */
+  /** Dictionary of <string> */
   defaultProgram?: { [propertyName: string]: string } | null;
 }
 
@@ -102,9 +96,7 @@ export interface Pet {
 }
 
 export interface Fish {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype:
     | "salmon"
     | "smart_salmon"
@@ -118,9 +110,7 @@ export interface Fish {
 }
 
 export interface DotFish {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishType: "DotSalmon";
   species?: string;
 }
@@ -133,17 +123,13 @@ export interface DotFishMarket {
 }
 
 export interface ReadonlyObj {
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly id?: string;
   size?: number;
 }
 
 export interface MyBaseType {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Kind1";
   propB1?: string;
   propBH1?: string;
@@ -159,36 +145,28 @@ export type Cat = Pet & {
 };
 
 export type Salmon = Fish & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "salmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type Shark = Fish & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "shark";
   age?: number;
   birthday: Date;
 };
 
 export type DotSalmon = DotFish & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishType: "DotSalmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type MyDerivedType = MyBaseType & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Kind1";
   propD1?: string;
 };
@@ -198,47 +176,33 @@ export type Siamese = Cat & {
 };
 
 export type SmartSalmon = Salmon & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "smart_salmon";
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   collegeDegree?: string;
 };
 
 export type Sawshark = Shark & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "sawshark";
   picture?: Uint8Array;
 };
 
 export type Goblinshark = Shark & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "goblin";
   jawsize?: number;
-  /**
-   * Colors possible
-   */
+  /** Colors possible */
   color?: GoblinSharkColor;
 };
 
 export type Cookiecuttershark = Shark & {
-  /**
-   * Polymorphic discriminator, which specifies the different types this object can be
-   */
+  /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "cookiecuttershark";
 };
 
-/**
- * Known values of {@link CMYKColors} that the service accepts.
- */
+/** Known values of {@link CMYKColors} that the service accepts. */
 export const enum KnownCMYKColors {
   Cyan = "cyan",
   Magenta = "Magenta",
@@ -258,9 +222,7 @@ export const enum KnownCMYKColors {
  */
 export type CMYKColors = string;
 
-/**
- * Known values of {@link MyKind} that the service accepts.
- */
+/** Known values of {@link MyKind} that the service accepts. */
 export const enum KnownMyKind {
   Kind1 = "Kind1"
 }
@@ -274,20 +236,14 @@ export const enum KnownMyKind {
  */
 export type MyKind = string;
 
-/**
- * Known values of {@link GoblinSharkColor} that the service accepts.
- */
+/** Known values of {@link GoblinSharkColor} that the service accepts. */
 export const enum KnownGoblinSharkColor {
   Pink = "pink",
   Gray = "gray",
   Brown = "brown",
-  /**
-   * Uppercase RED
-   */
+  /** Uppercase RED */
   UpperRed = "RED",
-  /**
-   * Lowercase RED
-   */
+  /** Lowercase RED */
   LowerRed = "red"
 }
 
@@ -304,681 +260,409 @@ export const enum KnownGoblinSharkColor {
  */
 export type GoblinSharkColor = string;
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type BasicGetValidResponse = Basic & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Basic;
   };
 };
 
-/**
- * Contains response data for the getInvalid operation.
- */
+/** Contains response data for the getInvalid operation. */
 export type BasicGetInvalidResponse = Basic & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Basic;
   };
 };
 
-/**
- * Contains response data for the getEmpty operation.
- */
+/** Contains response data for the getEmpty operation. */
 export type BasicGetEmptyResponse = Basic & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Basic;
   };
 };
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type BasicGetNullResponse = Basic & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Basic;
   };
 };
 
-/**
- * Contains response data for the getNotProvided operation.
- */
+/** Contains response data for the getNotProvided operation. */
 export type BasicGetNotProvidedResponse = Basic & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Basic;
   };
 };
 
-/**
- * Contains response data for the getInt operation.
- */
+/** Contains response data for the getInt operation. */
 export type PrimitiveGetIntResponse = IntWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: IntWrapper;
   };
 };
 
-/**
- * Contains response data for the getLong operation.
- */
+/** Contains response data for the getLong operation. */
 export type PrimitiveGetLongResponse = LongWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: LongWrapper;
   };
 };
 
-/**
- * Contains response data for the getFloat operation.
- */
+/** Contains response data for the getFloat operation. */
 export type PrimitiveGetFloatResponse = FloatWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FloatWrapper;
   };
 };
 
-/**
- * Contains response data for the getDouble operation.
- */
+/** Contains response data for the getDouble operation. */
 export type PrimitiveGetDoubleResponse = DoubleWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DoubleWrapper;
   };
 };
 
-/**
- * Contains response data for the getBool operation.
- */
+/** Contains response data for the getBool operation. */
 export type PrimitiveGetBoolResponse = BooleanWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: BooleanWrapper;
   };
 };
 
-/**
- * Contains response data for the getString operation.
- */
+/** Contains response data for the getString operation. */
 export type PrimitiveGetStringResponse = StringWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: StringWrapper;
   };
 };
 
-/**
- * Contains response data for the getDate operation.
- */
+/** Contains response data for the getDate operation. */
 export type PrimitiveGetDateResponse = DateWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DateWrapper;
   };
 };
 
-/**
- * Contains response data for the getDateTime operation.
- */
+/** Contains response data for the getDateTime operation. */
 export type PrimitiveGetDateTimeResponse = DatetimeWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DatetimeWrapper;
   };
 };
 
-/**
- * Contains response data for the getDateTimeRfc1123 operation.
- */
+/** Contains response data for the getDateTimeRfc1123 operation. */
 export type PrimitiveGetDateTimeRfc1123Response = Datetimerfc1123Wrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Datetimerfc1123Wrapper;
   };
 };
 
-/**
- * Contains response data for the getDuration operation.
- */
+/** Contains response data for the getDuration operation. */
 export type PrimitiveGetDurationResponse = DurationWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DurationWrapper;
   };
 };
 
-/**
- * Contains response data for the getByte operation.
- */
+/** Contains response data for the getByte operation. */
 export type PrimitiveGetByteResponse = ByteWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ByteWrapper;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type ArrayGetValidResponse = ArrayWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ArrayWrapper;
   };
 };
 
-/**
- * Contains response data for the getEmpty operation.
- */
+/** Contains response data for the getEmpty operation. */
 export type ArrayGetEmptyResponse = ArrayWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ArrayWrapper;
   };
 };
 
-/**
- * Contains response data for the getNotProvided operation.
- */
+/** Contains response data for the getNotProvided operation. */
 export type ArrayGetNotProvidedResponse = ArrayWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ArrayWrapper;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type DictionaryGetValidResponse = DictionaryWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DictionaryWrapper;
   };
 };
 
-/**
- * Contains response data for the getEmpty operation.
- */
+/** Contains response data for the getEmpty operation. */
 export type DictionaryGetEmptyResponse = DictionaryWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DictionaryWrapper;
   };
 };
 
-/**
- * Contains response data for the getNull operation.
- */
+/** Contains response data for the getNull operation. */
 export type DictionaryGetNullResponse = DictionaryWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DictionaryWrapper;
   };
 };
 
-/**
- * Contains response data for the getNotProvided operation.
- */
+/** Contains response data for the getNotProvided operation. */
 export type DictionaryGetNotProvidedResponse = DictionaryWrapper & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DictionaryWrapper;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type InheritanceGetValidResponse = Siamese & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Siamese;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type PolymorphismGetValidResponse = FishUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FishUnion;
   };
 };
 
-/**
- * Contains response data for the getDotSyntax operation.
- */
+/** Contains response data for the getDotSyntax operation. */
 export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DotFishUnion;
   };
 };
 
-/**
- * Contains response data for the getComposedWithDiscriminator operation.
- */
+/** Contains response data for the getComposedWithDiscriminator operation. */
 export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DotFishMarket;
   };
 };
 
-/**
- * Contains response data for the getComposedWithoutDiscriminator operation.
- */
+/** Contains response data for the getComposedWithoutDiscriminator operation. */
 export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: DotFishMarket;
   };
 };
 
-/**
- * Contains response data for the getComplicated operation.
- */
+/** Contains response data for the getComplicated operation. */
 export type PolymorphismGetComplicatedResponse = SalmonUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SalmonUnion;
   };
 };
 
-/**
- * Contains response data for the putMissingDiscriminator operation.
- */
+/** Contains response data for the putMissingDiscriminator operation. */
 export type PolymorphismPutMissingDiscriminatorResponse = SalmonUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SalmonUnion;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type PolymorphicrecursiveGetValidResponse = FishUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: FishUnion;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type ReadonlypropertyGetValidResponse = ReadonlyObj & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: ReadonlyObj;
   };
 };
 
-/**
- * Contains response data for the getValid operation.
- */
+/** Contains response data for the getValid operation. */
 export type FlattencomplexGetValidResponse = MyBaseTypeUnion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: MyBaseTypeUnion;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyComplexClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -13,9 +13,7 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Contains response data for the getFile operation.
- */
+/** Contains response data for the getFile operation. */
 export type FilesGetFileResponse = {
   /**
    * BROWSER ONLY
@@ -32,15 +30,11 @@ export type FilesGetFileResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Contains response data for the getFileLarge operation.
- */
+/** Contains response data for the getFileLarge operation. */
 export type FilesGetFileLargeResponse = {
   /**
    * BROWSER ONLY
@@ -57,15 +51,11 @@ export type FilesGetFileLargeResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Contains response data for the getEmptyFile operation.
- */
+/** Contains response data for the getEmptyFile operation. */
 export type FilesGetEmptyFileResponse = {
   /**
    * BROWSER ONLY
@@ -82,23 +72,15 @@ export type FilesGetEmptyFileResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BodyFileClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -76,9 +76,7 @@ export class ValidationClient extends ValidationClientContext {
     ) as Promise<ValidationClientValidationOfBodyResponse>;
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   getWithConstantInPath(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
@@ -91,9 +89,7 @@ export class ValidationClient extends ValidationClientContext {
     ) as Promise<coreHttp.RestResponse>;
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   postWithConstantInBody(
     options?: ValidationClientPostWithConstantInBodyOptionalParams
   ): Promise<ValidationClientPostWithConstantInBodyResponse> {
@@ -107,7 +103,6 @@ export class ValidationClient extends ValidationClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const validationOfMethodParametersOperationSpec: coreHttp.OperationSpec = {

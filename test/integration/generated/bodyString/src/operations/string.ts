@@ -22,9 +22,7 @@ import {
   StringGetNullBase64UrlEncodedResponse
 } from "../models";
 
-/**
- * Class representing a StringOperations.
- */
+/** Class representing a StringOperations. */
 export class StringOperations {
   private readonly client: BodyStringClient;
 
@@ -244,7 +242,6 @@ export class StringOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

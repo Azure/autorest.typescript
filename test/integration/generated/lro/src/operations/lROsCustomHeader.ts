@@ -22,9 +22,7 @@ import {
   LROsCustomHeaderPostAsyncRetrySucceededResponse
 } from "../models";
 
-/**
- * Class representing a LROsCustomHeader.
- */
+/** Class representing a LROsCustomHeader. */
 export class LROsCustomHeader {
   private readonly client: LROClient;
 
@@ -184,7 +182,6 @@ export class LROsCustomHeader {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {

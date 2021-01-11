@@ -17,9 +17,7 @@ import {
   HeaderCustomNamedRequestIdHeadResponse
 } from "../models";
 
-/**
- * Class representing a Header.
- */
+/** Class representing a Header. */
 export class Header {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -90,7 +88,6 @@ export class Header {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const customNamedRequestIdOperationSpec: coreHttp.OperationSpec = {

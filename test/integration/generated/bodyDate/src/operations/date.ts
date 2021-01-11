@@ -19,9 +19,7 @@ import {
   DateGetMinDateResponse
 } from "../models";
 
-/**
- * Class representing a DateOperations.
- */
+/** Class representing a DateOperations. */
 export class DateOperations {
   private readonly client: BodyDateClient;
 
@@ -166,7 +164,6 @@ export class DateOperations {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

@@ -9,15 +9,11 @@
 import * as coreHttp from "@azure/core-http";
 
 export interface PetAPTrue {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   id: number;
   name?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly status?: boolean;
 }
 
@@ -27,59 +23,41 @@ export interface ErrorModel {
 }
 
 export interface PetAPObject {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   id: number;
   name?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly status?: boolean;
 }
 
 export interface PetAPString {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   id: number;
   name?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly status?: boolean;
 }
 
 export interface PetAPInProperties {
   id: number;
   name?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly status?: boolean;
-  /**
-   * Dictionary of <number>
-   */
+  /** Dictionary of <number> */
   additionalProperties?: { [propertyName: string]: number };
 }
 
 export interface PetAPInPropertiesWithAPString {
-  /**
-   * Describes unknown properties. The value of an unknown property can be of "any" type.
-   */
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   id: number;
   name?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly status?: boolean;
   odataLocation: string;
-  /**
-   * Dictionary of <number>
-   */
+  /** Dictionary of <number> */
   additionalProperties?: { [propertyName: string]: number };
 }
 
@@ -87,137 +65,83 @@ export type CatAPTrue = PetAPTrue & {
   friendly?: boolean;
 };
 
-/**
- * Contains response data for the createAPTrue operation.
- */
+/** Contains response data for the createAPTrue operation. */
 export type PetsCreateAPTrueResponse = PetAPTrue & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAPTrue;
   };
 };
 
-/**
- * Contains response data for the createCatAPTrue operation.
- */
+/** Contains response data for the createCatAPTrue operation. */
 export type PetsCreateCatAPTrueResponse = CatAPTrue & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: CatAPTrue;
   };
 };
 
-/**
- * Contains response data for the createAPObject operation.
- */
+/** Contains response data for the createAPObject operation. */
 export type PetsCreateAPObjectResponse = PetAPObject & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAPObject;
   };
 };
 
-/**
- * Contains response data for the createAPString operation.
- */
+/** Contains response data for the createAPString operation. */
 export type PetsCreateAPStringResponse = PetAPString & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAPString;
   };
 };
 
-/**
- * Contains response data for the createAPInProperties operation.
- */
+/** Contains response data for the createAPInProperties operation. */
 export type PetsCreateAPInPropertiesResponse = PetAPInProperties & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAPInProperties;
   };
 };
 
-/**
- * Contains response data for the createAPInPropertiesWithAPString operation.
- */
+/** Contains response data for the createAPInPropertiesWithAPString operation. */
 export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: PetAPInPropertiesWithAPString;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface AdditionalPropertiesClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -20,9 +20,7 @@ import {
   Datetimerfc1123GetUtcMinDateTimeResponse
 } from "../models";
 
-/**
- * Class representing a Datetimerfc1123.
- */
+/** Class representing a Datetimerfc1123. */
 export class Datetimerfc1123 {
   private readonly client: BodyDateTimeRfc1123Client;
 
@@ -185,7 +183,6 @@ export class Datetimerfc1123 {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

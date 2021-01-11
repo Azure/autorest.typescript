@@ -20,9 +20,7 @@ import {
   DictionaryGetNotProvidedResponse
 } from "../models";
 
-/**
- * Class representing a Dictionary.
- */
+/** Class representing a Dictionary. */
 export class Dictionary {
   private readonly client: BodyComplexWithTracing;
 
@@ -228,7 +226,6 @@ export class Dictionary {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

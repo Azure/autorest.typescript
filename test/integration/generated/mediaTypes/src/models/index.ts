@@ -8,103 +8,65 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * Uri or local path to source data.
- */
+/** Uri or local path to source data. */
 export interface SourcePath {
-  /**
-   * File source path.
-   */
+  /** File source path. */
   source?: string;
 }
 
-/**
- * Defines values for ContentType.
- */
+/** Defines values for ContentType. */
 export type ContentType =
   | "application/pdf"
   | "image/jpeg"
   | "image/png"
   | "image/tiff";
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
   extends coreHttp.OperationOptions {}
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Input parameter.
-   */
+  /** Input parameter. */
   input?: SourcePath;
 }
 
-/**
- * Contains response data for the analyzeBody operation.
- */
+/** Contains response data for the analyzeBody operation. */
 export type MediaTypesClientAnalyzeBodyResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Contains response data for the contentTypeWithEncoding operation.
- */
+/** Contains response data for the contentTypeWithEncoding operation. */
 export type MediaTypesClientContentTypeWithEncodingResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

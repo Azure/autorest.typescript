@@ -19,147 +19,89 @@ export interface OdataFilter {
   name?: string;
 }
 
-/**
- * Defines headers for Header_customNamedRequestId operation.
- */
+/** Defines headers for Header_customNamedRequestId operation. */
 export interface HeaderCustomNamedRequestIdHeaders {
-  /**
-   * Gets the foo-request-id.
-   */
+  /** Gets the foo-request-id. */
   fooRequestId?: string;
 }
 
-/**
- * Defines headers for Header_customNamedRequestIdParamGrouping operation.
- */
+/** Defines headers for Header_customNamedRequestIdParamGrouping operation. */
 export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
-  /**
-   * Gets the foo-request-id.
-   */
+  /** Gets the foo-request-id. */
   fooRequestId?: string;
 }
 
-/**
- * Defines headers for Header_customNamedRequestIdHead operation.
- */
+/** Defines headers for Header_customNamedRequestIdHead operation. */
 export interface HeaderCustomNamedRequestIdHeadHeaders {
-  /**
-   * Gets the foo-request-id.
-   */
+  /** Gets the foo-request-id. */
   fooRequestId?: string;
 }
 
-/**
- * Parameter group
- */
+/** Parameter group */
 export interface HeaderCustomNamedRequestIdParamGroupingParameters {
-  /**
-   * The fooRequestId
-   */
+  /** The fooRequestId */
   fooClientRequestId: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ApiVersionLocalGetMethodLocalNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * This should appear as a method parameter, use value null, this should result in no serialized parameter
-   */
+  /** This should appear as a method parameter, use value null, this should result in no serialized parameter */
   apiVersion?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface SkipUrlEncodingGetMethodQueryNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Unencoded query parameter with value null
-   */
+  /** Unencoded query parameter with value null */
   q1?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface OdataGetWithFilterOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
-   */
+  /** The filter parameter with value '$filter=id gt 5 and name eq 'foo''. */
   filter?: string;
-  /**
-   * The top parameter with value 10.
-   */
+  /** The top parameter with value 10. */
   top?: number;
-  /**
-   * The orderby parameter with value id.
-   */
+  /** The orderby parameter with value id. */
   orderby?: string;
 }
 
-/**
- * Contains response data for the customNamedRequestId operation.
- */
+/** Contains response data for the customNamedRequestId operation. */
 export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderCustomNamedRequestIdHeaders;
   };
 };
 
-/**
- * Contains response data for the customNamedRequestIdParamGrouping operation.
- */
+/** Contains response data for the customNamedRequestIdParamGrouping operation. */
 export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
   };
 };
 
-/**
- * Contains response data for the customNamedRequestIdHead operation.
- */
+/** Contains response data for the customNamedRequestIdHead operation. */
 export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface AzureSpecialPropertiesClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

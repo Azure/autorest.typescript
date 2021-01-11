@@ -25,9 +25,7 @@ import {
   LRORetrysPostAsyncRelativeRetrySucceededResponse
 } from "../models";
 
-/**
- * Class representing a LRORetrys.
- */
+/** Class representing a LRORetrys. */
 export class LRORetrys {
   private readonly client: LROClient;
 
@@ -282,7 +280,6 @@ export class LRORetrys {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {

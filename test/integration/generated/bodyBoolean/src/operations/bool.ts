@@ -17,9 +17,7 @@ import {
   BoolGetInvalidResponse
 } from "../models";
 
-/**
- * Class representing a Bool.
- */
+/** Class representing a Bool. */
 export class Bool {
   private readonly client: BodyBooleanClient;
 
@@ -120,7 +118,6 @@ export class Bool {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getTrueOperationSpec: coreHttp.OperationSpec = {

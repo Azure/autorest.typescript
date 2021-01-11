@@ -22,9 +22,7 @@ import {
   IntGetNullUnixTimeResponse
 } from "../models";
 
-/**
- * Class representing a Int.
- */
+/** Class representing a Int. */
 export class Int {
   private readonly client: BodyIntegerClient;
 
@@ -274,7 +272,6 @@ export class Int {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

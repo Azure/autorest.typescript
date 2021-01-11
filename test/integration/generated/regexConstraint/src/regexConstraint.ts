@@ -44,7 +44,6 @@ export class RegexConstraint extends RegexConstraintContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {

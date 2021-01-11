@@ -30,9 +30,7 @@ import {
   HeaderResponseEnumResponse
 } from "../models";
 
-/**
- * Class representing a Header.
- */
+/** Class representing a Header. */
 export class Header {
   private readonly client: HeaderClient;
 
@@ -624,7 +622,6 @@ export class Header {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {

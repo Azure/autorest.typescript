@@ -8,143 +8,89 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface BarApiPostSendOnDefaultOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Contains response data for the postSendOnDefault operation.
- */
+/** Contains response data for the postSendOnDefault operation. */
 export type BarApiPostSendOnDefaultResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FooApiPostSendOnDefault$binaryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FooApiPostSendOnDefault$textOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Contains response data for the postSendOnDefault operation.
- */
+/** Contains response data for the postSendOnDefault operation. */
 export type FooApiPostSendOnDefaultResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FooApiPostSend$binaryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface FooApiPostSend$textOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Excluded Ids
-   */
+  /** Excluded Ids */
   excluded?: string[];
 }
 
-/**
- * Contains response data for the postSend operation.
- */
+/** Contains response data for the postSend operation. */
 export type FooApiPostSendResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string;
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface MediaTypesV3ClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

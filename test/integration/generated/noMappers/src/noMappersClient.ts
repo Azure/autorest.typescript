@@ -30,9 +30,7 @@ export class NoMappersClient extends NoMappersClientContext {
     super($host, apiVersion, options);
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<NoMappersClientApiV1ValueGetResponse> {
@@ -46,7 +44,6 @@ export class NoMappersClient extends NoMappersClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {

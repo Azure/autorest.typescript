@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClient } from "../httpInfrastructureClient";
 
-/**
- * Class representing a HttpClientFailure.
- */
+/** Class representing a HttpClientFailure. */
 export class HttpClientFailure {
   private readonly client: HttpInfrastructureClient;
 
@@ -408,7 +406,6 @@ export class HttpClientFailure {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const head400OperationSpec: coreHttp.OperationSpec = {

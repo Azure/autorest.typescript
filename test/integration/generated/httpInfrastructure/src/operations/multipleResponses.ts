@@ -34,9 +34,7 @@ import {
   MultipleResponsesGet200ModelA202ValidResponse
 } from "../models";
 
-/**
- * Class representing a MultipleResponses.
- */
+/** Class representing a MultipleResponses. */
 export class MultipleResponses {
   private readonly client: HttpInfrastructureClient;
 
@@ -636,7 +634,6 @@ export class MultipleResponses {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const get200Model204NoModelDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {

@@ -77,7 +77,6 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const pollWithParameterizedEndpointsOperationSpec: coreHttp.OperationSpec = {

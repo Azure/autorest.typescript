@@ -16,9 +16,7 @@ import {
   DurationGetInvalidResponse
 } from "../models";
 
-/**
- * Class representing a Duration.
- */
+/** Class representing a Duration. */
 export class Duration {
   private readonly client: BodyDurationClient;
 
@@ -98,7 +96,6 @@ export class Duration {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {

@@ -29,9 +29,7 @@ import {
   HttpRedirectsDelete307Response
 } from "../models";
 
-/**
- * Class representing a HttpRedirects.
- */
+/** Class representing a HttpRedirects. */
 export class HttpRedirects {
   private readonly client: HttpInfrastructureClient;
 
@@ -303,7 +301,6 @@ export class HttpRedirects {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const head300OperationSpec: coreHttp.OperationSpec = {

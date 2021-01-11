@@ -20,13 +20,9 @@ export interface Resource {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /**
-   * Dictionary of <string>
-   */
+  /** Dictionary of <string> */
   tags?: { [propertyName: string]: string };
-  /**
-   * Resource Location
-   */
+  /** Resource Location */
   location?: string;
   /**
    * Resource Name
@@ -54,878 +50,502 @@ export interface SubResource {
 }
 
 export interface OperationResult {
-  /**
-   * The status of the request
-   */
+  /** The status of the request */
   status?: OperationResultStatus;
   error?: OperationResultError;
 }
 
 export interface OperationResultError {
-  /**
-   * The error code for an operation failure
-   */
+  /** The error code for an operation failure */
   code?: number;
-  /**
-   * The detailed arror message
-   */
+  /** The detailed arror message */
   message?: string;
 }
 
 export type Product = Resource & {
   provisioningState?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
 };
 
 export type SubProduct = SubResource & {
   provisioningState?: string;
-  /**
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
+  /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
 };
 
-/**
- * Defines headers for LROs_post202List operation.
- */
+/** Defines headers for LROs_post202List operation. */
 export interface LROsPost202ListHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/list/pollingGet
-   */
+  /** Location to poll for result status: will be set to /lro/list/pollingGet */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/list/finalGet
-   */
+  /** Location to poll for result status: will be set to /lro/list/finalGet */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_putNoHeaderInRetry operation.
- */
+/** Defines headers for LROs_putNoHeaderInRetry operation. */
 export interface LROsPutNoHeaderInRetryHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_putAsyncRetrySucceeded operation.
- */
+/** Defines headers for LROs_putAsyncRetrySucceeded operation. */
 export interface LROsPutAsyncRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_putAsyncNoRetrySucceeded operation.
- */
+/** Defines headers for LROs_putAsyncNoRetrySucceeded operation. */
 export interface LROsPutAsyncNoRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_putAsyncRetryFailed operation.
- */
+/** Defines headers for LROs_putAsyncRetryFailed operation. */
 export interface LROsPutAsyncRetryFailedHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_putAsyncNoRetrycanceled operation.
- */
+/** Defines headers for LROs_putAsyncNoRetrycanceled operation. */
 export interface LROsPutAsyncNoRetrycanceledHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_putAsyncNoHeaderInRetry operation.
- */
+/** Defines headers for LROs_putAsyncNoHeaderInRetry operation. */
 export interface LROsPutAsyncNoHeaderInRetryHeaders {
   azureAsyncOperation?: string;
 }
 
-/**
- * Defines headers for LROs_deleteProvisioning202Accepted200Succeeded operation.
- */
+/** Defines headers for LROs_deleteProvisioning202Accepted200Succeeded operation. */
 export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/provisioning/202/accepted/200/succeeded
-   */
+  /** Location to poll for result status: will be set to /lro/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteProvisioning202DeletingFailed200 operation.
- */
+/** Defines headers for LROs_deleteProvisioning202DeletingFailed200 operation. */
 export interface LROsDeleteProvisioning202DeletingFailed200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/failed
-   */
+  /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/failed */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteProvisioning202Deletingcanceled200 operation.
- */
+/** Defines headers for LROs_deleteProvisioning202Deletingcanceled200 operation. */
 export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/canceled
-   */
+  /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/canceled */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_delete202Retry200 operation.
- */
+/** Defines headers for LROs_delete202Retry200 operation. */
 export interface LROsDelete202Retry200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/delete/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_delete202NoRetry204 operation.
- */
+/** Defines headers for LROs_delete202NoRetry204 operation. */
 export interface LROsDelete202NoRetry204Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/delete/202/noretry/204
-   */
+  /** Location to poll for result status: will be set to /lro/delete/202/noretry/204 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteNoHeaderInRetry operation.
- */
+/** Defines headers for LROs_deleteNoHeaderInRetry operation. */
 export interface LROsDeleteNoHeaderInRetryHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
-   */
+  /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_deleteAsyncNoHeaderInRetry operation.
- */
+/** Defines headers for LROs_deleteAsyncNoHeaderInRetry operation. */
 export interface LROsDeleteAsyncNoHeaderInRetryHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults
-   */
+  /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
-/**
- * Defines headers for LROs_deleteAsyncRetrySucceeded operation.
- */
+/** Defines headers for LROs_deleteAsyncRetrySucceeded operation. */
 export interface LROsDeleteAsyncRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteAsyncNoRetrySucceeded operation.
- */
+/** Defines headers for LROs_deleteAsyncNoRetrySucceeded operation. */
 export interface LROsDeleteAsyncNoRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteAsyncRetryFailed operation.
- */
+/** Defines headers for LROs_deleteAsyncRetryFailed operation. */
 export interface LROsDeleteAsyncRetryFailedHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_deleteAsyncRetrycanceled operation.
- */
+/** Defines headers for LROs_deleteAsyncRetrycanceled operation. */
 export interface LROsDeleteAsyncRetrycanceledHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_post202Retry200 operation.
- */
+/** Defines headers for LROs_post202Retry200 operation. */
 export interface LROsPost202Retry200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/post/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/post/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_post202NoRetry204 operation.
- */
+/** Defines headers for LROs_post202NoRetry204 operation. */
 export interface LROsPost202NoRetry204Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/post/202/noretry/204
-   */
+  /** Location to poll for result status: will be set to /lro/post/202/noretry/204 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_postAsyncRetrySucceeded operation.
- */
+/** Defines headers for LROs_postAsyncRetrySucceeded operation. */
 export interface LROsPostAsyncRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_postAsyncNoRetrySucceeded operation.
- */
+/** Defines headers for LROs_postAsyncNoRetrySucceeded operation. */
 export interface LROsPostAsyncNoRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_postAsyncRetryFailed operation.
- */
+/** Defines headers for LROs_postAsyncRetryFailed operation. */
 export interface LROsPostAsyncRetryFailedHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROs_postAsyncRetrycanceled operation.
- */
+/** Defines headers for LROs_postAsyncRetrycanceled operation. */
 export interface LROsPostAsyncRetrycanceledHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_putAsyncRelativeRetrySucceeded operation.
- */
+/** Defines headers for LRORetrys_putAsyncRelativeRetrySucceeded operation. */
 export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_deleteProvisioning202Accepted200Succeeded operation.
- */
+/** Defines headers for LRORetrys_deleteProvisioning202Accepted200Succeeded operation. */
 export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_delete202Retry200 operation.
- */
+/** Defines headers for LRORetrys_delete202Retry200 operation. */
 export interface LRORetrysDelete202Retry200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_deleteAsyncRelativeRetrySucceeded operation.
- */
+/** Defines headers for LRORetrys_deleteAsyncRelativeRetrySucceeded operation. */
 export interface LRORetrysDeleteAsyncRelativeRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_post202Retry200 operation.
- */
+/** Defines headers for LRORetrys_post202Retry200 operation. */
 export interface LRORetrysPost202Retry200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LRORetrys_postAsyncRelativeRetrySucceeded operation.
- */
+/** Defines headers for LRORetrys_postAsyncRelativeRetrySucceeded operation. */
 export interface LRORetrysPostAsyncRelativeRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_putAsyncRelativeRetry400 operation.
- */
+/** Defines headers for LrosaDs_putAsyncRelativeRetry400 operation. */
 export interface LrosaDsPutAsyncRelativeRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_deleteNonRetry400 operation.
- */
+/** Defines headers for LrosaDs_deleteNonRetry400 operation. */
 export interface LrosaDsDeleteNonRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_delete202NonRetry400 operation.
- */
+/** Defines headers for LrosaDs_delete202NonRetry400 operation. */
 export interface LrosaDsDelete202NonRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_deleteAsyncRelativeRetry400 operation.
- */
+/** Defines headers for LrosaDs_deleteAsyncRelativeRetry400 operation. */
 export interface LrosaDsDeleteAsyncRelativeRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_postNonRetry400 operation.
- */
+/** Defines headers for LrosaDs_postNonRetry400 operation. */
 export interface LrosaDsPostNonRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_post202NonRetry400 operation.
- */
+/** Defines headers for LrosaDs_post202NonRetry400 operation. */
 export interface LrosaDsPost202NonRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_postAsyncRelativeRetry400 operation.
- */
+/** Defines headers for LrosaDs_postAsyncRelativeRetry400 operation. */
 export interface LrosaDsPostAsyncRelativeRetry400Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400
-   */
+  /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_putAsyncRelativeRetryNoStatus operation.
- */
+/** Defines headers for LrosaDs_putAsyncRelativeRetryNoStatus operation. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_putAsyncRelativeRetryNoStatusPayload operation.
- */
+/** Defines headers for LrosaDs_putAsyncRelativeRetryNoStatusPayload operation. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_deleteAsyncRelativeRetryNoStatus operation.
- */
+/** Defines headers for LrosaDs_deleteAsyncRelativeRetryNoStatus operation. */
 export interface LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_post202NoLocation operation.
- */
+/** Defines headers for LrosaDs_post202NoLocation operation. */
 export interface LrosaDsPost202NoLocationHeaders {
-  /**
-   * Location to poll for result status: will not be set
-   */
+  /** Location to poll for result status: will not be set */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_postAsyncRelativeRetryNoPayload operation.
- */
+/** Defines headers for LrosaDs_postAsyncRelativeRetryNoPayload operation. */
 export interface LrosaDsPostAsyncRelativeRetryNoPayloadHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload
-   */
+  /** Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload
-   */
+  /** Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_putAsyncRelativeRetryInvalidHeader operation.
- */
+/** Defines headers for LrosaDs_putAsyncRelativeRetryInvalidHeader operation. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_putAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Defines headers for LrosaDs_putAsyncRelativeRetryInvalidJsonPolling operation. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_delete202RetryInvalidHeader operation.
- */
+/** Defines headers for LrosaDs_delete202RetryInvalidHeader operation. */
 export interface LrosaDsDelete202RetryInvalidHeaderHeaders {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
+  /** Location to poll for result status: will be set to /foo */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to /bar */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_deleteAsyncRelativeRetryInvalidHeader operation.
- */
+/** Defines headers for LrosaDs_deleteAsyncRelativeRetryInvalidHeader operation. */
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
+  /** Location to poll for result status: will be set to /foo */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
+  /** Location to poll for result status: will be set to /foo */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to /bar */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_deleteAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Defines headers for LrosaDs_deleteAsyncRelativeRetryInvalidJsonPolling operation. */
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
-   */
+  /** Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling
-   */
+  /** Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_post202RetryInvalidHeader operation.
- */
+/** Defines headers for LrosaDs_post202RetryInvalidHeader operation. */
 export interface LrosaDsPost202RetryInvalidHeaderHeaders {
-  /**
-   * Location to poll for result status: will be set to /foo
-   */
+  /** Location to poll for result status: will be set to /foo */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to /bar */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_postAsyncRelativeRetryInvalidHeader operation.
- */
+/** Defines headers for LrosaDs_postAsyncRelativeRetryInvalidHeader operation. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders {
-  /**
-   * Location to poll for result status: will be set to foo
-   */
+  /** Location to poll for result status: will be set to foo */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to foo
-   */
+  /** Location to poll for result status: will be set to foo */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to /bar
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to /bar */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LrosaDs_postAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Defines headers for LrosaDs_postAsyncRelativeRetryInvalidJsonPolling operation. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
-   */
+  /** Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling
-   */
+  /** Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROsCustomHeader_putAsyncRetrySucceeded operation.
- */
+/** Defines headers for LROsCustomHeader_putAsyncRetrySucceeded operation. */
 export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROsCustomHeader_post202Retry200 operation.
- */
+/** Defines headers for LROsCustomHeader_post202Retry200 operation. */
 export interface LROsCustomHeaderPost202Retry200Headers {
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/post/202/retry/200
-   */
+  /** Location to poll for result status: will be set to /lro/customheader/post/202/retry/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Defines headers for LROsCustomHeader_postAsyncRetrySucceeded operation.
- */
+/** Defines headers for LROsCustomHeader_postAsyncRetrySucceeded operation. */
 export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
-  /**
-   * Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200
-   */
+  /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   location?: string;
-  /**
-   * Number of milliseconds until the next poll should be sent, will be set to zero
-   */
+  /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/**
- * Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts.
- */
+/** Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts. */
 export const enum KnownProductPropertiesProvisioningStateValues {
   Succeeded = "Succeeded",
   Failed = "Failed",
@@ -959,9 +579,7 @@ export const enum KnownProductPropertiesProvisioningStateValues {
  */
 export type ProductPropertiesProvisioningStateValues = string;
 
-/**
- * Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts.
- */
+/** Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts. */
 export const enum KnownSubProductPropertiesProvisioningStateValues {
   Succeeded = "Succeeded",
   Failed = "Failed",
@@ -995,9 +613,7 @@ export const enum KnownSubProductPropertiesProvisioningStateValues {
  */
 export type SubProductPropertiesProvisioningStateValues = string;
 
-/**
- * Known values of {@link OperationResultStatus} that the service accepts.
- */
+/** Known values of {@link OperationResultStatus} that the service accepts. */
 export const enum KnownOperationResultStatus {
   Succeeded = "Succeeded",
   Failed = "Failed",
@@ -1031,2310 +647,1376 @@ export const enum KnownOperationResultStatus {
  */
 export type OperationResultStatus = string;
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut200SucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put200Succeeded operation.
- */
+/** Contains response data for the put200Succeeded operation. */
 export type LROsPut200SucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut201SucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put201Succeeded operation.
- */
+/** Contains response data for the put201Succeeded operation. */
 export type LROsPut201SucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the post202List operation.
- */
+/** Contains response data for the post202List operation. */
 export type LROsPost202ListResponse = Product[] & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product[];
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut200SucceededNoStateOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put200SucceededNoState operation.
- */
+/** Contains response data for the put200SucceededNoState operation. */
 export type LROsPut200SucceededNoStateResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut202Retry200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put202Retry200 operation.
- */
+/** Contains response data for the put202Retry200 operation. */
 export type LROsPut202Retry200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut201CreatingSucceeded200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put201CreatingSucceeded200 operation.
- */
+/** Contains response data for the put201CreatingSucceeded200 operation. */
 export type LROsPut201CreatingSucceeded200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut200UpdatingSucceeded204OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put200UpdatingSucceeded204 operation.
- */
+/** Contains response data for the put200UpdatingSucceeded204 operation. */
 export type LROsPut200UpdatingSucceeded204Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut201CreatingFailed200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put201CreatingFailed200 operation.
- */
+/** Contains response data for the put201CreatingFailed200 operation. */
 export type LROsPut201CreatingFailed200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPut200Acceptedcanceled200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put200Acceptedcanceled200 operation.
- */
+/** Contains response data for the put200Acceptedcanceled200 operation. */
 export type LROsPut200Acceptedcanceled200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutNoHeaderInRetryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putNoHeaderInRetry operation.
- */
+/** Contains response data for the putNoHeaderInRetry operation. */
 export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutNoHeaderInRetryHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRetrySucceeded operation.
- */
+/** Contains response data for the putAsyncRetrySucceeded operation. */
 export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncNoRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncNoRetrySucceeded operation.
- */
+/** Contains response data for the putAsyncNoRetrySucceeded operation. */
 export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncRetryFailedOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRetryFailed operation.
- */
+/** Contains response data for the putAsyncRetryFailed operation. */
 export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutAsyncRetryFailedHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncNoRetrycanceledOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncNoRetrycanceled operation.
- */
+/** Contains response data for the putAsyncNoRetrycanceled operation. */
 export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncNoHeaderInRetryOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncNoHeaderInRetry operation.
- */
+/** Contains response data for the putAsyncNoHeaderInRetry operation. */
 export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutNonResourceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * sku to put
-   */
+  /** sku to put */
   sku?: Sku;
 }
 
-/**
- * Contains response data for the putNonResource operation.
- */
+/** Contains response data for the putNonResource operation. */
 export type LROsPutNonResourceResponse = Sku & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Sku;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncNonResourceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Sku to put
-   */
+  /** Sku to put */
   sku?: Sku;
 }
 
-/**
- * Contains response data for the putAsyncNonResource operation.
- */
+/** Contains response data for the putAsyncNonResource operation. */
 export type LROsPutAsyncNonResourceResponse = Sku & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Sku;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutSubResourceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Sub Product to put
-   */
+  /** Sub Product to put */
   product?: SubProduct;
 }
 
-/**
- * Contains response data for the putSubResource operation.
- */
+/** Contains response data for the putSubResource operation. */
 export type LROsPutSubResourceResponse = SubProduct & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SubProduct;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPutAsyncSubResourceOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Sub Product to put
-   */
+  /** Sub Product to put */
   product?: SubProduct;
 }
 
-/**
- * Contains response data for the putAsyncSubResource operation.
- */
+/** Contains response data for the putAsyncSubResource operation. */
 export type LROsPutAsyncSubResourceResponse = SubProduct & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: SubProduct;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteProvisioning202Accepted200Succeeded operation.
- */
+/** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
 export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteProvisioning202DeletingFailed200 operation.
- */
+/** Contains response data for the deleteProvisioning202DeletingFailed200 operation. */
 export type LROsDeleteProvisioning202DeletingFailed200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteProvisioning202Deletingcanceled200 operation.
- */
+/** Contains response data for the deleteProvisioning202Deletingcanceled200 operation. */
 export type LROsDeleteProvisioning202Deletingcanceled200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the delete202Retry200 operation.
- */
+/** Contains response data for the delete202Retry200 operation. */
 export type LROsDelete202Retry200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the delete202NoRetry204 operation.
- */
+/** Contains response data for the delete202NoRetry204 operation. */
 export type LROsDelete202NoRetry204Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteNoHeaderInRetry operation.
- */
+/** Contains response data for the deleteNoHeaderInRetry operation. */
 export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncNoHeaderInRetry operation.
- */
+/** Contains response data for the deleteAsyncNoHeaderInRetry operation. */
 export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRetrySucceeded operation.
- */
+/** Contains response data for the deleteAsyncRetrySucceeded operation. */
 export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncNoRetrySucceeded operation.
- */
+/** Contains response data for the deleteAsyncNoRetrySucceeded operation. */
 export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRetryFailed operation.
- */
+/** Contains response data for the deleteAsyncRetryFailed operation. */
 export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRetrycanceled operation.
- */
+/** Contains response data for the deleteAsyncRetrycanceled operation. */
 export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the post200WithPayload operation.
- */
+/** Contains response data for the post200WithPayload operation. */
 export type LROsPost200WithPayloadResponse = Sku & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Sku;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPost202Retry200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202Retry200 operation.
- */
+/** Contains response data for the post202Retry200 operation. */
 export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsPost202Retry200Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPost202NoRetry204OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202NoRetry204 operation.
- */
+/** Contains response data for the post202NoRetry204 operation. */
 export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsPost202NoRetry204Headers;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Contains response data for the postDoubleHeadersFinalLocationGet operation.
- */
+/** Contains response data for the postDoubleHeadersFinalLocationGet operation. */
 export type LROsPostDoubleHeadersFinalLocationGetResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the postDoubleHeadersFinalAzureHeaderGet operation.
- */
+/** Contains response data for the postDoubleHeadersFinalAzureHeaderGet operation. */
 export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault operation.
- */
+/** Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault operation. */
 export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPostAsyncRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRetrySucceeded operation.
- */
+/** Contains response data for the postAsyncRetrySucceeded operation. */
 export type LROsPostAsyncRetrySucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPostAsyncNoRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncNoRetrySucceeded operation.
- */
+/** Contains response data for the postAsyncNoRetrySucceeded operation. */
 export type LROsPostAsyncNoRetrySucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPostAsyncRetryFailedOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRetryFailed operation.
- */
+/** Contains response data for the postAsyncRetryFailed operation. */
 export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsPostAsyncRetryFailedHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsPostAsyncRetrycanceledOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRetrycanceled operation.
- */
+/** Contains response data for the postAsyncRetrycanceled operation. */
 export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LRORetrysPut201CreatingSucceeded200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put201CreatingSucceeded200 operation.
- */
+/** Contains response data for the put201CreatingSucceeded200 operation. */
 export type LRORetrysPut201CreatingSucceeded200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetrySucceeded operation.
- */
+/** Contains response data for the putAsyncRelativeRetrySucceeded operation. */
 export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncRelativeRetrySucceededHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Contains response data for the deleteProvisioning202Accepted200Succeeded operation.
- */
+/** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
 export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the delete202Retry200 operation.
- */
+/** Contains response data for the delete202Retry200 operation. */
 export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LRORetrysDelete202Retry200Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
- */
+/** Contains response data for the deleteAsyncRelativeRetrySucceeded operation. */
 export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LRORetrysPost202Retry200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202Retry200 operation.
- */
+/** Contains response data for the post202Retry200 operation. */
 export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LRORetrysPost202Retry200Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRelativeRetrySucceeded operation.
- */
+/** Contains response data for the postAsyncRelativeRetrySucceeded operation. */
 export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutNonRetry400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putNonRetry400 operation.
- */
+/** Contains response data for the putNonRetry400 operation. */
 export type LrosaDsPutNonRetry400Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutNonRetry201Creating400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putNonRetry201Creating400 operation.
- */
+/** Contains response data for the putNonRetry201Creating400 operation. */
 export type LrosaDsPutNonRetry201Creating400Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putNonRetry201Creating400InvalidJson operation.
- */
+/** Contains response data for the putNonRetry201Creating400InvalidJson operation. */
 export type LrosaDsPutNonRetry201Creating400InvalidJsonResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetry400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetry400 operation.
- */
+/** Contains response data for the putAsyncRelativeRetry400 operation. */
 export type LrosaDsPutAsyncRelativeRetry400Response = LrosaDsPutAsyncRelativeRetry400Headers &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LrosaDsPutAsyncRelativeRetry400Headers;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Contains response data for the deleteNonRetry400 operation.
- */
+/** Contains response data for the deleteNonRetry400 operation. */
 export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDeleteNonRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the delete202NonRetry400 operation.
- */
+/** Contains response data for the delete202NonRetry400 operation. */
 export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDelete202NonRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRelativeRetry400 operation.
- */
+/** Contains response data for the deleteAsyncRelativeRetry400 operation. */
 export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelativeRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPostNonRetry400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postNonRetry400 operation.
- */
+/** Contains response data for the postNonRetry400 operation. */
 export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPostNonRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPost202NonRetry400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202NonRetry400 operation.
- */
+/** Contains response data for the post202NonRetry400 operation. */
 export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPost202NonRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetry400OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRelativeRetry400 operation.
- */
+/** Contains response data for the postAsyncRelativeRetry400 operation. */
 export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeRetry400Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPostAsyncRelativeRetry400Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putError201NoProvisioningStatePayload operation.
- */
+/** Contains response data for the putError201NoProvisioningStatePayload operation. */
 export type LrosaDsPutError201NoProvisioningStatePayloadResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetryNoStatus operation.
- */
+/** Contains response data for the putAsyncRelativeRetryNoStatus operation. */
 export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosaDsPutAsyncRelativeRetryNoStatusHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetryNoStatusPayload operation.
- */
+/** Contains response data for the putAsyncRelativeRetryNoStatusPayload operation. */
 export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
- */
+/** Contains response data for the deleteAsyncRelativeRetryNoStatus operation. */
 export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPost202NoLocationOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202NoLocation operation.
- */
+/** Contains response data for the post202NoLocation operation. */
 export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPost202NoLocationHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRelativeRetryNoPayload operation.
- */
+/** Contains response data for the postAsyncRelativeRetryNoPayload operation. */
 export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRelativeRetryNoPayloadHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryNoPayloadHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPut200InvalidJsonOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put200InvalidJson operation.
- */
+/** Contains response data for the put200InvalidJson operation. */
 export type LrosaDsPut200InvalidJsonResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
- */
+/** Contains response data for the putAsyncRelativeRetryInvalidHeader operation. */
 export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Contains response data for the putAsyncRelativeRetryInvalidJsonPolling operation. */
 export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Contains response data for the delete202RetryInvalidHeader operation.
- */
+/** Contains response data for the delete202RetryInvalidHeader operation. */
 export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryInvalidHeaderHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDelete202RetryInvalidHeaderHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRelativeRetryInvalidHeader operation.
- */
+/** Contains response data for the deleteAsyncRelativeRetryInvalidHeader operation. */
 export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling operation. */
 export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPost202RetryInvalidHeaderOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202RetryInvalidHeader operation.
- */
+/** Contains response data for the post202RetryInvalidHeader operation. */
 export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvalidHeaderHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPost202RetryInvalidHeaderHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRelativeRetryInvalidHeader operation.
- */
+/** Contains response data for the postAsyncRelativeRetryInvalidHeader operation. */
 export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRelativeRetryInvalidJsonPolling operation.
- */
+/** Contains response data for the postAsyncRelativeRetryInvalidJsonPolling operation. */
 export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the putAsyncRetrySucceeded operation.
- */
+/** Contains response data for the putAsyncRetrySucceeded operation. */
 export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPutAsyncRetrySucceededHeaders &
   Product & {
-    /**
-     * The underlying HTTP response.
-     */
+    /** The underlying HTTP response. */
     _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
+      /** The response body as text (string format) */
       bodyAsText: string;
 
-      /**
-       * The response body as parsed JSON or XML
-       */
+      /** The response body as parsed JSON or XML */
       parsedBody: Product;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
-      /**
-       * The parsed HTTP response headers.
-       */
+      /** The parsed HTTP response headers. */
       [LROSYM]: LROResponseInfo;
     };
   };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the put201CreatingSucceeded200 operation.
- */
+/** Contains response data for the put201CreatingSucceeded200 operation. */
 export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsCustomHeaderPost202Retry200OptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the post202Retry200 operation.
- */
+/** Contains response data for the post202Retry200 operation. */
 export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Product to put
-   */
+  /** Product to put */
   product?: Product;
 }
 
-/**
- * Contains response data for the postAsyncRetrySucceeded operation.
- */
+/** Contains response data for the postAsyncRetrySucceeded operation. */
 export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
-    /**
-     * The parsed HTTP response headers.
-     */
+    /** The parsed HTTP response headers. */
     [LROSYM]: LROResponseInfo;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface LROClientOptionalParams extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -13,115 +13,73 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Parameter group
- */
+/** Parameter group */
 export interface ParameterGroupingPostRequiredParameters {
   customHeader?: string;
-  /**
-   * Query parameter with default
-   */
+  /** Query parameter with default */
   query?: number;
-  /**
-   * Path parameter
-   */
+  /** Path parameter */
   path: string;
   body: number;
 }
 
-/**
- * Parameter group
- */
+/** Parameter group */
 export interface ParameterGroupingPostOptionalParameters {
   customHeader?: string;
-  /**
-   * Query parameter with default
-   */
+  /** Query parameter with default */
   query?: number;
 }
 
-/**
- * Parameter group
- */
+/** Parameter group */
 export interface FirstParameterGroup {
   headerOne?: string;
-  /**
-   * Query parameter with default
-   */
+  /** Query parameter with default */
   queryOne?: number;
 }
 
-/**
- * Parameter group
- */
+/** Parameter group */
 export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
   headerTwo?: string;
-  /**
-   * Query parameter with default
-   */
+  /** Query parameter with default */
   queryTwo?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ParameterGroupingPostRequiredOptionalParams
   extends coreHttp.OperationOptions {
   customHeader?: string;
-  /**
-   * Query parameter with default
-   */
+  /** Query parameter with default */
   query?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ParameterGroupingPostOptionalOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameter group
-   */
+  /** Parameter group */
   parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ParameterGroupingPostMultiParamGroupsOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameter group
-   */
+  /** Parameter group */
   firstParameterGroup?: FirstParameterGroup;
-  /**
-   * Parameter group
-   */
+  /** Parameter group */
   parameterGroupingPostMultiParamGroupsSecondParamGroup?: ParameterGroupingPostMultiParamGroupsSecondParamGroup;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameter group
-   */
+  /** Parameter group */
   firstParameterGroup?: FirstParameterGroup;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface AzureParameterGroupingClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -13,294 +13,184 @@ export interface ErrorModel {
   message?: string;
 }
 
-/**
- * Defines values for UriColor.
- */
+/** Defines values for UriColor. */
 export type UriColor = "red color" | "green color" | "blue color";
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesGetBooleanNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null boolean value
-   */
+  /** null boolean value */
   boolQuery?: boolean;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesGetIntNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null integer value
-   */
+  /** null integer value */
   intQuery?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesGetLongNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null 64 bit integer value
-   */
+  /** null 64 bit integer value */
   longQuery?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesFloatNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null numeric value
-   */
+  /** null numeric value */
   floatQuery?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesDoubleNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null numeric value
-   */
+  /** null numeric value */
   doubleQuery?: number;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesStringNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null string value
-   */
+  /** null string value */
   stringQuery?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesEnumValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * 'green color' enum value
-   */
+  /** 'green color' enum value */
   enumQuery?: UriColor;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesEnumNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null string value
-   */
+  /** null string value */
   enumQuery?: UriColor;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesByteMultiByteOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   */
+  /** '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   byteQuery?: Uint8Array;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesByteNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null as byte array (no query parameters in uri)
-   */
+  /** null as byte array (no query parameters in uri) */
   byteQuery?: Uint8Array;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesDateNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null as date (no query parameters in uri)
-   */
+  /** null as date (no query parameters in uri) */
   dateQuery?: Date;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesDateTimeNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * null as date-time (no query parameters)
-   */
+  /** null as date-time (no query parameters) */
   dateTimeQuery?: Date;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringCsvValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
-   */
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringCsvNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * a null array of string using the csv-array format
-   */
+  /** a null array of string using the csv-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringCsvEmptyOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an empty array [] of string using the csv-array format
-   */
+  /** an empty array [] of string using the csv-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringNoCollectionFormatEmptyOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
-   */
+  /** Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour']. */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringSsvValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
-   */
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringTsvValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
-   */
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface QueriesArrayStringPipesValidOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
-   */
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
   arrayQuery?: string[];
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PathItemsGetAllWithValuesOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
+  /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
-  /**
-   * should contain value 'localStringQuery'
-   */
+  /** should contain value 'localStringQuery' */
   localStringQuery?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PathItemsGetGlobalQueryNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
+  /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
-  /**
-   * should contain value 'localStringQuery'
-   */
+  /** should contain value 'localStringQuery' */
   localStringQuery?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
+  /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
-  /**
-   * should contain null value
-   */
+  /** should contain null value */
   localStringQuery?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface PathItemsGetLocalPathItemQueryNullOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * should contain value null
-   */
+  /** should contain value null */
   pathItemStringQuery?: string;
-  /**
-   * should contain value null
-   */
+  /** should contain value null */
   localStringQuery?: string;
 }
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface UrlClientOptionalParams extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * should contain value null
-   */
+  /** should contain value null */
   globalStringQuery?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

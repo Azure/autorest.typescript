@@ -19,9 +19,7 @@ import {
   ArrayGetNotProvidedResponse
 } from "../models";
 
-/**
- * Class representing a Array.
- */
+/** Class representing a Array. */
 export class Array {
   private readonly client: BodyComplexWithTracing;
 
@@ -196,7 +194,6 @@ export class Array {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {

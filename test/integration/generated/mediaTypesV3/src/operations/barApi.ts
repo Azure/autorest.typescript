@@ -14,9 +14,7 @@ import {
   BarApiPostSendOnDefaultResponse
 } from "../models";
 
-/**
- * Class representing a BarApi.
- */
+/** Class representing a BarApi. */
 export class BarApi {
   private readonly client: MediaTypesV3Client;
 
@@ -48,7 +46,6 @@ export class BarApi {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const postSendOnDefaultOperationSpec: coreHttp.OperationSpec = {

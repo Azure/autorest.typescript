@@ -16,9 +16,7 @@ import {
   FormdataUploadFilesResponse
 } from "../models";
 
-/**
- * Class representing a Formdata.
- */
+/** Class representing a Formdata. */
 export class Formdata {
   private readonly client: BodyFormDataClient;
 
@@ -91,7 +89,6 @@ export class Formdata {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const uploadFileOperationSpec: coreHttp.OperationSpec = {

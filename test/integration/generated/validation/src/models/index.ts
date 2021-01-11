@@ -8,69 +8,39 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * The product documentation.
- */
+/** The product documentation. */
 export interface Product {
-  /**
-   * Non required array of unique items from 0 to 6 elements.
-   */
+  /** Non required array of unique items from 0 to 6 elements. */
   displayNames?: string[];
-  /**
-   * Non required int betwen 0 and 100 exclusive.
-   */
+  /** Non required int betwen 0 and 100 exclusive. */
   capacity?: number;
-  /**
-   * Image URL representing the product.
-   */
+  /** Image URL representing the product. */
   image?: string;
-  /**
-   * The product documentation.
-   */
+  /** The product documentation. */
   child: ChildProduct;
-  /**
-   * The product documentation.
-   */
+  /** The product documentation. */
   constChild: ConstantProduct;
-  /**
-   * Constant int
-   */
+  /** Constant int */
   constInt: "undefined";
-  /**
-   * Constant string
-   */
+  /** Constant string */
   constString: "constant";
-  /**
-   * Constant string as Enum
-   */
+  /** Constant string as Enum */
   constStringAsEnum?: "constant_string_as_enum";
 }
 
-/**
- * The product documentation.
- */
+/** The product documentation. */
 export interface ChildProduct {
-  /**
-   * Constant string
-   */
+  /** Constant string */
   constProperty: "constant";
-  /**
-   * Count
-   */
+  /** Count */
   count?: number;
 }
 
-/**
- * The product documentation.
- */
+/** The product documentation. */
 export interface ConstantProduct {
-  /**
-   * Constant string
-   */
+  /** Constant string */
   constProperty: "constant";
-  /**
-   * Constant string2
-   */
+  /** Constant string2 */
   constProperty2: "constant2";
 }
 
@@ -80,103 +50,63 @@ export interface ErrorModel {
   fields?: string;
 }
 
-/**
- * Contains response data for the validationOfMethodParameters operation.
- */
+/** Contains response data for the validationOfMethodParameters operation. */
 export type ValidationClientValidationOfMethodParametersResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ValidationClientValidationOfBodyOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The product documentation.
-   */
+  /** The product documentation. */
   body?: Product;
 }
 
-/**
- * Contains response data for the validationOfBody operation.
- */
+/** Contains response data for the validationOfBody operation. */
 export type ValidationClientValidationOfBodyResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ValidationClientPostWithConstantInBodyOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * The product documentation.
-   */
+  /** The product documentation. */
   body?: Product;
 }
 
-/**
- * Contains response data for the postWithConstantInBody operation.
- */
+/** Contains response data for the postWithConstantInBody operation. */
 export type ValidationClientPostWithConstantInBodyResponse = Product & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: Product;
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ValidationClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
+  /** server parameter */
   $host?: string;
-  /**
-   * Api Version
-   */
+  /** Api Version */
   apiVersion?: string;
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

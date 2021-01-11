@@ -30,9 +30,7 @@ export class LicenseHeaderClient extends LicenseHeaderClientContext {
     super($host, apiVersion, options);
   }
 
-  /**
-   * @param options The options parameters.
-   */
+  /** @param options The options parameters. */
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<LicenseHeaderClientApiV1ValueGetResponse> {
@@ -46,7 +44,6 @@ export class LicenseHeaderClient extends LicenseHeaderClientContext {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {

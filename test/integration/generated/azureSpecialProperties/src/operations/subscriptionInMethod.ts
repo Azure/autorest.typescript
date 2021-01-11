@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 
-/**
- * Class representing a SubscriptionInMethod.
- */
+/** Class representing a SubscriptionInMethod. */
 export class SubscriptionInMethod {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -108,7 +106,6 @@ export class SubscriptionInMethod {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const postMethodLocalValidOperationSpec: coreHttp.OperationSpec = {

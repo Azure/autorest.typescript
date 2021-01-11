@@ -11,9 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 
-/**
- * Class representing a ApiVersionDefault.
- */
+/** Class representing a ApiVersionDefault. */
 export class ApiVersionDefault {
   private readonly client: AzureSpecialPropertiesClient;
 
@@ -90,7 +88,6 @@ export class ApiVersionDefault {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {

@@ -13,9 +13,7 @@ export interface Product {
   string?: string;
 }
 
-/**
- * Known values of {@link Enum0} that the service accepts.
- */
+/** Known values of {@link Enum0} that the service accepts. */
 export const enum KnownEnum0 {
   One = "one",
   Two = "two"
@@ -31,85 +29,53 @@ export const enum KnownEnum0 {
  */
 export type Enum0 = string;
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ArrayConstraintsClientPostValueOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10
-   */
+  /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
 
-/**
- * Contains response data for the postValue operation.
- */
+/** Contains response data for the postValue operation. */
 export type ArrayConstraintsClientPostValueResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string[];
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string[];
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ArrayConstraintsClientApiV1ValueGetOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10
-   */
+  /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
 
-/**
- * Contains response data for the apiV1ValueGet operation.
- */
+/** Contains response data for the apiV1ValueGet operation. */
 export type ArrayConstraintsClientApiV1ValueGetResponse = {
-  /**
-   * The parsed response body.
-   */
+  /** The parsed response body. */
   body: string[];
 
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
+    /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: string[];
   };
 };
 
-/**
- * Optional parameters.
- */
+/** Optional parameters. */
 export interface ArrayConstraintsClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * Overrides client endpoint.
-   */
+  /** Overrides client endpoint. */
   endpoint?: string;
 }

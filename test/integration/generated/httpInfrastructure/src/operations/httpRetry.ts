@@ -12,9 +12,7 @@ import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClient } from "../httpInfrastructureClient";
 import { HttpRetryOptions502Response } from "../models";
 
-/**
- * Class representing a HttpRetry.
- */
+/** Class representing a HttpRetry. */
 export class HttpRetry {
   private readonly client: HttpInfrastructureClient;
 
@@ -161,7 +159,6 @@ export class HttpRetry {
   }
 }
 // Operation Specifications
-
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const head408OperationSpec: coreHttp.OperationSpec = {
