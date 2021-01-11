@@ -44,7 +44,7 @@
         "lodash": "^4.17.15",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
-        "ts-morph": "^5.0.0"
+        "ts-morph": "^9.0.0"
     },
     "devDependencies": {
         "@autorest/test-server": "^3.0.27",
