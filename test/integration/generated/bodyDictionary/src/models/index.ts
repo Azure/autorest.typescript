@@ -653,9 +653,7 @@ export type DictionaryGetDictionaryNullResponse = {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
@@ -669,9 +667,7 @@ export type DictionaryGetDictionaryEmptyResponse = {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
@@ -685,9 +681,7 @@ export type DictionaryGetDictionaryItemNullResponse = {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
@@ -701,9 +695,7 @@ export type DictionaryGetDictionaryItemEmptyResponse = {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
@@ -717,9 +709,7 @@ export type DictionaryGetDictionaryValidResponse = {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };

@@ -720,9 +720,7 @@ export interface ImageDisk {
   diskSizeGB?: number;
   /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
   storageAccountType?: StorageAccountTypes;
-  /**
-   * Specifies the customer managed disk encryption set resource id for the managed image disk.
-   */
+  /** Specifies the customer managed disk encryption set resource id for the managed image disk. */
   diskEncryptionSet?: DiskEncryptionSetParameters;
 }
 
@@ -906,9 +904,7 @@ export interface VirtualMachineScaleSetOSDisk {
 export interface VirtualMachineScaleSetManagedDiskParameters {
   /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
   storageAccountType?: StorageAccountTypes;
-  /**
-   * Specifies the customer managed disk encryption set resource id for the managed disk.
-   */
+  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
   diskEncryptionSet?: DiskEncryptionSetParameters;
 }
 
@@ -2124,13 +2120,9 @@ export interface TargetRegion {
 
 /** Optional. Allows users to provide customer managed keys for encrypting the OS and data disks in the gallery artifact. */
 export interface EncryptionImages {
-  /**
-   * Contains encryption settings for an OS disk image.
-   */
+  /** Contains encryption settings for an OS disk image. */
   osDiskImage?: OSDiskImageEncryption;
-  /**
-   * A list of encryption specifications for data disk images.
-   */
+  /** A list of encryption specifications for data disk images. */
   dataDiskImages?: DataDiskImageEncryption[];
 }
 
@@ -2144,13 +2136,9 @@ export interface DiskImageEncryption {
 export interface GalleryImageVersionStorageProfile {
   /** The gallery artifact version source. */
   source?: GalleryArtifactVersionSource;
-  /**
-   * This is the OS disk image.
-   */
+  /** This is the OS disk image. */
   osDiskImage?: GalleryOSDiskImage;
-  /**
-   * A list of data disk images.
-   */
+  /** A list of data disk images. */
   dataDiskImages?: GalleryDataDiskImage[];
 }
 
@@ -2405,20 +2393,14 @@ export type ImageReference = SubResource & {
   readonly exactVersion?: string;
 };
 
-/**
- * Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details.
- */
+/** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
 export type DiskEncryptionSetParameters = SubResource & {};
 
-/**
- * The parameters of a managed disk.
- */
+/** The parameters of a managed disk. */
 export type ManagedDiskParameters = SubResource & {
   /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
   storageAccountType?: StorageAccountTypes;
-  /**
-   * Specifies the customer managed disk encryption set resource id for the managed disk.
-   */
+  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
   diskEncryptionSet?: DiskEncryptionSetParameters;
 };
 
@@ -2532,9 +2514,7 @@ export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
   enableIPForwarding?: boolean;
 };
 
-/**
- * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set.
- */
+/** Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set. */
 export type AvailabilitySet = Resource & {
   /** Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'. */
   sku?: Sku;
@@ -3064,9 +3044,7 @@ export type GalleryImage = Resource & {
 
 /** Specifies information about the gallery Image Version that you want to create or update. */
 export type GalleryImageVersion = Resource & {
-  /**
-   * The publishing profile of a gallery Image Version.
-   */
+  /** The publishing profile of a gallery Image Version. */
   publishingProfile?: GalleryImageVersionPublishingProfile;
   /**
    * The provisioning state, which only appears in the response.
@@ -3158,14 +3136,10 @@ export type AvailabilitySetUpdate = UpdateResource & {
   readonly statuses?: InstanceViewStatus[];
 };
 
-/**
- * Specifies information about the proximity placement group.
- */
+/** Specifies information about the proximity placement group. */
 export type ProximityPlacementGroupUpdate = UpdateResource & {};
 
-/**
- * Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated.
- */
+/** Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated. */
 export type DedicatedHostGroupUpdate = UpdateResource & {
   /** Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone. */
   zones?: string[];
@@ -3333,9 +3307,7 @@ export type VirtualMachineScaleSetUpdate = UpdateResource & {
   proximityPlacementGroup?: SubResource;
 };
 
-/**
- * Describes a Virtual Machine Scale Set Extension.
- */
+/** Describes a Virtual Machine Scale Set Extension. */
 export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
   /** The name of the extension. */
   name?: string;
@@ -3416,9 +3388,7 @@ export type ImageDataDisk = ImageDisk & {
   lun: number;
 };
 
-/**
- * Describes a Virtual Machine Scale Set VM Reimage Parameters.
- */
+/** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
 export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters & {};
 
 /** Api request input for LogAnalytics getRequestRateByInterval Api. */
@@ -3486,9 +3456,7 @@ export type GalleryImageUpdate = UpdateResourceDefinition & {
 
 /** Specifies information about the gallery Image Version that you want to update. */
 export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
-  /**
-   * The publishing profile of a gallery Image Version.
-   */
+  /** The publishing profile of a gallery Image Version. */
   publishingProfile?: GalleryImageVersionPublishingProfile;
   /**
    * The provisioning state, which only appears in the response.
@@ -3536,14 +3504,10 @@ export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
   readonly replicationStatus?: ReplicationStatus;
 };
 
-/**
- * The publishing profile of a gallery Image Version.
- */
+/** The publishing profile of a gallery Image Version. */
 export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {};
 
-/**
- * The publishing profile of a gallery Image Version.
- */
+/** The publishing profile of a gallery Image Version. */
 export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
   /** The source image from which the Image Version is going to be created. */
   source: UserArtifactSource;
@@ -3553,9 +3517,7 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
   enableHealthCheck?: boolean;
 };
 
-/**
- * Contains encryption settings for an OS disk image.
- */
+/** Contains encryption settings for an OS disk image. */
 export type OSDiskImageEncryption = DiskImageEncryption & {};
 
 /** Contains encryption settings for a data disk image. */
@@ -3564,9 +3526,7 @@ export type DataDiskImageEncryption = DiskImageEncryption & {
   lun: number;
 };
 
-/**
- * This is the OS disk image.
- */
+/** This is the OS disk image. */
 export type GalleryOSDiskImage = GalleryDiskImage & {};
 
 /** This is the data disk image. */
@@ -3575,9 +3535,7 @@ export type GalleryDataDiskImage = GalleryDiskImage & {
   lun: number;
 };
 
-/**
- * Describes a Virtual Machine Image.
- */
+/** Describes a Virtual Machine Image. */
 export type VirtualMachineImage = VirtualMachineImageResource & {
   /** Used for establishing the purchase context of any 3rd Party artifact through MarketPlace. */
   plan?: PurchasePlan;
@@ -3590,19 +3548,13 @@ export type VirtualMachineImage = VirtualMachineImageResource & {
   hyperVGeneration?: HyperVGenerationTypes;
 };
 
-/**
- * Describes a Virtual Machine Scale Set VM Reimage Parameters.
- */
+/** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
 export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMReimageParameters & {
-  /**
-   * The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set.
-   */
+  /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
   instanceIds?: string[];
 };
 
-/**
- * Known values of {@link ProximityPlacementGroupType} that the service accepts.
- */
+/** Known values of {@link ProximityPlacementGroupType} that the service accepts. */
 export const enum KnownProximityPlacementGroupType {
   Standard = "Standard",
   Ultra = "Ultra"
@@ -6060,9 +6012,7 @@ export type VirtualMachineScaleSetVMExtensionsListResponse = VirtualMachineExten
 /** Optional parameters. */
 export interface VirtualMachineScaleSetVMsReimageOptionalParams
   extends coreHttp.OperationOptions {
-  /**
-   * Parameters for the Reimaging Virtual machine in ScaleSet.
-   */
+  /** Parameters for the Reimaging Virtual machine in ScaleSet. */
   vmScaleSetVMReimageInput?: VirtualMachineScaleSetVMReimageParameters;
 }
 

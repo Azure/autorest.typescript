@@ -2915,32 +2915,20 @@ export interface OperationImpact {
   readonly changeValueRelative?: number;
 }
 
-/**
- * ARM proxy resource.
- */
+/** ARM proxy resource. */
 export type ProxyResource = Resource & {};
 
-/**
- * ARM tracked top level resource.
- */
+/** ARM tracked top level resource. */
 export type TrackedResource = Resource & {
-  /**
-   * Resource location.
-   */
+  /** Resource location. */
   location: string;
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
 };
 
-/**
- * Import database parameters.
- */
+/** Import database parameters. */
 export type ImportRequest = ExportRequest & {
-  /**
-   * The name of the database to import.
-   */
+  /** The name of the database to import. */
   databaseName: string;
   /**
    * The edition for the database being created.
@@ -2957,29 +2945,19 @@ export type ImportRequest = ExportRequest & {
    *
    */
   edition: DatabaseEdition;
-  /**
-   * The name of the service objective to assign to the database.
-   */
+  /** The name of the service objective to assign to the database. */
   serviceObjectiveName: ServiceObjectiveName;
-  /**
-   * The maximum size for the newly imported database.
-   */
+  /** The maximum size for the newly imported database. */
   maxSizeBytes: string;
 };
 
-/**
- * Represents the properties for an import operation
- */
+/** Represents the properties for an import operation */
 export type ImportExtensionProperties = ExportRequest & {
-  /**
-   * The type of import operation being performed. This is always Import.
-   */
+  /** The type of import operation being performed. This is always Import. */
   operationMode: "Import";
 };
 
-/**
- * A recoverable database
- */
+/** A recoverable database */
 export type RecoverableDatabase = ProxyResource & {
   /**
    * The edition of the database
@@ -3003,9 +2981,7 @@ export type RecoverableDatabase = ProxyResource & {
   readonly lastAvailableBackupDate?: Date;
 };
 
-/**
- * A restorable dropped database
- */
+/** A restorable dropped database */
 export type RestorableDroppedDatabase = ProxyResource & {
   /**
    * The geo-location where the resource lives
@@ -3054,9 +3030,7 @@ export type RestorableDroppedDatabase = ProxyResource & {
   readonly earliestRestoreDate?: Date;
 };
 
-/**
- * A server secure connection policy.
- */
+/** A server secure connection policy. */
 export type ServerConnectionPolicy = ProxyResource & {
   /**
    * Metadata used for the Azure portal experience.
@@ -3072,13 +3046,9 @@ export type ServerConnectionPolicy = ProxyResource & {
   connectionType?: ServerConnectionType;
 };
 
-/**
- * Contains information about a database Threat Detection policy.
- */
+/** Contains information about a database Threat Detection policy. */
 export type DatabaseSecurityAlertPolicy = ProxyResource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * Resource kind.
@@ -3103,9 +3073,7 @@ export type DatabaseSecurityAlertPolicy = ProxyResource & {
   useServerDefault?: SecurityAlertPolicyUseServerDefault;
 };
 
-/**
- * Represents a database data masking policy.
- */
+/** Represents a database data masking policy. */
 export type DataMaskingPolicy = ProxyResource & {
   /**
    * The location of the data masking policy.
@@ -3133,9 +3101,7 @@ export type DataMaskingPolicy = ProxyResource & {
   readonly maskingLevel?: string;
 };
 
-/**
- * Represents a database data masking rule.
- */
+/** Represents a database data masking rule. */
 export type DataMaskingRule = ProxyResource & {
   /**
    * The location of the data masking rule.
@@ -3176,9 +3142,7 @@ export type DataMaskingRule = ProxyResource & {
   replacementString?: string;
 };
 
-/**
- * Represents a server firewall rule.
- */
+/** Represents a server firewall rule. */
 export type FirewallRule = ProxyResource & {
   /**
    * Kind of server that contains this firewall rule.
@@ -3196,9 +3160,7 @@ export type FirewallRule = ProxyResource & {
   endIpAddress?: string;
 };
 
-/**
- * A database geo backup policy.
- */
+/** A database geo backup policy. */
 export type GeoBackupPolicy = ProxyResource & {
   /**
    * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
@@ -3219,9 +3181,7 @@ export type GeoBackupPolicy = ProxyResource & {
   readonly storageType?: string;
 };
 
-/**
- * Response for Import/Export Get operation.
- */
+/** Response for Import/Export Get operation. */
 export type ImportExportResponse = ProxyResource & {
   /**
    * The request type of the operation.
@@ -3270,9 +3230,7 @@ export type ImportExportResponse = ProxyResource & {
   readonly errorMessage?: string;
 };
 
-/**
- * Represents a recommended elastic pool.
- */
+/** Represents a recommended elastic pool. */
 export type RecommendedElasticPool = ProxyResource & {
   /**
    * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
@@ -3319,9 +3277,7 @@ export type RecommendedElasticPool = ProxyResource & {
   readonly metrics?: RecommendedElasticPoolMetric[];
 };
 
-/**
- * Represents a database replication link.
- */
+/** Represents a database replication link. */
 export type ReplicationLink = ProxyResource & {
   /**
    * Location of the server that contains this firewall rule.
@@ -3380,9 +3336,7 @@ export type ReplicationLink = ProxyResource & {
   readonly replicationState?: ReplicationState;
 };
 
-/**
- * Server communication link.
- */
+/** Server communication link. */
 export type ServerCommunicationLink = ProxyResource & {
   /**
    * Communication link location.
@@ -3403,9 +3357,7 @@ export type ServerCommunicationLink = ProxyResource & {
   partnerServer?: string;
 };
 
-/**
- * Represents a database service objective.
- */
+/** Represents a database service objective. */
 export type ServiceObjective = ProxyResource & {
   /**
    * The name for the service objective.
@@ -3434,13 +3386,9 @@ export type ServiceObjective = ProxyResource & {
   readonly enabled?: boolean;
 };
 
-/**
- * Represents the activity on an elastic pool.
- */
+/** Represents the activity on an elastic pool. */
 export type ElasticPoolActivity = ProxyResource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * The time the operation finished (ISO8601 format).
@@ -3544,13 +3492,9 @@ export type ElasticPoolActivity = ProxyResource & {
   readonly requestedDtuGuarantee?: number;
 };
 
-/**
- * Represents the activity on an elastic pool.
- */
+/** Represents the activity on an elastic pool. */
 export type ElasticPoolDatabaseActivity = ProxyResource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
   /**
    * The database name.
@@ -3629,9 +3573,7 @@ export type ElasticPoolDatabaseActivity = ProxyResource & {
   readonly state?: string;
 };
 
-/**
- * Represents a Service Tier Advisor.
- */
+/** Represents a Service Tier Advisor. */
 export type ServiceTierAdvisor = ProxyResource & {
   /**
    * The observation period start (ISO8601 format).
@@ -3730,9 +3672,7 @@ export type ServiceTierAdvisor = ProxyResource & {
   readonly confidence?: number;
 };
 
-/**
- * Represents a database transparent data encryption configuration.
- */
+/** Represents a database transparent data encryption configuration. */
 export type TransparentDataEncryption = ProxyResource & {
   /**
    * Resource location.
@@ -3743,9 +3683,7 @@ export type TransparentDataEncryption = ProxyResource & {
   status?: TransparentDataEncryptionStatus;
 };
 
-/**
- * Represents a database transparent data encryption Scan.
- */
+/** Represents a database transparent data encryption Scan. */
 export type TransparentDataEncryptionActivity = ProxyResource & {
   /**
    * Resource location.
@@ -3764,13 +3702,9 @@ export type TransparentDataEncryptionActivity = ProxyResource & {
   readonly percentComplete?: number;
 };
 
-/**
- * Database-level Automatic Tuning.
- */
+/** Database-level Automatic Tuning. */
 export type DatabaseAutomaticTuning = ProxyResource & {
-  /**
-   * Automatic tuning desired state.
-   */
+  /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
    * Automatic tuning actual state.
@@ -3781,9 +3715,7 @@ export type DatabaseAutomaticTuning = ProxyResource & {
   options?: { [propertyName: string]: AutomaticTuningOptions };
 };
 
-/**
- * The server encryption protector.
- */
+/** The server encryption protector. */
 export type EncryptionProtector = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
@@ -3816,9 +3748,7 @@ export type EncryptionProtector = ProxyResource & {
   readonly thumbprint?: string;
 };
 
-/**
- * A failover group.
- */
+/** A failover group. */
 export type FailoverGroup = ProxyResource & {
   /**
    * Resource location.
@@ -3847,13 +3777,9 @@ export type FailoverGroup = ProxyResource & {
   databases?: string[];
 };
 
-/**
- * A server key.
- */
+/** A server key. */
 export type ServerKey = ProxyResource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
+  /** Kind of encryption protector. This is metadata used for the Azure portal experience. */
   kind?: string;
   /**
    * Resource location.
@@ -3875,9 +3801,7 @@ export type ServerKey = ProxyResource & {
   creationDate?: Date;
 };
 
-/**
- * An Azure SQL Database sync agent.
- */
+/** An Azure SQL Database sync agent. */
 export type SyncAgent = ProxyResource & {
   /**
    * Name of the sync agent.
@@ -3913,9 +3837,7 @@ export type SyncAgent = ProxyResource & {
   readonly version?: string;
 };
 
-/**
- * An Azure SQL Database sync agent linked database.
- */
+/** An Azure SQL Database sync agent linked database. */
 export type SyncAgentLinkedDatabase = ProxyResource & {
   /**
    * Type of the sync agent linked database.
@@ -3949,13 +3871,9 @@ export type SyncAgentLinkedDatabase = ProxyResource & {
   readonly userName?: string;
 };
 
-/**
- * An Azure SQL Database sync group.
- */
+/** An Azure SQL Database sync group. */
 export type SyncGroup = ProxyResource & {
-  /**
-   * Sync interval of the sync group.
-   */
+  /** Sync interval of the sync group. */
   interval?: number;
   /**
    * Last sync time of the sync group.
@@ -3979,13 +3897,9 @@ export type SyncGroup = ProxyResource & {
   schema?: SyncGroupSchema;
 };
 
-/**
- * An Azure SQL Database sync member.
- */
+/** An Azure SQL Database sync member. */
 export type SyncMember = ProxyResource & {
-  /**
-   * Database type of the sync member.
-   */
+  /** Database type of the sync member. */
   databaseType?: SyncMemberDbType;
   /** ARM resource id of the sync agent in the sync member. */
   syncAgentId?: string;
@@ -4008,9 +3922,7 @@ export type SyncMember = ProxyResource & {
   readonly syncState?: SyncMemberState;
 };
 
-/**
- * Usage Metric of a Subscription in a Location.
- */
+/** Usage Metric of a Subscription in a Location. */
 export type SubscriptionUsage = ProxyResource & {
   /**
    * User-readable name of the metric.
@@ -4034,13 +3946,9 @@ export type SubscriptionUsage = ProxyResource & {
   readonly unit?: string;
 };
 
-/**
- * A virtual network rule.
- */
+/** A virtual network rule. */
 export type VirtualNetworkRule = ProxyResource & {
-  /**
-   * The ARM resource id of the virtual network subnet.
-   */
+  /** The ARM resource id of the virtual network subnet. */
   virtualNetworkSubnetId?: string;
   /** Create firewall rule before the virtual network has vnet service endpoint enabled. */
   ignoreMissingVnetServiceEndpoint?: boolean;
@@ -4051,13 +3959,9 @@ export type VirtualNetworkRule = ProxyResource & {
   readonly state?: VirtualNetworkRuleState;
 };
 
-/**
- * An extended database blob auditing policy.
- */
+/** An extended database blob auditing policy. */
 export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
+  /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
   /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
@@ -4160,13 +4064,9 @@ export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
   queueDelayMs?: number;
 };
 
-/**
- * An extended server blob auditing policy.
- */
+/** An extended server blob auditing policy. */
 export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
+  /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
   /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
@@ -4269,13 +4169,9 @@ export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
   queueDelayMs?: number;
 };
 
-/**
- * A server blob auditing policy.
- */
+/** A server blob auditing policy. */
 export type ServerBlobAuditingPolicy = ProxyResource & {
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
+  /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
   /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
   storageEndpoint?: string;
@@ -4376,9 +4272,7 @@ export type ServerBlobAuditingPolicy = ProxyResource & {
   queueDelayMs?: number;
 };
 
-/**
- * A database blob auditing policy.
- */
+/** A database blob auditing policy. */
 export type DatabaseBlobAuditingPolicy = ProxyResource & {
   /**
    * Resource kind.
@@ -4486,23 +4380,15 @@ export type DatabaseBlobAuditingPolicy = ProxyResource & {
   queueDelayMs?: number;
 };
 
-/**
- * A database vulnerability assessment rule baseline.
- */
+/** A database vulnerability assessment rule baseline. */
 export type DatabaseVulnerabilityAssessmentRuleBaseline = ProxyResource & {
-  /**
-   * The rule baseline result
-   */
+  /** The rule baseline result */
   baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
 };
 
-/**
- * A database vulnerability assessment.
- */
+/** A database vulnerability assessment. */
 export type DatabaseVulnerabilityAssessment = ProxyResource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
@@ -4512,21 +4398,15 @@ export type DatabaseVulnerabilityAssessment = ProxyResource & {
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A stored credential that can be used by a job to connect to target databases.
- */
+/** A stored credential that can be used by a job to connect to target databases. */
 export type JobCredential = ProxyResource & {
-  /**
-   * The credential user name.
-   */
+  /** The credential user name. */
   username?: string;
   /** The credential password. */
   password?: string;
 };
 
-/**
- * An execution of a job
- */
+/** An execution of a job */
 export type JobExecution = ProxyResource & {
   /**
    * The job version number.
@@ -4592,13 +4472,9 @@ export type JobExecution = ProxyResource & {
   readonly target?: JobExecutionTarget;
 };
 
-/**
- * A job.
- */
+/** A job. */
 export type Job = ProxyResource & {
-  /**
-   * User-defined description of the job.
-   */
+  /** User-defined description of the job. */
   description?: string;
   /**
    * The job version number.
@@ -4609,13 +4485,9 @@ export type Job = ProxyResource & {
   schedule?: JobSchedule;
 };
 
-/**
- * A job step.
- */
+/** A job step. */
 export type JobStep = ProxyResource & {
-  /**
-   * The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified.
-   */
+  /** The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified. */
   stepId?: number;
   /** The resource ID of the target group that the job step will be executed on. */
   targetGroup?: string;
@@ -4629,24 +4501,16 @@ export type JobStep = ProxyResource & {
   executionOptions?: JobStepExecutionOptions;
 };
 
-/**
- * A group of job targets.
- */
+/** A group of job targets. */
 export type JobTargetGroup = ProxyResource & {
-  /**
-   * Members of the target group.
-   */
+  /** Members of the target group. */
   members?: JobTarget[];
 };
 
-/**
- * A job version.
- */
+/** A job version. */
 export type JobVersion = ProxyResource & {};
 
-/**
- * A long term retention backup.
- */
+/** A long term retention backup. */
 export type LongTermRetentionBackup = ProxyResource & {
   /**
    * The server name that the backup database belong to.
@@ -4680,13 +4544,9 @@ export type LongTermRetentionBackup = ProxyResource & {
   readonly backupExpirationTime?: Date;
 };
 
-/**
- * A long term retention policy.
- */
+/** A long term retention policy. */
 export type BackupLongTermRetentionPolicy = ProxyResource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
   monthlyRetention?: string;
@@ -4696,23 +4556,15 @@ export type BackupLongTermRetentionPolicy = ProxyResource & {
   weekOfYear?: number;
 };
 
-/**
- * A short term retention policy.
- */
+/** A short term retention policy. */
 export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
+  /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
-/**
- * Server-level Automatic Tuning.
- */
+/** Server-level Automatic Tuning. */
 export type ServerAutomaticTuning = ProxyResource & {
-  /**
-   * Automatic tuning desired state.
-   */
+  /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
    * Automatic tuning actual state.
@@ -4723,9 +4575,7 @@ export type ServerAutomaticTuning = ProxyResource & {
   options?: { [propertyName: string]: AutomaticTuningServerOptions };
 };
 
-/**
- * A server DNS alias.
- */
+/** A server DNS alias. */
 export type ServerDnsAlias = ProxyResource & {
   /**
    * The fully qualified DNS record for alias
@@ -4734,13 +4584,9 @@ export type ServerDnsAlias = ProxyResource & {
   readonly azureDnsRecord?: string;
 };
 
-/**
- * A server security alert policy.
- */
+/** A server security alert policy. */
 export type ServerSecurityAlertPolicy = ProxyResource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
@@ -4761,9 +4607,7 @@ export type ServerSecurityAlertPolicy = ProxyResource & {
   readonly creationTime?: Date;
 };
 
-/**
- * Database restore points.
- */
+/** Database restore points. */
 export type RestorePoint = ProxyResource & {
   /**
    * Resource location.
@@ -4792,13 +4636,9 @@ export type RestorePoint = ProxyResource & {
   readonly restorePointLabel?: string;
 };
 
-/**
- * A managed database security alert policy.
- */
+/** A managed database security alert policy. */
 export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
@@ -4819,13 +4659,9 @@ export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
   readonly creationTime?: Date;
 };
 
-/**
- * A managed server security alert policy.
- */
+/** A managed server security alert policy. */
 export type ManagedServerSecurityAlertPolicy = ProxyResource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
+  /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
   disabledAlerts?: string[];
@@ -4846,13 +4682,9 @@ export type ManagedServerSecurityAlertPolicy = ProxyResource & {
   readonly creationTime?: Date;
 };
 
-/**
- * A sensitivity label.
- */
+/** A sensitivity label. */
 export type SensitivityLabel = ProxyResource & {
-  /**
-   * The label name.
-   */
+  /** The label name. */
   labelName?: string;
   /** The label ID. */
   labelId?: string;
@@ -4868,13 +4700,9 @@ export type SensitivityLabel = ProxyResource & {
   rank?: SensitivityLabelRank;
 };
 
-/**
- * An Azure SQL managed instance administrator.
- */
+/** An Azure SQL managed instance administrator. */
 export type ManagedInstanceAdministrator = ProxyResource & {
-  /**
-   * Type of the managed instance administrator.
-   */
+  /** Type of the managed instance administrator. */
   administratorType?: ManagedInstanceAdministratorType;
   /** Login name of the managed instance administrator. */
   login?: string;
@@ -4884,9 +4712,7 @@ export type ManagedInstanceAdministrator = ProxyResource & {
   tenantId?: string;
 };
 
-/**
- * A database operation.
- */
+/** A database operation. */
 export type DatabaseOperation = ProxyResource & {
   /**
    * The name of the database the operation is being performed on.
@@ -4960,9 +4786,7 @@ export type DatabaseOperation = ProxyResource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * A elastic pool operation.
- */
+/** A elastic pool operation. */
 export type ElasticPoolOperation = ProxyResource & {
   /**
    * The name of the elastic pool the operation is being performed on.
@@ -5036,9 +4860,7 @@ export type ElasticPoolOperation = ProxyResource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * A vulnerability assessment scan record.
- */
+/** A vulnerability assessment scan record. */
 export type VulnerabilityAssessmentScanRecord = ProxyResource & {
   /**
    * The scan ID.
@@ -5082,9 +4904,7 @@ export type VulnerabilityAssessmentScanRecord = ProxyResource & {
   readonly numberOfFailedSecurityChecks?: number;
 };
 
-/**
- * A database Vulnerability Assessment scan export resource.
- */
+/** A database Vulnerability Assessment scan export resource. */
 export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
@@ -5093,13 +4913,9 @@ export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
   readonly exportedReportLocation?: string;
 };
 
-/**
- * An instance failover group.
- */
+/** An instance failover group. */
 export type InstanceFailoverGroup = ProxyResource & {
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
+  /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
   /** Read-only endpoint of the failover group instance. */
   readOnlyEndpoint?: InstanceFailoverGroupReadOnlyEndpoint;
@@ -5119,31 +4935,21 @@ export type InstanceFailoverGroup = ProxyResource & {
   managedInstancePairs?: ManagedInstancePairInfo[];
 };
 
-/**
- * A short term retention policy.
- */
+/** A short term retention policy. */
 export type BackupShortTermRetentionPolicy = ProxyResource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
+  /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
-/**
- * A TDE certificate that can be uploaded into a server.
- */
+/** A TDE certificate that can be uploaded into a server. */
 export type TdeCertificate = ProxyResource & {
-  /**
-   * The base64 encoded certificate private blob.
-   */
+  /** The base64 encoded certificate private blob. */
   privateBlob?: string;
   /** The certificate password. */
   certPassword?: string;
 };
 
-/**
- * A managed instance key.
- */
+/** A managed instance key. */
 export type ManagedInstanceKey = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
@@ -5166,9 +4972,7 @@ export type ManagedInstanceKey = ProxyResource & {
   readonly creationDate?: Date;
 };
 
-/**
- * The managed instance encryption protector.
- */
+/** The managed instance encryption protector. */
 export type ManagedInstanceEncryptionProtector = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
@@ -5191,9 +4995,7 @@ export type ManagedInstanceEncryptionProtector = ProxyResource & {
   readonly thumbprint?: string;
 };
 
-/**
- * A recoverable managed database resource.
- */
+/** A recoverable managed database resource. */
 export type RecoverableManagedDatabase = ProxyResource & {
   /**
    * The last available backup date.
@@ -5202,13 +5004,9 @@ export type RecoverableManagedDatabase = ProxyResource & {
   readonly lastAvailableBackupDate?: string;
 };
 
-/**
- * A managed instance vulnerability assessment.
- */
+/** A managed instance vulnerability assessment. */
 export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
@@ -5218,13 +5016,9 @@ export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A server vulnerability assessment.
- */
+/** A server vulnerability assessment. */
 export type ServerVulnerabilityAssessment = ProxyResource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
+  /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
   storageContainerSasKey?: string;
@@ -5234,13 +5028,9 @@ export type ServerVulnerabilityAssessment = ProxyResource & {
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
 };
 
-/**
- * A private endpoint connection
- */
+/** A private endpoint connection */
 export type PrivateEndpointConnection = ProxyResource & {
-  /**
-   * Private endpoint which the connection belongs to.
-   */
+  /** Private endpoint which the connection belongs to. */
   privateEndpoint?: PrivateEndpointProperty;
   /** Connection state of the private endpoint connection. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
@@ -5251,9 +5041,7 @@ export type PrivateEndpointConnection = ProxyResource & {
   readonly provisioningState?: string;
 };
 
-/**
- * A private link resource
- */
+/** A private link resource */
 export type PrivateLinkResource = ProxyResource & {
   /**
    * The private link resource group id.
@@ -5262,9 +5050,7 @@ export type PrivateLinkResource = ProxyResource & {
   readonly properties?: PrivateLinkResourceProperties;
 };
 
-/**
- * A long term retention backup for a managed database.
- */
+/** A long term retention backup for a managed database. */
 export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
   /**
    * The managed instance that the backup database belongs to.
@@ -5298,13 +5084,9 @@ export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
   readonly backupExpirationTime?: Date;
 };
 
-/**
- * A long term retention policy.
- */
+/** A long term retention policy. */
 export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
+  /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
   monthlyRetention?: string;
@@ -5314,13 +5096,9 @@ export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
   weekOfYear?: number;
 };
 
-/**
- * Workload group operations for a data warehouse
- */
+/** Workload group operations for a data warehouse */
 export type WorkloadGroup = ProxyResource & {
-  /**
-   * The workload group minimum percentage resource.
-   */
+  /** The workload group minimum percentage resource. */
   minResourcePercent?: number;
   /** The workload group cap percentage resource. */
   maxResourcePercent?: number;
@@ -5334,13 +5112,9 @@ export type WorkloadGroup = ProxyResource & {
   queryExecutionTimeout?: number;
 };
 
-/**
- * Workload classifier operations for a data warehouse
- */
+/** Workload classifier operations for a data warehouse */
 export type WorkloadClassifier = ProxyResource & {
-  /**
-   * The workload classifier member name.
-   */
+  /** The workload classifier member name. */
   memberName?: string;
   /** The workload classifier label. */
   label?: string;
@@ -5354,9 +5128,7 @@ export type WorkloadClassifier = ProxyResource & {
   importance?: string;
 };
 
-/**
- * A managed database restore details.
- */
+/** A managed database restore details. */
 export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
   /**
    * Restore status.
@@ -5410,13 +5182,9 @@ export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
   readonly blockReason?: string;
 };
 
-/**
- * Azure Active Directory administrator.
- */
+/** Azure Active Directory administrator. */
 export type ServerAzureADAdministrator = ProxyResource & {
-  /**
-   * Type of the sever administrator.
-   */
+  /** Type of the sever administrator. */
   administratorType?: AdministratorType;
   /** Login name of the server administrator. */
   login?: string;
@@ -5428,9 +5196,7 @@ export type ServerAzureADAdministrator = ProxyResource & {
   azureADOnlyAuthentication?: boolean;
 };
 
-/**
- * A managed instance operation.
- */
+/** A managed instance operation. */
 export type ManagedInstanceOperation = ProxyResource & {
   /**
    * The name of the managed instance the operation is being performed on.
@@ -5499,9 +5265,7 @@ export type ManagedInstanceOperation = ProxyResource & {
   readonly isCancellable?: boolean;
 };
 
-/**
- * Represents a database recommended index.
- */
+/** Represents a database recommended index. */
 export type RecommendedIndex = ProxyResource & {
   /**
    * The proposed index action. You can create a missing index, drop an unused index, or rebuild an existing index to improve its performance.
@@ -5565,9 +5329,7 @@ export type RecommendedIndex = ProxyResource & {
   readonly reportedImpact?: OperationImpact[];
 };
 
-/**
- * An Azure SQL virtual cluster.
- */
+/** An Azure SQL virtual cluster. */
 export type VirtualCluster = TrackedResource & {
   /**
    * Subnet resource ID for the virtual cluster.
@@ -10058,20 +9820,14 @@ export type JobVersionsListByJobResponse = JobVersionListResult & {
   };
 };
 
-/**
- * Contains response data for the get operation.
- */
+/** Contains response data for the get operation. */
 export type JobVersionsGetResponse = JobVersion & {
-  /**
-   * The underlying HTTP response.
-   */
+  /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
-    /**
-     * The response body as parsed JSON or XML
-     */
+    /** The response body as parsed JSON or XML */
     parsedBody: JobVersion;
   };
 };

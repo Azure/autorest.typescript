@@ -80,36 +80,22 @@ export interface UserAssignedIdentitiesListResult {
   nextLink?: string;
 }
 
-/**
- * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
- */
+/** The resource model definition for a ARM proxy resource. It will have everything other than required location and tags */
 export type ProxyResource = Resource & {};
 
-/**
- * The resource model definition for a ARM tracked top level resource
- */
+/** The resource model definition for a ARM tracked top level resource */
 export type TrackedResource = Resource & {
-  /**
-   * Resource tags.
-   */
+  /** Resource tags. */
   tags?: { [propertyName: string]: string };
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location: string;
 };
 
-/**
- * Describes an identity resource.
- */
+/** Describes an identity resource. */
 export type IdentityUpdate = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location?: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
   /**
    * The id of the tenant which the identity belongs to.
@@ -128,17 +114,11 @@ export type IdentityUpdate = Resource & {
   readonly clientId?: string;
 };
 
-/**
- * Describes a system assigned identity resource.
- */
+/** Describes a system assigned identity resource. */
 export type SystemAssignedIdentity = ProxyResource & {
-  /**
-   * The geo-location where the resource lives
-   */
+  /** The geo-location where the resource lives */
   location: string;
-  /**
-   * Resource tags
-   */
+  /** Resource tags */
   tags?: { [propertyName: string]: string };
   /**
    * The id of the tenant which the identity belongs to.
@@ -162,9 +142,7 @@ export type SystemAssignedIdentity = ProxyResource & {
   readonly clientSecretUrl?: string;
 };
 
-/**
- * Describes an identity resource.
- */
+/** Describes an identity resource. */
 export type Identity = TrackedResource & {
   /**
    * The id of the tenant which the identity belongs to.
