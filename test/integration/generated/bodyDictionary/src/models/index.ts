@@ -646,7 +646,7 @@ export type DictionaryGetArrayValidResponse = {
 
 /** Contains response data for the getDictionaryNull operation. */
 export type DictionaryGetDictionaryNullResponse = {
-  [propertyName: string]: any;
+  [propertyName: string]: { [propertyName: string]: string };
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -654,13 +654,13 @@ export type DictionaryGetDictionaryNullResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: any };
+    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
 
 /** Contains response data for the getDictionaryEmpty operation. */
 export type DictionaryGetDictionaryEmptyResponse = {
-  [propertyName: string]: any;
+  [propertyName: string]: { [propertyName: string]: string };
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -668,13 +668,13 @@ export type DictionaryGetDictionaryEmptyResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: any };
+    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
 
 /** Contains response data for the getDictionaryItemNull operation. */
 export type DictionaryGetDictionaryItemNullResponse = {
-  [propertyName: string]: any;
+  [propertyName: string]: { [propertyName: string]: string };
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -682,13 +682,13 @@ export type DictionaryGetDictionaryItemNullResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: any };
+    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
 
 /** Contains response data for the getDictionaryItemEmpty operation. */
 export type DictionaryGetDictionaryItemEmptyResponse = {
-  [propertyName: string]: any;
+  [propertyName: string]: { [propertyName: string]: string };
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -696,13 +696,13 @@ export type DictionaryGetDictionaryItemEmptyResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: any };
+    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
 
 /** Contains response data for the getDictionaryValid operation. */
 export type DictionaryGetDictionaryValidResponse = {
-  [propertyName: string]: any;
+  [propertyName: string]: { [propertyName: string]: string };
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -710,7 +710,7 @@ export type DictionaryGetDictionaryValidResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: any };
+    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
 

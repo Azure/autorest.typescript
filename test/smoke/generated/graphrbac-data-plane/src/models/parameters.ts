@@ -22,7 +22,7 @@ import {
   GroupCreateParameters as GroupCreateParametersMapper,
   GroupGetMemberGroupsParameters as GroupGetMemberGroupsParametersMapper,
   ServicePrincipalCreateParameters as ServicePrincipalCreateParametersMapper,
-  ServicePrincipalBase as ServicePrincipalBaseMapper,
+  ServicePrincipalUpdateParameters as ServicePrincipalUpdateParametersMapper,
   UserCreateParameters as UserCreateParametersMapper,
   UserUpdateParameters as UserUpdateParametersMapper,
   UserGetMemberGroupsParameters as UserGetMemberGroupsParametersMapper,
@@ -229,7 +229,7 @@ export const parameters9: OperationParameter = {
 
 export const parameters10: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ServicePrincipalBaseMapper
+  mapper: ServicePrincipalUpdateParametersMapper
 };
 
 export const parameters11: OperationParameter = {

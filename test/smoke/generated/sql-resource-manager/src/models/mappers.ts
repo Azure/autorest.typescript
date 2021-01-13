@@ -2626,7 +2626,7 @@ export const JobVersionListResult: coreHttp.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Resource"
+              className: "JobVersion"
             }
           }
         }
@@ -6069,12 +6069,102 @@ export const OperationImpact: coreHttp.CompositeMapper = {
   }
 };
 
+export const ProxyResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProxyResource",
+    modelProperties: {
+      ...Resource.type.modelProperties
+    }
+  }
+};
+
+export const TrackedResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TrackedResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ImportRequest: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ImportRequest",
+    modelProperties: {
+      ...ExportRequest.type.modelProperties,
+      databaseName: {
+        serializedName: "databaseName",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      edition: {
+        serializedName: "edition",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      serviceObjectiveName: {
+        serializedName: "serviceObjectiveName",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      maxSizeBytes: {
+        serializedName: "maxSizeBytes",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ImportExtensionProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ImportExtensionProperties",
+    modelProperties: {
+      ...ExportRequest.type.modelProperties,
+      operationMode: {
+        defaultValue: "Import",
+        isConstant: true,
+        serializedName: "operationMode",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const RecoverableDatabase: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoverableDatabase",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       edition: {
         serializedName: "properties.edition",
         readOnly: true,
@@ -6112,7 +6202,7 @@ export const RestorableDroppedDatabase: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RestorableDroppedDatabase",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -6185,7 +6275,7 @@ export const ServerConnectionPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerConnectionPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -6216,7 +6306,7 @@ export const DatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DatabaseSecurityAlertPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         type: {
@@ -6290,7 +6380,7 @@ export const DataMaskingPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DataMaskingPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -6341,7 +6431,7 @@ export const DataMaskingRule: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DataMaskingRule",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -6440,7 +6530,7 @@ export const FirewallRule: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "FirewallRule",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -6476,7 +6566,7 @@ export const GeoBackupPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "GeoBackupPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -6515,7 +6605,7 @@ export const ImportExportResponse: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ImportExportResponse",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       requestType: {
         serializedName: "properties.requestType",
         readOnly: true,
@@ -6583,36 +6673,12 @@ export const ImportExportResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const TrackedResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TrackedResource",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
 export const RecommendedElasticPool: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedElasticPool",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       databaseEdition: {
         serializedName: "properties.databaseEdition",
         readOnly: true,
@@ -6707,7 +6773,7 @@ export const ReplicationLink: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ReplicationLink",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -6808,7 +6874,7 @@ export const ServerCommunicationLink: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerCommunicationLink",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -6845,7 +6911,7 @@ export const ServiceObjective: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServiceObjective",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       serviceObjectiveName: {
         serializedName: "properties.serviceObjectiveName",
         readOnly: true,
@@ -6890,7 +6956,7 @@ export const ElasticPoolActivity: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ElasticPoolActivity",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         type: {
@@ -7046,7 +7112,7 @@ export const ElasticPoolDatabaseActivity: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ElasticPoolDatabaseActivity",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         type: {
@@ -7167,7 +7233,7 @@ export const ServiceTierAdvisor: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServiceTierAdvisor",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       observationPeriodStart: {
         serializedName: "properties.observationPeriodStart",
         readOnly: true,
@@ -7323,7 +7389,7 @@ export const TransparentDataEncryption: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "TransparentDataEncryption",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -7347,7 +7413,7 @@ export const TransparentDataEncryptionActivity: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "TransparentDataEncryptionActivity",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -7378,7 +7444,7 @@ export const DatabaseAutomaticTuning: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DatabaseAutomaticTuning",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       desiredState: {
         serializedName: "properties.desiredState",
         type: {
@@ -7412,7 +7478,7 @@ export const EncryptionProtector: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "EncryptionProtector",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -7469,7 +7535,7 @@ export const FailoverGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "FailoverGroup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -7544,7 +7610,7 @@ export const ServerKey: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerKey",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         type: {
@@ -7598,7 +7664,7 @@ export const SyncAgent: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SyncAgent",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       namePropertiesName: {
         serializedName: "properties.name",
         readOnly: true,
@@ -7656,7 +7722,7 @@ export const SyncAgentLinkedDatabase: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SyncAgentLinkedDatabase",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       databaseType: {
         serializedName: "properties.databaseType",
         readOnly: true,
@@ -7708,7 +7774,7 @@ export const SyncGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SyncGroup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       interval: {
         serializedName: "properties.interval",
         type: {
@@ -7769,7 +7835,7 @@ export const SyncMember: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SyncMember",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       databaseType: {
         serializedName: "properties.databaseType",
         type: {
@@ -7834,7 +7900,7 @@ export const SubscriptionUsage: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SubscriptionUsage",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       displayName: {
         serializedName: "properties.displayName",
         readOnly: true,
@@ -7872,7 +7938,7 @@ export const VirtualNetworkRule: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "VirtualNetworkRule",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       virtualNetworkSubnetId: {
         serializedName: "properties.virtualNetworkSubnetId",
         type: {
@@ -7901,7 +7967,7 @@ export const ExtendedDatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ExtendedDatabaseBlobAuditingPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       predicateExpression: {
         serializedName: "properties.predicateExpression",
         type: {
@@ -7977,7 +8043,7 @@ export const ExtendedServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ExtendedServerBlobAuditingPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       predicateExpression: {
         serializedName: "properties.predicateExpression",
         type: {
@@ -8053,7 +8119,7 @@ export const ServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerBlobAuditingPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       state: {
         serializedName: "properties.state",
         type: {
@@ -8123,7 +8189,7 @@ export const DatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DatabaseBlobAuditingPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -8200,7 +8266,7 @@ export const DatabaseVulnerabilityAssessmentRuleBaseline: coreHttp.CompositeMapp
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentRuleBaseline",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       baselineResults: {
         serializedName: "properties.baselineResults",
         type: {
@@ -8222,7 +8288,7 @@ export const DatabaseVulnerabilityAssessment: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessment",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       storageContainerPath: {
         serializedName: "properties.storageContainerPath",
         type: {
@@ -8257,7 +8323,7 @@ export const JobCredential: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JobCredential",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       username: {
         serializedName: "properties.username",
         type: {
@@ -8279,7 +8345,7 @@ export const JobExecution: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JobExecution",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       jobVersion: {
         serializedName: "properties.jobVersion",
         readOnly: true,
@@ -8379,7 +8445,7 @@ export const Job: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Job",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       description: {
         serializedName: "properties.description",
         type: {
@@ -8409,7 +8475,7 @@ export const JobStep: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JobStep",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       stepId: {
         serializedName: "properties.stepId",
         type: {
@@ -8458,7 +8524,7 @@ export const JobTargetGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JobTargetGroup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       members: {
         serializedName: "properties.members",
         type: {
@@ -8475,12 +8541,22 @@ export const JobTargetGroup: coreHttp.CompositeMapper = {
   }
 };
 
+export const JobVersion: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "JobVersion",
+    modelProperties: {
+      ...ProxyResource.type.modelProperties
+    }
+  }
+};
+
 export const LongTermRetentionBackup: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LongTermRetentionBackup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       serverName: {
         serializedName: "properties.serverName",
         readOnly: true,
@@ -8532,7 +8608,7 @@ export const BackupLongTermRetentionPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "BackupLongTermRetentionPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       weeklyRetention: {
         serializedName: "properties.weeklyRetention",
         type: {
@@ -8566,7 +8642,7 @@ export const ManagedBackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedBackupShortTermRetentionPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       retentionDays: {
         serializedName: "properties.retentionDays",
         type: {
@@ -8582,7 +8658,7 @@ export const ServerAutomaticTuning: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerAutomaticTuning",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       desiredState: {
         serializedName: "properties.desiredState",
         type: {
@@ -8619,7 +8695,7 @@ export const ServerDnsAlias: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerDnsAlias",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       azureDnsRecord: {
         serializedName: "properties.azureDnsRecord",
         readOnly: true,
@@ -8636,7 +8712,7 @@ export const ServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerSecurityAlertPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       state: {
         serializedName: "properties.state",
         type: {
@@ -8706,7 +8782,7 @@ export const RestorePoint: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RestorePoint",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       location: {
         serializedName: "location",
         readOnly: true,
@@ -8752,7 +8828,7 @@ export const ManagedDatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedDatabaseSecurityAlertPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       state: {
         serializedName: "properties.state",
         type: {
@@ -8822,7 +8898,7 @@ export const ManagedServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedServerSecurityAlertPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       state: {
         serializedName: "properties.state",
         type: {
@@ -8892,7 +8968,7 @@ export const SensitivityLabel: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SensitivityLabel",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       labelName: {
         serializedName: "properties.labelName",
         type: {
@@ -8940,7 +9016,7 @@ export const ManagedInstanceAdministrator: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedInstanceAdministrator",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       administratorType: {
         serializedName: "properties.administratorType",
         type: {
@@ -8974,7 +9050,7 @@ export const DatabaseOperation: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DatabaseOperation",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       databaseName: {
         serializedName: "properties.databaseName",
         readOnly: true,
@@ -9082,7 +9158,7 @@ export const ElasticPoolOperation: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ElasticPoolOperation",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       elasticPoolName: {
         serializedName: "properties.elasticPoolName",
         readOnly: true,
@@ -9190,7 +9266,7 @@ export const VulnerabilityAssessmentScanRecord: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "VulnerabilityAssessmentScanRecord",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       scanId: {
         serializedName: "properties.scanId",
         readOnly: true,
@@ -9262,7 +9338,7 @@ export const DatabaseVulnerabilityAssessmentScansExport: coreHttp.CompositeMappe
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentScansExport",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       exportedReportLocation: {
         serializedName: "properties.exportedReportLocation",
         readOnly: true,
@@ -9279,7 +9355,7 @@ export const InstanceFailoverGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "InstanceFailoverGroup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       readWriteEndpoint: {
         serializedName: "properties.readWriteEndpoint",
         type: {
@@ -9341,7 +9417,7 @@ export const BackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "BackupShortTermRetentionPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       retentionDays: {
         serializedName: "properties.retentionDays",
         type: {
@@ -9357,7 +9433,7 @@ export const TdeCertificate: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "TdeCertificate",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       privateBlob: {
         serializedName: "properties.privateBlob",
         type: {
@@ -9379,7 +9455,7 @@ export const ManagedInstanceKey: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedInstanceKey",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -9422,7 +9498,7 @@ export const ManagedInstanceEncryptionProtector: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedInstanceEncryptionProtector",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       kind: {
         serializedName: "kind",
         readOnly: true,
@@ -9465,7 +9541,7 @@ export const RecoverableManagedDatabase: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RecoverableManagedDatabase",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       lastAvailableBackupDate: {
         serializedName: "properties.lastAvailableBackupDate",
         readOnly: true,
@@ -9482,7 +9558,7 @@ export const ManagedInstanceVulnerabilityAssessment: coreHttp.CompositeMapper = 
     name: "Composite",
     className: "ManagedInstanceVulnerabilityAssessment",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       storageContainerPath: {
         serializedName: "properties.storageContainerPath",
         type: {
@@ -9517,7 +9593,7 @@ export const ServerVulnerabilityAssessment: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerVulnerabilityAssessment",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       storageContainerPath: {
         serializedName: "properties.storageContainerPath",
         type: {
@@ -9552,7 +9628,7 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PrivateEndpointConnection",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       privateEndpoint: {
         serializedName: "properties.privateEndpoint",
         type: {
@@ -9583,7 +9659,7 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PrivateLinkResource",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       properties: {
         serializedName: "properties",
         type: {
@@ -9600,7 +9676,7 @@ export const ManagedInstanceLongTermRetentionBackup: coreHttp.CompositeMapper = 
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionBackup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       managedInstanceName: {
         serializedName: "properties.managedInstanceName",
         readOnly: true,
@@ -9652,7 +9728,7 @@ export const ManagedInstanceLongTermRetentionPolicy: coreHttp.CompositeMapper = 
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionPolicy",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       weeklyRetention: {
         serializedName: "properties.weeklyRetention",
         type: {
@@ -9686,7 +9762,7 @@ export const WorkloadGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "WorkloadGroup",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       minResourcePercent: {
         serializedName: "properties.minResourcePercent",
         type: {
@@ -9732,7 +9808,7 @@ export const WorkloadClassifier: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "WorkloadClassifier",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       memberName: {
         serializedName: "properties.memberName",
         type: {
@@ -9778,7 +9854,7 @@ export const ManagedDatabaseRestoreDetailsResult: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedDatabaseRestoreDetailsResult",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       status: {
         serializedName: "properties.status",
         readOnly: true,
@@ -9863,7 +9939,7 @@ export const ServerAzureADAdministrator: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServerAzureADAdministrator",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       administratorType: {
         serializedName: "properties.administratorType",
         type: {
@@ -9903,7 +9979,7 @@ export const ManagedInstanceOperation: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ManagedInstanceOperation",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       managedInstanceName: {
         serializedName: "properties.managedInstanceName",
         readOnly: true,
@@ -10004,7 +10080,7 @@ export const RecommendedIndex: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RecommendedIndex",
     modelProperties: {
-      ...Resource.type.modelProperties,
+      ...ProxyResource.type.modelProperties,
       action: {
         serializedName: "properties.action",
         readOnly: true,
@@ -10129,82 +10205,6 @@ export const RecommendedIndex: coreHttp.CompositeMapper = {
               className: "OperationImpact"
             }
           }
-        }
-      }
-    }
-  }
-};
-
-export const JobVersion: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "JobVersion",
-    modelProperties: {
-      ...Resource.type.modelProperties
-    }
-  }
-};
-
-export const ProxyResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProxyResource",
-    modelProperties: {
-      ...Resource.type.modelProperties
-    }
-  }
-};
-
-export const ImportRequest: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ImportRequest",
-    modelProperties: {
-      ...ExportRequest.type.modelProperties,
-      databaseName: {
-        serializedName: "databaseName",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      edition: {
-        serializedName: "edition",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      serviceObjectiveName: {
-        serializedName: "serviceObjectiveName",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      maxSizeBytes: {
-        serializedName: "maxSizeBytes",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ImportExtensionProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ImportExtensionProperties",
-    modelProperties: {
-      ...ExportRequest.type.modelProperties,
-      operationMode: {
-        defaultValue: "Import",
-        isConstant: true,
-        serializedName: "operationMode",
-        type: {
-          name: "String"
         }
       }
     }

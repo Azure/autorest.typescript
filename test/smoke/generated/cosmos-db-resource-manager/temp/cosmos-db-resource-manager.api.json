@@ -476,8 +476,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "CassandraKeyspaceGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!CassandraKeyspaceGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -1427,8 +1427,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "CassandraTableGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!CassandraTableGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -5991,8 +5991,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "GremlinDatabaseGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!GremlinDatabaseGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -6243,8 +6243,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "GremlinGraphGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!GremlinGraphGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -9836,8 +9836,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "MongoDBCollectionGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!MongoDBCollectionGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -10143,8 +10143,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "MongoDBDatabaseGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!MongoDBDatabaseGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -12478,8 +12478,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "cosmos-db-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "cosmos-db-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -12526,8 +12526,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "cosmos-db-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "cosmos-db-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -13662,8 +13662,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "SqlContainerGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!SqlContainerGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -14043,8 +14043,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "SqlDatabaseGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!SqlDatabaseGetPropertiesOptions:type"
             },
             {
               "kind": "Content",
@@ -16099,8 +16099,8 @@
             },
             {
               "kind": "Reference",
-              "text": "OptionsResource",
-              "canonicalReference": "cosmos-db-resource-manager!OptionsResource:interface"
+              "text": "TableGetPropertiesOptions",
+              "canonicalReference": "cosmos-db-resource-manager!TableGetPropertiesOptions:type"
             },
             {
               "kind": "Content",

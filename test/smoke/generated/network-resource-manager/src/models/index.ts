@@ -776,7 +776,7 @@ export interface BastionShareableLinkListRequest {
 /** Bastion Shareable Link. */
 export interface BastionShareableLink {
   /** Reference of the virtual machine resource. */
-  vm: Resource;
+  vm: Vm;
   /**
    * The unique Bastion Shareable Link to the virtual machine.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5845,6 +5845,9 @@ export type ContainerNetworkInterfaceConfiguration = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
+/** Reference to container resource in remote resource provider. */
+export type Container = SubResource & {};
+
 /** Container network interface child resource. */
 export type ContainerNetworkInterface = SubResource & {
   /** The name of the resource. This name can be used to access the resource. */
@@ -5865,7 +5868,7 @@ export type ContainerNetworkInterface = SubResource & {
    */
   readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
   /** Reference to the container to which this container network interface is attached. */
-  container?: SubResource;
+  container?: Container;
   /**
    * Reference to the ip configuration on this container nic.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6343,9 +6346,6 @@ export type HubRouteTable = SubResource & {
    */
   readonly provisioningState?: ProvisioningState;
 };
-
-/** Reference to container resource in remote resource provider. */
-export type Container = SubResource & {};
 
 /** Route Filter Rule Resource. */
 export type PatchRouteFilterRule = SubResource & {
@@ -6931,6 +6931,9 @@ export type BastionHost = Resource & {
   readonly provisioningState?: ProvisioningState;
 };
 
+/** Describes a Virtual Machine. */
+export type Vm = Resource & {};
+
 /** A DDoS custom policy in a resource group. */
 export type DdosCustomPolicy = Resource & {
   /**
@@ -7391,9 +7394,9 @@ export type PrivateLinkService = Resource & {
    */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
   /** The visibility list of the private link service. */
-  visibility?: ResourceSet;
+  visibility?: PrivateLinkServicePropertiesVisibility;
   /** The auto-approval list of the private link service. */
-  autoApproval?: ResourceSet;
+  autoApproval?: PrivateLinkServicePropertiesAutoApproval;
   /** The list of Fqdn. */
   fqdns?: string[];
   /**
@@ -8021,9 +8024,6 @@ export type WebApplicationFirewallPolicy = Resource & {
    */
   readonly pathBasedRules?: SubResource[];
 };
-
-/** Describes a Virtual Machine. */
-export type Vm = Resource & {};
 
 /** Firewall Policy NAT Rule. */
 export type FirewallPolicyNatRule = FirewallPolicyRule & {

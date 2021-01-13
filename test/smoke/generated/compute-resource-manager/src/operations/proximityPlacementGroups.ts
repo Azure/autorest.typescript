@@ -14,7 +14,7 @@ import { ComputeManagementClient } from "../computeManagementClient";
 import {
   ProximityPlacementGroup,
   ProximityPlacementGroupsCreateOrUpdateResponse,
-  UpdateResource,
+  ProximityPlacementGroupUpdate,
   ProximityPlacementGroupsUpdateResponse,
   ProximityPlacementGroupsGetOptionalParams,
   ProximityPlacementGroupsGetResponse,
@@ -166,7 +166,7 @@ export class ProximityPlacementGroups {
   update(
     resourceGroupName: string,
     proximityPlacementGroupName: string,
-    parameters: UpdateResource,
+    parameters: ProximityPlacementGroupUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {

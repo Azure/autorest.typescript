@@ -80,33 +80,8 @@ export interface UserAssignedIdentitiesListResult {
   nextLink?: string;
 }
 
-/** Describes a system assigned identity resource. */
-export type SystemAssignedIdentity = Resource & {
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
-  /**
-   * The id of the tenant which the identity belongs to.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly tenantId?: string;
-  /**
-   * The id of the service principal object associated with the created identity.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly principalId?: string;
-  /**
-   * The id of the app associated with the identity. This is a random generated UUID by MSI.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly clientId?: string;
-  /**
-   *  The ManagedServiceIdentity DataPlane URL that can be queried to obtain the identity credentials.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly clientSecretUrl?: string;
-};
+/** The resource model definition for a ARM proxy resource. It will have everything other than required location and tags */
+export type ProxyResource = Resource & {};
 
 /** The resource model definition for a ARM tracked top level resource */
 export type TrackedResource = Resource & {
@@ -139,8 +114,33 @@ export type IdentityUpdate = Resource & {
   readonly clientId?: string;
 };
 
-/** The resource model definition for a ARM proxy resource. It will have everything other than required location and tags */
-export type ProxyResource = Resource & {};
+/** Describes a system assigned identity resource. */
+export type SystemAssignedIdentity = ProxyResource & {
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The id of the tenant which the identity belongs to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly tenantId?: string;
+  /**
+   * The id of the service principal object associated with the created identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly principalId?: string;
+  /**
+   * The id of the app associated with the identity. This is a random generated UUID by MSI.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly clientId?: string;
+  /**
+   *  The ManagedServiceIdentity DataPlane URL that can be queried to obtain the identity credentials.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly clientSecretUrl?: string;
+};
 
 /** Describes an identity resource. */
 export type Identity = TrackedResource & {

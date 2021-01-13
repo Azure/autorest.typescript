@@ -134,9 +134,7 @@ function getResponseItemType(
   // Find the 1st property containing the results to paginate over.
   const itemProperty = responseSchema.properties?.find(property => {
     const propertyName = getLanguageMetadata(property.language).name;
-    return (
-      propertyName === propertyName || itemName === property.serializedName
-    );
+    return propertyName === itemName || itemName === property.serializedName;
   });
 
   if (!itemProperty) {

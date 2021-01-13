@@ -889,8 +889,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -1195,8 +1195,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -2000,8 +2000,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -2345,8 +2345,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -2576,8 +2576,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -2957,8 +2957,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -5027,8 +5027,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -5137,8 +5137,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -5313,8 +5313,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -5848,8 +5848,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -5887,8 +5887,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -6453,8 +6453,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -6595,8 +6595,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -6957,8 +6957,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -8503,8 +8503,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -9233,8 +9233,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -9553,8 +9553,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -9688,8 +9688,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -10485,8 +10485,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -10849,8 +10849,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -11009,8 +11009,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -11360,8 +11360,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -12956,8 +12956,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -13456,8 +13456,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -13749,8 +13749,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -15686,8 +15686,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -18531,8 +18531,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -18883,8 +18883,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -18951,8 +18951,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Resource",
-                  "canonicalReference": "sql-resource-manager!Resource:interface"
+                  "text": "JobVersion",
+                  "canonicalReference": "sql-resource-manager!JobVersion:type"
                 },
                 {
                   "kind": "Content",
@@ -18984,8 +18984,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "JobVersion",
+              "canonicalReference": "sql-resource-manager!JobVersion:type"
             },
             {
               "kind": "Content",
@@ -19002,8 +19002,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "JobVersion",
+              "canonicalReference": "sql-resource-manager!JobVersion:type"
             },
             {
               "kind": "Content",
@@ -27599,8 +27599,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -31446,8 +31446,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -31775,8 +31775,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -32081,8 +32081,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -34141,8 +34141,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -34608,8 +34608,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -35105,8 +35105,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -35648,8 +35648,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -35995,8 +35995,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -36121,8 +36121,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -37873,8 +37873,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -38686,8 +38686,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -40834,8 +40834,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -41323,8 +41323,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -42074,8 +42074,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -42477,8 +42477,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -42645,8 +42645,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -42826,8 +42826,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -43071,8 +43071,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -43578,8 +43578,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -44074,8 +44074,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -44539,8 +44539,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -45380,8 +45380,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -45533,8 +45533,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -46058,8 +46058,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -46168,8 +46168,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -46502,8 +46502,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -46566,8 +46566,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -46918,8 +46918,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -47759,8 +47759,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -48798,8 +48798,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -49100,8 +49100,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -49658,8 +49658,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -53063,8 +53063,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -53308,8 +53308,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -53406,8 +53406,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -54608,8 +54608,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -55949,8 +55949,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -56499,8 +56499,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -56559,8 +56559,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -56646,8 +56646,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -57993,8 +57993,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -58545,8 +58545,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -58741,8 +58741,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -59052,8 +59052,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Resource",
-              "canonicalReference": "sql-resource-manager!Resource:interface"
+              "text": "ProxyResource",
+              "canonicalReference": "sql-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",

@@ -28,7 +28,7 @@ More information about these can be found [here](https://github.com/Azure/autore
 ```yaml
 version: 3.0.6320
 use-extension:
-  "@autorest/modelerfour": "4.15.421"
+  "@autorest/modelerfour": "4.15.448"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -55,6 +55,36 @@ typescript-scope/emitter:
   input-artifact: typescript-files
 
 output-artifact: typescript-files
+```
+
+## Help
+
+```yaml
+help-content:
+  typescript: # type: Help as defined in autorest-core/help.ts
+    activationScope: typescript
+    categoryFriendlyName: Typescript Generator
+    settings:
+      - key: azure-arm
+        description: Generate management plane flavor. Setting up the required flags for arm libraries
+      - key: license-header
+        description: "text to include as a header comment in generated files (magic strings: MICROSOFT_MIT, MICROSOFT_APACHE, MICROSOFT_MIT_NO_VERSION, MICROSOFT_APACHE_NO_VERSION, MICROSOFT_MIT_NO_CODEGEN)"
+        type: string
+      - key: add-credentials
+        description: include a credential property and constructor parameter supporting different authentication behaviors
+      - key: credential-scopes
+        type: string | string[]
+        description: Specify the scopes over which the credential functions. When generating management plane we default the scope to 'https://management.azure.com/.default'
+      - key: package-name
+        type: string
+        description: The name of your package. This is the name your package will be published under.
+      - key: source-code-folder-path
+        type: string
+        description: Where to output the generated code inside the output-folder. Defaults to src.
+      - key: generate-metadata
+        description: Whether to generate extra metadata in your package. For instance, generates a README file, license file etc if set to true.
+      - key: disable-async-iterators
+        description: Whether to generate pageable methods as AsyncIterators. Defaults to true.
 ```
 
 ## Language Specific Requirements: TypeScript

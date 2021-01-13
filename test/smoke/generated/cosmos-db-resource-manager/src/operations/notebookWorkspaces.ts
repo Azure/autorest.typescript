@@ -17,7 +17,7 @@ import {
   NotebookWorkspacesListByDatabaseAccountResponse,
   NotebookWorkspaceName,
   NotebookWorkspacesGetResponse,
-  ARMProxyResource,
+  NotebookWorkspaceCreateUpdateParameters,
   NotebookWorkspacesCreateOrUpdateResponse,
   NotebookWorkspacesListConnectionInfoResponse
 } from "../models";
@@ -154,7 +154,7 @@ export class NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    notebookCreateUpdateParameters: ARMProxyResource,
+    notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>> {
     const operationArguments: coreHttp.OperationArguments = {

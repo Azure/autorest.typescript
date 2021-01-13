@@ -172,7 +172,7 @@ describe("BodyDictionary", () => {
     } = await client.dictionary.getDictionaryItemNull();
     const expected = {
       "0": { "1": "one", "2": "two", "3": "three" },
-      "1": null,
+      "1": null as any,
       "2": { "7": "seven", "8": "eight", "9": "nine" }
     };
     assert.deepEqual(result, expected);

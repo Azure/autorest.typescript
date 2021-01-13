@@ -1188,7 +1188,7 @@ export interface JobVersionListResult {
    * Array of results.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly value?: Resource[];
+  readonly value?: JobVersion[];
   /**
    * Link to retrieve next page of results.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2915,8 +2915,50 @@ export interface OperationImpact {
   readonly changeValueRelative?: number;
 }
 
+/** ARM proxy resource. */
+export type ProxyResource = Resource & {};
+
+/** ARM tracked top level resource. */
+export type TrackedResource = Resource & {
+  /** Resource location. */
+  location: string;
+  /** Resource tags. */
+  tags?: { [propertyName: string]: string };
+};
+
+/** Import database parameters. */
+export type ImportRequest = ExportRequest & {
+  /** The name of the database to import. */
+  databaseName: string;
+  /**
+   * The edition for the database being created.
+   *
+   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
+   *
+   * ```azurecli
+   * az sql db list-editions -l <location> -o table
+   * ````
+   *
+   * ```powershell
+   * Get-AzSqlServerServiceObjective -Location <location>
+   * ````
+   *
+   */
+  edition: DatabaseEdition;
+  /** The name of the service objective to assign to the database. */
+  serviceObjectiveName: ServiceObjectiveName;
+  /** The maximum size for the newly imported database. */
+  maxSizeBytes: string;
+};
+
+/** Represents the properties for an import operation */
+export type ImportExtensionProperties = ExportRequest & {
+  /** The type of import operation being performed. This is always Import. */
+  operationMode: "Import";
+};
+
 /** A recoverable database */
-export type RecoverableDatabase = Resource & {
+export type RecoverableDatabase = ProxyResource & {
   /**
    * The edition of the database
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2940,7 +2982,7 @@ export type RecoverableDatabase = Resource & {
 };
 
 /** A restorable dropped database */
-export type RestorableDroppedDatabase = Resource & {
+export type RestorableDroppedDatabase = ProxyResource & {
   /**
    * The geo-location where the resource lives
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2989,7 +3031,7 @@ export type RestorableDroppedDatabase = Resource & {
 };
 
 /** A server secure connection policy. */
-export type ServerConnectionPolicy = Resource & {
+export type ServerConnectionPolicy = ProxyResource & {
   /**
    * Metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3005,7 +3047,7 @@ export type ServerConnectionPolicy = Resource & {
 };
 
 /** Contains information about a database Threat Detection policy. */
-export type DatabaseSecurityAlertPolicy = Resource & {
+export type DatabaseSecurityAlertPolicy = ProxyResource & {
   /** The geo-location where the resource lives */
   location?: string;
   /**
@@ -3032,7 +3074,7 @@ export type DatabaseSecurityAlertPolicy = Resource & {
 };
 
 /** Represents a database data masking policy. */
-export type DataMaskingPolicy = Resource & {
+export type DataMaskingPolicy = ProxyResource & {
   /**
    * The location of the data masking policy.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3060,7 +3102,7 @@ export type DataMaskingPolicy = Resource & {
 };
 
 /** Represents a database data masking rule. */
-export type DataMaskingRule = Resource & {
+export type DataMaskingRule = ProxyResource & {
   /**
    * The location of the data masking rule.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3101,7 +3143,7 @@ export type DataMaskingRule = Resource & {
 };
 
 /** Represents a server firewall rule. */
-export type FirewallRule = Resource & {
+export type FirewallRule = ProxyResource & {
   /**
    * Kind of server that contains this firewall rule.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3119,7 +3161,7 @@ export type FirewallRule = Resource & {
 };
 
 /** A database geo backup policy. */
-export type GeoBackupPolicy = Resource & {
+export type GeoBackupPolicy = ProxyResource & {
   /**
    * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3140,7 +3182,7 @@ export type GeoBackupPolicy = Resource & {
 };
 
 /** Response for Import/Export Get operation. */
-export type ImportExportResponse = Resource & {
+export type ImportExportResponse = ProxyResource & {
   /**
    * The request type of the operation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3188,16 +3230,8 @@ export type ImportExportResponse = Resource & {
   readonly errorMessage?: string;
 };
 
-/** ARM tracked top level resource. */
-export type TrackedResource = Resource & {
-  /** Resource location. */
-  location: string;
-  /** Resource tags. */
-  tags?: { [propertyName: string]: string };
-};
-
 /** Represents a recommended elastic pool. */
-export type RecommendedElasticPool = Resource & {
+export type RecommendedElasticPool = ProxyResource & {
   /**
    * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3244,7 +3278,7 @@ export type RecommendedElasticPool = Resource & {
 };
 
 /** Represents a database replication link. */
-export type ReplicationLink = Resource & {
+export type ReplicationLink = ProxyResource & {
   /**
    * Location of the server that contains this firewall rule.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3303,7 +3337,7 @@ export type ReplicationLink = Resource & {
 };
 
 /** Server communication link. */
-export type ServerCommunicationLink = Resource & {
+export type ServerCommunicationLink = ProxyResource & {
   /**
    * Communication link location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3324,7 +3358,7 @@ export type ServerCommunicationLink = Resource & {
 };
 
 /** Represents a database service objective. */
-export type ServiceObjective = Resource & {
+export type ServiceObjective = ProxyResource & {
   /**
    * The name for the service objective.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3353,7 +3387,7 @@ export type ServiceObjective = Resource & {
 };
 
 /** Represents the activity on an elastic pool. */
-export type ElasticPoolActivity = Resource & {
+export type ElasticPoolActivity = ProxyResource & {
   /** The geo-location where the resource lives */
   location?: string;
   /**
@@ -3459,7 +3493,7 @@ export type ElasticPoolActivity = Resource & {
 };
 
 /** Represents the activity on an elastic pool. */
-export type ElasticPoolDatabaseActivity = Resource & {
+export type ElasticPoolDatabaseActivity = ProxyResource & {
   /** The geo-location where the resource lives */
   location?: string;
   /**
@@ -3540,7 +3574,7 @@ export type ElasticPoolDatabaseActivity = Resource & {
 };
 
 /** Represents a Service Tier Advisor. */
-export type ServiceTierAdvisor = Resource & {
+export type ServiceTierAdvisor = ProxyResource & {
   /**
    * The observation period start (ISO8601 format).
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3639,7 +3673,7 @@ export type ServiceTierAdvisor = Resource & {
 };
 
 /** Represents a database transparent data encryption configuration. */
-export type TransparentDataEncryption = Resource & {
+export type TransparentDataEncryption = ProxyResource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3650,7 +3684,7 @@ export type TransparentDataEncryption = Resource & {
 };
 
 /** Represents a database transparent data encryption Scan. */
-export type TransparentDataEncryptionActivity = Resource & {
+export type TransparentDataEncryptionActivity = ProxyResource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3669,7 +3703,7 @@ export type TransparentDataEncryptionActivity = Resource & {
 };
 
 /** Database-level Automatic Tuning. */
-export type DatabaseAutomaticTuning = Resource & {
+export type DatabaseAutomaticTuning = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
@@ -3682,7 +3716,7 @@ export type DatabaseAutomaticTuning = Resource & {
 };
 
 /** The server encryption protector. */
-export type EncryptionProtector = Resource & {
+export type EncryptionProtector = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3715,7 +3749,7 @@ export type EncryptionProtector = Resource & {
 };
 
 /** A failover group. */
-export type FailoverGroup = Resource & {
+export type FailoverGroup = ProxyResource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3744,7 +3778,7 @@ export type FailoverGroup = Resource & {
 };
 
 /** A server key. */
-export type ServerKey = Resource & {
+export type ServerKey = ProxyResource & {
   /** Kind of encryption protector. This is metadata used for the Azure portal experience. */
   kind?: string;
   /**
@@ -3768,7 +3802,7 @@ export type ServerKey = Resource & {
 };
 
 /** An Azure SQL Database sync agent. */
-export type SyncAgent = Resource & {
+export type SyncAgent = ProxyResource & {
   /**
    * Name of the sync agent.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3804,7 +3838,7 @@ export type SyncAgent = Resource & {
 };
 
 /** An Azure SQL Database sync agent linked database. */
-export type SyncAgentLinkedDatabase = Resource & {
+export type SyncAgentLinkedDatabase = ProxyResource & {
   /**
    * Type of the sync agent linked database.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3838,7 +3872,7 @@ export type SyncAgentLinkedDatabase = Resource & {
 };
 
 /** An Azure SQL Database sync group. */
-export type SyncGroup = Resource & {
+export type SyncGroup = ProxyResource & {
   /** Sync interval of the sync group. */
   interval?: number;
   /**
@@ -3864,7 +3898,7 @@ export type SyncGroup = Resource & {
 };
 
 /** An Azure SQL Database sync member. */
-export type SyncMember = Resource & {
+export type SyncMember = ProxyResource & {
   /** Database type of the sync member. */
   databaseType?: SyncMemberDbType;
   /** ARM resource id of the sync agent in the sync member. */
@@ -3889,7 +3923,7 @@ export type SyncMember = Resource & {
 };
 
 /** Usage Metric of a Subscription in a Location. */
-export type SubscriptionUsage = Resource & {
+export type SubscriptionUsage = ProxyResource & {
   /**
    * User-readable name of the metric.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3913,7 +3947,7 @@ export type SubscriptionUsage = Resource & {
 };
 
 /** A virtual network rule. */
-export type VirtualNetworkRule = Resource & {
+export type VirtualNetworkRule = ProxyResource & {
   /** The ARM resource id of the virtual network subnet. */
   virtualNetworkSubnetId?: string;
   /** Create firewall rule before the virtual network has vnet service endpoint enabled. */
@@ -3926,7 +3960,7 @@ export type VirtualNetworkRule = Resource & {
 };
 
 /** An extended database blob auditing policy. */
-export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
+export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
   /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
   /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
@@ -4031,7 +4065,7 @@ export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
 };
 
 /** An extended server blob auditing policy. */
-export type ExtendedServerBlobAuditingPolicy = Resource & {
+export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
   /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
   /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
@@ -4136,7 +4170,7 @@ export type ExtendedServerBlobAuditingPolicy = Resource & {
 };
 
 /** A server blob auditing policy. */
-export type ServerBlobAuditingPolicy = Resource & {
+export type ServerBlobAuditingPolicy = ProxyResource & {
   /** Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required. */
   state?: BlobAuditingPolicyState;
   /** Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required. */
@@ -4239,7 +4273,7 @@ export type ServerBlobAuditingPolicy = Resource & {
 };
 
 /** A database blob auditing policy. */
-export type DatabaseBlobAuditingPolicy = Resource & {
+export type DatabaseBlobAuditingPolicy = ProxyResource & {
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4347,13 +4381,13 @@ export type DatabaseBlobAuditingPolicy = Resource & {
 };
 
 /** A database vulnerability assessment rule baseline. */
-export type DatabaseVulnerabilityAssessmentRuleBaseline = Resource & {
+export type DatabaseVulnerabilityAssessmentRuleBaseline = ProxyResource & {
   /** The rule baseline result */
   baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
 };
 
 /** A database vulnerability assessment. */
-export type DatabaseVulnerabilityAssessment = Resource & {
+export type DatabaseVulnerabilityAssessment = ProxyResource & {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
@@ -4365,7 +4399,7 @@ export type DatabaseVulnerabilityAssessment = Resource & {
 };
 
 /** A stored credential that can be used by a job to connect to target databases. */
-export type JobCredential = Resource & {
+export type JobCredential = ProxyResource & {
   /** The credential user name. */
   username?: string;
   /** The credential password. */
@@ -4373,7 +4407,7 @@ export type JobCredential = Resource & {
 };
 
 /** An execution of a job */
-export type JobExecution = Resource & {
+export type JobExecution = ProxyResource & {
   /**
    * The job version number.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4439,7 +4473,7 @@ export type JobExecution = Resource & {
 };
 
 /** A job. */
-export type Job = Resource & {
+export type Job = ProxyResource & {
   /** User-defined description of the job. */
   description?: string;
   /**
@@ -4452,7 +4486,7 @@ export type Job = Resource & {
 };
 
 /** A job step. */
-export type JobStep = Resource & {
+export type JobStep = ProxyResource & {
   /** The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified. */
   stepId?: number;
   /** The resource ID of the target group that the job step will be executed on. */
@@ -4468,13 +4502,16 @@ export type JobStep = Resource & {
 };
 
 /** A group of job targets. */
-export type JobTargetGroup = Resource & {
+export type JobTargetGroup = ProxyResource & {
   /** Members of the target group. */
   members?: JobTarget[];
 };
 
+/** A job version. */
+export type JobVersion = ProxyResource & {};
+
 /** A long term retention backup. */
-export type LongTermRetentionBackup = Resource & {
+export type LongTermRetentionBackup = ProxyResource & {
   /**
    * The server name that the backup database belong to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4508,7 +4545,7 @@ export type LongTermRetentionBackup = Resource & {
 };
 
 /** A long term retention policy. */
-export type BackupLongTermRetentionPolicy = Resource & {
+export type BackupLongTermRetentionPolicy = ProxyResource & {
   /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
@@ -4520,13 +4557,13 @@ export type BackupLongTermRetentionPolicy = Resource & {
 };
 
 /** A short term retention policy. */
-export type ManagedBackupShortTermRetentionPolicy = Resource & {
+export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
   /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
 /** Server-level Automatic Tuning. */
-export type ServerAutomaticTuning = Resource & {
+export type ServerAutomaticTuning = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
@@ -4539,7 +4576,7 @@ export type ServerAutomaticTuning = Resource & {
 };
 
 /** A server DNS alias. */
-export type ServerDnsAlias = Resource & {
+export type ServerDnsAlias = ProxyResource & {
   /**
    * The fully qualified DNS record for alias
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4548,7 +4585,7 @@ export type ServerDnsAlias = Resource & {
 };
 
 /** A server security alert policy. */
-export type ServerSecurityAlertPolicy = Resource & {
+export type ServerSecurityAlertPolicy = ProxyResource & {
   /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
@@ -4571,7 +4608,7 @@ export type ServerSecurityAlertPolicy = Resource & {
 };
 
 /** Database restore points. */
-export type RestorePoint = Resource & {
+export type RestorePoint = ProxyResource & {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4600,7 +4637,7 @@ export type RestorePoint = Resource & {
 };
 
 /** A managed database security alert policy. */
-export type ManagedDatabaseSecurityAlertPolicy = Resource & {
+export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
   /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
@@ -4623,7 +4660,7 @@ export type ManagedDatabaseSecurityAlertPolicy = Resource & {
 };
 
 /** A managed server security alert policy. */
-export type ManagedServerSecurityAlertPolicy = Resource & {
+export type ManagedServerSecurityAlertPolicy = ProxyResource & {
   /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action */
@@ -4646,7 +4683,7 @@ export type ManagedServerSecurityAlertPolicy = Resource & {
 };
 
 /** A sensitivity label. */
-export type SensitivityLabel = Resource & {
+export type SensitivityLabel = ProxyResource & {
   /** The label name. */
   labelName?: string;
   /** The label ID. */
@@ -4664,7 +4701,7 @@ export type SensitivityLabel = Resource & {
 };
 
 /** An Azure SQL managed instance administrator. */
-export type ManagedInstanceAdministrator = Resource & {
+export type ManagedInstanceAdministrator = ProxyResource & {
   /** Type of the managed instance administrator. */
   administratorType?: ManagedInstanceAdministratorType;
   /** Login name of the managed instance administrator. */
@@ -4676,7 +4713,7 @@ export type ManagedInstanceAdministrator = Resource & {
 };
 
 /** A database operation. */
-export type DatabaseOperation = Resource & {
+export type DatabaseOperation = ProxyResource & {
   /**
    * The name of the database the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4750,7 +4787,7 @@ export type DatabaseOperation = Resource & {
 };
 
 /** A elastic pool operation. */
-export type ElasticPoolOperation = Resource & {
+export type ElasticPoolOperation = ProxyResource & {
   /**
    * The name of the elastic pool the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4824,7 +4861,7 @@ export type ElasticPoolOperation = Resource & {
 };
 
 /** A vulnerability assessment scan record. */
-export type VulnerabilityAssessmentScanRecord = Resource & {
+export type VulnerabilityAssessmentScanRecord = ProxyResource & {
   /**
    * The scan ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4868,7 +4905,7 @@ export type VulnerabilityAssessmentScanRecord = Resource & {
 };
 
 /** A database Vulnerability Assessment scan export resource. */
-export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
+export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4877,7 +4914,7 @@ export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
 };
 
 /** An instance failover group. */
-export type InstanceFailoverGroup = Resource & {
+export type InstanceFailoverGroup = ProxyResource & {
   /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
   /** Read-only endpoint of the failover group instance. */
@@ -4899,13 +4936,13 @@ export type InstanceFailoverGroup = Resource & {
 };
 
 /** A short term retention policy. */
-export type BackupShortTermRetentionPolicy = Resource & {
+export type BackupShortTermRetentionPolicy = ProxyResource & {
   /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
 };
 
 /** A TDE certificate that can be uploaded into a server. */
-export type TdeCertificate = Resource & {
+export type TdeCertificate = ProxyResource & {
   /** The base64 encoded certificate private blob. */
   privateBlob?: string;
   /** The certificate password. */
@@ -4913,7 +4950,7 @@ export type TdeCertificate = Resource & {
 };
 
 /** A managed instance key. */
-export type ManagedInstanceKey = Resource & {
+export type ManagedInstanceKey = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4936,7 +4973,7 @@ export type ManagedInstanceKey = Resource & {
 };
 
 /** The managed instance encryption protector. */
-export type ManagedInstanceEncryptionProtector = Resource & {
+export type ManagedInstanceEncryptionProtector = ProxyResource & {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4959,7 +4996,7 @@ export type ManagedInstanceEncryptionProtector = Resource & {
 };
 
 /** A recoverable managed database resource. */
-export type RecoverableManagedDatabase = Resource & {
+export type RecoverableManagedDatabase = ProxyResource & {
   /**
    * The last available backup date.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4968,7 +5005,7 @@ export type RecoverableManagedDatabase = Resource & {
 };
 
 /** A managed instance vulnerability assessment. */
-export type ManagedInstanceVulnerabilityAssessment = Resource & {
+export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
@@ -4980,7 +5017,7 @@ export type ManagedInstanceVulnerabilityAssessment = Resource & {
 };
 
 /** A server vulnerability assessment. */
-export type ServerVulnerabilityAssessment = Resource & {
+export type ServerVulnerabilityAssessment = ProxyResource & {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
@@ -4992,7 +5029,7 @@ export type ServerVulnerabilityAssessment = Resource & {
 };
 
 /** A private endpoint connection */
-export type PrivateEndpointConnection = Resource & {
+export type PrivateEndpointConnection = ProxyResource & {
   /** Private endpoint which the connection belongs to. */
   privateEndpoint?: PrivateEndpointProperty;
   /** Connection state of the private endpoint connection. */
@@ -5005,7 +5042,7 @@ export type PrivateEndpointConnection = Resource & {
 };
 
 /** A private link resource */
-export type PrivateLinkResource = Resource & {
+export type PrivateLinkResource = ProxyResource & {
   /**
    * The private link resource group id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5014,7 +5051,7 @@ export type PrivateLinkResource = Resource & {
 };
 
 /** A long term retention backup for a managed database. */
-export type ManagedInstanceLongTermRetentionBackup = Resource & {
+export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
   /**
    * The managed instance that the backup database belongs to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5048,7 +5085,7 @@ export type ManagedInstanceLongTermRetentionBackup = Resource & {
 };
 
 /** A long term retention policy. */
-export type ManagedInstanceLongTermRetentionPolicy = Resource & {
+export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
   /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
@@ -5060,7 +5097,7 @@ export type ManagedInstanceLongTermRetentionPolicy = Resource & {
 };
 
 /** Workload group operations for a data warehouse */
-export type WorkloadGroup = Resource & {
+export type WorkloadGroup = ProxyResource & {
   /** The workload group minimum percentage resource. */
   minResourcePercent?: number;
   /** The workload group cap percentage resource. */
@@ -5076,7 +5113,7 @@ export type WorkloadGroup = Resource & {
 };
 
 /** Workload classifier operations for a data warehouse */
-export type WorkloadClassifier = Resource & {
+export type WorkloadClassifier = ProxyResource & {
   /** The workload classifier member name. */
   memberName?: string;
   /** The workload classifier label. */
@@ -5092,7 +5129,7 @@ export type WorkloadClassifier = Resource & {
 };
 
 /** A managed database restore details. */
-export type ManagedDatabaseRestoreDetailsResult = Resource & {
+export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
   /**
    * Restore status.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5146,7 +5183,7 @@ export type ManagedDatabaseRestoreDetailsResult = Resource & {
 };
 
 /** Azure Active Directory administrator. */
-export type ServerAzureADAdministrator = Resource & {
+export type ServerAzureADAdministrator = ProxyResource & {
   /** Type of the sever administrator. */
   administratorType?: AdministratorType;
   /** Login name of the server administrator. */
@@ -5160,7 +5197,7 @@ export type ServerAzureADAdministrator = Resource & {
 };
 
 /** A managed instance operation. */
-export type ManagedInstanceOperation = Resource & {
+export type ManagedInstanceOperation = ProxyResource & {
   /**
    * The name of the managed instance the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5229,7 +5266,7 @@ export type ManagedInstanceOperation = Resource & {
 };
 
 /** Represents a database recommended index. */
-export type RecommendedIndex = Resource & {
+export type RecommendedIndex = ProxyResource & {
   /**
    * The proposed index action. You can create a missing index, drop an unused index, or rebuild an existing index to improve its performance.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5290,43 +5327,6 @@ export type RecommendedIndex = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly reportedImpact?: OperationImpact[];
-};
-
-/** A job version. */
-export type JobVersion = Resource & {};
-
-/** ARM proxy resource. */
-export type ProxyResource = Resource & {};
-
-/** Import database parameters. */
-export type ImportRequest = ExportRequest & {
-  /** The name of the database to import. */
-  databaseName: string;
-  /**
-   * The edition for the database being created.
-   *
-   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
-   *
-   * ```azurecli
-   * az sql db list-editions -l <location> -o table
-   * ````
-   *
-   * ```powershell
-   * Get-AzSqlServerServiceObjective -Location <location>
-   * ````
-   *
-   */
-  edition: DatabaseEdition;
-  /** The name of the service objective to assign to the database. */
-  serviceObjectiveName: ServiceObjectiveName;
-  /** The maximum size for the newly imported database. */
-  maxSizeBytes: string;
-};
-
-/** Represents the properties for an import operation */
-export type ImportExtensionProperties = ExportRequest & {
-  /** The type of import operation being performed. This is always Import. */
-  operationMode: "Import";
 };
 
 /** An Azure SQL virtual cluster. */
@@ -9821,14 +9821,14 @@ export type JobVersionsListByJobResponse = JobVersionListResult & {
 };
 
 /** Contains response data for the get operation. */
-export type JobVersionsGetResponse = Resource & {
+export type JobVersionsGetResponse = JobVersion & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: Resource;
+    parsedBody: JobVersion;
   };
 };
 
