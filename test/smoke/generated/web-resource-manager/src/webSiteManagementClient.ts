@@ -884,7 +884,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
       typeParam: ["typeParam"],
       isFqdn: ["options", "isFqdn"]
     },
-    mapper: Mappers.ResourceNameAvailabilityRequest
+    mapper: { ...Mappers.ResourceNameAvailabilityRequest, required: true }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
