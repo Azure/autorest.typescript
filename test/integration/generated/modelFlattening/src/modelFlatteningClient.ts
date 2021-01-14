@@ -399,7 +399,7 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
       genericValue: ["options", "genericValue"],
       odataValue: ["options", "odataValue"]
     },
-    mapper: Mappers.SimpleProduct
+    mapper: { ...Mappers.SimpleProduct, required: true }
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
@@ -426,7 +426,7 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
       genericValue: ["flattenParameterGroup", "genericValue"],
       odataValue: ["flattenParameterGroup", "odataValue"]
     },
-    mapper: Mappers.SimpleProduct
+    mapper: { ...Mappers.SimpleProduct, required: true }
   },
   urlParameters: [Parameters.$host, Parameters.name],
   headerParameters: [Parameters.contentType, Parameters.accept],
