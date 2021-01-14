@@ -288,6 +288,8 @@ function buildRequestBody({
   const mapper = requestBody[0].mapper;
   let required: boolean = requestBody[0].required ?? false;
 
+  // If one of the requestbody in the spec has required set to true,
+  // we do not want to look into others.
   if (!required) {
     for (const rb of requestBody) {
       required = rb.required
