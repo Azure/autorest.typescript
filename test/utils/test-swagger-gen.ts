@@ -374,6 +374,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "appconfiguration",
     licenseHeader: true,
     hideClients: true
+  },
+  mapperrequired: {
+    swagger: "test/integration/swaggers/mapperrequired.json",
+    clientName: "MapperRequiredClient",
+    packageName: "mapperrequired",
+    licenseHeader: true
   }
 };
 
@@ -420,7 +426,7 @@ const generateSwaggers = async (
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
     }
 
-    let autorestCommand:string = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version} --hide-clients=${!!hideClients}`;
+    let autorestCommand: string = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version} --hide-clients=${!!hideClients}`;
 
     if (isDebugging) {
       autorestCommand = `${autorestCommand} --typescript.debugger`;

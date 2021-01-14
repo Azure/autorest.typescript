@@ -169,11 +169,19 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
           ? `Mappers.${requestBody.mapper}`
           : `${JSON.stringify(requestBody.mapper)}`;
 
-      writer.write(
-        `requestBody: { parameterPath: ${JSON.stringify(
-          requestBody.parameterPath
-        )}, mapper: ${mapper}}, `
-      );
+      if (requestBody.required) {
+        writer.write(
+          `requestBody: { parameterPath: ${JSON.stringify(
+            requestBody.parameterPath
+          )}, mapper: {...${mapper}, required: true}},`
+        );
+      } else {
+        writer.write(
+          `requestBody: { parameterPath: ${JSON.stringify(
+            requestBody.parameterPath
+          )}, mapper: ${mapper}}, `
+        );
+      }
     }
 
     if (formDataParams) {
@@ -251,6 +259,7 @@ type RequestBody = {
     [propertyName: string]: ParameterPath;
   };
   mapper: string | Mapper;
+  required: boolean;
 };
 
 /**
@@ -277,6 +286,21 @@ function buildRequestBody({
 
   // First get the mapper, this will be the mapper for the parameter before flattening
   const mapper = requestBody[0].mapper;
+  let required: boolean = requestBody[0].required ?? false;
+
+  // If one of the requestbody in the spec has required set to true,
+  // we do not want to look into others.
+  if (!required) {
+    for (const rb of requestBody) {
+      required = rb.required
+        ? rb.required
+        : rb.parameter.groupedBy && rb.parameter.groupedBy.required
+        ? rb.parameter.groupedBy.required
+        : required;
+
+      if (required) break;
+    }
+  }
 
   // Generate the request body from the parameters
   const parameters = requestBody.reduce((acc, curr) => {
@@ -313,7 +337,8 @@ function buildRequestBody({
 
   return {
     parameterPath: parameters,
-    mapper
+    mapper,
+    required
   };
 }
 
