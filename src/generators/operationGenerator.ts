@@ -288,12 +288,16 @@ function buildRequestBody({
   const mapper = requestBody[0].mapper;
   let required: boolean = requestBody[0].required ?? false;
 
-  for (const rb of requestBody) {
-    required = rb.required
-      ? rb.required
-      : rb.parameter.groupedBy && rb.parameter.groupedBy.required
-      ? rb.parameter.groupedBy.required
-      : required;
+  if (!required) {
+    for (const rb of requestBody) {
+      required = rb.required
+        ? rb.required
+        : rb.parameter.groupedBy && rb.parameter.groupedBy.required
+        ? rb.parameter.groupedBy.required
+        : required;
+
+      if (required) break;
+    }
   }
 
   // Generate the request body from the parameters
