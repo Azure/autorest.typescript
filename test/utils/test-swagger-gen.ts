@@ -385,6 +385,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/keyvaults-secrets.md",
     clientName: "KeyVaultClient",
     packageName: "@azure/keyvault-secrets"
+  },
+  nameChecker: {
+    swaggerOrConfig: "test/integration/swaggers/Data.md",
+    clientName: "SearchClient",
+    packageName: "@azure/search-documents"
   }
 };
 
@@ -432,7 +437,7 @@ const generateSwaggers = async (
     }
 
     let inputFileCommand: string = `${swaggerPath}`;
-    if (!swaggerPath.endsWith("md")) {
+    if (!swaggerPath.endsWith(".md")) {
       inputFileCommand = `--input-file=${inputFileCommand}`;
     }
 
