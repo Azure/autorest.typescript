@@ -432,7 +432,7 @@ const generateSwaggers = async (
     }
 
     let inputFileCommand: string = `${swaggerPath}`;
-    if (swaggerPath.endsWith("json")) {
+    if (!swaggerPath.endsWith("md")) {
       inputFileCommand = `--input-file=${inputFileCommand}`;
     }
 
