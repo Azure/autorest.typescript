@@ -59,31 +59,31 @@ directive:
   - from: swagger-document
     where: $.definitions.AutocompleteItem.properties
     transform: >
-      $["text"]["x-ms-client-name"] = "SDKCustomT$e$x$t";
-      $["queryPlusText"]["x-ms-client-name"] = "SDKCustomq$u$e$r$y$P$l$u$s$T$e$x$t";
+      $["text"]["x-ms-client-name"] = "SDKCustomT^e^x^t";
+      $["queryPlusText"]["x-ms-client-name"] = "SDKCustomq^u^e^r^y^P^l^u^s^T^e^x^t";
   - from: swagger-document
     where: $.definitions.AutocompleteRequest.properties
     transform: >
-      $["search"]["x-ms-client-name"] = "SDKCustomS$e$a$r$c$h$T$e$x$t";
+      $["search"]["x-ms-client-name"] = "SDKCustomS^e^a^r^c^h^T^e^x^t";
   - from: swagger-document
     where: $.definitions.SearchRequest.properties
     transform: >
-      $["search"]["x-ms-client-name"] = "SDKCustomS$e$a$r$c$h$T$e$x$t";
+      $["search"]["x-ms-client-name"] = "SDKCustomS^e^a^r^c^h^T^e^x^t";
   - from: swagger-document
     where: $.definitions.SuggestRequest.properties
     transform: >
-      $["search"]["x-ms-client-name"] = "SDKCustomS$e$a$r$c$h$T$e$x$t";
+      $["search"]["x-ms-client-name"] = "SDKCustomS^e^a^r^c^h^T^e^x^t";
   - from: swagger-document
     where: $.paths["/docs"].get.parameters[0]
     transform: >
-      $["x-ms-client-name"] = "SDKCustomS$e$a$r$c$h$T$e$x$t";
+      $["x-ms-client-name"] = "SDKCustomS^e^a^r^c^h^T^e^x^t";
 
 modelerfour:
   naming:
     override:
-      SDKCustomT$e$x$t: text
-      SDKCustomq$u$e$r$y$P$l$u$s$T$e$x$t: queryPlusText
-      SDKCustomS$e$a$r$c$h$T$e$x$t: searchText
+      SDKCustomT^e^x^t: text
+      SDKCustomq^u^e^r^y^P^l^u^s^T^e^x^t: queryPlusText
+      SDKCustomS^e^a^r^c^h^T^e^x^t: searchText
 ```
 
 ```yaml
