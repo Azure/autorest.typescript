@@ -30,7 +30,7 @@ npm install ${packageDetails.name}
 
 #### Sample code
 
-Refer the sample code in the [azure-sdk-for-js-samples](https://github.com/Azure/azure-sdk-for-js-samples) repository.
+Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
 
 ## Related projects
 
