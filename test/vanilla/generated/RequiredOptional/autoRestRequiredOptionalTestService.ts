@@ -23,7 +23,7 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
    * @param requiredGlobalQuery number of items to skip
    * @param [options] The parameter options
    */
-  constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
+  constructor(requiredGlobalPath: string | TokenCredential, requiredGlobalQuery: string | TokenCredential, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     super(requiredGlobalPath, requiredGlobalQuery, options);
     this.implicit = new operations.Implicit(this);
     this.explicit = new operations.Explicit(this);

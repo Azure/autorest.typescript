@@ -23,10 +23,15 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
 
   /**
    * Initializes a new instance of the AutoRestLongRunningOperationTestService class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
     super(credentials, options);
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);

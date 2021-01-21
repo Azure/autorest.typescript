@@ -29,10 +29,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
 
   /**
    * Initializes a new instance of the AzureCompositeModel class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AzureCompositeModelOptions) {
     super(credentials, options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);

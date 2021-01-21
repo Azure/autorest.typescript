@@ -23,7 +23,7 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
    * @param apiVersion Required string following pattern \d{2}-\d{2}-\d{4}
    * @param [options] The parameter options
    */
-  constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
+  constructor(subscriptionId: string | TokenCredential, apiVersion: string | TokenCredential, options?: Models.AutoRestValidationTestOptions) {
     if (subscriptionId == undefined) {
       throw new Error("'subscriptionId' cannot be null.");
     }

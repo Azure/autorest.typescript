@@ -20,11 +20,16 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
 
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string | TokenCredential, options?: Models.MicrosoftAzureTestUrlOptions) {
     super(credentials, subscriptionId, options);
     this.group = new operations.Group(this);
   }

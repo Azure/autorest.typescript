@@ -20,10 +20,15 @@ class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestPagingTestService class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestPagingTestServiceOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestPagingTestServiceOptions) {
     super(credentials, options);
     this.paging = new operations.Paging(this);
   }

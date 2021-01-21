@@ -17,10 +17,15 @@ import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceFor
 class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
   /**
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestReportServiceForAzureOptions) {
     super(credentials, options);
   }
 

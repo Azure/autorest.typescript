@@ -20,10 +20,15 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(credentials, options);
     this.paths = new operations.Paths(this);
   }

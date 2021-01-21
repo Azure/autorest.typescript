@@ -10,6 +10,7 @@
 import * as Models from "./models";
 import * as msRest from "@azure/ms-rest-js";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
+import { TokenCredential } from "@azure/core-auth";
 
 const packageName = "";
 const packageVersion = "";
@@ -19,10 +20,15 @@ export class AutoRestLongRunningOperationTestServiceContext extends msRestAzure.
 
   /**
    * Initializes a new instance of the AutoRestLongRunningOperationTestService class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * TokenCredential credential can be obtained as follows:
+   * ```js
+   * const { DefaultAzureCredential } = require("@azure/identity");
+   * const credential = new DefaultAzureCredential();
+   * ```
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

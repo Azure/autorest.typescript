@@ -6,6 +6,7 @@
   "dependencies": {
     "@azure/ms-rest-azure-js": "^2.0.1",
     "@azure/ms-rest-js": "^2.0.4",
+    "@azure/core-auth": "^1.1.4",
     "tslib": "^1.10.0"
   },
   "keywords": [
