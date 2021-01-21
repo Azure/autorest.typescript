@@ -390,6 +390,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/Data.md",
     clientName: "SearchClient",
     packageName: "@azure/search-documents"
+  },
+  petstore: {
+    swaggerOrConfig: "test/integration/swaggers/petstore.json",
+    clientName: "PetStore",
+    packageName: "petstore"
   }
 };
 

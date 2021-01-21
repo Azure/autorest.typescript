@@ -35,6 +35,7 @@ import {
   getAdditionalProperties
 } from "../utils/schemaHelpers";
 import { ObjectDetails } from "../models/modelDetails";
+import { MapperTypes } from "../utils/valueHelpers";
 
 interface PipelineValue {
   schema: Schema;
@@ -771,7 +772,9 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Object:
       return MapperType.Object;
     case SchemaType.Any:
-      return "any";
+      return MapperTypes.any;
+    case SchemaType.Uuid:
+      return MapperTypes.Uuid;
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);
   }

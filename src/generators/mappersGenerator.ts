@@ -316,7 +316,12 @@ function writeDefaultValue(
 ) {
   if (!isNil(defaultValue)) {
     return writer.write(
-      `defaultValue: ${getStringForValue(defaultValue, mapperType.name)},`
+      `defaultValue: ${getStringForValue(
+        defaultValue,
+        mapperType.name,
+        true,
+        mapperType
+      )},`
     );
   }
 
