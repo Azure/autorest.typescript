@@ -46,7 +46,8 @@ export function generatePackageJson(
       "rollup-plugin-node-resolve": "^3.4.0",
       "rollup-plugin-sourcemaps": "^0.4.2",
       "uglify-js": "^3.4.9",
-      "@microsoft/api-extractor": "7.9.10"
+      "@microsoft/api-extractor": "7.9.10",
+      mkdirp: "^1.0.4"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js`,
@@ -73,7 +74,7 @@ export function generatePackageJson(
     ],
     scripts: {
       build:
-        "tsc && rollup -c rollup.config.js && npm run minify && npm run extract-api",
+        "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
       prepack: "npm install && npm run build",
       "extract-api": "api-extractor run --local"
