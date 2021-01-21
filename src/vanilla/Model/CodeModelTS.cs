@@ -590,6 +590,7 @@ namespace AutoRest.TypeScript.Model
         public virtual void PackageDependencies(JSONObject dependencies)
         {
             dependencies.StringProperty("@azure/ms-rest-js", "^2.0.4");
+            dependencies.StringProperty("@azure/core-auth", "^1.1.4");
             dependencies.StringProperty("tslib", "^1.10.0");
             if (Settings.MultiapiLatest)
             {
