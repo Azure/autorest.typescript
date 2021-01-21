@@ -79,6 +79,7 @@ namespace AutoRest.TypeScript.Azure.Model
             TSBuilder builder = new TSBuilder();
 
             builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportFrom("TokenCredential", "@azure/core-auth");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
