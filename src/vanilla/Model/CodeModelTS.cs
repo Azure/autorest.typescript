@@ -404,6 +404,7 @@ namespace AutoRest.TypeScript.Model
                     requiredParams.Append(p.Name);
                     requiredParams.Append(": ");
                     requiredParams.Append(p.ModelType.TSType(inModelsModule: false));
+                    requiredParams.Append(" | TokenCredential");
 
                     first = false;
                 }
@@ -778,9 +779,10 @@ namespace AutoRest.TypeScript.Model
                 comment.Description($"Initializes a new instance of the {className} class.");
 
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
+                var tokenCredentialComment = "The simplest TokenCredential credential can be obtained as follows:\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n const credential = new DefaultAzureCredential();";
                 foreach (Property requiredParameter in requiredParameters)
                 {
-                    comment.Parameter(requiredParameter.Name, requiredParameter.Documentation);
+                    comment.Parameter(requiredParameter.Name, requiredParameter.Documentation + (requiredParameter.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? tokenCredentialComment : ""));
                 }
 
                 comment.Parameter("options", "The parameter options", isOptional: true);
