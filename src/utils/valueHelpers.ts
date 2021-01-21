@@ -3,6 +3,7 @@
 
 import { SchemaType, AllSchemaTypes } from "@azure-tools/codemodel";
 import { isNil, isEmpty } from "lodash";
+import { MapperType, SequenceMapperType } from "@azure/core-http";
 
 export enum MapperTypes {
   Base64Url = "Base64Url",
@@ -19,6 +20,7 @@ export enum MapperTypes {
   UnixTime = "UnixTime",
   Uuid = "Uuid",
   Number = "Number",
+  Sequence = "Sequence",
   any = "any"
 }
 
@@ -31,7 +33,8 @@ export enum MapperTypes {
 export function getStringForValue(
   value: any,
   valueType: AllSchemaTypes | MapperTypes | string,
-  quotedStrings = true
+  quotedStrings = true,
+  mapperType?: MapperType
 ): string {
   switch (valueType) {
     case SchemaType.ByteArray:
@@ -60,6 +63,13 @@ export function getStringForValue(
     case MapperTypes.Enum:
       const valueString = !!value ? value.toString() : "";
       return quotedStrings ? `"${valueString}"` : `${valueString}`;
+    case MapperTypes.Sequence:
+      if (mapperType) {
+        return getStringForValue(
+          value,
+          (mapperType as SequenceMapperType).element.type.name
+        );
+      }
     default:
       throw new Error(`Unexpected value type: ${valueType}`);
   }
