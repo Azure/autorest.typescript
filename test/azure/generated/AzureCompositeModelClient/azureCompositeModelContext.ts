@@ -27,7 +27,8 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
    * const { DefaultAzureCredential } = require("@azure/identity");
    * const credential = new DefaultAzureCredential();
    * For more information about these credentials, see {@link
-   * https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}```
+   * https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}
+   * ```
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AzureCompositeModelOptions) {
