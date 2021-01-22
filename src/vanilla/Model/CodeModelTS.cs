@@ -780,7 +780,7 @@ namespace AutoRest.TypeScript.Model
                 comment.Description($"Initializes a new instance of the {className} class.");
 
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
-                var tokenCredentialComment = " The simplest TokenCredential credential can be obtained as follows:\n```js\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n\t const credential = new DefaultAzureCredential();\n```";
+                var tokenCredentialComment = " The simplest TokenCredential credential can be obtained as follows:\n```js\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n\t const credential = new DefaultAzureCredential();\nFor more information about these credentials, see {@link https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}```";
                 foreach (Property requiredParameter in requiredParameters)
                 {
                     comment.Parameter(requiredParameter.Name, requiredParameter.Documentation + (requiredParameter.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? tokenCredentialComment : ""));
