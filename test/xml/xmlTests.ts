@@ -24,8 +24,8 @@ describe('typescript', function () {
   describe('XML client', function () {
     it('should be able to abort a simple XML get', async function () {
       const controller = getAbortController();
-      const slideshowPromise = testClient.xml.getSimple({ abortSignal: controller.signal });
       controller.abort();
+      const slideshowPromise = testClient.xml.getSimple({ abortSignal: controller.signal });
       const err: msRest.RestError = await msAssert.throwsAsync(slideshowPromise);
       err.code.should.equal("REQUEST_ABORTED_ERROR");
     });
