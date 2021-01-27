@@ -84,7 +84,7 @@
     "ts-node": "^7.0.1",
     "tslib": "^1.10.0",
     "tslint": "^5.10.0",
-    "typescript": "^3.2.2",
+    "typescript": "^3.6.0",
     "underscore": "^1.8.3",
     "webpack": "~4.26.1",
     "webpack-cli": "~3.1.2",
