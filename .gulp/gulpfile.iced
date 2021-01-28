@@ -72,7 +72,7 @@ task 'test/azure-metadata', '', [], (done) ->
 task 'test/multiapi', '', [], (done) ->
   cwd = "#{basefolder}/test/multiapi"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
-  await execute "npx lerna bootstrap", {cwd: cwd, silent: false}, defer _
+  await execute "npm run bootstrap", {cwd: cwd, silent: false}, defer _
   await execute "npm run build", { cwd: cwd, silent: false }, defer _
   done()
 
