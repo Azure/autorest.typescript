@@ -5,7 +5,7 @@
  */
 
 import * as msRest from "@azure/ms-rest-js";
-import TokenCredential from "@azure/core-auth";
+import { TokenCredential } from "@azure/core-auth";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -29,7 +29,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
    * @param subscriptionId The subscription id with value 'test12'.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string | TokenCredential, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     super(credentials, subscriptionId, options);
     this.paths = new operations.Paths(this);
   }

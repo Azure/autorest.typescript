@@ -16,7 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestResourceFlatteningTestServiceContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: msRest.ServiceClientCredentials | TokenCredential;
 
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.

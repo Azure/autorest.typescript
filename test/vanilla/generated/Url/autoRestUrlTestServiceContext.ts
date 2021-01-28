@@ -22,7 +22,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param [options] The parameter options
    */
-  constructor(globalStringPath: string | TokenCredential, options?: Models.AutoRestUrlTestServiceOptions) {
+  constructor(globalStringPath: string, options?: Models.AutoRestUrlTestServiceOptions) {
     if (globalStringPath == undefined) {
       throw new Error("'globalStringPath' cannot be null.");
     }

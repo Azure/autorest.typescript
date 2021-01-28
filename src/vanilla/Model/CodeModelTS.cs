@@ -404,7 +404,9 @@ namespace AutoRest.TypeScript.Model
                     requiredParams.Append(p.Name);
                     requiredParams.Append(": ");
                     requiredParams.Append(p.ModelType.TSType(inModelsModule: false));
-                    requiredParams.Append(" | TokenCredential");
+                    if (p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) {
+                        requiredParams.Append(" | TokenCredential");
+                    }
 
                     first = false;
                 }
@@ -589,7 +591,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^2.0.4");
+            dependencies.StringProperty("@azure/ms-rest-js", "^2.2.0");
             dependencies.StringProperty("@azure/core-auth", "^1.1.4");
             dependencies.StringProperty("tslib", "^1.10.0");
             if (Settings.MultiapiLatest)
@@ -953,7 +955,8 @@ namespace AutoRest.TypeScript.Model
 
             foreach (Property property in Properties.Where(property => ShouldGenerateProperty(property.Name)))
             {
-                builder.Property(property.Name, property.ModelType.TSType(false), property.IsRequired);
+	        string propertyType = property.ModelType.TSType(false);
+                builder.Property(property.Name, property.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? propertyType + " | TokenCredential" : propertyType, property.IsRequired);
             }
 
             return builder.ToString();
@@ -1200,7 +1203,7 @@ namespace AutoRest.TypeScript.Model
                 packageJson.StringProperty("types", $"./esm/{moduleName}.d.ts");
                 packageJson.ObjectProperty("devDependencies", devDependencies =>
                 {
-                    devDependencies.StringProperty("typescript", "^3.5.3");
+                    devDependencies.StringProperty("typescript", "^3.6.0");
                     devDependencies.StringProperty("rollup", "^1.18.0");
                     devDependencies.StringProperty("rollup-plugin-node-resolve", "^5.2.0");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");

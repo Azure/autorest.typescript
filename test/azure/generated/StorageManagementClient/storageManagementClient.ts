@@ -8,7 +8,7 @@
  */
 
 import * as msRest from "@azure/ms-rest-js";
-import TokenCredential from "@azure/core-auth";
+import { TokenCredential } from "@azure/core-auth";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -34,7 +34,7 @@ class StorageManagementClient extends StorageManagementClientContext {
    * subscription. The subscription ID forms part of the URI for every service call.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string | TokenCredential, options?: Models.StorageManagementClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.StorageManagementClientOptions) {
     super(credentials, subscriptionId, options);
     this.storageAccounts = new operations.StorageAccounts(this);
     this.usage = new operations.UsageOperations(this);

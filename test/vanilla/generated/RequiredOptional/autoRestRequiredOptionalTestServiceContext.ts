@@ -24,7 +24,7 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
    * @param requiredGlobalQuery number of items to skip
    * @param [options] The parameter options
    */
-  constructor(requiredGlobalPath: string | TokenCredential, requiredGlobalQuery: string | TokenCredential, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
+  constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     if (requiredGlobalPath == undefined) {
       throw new Error("'requiredGlobalPath' cannot be null.");
     }

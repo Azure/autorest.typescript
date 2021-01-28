@@ -19,7 +19,7 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * @param noRetryPolicy A query parameter.
    * @param [options] The parameter options
    */
-  constructor(noRetryPolicy: string | TokenCredential, options?: Models.AutoRestRenameParameterTestServiceOptions) {
+  constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     super(noRetryPolicy, options);
   }
 

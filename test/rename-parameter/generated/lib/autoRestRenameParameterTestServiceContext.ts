@@ -22,7 +22,7 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
    * @param noRetryPolicy A query parameter.
    * @param [options] The parameter options
    */
-  constructor(noRetryPolicy: string | TokenCredential, options?: Models.AutoRestRenameParameterTestServiceOptions) {
+  constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     if (noRetryPolicy == undefined) {
       throw new Error("'noRetryPolicy' cannot be null.");
     }

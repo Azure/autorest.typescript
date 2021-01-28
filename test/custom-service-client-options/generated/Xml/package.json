@@ -4,7 +4,7 @@
   "description": "AutoRestSwaggerBATXMLService Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
-    "@azure/ms-rest-js": "^2.0.4",
+    "@azure/ms-rest-js": "^2.2.0",
     "@azure/core-auth": "^1.1.4",
     "tslib": "^1.10.0"
   },
@@ -20,7 +20,7 @@
   "module": "./esm/autoRestSwaggerBATXMLService.js",
   "types": "./esm/autoRestSwaggerBATXMLService.d.ts",
   "devDependencies": {
-    "typescript": "^3.5.3",
+    "typescript": "^3.6.0",
     "rollup": "^1.18.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2",

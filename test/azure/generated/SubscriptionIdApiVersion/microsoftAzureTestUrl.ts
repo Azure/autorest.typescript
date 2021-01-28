@@ -8,7 +8,7 @@
  */
 
 import * as msRest from "@azure/ms-rest-js";
-import TokenCredential from "@azure/core-auth";
+import { TokenCredential } from "@azure/core-auth";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -32,7 +32,7 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string | TokenCredential, options?: Models.MicrosoftAzureTestUrlOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     super(credentials, subscriptionId, options);
     this.group = new operations.Group(this);
   }

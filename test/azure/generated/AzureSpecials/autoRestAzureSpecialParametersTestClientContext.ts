@@ -16,7 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: msRest.ServiceClientCredentials | TokenCredential;
   subscriptionId: string;
   apiVersion?: string;
 
@@ -34,7 +34,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string | TokenCredential, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }
