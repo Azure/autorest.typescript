@@ -148,7 +148,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         protected override void GenerateNodeSampleImports(TSBuilder builder)
         {
-            GenerateNodeSampleMsRestNodeAuthImport(builder);
+            GenerateNodeSampleIdentityImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
 

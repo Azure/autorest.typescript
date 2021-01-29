@@ -639,10 +639,12 @@ namespace AutoRest.TypeScript.Model
                 block.Line("console.log(result);");
             });
             builder.Text(")");
-            if (!isBrowser)
+            builder.Block(".catch((err) =>", false, block =>
             {
-                builder.Line(";");
-            }
+                block.Line("console.log(\"An error occurred:\");");
+                block.Line("console.error(err);");
+            });
+            builder.Line(");");
         }
 
         public string GenerateOperationSpecDefinitions(string emptyLine)
@@ -782,7 +784,7 @@ namespace AutoRest.TypeScript.Model
                 comment.Description($"Initializes a new instance of the {className} class.");
 
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
-                var tokenCredentialComment = " The simplest TokenCredential credential can be obtained as follows:\n```js\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n\t const credential = new DefaultAzureCredential();\n```\nFor more information about these credentials, see {@link https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}";
+                var tokenCredentialComment = " Credentials needed to authenticate the client using Azure Active Directory. Credentials implementing the TokenCredential interface from the @azure/identity package are recommended. Credentials implementing the ServiceClientCredentials interface from the older packages @azure/ms-rest-nodeauth and @azure/ms-rest-browserauth are also supported. The simplest TokenCredential credential can be obtained as follows:\n```js\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n\t const credential = new DefaultAzureCredential();\n```\nFor more information about these credentials, see {@link https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}";
                 foreach (Property requiredParameter in requiredParameters)
                 {
                     comment.Parameter(requiredParameter.Name, requiredParameter.Documentation + (requiredParameter.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? tokenCredentialComment : ""));
@@ -861,9 +863,9 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
+        protected void GenerateNodeSampleIdentityImport(TSBuilder builder)
         {
-            builder.Line("const msRestNodeAuth = require(\"@azure/ms-rest-nodeauth\");");
+            builder.Line("const { DefaultAzureCredential } = require(\"@azure/identity\");");
         }
 
         protected void GenerateNodeSampleClientImport(TSBuilder builder)
@@ -873,7 +875,7 @@ namespace AutoRest.TypeScript.Model
 
         protected virtual void GenerateNodeSampleImports(TSBuilder builder)
         {
-            GenerateNodeSampleMsRestNodeAuthImport(builder);
+            GenerateNodeSampleIdentityImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
 
@@ -892,18 +894,9 @@ namespace AutoRest.TypeScript.Model
 
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
             builder.Line();
-            builder.Line($"msRestNodeAuth.interactiveLogin().then((creds) => {{");
-            builder.Indent(() =>
-            {
-                builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
-                GenerateSampleMethod(builder, false);
-            });
-            builder.Line($"}}).catch((err) => {{");
-            builder.Indent(() =>
-            {
-                builder.Line("console.error(err);");
-            });
-            builder.Line($"}});");
+            builder.Line("const creds = new DefaultAzureCredential();");
+            builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
+            GenerateSampleMethod(builder, false);
         }
 
         public string GenerateReadmeMdBrowserSampleCode(string indentation = "")
@@ -919,34 +912,15 @@ namespace AutoRest.TypeScript.Model
         public void GenerateReadmeMdBrowserSampleCode(JSBuilder builder)
         {
             builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
-            builder.Text("const authManager = new msAuth.AuthManager(");
+            builder.Line("const credential = new InteractiveBrowserCredential(");
             builder.Object(tsObject =>
             {
                 tsObject.QuotedStringProperty("clientId", "<client id for your Azure AD app>");
                 tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
             });
             builder.Line(");");
-
-            builder.Line($"authManager.finalizeLogin().then((res) => {{");
-            builder.Indent(() =>
-            {
-                builder.If("!res.isLoggedIn", ifBlock =>
-                {
-                    ifBlock.LineComment("may cause redirects");
-                    ifBlock.Line("authManager.login();");
-                });
-
-                builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
-                GenerateSampleMethod(builder, true);
-                builder.Line($".catch((err) => {{");
-                builder.Indent(() =>
-                {
-                    builder.Line("console.log(\"An error occurred:\");");
-                    builder.Line("console.error(err);");
-                });
-                builder.Line($"}});");
-            });
-            builder.Line($"}});");
+            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
+            GenerateSampleMethod(builder, true);
         }
 
         public string GenerateClassProperties(string emptyLine)
@@ -990,12 +964,7 @@ namespace AutoRest.TypeScript.Model
                     GenerateAvailableAPIVersions(builder);
                     builder.Line();
                 }
-                builder.Section("How to use", () =>
-                {
-                    GenerateHowToUseInNodeJs(builder);
-                    builder.Line();
-                    GenerateHowToUseInBrowser(builder);
-                });
+                GenerateHowToUse(builder);
             });
             builder.Line();
             GenerateRelatedProjects(builder);
@@ -1019,7 +988,7 @@ namespace AutoRest.TypeScript.Model
             }
             else
             {
-                builder.Line($"This package contains an isomorphic SDK for {Name}.");
+                builder.Line($"This package contains an isomorphic SDK (runs both in node.js and in browsers) for {Name}.");
             }
         }
 
@@ -1029,7 +998,7 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.List(new[]
                 {
-                    "Node.js version 6.x.x or higher",
+                    "Node.js version 8.x.x or higher",
                     "Browser JavaScript"
                 });
             });
@@ -1039,7 +1008,31 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section("How to Install", () =>
             {
-                builder.Console($"npm install {PackageName}");
+                builder.Line("To use this SDK in your project, you will need to install two packages.");
+                builder.List(new[] {
+                    $"`{PackageName}` that contains the client.",
+                    "`@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory."
+                });
+                builder.Line("Install both packages using the below commands.");
+                builder.Line("Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.");
+
+                builder.Console(new string[] { $"npm install {PackageName}", $"npm install @azure/identity" });
+                builder.Line("Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
+                builder.Line("We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.");
+            });
+        }
+
+        private void GenerateHowToUse(MarkdownBuilder builder)
+        {
+            builder.Section("How to Use", () =>
+            {
+                builder.Line("There are multiple credentials available in the `@azure/identity` package to suit your different needs.");
+                builder.Line("Read about them in detail in [readme for @azure/identity package](https://www.npmjs.com/package/@azure/identity).");
+                builder.Line("To get started you can use the [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/README.md#defaultazurecredential) which tries different credentials internally until one of them succeeds.");
+                builder.Line("Most of the credentials would require you to register to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.");
+                GenerateHowToUseInNodeJs(builder);
+                builder.Line();
+                GenerateHowToUseInBrowser(builder);
             });
         }
 
@@ -1060,17 +1053,10 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToUseInNodeJs(MarkdownBuilder builder)
         {
-            builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
+            builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
             {
-                builder.Section("Install @azure/ms-rest-nodeauth", () =>
-                {
-                    builder.Line($"- Please install minimum version of `\"@azure/ms-rest-nodeauth\": \"{msRestNodeAuthVersion}\"`.");
-                    builder.Console($"npm install @azure/ms-rest-nodeauth@\"{msRestNodeAuthVersion}\"");
-                });
-                builder.Line();
                 builder.Section("Sample code", () =>
                 {
-                    builder.Line("While the below sample uses the interactive login, other authentication options can be found in the [README.md file of @azure/ms-rest-nodeauth](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) package");
                     builder.TypeScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
                 });
             });
@@ -1080,16 +1066,13 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section($"browser - Authentication, client creation and {GetSampleMethod().Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
             {
-                builder.Section("Install @azure/ms-rest-browserauth", () =>
-                {
-                    builder.Console("npm install @azure/ms-rest-browserauth");
-                });
+                builder.Line("In browser applications, we recommend using the `InteractiveBrowserCredential` that interactively authenticates using the default system browser.");
+                builder.Line("It is necessary to [create an Azure App Registration](https://docs.microsoft.com/azure/active-directory/develop/scenario-spa-app-registration) in the portal for your web application first.");
                 builder.Line();
                 builder.Section("Sample code", () =>
                 {
-                    builder.Line("See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.");
-                    builder.Line();
                     builder.List("index.html");
+                    builder.Line();
                     builder.HTML(htmlBuilder =>
                     {
                         htmlBuilder.DOCTYPE();
@@ -1103,7 +1086,7 @@ namespace AutoRest.TypeScript.Model
                                 {
                                     head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
                                 }
-                                head.Script("node_modules/@azure/ms-rest-browserauth/dist/msAuth.js");
+                                head.Script("node_modules/@azure/identity/dist/index.js");
                                 head.Script($"node_modules/{PackageName}/dist/{BundleFilename}.js");
                                 head.Script(jsBuilder =>
                                 {

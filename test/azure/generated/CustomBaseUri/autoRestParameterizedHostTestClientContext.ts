@@ -21,7 +21,11 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.
-   * @param credentials Credentials needed for the client to connect to Azure. The simplest
+   * @param credentials Credentials needed for the client to connect to Azure. Credentials needed to
+   * authenticate the client using Azure Active Directory. Credentials implementing the
+   * TokenCredential interface from the @azure/identity package are recommended. Credentials
+   * implementing the ServiceClientCredentials interface from the older packages
+   * @azure/ms-rest-nodeauth and @azure/ms-rest-browserauth are also supported. The simplest
    * TokenCredential credential can be obtained as follows:
    * ```js
    * const { DefaultAzureCredential } = require("@azure/identity");
