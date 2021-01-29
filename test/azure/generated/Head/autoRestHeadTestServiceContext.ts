@@ -30,8 +30,7 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
    * const { DefaultAzureCredential } = require("@azure/identity");
    * const credential = new DefaultAzureCredential();
    * ```
-   * For more information about these credentials, see {@link
-   * https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}
+   * For more information about these credentials, see {@link http://aka.ms/AAaz61x}
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestHeadTestServiceOptions) {

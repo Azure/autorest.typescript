@@ -28,8 +28,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
    * const { DefaultAzureCredential } = require("@azure/identity");
    * const credential = new DefaultAzureCredential();
    * ```
-   * For more information about these credentials, see {@link
-   * https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}
+   * For more information about these credentials, see {@link http://aka.ms/AAaz61x}
    * @param subscriptionId The subscription id with value 'test12'.
    * @param [options] The parameter options
    */

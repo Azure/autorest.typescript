@@ -32,8 +32,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
    * const { DefaultAzureCredential } = require("@azure/identity");
    * const credential = new DefaultAzureCredential();
    * ```
-   * For more information about these credentials, see {@link
-   * https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#authenticating-with-the-defaultazurecredential}
+   * For more information about these credentials, see {@link http://aka.ms/AAaz61x}
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
