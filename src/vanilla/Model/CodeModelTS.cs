@@ -1004,6 +1004,10 @@ namespace AutoRest.TypeScript.Model
             });
         }
 
+        private string buildPackageInstallationCommand() {
+            return Settings.PackageName != null ? $"npm install {Settings.PackageName}" : "install the package using the `npm install` command";
+        }
+
         private void GenerateHowToInstall(MarkdownBuilder builder)
         {
             builder.Section("How to install", () =>
@@ -1016,7 +1020,7 @@ namespace AutoRest.TypeScript.Model
                 builder.Line("Install both packages using the below commands.");
                 builder.Line("Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.");
 
-                builder.Console(new string[] { $"npm install {Settings.PackageName}", $"npm install @azure/identity" });
+                builder.Console(new string[] { buildPackageInstallationCommand(), $"npm install @azure/identity" });
                 builder.Line("Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
                 builder.Line("We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.");
             });

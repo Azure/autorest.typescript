@@ -15,7 +15,7 @@ To use this SDK in your project, you will need to install two packages.
 Install both packages using the below commands.
 Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.
 ```bash
-npm install
+install the package using the `npm install` command
 npm install @azure/identity
 ```
 Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
