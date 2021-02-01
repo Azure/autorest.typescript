@@ -20,17 +20,12 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRestAzure.Az
 
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
-   * @param credentials Credentials needed for the client to connect to Azure. Credentials needed to
-   * authenticate the client using Azure Active Directory. Credentials implementing the
-   * TokenCredential interface from the @azure/identity package are recommended. Credentials
-   * implementing the ServiceClientCredentials interface from the older packages
-   * @azure/ms-rest-nodeauth and @azure/ms-rest-browserauth are also supported. The simplest
-   * TokenCredential credential can be obtained as follows:
-   * ```js
-   * const { DefaultAzureCredential } = require("@azure/identity");
-   * const credential = new DefaultAzureCredential();
-   * ```
-   * For more information about these credentials, see {@link http://aka.ms/AAaz61x}
+   * @param credentials Credentials needed for the client to connect to Azure. Credentials
+   * implementing the TokenCredential interface from the @azure/identity package are recommended. For
+   * more information about these credentials, see
+   * {@link https://www.npmjs.com/package/@azure/identity}. Credentials implementing the
+   * ServiceClientCredentials interface from the older packages @azure/ms-rest-nodeauth and
+   * @azure/ms-rest-browserauth are also supported.
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, options?: Models.AutoRestResourceFlatteningTestServiceOptions) {

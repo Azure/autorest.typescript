@@ -784,7 +784,7 @@ namespace AutoRest.TypeScript.Model
                 comment.Description($"Initializes a new instance of the {className} class.");
 
                 IEnumerable<Property> requiredParameters = Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
-                var tokenCredentialComment = " Credentials needed to authenticate the client using Azure Active Directory. Credentials implementing the TokenCredential interface from the @azure/identity package are recommended. Credentials implementing the ServiceClientCredentials interface from the older packages @azure/ms-rest-nodeauth and @azure/ms-rest-browserauth are also supported. The simplest TokenCredential credential can be obtained as follows:\n```js\n const { DefaultAzureCredential } = require(\"@azure/identity\");\n\t const credential = new DefaultAzureCredential();\n```\nFor more information about these credentials, see {@link http://aka.ms/AAaz61x}";
+                var tokenCredentialComment = " Credentials implementing the TokenCredential interface from the @azure/identity package are recommended. For more information about these credentials, see\n {@link https://www.npmjs.com/package/@azure/identity}. Credentials implementing the ServiceClientCredentials interface from the older packages @azure/ms-rest-nodeauth and @azure/ms-rest-browserauth are also supported.";
                 foreach (Property requiredParameter in requiredParameters)
                 {
                     comment.Parameter(requiredParameter.Name, requiredParameter.Documentation + (requiredParameter.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? tokenCredentialComment : ""));
