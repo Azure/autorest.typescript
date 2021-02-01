@@ -4,7 +4,7 @@
 import * as prettier from "prettier";
 import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
-import { Host } from "@azure-tools/autorest-extension-base";
+import { Host } from "@autorest/extension-base";
 import { PackageDetails } from "./models/packageDetails";
 import { transformCodeModel } from "./transforms/transforms";
 
@@ -76,8 +76,7 @@ export async function generateTypeScriptLibrary(
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
 
-  const hideClients: boolean =
-    (await host.GetValue("hide-clients")) || false;
+  const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {

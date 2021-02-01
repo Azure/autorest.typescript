@@ -1,4 +1,4 @@
-import { Channel, Host, Message } from "@azure-tools/autorest-extension-base";
+import { Channel, Host, Message } from "@autorest/extension-base";
 import { assert } from "chai";
 import { getCredentialScopes } from "../../../src/transforms/optionsTransforms";
 
