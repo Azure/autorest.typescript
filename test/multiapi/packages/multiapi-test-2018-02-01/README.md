@@ -77,7 +77,7 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-      const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(res.creds, subscriptionId);
+      const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
       const vault = "testvault";
       const secret = "testsecret";
       const keyName = "testkeyName";

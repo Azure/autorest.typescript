@@ -919,7 +919,7 @@ namespace AutoRest.TypeScript.Model
                 tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
             });
             builder.Line(");");
-            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
+            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, true);
         }
 

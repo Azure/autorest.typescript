@@ -76,7 +76,7 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-      const client = new Bundle.AutoRestLongRunningOperationTestService(res.creds, subscriptionId);
+      const client = new Bundle.AutoRestLongRunningOperationTestService(creds, subscriptionId);
       const product = {
         tags: { "key1": "testtags" },
         location: "westus",
