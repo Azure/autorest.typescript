@@ -1021,9 +1021,8 @@ namespace AutoRest.TypeScript.Model
                     buildPackageNameAndDescription(),
                     "`@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory."
                 });
+                builder.Line();
                 builder.Line("Install both packages using the below commands.");
-                builder.Line("Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.");
-
                 builder.Console(new string[] { buildPackageInstallationCommand(), $"npm install @azure/identity" });
                 builder.Line("Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
                 builder.Line("We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.");
@@ -1034,7 +1033,7 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section("How to use", () =>
             {
-                builder.Line("There are multiple credentials available in the `@azure/identity` package to suit your different needs.");
+                builder.Line("There are multiple credentials available in the `@azure/identity` package to suit your different authentication needs.");
                 builder.Line("Read about them in detail in [readme for @azure/identity package](https://www.npmjs.com/package/@azure/identity).");
                 builder.Line("To get started you can use the [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/README.md#defaultazurecredential) which tries different credentials internally until one of them succeeds.");
                 builder.Line("Most of the credentials would require you to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.");
