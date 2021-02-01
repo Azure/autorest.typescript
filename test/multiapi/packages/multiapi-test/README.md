@@ -7,7 +7,7 @@ This package contains the **latest API version (2018-02-01)** of AutoRestParamet
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+### How to install
 
 To use this SDK in your project, you will need to install two packages.
 - `@azure/multiapi-test` that contains the client.
@@ -28,17 +28,17 @@ We strongly encourage you to use the credentials from `@azure/identity` where th
 | 2018-02-01 | https://npmjs.com/@azure/multiapi-test-2018-02-01 | ✔️ |
 | 2017-10-01 | https://npmjs.com/@azure/multiapi-test-2017-10-01 |  |
 
-### How to Use
+### How to use
 
 There are multiple credentials available in the `@azure/identity` package to suit your different needs.
 Read about them in detail in [readme for @azure/identity package](https://www.npmjs.com/package/@azure/identity).
 To get started you can use the [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/README.md#defaultazurecredential) which tries different credentials internally until one of them succeeds.
-Most of the credentials would require you to register to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.
-#### nodejs - client creation and getEmpty paths as an example written in JavaScript.
+Most of the credentials would require you to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.
+#### nodejs - Authentication, client creation, and getEmpty paths as an example written in JavaScript.
 
 ##### Sample code
 
-```typescript
+```javascript
 const { DefaultAzureCredential } = require("@azure/identity");
 const { AutoRestParameterizedCustomHostTestClient } = require("@azure/multiapi-test");
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -58,7 +58,7 @@ client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
 });
 ```
 
-#### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
+#### browser - Authentication, client creation, and getEmpty paths as an example written in JavaScript.
 
 In browser applications, we recommend using the `InteractiveBrowserCredential` that interactively authenticates using the default system browser.
 It is necessary to [create an Azure App Registration](https://docs.microsoft.com/azure/active-directory/develop/scenario-spa-app-registration) in the portal for your web application first.
@@ -72,7 +72,6 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
 <html lang="en">
   <head>
     <title>@azure/multiapi-test sample</title>
-    <script src="node_modules/@azure/ms-rest-js/dist/msRest.browser.js"></script>
     <script src="node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js"></script>
     <script src="node_modules/@azure/identity/dist/index.js"></script>
     <script src="node_modules/@azure/multiapi-test/dist/multiapi-test.js"></script>

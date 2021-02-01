@@ -9,31 +9,31 @@ For other API versions, see https://npmjs.com/@azure/multiapi-test.
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+### How to install
 
 To use this SDK in your project, you will need to install two packages.
-- `@azure/multiapi-test-2018-02-01` that contains the client.
+- `@azure/multiapi-test` that contains the client.
 - `@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory.
 Install both packages using the below commands.
 Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.
 ```bash
-npm install @azure/multiapi-test-2018-02-01
+npm install @azure/multiapi-test
 npm install @azure/identity
 ```
 Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
 We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.
 
-### How to Use
+### How to use
 
 There are multiple credentials available in the `@azure/identity` package to suit your different needs.
 Read about them in detail in [readme for @azure/identity package](https://www.npmjs.com/package/@azure/identity).
 To get started you can use the [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/README.md#defaultazurecredential) which tries different credentials internally until one of them succeeds.
-Most of the credentials would require you to register to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.
-#### nodejs - client creation and getEmpty paths as an example written in JavaScript.
+Most of the credentials would require you to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.
+#### nodejs - Authentication, client creation, and getEmpty paths as an example written in JavaScript.
 
 ##### Sample code
 
-```typescript
+```javascript
 const { DefaultAzureCredential } = require("@azure/identity");
 const { AutoRestParameterizedCustomHostTestClient } = require("@azure/multiapi-test-2018-02-01");
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -53,7 +53,7 @@ client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
 });
 ```
 
-#### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
+#### browser - Authentication, client creation, and getEmpty paths as an example written in JavaScript.
 
 In browser applications, we recommend using the `InteractiveBrowserCredential` that interactively authenticates using the default system browser.
 It is necessary to [create an Azure App Registration](https://docs.microsoft.com/azure/active-directory/develop/scenario-spa-app-registration) in the portal for your web application first.
@@ -67,7 +67,6 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
 <html lang="en">
   <head>
     <title>@azure/multiapi-test-2018-02-01 sample</title>
-    <script src="node_modules/@azure/ms-rest-js/dist/msRest.browser.js"></script>
     <script src="node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js"></script>
     <script src="node_modules/@azure/identity/dist/index.js"></script>
     <script src="node_modules/@azure/multiapi-test-2018-02-01/dist/multiapi-test-2018-02-01.js"></script>

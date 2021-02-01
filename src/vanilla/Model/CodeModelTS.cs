@@ -863,17 +863,17 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        protected void GenerateNodeSampleIdentityImport(TSBuilder builder)
+        protected void GenerateNodeSampleIdentityImport(JSBuilder builder)
         {
             builder.Line("const { DefaultAzureCredential } = require(\"@azure/identity\");");
         }
 
-        protected void GenerateNodeSampleClientImport(TSBuilder builder)
+        protected void GenerateNodeSampleClientImport(JSBuilder builder)
         {
             builder.Line($"const {{ {Name} }} = require(\"{PackageName}\");");   
         }
 
-        protected virtual void GenerateNodeSampleImports(TSBuilder builder)
+        protected virtual void GenerateNodeSampleImports(JSBuilder builder)
         {
             GenerateNodeSampleIdentityImport(builder);
             GenerateNodeSampleClientImport(builder);
@@ -881,14 +881,14 @@ namespace AutoRest.TypeScript.Model
 
         public string GenerateReadmeMdNodeSampleCode()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
 
             GenerateReadmeMdNodeSampleCode(builder);
 
             return builder.ToString();
         }
 
-        public void GenerateReadmeMdNodeSampleCode(TSBuilder builder)
+        public void GenerateReadmeMdNodeSampleCode(JSBuilder builder)
         {
             GenerateNodeSampleImports(builder);
 
@@ -1006,17 +1006,17 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToInstall(MarkdownBuilder builder)
         {
-            builder.Section("How to Install", () =>
+            builder.Section("How to install", () =>
             {
                 builder.Line("To use this SDK in your project, you will need to install two packages.");
                 builder.List(new[] {
-                    $"`{PackageName}` that contains the client.",
+                    $"`{Settings.PackageName}` that contains the client.",
                     "`@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory."
                 });
                 builder.Line("Install both packages using the below commands.");
                 builder.Line("Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.");
 
-                builder.Console(new string[] { $"npm install {PackageName}", $"npm install @azure/identity" });
+                builder.Console(new string[] { $"npm install {Settings.PackageName}", $"npm install @azure/identity" });
                 builder.Line("Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
                 builder.Line("We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.");
             });
@@ -1024,12 +1024,12 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToUse(MarkdownBuilder builder)
         {
-            builder.Section("How to Use", () =>
+            builder.Section("How to use", () =>
             {
                 builder.Line("There are multiple credentials available in the `@azure/identity` package to suit your different needs.");
                 builder.Line("Read about them in detail in [readme for @azure/identity package](https://www.npmjs.com/package/@azure/identity).");
                 builder.Line("To get started you can use the [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/README.md#defaultazurecredential) which tries different credentials internally until one of them succeeds.");
-                builder.Line("Most of the credentials would require you to register to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.");
+                builder.Line("Most of the credentials would require you to [create an Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#application-registration) first.");
                 GenerateHowToUseInNodeJs(builder);
                 builder.Line();
                 GenerateHowToUseInBrowser(builder);
@@ -1053,18 +1053,18 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateHowToUseInNodeJs(MarkdownBuilder builder)
         {
-            builder.Section($"nodejs - client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
+            builder.Section($"nodejs - Authentication, client creation, and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
             {
                 builder.Section("Sample code", () =>
                 {
-                    builder.TypeScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
+                    builder.JavaScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
                 });
             });
         }
 
         private void GenerateHowToUseInBrowser(MarkdownBuilder builder)
         {
-            builder.Section($"browser - Authentication, client creation and {GetSampleMethod().Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
+            builder.Section($"browser - Authentication, client creation, and {GetSampleMethod().Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
             {
                 builder.Line("In browser applications, we recommend using the `InteractiveBrowserCredential` that interactively authenticates using the default system browser.");
                 builder.Line("It is necessary to [create an Azure App Registration](https://docs.microsoft.com/azure/active-directory/develop/scenario-spa-app-registration) in the portal for your web application first.");
@@ -1081,7 +1081,6 @@ namespace AutoRest.TypeScript.Model
                             html.Head(head =>
                             {
                                 head.Title($"{PackageName} sample");
-                                head.Script("node_modules/@azure/ms-rest-js/dist/msRest.browser.js");
                                 if (IsAzure)
                                 {
                                     head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
