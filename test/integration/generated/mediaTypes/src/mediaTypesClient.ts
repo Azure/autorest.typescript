@@ -16,6 +16,7 @@ import {
   MediaTypesClientAnalyzeBody$binaryOptionalParams,
   MediaTypesClientAnalyzeBody$jsonOptionalParams,
   MediaTypesClientAnalyzeBodyResponse,
+  MediaTypesClientContentTypeWithEncodingOptionalParams,
   MediaTypesClientContentTypeWithEncodingResponse
 } from "./models";
 
@@ -31,12 +32,10 @@ export class MediaTypesClient extends MediaTypesClientContext {
   /**
    * Analyze body, that could be different media types.
    * @param contentType Upload file type
-   * @param input Input parameter.
    * @param options The options parameters.
    */
   analyzeBody(
     contentType: ContentType,
-    input: coreHttp.HttpRequestBody,
     options?: MediaTypesClientAnalyzeBody$binaryOptionalParams
   ): Promise<MediaTypesClientAnalyzeBodyResponse>;
   /**
@@ -54,11 +53,7 @@ export class MediaTypesClient extends MediaTypesClientContext {
    */
   analyzeBody(
     ...args:
-      | [
-          ContentType,
-          coreHttp.HttpRequestBody,
-          MediaTypesClientAnalyzeBody$binaryOptionalParams?
-        ]
+      | [ContentType, MediaTypesClientAnalyzeBody$binaryOptionalParams?]
       | ["application/json", MediaTypesClientAnalyzeBody$jsonOptionalParams?]
   ): Promise<MediaTypesClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
@@ -70,11 +65,7 @@ export class MediaTypesClient extends MediaTypesClientContext {
       args[0] === "image/tiff"
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
-      operationArguments = {
-        contentType: args[0],
-        input: args[1],
-        options: args[2]
-      };
+      operationArguments = { contentType: args[0], options: args[1] };
     } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
@@ -94,15 +85,12 @@ export class MediaTypesClient extends MediaTypesClientContext {
 
   /**
    * Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter
-   * @param input Input parameter.
    * @param options The options parameters.
    */
   contentTypeWithEncoding(
-    input: string,
-    options?: coreHttp.OperationOptions
+    options?: MediaTypesClientContentTypeWithEncodingOptionalParams
   ): Promise<MediaTypesClientContentTypeWithEncodingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
-      input,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.sendOperationRequest(

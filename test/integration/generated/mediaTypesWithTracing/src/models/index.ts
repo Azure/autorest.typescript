@@ -23,7 +23,10 @@ export type ContentType =
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreHttp.OperationOptions {
+  /** Input parameter. */
+  input?: coreHttp.HttpRequestBody;
+}
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams
@@ -46,6 +49,13 @@ export type MediaTypesWithTracingClientAnalyzeBodyResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Input parameter. */
+  input?: string;
+}
 
 /** Contains response data for the contentTypeWithEncoding operation. */
 export type MediaTypesWithTracingClientContentTypeWithEncodingResponse = {
