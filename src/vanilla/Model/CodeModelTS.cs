@@ -1008,13 +1008,17 @@ namespace AutoRest.TypeScript.Model
             return Settings.PackageName != null ? $"npm install {Settings.PackageName}" : "install the package using the `npm install` command";
         }
 
+        private string buildPackageNameAndDescription() {
+            return Settings.PackageName != null ? $"`{Settings.PackageName}` that contains the client." : "this package that contains the client";
+        }
+
         private void GenerateHowToInstall(MarkdownBuilder builder)
         {
             builder.Section("How to install", () =>
             {
                 builder.Line("To use this SDK in your project, you will need to install two packages.");
                 builder.List(new[] {
-                    $"`{Settings.PackageName}` that contains the client.",
+                    buildPackageNameAndDescription(),
                     "`@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory."
                 });
                 builder.Line("Install both packages using the below commands.");

@@ -10,7 +10,7 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 ### How to install
 
 To use this SDK in your project, you will need to install two packages.
-- `` that contains the client.
+- this package that contains the client
 - `@azure/identity` that contains different credentials for you to authenticate the client using Azure Active Directory.
 Install both packages using the below commands.
 Alternatively, you can add these to the dependencies section in your package.json and then run `npm install`.
