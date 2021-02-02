@@ -1957,7 +1957,7 @@ export const GenericResource: coreHttp.CompositeMapper = {
       },
       kind: {
         constraints: {
-          Pattern: new RegExp("^[-w._,()]+$")
+          Pattern: new RegExp("^[-\\w\\._,\\(\\)]+$")
         },
         serializedName: "kind",
         type: {

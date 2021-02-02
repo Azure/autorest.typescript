@@ -244,7 +244,9 @@ function writeMapperContraints(
     .write("constraints:")
     .block(() => {
       if (Pattern) {
-        writer.write(`Pattern: new RegExp("${Pattern.source}"), `);
+        writer.write(
+          `Pattern: new RegExp("${Pattern.source.replace(/\\/g, "\\\\")}"), `
+        );
       }
 
       writeObjectProps(restContstraints, writer);

@@ -85,7 +85,7 @@ export const pageRange: OperationQueryParameter = {
       name: "Sequence",
       element: {
         constraints: {
-          Pattern: new RegExp("^d+(-d+)?$"),
+          Pattern: new RegExp("^\\d+(-\\d+)?$"),
           MaxLength: 24,
           MinLength: 1
         },

@@ -463,7 +463,9 @@ function getExtensibleChoiceDescription(choice: UnionDetails) {
 
   const valueDescriptions = choice.properties
     .map(p => `**${p.value}**${p.description ? `: ${p.description}` : ""}`)
-    .join(` \\\n`);
+    .join(` \\\n`)
+    // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
+    .replace(/\//g, "\\/");
   const enumName = getExtensibleEnumName(choice);
   const enumLink = `{@link ${enumName}} can be used interchangeably with ${choice.name},\n this enum contains the known values that the service supports.`;
 

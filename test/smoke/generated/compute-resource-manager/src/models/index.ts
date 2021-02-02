@@ -4149,7 +4149,7 @@ export const enum KnownDiskStorageAccountTypes {
  * ### Know values supported by the service
  * **Standard_LRS**: Standard HDD locally redundant storage. Best for backup, non-critical, and infrequent access. \
  * **Premium_LRS**: Premium SSD locally redundant storage. Best for production and performance sensitive workloads. \
- * **StandardSSD_LRS**: Standard SSD locally redundant storage. Best for web servers, lightly used enterprise applications and dev/test. \
+ * **StandardSSD_LRS**: Standard SSD locally redundant storage. Best for web servers, lightly used enterprise applications and dev\/test. \
  * **UltraSSD_LRS**: Ultra SSD locally redundant storage. Best for IO-intensive workloads such as SAP HANA, top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads.
  */
 export type DiskStorageAccountTypes = string;

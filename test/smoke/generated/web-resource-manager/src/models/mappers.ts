@@ -3675,7 +3675,7 @@ export const CsmMoveResourceEnvelope: coreHttp.CompositeMapper = {
     modelProperties: {
       targetResourceGroup: {
         constraints: {
-          Pattern: new RegExp(" ^[-w._()]+[^.]$"),
+          Pattern: new RegExp(" ^[-\\w\\._\\(\\)]+[^\\.]$"),
           MaxLength: 90,
           MinLength: 1
         },

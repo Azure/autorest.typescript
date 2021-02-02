@@ -1186,7 +1186,7 @@ export const location1: OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._ ]+$")
+      Pattern: new RegExp("^[-\\w\\._ ]+$")
     },
     serializedName: "location",
     required: true,

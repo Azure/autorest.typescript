@@ -85,7 +85,7 @@ export const deploymentName: OperationURLParameter = {
   parameterPath: "deploymentName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
+      Pattern: new RegExp("^[-\\w\\._\\(\\)]+$"),
       MaxLength: 64,
       MinLength: 1
     },
@@ -174,7 +174,7 @@ export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
+      Pattern: new RegExp("^[-\\w\\._\\(\\)]+$"),
       MaxLength: 90,
       MinLength: 1
     },
@@ -227,7 +227,7 @@ export const sourceResourceGroupName: OperationURLParameter = {
   parameterPath: "sourceResourceGroupName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
+      Pattern: new RegExp("^[-\\w\\._\\(\\)]+$"),
       MaxLength: 90,
       MinLength: 1
     },

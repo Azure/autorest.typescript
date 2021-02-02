@@ -11800,7 +11800,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "web-resource-manager!CheckNameResourceTypes:type",
-          "docComment": "/**\n * Defines values for CheckNameResourceTypes. \\ {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes, this enum contains the known values that the service supports. ### Know values supported by the service **Site** \\ **Slot** \\ **HostingEnvironment** \\ **PublishingUser** \\ **Microsoft.Web/sites** \\ **Microsoft.Web/sites/slots** \\ **Microsoft.Web/hostingEnvironments** \\ **Microsoft.Web/publishingUsers**\n */\n",
+          "docComment": "/**\n * Defines values for CheckNameResourceTypes. \\ {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes, this enum contains the known values that the service supports. ### Know values supported by the service **Site** \\ **Slot** \\ **HostingEnvironment** \\ **PublishingUser** \\ **Microsoft.Web\\/sites** \\ **Microsoft.Web\\/sites\\/slots** \\ **Microsoft.Web\\/hostingEnvironments** \\ **Microsoft.Web\\/publishingUsers**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
