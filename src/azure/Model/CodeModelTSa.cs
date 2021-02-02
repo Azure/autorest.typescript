@@ -70,7 +70,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-azure-js", "^2.0.1");
+            dependencies.StringProperty("@azure/ms-rest-azure-js", "^2.1.0");
             base.PackageDependencies(dependencies);
         }
 
@@ -79,6 +79,7 @@ namespace AutoRest.TypeScript.Azure.Model
             TSBuilder builder = new TSBuilder();
 
             builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.Import(new string[] {"TokenCredential"}, "@azure/core-auth");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
@@ -145,9 +146,9 @@ namespace AutoRest.TypeScript.Azure.Model
             return builder.ToString();
         }
 
-        protected override void GenerateNodeSampleImports(TSBuilder builder)
+        protected override void GenerateNodeSampleImports(JSBuilder builder)
         {
-            GenerateNodeSampleMsRestNodeAuthImport(builder);
+            GenerateNodeSampleIdentityImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
 

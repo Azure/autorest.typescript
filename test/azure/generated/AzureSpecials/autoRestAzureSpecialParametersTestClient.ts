@@ -8,6 +8,7 @@
  */
 
 import * as msRest from "@azure/ms-rest-js";
+import { TokenCredential } from "@azure/core-auth";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -27,12 +28,17 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
 
   /**
    * Initializes a new instance of the AutoRestAzureSpecialParametersTestClient class.
-   * @param credentials Credentials needed for the client to connect to Azure.
+   * @param credentials Credentials needed for the client to connect to Azure. Credentials
+   * implementing the TokenCredential interface from the @azure/identity package are recommended. For
+   * more information about these credentials, see
+   * {@link https://www.npmjs.com/package/@azure/identity}. Credentials implementing the
+   * ServiceClientCredentials interface from the older packages @azure/ms-rest-nodeauth and
+   * @azure/ms-rest-browserauth are also supported.
    * @param subscriptionId The subscription id, which appears in the path, always modeled in
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
+  constructor(credentials: msRest.ServiceClientCredentials | TokenCredential, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     super(credentials, subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);
