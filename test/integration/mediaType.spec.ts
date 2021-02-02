@@ -33,7 +33,9 @@ import { MediaTypesWithTracingClient } from "./generated/mediaTypesWithTracing/s
 
     describe("#analyzeBody", () => {
       it("works with binary content type", async () => {
-        const response = await client.analyzeBody("application/pdf", "PDF");
+        const response = await client.analyzeBody("application/pdf", {
+          input: "PDF"
+        });
 
         expect(response.body).to.equal(
           "Nice job with PDF",
@@ -64,7 +66,8 @@ import { MediaTypesWithTracingClient } from "./generated/mediaTypesWithTracing/s
     describe("#contentTypeWithEncoding", () => {
       it("works with text/plain", async () => {
         client = new MediaTypes();
-        const response = await client.contentTypeWithEncoding("test", {
+        const response = await client.contentTypeWithEncoding({
+          input: "test",
           requestOptions: {
             customHeaders: { "content-type": "text/plain; encoding=UTF-8" }
           }

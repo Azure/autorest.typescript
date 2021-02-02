@@ -6164,7 +6164,7 @@ export const ContainerServiceWindowsProfile: coreHttp.CompositeMapper = {
       adminPassword: {
         constraints: {
           Pattern: new RegExp(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()])[a-zA-Zd!@#$%^&*()]{12,123}$"
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%\\^&\\*\\(\\)])[a-zA-Z\\d!@#$%\\^&\\*\\(\\)]{12,123}$"
           )
         },
         serializedName: "adminPassword",

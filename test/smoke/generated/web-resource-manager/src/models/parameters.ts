@@ -153,7 +153,7 @@ export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._()]+[^.]$"),
+      Pattern: new RegExp("^[-\\w\\._\\(\\)]+[^\\.]$"),
       MaxLength: 90,
       MinLength: 1
     },
@@ -274,7 +274,7 @@ export const domainName1: OperationURLParameter = {
   parameterPath: "domainName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("[a-zA-Z0-9][a-zA-Z0-9.-]+")
+      Pattern: new RegExp("[a-zA-Z0-9][a-zA-Z0-9\\.-]+")
     },
     serializedName: "domainName",
     required: true,

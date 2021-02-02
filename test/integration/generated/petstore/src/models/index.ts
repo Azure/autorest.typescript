@@ -96,6 +96,13 @@ export const enum KnownOrderStatus {
 export type OrderStatus = string;
 
 /** Optional parameters. */
+export interface PetStoreAddPetUsingByteArrayOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Pet object in the form of byte array */
+  body?: coreHttp.HttpRequestBody;
+}
+
+/** Optional parameters. */
 export interface PetStoreAddPetOptionalParams
   extends coreHttp.OperationOptions {
   /** Pet object that needs to be added to the store */

@@ -6068,10 +6068,10 @@ export const enum KnownCheckNameResourceTypes {
  * **Slot** \
  * **HostingEnvironment** \
  * **PublishingUser** \
- * **Microsoft.Web/sites** \
- * **Microsoft.Web/sites/slots** \
- * **Microsoft.Web/hostingEnvironments** \
- * **Microsoft.Web/publishingUsers**
+ * **Microsoft.Web\/sites** \
+ * **Microsoft.Web\/sites\/slots** \
+ * **Microsoft.Web\/hostingEnvironments** \
+ * **Microsoft.Web\/publishingUsers**
  */
 export type CheckNameResourceTypes = string;
 

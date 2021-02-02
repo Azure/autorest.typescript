@@ -18,6 +18,7 @@ import {
   MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams,
   MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams,
   MediaTypesWithTracingClientAnalyzeBodyResponse,
+  MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams,
   MediaTypesWithTracingClientContentTypeWithEncodingResponse
 } from "./models";
 
@@ -33,12 +34,10 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   /**
    * Analyze body, that could be different media types.
    * @param contentType Upload file type
-   * @param input Input parameter.
    * @param options The options parameters.
    */
   analyzeBody(
     contentType: ContentType,
-    input: coreHttp.HttpRequestBody,
     options?: MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams
   ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse>;
   /**
@@ -58,7 +57,6 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
     ...args:
       | [
           ContentType,
-          coreHttp.HttpRequestBody,
           MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams?
         ]
       | [
@@ -75,11 +73,7 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
       args[0] === "image/tiff"
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
-      operationArguments = {
-        contentType: args[0],
-        input: args[1],
-        options: args[2]
-      };
+      operationArguments = { contentType: args[0], options: args[1] };
     } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
@@ -114,19 +108,16 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
 
   /**
    * Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter
-   * @param input Input parameter.
    * @param options The options parameters.
    */
   async contentTypeWithEncoding(
-    input: string,
-    options?: coreHttp.OperationOptions
+    options?: MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
   ): Promise<MediaTypesWithTracingClientContentTypeWithEncodingResponse> {
     const { span, updatedOptions } = createSpan(
       "MediaTypesWithTracingClient-contentTypeWithEncoding",
       coreHttp.operationOptionsToRequestOptionsBase(options || {})
     );
     const operationArguments: coreHttp.OperationArguments = {
-      input,
       options: updatedOptions
     };
     try {

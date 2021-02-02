@@ -40,7 +40,7 @@ export const Product: coreHttp.CompositeMapper = {
       },
       image: {
         constraints: {
-          Pattern: new RegExp("http://w+")
+          Pattern: new RegExp("http:\\/\\/\\w+")
         },
         serializedName: "image",
         type: {

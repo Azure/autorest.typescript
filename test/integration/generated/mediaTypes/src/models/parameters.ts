@@ -27,10 +27,9 @@ export const contentType: OperationParameter = {
 };
 
 export const input: OperationParameter = {
-  parameterPath: "input",
+  parameterPath: ["options", "input"],
   mapper: {
     serializedName: "input",
-    required: true,
     type: {
       name: "Stream"
     }
@@ -103,10 +102,9 @@ export const contentType2: OperationParameter = {
 };
 
 export const input2: OperationParameter = {
-  parameterPath: "input",
+  parameterPath: ["options", "input"],
   mapper: {
     serializedName: "input",
-    required: true,
     type: {
       name: "String"
     }

@@ -238,6 +238,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "no-mappers",
     licenseHeader: true
   },
+  noOperation: {
+    swaggerOrConfig: "test/integration/swaggers/noOperation.json",
+    clientName: "NoOperationsClient",
+    packageName: "no-operation",
+    licenseHeader: true
+  },
   nonStringEnum: {
     swaggerOrConfig: "non-string-enum.json",
     clientName: "NonStringEnumClient",

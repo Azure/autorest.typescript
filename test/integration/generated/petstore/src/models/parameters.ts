@@ -24,10 +24,9 @@ export const contentType: OperationParameter = {
 };
 
 export const body: OperationParameter = {
-  parameterPath: "body",
+  parameterPath: ["options", "body"],
   mapper: {
     serializedName: "body",
-    required: true,
     xmlName: "body",
     type: {
       name: "Stream"

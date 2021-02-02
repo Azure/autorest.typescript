@@ -4,6 +4,7 @@ import * as Mappers from "./models/mappers";
 import { PetStoreContext } from "./petStoreContext";
 import {
   PetStoreOptionalParams,
+  PetStoreAddPetUsingByteArrayOptionalParams,
   PetStoreAddPetOptionalParams,
   PetStoreUpdatePetOptionalParams,
   PetStoreFindPetsByStatusOptionalParams,
@@ -39,15 +40,12 @@ export class PetStore extends PetStoreContext {
 
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
-   * @param body Pet object in the form of byte array
    * @param options The options parameters.
    */
   addPetUsingByteArray(
-    body: coreHttp.HttpRequestBody,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreAddPetUsingByteArrayOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
-      body,
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.sendOperationRequest(

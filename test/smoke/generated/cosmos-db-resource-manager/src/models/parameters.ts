@@ -76,7 +76,7 @@ export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
+      Pattern: new RegExp("^[-\\w\\._\\(\\)]+$"),
       MaxLength: 90,
       MinLength: 1
     },

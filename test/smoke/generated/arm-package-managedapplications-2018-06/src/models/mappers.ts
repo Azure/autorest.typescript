@@ -387,7 +387,7 @@ export const Application: coreHttp.CompositeMapper = {
       },
       kind: {
         constraints: {
-          Pattern: new RegExp("^[-w._,()]+$")
+          Pattern: new RegExp("^[-\\w\\._,\\(\\)]+$")
         },
         serializedName: "kind",
         required: true,
@@ -526,7 +526,7 @@ export const ApplicationPatchable: coreHttp.CompositeMapper = {
       },
       kind: {
         constraints: {
-          Pattern: new RegExp("^[-w._,()]+$")
+          Pattern: new RegExp("^[-\\w\\._,\\(\\)]+$")
         },
         serializedName: "kind",
         type: {
