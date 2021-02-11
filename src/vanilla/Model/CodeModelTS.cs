@@ -894,9 +894,9 @@ namespace AutoRest.TypeScript.Model
 
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
             builder.Line();
+            builder.Line("// Create credentials using the `@azure/identity` package.");
+            builder.Line("// Please note that you can also use credentials from the `@azure/ms-rest-nodeauth` package instead.");
             builder.Line("const creds = new DefaultAzureCredential();");
-            builder.Line("// Pass the credentials from `@azure/identity` to the client constructor.");
-            builder.Line("// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.");
             builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, false);
         }

@@ -43,9 +43,9 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const { AutoRestParameterizedCustomHostTestClient } = require("@azure/multiapi-test");
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
+// Create credentials using the `@azure/identity` package.
+// Please note that you can also use credentials from the `@azure/ms-rest-nodeauth` package instead.
 const creds = new DefaultAzureCredential();
-// Pass the credentials from `@azure/identity` to the client constructor.
-// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.
 const client = new AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
 const vault = "testvault";
 const secret = "testsecret";
