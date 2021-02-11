@@ -20,7 +20,7 @@ Install both packages using the below commands.
 npm install @azure/multiapi-test
 npm install @azure/identity
 ```
-Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
+Please note that while the credentials from the older [`@azure/ms-rest-nodeauth`](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) and [`@azure/ms-rest-browserauth`](https://www.npmjs.com/package/@azure/ms-rest-browserauth) packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
 We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.
 
 ### How to use
@@ -39,6 +39,8 @@ const { AutoRestParameterizedCustomHostTestClient } = require("@azure/multiapi-t
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
 const creds = new DefaultAzureCredential();
+// Pass the credentials from `@azure/identity` to the client constructor.
+// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.
 const client = new AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
 const vault = "testvault";
 const secret = "testsecret";
@@ -77,6 +79,8 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
+      // Pass the credentials from `@azure/identity` to the client constructor.
+      // Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.
       const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
       const vault = "testvault";
       const secret = "testsecret";

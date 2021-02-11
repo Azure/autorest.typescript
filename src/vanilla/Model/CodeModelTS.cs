@@ -895,6 +895,8 @@ namespace AutoRest.TypeScript.Model
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
             builder.Line();
             builder.Line("const creds = new DefaultAzureCredential();");
+            builder.Line("// Pass the credentials from `@azure/identity` to the client constructor.");
+            builder.Line("// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.");
             builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, false);
         }
@@ -919,6 +921,8 @@ namespace AutoRest.TypeScript.Model
                 tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
             });
             builder.Line(");");
+            builder.Line("// Pass the credentials from `@azure/identity` to the client constructor.");
+            builder.Line("// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.");
             builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, true);
         }
@@ -1024,7 +1028,7 @@ namespace AutoRest.TypeScript.Model
                 builder.Line();
                 builder.Line("Install both packages using the below commands.");
                 builder.Console(new string[] { buildPackageInstallationCommand(), $"npm install @azure/identity" });
-                builder.Line("Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
+                builder.Line("Please note that while the credentials from the older [`@azure/ms-rest-nodeauth`](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) and [`@azure/ms-rest-browserauth`](https://www.npmjs.com/package/@azure/ms-rest-browserauth) packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.");
                 builder.Line("We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.");
             });
         }
