@@ -73,13 +73,13 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
     <script src="node_modules//dist/bundle.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
+      // Create credentials using the `@azure/identity` package.
+      // Please note that you can also use credentials from the `@azure/ms-rest-browserauth` package instead.
       const credential = new InteractiveBrowserCredential(
       {
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-      // Pass the credentials from `@azure/identity` to the client constructor.
-      // Please note that the credentials from `@azure/ms-rest-browserauth` are supported here as well.
       const client = new Bundle.AutoRestLongRunningOperationTestService(creds, subscriptionId);
       const product = {
         tags: { "key1": "testtags" },

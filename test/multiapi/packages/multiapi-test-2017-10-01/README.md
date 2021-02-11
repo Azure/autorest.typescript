@@ -71,13 +71,13 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
     <script src="node_modules/@azure/multiapi-test-2017-10-01/dist/multiapi-test-2017-10-01.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
+      // Create credentials using the `@azure/identity` package.
+      // Please note that you can also use credentials from the `@azure/ms-rest-browserauth` package instead.
       const credential = new InteractiveBrowserCredential(
       {
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-      // Pass the credentials from `@azure/identity` to the client constructor.
-      // Please note that the credentials from `@azure/ms-rest-browserauth` are supported here as well.
       const client = new Azure.MultiapiTest20171001.AutoRestParameterizedHostTestClient(creds, subscriptionId);
       const accountName = "testaccountName";
       client.paths.getEmpty(accountName).then((result) => {

@@ -914,6 +914,8 @@ namespace AutoRest.TypeScript.Model
         public void GenerateReadmeMdBrowserSampleCode(JSBuilder builder)
         {
             builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
+            builder.Line("// Create credentials using the `@azure/identity` package.");
+            builder.Line("// Please note that you can also use credentials from the `@azure/ms-rest-browserauth` package instead.");
             builder.Line("const credential = new InteractiveBrowserCredential(");
             builder.Object(tsObject =>
             {
@@ -921,8 +923,6 @@ namespace AutoRest.TypeScript.Model
                 tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
             });
             builder.Line(");");
-            builder.Line("// Pass the credentials from `@azure/identity` to the client constructor.");
-            builder.Line("// Please note that the credentials from `@azure/ms-rest-browserauth` are supported here as well.");
             builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, true);
         }
