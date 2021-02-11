@@ -20,7 +20,7 @@ Install both packages using the below commands.
 npm install @azure/multiapi-test
 npm install @azure/identity
 ```
-Please note that while the credentials from the older `@azure/ms-rest-nodeauth` and `@azure/ms-rest-browserauth` packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
+Please note that while the credentials from the older [`@azure/ms-rest-nodeauth`](https://www.npmjs.com/package/@azure/ms-rest-nodeauth) and [`@azure/ms-rest-browserauth`](https://www.npmjs.com/package/@azure/ms-rest-browserauth) packages are still supported, these packages are in maintenance mode receiving critical bug fixes, but no new features.
 We strongly encourage you to use the credentials from `@azure/identity` where the latest versions of Azure Active Directory and MSAL APIs are used and more authentication options are provided.
 
 ### How to use
@@ -38,6 +38,8 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const { AutoRestParameterizedHostTestClient } = require("@azure/multiapi-test-2017-10-01");
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
+// Create credentials using the `@azure/identity` package.
+// Please note that you can also use credentials from the `@azure/ms-rest-nodeauth` package instead.
 const creds = new DefaultAzureCredential();
 const client = new AutoRestParameterizedHostTestClient(creds, subscriptionId);
 const accountName = "testaccountName";
@@ -69,6 +71,8 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
     <script src="node_modules/@azure/multiapi-test-2017-10-01/dist/multiapi-test-2017-10-01.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
+      // Create credentials using the `@azure/identity` package.
+      // Please note that you can also use credentials from the `@azure/ms-rest-browserauth` package instead.
       const credential = new InteractiveBrowserCredential(
       {
         clientId: "<client id for your Azure AD app>",
