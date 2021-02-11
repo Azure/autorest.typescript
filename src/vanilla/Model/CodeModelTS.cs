@@ -922,7 +922,7 @@ namespace AutoRest.TypeScript.Model
             });
             builder.Line(");");
             builder.Line("// Pass the credentials from `@azure/identity` to the client constructor.");
-            builder.Line("// Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.");
+            builder.Line("// Please note that the credentials from `@azure/ms-rest-browserauth` are supported here as well.");
             builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
             GenerateSampleMethod(builder, true);
         }

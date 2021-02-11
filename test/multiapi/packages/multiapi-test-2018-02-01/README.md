@@ -80,7 +80,7 @@ It is necessary to [create an Azure App Registration](https://docs.microsoft.com
         tenant: "<optional tenant for your organization>"
       });
       // Pass the credentials from `@azure/identity` to the client constructor.
-      // Please note that the credentials from `@azure/ms-rest-nodeauth` are supported here as well.
+      // Please note that the credentials from `@azure/ms-rest-browserauth` are supported here as well.
       const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
       const vault = "testvault";
       const secret = "testsecret";
