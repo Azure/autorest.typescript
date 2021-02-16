@@ -5,7 +5,7 @@ import {
   Languages,
   Language as ModelerLanguage,
   Operation
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 
 export interface PaginationExtension {
   /**

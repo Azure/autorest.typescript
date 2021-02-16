@@ -1,4 +1,4 @@
-import { HttpHeader, ObjectSchema, Property } from "@azure-tools/codemodel";
+import { HttpHeader, ObjectSchema, Property } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function headersToSchema(

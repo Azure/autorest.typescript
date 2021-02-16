@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import { Operation, OperationGroup } from "@azure-tools/codemodel";
+import { Operation, OperationGroup } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
 

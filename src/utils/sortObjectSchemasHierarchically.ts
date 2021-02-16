@@ -1,4 +1,4 @@
-import { ObjectSchema, SchemaType, CodeModel } from "@azure-tools/codemodel";
+import { ObjectSchema, SchemaType, CodeModel } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 
 /**

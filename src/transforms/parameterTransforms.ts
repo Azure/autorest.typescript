@@ -11,7 +11,7 @@ import {
   SerializationStyle,
   ConstantSchema,
   VirtualParameter
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import {

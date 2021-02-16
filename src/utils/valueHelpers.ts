@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SchemaType, AllSchemaTypes } from "@azure-tools/codemodel";
+import { SchemaType, AllSchemaTypes } from "@autorest/codemodel";
 import { isNil, isEmpty } from "lodash";
 import { MapperType, SequenceMapperType } from "@azure/core-http";
 

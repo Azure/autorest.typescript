@@ -32,7 +32,7 @@ import {
   ImplementationLocation,
   Parameter,
   SchemaType
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";

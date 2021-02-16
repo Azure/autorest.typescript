@@ -18,7 +18,7 @@ import {
   Parameter,
   StringSchema,
   ImplementationLocation
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { OperationSpecDetails } from "../../../src/models/operationDetails";

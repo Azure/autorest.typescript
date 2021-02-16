@@ -3,7 +3,7 @@ import {
   SchemaResponse,
   SchemaType,
   ObjectSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { isEqual } from "lodash";
 import { PaginationDetails } from "../models/operationDetails";
 import { getLanguageMetadata, PaginationExtension } from "./languageHelpers";

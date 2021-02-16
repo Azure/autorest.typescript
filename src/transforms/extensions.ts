@@ -9,7 +9,7 @@ import {
   Protocol,
   ParameterLocation,
   ImplementationLocation
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { cloneOperation } from "../utils/cloneOperation";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";

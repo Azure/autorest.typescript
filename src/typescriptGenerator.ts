@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import * as prettier from "prettier";
-import { CodeModel } from "@azure-tools/codemodel";
+import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
 import { PackageDetails } from "./models/packageDetails";

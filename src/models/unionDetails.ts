@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SchemaType } from "@azure-tools/codemodel";
+import { SchemaType } from "@autorest/codemodel";
 
 /**
  * Details of a typed value union, transformed from ChoiceSchema.
