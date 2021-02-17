@@ -4,8 +4,8 @@
   "description": "The Graph RBAC Management Client",
   "version": "1.0.0",
   "dependencies": {
-    "@azure/core-http": "^1.1.4",
     "@azure/core-paging": "^1.1.1",
+    "@azure/core-http": "^1.1.4",
     "tslib": "^1.9.3"
   },
   "keywords": [
@@ -20,13 +20,13 @@
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "devDependencies": {
-    "@microsoft/api-extractor": "7.9.10",
-    "mkdirp": "^1.0.4",
+    "typescript": "^3.1.1",
     "rollup": "^0.66.2",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "typescript": "^3.1.1",
-    "uglify-js": "^3.4.9"
+    "uglify-js": "^3.4.9",
+    "@microsoft/api-extractor": "7.9.10",
+    "mkdirp": "^1.0.4"
   },
   "homepage": "https://github.com/Azure/azure-sdk-for-js",
   "repository": {
