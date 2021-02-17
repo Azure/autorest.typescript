@@ -8,7 +8,7 @@ import {
   OperationGroup,
   Request,
   ParameterLocation
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
 import { ParameterDetails } from "../../../src/models/parameterDetails";
 import { ClientOptions } from "../../../src/models/clientDetails";

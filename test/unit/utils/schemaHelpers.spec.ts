@@ -16,7 +16,7 @@ import {
   DurationSchema,
   ObjectSchema,
   Property
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { getTypeForSchema } from "../../../src/utils/schemaHelpers";
 import { PropertyKind } from "../../../src/models/modelDetails";
 

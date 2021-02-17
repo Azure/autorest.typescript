@@ -9,7 +9,7 @@ import {
   ChoiceSchema,
   SealedChoiceSchema,
   SchemaType
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";

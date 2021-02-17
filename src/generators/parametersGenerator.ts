@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParameterLocation } from "@azure-tools/codemodel";
+import { ParameterLocation } from "@autorest/codemodel";
 import {
   Project,
   VariableDeclarationKind,

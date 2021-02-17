@@ -16,7 +16,7 @@ import {
   DictionarySchema,
   DateTimeSchema,
   CodeModel
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import {
   BaseMapper,
   Mapper,

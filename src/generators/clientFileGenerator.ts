@@ -14,7 +14,7 @@ import {
   writeGetOperationOptions
 } from "./operationGenerator";
 import { normalizeName, NameType } from "../utils/nameUtils";
-import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
+import { ImplementationLocation, SchemaType } from "@autorest/codemodel";
 import {
   OperationDetails,
   OperationGroupDetails
@@ -27,7 +27,11 @@ import { addPagingImports } from "./utils/pagingOperations";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
-export function generateClient(clientDetails: ClientDetails, project: Project, hideClients: boolean) {
+export function generateClient(
+  clientDetails: ClientDetails,
+  project: Project,
+  hideClients: boolean
+) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -123,11 +127,13 @@ export function generateClient(clientDetails: ClientDetails, project: Project, h
     isExported: true
   });
 
-  if(hideClients) {
+  if (hideClients) {
     clientClass.addJsDoc({
-      tags: [{
+      tags: [
+        {
           tagName: "hidden"
-      }],
+        }
+      ]
     });
   }
 

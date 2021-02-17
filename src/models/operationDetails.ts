@@ -6,7 +6,7 @@ import {
   Language as ModelerLanguage,
   Parameter,
   VirtualParameter
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";

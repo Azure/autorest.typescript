@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Operation } from "@azure-tools/codemodel";
+import { Operation } from "@autorest/codemodel";
 import { cloneDeep } from "lodash";
 import { getLanguageMetadata } from "./languageHelpers";
 

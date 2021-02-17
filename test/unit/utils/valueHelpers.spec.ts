@@ -8,7 +8,7 @@ import {
   NumberSchema,
   StringSchema,
   ByteArraySchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import * as assert from "assert";
 
 describe("ValueHelpers", () => {
