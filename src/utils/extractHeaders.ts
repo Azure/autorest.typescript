@@ -3,7 +3,7 @@ import {
   ObjectSchema,
   Operation,
   Response
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { getOperationFullName } from "./nameUtils";
 import { headersToSchema } from "./headersToSchema";
 import { getLanguageMetadata } from "./languageHelpers";

@@ -7,7 +7,7 @@ import {
   AllSchemaTypes,
   ImplementationLocation,
   VirtualParameter
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { Mapper } from "@azure/core-http";
 import { TypeDetails } from "./modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";

@@ -12,7 +12,7 @@ import {
   DictionarySchema,
   SchemaResponse,
   ComplexSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";

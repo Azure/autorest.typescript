@@ -3,7 +3,7 @@ import {
   GroupSchema,
   GroupProperty,
   ObjectSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { ObjectDetails, ObjectKind } from "../models/modelDetails";
 import { transformProperty } from "./objectTransforms";

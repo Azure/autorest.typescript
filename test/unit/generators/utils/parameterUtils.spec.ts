@@ -8,7 +8,7 @@ import {
   StringSchema,
   SchemaType,
   ImplementationLocation
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { PropertyKind } from "../../../../src/models/modelDetails";
 
 describe("parameterUtils", () => {

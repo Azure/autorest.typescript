@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ObjectSchema } from "@azure-tools/codemodel";
+import { ObjectSchema } from "@autorest/codemodel";
 
 export type ObjectDetails =
   | BasicObjectDetails

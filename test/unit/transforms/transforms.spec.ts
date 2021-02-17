@@ -14,7 +14,7 @@ import {
   ChoiceSchema,
   ChoiceValue,
   BooleanSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import {
   transformProperty,
   transformObject

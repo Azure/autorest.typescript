@@ -7,7 +7,7 @@ import {
   startSession
 } from "@autorest/extension-base";
 import { generateTypeScriptLibrary } from "./typescriptGenerator";
-import { CodeModel, codeModelSchema } from "@azure-tools/codemodel";
+import { CodeModel, codeModelSchema } from "@autorest/codemodel";
 
 export async function processRequest(host: Host) {
   try {

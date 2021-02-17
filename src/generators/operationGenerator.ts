@@ -32,7 +32,7 @@ import {
   ChoiceSchema,
   SealedChoiceSchema,
   ConstantSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { shouldImportParameters } from "./utils/importUtils";
 import {

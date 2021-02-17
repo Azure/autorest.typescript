@@ -1,4 +1,4 @@
-import { CodeModel } from "@azure-tools/codemodel";
+import { CodeModel } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export interface EndpointDetails {

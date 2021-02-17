@@ -11,7 +11,7 @@ import {
   SchemaType,
   ParameterLocation,
   Parameter
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import { wrapString, IndentationType } from "./stringUtils";
 import { ClassDeclaration } from "ts-morph";
 import { ParameterWithDescription } from "./docsUtils";

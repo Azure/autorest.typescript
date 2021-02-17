@@ -15,7 +15,7 @@ import {
   ConstantSchema,
   CodeModel,
   ObjectSchema
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import {
   normalizeName,
   NameType,

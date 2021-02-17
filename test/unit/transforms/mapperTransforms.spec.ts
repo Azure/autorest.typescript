@@ -22,7 +22,7 @@ import {
   Property,
   ArraySchema,
   ChoiceValue
-} from "@azure-tools/codemodel";
+} from "@autorest/codemodel";
 import {
   BaseMapper,
   EnumMapper,
