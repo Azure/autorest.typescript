@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { XmsErrorResponsesClient } from "../xmsErrorResponsesClient";
+import { XmsErrorResponsesClientContext } from "../xmsErrorResponsesClientContext";
 import { PetGetPetByIdResponse, PetDoSomethingResponse } from "../models";
 
 /** Class representing a Pet. */
 export class Pet {
-  private readonly client: XmsErrorResponsesClient;
+  private readonly client: XmsErrorResponsesClientContext;
 
   /**
    * Initialize a new instance of the class Pet class.
    * @param client Reference to the service client
    */
-  constructor(client: XmsErrorResponsesClient) {
+  constructor(client: XmsErrorResponsesClientContext) {
     this.client = client;
   }
 

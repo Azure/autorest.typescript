@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDictionaryClient } from "../bodyDictionaryClient";
+import { BodyDictionaryClientContext } from "../bodyDictionaryClientContext";
 import {
   DictionaryGetNullResponse,
   DictionaryGetEmptyResponse,
@@ -66,13 +66,13 @@ import {
 
 /** Class representing a Dictionary. */
 export class Dictionary {
-  private readonly client: BodyDictionaryClient;
+  private readonly client: BodyDictionaryClientContext;
 
   /**
    * Initialize a new instance of the class Dictionary class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDictionaryClient) {
+  constructor(client: BodyDictionaryClientContext) {
     this.client = client;
   }
 

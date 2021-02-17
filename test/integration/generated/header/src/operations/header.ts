@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HeaderClient } from "../headerClient";
+import { HeaderClientContext } from "../headerClientContext";
 import {
   HeaderResponseExistingKeyResponse,
   HeaderResponseProtectedKeyResponse,
@@ -32,13 +32,13 @@ import {
 
 /** Class representing a Header. */
 export class Header {
-  private readonly client: HeaderClient;
+  private readonly client: HeaderClientContext;
 
   /**
    * Initialize a new instance of the class Header class.
    * @param client Reference to the service client
    */
-  constructor(client: HeaderClient) {
+  constructor(client: HeaderClientContext) {
     this.client = client;
   }
 

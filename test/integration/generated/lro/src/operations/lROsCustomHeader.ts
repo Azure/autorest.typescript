@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LROClient } from "../lROClient";
+import { LROClientContext } from "../lROClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
@@ -24,13 +24,13 @@ import {
 
 /** Class representing a LROsCustomHeader. */
 export class LROsCustomHeader {
-  private readonly client: LROClient;
+  private readonly client: LROClientContext;
 
   /**
    * Initialize a new instance of the class LROsCustomHeader class.
    * @param client Reference to the service client
    */
-  constructor(client: LROClient) {
+  constructor(client: LROClientContext) {
     this.client = client;
   }
 

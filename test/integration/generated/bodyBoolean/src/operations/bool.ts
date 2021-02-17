@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyBooleanClient } from "../bodyBooleanClient";
+import { BodyBooleanClientContext } from "../bodyBooleanClientContext";
 import {
   BoolGetTrueResponse,
   BoolGetFalseResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a Bool. */
 export class Bool {
-  private readonly client: BodyBooleanClient;
+  private readonly client: BodyBooleanClientContext;
 
   /**
    * Initialize a new instance of the class Bool class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyBooleanClient) {
+  constructor(client: BodyBooleanClientContext) {
     this.client = client;
   }
 

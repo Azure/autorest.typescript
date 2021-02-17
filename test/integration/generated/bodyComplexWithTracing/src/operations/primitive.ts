@@ -11,7 +11,7 @@ import { createSpan } from "../tracing";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
   PrimitiveGetIntResponse,
   IntWrapper,
@@ -39,13 +39,13 @@ import {
 
 /** Class representing a Primitive. */
 export class Primitive {
-  private readonly client: BodyComplexWithTracing;
+  private readonly client: BodyComplexWithTracingContext;
 
   /**
    * Initialize a new instance of the class Primitive class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracing) {
+  constructor(client: BodyComplexWithTracingContext) {
     this.client = client;
   }
 

@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse,
@@ -36,13 +36,13 @@ import {
 
 /** Class representing a MultipleResponses. */
 export class MultipleResponses {
-  private readonly client: HttpInfrastructureClient;
+  private readonly client: HttpInfrastructureClientContext;
 
   /**
    * Initialize a new instance of the class MultipleResponses class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClient) {
+  constructor(client: HttpInfrastructureClientContext) {
     this.client = client;
   }
 

@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
   HttpFailureGetEmptyErrorResponse,
   HttpFailureGetNoModelErrorResponse,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a HttpFailure. */
 export class HttpFailure {
-  private readonly client: HttpInfrastructureClient;
+  private readonly client: HttpInfrastructureClientContext;
 
   /**
    * Initialize a new instance of the class HttpFailure class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClient) {
+  constructor(client: HttpInfrastructureClientContext) {
     this.client = client;
   }
 

@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
-import { NonStringEnumClient } from "../nonStringEnumClient";
+import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
   FloatPutOptionalParams,
   FloatPutResponse,
@@ -17,13 +17,13 @@ import {
 
 /** Class representing a Float. */
 export class Float {
-  private readonly client: NonStringEnumClient;
+  private readonly client: NonStringEnumClientContext;
 
   /**
    * Initialize a new instance of the class Float class.
    * @param client Reference to the service client
    */
-  constructor(client: NonStringEnumClient) {
+  constructor(client: NonStringEnumClientContext) {
     this.client = client;
   }
 

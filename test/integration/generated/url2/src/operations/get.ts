@@ -8,18 +8,18 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import { UrlClientContext } from "../urlClientContext";
 import { GetUrlResponse } from "../models";
 
 /** Class representing a Get. */
 export class Get {
-  private readonly client: UrlClient;
+  private readonly client: UrlClientContext;
 
   /**
    * Initialize a new instance of the class Get class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClient) {
+  constructor(client: UrlClientContext) {
     this.client = client;
   }
 

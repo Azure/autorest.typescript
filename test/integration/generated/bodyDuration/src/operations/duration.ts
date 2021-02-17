@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDurationClient } from "../bodyDurationClient";
+import { BodyDurationClientContext } from "../bodyDurationClientContext";
 import {
   DurationGetNullResponse,
   DurationGetPositiveDurationResponse,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a Duration. */
 export class Duration {
-  private readonly client: BodyDurationClient;
+  private readonly client: BodyDurationClientContext;
 
   /**
    * Initialize a new instance of the class Duration class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDurationClient) {
+  constructor(client: BodyDurationClientContext) {
     this.client = client;
   }
 

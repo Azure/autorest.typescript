@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import { FlattencomplexGetValidResponse } from "../models";
 
 /** Class representing a Flattencomplex. */
 export class Flattencomplex {
-  private readonly client: BodyComplexClient;
+  private readonly client: BodyComplexClientContext;
 
   /**
    * Initialize a new instance of the class Flattencomplex class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: BodyComplexClientContext) {
     this.client = client;
   }
 

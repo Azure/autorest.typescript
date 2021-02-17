@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
-import { MediaTypesV3Client } from "../mediaTypesV3Client";
+import { MediaTypesV3ClientContext } from "../mediaTypesV3ClientContext";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class representing a FooApi. */
 export class FooApi {
-  private readonly client: MediaTypesV3Client;
+  private readonly client: MediaTypesV3ClientContext;
 
   /**
    * Initialize a new instance of the class FooApi class.
    * @param client Reference to the service client
    */
-  constructor(client: MediaTypesV3Client) {
+  constructor(client: MediaTypesV3ClientContext) {
     this.client = client;
   }
 

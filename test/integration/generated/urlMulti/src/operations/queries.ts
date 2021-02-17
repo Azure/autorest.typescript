@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlMultiClient } from "../urlMultiClient";
+import { UrlMultiClientContext } from "../urlMultiClientContext";
 import {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a Queries. */
 export class Queries {
-  private readonly client: UrlMultiClient;
+  private readonly client: UrlMultiClientContext;
 
   /**
    * Initialize a new instance of the class Queries class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlMultiClient) {
+  constructor(client: UrlMultiClientContext) {
     this.client = client;
   }
 

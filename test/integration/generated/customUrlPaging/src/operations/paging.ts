@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CustomUrlPagingClient } from "../customUrlPagingClient";
+import { CustomUrlPagingClientContext } from "../customUrlPagingClientContext";
 import {
   Product,
   PagingGetPagesPartialUrlResponse,
@@ -21,13 +21,13 @@ import {
 
 /** Class representing a Paging. */
 export class Paging {
-  private readonly client: CustomUrlPagingClient;
+  private readonly client: CustomUrlPagingClientContext;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: CustomUrlPagingClient) {
+  constructor(client: CustomUrlPagingClientContext) {
     this.client = client;
   }
 

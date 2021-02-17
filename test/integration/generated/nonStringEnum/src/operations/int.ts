@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
-import { NonStringEnumClient } from "../nonStringEnumClient";
+import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
   IntPutOptionalParams,
   IntPutResponse,
@@ -17,13 +17,13 @@ import {
 
 /** Class representing a Int. */
 export class Int {
-  private readonly client: NonStringEnumClient;
+  private readonly client: NonStringEnumClientContext;
 
   /**
    * Initialize a new instance of the class Int class.
    * @param client Reference to the service client
    */
-  constructor(client: NonStringEnumClient) {
+  constructor(client: NonStringEnumClientContext) {
     this.client = client;
   }
 

@@ -1,7 +1,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SearchClient } from "../searchClient";
+import { SearchClientContext } from "../searchClientContext";
 import {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,
@@ -29,13 +29,13 @@ import {
 
 /** Class representing a Documents. */
 export class Documents {
-  private readonly client: SearchClient;
+  private readonly client: SearchClientContext;
 
   /**
    * Initialize a new instance of the class Documents class.
    * @param client Reference to the service client
    */
-  constructor(client: SearchClient) {
+  constructor(client: SearchClientContext) {
     this.client = client;
   }
 
