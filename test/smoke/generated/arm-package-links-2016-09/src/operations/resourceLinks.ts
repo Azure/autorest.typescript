@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagementLinkClient } from "../managementLinkClient";
+import { ManagementLinkClientContext } from "../managementLinkClientContext";
 import {
   ResourceLink,
   ResourceLinksListAtSubscriptionNextOptionalParams,
@@ -25,13 +25,13 @@ import {
 
 /** Class representing a ResourceLinks. */
 export class ResourceLinks {
-  private readonly client: ManagementLinkClient;
+  private readonly client: ManagementLinkClientContext;
 
   /**
    * Initialize a new instance of the class ResourceLinks class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagementLinkClient) {
+  constructor(client: ManagementLinkClientContext) {
     this.client = client;
   }
 

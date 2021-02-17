@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyTimeClient } from "../bodyTimeClient";
+import { BodyTimeClientContext } from "../bodyTimeClientContext";
 import { TimeGetResponse, TimePutResponse } from "../models";
 
 /** Class representing a Time. */
 export class Time {
-  private readonly client: BodyTimeClient;
+  private readonly client: BodyTimeClientContext;
 
   /**
    * Initialize a new instance of the class Time class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyTimeClient) {
+  constructor(client: BodyTimeClientContext) {
     this.client = client;
   }
 

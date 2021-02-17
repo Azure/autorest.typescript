@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
+import { AdditionalPropertiesClientContext } from "../additionalPropertiesClientContext";
 import {
   PetAPTrue,
   PetsCreateAPTrueResponse,
@@ -27,13 +27,13 @@ import {
 
 /** Class representing a Pets. */
 export class Pets {
-  private readonly client: AdditionalPropertiesClient;
+  private readonly client: AdditionalPropertiesClientContext;
 
   /**
    * Initialize a new instance of the class Pets class.
    * @param client Reference to the service client
    */
-  constructor(client: AdditionalPropertiesClient) {
+  constructor(client: AdditionalPropertiesClientContext) {
     this.client = client;
   }
 

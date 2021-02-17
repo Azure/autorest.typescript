@@ -9,17 +9,17 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CustomUrlClient } from "../customUrlClient";
+import { CustomUrlClientContext } from "../customUrlClientContext";
 
 /** Class representing a Paths. */
 export class Paths {
-  private readonly client: CustomUrlClient;
+  private readonly client: CustomUrlClientContext;
 
   /**
    * Initialize a new instance of the class Paths class.
    * @param client Reference to the service client
    */
-  constructor(client: CustomUrlClient) {
+  constructor(client: CustomUrlClientContext) {
     this.client = client;
   }
 

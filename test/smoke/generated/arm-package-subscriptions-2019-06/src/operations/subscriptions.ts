@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SubscriptionClient } from "../subscriptionClient";
+import { SubscriptionClientContext } from "../subscriptionClientContext";
 import {
   Location,
   Subscription,
@@ -22,13 +22,13 @@ import {
 
 /** Class representing a Subscriptions. */
 export class Subscriptions {
-  private readonly client: SubscriptionClient;
+  private readonly client: SubscriptionClientContext;
 
   /**
    * Initialize a new instance of the class Subscriptions class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionClient) {
+  constructor(client: SubscriptionClientContext) {
     this.client = client;
   }
 

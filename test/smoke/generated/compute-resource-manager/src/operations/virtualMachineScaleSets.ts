@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ComputeManagementClient } from "../computeManagementClient";
+import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   VirtualMachineScaleSet,
@@ -45,13 +45,13 @@ import {
 
 /** Class representing a VirtualMachineScaleSets. */
 export class VirtualMachineScaleSets {
-  private readonly client: ComputeManagementClient;
+  private readonly client: ComputeManagementClientContext;
 
   /**
    * Initialize a new instance of the class VirtualMachineScaleSets class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
+  constructor(client: ComputeManagementClientContext) {
     this.client = client;
   }
 

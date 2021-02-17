@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyIntegerClient } from "../bodyIntegerClient";
+import { BodyIntegerClientContext } from "../bodyIntegerClientContext";
 import {
   IntGetNullResponse,
   IntGetInvalidResponse,
@@ -24,13 +24,13 @@ import {
 
 /** Class representing a Int. */
 export class Int {
-  private readonly client: BodyIntegerClient;
+  private readonly client: BodyIntegerClientContext;
 
   /**
    * Initialize a new instance of the class Int class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyIntegerClient) {
+  constructor(client: BodyIntegerClientContext) {
     this.client = client;
   }
 

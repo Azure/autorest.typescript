@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import { UrlClientContext } from "../urlClientContext";
 import {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a PathItems. */
 export class PathItems {
-  private readonly client: UrlClient;
+  private readonly client: UrlClientContext;
 
   /**
    * Initialize a new instance of the class PathItems class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClient) {
+  constructor(client: UrlClientContext) {
     this.client = client;
   }
 

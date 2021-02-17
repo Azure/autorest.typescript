@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SubscriptionIdApiVersionClient } from "../subscriptionIdApiVersionClient";
+import { SubscriptionIdApiVersionClientContext } from "../subscriptionIdApiVersionClientContext";
 import { GroupGetSampleResourceGroupResponse } from "../models";
 
 /** Class representing a Group. */
 export class Group {
-  private readonly client: SubscriptionIdApiVersionClient;
+  private readonly client: SubscriptionIdApiVersionClientContext;
 
   /**
    * Initialize a new instance of the class Group class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionIdApiVersionClient) {
+  constructor(client: SubscriptionIdApiVersionClientContext) {
     this.client = client;
   }
 

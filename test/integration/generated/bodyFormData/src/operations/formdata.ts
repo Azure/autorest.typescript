@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyFormDataClient } from "../bodyFormDataClient";
+import { BodyFormDataClientContext } from "../bodyFormDataClientContext";
 import {
   FormdataUploadFileResponse,
   FormdataUploadFileViaBodyResponse,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a Formdata. */
 export class Formdata {
-  private readonly client: BodyFormDataClient;
+  private readonly client: BodyFormDataClientContext;
 
   /**
    * Initialize a new instance of the class Formdata class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyFormDataClient) {
+  constructor(client: BodyFormDataClientContext) {
     this.client = client;
   }
 

@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
+import { AzureParameterGroupingClientContext } from "../azureParameterGroupingClientContext";
 import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostOptionalOptionalParams,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a ParameterGrouping. */
 export class ParameterGrouping {
-  private readonly client: AzureParameterGroupingClient;
+  private readonly client: AzureParameterGroupingClientContext;
 
   /**
    * Initialize a new instance of the class ParameterGrouping class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureParameterGroupingClient) {
+  constructor(client: AzureParameterGroupingClientContext) {
     this.client = client;
   }
 

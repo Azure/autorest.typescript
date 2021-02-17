@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ComputeManagementClient } from "../computeManagementClient";
+import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   VirtualMachineExtension,
@@ -24,13 +24,13 @@ import {
 
 /** Class representing a VirtualMachineScaleSetVMExtensions. */
 export class VirtualMachineScaleSetVMExtensions {
-  private readonly client: ComputeManagementClient;
+  private readonly client: ComputeManagementClientContext;
 
   /**
    * Initialize a new instance of the class VirtualMachineScaleSetVMExtensions class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
+  constructor(client: ComputeManagementClientContext) {
     this.client = client;
   }
 

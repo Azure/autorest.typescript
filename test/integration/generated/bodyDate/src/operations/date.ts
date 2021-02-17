@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDateClient } from "../bodyDateClient";
+import { BodyDateClientContext } from "../bodyDateClientContext";
 import {
   DateGetNullResponse,
   DateGetInvalidDateResponse,
@@ -21,13 +21,13 @@ import {
 
 /** Class representing a DateOperations. */
 export class DateOperations {
-  private readonly client: BodyDateClient;
+  private readonly client: BodyDateClientContext;
 
   /**
    * Initialize a new instance of the class DateOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDateClient) {
+  constructor(client: BodyDateClientContext) {
     this.client = client;
   }
 

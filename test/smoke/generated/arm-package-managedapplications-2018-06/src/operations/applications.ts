@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ApplicationClient } from "../applicationClient";
+import { ApplicationClientContext } from "../applicationClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   Application,
@@ -30,13 +30,13 @@ import {
 
 /** Class representing a Applications. */
 export class Applications {
-  private readonly client: ApplicationClient;
+  private readonly client: ApplicationClientContext;
 
   /**
    * Initialize a new instance of the class Applications class.
    * @param client Reference to the service client
    */
-  constructor(client: ApplicationClient) {
+  constructor(client: ApplicationClientContext) {
     this.client = client;
   }
 

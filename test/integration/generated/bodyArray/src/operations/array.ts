@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyArrayClient } from "../bodyArrayClient";
+import { BodyArrayClientContext } from "../bodyArrayClientContext";
 import {
   ArrayGetNullResponse,
   ArrayGetInvalidResponse,
@@ -69,13 +69,13 @@ import {
 
 /** Class representing a Array. */
 export class Array {
-  private readonly client: BodyArrayClient;
+  private readonly client: BodyArrayClientContext;
 
   /**
    * Initialize a new instance of the class Array class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyArrayClient) {
+  constructor(client: BodyArrayClientContext) {
     this.client = client;
   }
 

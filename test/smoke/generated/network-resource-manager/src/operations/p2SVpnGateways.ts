@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { NetworkManagementClient } from "../networkManagementClient";
+import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   P2SVpnGateway,
@@ -32,13 +32,13 @@ import {
 
 /** Class representing a P2SVpnGateways. */
 export class P2SVpnGateways {
-  private readonly client: NetworkManagementClient;
+  private readonly client: NetworkManagementClientContext;
 
   /**
    * Initialize a new instance of the class P2SVpnGateways class.
    * @param client Reference to the service client
    */
-  constructor(client: NetworkManagementClient) {
+  constructor(client: NetworkManagementClientContext) {
     this.client = client;
   }
 

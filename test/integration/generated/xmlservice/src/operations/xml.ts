@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { XmlServiceClient } from "../xmlServiceClient";
+import { XmlServiceClientContext } from "../xmlServiceClientContext";
 import {
   XmlGetComplexTypeRefNoMetaResponse,
   RootWithRefAndNoMeta,
@@ -40,13 +40,13 @@ import {
 
 /** Class representing a Xml. */
 export class Xml {
-  private readonly client: XmlServiceClient;
+  private readonly client: XmlServiceClientContext;
 
   /**
    * Initialize a new instance of the class Xml class.
    * @param client Reference to the service client
    */
-  constructor(client: XmlServiceClient) {
+  constructor(client: XmlServiceClientContext) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { KeyVaultManagementClient } from "../keyVaultManagementClient";
+import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   Vault,
@@ -45,13 +45,13 @@ import {
 
 /** Class representing a Vaults. */
 export class Vaults {
-  private readonly client: KeyVaultManagementClient;
+  private readonly client: KeyVaultManagementClientContext;
 
   /**
    * Initialize a new instance of the class Vaults class.
    * @param client Reference to the service client
    */
-  constructor(client: KeyVaultManagementClient) {
+  constructor(client: KeyVaultManagementClientContext) {
     this.client = client;
   }
 

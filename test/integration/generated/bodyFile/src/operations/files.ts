@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyFileClient } from "../bodyFileClient";
+import { BodyFileClientContext } from "../bodyFileClientContext";
 import {
   FilesGetFileResponse,
   FilesGetFileLargeResponse,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a Files. */
 export class Files {
-  private readonly client: BodyFileClient;
+  private readonly client: BodyFileClientContext;
 
   /**
    * Initialize a new instance of the class Files class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyFileClient) {
+  constructor(client: BodyFileClientContext) {
     this.client = client;
   }
 

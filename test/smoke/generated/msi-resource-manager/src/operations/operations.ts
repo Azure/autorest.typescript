@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagedServiceIdentityClient } from "../managedServiceIdentityClient";
+import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
 import {
   Operation,
   OperationsListResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a Operations. */
 export class Operations {
-  private readonly client: ManagedServiceIdentityClient;
+  private readonly client: ManagedServiceIdentityClientContext;
 
   /**
    * Initialize a new instance of the class Operations class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagedServiceIdentityClient) {
+  constructor(client: ManagedServiceIdentityClientContext) {
     this.client = client;
   }
 

@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
+import { PagingNoIteratorsClientContext } from "../pagingNoIteratorsClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   PagingGetNoItemNamePagesResponse,
@@ -57,13 +57,13 @@ import {
 
 /** Class representing a Paging. */
 export class Paging {
-  private readonly client: PagingNoIteratorsClient;
+  private readonly client: PagingNoIteratorsClientContext;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: PagingNoIteratorsClient) {
+  constructor(client: PagingNoIteratorsClientContext) {
     this.client = client;
   }
 

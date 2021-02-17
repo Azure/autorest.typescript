@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyStringClient } from "../bodyStringClient";
+import { BodyStringClientContext } from "../bodyStringClientContext";
 import {
   StringGetNullResponse,
   StringPutNullOptionalParams,
@@ -24,13 +24,13 @@ import {
 
 /** Class representing a StringOperations. */
 export class StringOperations {
-  private readonly client: BodyStringClient;
+  private readonly client: BodyStringClientContext;
 
   /**
    * Initialize a new instance of the class StringOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyStringClient) {
+  constructor(client: BodyStringClientContext) {
     this.client = client;
   }
 

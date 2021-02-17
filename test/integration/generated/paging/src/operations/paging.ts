@@ -12,7 +12,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PagingClient } from "../pagingClient";
+import { PagingClientContext } from "../pagingClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   Product,
@@ -61,13 +61,13 @@ import {
 
 /** Class representing a Paging. */
 export class Paging {
-  private readonly client: PagingClient;
+  private readonly client: PagingClientContext;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: PagingClient) {
+  constructor(client: PagingClientContext) {
     this.client = client;
   }
 

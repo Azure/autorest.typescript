@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { WebSiteManagementClient } from "../webSiteManagementClient";
+import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   AppServicePlan,
@@ -59,13 +59,13 @@ import {
 
 /** Class representing a AppServicePlans. */
 export class AppServicePlans {
-  private readonly client: WebSiteManagementClient;
+  private readonly client: WebSiteManagementClientContext;
 
   /**
    * Initialize a new instance of the class AppServicePlans class.
    * @param client Reference to the service client
    */
-  constructor(client: WebSiteManagementClient) {
+  constructor(client: WebSiteManagementClientContext) {
     this.client = client;
   }
 

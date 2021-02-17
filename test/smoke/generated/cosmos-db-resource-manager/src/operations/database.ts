@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
+import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   Metric,
   Usage,
@@ -23,13 +23,13 @@ import {
 
 /** Class representing a Database. */
 export class Database {
-  private readonly client: CosmosDBManagementClient;
+  private readonly client: CosmosDBManagementClientContext;
 
   /**
    * Initialize a new instance of the class Database class.
    * @param client Reference to the service client
    */
-  constructor(client: CosmosDBManagementClient) {
+  constructor(client: CosmosDBManagementClientContext) {
     this.client = client;
   }
 

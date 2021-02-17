@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyByteClient } from "../bodyByteClient";
+import { BodyByteClientContext } from "../bodyByteClientContext";
 import {
   ByteGetNullResponse,
   ByteGetEmptyResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a Byte. */
 export class Byte {
-  private readonly client: BodyByteClient;
+  private readonly client: BodyByteClientContext;
 
   /**
    * Initialize a new instance of the class Byte class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyByteClient) {
+  constructor(client: BodyByteClientContext) {
     this.client = client;
   }
 

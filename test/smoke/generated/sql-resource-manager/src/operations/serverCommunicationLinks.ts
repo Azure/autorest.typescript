@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   ServerCommunicationLink,
@@ -21,13 +21,13 @@ import {
 
 /** Class representing a ServerCommunicationLinks. */
 export class ServerCommunicationLinks {
-  private readonly client: SqlManagementClient;
+  private readonly client: SqlManagementClientContext;
 
   /**
    * Initialize a new instance of the class ServerCommunicationLinks class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
+  constructor(client: SqlManagementClientContext) {
     this.client = client;
   }
 

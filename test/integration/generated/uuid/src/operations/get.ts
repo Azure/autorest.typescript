@@ -8,18 +8,18 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
-import { UuidClient } from "../uuidClient";
+import { UuidClientContext } from "../uuidClientContext";
 import { GetUuidResponse } from "../models";
 
 /** Class representing a Get. */
 export class Get {
-  private readonly client: UuidClient;
+  private readonly client: UuidClientContext;
 
   /**
    * Initialize a new instance of the class Get class.
    * @param client Reference to the service client
    */
-  constructor(client: UuidClient) {
+  constructor(client: UuidClientContext) {
     this.client = client;
   }
 

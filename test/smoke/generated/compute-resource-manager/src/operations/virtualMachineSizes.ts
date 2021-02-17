@@ -10,18 +10,18 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ComputeManagementClient } from "../computeManagementClient";
+import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { VirtualMachineSize, VirtualMachineSizesListResponse } from "../models";
 
 /** Class representing a VirtualMachineSizes. */
 export class VirtualMachineSizes {
-  private readonly client: ComputeManagementClient;
+  private readonly client: ComputeManagementClientContext;
 
   /**
    * Initialize a new instance of the class VirtualMachineSizes class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
+  constructor(client: ComputeManagementClientContext) {
     this.client = client;
   }
 

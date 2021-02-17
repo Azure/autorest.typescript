@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   OAuth2PermissionGrant as OAuth2PermissionGrantModel,
   OAuth2PermissionGrantListOptionalParams,
@@ -22,13 +22,13 @@ import {
 
 /** Class representing a OAuth2PermissionGrant. */
 export class OAuth2PermissionGrant {
-  private readonly client: GraphRbacManagementClient;
+  private readonly client: GraphRbacManagementClientContext;
 
   /**
    * Initialize a new instance of the class OAuth2PermissionGrant class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClient) {
+  constructor(client: GraphRbacManagementClientContext) {
     this.client = client;
   }
 

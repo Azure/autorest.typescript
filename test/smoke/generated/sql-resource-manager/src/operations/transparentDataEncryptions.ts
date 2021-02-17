@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   TransparentDataEncryption,
   TransparentDataEncryptionName,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a TransparentDataEncryptions. */
 export class TransparentDataEncryptions {
-  private readonly client: SqlManagementClient;
+  private readonly client: SqlManagementClientContext;
 
   /**
    * Initialize a new instance of the class TransparentDataEncryptions class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
+  constructor(client: SqlManagementClientContext) {
     this.client = client;
   }
 

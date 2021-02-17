@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { FeatureClient } from "../featureClient";
+import { FeatureClientContext } from "../featureClientContext";
 import {
   FeatureResult,
   FeaturesListAllResponse,
@@ -24,13 +24,13 @@ import {
 
 /** Class representing a Features. */
 export class Features {
-  private readonly client: FeatureClient;
+  private readonly client: FeatureClientContext;
 
   /**
    * Initialize a new instance of the class Features class.
    * @param client Reference to the service client
    */
-  constructor(client: FeatureClient) {
+  constructor(client: FeatureClientContext) {
     this.client = client;
   }
 

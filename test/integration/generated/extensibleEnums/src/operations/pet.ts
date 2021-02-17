@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ExtensibleEnumsClient } from "../extensibleEnumsClient";
+import { ExtensibleEnumsClientContext } from "../extensibleEnumsClientContext";
 import {
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
@@ -18,13 +18,13 @@ import {
 
 /** Class representing a Pet. */
 export class Pet {
-  private readonly client: ExtensibleEnumsClient;
+  private readonly client: ExtensibleEnumsClientContext;
 
   /**
    * Initialize a new instance of the class Pet class.
    * @param client Reference to the service client
    */
-  constructor(client: ExtensibleEnumsClient) {
+  constructor(client: ExtensibleEnumsClientContext) {
     this.client = client;
   }
 

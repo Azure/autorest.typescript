@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LROClient } from "../lROClient";
+import { LROClientContext } from "../lROClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
@@ -59,13 +59,13 @@ import {
 
 /** Class representing a LrosaDs. */
 export class LrosaDs {
-  private readonly client: LROClient;
+  private readonly client: LROClientContext;
 
   /**
    * Initialize a new instance of the class LrosaDs class.
    * @param client Reference to the service client
    */
-  constructor(client: LROClient) {
+  constructor(client: LROClientContext) {
     this.client = client;
   }
 

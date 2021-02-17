@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { MonitorClient } from "../monitorClient";
+import { MonitorClientContext } from "../monitorClientContext";
 import { AzureMetricsDocument, MetricsCreateResponse } from "../models";
 
 /** Class representing a Metrics. */
 export class Metrics {
-  private readonly client: MonitorClient;
+  private readonly client: MonitorClientContext;
 
   /**
    * Initialize a new instance of the class Metrics class.
    * @param client Reference to the service client
    */
-  constructor(client: MonitorClient) {
+  constructor(client: MonitorClientContext) {
     this.client = client;
   }
 
