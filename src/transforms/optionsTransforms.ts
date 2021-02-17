@@ -17,12 +17,15 @@ export async function transformOptions(
     (await host.GetValue("disable-async-iterators")) === true;
   const credentialScopes = await getCredentialScopes(host);
 
+  const skipEnumValidation = await getSkipEnumValidation(host);
+
   return {
     addCredentials,
     mediaTypes,
     disablePagingAsyncIterators,
     hasPaging: hasPagingOperations(operationGroups),
-    credentialScopes
+    credentialScopes,
+    skipEnumValidation
   };
 }
 
@@ -36,6 +39,12 @@ function getMediaTypesStyles(operationGroups: OperationGroupDetails[]) {
       new Set<KnownMediaType>([...mediaTypes, ...operationGroup.mediaTypes]),
     new Set<KnownMediaType>()
   );
+}
+
+async function getSkipEnumValidation(host: Host): Promise<boolean> {
+  const skipEnumValidation = await host.GetValue("skip-enum-validation");
+
+  return skipEnumValidation === true;
 }
 
 function hasPagingOperations(operationGroups: OperationGroupDetails[]) {
