@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PolicyClient } from "../policyClient";
+import { PolicyClientContext } from "../policyClientContext";
 import {
   PolicyDefinition,
   PolicyDefinitionsCreateOrUpdateResponse,
@@ -28,13 +28,13 @@ import {
 
 /** Class representing a PolicyDefinitions. */
 export class PolicyDefinitions {
-  private readonly client: PolicyClient;
+  private readonly client: PolicyClientContext;
 
   /**
    * Initialize a new instance of the class PolicyDefinitions class.
    * @param client Reference to the service client
    */
-  constructor(client: PolicyClient) {
+  constructor(client: PolicyClientContext) {
     this.client = client;
   }
 

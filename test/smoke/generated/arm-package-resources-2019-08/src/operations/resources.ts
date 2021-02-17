@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourceManagementClient } from "../resourceManagementClient";
+import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   GenericResourceExpanded,
@@ -34,13 +34,13 @@ import {
 
 /** Class representing a Resources. */
 export class Resources {
-  private readonly client: ResourceManagementClient;
+  private readonly client: ResourceManagementClientContext;
 
   /**
    * Initialize a new instance of the class Resources class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClient) {
+  constructor(client: ResourceManagementClientContext) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DeploymentScriptsClient } from "../deploymentScriptsClient";
+import { DeploymentScriptsClientContext } from "../deploymentScriptsClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   DeploymentScriptUnion,
@@ -29,13 +29,13 @@ import {
 
 /** Class representing a DeploymentScripts. */
 export class DeploymentScripts {
-  private readonly client: DeploymentScriptsClient;
+  private readonly client: DeploymentScriptsClientContext;
 
   /**
    * Initialize a new instance of the class DeploymentScripts class.
    * @param client Reference to the service client
    */
-  constructor(client: DeploymentScriptsClient) {
+  constructor(client: DeploymentScriptsClientContext) {
     this.client = client;
   }
 

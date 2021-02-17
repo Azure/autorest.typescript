@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   TransparentDataEncryptionActivity,
   TransparentDataEncryptionName,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a TransparentDataEncryptionActivities. */
 export class TransparentDataEncryptionActivities {
-  private readonly client: SqlManagementClient;
+  private readonly client: SqlManagementClientContext;
 
   /**
    * Initialize a new instance of the class TransparentDataEncryptionActivities class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
+  constructor(client: SqlManagementClientContext) {
     this.client = client;
   }
 

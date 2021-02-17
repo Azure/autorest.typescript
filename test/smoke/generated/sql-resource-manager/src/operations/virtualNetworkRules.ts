@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   VirtualNetworkRule,
@@ -22,13 +22,13 @@ import {
 
 /** Class representing a VirtualNetworkRules. */
 export class VirtualNetworkRules {
-  private readonly client: SqlManagementClient;
+  private readonly client: SqlManagementClientContext;
 
   /**
    * Initialize a new instance of the class VirtualNetworkRules class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
+  constructor(client: SqlManagementClientContext) {
     this.client = client;
   }
 

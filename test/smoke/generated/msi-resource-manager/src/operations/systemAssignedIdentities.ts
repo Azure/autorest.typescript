@@ -9,18 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagedServiceIdentityClient } from "../managedServiceIdentityClient";
+import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
 import { SystemAssignedIdentitiesGetByScopeResponse } from "../models";
 
 /** Class representing a SystemAssignedIdentities. */
 export class SystemAssignedIdentities {
-  private readonly client: ManagedServiceIdentityClient;
+  private readonly client: ManagedServiceIdentityClientContext;
 
   /**
    * Initialize a new instance of the class SystemAssignedIdentities class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagedServiceIdentityClient) {
+  constructor(client: ManagedServiceIdentityClientContext) {
     this.client = client;
   }
 

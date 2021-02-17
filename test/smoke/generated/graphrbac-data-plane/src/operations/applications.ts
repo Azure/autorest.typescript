@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   Application,
   ApplicationsListOptionalParams,
@@ -35,13 +35,13 @@ import {
 
 /** Class representing a Applications. */
 export class Applications {
-  private readonly client: GraphRbacManagementClient;
+  private readonly client: GraphRbacManagementClientContext;
 
   /**
    * Initialize a new instance of the class Applications class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClient) {
+  constructor(client: GraphRbacManagementClientContext) {
     this.client = client;
   }
 

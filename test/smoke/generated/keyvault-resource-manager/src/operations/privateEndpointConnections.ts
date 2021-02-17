@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { KeyVaultManagementClient } from "../keyVaultManagementClient";
+import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   PrivateEndpointConnectionsGetResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class representing a PrivateEndpointConnections. */
 export class PrivateEndpointConnections {
-  private readonly client: KeyVaultManagementClient;
+  private readonly client: KeyVaultManagementClientContext;
 
   /**
    * Initialize a new instance of the class PrivateEndpointConnections class.
    * @param client Reference to the service client
    */
-  constructor(client: KeyVaultManagementClient) {
+  constructor(client: KeyVaultManagementClientContext) {
     this.client = client;
   }
 

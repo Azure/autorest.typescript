@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourceManagementClient } from "../resourceManagementClient";
+import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import {
   DeploymentOperation,
   DeploymentOperationsListAtScopeNextOptionalParams,
@@ -42,13 +42,13 @@ import {
 
 /** Class representing a DeploymentOperations. */
 export class DeploymentOperations {
-  private readonly client: ResourceManagementClient;
+  private readonly client: ResourceManagementClientContext;
 
   /**
    * Initialize a new instance of the class DeploymentOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClient) {
+  constructor(client: ResourceManagementClientContext) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SubscriptionClient } from "../subscriptionClient";
+import { SubscriptionClientContext } from "../subscriptionClientContext";
 import {
   TenantIdDescription,
   TenantsListResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a Tenants. */
 export class Tenants {
-  private readonly client: SubscriptionClient;
+  private readonly client: SubscriptionClientContext;
 
   /**
    * Initialize a new instance of the class Tenants class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionClient) {
+  constructor(client: SubscriptionClientContext) {
     this.client = client;
   }
 

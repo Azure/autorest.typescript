@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagementLockClient } from "../managementLockClient";
+import { ManagementLockClientContext } from "../managementLockClientContext";
 import {
   Operation,
   AuthorizationOperationsListResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class representing a AuthorizationOperations. */
 export class AuthorizationOperations {
-  private readonly client: ManagementLockClient;
+  private readonly client: ManagementLockClientContext;
 
   /**
    * Initialize a new instance of the class AuthorizationOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagementLockClient) {
+  constructor(client: ManagementLockClientContext) {
     this.client = client;
   }
 

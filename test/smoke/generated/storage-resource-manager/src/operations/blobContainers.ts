@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageManagementClient } from "../storageManagementClient";
+import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   ListContainerItem,
   BlobContainersListNextOptionalParams,
@@ -38,13 +38,13 @@ import {
 
 /** Class representing a BlobContainers. */
 export class BlobContainers {
-  private readonly client: StorageManagementClient;
+  private readonly client: StorageManagementClientContext;
 
   /**
    * Initialize a new instance of the class BlobContainers class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageManagementClient) {
+  constructor(client: StorageManagementClientContext) {
     this.client = client;
   }
 

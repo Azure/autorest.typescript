@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
+import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   GremlinDatabaseGetResults,
@@ -32,13 +32,13 @@ import {
 
 /** Class representing a GremlinResources. */
 export class GremlinResources {
-  private readonly client: CosmosDBManagementClient;
+  private readonly client: CosmosDBManagementClientContext;
 
   /**
    * Initialize a new instance of the class GremlinResources class.
    * @param client Reference to the service client
    */
-  constructor(client: CosmosDBManagementClient) {
+  constructor(client: CosmosDBManagementClientContext) {
     this.client = client;
   }
 

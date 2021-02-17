@@ -10,7 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { NetworkManagementClient } from "../networkManagementClient";
+import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   PeerExpressRouteCircuitConnection,
   PeerExpressRouteCircuitConnectionsGetResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class representing a PeerExpressRouteCircuitConnections. */
 export class PeerExpressRouteCircuitConnections {
-  private readonly client: NetworkManagementClient;
+  private readonly client: NetworkManagementClientContext;
 
   /**
    * Initialize a new instance of the class PeerExpressRouteCircuitConnections class.
    * @param client Reference to the service client
    */
-  constructor(client: NetworkManagementClient) {
+  constructor(client: NetworkManagementClientContext) {
     this.client = client;
   }
 
