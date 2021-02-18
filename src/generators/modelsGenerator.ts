@@ -741,14 +741,19 @@ function withDiscriminator(
     return properties;
   }
 
+  // Store the discriminated properties to later calculate the set of properties without discriminator
+  const discriminatedPropertiesNames: string[] = [];
   const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
     key => {
-      const name = normalizeName(key, NameType.Property);
+      // Remove enclosing quotes from the key to get the real property name
+      const propertyName = key.replace(/(^")|("$)/g, "");
+      const name = normalizeName(propertyName, NameType.Property);
+      discriminatedPropertiesNames.push(name);
       return {
         docs: [
           `Polymorphic discriminator, which specifies the different types this object can be`
         ],
-        name,
+        name: `"${name}"`,
         type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
         kind: StructureKind.PropertySignature
       };
@@ -756,7 +761,7 @@ function withDiscriminator(
   );
 
   const propertiesWithoutDiscriminator = properties.filter(
-    p => !discProps.some(dp => dp.name === p.name)
+    p => !discriminatedPropertiesNames.some(dp => dp === p.name)
   );
 
   return [...discProps, ...propertiesWithoutDiscriminator];

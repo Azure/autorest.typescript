@@ -397,6 +397,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "SearchClient",
     packageName: "@azure/search-documents"
   },
+  polymorphicSkipNormalize: {
+    swaggerOrConfig:
+      "test/integration/swaggers/MediaServices_polymorphic_skipNormalize.md",
+    clientName: "MediaServicesClient",
+    packageName: "@azure/media-services"
+  },
   petstore: {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
