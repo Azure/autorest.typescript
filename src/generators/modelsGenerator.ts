@@ -707,7 +707,7 @@ function getProperties(
   return properties
     .filter(property => !property.isDiscriminator)
     .map<PropertySignatureStructure>(property => ({
-      name: property.name,
+      name: `"${property.name}"`,
       hasQuestionToken: !property.required,
       isReadonly: property.readOnly,
       type: getTypename(property),
@@ -743,12 +743,14 @@ function withDiscriminator(
 
   const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
     key => {
-      const name = normalizeName(key, NameType.Property);
+      // Remove enclosing quotes from the key to get the real property name
+      const propertyName = key.replace(/(^")|("$)/g, "");
+      const name = normalizeName(propertyName, NameType.Property);
       return {
         docs: [
           `Polymorphic discriminator, which specifies the different types this object can be`
         ],
-        name,
+        name: `"${name}"`,
         type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
         kind: StructureKind.PropertySignature
       };
