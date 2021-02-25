@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { ClientDetails } from "../../models/clientDetails";
 
 export function generateTsConfig(project: Project) {
   const tsConfigContents = {
@@ -10,14 +9,14 @@ export function generateTsConfig(project: Project) {
       module: "es6",
       moduleResolution: "node",
       strict: true,
-      target: "es5",
+      target: "es2015",
       sourceMap: true,
       declarationMap: true,
       esModuleInterop: true,
       allowSyntheticDefaultImports: true,
       forceConsistentCasingInFileNames: true,
       preserveConstEnums: true,
-      lib: ["es6", "dom"],
+      lib: [],
       declaration: true,
       outDir: "./esm",
       importHelpers: true

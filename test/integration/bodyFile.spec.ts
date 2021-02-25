@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import { readFile as fsReadfile } from "fs";
 import { join as joinPath } from "path";
 import { assert } from "chai";
 import { isNode } from "@azure/core-http";
@@ -7,6 +7,17 @@ import {
   countBytesFromStream
 } from "../utils/stream-helpers";
 import { BodyFileClient } from "./generated/bodyFile/src";
+
+async function readFile(path: string): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    fsReadfile(path, {}, (error, data) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(data);
+    });
+  });
+}
 
 describe("BodyFile Client", () => {
   let client: BodyFileClient;
@@ -24,7 +35,7 @@ describe("BodyFile Client", () => {
           result.readableStreamBody!
         );
 
-        const expectedBufferedResult = await fs.readFile(
+        const expectedBufferedResult = await readFile(
           joinPath(
             __dirname,
             "..",
