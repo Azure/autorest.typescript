@@ -556,6 +556,10 @@ const run = async () => {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
   await buildAutorest();
+  const childProcess = spawn("autorest", ["--version"], {
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  await onExit(childProcess);
   await generateSwaggers(whiteList, isDebugging);
 };
 
