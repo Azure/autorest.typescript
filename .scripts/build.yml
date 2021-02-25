@@ -1,24 +1,9 @@
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: "10.x"
-    displayName: "Install Node.js"
+      versionSpec: "12.x"
+    displayName: "Use Node 12"
   - script: |
       npm install
       npm run build
-      npm pack
     displayName: "Build"
-
-  - task: CopyFiles@2
-    inputs:
-      contents: "*.tgz"
-      targetFolder: $(Build.ArtifactStagingDirectory)
-      flattenFolders: true
-    displayName: "Copy packages"
-
-  - task: PublishPipelineArtifact@1
-    condition: succeededOrFailed()
-    displayName: "Publish artifacts"
-    inputs:
-      artifactName: packages
-      path: $(Build.ArtifactStagingDirectory)
