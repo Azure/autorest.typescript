@@ -8,3 +8,4 @@ test/**/node_modules
 test-browser
 .tmp
 coverage
+.tgz
