@@ -57,6 +57,7 @@ jobs:
 
     steps:
       - template: build.yml
+      - script: npm install -g autorest
       - script: npm run generate-swaggers
         displayName: "Generate Test Clients"
       - task: NodeTool@0

@@ -438,7 +438,8 @@ const generateSwaggers = async (
 
     let swaggerPath = swaggerOrConfig;
 
-    const commandArguments: string[] = [`autorest`, `--typescript`];
+    let autorestCommand: string = `autorest`;
+    const commandArguments: string[] = [`--typescript`];
 
     if (tracing) {
       commandArguments.push(
@@ -478,9 +479,6 @@ const generateSwaggers = async (
       `--hide-clients=${!!hideClients}`,
       inputFileCommand
     );
-
-    let autorestCommand: string = `npx`;
-
     if (isDebugging) {
       commandArguments.push(`--typescript.debugger`);
     }
@@ -550,16 +548,20 @@ const buildAutorest = () => {
   return onExit(childProcess);
 };
 
+const logAutorestInfo = async () => {
+  const childProcess = spawn("autorest", ["--info"], {
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  await onExit(childProcess);
+};
+
 const run = async () => {
   const tree = dirTree(".");
   console.log(tree);
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
   await buildAutorest();
-  const childProcess = spawn("npx", ["autorest", "--help"], {
-    stdio: [process.stdin, process.stdout, process.stderr]
-  });
-  await onExit(childProcess);
+  await logAutorestInfo();
   await generateSwaggers(whiteList, isDebugging);
 };
 
