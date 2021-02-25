@@ -438,7 +438,7 @@ const generateSwaggers = async (
 
     let swaggerPath = swaggerOrConfig;
 
-    const commandArguments: string[] = [`--typescript`];
+    const commandArguments: string[] = [`autorest`, `--typescript`];
 
     if (tracing) {
       commandArguments.push(
@@ -479,10 +479,10 @@ const generateSwaggers = async (
       inputFileCommand
     );
 
-    let autorestCommand: string = `autorest`;
+    let autorestCommand: string = `npx`;
 
     if (isDebugging) {
-      commandArguments.push(`${autorestCommand} --typescript.debugger`);
+      commandArguments.push(`--typescript.debugger`);
     }
     const generationTask = async () => {
       console.log(`=== Start ${name} ===`);
@@ -556,7 +556,7 @@ const run = async () => {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
   await buildAutorest();
-  const childProcess = spawn("autorest", ["--version"], {
+  const childProcess = spawn("npx", ["autorest", "--help"], {
     stdio: [process.stdin, process.stdout, process.stderr]
   });
   await onExit(childProcess);
