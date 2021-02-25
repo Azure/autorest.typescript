@@ -1,5 +1,7 @@
-import { exec } from "child_process";
+import { spawn } from "child_process";
+import * as dirTree from "directory-tree";
 import { TracingInfo } from "../../src/models/clientDetails";
+import { onExit } from "./childProcessOnExit";
 
 interface SwaggerConfig {
   swaggerOrConfig: string;
@@ -436,17 +438,22 @@ const generateSwaggers = async (
 
     let swaggerPath = swaggerOrConfig;
 
-    const tracingInfo = tracing
-      ? `--tracing-info.namespace=${tracing.namespace} --tracing-info.packagePrefix=${tracing.packagePrefix}`
-      : "";
+    const commandArguments: string[] = [`--typescript`];
 
-    const credentialScopesInfo = credentialScopes
-      ? `--credential-scopes=${credentialScopes}`
-      : "";
+    if (tracing) {
+      commandArguments.push(
+        `--tracing-info.namespace=${tracing.namespace}`,
+        `--tracing-info.packagePrefix="${tracing.packagePrefix}"`
+      );
+    }
 
-    const disableIterators = disableAsyncIterators
-      ? "--disable-async-iterators=true"
-      : "";
+    if (credentialScopes) {
+      commandArguments.push(`--credential-scopes=${credentialScopes}`);
+    }
+
+    if (disableAsyncIterators) {
+      commandArguments.push("--disable-async-iterators=true");
+    }
 
     if (swaggerOrConfig.split("/").length === 1) {
       // When given a filename look for it in test server, otherwise use the path
@@ -458,26 +465,36 @@ const generateSwaggers = async (
       inputFileCommand = `--input-file=${inputFileCommand}`;
     }
 
-    let autorestCommand: string = `autorest --clear-output-folder=true ${tracingInfo} ${disableIterators} ${credentialScopesInfo} --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --package-name=${packageName} --package-version=${package_version} --hide-clients=${!!hideClients} ${inputFileCommand}`;
+    commandArguments.push(
+      inputFileCommand,
+      "--clear-output-folder=true",
+      `--license-header=${!!licenseHeader}`,
+      `--add-credentials=${!!addCredentials}`,
+      `--output-folder=./test/integration/generated/${name}`,
+      `--title=${clientName}`,
+      `--use=.`,
+      `--package-name=${packageName}`,
+      `--package-version=${package_version}`,
+      `--hide-clients=${!!hideClients}`,
+      inputFileCommand
+    );
+
+    let autorestCommand: string = `autorest`;
 
     if (isDebugging) {
-      autorestCommand = `${autorestCommand} --typescript.debugger`;
+      commandArguments.push(`${autorestCommand} --typescript.debugger`);
     }
-
-    const generationTask = () => {
-      return new Promise<void>((resolve, reject) => {
-        exec(autorestCommand, (error, stdout, stderr) => {
-          if (error) {
-            reject(`Failed to generate ${name} with error: \n ${error}`);
-            return;
-          }
-          console.log(`=== Start ${name} ===`);
-          console.log(stdout);
-          stderr && console.error(stderr);
-          console.log(`=== End ${name} ===`);
-          resolve();
-        });
+    const generationTask = async () => {
+      console.log(`=== Start ${name} ===`);
+      const childProcess = spawn(autorestCommand, commandArguments, {
+        stdio: [process.stdin, process.stdout, process.stderr]
       });
+
+      console.log(`${autorestCommand} ${commandArguments.join(" ")}`);
+
+      const result = await onExit(childProcess);
+      console.log(`=== End ${name} ===`);
+      return result;
     };
 
     try {
@@ -526,25 +543,16 @@ const buildAutorest = () => {
     );
     return Promise.resolve();
   }
-
-  return new Promise<void>((resolve, reject) => {
-    console.log("Building Autorest.Typescript");
-    exec("npm run build", (error, stdout, stderror) => {
-      if (error) {
-        reject(
-          `Failed to build autorest.typescript \n ${JSON.stringify(error)}`
-        );
-        return;
-      }
-
-      console.log(stdout);
-      stderror && console.error(stderror);
-      resolve();
-    });
+  const childProcess = spawn("npm run build", {
+    stdio: [process.stdin, process.stdout, process.stderr]
   });
+
+  return onExit(childProcess);
 };
 
 const run = async () => {
+  const tree = dirTree(".");
+  console.log(tree);
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
   await buildAutorest();
