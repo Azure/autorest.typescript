@@ -38,27 +38,18 @@ jobs:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage:
           NodeTestVersion: "8.x"
-          TestType: "node"
         Windows_Node10:
           Pool: ${{ parameters.WindowsPool }}
           OSVmImage:
           NodeTestVersion: "10.x"
-          TestType: "node"
         macOS_Node12:
           Pool:
           OSVmImage: "macOS-10.15"
           NodeTestVersion: "12.x"
-          TestType: "node"
-        Browser_Linux_Node12:
-          Pool: ${{ parameters.LinuxPool }}
-          OSVmImage: "ubuntu-18.04"
-          NodeTestVersion: "$(NodeVersion)"
-          TestType: "browser"
         Linux_Node14:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-18.04"
           NodeTestVersion: "14.x"
-          TestType: "node"
 
     pool:
       name: $[coalesce(variables['Pool'], '')]
@@ -66,11 +57,12 @@ jobs:
 
     steps:
       - template: build.yml
+      - script: npm run generate-swaggers
       - task: NodeTool@0
         inputs:
           versionSpec: $(NodeTestVersion)
         displayName: "Use Node $(NodeTestVersion)"
-      - script: npm run test
+      - script: npm run test:ci
         displayName: "Run Tests"
 
       - script: npm run check:tree
