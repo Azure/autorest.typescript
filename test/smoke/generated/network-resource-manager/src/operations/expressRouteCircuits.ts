@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
@@ -29,6 +30,7 @@ import {
   ExpressRouteCircuitsListAllNextResponse
 } from "../models";
 
+/// <reference lib="esnext.asynciterable" />
 /** Class representing a ExpressRouteCircuits. */
 export class ExpressRouteCircuits {
   private readonly client: NetworkManagementClientContext;

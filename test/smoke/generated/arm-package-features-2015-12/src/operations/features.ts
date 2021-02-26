@@ -23,6 +23,7 @@ import {
   FeaturesListNextResponse
 } from "../models";
 
+/// <reference lib="esnext.asynciterable" />
 /** Class representing a Features. */
 export class Features {
   private readonly client: FeatureClientContext;

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
 import {
@@ -129,6 +130,7 @@ import {
   NetworkManagementClientDisconnectActiveSessionsNextResponse
 } from "./models";
 
+/// <reference lib="esnext.asynciterable" />
 export class NetworkManagementClient extends NetworkManagementClientContext {
   /**
    * Initializes a new instance of the NetworkManagementClient class.
