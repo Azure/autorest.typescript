@@ -38,9 +38,9 @@ jobs:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage:
           NodeTestVersion: "8.x"
-        Windows_Node10:
-          Pool: ${{ parameters.WindowsPool }}
-          OSVmImage:
+        Linux_Node10:
+          Pool: ${{ parameters.LinuxPool }}
+          OSVmImage: "ubuntu-18.04"
           NodeTestVersion: "10.x"
         macOS_Node12:
           Pool:
@@ -57,7 +57,6 @@ jobs:
 
     steps:
       - template: build.yml
-      - script: npm install -g autorest
       - script: npm run generate-swaggers
         displayName: "Generate Test Clients"
       - task: NodeTool@0
