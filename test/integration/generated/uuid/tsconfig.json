@@ -3,7 +3,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "strict": true,
-    "target": "es2015",
+    "target": "ES5",
     "sourceMap": true,
     "declarationMap": true,
     "esModuleInterop": true,

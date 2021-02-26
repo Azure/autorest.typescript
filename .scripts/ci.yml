@@ -38,6 +38,10 @@ jobs:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage:
           NodeTestVersion: "8.x"
+        # Windows_Node10:
+        #   Pool: ${{ parameters.WindowsPool }}
+        #   OSVmImage:
+        #   NodeTestVersion: "10.x"
         Linux_Node10:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-18.04"

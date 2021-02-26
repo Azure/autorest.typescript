@@ -9,7 +9,7 @@ export function generateTsConfig(project: Project) {
       module: "es6",
       moduleResolution: "node",
       strict: true,
-      target: "es2015",
+      target: "es5",
       sourceMap: true,
       declarationMap: true,
       esModuleInterop: true,
