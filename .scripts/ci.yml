@@ -79,11 +79,11 @@ jobs:
 
       - script: npm run test:node
         displayName: "Run Node Tests"
-        condition: eq($(TestType), 'node')
+        condition: eq(variables['TestType'], 'node')
 
       - script: npm run test:browser
         displayName: "Run Browser Tests"
-        condition: eq($(TestType), 'browser')
+        condition: eq(variables['TestType'], 'browser')
 
       - script: npm run check:tree
         displayName: "Check git Tree"
