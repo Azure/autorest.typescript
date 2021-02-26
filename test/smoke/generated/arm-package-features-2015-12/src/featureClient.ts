@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Features } from "./operations";
 import * as Parameters from "./models/parameters";
@@ -19,6 +20,7 @@ import {
   FeatureClientListOperationsNextResponse
 } from "./models";
 
+/// <reference lib="esnext.asynciterable" />
 export class FeatureClient extends FeatureClientContext {
   /**
    * Initializes a new instance of the FeatureClient class.

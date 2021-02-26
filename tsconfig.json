@@ -20,7 +20,8 @@
     "experimentalDecorators": true,
     "newLine": "LF",
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "downlevelIteration": true
   },
   "include": ["src"],
   "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]
