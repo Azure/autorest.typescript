@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { spawn } from "cross-spawn";
 import * as dirTree from "directory-tree";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
@@ -438,8 +438,10 @@ const generateSwaggers = async (
 
     let swaggerPath = swaggerOrConfig;
 
-    let autorestCommand: string = `autorest`;
-    const commandArguments: string[] = [`--typescript`];
+    let autorestCommand: string = /^win/.test(process.platform)
+      ? "npx.cmd"
+      : `npx`;
+    const commandArguments: string[] = [`autorest`, `--typescript`];
 
     if (tracing) {
       commandArguments.push(
@@ -549,9 +551,13 @@ const buildAutorest = () => {
 };
 
 const logAutorestInfo = async () => {
-  const childProcess = spawn("autorest", ["--info"], {
-    stdio: [process.stdin, process.stdout, process.stderr]
-  });
+  const childProcess = spawn(
+    /^win/.test(process.platform) ? "npx.cmd" : `npx`,
+    ["autorest", "--info"],
+    {
+      stdio: [process.stdin, process.stdout, process.stderr]
+    }
+  );
   await onExit(childProcess);
 };
 
@@ -560,8 +566,8 @@ const run = async () => {
   console.log(tree);
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
-  await buildAutorest();
   await logAutorestInfo();
+  await buildAutorest();
   await generateSwaggers(whiteList, isDebugging);
 };
 
