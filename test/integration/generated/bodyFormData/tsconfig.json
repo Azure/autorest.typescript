@@ -13,8 +13,7 @@
     "lib": ["es6", "dom"],
     "declaration": true,
     "outDir": "./esm",
-    "importHelpers": true,
-    "downlevelIteration": true
+    "importHelpers": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules"]
