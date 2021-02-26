@@ -38,6 +38,7 @@ jobs:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage:
           NodeTestVersion: "8.x"
+          TestType: "node"
         # Windows_Node10:
         #   Pool: ${{ parameters.WindowsPool }}
         #   OSVmImage:
@@ -46,14 +47,22 @@ jobs:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-18.04"
           NodeTestVersion: "10.x"
+          TestType: "node"
         macOS_Node12:
           Pool:
           OSVmImage: "macOS-10.15"
           NodeTestVersion: "12.x"
+          TestType: "node"
+        Browser_Linux_Node12:
+          Pool: ${{ parameters.LinuxPool }}
+          OSVmImage:
+          NodeTestVersion: "12.x"
+          TestType: "browser"
         Linux_Node14:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-18.04"
           NodeTestVersion: "14.x"
+          TestType: "node"
 
     pool:
       name: $[coalesce(variables['Pool'], '')]
@@ -67,8 +76,14 @@ jobs:
         inputs:
           versionSpec: $(NodeTestVersion)
         displayName: "Use Node $(NodeTestVersion)"
-      - script: npm run test:ci
-        displayName: "Run Tests"
+      
+        - script: npm run test:node
+        displayName: "Run Node Tests"
+        condition: eq($(TestType), 'node')
+
+        - script: npm run test:browser
+        displayName: "Run Browser Tests"
+        condition: eq($(TestType), 'browser')
 
       - script: npm run check:tree
         displayName: "Check git Tree"
