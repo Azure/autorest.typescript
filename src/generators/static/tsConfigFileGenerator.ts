@@ -16,7 +16,7 @@ export function generateTsConfig(project: Project) {
       allowSyntheticDefaultImports: true,
       forceConsistentCasingInFileNames: true,
       preserveConstEnums: true,
-      lib: [],
+      lib: ["es6", "dom"],
       declaration: true,
       outDir: "./esm",
       importHelpers: true

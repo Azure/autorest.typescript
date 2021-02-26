@@ -14,7 +14,7 @@
     "declaration": true,
     "stripInternal": true,
     "noEmitHelpers": false,
-    "target": "ES5",
+    "target": "es5",
     "types": ["node", "mocha"],
     "lib": ["ESNext.AsyncIterable"],
     "experimentalDecorators": true,
