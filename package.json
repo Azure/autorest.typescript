@@ -42,7 +42,7 @@
         "@opentelemetry/api": "^0.10.2",
         "@types/cross-spawn": "^6.0.2",
         "@types/lodash": "^4.14.149",
-        "autorest": "^3.0.6339",
+        "autorest": "^3.1.1",
         "cross-spawn": "^7.0.3",
         "lodash": "^4.17.15",
         "prettier": "^1.19.1",
