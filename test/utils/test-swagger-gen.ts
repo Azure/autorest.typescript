@@ -476,8 +476,7 @@ const generateSwaggers = async (
       `--use=.`,
       `--package-name=${packageName}`,
       `--package-version=${package_version}`,
-      `--hide-clients=${!!hideClients}`,
-      inputFileCommand
+      `--hide-clients=${!!hideClients}`
     );
     if (isDebugging) {
       commandArguments.push(`--typescript.debugger`);
