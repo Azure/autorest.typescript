@@ -15,7 +15,7 @@ stages:
         # If SetDevVersion is set to false then we should skip integration job even for scheduled runs.
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: github
-        displayName: Publish package to daily feed
+        displayName: Publish dev version to GitHub
         pool:
           vmImage: ubuntu-18.04
         strategy:
@@ -38,7 +38,7 @@ stages:
       - deployment: PublishToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: npm
-        displayName: Publish package to daily feed
+        displayName: Publish dev version to NPM
         pool:
           vmImage: ubuntu-18.04
         strategy:
