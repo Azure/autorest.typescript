@@ -8,7 +8,7 @@ parameters:
 
 stages:
   - stage: Integration
-    # dependsOn: ${{parameters.DependsOn}}
+    dependsOn: ${{parameters.DependsOn}}
     jobs:
       - deployment: PublishToGithub
         # Run Integration job only if SetDevVersion is set to true or ( SetDevVersion is empty and job is a scheduled CI run)
@@ -60,6 +60,6 @@ stages:
                     npm version --no-git-tag-version $DEV_VERSION
                     export TAR_NAME=$(npm pack -q)
                     echo $TAR_NAME
-                    npm config set //registry.npmjs.org/:_authToken $(azure-sdk-npm-token)
+                    npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
                     npm publish $TAR_NAME --dry-run --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                   displayName: "Publish to NPM"
