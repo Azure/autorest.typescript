@@ -8,7 +8,7 @@ parameters:
 
 stages:
   - stage: Integration
-    dependsOn: ${{parameters.DependsOn}}
+    # dependsOn: ${{parameters.DependsOn}}
     jobs:
       - deployment: PublishToGithub
         # Run Integration job only if SetDevVersion is set to true or ( SetDevVersion is empty and job is a scheduled CI run)
@@ -22,6 +22,7 @@ stages:
           runOnce:
             deploy:
               steps:
+                - checkout: self
                 - task: NodeTool@0
                   inputs:
                     versionSpec: "14.x"
@@ -45,6 +46,7 @@ stages:
           runOnce:
             deploy:
               steps:
+                - checkout: self
                 - task: NodeTool@0
                   inputs:
                     versionSpec: "14.x"
