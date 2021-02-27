@@ -10,10 +10,11 @@ stages:
   - stage: Integration
     dependsOn: ${{parameters.DependsOn}}
     jobs:
-      - job: PublishToGithub
+      - deployment: PublishToGithub
         # Run Integration job only if SetDevVersion is set to true or ( SetDevVersion is empty and job is a scheduled CI run)
         # If SetDevVersion is set to false then we should skip integration job even for scheduled runs.
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        environment: github
         displayName: Publish package to daily feed
         pool:
           vmImage: ubuntu-18.04
@@ -31,3 +32,26 @@ stages:
               npm version --no-git-tag-version $DEV_VERSION
               npm pack
             displayName: "Publish to GitHub"
+      - deployment: PublishToNpm
+        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        environment: npm
+        displayName: Publish package to daily feed
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "14.x"
+            displayName: "Install Node.js"
+          - script: |
+              npm install
+              npm run build
+            displayName: "npm install and build"
+          - script: |
+              export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
+              npm version --no-git-tag-version $DEV_VERSION
+              export TAR_NAME=$(npm pack -q)
+              echo $TAR_NAME
+              npm config set //registry.npmjs.org/:_authToken $(azure-sdk-npm-token)
+              npm publish $TAR_NAME --dry-run --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+            displayName: "Publish to NPM"
