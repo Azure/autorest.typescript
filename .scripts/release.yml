@@ -58,8 +58,12 @@ stages:
                 - script: |
                     export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
                     npm version --no-git-tag-version $DEV_VERSION
+                  displayName: "Set Dev Version"
+                - script: |
                     export TAR_NAME=$(npm pack -q)
                     echo $TAR_NAME
-                    npm config set //registry.npmjs.org/:_authToken="TESTValue"
+                  displayName: "Npm Pack"
+                - script: |
+                    echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
                     npm publish $TAR_NAME --dry-run --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                   displayName: "Publish to NPM"
