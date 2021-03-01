@@ -35,6 +35,7 @@ stages:
                     export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
                     npm version --no-git-tag-version $DEV_VERSION
                     npm pack
+                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$DEV_VERSION --tag v$DEV_VERSION --notes='prerelease build' --prerelease --editRelease false --assets autorest-typescript-$DEV_VERSION.tgz --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish to GitHub"
       - deployment: PublishToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
@@ -65,5 +66,5 @@ stages:
                   displayName: "Npm Pack"
                 - script: |
                     echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                    npm publish $TAR_NAME --dry-run --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                    npm publish $TAR_NAME --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                   displayName: "Publish to NPM"
