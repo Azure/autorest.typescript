@@ -2,6 +2,9 @@ trigger:
   - v6
 
 parameters:
+  - name: PublishAlpha
+    type: boolean
+    default: false
   - name: LinuxPool
     type: string
     default: azsdk-pool-mms-ubuntu-1804-general
@@ -111,3 +114,4 @@ stages:
     : - template: release.yml
         parameters:
           DependsOn: Build
+          PublishAlpha: ${{ parameters.PublishAlpha }}

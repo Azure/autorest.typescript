@@ -1,10 +1,11 @@
 parameters:
-  Artifacts: []
-  TestPipeline: false
-  ArtifactName: "not-specified"
-  DependsOn: Build
-  Registry: "https://registry.npmjs.org/"
-  PrivateRegistry: "https://pkgs.dev.azure.com/azure-sdk/internal/_packaging/azure-sdk-for-js-pr/npm/registry/"
+  - name: DependsOn
+    type: string
+    default: Build
+
+  - name: PublishAlpha
+    type: boolean
+    default: false
 
 stages:
   - stage: Integration
@@ -13,7 +14,7 @@ stages:
       - deployment: PublishToGithub
         # Run Integration job only if PublishAlpha is set to true or ( PublishAlpha is empty and job is a scheduled CI run)
         # If PublishAlpha is set to false then we should skip integration job even for scheduled runs.
-        condition: or(eq(variables['PublishAlpha'], 'true'), and(eq(variables['PublishAlpha'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        condition: or(eq(parameters.PublishAlpha, 'true'), and(eq(parameters.PublishAlpha, ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: github
         displayName: Publish dev version to GitHub
         pool:
