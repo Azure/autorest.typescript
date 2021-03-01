@@ -666,13 +666,8 @@ function writeNoOverloadsOperationBody(
   }
 
   const sendParams = parameterDeclarations
-    .map(p => (p.name === "options" ? `options: ${options}` : p.name))
+    .map(p => (p.name === "options" ? `options` : p.name))
     .join(",");
-
-  // Create an object to hold all the arguments for send request
-  operationMethod.addStatements(
-    `const operationArguments: coreHttp.OperationArguments = {${sendParams}}`
-  );
 
   if (operation.isLRO) {
     writeLROOperationBody(
@@ -690,7 +685,8 @@ function writeNoOverloadsOperationBody(
       operationMethod,
       operationSpecName,
       clientDetails,
-      isInline
+      isInline,
+      sendParams
     );
   }
 }
@@ -708,10 +704,11 @@ function writeSendOperationRequest(
   operationMethod: MethodDeclaration,
   operationSpecName: string,
   clientDetails: ClientDetails,
-  isInline = false
+  isInline = false,
+  sendParams: string
 ) {
   const client = isInline ? "" : ".client";
-  const sendRequestStatement = `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`;
+  const sendRequestStatement = `this${client}.sendOperationRequest({${sendParams}}, ${operationSpecName})`;
 
   // When tracing is enabled we want to report success and failures through OpenTelemetry
   // so we create a span and mark it as succeeded or failed
@@ -743,7 +740,7 @@ function getTracingTryCatchStatement(
       span.end();
     }`;
   } else {
-    return `return ${sendRequestStatement} as Promise<${responseName}>`;
+    return `return ${sendRequestStatement}`;
   }
 }
 
@@ -889,7 +886,8 @@ function writeMultiMediaTypeOperationBody(
       operationMethod,
       "operationSpec",
       clientDetails,
-      isInline
+      isInline,
+      ""
     );
   } else {
     const finalStateVia =
@@ -988,7 +986,7 @@ export function addOperationSpecs(
         declarations: [
           {
             name: operationSpec.name,
-            type: "coreHttp.OperationSpec",
+            type: "OperationSpec",
             initializer: writer => writeSpec(operationSpec, writer)
           }
         ]
@@ -1015,7 +1013,7 @@ function writeSerializer(
     declarations: [
       {
         name,
-        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
+        initializer: `createSerializer(${mappers}, /* isXml */ ${isXml});`
       }
     ]
   });

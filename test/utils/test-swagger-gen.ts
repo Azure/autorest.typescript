@@ -407,6 +407,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
     packageName: "petstore"
+  },
+  textanalytics: {
+    swaggerOrConfig: "test/integration/swaggers/textAnalytics.md",
+    clientName: "GeneratedClient",
+    packageName: "textanalytics",
+    hideClients: true,
+    licenseHeader: true
   }
 };
 

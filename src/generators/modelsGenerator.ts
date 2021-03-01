@@ -51,8 +51,8 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   );
 
   modelsIndexFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
+    namedImports: ["ServiceClientOptions", "OperationOptions"],
+    moduleSpecifier: "@azure/core-client"
   });
 
   // Import LRO Symbol if any of the operations is an LRO one
@@ -87,7 +87,9 @@ const writeClientModels = (
     "",
     clientOptionalParams,
     modelsIndexFile,
-    { baseClass: "coreHttp.ServiceClientOptions" }
+    {
+      baseClass: "ServiceClientOptions"
+    }
   );
 };
 
@@ -183,7 +185,7 @@ function writeResponseTypes(
           name: responseName,
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
-          type: buildResponseType(operation, isLRO),
+          type: buildResponseType(operation, isLRO) ?? "",
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
@@ -325,7 +327,7 @@ type IntersectionTypeParameters = [
 function buildResponseType(
   operationResponse: OperationResponseDetails,
   isLro: boolean = false
-): WriterFunction {
+): WriterFunction | string {
   // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
@@ -344,26 +346,15 @@ function buildResponseType(
     ...(headersProperties?.internalResponseProperties || []),
     ...lroProperties
   ];
-  const innerTypeWriter = Writers.objectType({
-    properties: [
-      ...(bodyProperties?.mainProperties || []),
-      {
-        name: "_response",
-        docs: ["The underlying HTTP response."],
-        type: innerResponseProperties.length
-          ? Writers.intersectionType(
-              "coreHttp.HttpResponse",
-              Writers.objectType({
-                properties: innerResponseProperties
-              })
-            )
-          : "coreHttp.HttpResponse",
-        leadingTrivia: writer => writer.blankLine()
-      }
-    ]
-  });
+  let intersectionTypes: WriterFunctionOrValue[] = [];
 
-  let intersectionTypes: WriterFunctionOrValue[] = [innerTypeWriter];
+  if (bodyProperties?.mainProperties && bodyProperties?.mainProperties.length) {
+    let innerTypeWriter: WriterFunctionOrValue = Writers.objectType({
+      properties: bodyProperties?.mainProperties
+    });
+    intersectionTypes.push(innerTypeWriter);
+  }
+
   bodyProperties?.intersectionType &&
     intersectionTypes.unshift(bodyProperties.intersectionType);
   headersProperties?.intersectionType &&
@@ -390,16 +381,17 @@ function buildResponseType(
    *      }
    *    }
    */
-  return intersectionTypes.length > 1
-    ? // Using apply instead of calling the method directly to be able to conditionally pass
-      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-      // we just return innerType
-      Writers.intersectionType.apply(
-        Writers,
-        intersectionTypes as IntersectionTypeParameters
-      )
-    : innerTypeWriter;
+
+  if (intersectionTypes.length > 1) {
+    return Writers.intersectionType.apply(
+      Writers,
+      intersectionTypes as IntersectionTypeParameters
+    );
+  } else if (intersectionTypes.length == 1) {
+    return intersectionTypes[0] as WriterFunction | string;
+  } else {
+    return "OperationResponse";
+  }
 }
 
 const writeChoices = (
@@ -639,7 +631,7 @@ function writeOptionalParameters(
         name: name,
         docs: ["Optional parameters."],
         isExported: true,
-        extends: [baseClass || "coreHttp.OperationOptions"],
+        extends: [baseClass || "OperationOptions"],
         properties: [
           ...optionalGroupDeclarations,
           ...optionalParams
@@ -662,7 +654,7 @@ function writeOptionalParameters(
       name: `${operationGroupName}${operationName}OptionalParams`,
       docs: ["Optional parameters."],
       isExported: true,
-      extends: [baseClass || "coreHttp.OperationOptions"],
+      extends: [baseClass || "OperationOptions"],
       properties: [
         ...optionalGroupDeclarations,
         ...optionalParams.map<PropertySignatureStructure>(p => {

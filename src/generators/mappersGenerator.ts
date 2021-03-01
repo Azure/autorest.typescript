@@ -42,8 +42,8 @@ export function generateMappers(
   writeDiscriminatorsMapping(mappersFile, clientDetails);
 
   mappersFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
+    namedImports: ["CompositeMapper "],
+    moduleSpecifier: "@azure/core-client"
   });
 }
 
@@ -82,7 +82,7 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
             (mapper as CompositeMapper).type.className || "MISSING_MAPPER",
             NameType.Class
           ),
-          type: "coreHttp.CompositeMapper",
+          type: "CompositeMapper",
           initializer: writer => writeMapper(writer, mapper)
         }
       ],

@@ -46,15 +46,13 @@ export function generateClientContext(
     }
   );
 
-  writePackageInfo(sourceFile, packageDetails);
-
   const contextClass = buildClass(sourceFile, clientContextClassName);
 
   if (hideClients) {
     contextClass.addJsDoc({
       tags: [
         {
-          tagName: "hidden"
+          tagName: "internal"
         }
       ]
     });
@@ -92,8 +90,8 @@ function writeImports(
   importedModels: Set<string>
 ) {
   sourceFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
+    namedImports: ["ServiceClient"],
+    moduleSpecifier: "@azure/core-client"
   });
 
   if (importedModels.size) {
@@ -109,17 +107,6 @@ function writeImports(
       moduleSpecifier: "./lro"
     });
   }
-}
-
-function writePackageInfo(
-  sourceFile: SourceFile,
-  packageDetails: PackageDetails
-) {
-  sourceFile.addStatements([
-    `\n\n`,
-    `const packageName = "${packageDetails.name || ""}";`,
-    `const packageVersion = "${packageDetails.version || ""}";`
-  ]);
 }
 
 function writeClassProperties(
@@ -152,15 +139,16 @@ function writeConstructorBody(
   const requiredParameters = getRequiredParamAssignments(requiredParams);
   const constantParameters = getConstantClientParamAssignments(clientParams);
   classConstructor.addStatements([
-    writeStatements(getRequiredParamChecks(requiredParams), addBlankLine),
     writeStatement(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
         hasLRO,
         clientDetails
       )
-    ),
-    writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
+    )
+  ]);
+
+  classConstructor.addStatements([
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredParams), addBlankLine),
     constantParameters.length
@@ -237,31 +225,24 @@ function writeDefaultOptions(
     }`
     : "";
 
-  return `// Initializing default values for options
-  if (!options) {
-     options = {};
-   }
+  return `const defaults: ${clientDetails.className}OptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-  if (!options.userAgent) {
-     const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-     options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
-   }
-
-   ${addScopes}
-
-  ${addLROPolicy}
-
-  super(${hasCredentials ? "credentials" : `undefined`}, options);
-  
-  this.requestContentType = "application/json; charset=utf-8";
-  
-  `;
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options?.endpoint 
+    };
+    
+    super(optionsWithDefaults);
+    `;
 }
 
 function buildClass(sourceFile: SourceFile, clientContextClassName: string) {
   return sourceFile.addClass({
     name: clientContextClassName,
-    extends: "coreHttp.ServiceClient",
+    extends: "ServiceClient ",
     isExported: true
   });
 }

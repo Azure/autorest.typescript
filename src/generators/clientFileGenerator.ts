@@ -71,8 +71,8 @@ export function generateClient(
 
   (hasCredentials || hasInlineOperations || !hasClientOptionalParams) &&
     clientFile.addImportDeclaration({
-      namespaceImport: "coreHttp",
-      moduleSpecifier: "@azure/core-http"
+      namedImports: ["OperationOptions", "OperationSpec", "createSerializer"],
+      moduleSpecifier: "@azure/core-client"
     });
 
   const flattenedInlineOperations = inlineOperations.reduce<OperationDetails[]>(
@@ -131,7 +131,7 @@ export function generateClient(
     clientClass.addJsDoc({
       tags: [
         {
-          tagName: "hidden"
+          tagName: "internal"
         }
       ]
     });

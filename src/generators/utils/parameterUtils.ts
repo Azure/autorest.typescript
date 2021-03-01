@@ -353,7 +353,7 @@ function getOptionsParameter(
     mediaType
   }: { isOptional?: boolean; mediaType?: string } = {}
 ): ParameterWithDescription {
-  let type: string = "coreHttp.OperationOptions";
+  let type: string = "OperationOptions";
   const operationParameters = filterOperationParameters(parameters, operation, {
     includeOptional: true,
     includeGroupedParameters: true

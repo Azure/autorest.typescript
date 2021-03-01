@@ -37,7 +37,7 @@ export function generateParameters(
   if (importedCoreHttp.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedCoreHttp,
-      moduleSpecifier: "@azure/core-http"
+      moduleSpecifier: "@azure/core-client"
     });
   }
 
