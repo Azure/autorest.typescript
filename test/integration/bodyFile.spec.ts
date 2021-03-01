@@ -75,7 +75,7 @@ describe("BodyFile Client", () => {
           3000 * 1024 * 1024,
           "Expected a very large file."
         );
-      }).timeout(30000);
+      }).timeout(50000);
     });
   } else {
     // TODO: Support running browser tests.
