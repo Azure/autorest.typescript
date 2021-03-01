@@ -8,13 +8,11 @@ parameters:
     default: false
 
 stages:
+  ${{if eq(${{parameters.PublishAlpha}}, 'true')}}
   - stage: Integration
     dependsOn: ${{parameters.DependsOn}}
     jobs:
       - deployment: PublishToGithub
-        # Run Integration job only if PublishAlpha is set to true or ( PublishAlpha is empty and job is a scheduled CI run)
-        # If PublishAlpha is set to false then we should skip integration job even for scheduled runs.
-        condition: or(eq(${{parameters.PublishAlpha}}, 'true'), and(eq(${{parameters.PublishAlpha}}, 'false'), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: github
         displayName: Publish dev version to GitHub
         pool:
@@ -39,7 +37,6 @@ stages:
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$DEV_VERSION --tag v$DEV_VERSION --notes='prerelease build' --prerelease --editRelease false --assets autorest-typescript-$DEV_VERSION.tgz --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish to GitHub"
       - deployment: PublishToNpm
-        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: npm
         displayName: Publish dev version to NPM
         pool:
