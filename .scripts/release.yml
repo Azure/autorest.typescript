@@ -8,8 +8,8 @@ parameters:
     default: false
 
 stages:
-  - ? ${{if eq(${{parameters.PublishAlpha}}, 'true')}}
-    : - stage: Integration
+  - ${{if eq(${{parameters.PublishAlpha}}, 'true')}}
+    - stage: Integration
       dependsOn: ${{parameters.DependsOn}}
       jobs:
         - deployment: PublishToGithub
