@@ -14,7 +14,7 @@ stages:
       - deployment: PublishToGithub
         # Run Integration job only if PublishAlpha is set to true or ( PublishAlpha is empty and job is a scheduled CI run)
         # If PublishAlpha is set to false then we should skip integration job even for scheduled runs.
-        condition: or(eq(parameters['PublishAlpha'], 'true'), and(eq(parameters['PublishAlpha'], 'false'), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        condition: or(eq(${{parameters.PublishAlpha}}, 'true'), and(eq(${{parameters.PublishAlpha}}, 'false'), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         environment: github
         displayName: Publish dev version to GitHub
         pool:
