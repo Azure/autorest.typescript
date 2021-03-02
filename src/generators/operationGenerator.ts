@@ -1037,8 +1037,8 @@ function addImports(
   );
 
   operationGroupFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
+    namedImports: [`createSerializer`, `OperationSpec`],
+    moduleSpecifier: "@azure/core-client"
   });
 
   if (mappers.length) {

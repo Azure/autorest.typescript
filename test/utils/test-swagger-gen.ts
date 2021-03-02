@@ -421,6 +421,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "eventgrids",
     hideClients: true,
     licenseHeader: true
+  },
+  datatables: {
+    swaggerOrConfig: "test/integration/swaggers/datatables.md",
+    clientName: "GeneratedClient",
+    packageName: "datatables",
+    hideClients: true,
+    licenseHeader: true
   }
 };
 
