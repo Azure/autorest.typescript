@@ -414,6 +414,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "textanalytics",
     hideClients: true,
     licenseHeader: true
+  },
+  eventgrids: {
+    swaggerOrConfig: "test/integration/swaggers/eventgrids.md",
+    clientName: "GeneratedClient",
+    packageName: "eventgrids",
+    hideClients: true,
+    licenseHeader: true
   }
 };
 
