@@ -9,7 +9,7 @@ package-name: "@azure/ai-text-analytics"
 title: GeneratedClient
 description: TextAnalytics Client
 license-header: MICROSOFT_MIT_NO_VERSION
-input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.1-preview.4/TextAnalytics.json
+input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/abe10d9e0ac49b15e1c6e9f879ab48deca98cf15/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.1-preview.4/TextAnalytics.json
 add-credentials: false
 package-version: 5.1.0-beta.5
 hide-clients: true
