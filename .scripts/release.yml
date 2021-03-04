@@ -7,6 +7,14 @@ parameters:
     type: boolean
     default: false
 
+  - name: LinuxPool
+    type: string
+    default: azsdk-pool-mms-ubuntu-1804-general
+
+  - name: OSVmImage
+    type: string
+    default: ubuntu-18.04
+
 stages:
   - ${{if eq(parameters.PublishAlpha, 'true')}}:
       - stage: Integration
@@ -16,7 +24,8 @@ stages:
             environment: github
             displayName: Publish dev version to GitHub
             pool:
-              vmImage: ubuntu-18.04
+              name: ${{ parameters.LinuxPool }}
+              vmImage: ${{ parameters.OSVmImage }}
             strategy:
               runOnce:
                 deploy:
@@ -34,13 +43,13 @@ stages:
                         export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
                         npm version --no-git-tag-version $DEV_VERSION
                         npm pack
-                        npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$DEV_VERSION --tag v$DEV_VERSION --notes='prerelease build' --prerelease --editRelease false --assets autorest-typescript-$DEV_VERSION.tgz --target_commitish $(Build.SourceBranchName)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             environment: npm
             displayName: Publish dev version to NPM
             pool:
-              vmImage: ubuntu-18.04
+              name: $[coalesce(variables['Pool'], '')]
+              vmImage: $[coalesce(variables['OSVmImage'], '')]
             strategy:
               runOnce:
                 deploy:
@@ -64,5 +73,5 @@ stages:
                       displayName: "Npm Pack"
                     - script: |
                         echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                        npm publish $TAR_NAME --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                        npm publish --dry-run $TAR_NAME --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                       displayName: "Publish to NPM"
