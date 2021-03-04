@@ -16,8 +16,7 @@ parameters:
     default: ubuntu-18.04
 
 pool:
-  name: $[coalesce(variables['LinuxPool'], '')]
-  vmImage: $[coalesce(variables['OSVmImage'], '')]
+  vmImage: ubuntu-18.04
 
 stages:
   - stage: Build
