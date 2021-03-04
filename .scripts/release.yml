@@ -20,10 +20,12 @@ stages:
       - stage: Integration
         jobs:
           - job: Verification
-            displayName: Verification
             steps:
-              - script: |
-                echo "OK"
+               - script: |
+                npm install
+                npm run build
+              displayName: "Verify"
+                
           - deployment: PublishToGithub
             variables:
               DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
