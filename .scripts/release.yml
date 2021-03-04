@@ -20,7 +20,49 @@ stages:
       - stage: Integration
         dependsOn: ${{parameters.DependsOn}}
         jobs:
+          - job:
+            name: Pack
+            displayName: "Pack @autorest/typescript"
+
+            pool:
+              name: ${{ parameters.LinuxPool }}
+              vmImage: ${{ parameters.OSVmImage }}
+
+            steps:
+              - checkout: self
+                  - task: NodeTool@0
+                    inputs:
+                      versionSpec: "14.x"
+                    displayName: "Install Node.js"
+                  - script: |
+                      npm install
+                      npm run build
+                    displayName: "npm install and build"
+                  - script: |
+                      export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
+                      echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
+                      npm version --no-git-tag-version $DEV_VERSION
+                      export TAR_NAME=$(npm pack -q)
+                      echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
+                  - task: CopyFiles@2
+                    inputs:
+                      contents: "*.tgz"
+                      targetFolder: $(Build.ArtifactStagingDirectory)
+                      flattenFolders: true
+                    displayName: "Copy packages"
+
+                  - task: PublishPipelineArtifact@1
+                    condition: succeededOrFailed()
+                    displayName: "Publish artifacts"
+                    inputs:
+                      artifactName: packages
+                      path: $(Build.ArtifactStagingDirectory)
+
           - deployment: PublishToGithub
+            dependsOn: Pack
+            variables: 
+              TAR_NAME: $[ dependencies.Pack.outputs['TAR_NAME'] ]
+              DEV_VERSION: $[ dependencies.Pack.outputs['DEV_VERSION'] ]
             environment: github
             displayName: Publish dev version to GitHub
             pool:
@@ -35,18 +77,21 @@ stages:
                       inputs:
                         versionSpec: "14.x"
                       displayName: "Install Node.js"
+                    - task: DownloadBuildArtifacts@0
+                      inputs:
+                        downloadType: "single"
+                        artifactName: $(TAR_NAME)
+                        downloadPath: '$(System.ArtifactsDirectory)' 
                     - script: |
-                        npm install
-                        npm run build
-                      displayName: "npm install and build"
-                    - script: |
-                        export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
-                        npm version --no-git-tag-version $DEV_VERSION
-                        npm pack
+                        echo "Publish $(System.ArtifactsDirectory)/$(TAR_NAME) $(DEV_VERSION)"
+                        ls $(System.ArtifactsDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             environment: npm
             displayName: Publish dev version to NPM
+            dependsOn: Pack
+            variables: 
+              TAR_NAME: $[ dependencies.Pack.outputs['TAR_NAME'] ]
             pool:
               name: $[coalesce(variables['Pool'], '')]
               vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -59,19 +104,12 @@ stages:
                       inputs:
                         versionSpec: "14.x"
                       displayName: "Install Node.js"
-                    - script: |
-                        npm install
-                        npm run build
-                      displayName: "npm install and build"
-                    - script: |
-                        export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
-                        npm version --no-git-tag-version $DEV_VERSION
-                      displayName: "Set Dev Version"
-                    - script: |
-                        export TAR_NAME=$(npm pack -q)
-                        echo $TAR_NAME
-                      displayName: "Npm Pack"
+                    - task: DownloadBuildArtifacts@0
+                      inputs:
+                        downloadType: "single"
+                        artifactName: $(TAR_NAME)
+                        downloadPath: '$(System.ArtifactsDirectory'
                     - script: |
                         echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                        npm publish --dry-run $TAR_NAME --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                        npm publish --dry-run $(System.ArtifactsDirectory)/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                       displayName: "Publish to NPM"

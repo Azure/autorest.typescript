@@ -92,11 +92,11 @@ stages:
 
           - script: npm run check:tree
             displayName: "Check git Tree"
-          - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
-              - script: |
-                  npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-                workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-                displayName: "Upload Coverage Report"
+          - script: |
+              npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+            workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+            displayName: "Upload Coverage Report"
+            condition: ne(variables['Build.Reason'], 'PullRequest')
 
       # We are splitting smoke test validation in buckets to help reduce the overall run time by running each bucket in parallel
       - template: smoke-test.yml
