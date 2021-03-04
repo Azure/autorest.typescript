@@ -15,18 +15,15 @@ parameters:
     type: string
     default: ubuntu-18.04
 
-  - name: TAR_NAME
-    type: string
-
-  - name: DEV_VERSION
-    type: string
-
 stages:
   - ${{if eq(parameters.PublishAlpha, 'true')}}:
       - stage: Integration
         dependsOn: ${{parameters.DependsOn}}
         jobs:
           - deployment: PublishToGithub
+            variables:
+              DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
+              TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
             dependsOn: Pack
             environment: github
             displayName: Publish dev version to GitHub
@@ -44,10 +41,10 @@ stages:
                     - task: DownloadBuildArtifacts@0
                       inputs:
                         downloadType: "single"
-                        artifactName: ${{ parameters.TAR_NAME }}
+                        artifactName: $(TAR_NAME)
                         downloadPath: "$(System.ArtifactsDirectory)"
                     - script: |
-                        echo "Publish $(System.ArtifactsDirectory)/${{ parameters.TAR_NAME }} ${{ parameters.DEV_VERSION }}"
+                        echo "Publish $(System.ArtifactsDirectory)/$(TAR_NAME) $(DEV_VERSION )"
                         ls $(System.ArtifactsDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
@@ -55,7 +52,7 @@ stages:
             displayName: Publish dev version to NPM
             dependsOn: Pack
             variables:
-              TAR_NAME: $[ dependencies.Pack.outputs['TAR_NAME'] ]
+              TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
             pool:
               name: $[coalesce(variables['Pool'], '')]
               vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -71,9 +68,9 @@ stages:
                     - task: DownloadBuildArtifacts@0
                       inputs:
                         downloadType: "single"
-                        artifactName: ${{ parameters.TAR_NAME }}
+                        artifactName: $(TAR_NAME)
                         downloadPath: "$(System.ArtifactsDirectory"
                     - script: |
                         echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                        npm publish --dry-run $(System.ArtifactsDirectory)/${{ parameters.TAR_NAME }} --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                        npm publish --dry-run $(System.ArtifactsDirectory)/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                       displayName: "Publish to NPM"

@@ -114,9 +114,6 @@ stages:
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
     : - template: release.yml
-        dependsOn: Build
         parameters:
           DependsOn: Build
           PublishAlpha: ${{ parameters.PublishAlpha }}
-          TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
-          DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
