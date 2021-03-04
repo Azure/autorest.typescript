@@ -19,6 +19,11 @@ stages:
   - ${{if eq(parameters.PublishAlpha, 'true')}}:
       - stage: Integration
         jobs:
+          - job: Verification
+            displayName: Verification
+            steps:
+              - script: |
+                echo "OK"
           - deployment: PublishToGithub
             variables:
               DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
