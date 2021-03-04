@@ -18,13 +18,12 @@ parameters:
 stages:
   - ${{if eq(parameters.PublishAlpha, 'true')}}:
       - stage: Integration
-        dependsOn: ${{parameters.DependsOn}}
         jobs:
           - deployment: PublishToGithub
             variables:
               DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
               TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
-            dependsOn: Pack
+            dependsOn: ${{parameters.DependsOn}}
             environment: github
             displayName: Publish dev version to GitHub
             pool:
@@ -50,7 +49,7 @@ stages:
           - deployment: PublishToNpm
             environment: npm
             displayName: Publish dev version to NPM
-            dependsOn: Pack
+            dependsOn: ${{parameters.DependsOn}}
             variables:
               TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
             pool:
