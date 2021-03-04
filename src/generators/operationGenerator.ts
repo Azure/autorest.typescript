@@ -1037,7 +1037,7 @@ function addImports(
   );
 
   operationGroupFile.addImportDeclaration({
-    namedImports: [`createSerializer`, `OperationSpec`],
+    namedImports: [`createSerializer`, `OperationSpec`, `OperationOptions`],
     moduleSpecifier: "@azure/core-client"
   });
 

@@ -225,7 +225,12 @@ function writeDefaultOptions(
     }`
     : "";
 
-  return `const defaults: ${clientDetails.className}OptionalParams = {
+  return `// Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+  
+    const defaults: ${clientDetails.className}OptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
 

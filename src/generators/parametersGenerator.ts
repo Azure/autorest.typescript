@@ -87,9 +87,28 @@ function writeParameterCollectionFormat(
   writer: CodeBlockWriter,
   { collectionFormat }: ParameterDetails
 ) {
+  switch (collectionFormat) {
+    case "Csv":
+      collectionFormat = '"CSV"';
+      break;
+    case "Ssv":
+      collectionFormat = '"SSV"';
+      break;
+    case "Tsv":
+      collectionFormat = '"TSV"';
+      break;
+    case "Pipes":
+      collectionFormat = '"Pipes"';
+      break;
+    case "Multi":
+      collectionFormat = '"Multi"';
+      break;
+    default:
+      break;
+  }
   return writer.conditionalWrite(
     !!collectionFormat,
-    () => `collectionFormat: QueryCollectionFormat.${collectionFormat},`
+    () => `collectionFormat: ${collectionFormat},`
   );
 }
 

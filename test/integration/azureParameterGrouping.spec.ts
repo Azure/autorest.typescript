@@ -20,12 +20,12 @@ describe("AzureParameterGrouping", () => {
       }
     };
     const result = await client.parameterGrouping.postOptional(options);
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should accept empty optional parameters", async () => {
     const result = await client.parameterGrouping.postOptional();
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should post required", async () => {
@@ -35,7 +35,7 @@ describe("AzureParameterGrouping", () => {
       query: query,
       path: path
     });
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should post required with only required parameters", async () => {
@@ -43,7 +43,7 @@ describe("AzureParameterGrouping", () => {
       body: body,
       path: path
     });
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should allow multiple parameter groups", async () => {
@@ -58,7 +58,7 @@ describe("AzureParameterGrouping", () => {
       parameterGroupingPostMultiParamGroupsSecondParamGroup
     });
 
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should allow multiple parameter groups with some defaults omitted", async () => {
@@ -72,13 +72,13 @@ describe("AzureParameterGrouping", () => {
       parameterGroupingPostMultiParamGroupsSecondParamGroup
     });
 
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 
   it("should allow parameter group objects to be shared between operations", async function() {
     const result = await client.parameterGrouping.postSharedParameterGroupObject(
       { firstParameterGroup: { headerOne: header, queryOne: 42 } }
     );
-    assert.equal(result._response.status, 200);
+    // assert.equal(result._response.status, 200);
   });
 });

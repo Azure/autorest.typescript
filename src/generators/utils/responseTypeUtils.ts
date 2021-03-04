@@ -60,7 +60,7 @@ export function getOperationResponseType(
     return typeName;
   }
 
-  return "coreHttp.RestResponse";
+  return "void";
 }
 
 /**
