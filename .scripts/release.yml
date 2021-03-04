@@ -21,11 +21,12 @@ stages:
         jobs:
           - job: Verification
             steps:
-               - script: |
-                npm install
-                npm run build
-              displayName: "Verify"
-                
+              - script: |
+                  npm install
+                  npm run build
+                  displayName: "Verify"
+                displayName: Verify
+
           - deployment: PublishToGithub
             variables:
               DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
