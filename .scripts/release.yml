@@ -18,20 +18,12 @@ parameters:
 stages:
   - ${{if eq(parameters.PublishAlpha, 'true')}}:
       - stage: Integration
+        dependsOn: ${{parameters.DependsOn}}
         jobs:
-          - job: Verification
-            steps:
-              - script: |
-                  npm install
-                  npm run build
-                  displayName: "Verify"
-                displayName: Verify
-
           - deployment: PublishToGithub
             variables:
-              DEV_VERSION: $[ dependencies.Build.outputs['DEV_VERSION'] ]
-              TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
-            dependsOn: ${{parameters.DependsOn}}
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+              DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.DEV_VERSION'] ]
             environment: github
             displayName: Publish dev version to GitHub
             pool:
@@ -41,6 +33,10 @@ stages:
               runOnce:
                 deploy:
                   steps:
+                    - script: |
+                        export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
+                      displayName: "Get Dev Version"
+
                     - task: NodeTool@0
                       inputs:
                         versionSpec: "14.x"
@@ -55,11 +51,10 @@ stages:
                         ls $(System.ArtifactsDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
+            variables:
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
             environment: npm
             displayName: Publish dev version to NPM
-            dependsOn: ${{parameters.DependsOn}}
-            variables:
-              TAR_NAME: $[ dependencies.Build.outputs['TAR_NAME'] ]
             pool:
               name: $[coalesce(variables['Pool'], '')]
               vmImage: $[coalesce(variables['OSVmImage'], '')]
