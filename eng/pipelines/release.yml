@@ -56,7 +56,8 @@ stages:
                     versionSpec: "14.x"
                   displayName: "Install Node.js"
                 - script: |
+                    cd $(Pipeline.Workspace)/packages
                     npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                    npm publish $(Pipeline.Workspace)/packages/$(TAR_NAME) --access-level public --registry="https://registry.npmjs.org/" --always-auth=true --tag=dev
+                    npm publish $(TAR_NAME) --access-level=public --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                     npm config delete //registry.npmjs.org/:_authToken
                   displayName: "Publish to NPM"
