@@ -3,10 +3,6 @@ parameters:
     type: string
     default: Build
 
-  - name: PublishAlpha
-    type: boolean
-    default: false
-
   - name: LinuxPool
     type: string
     default: azsdk-pool-mms-ubuntu-1804-general
@@ -16,47 +12,46 @@ parameters:
     default: ubuntu-18.04
 
 stages:
-  - ${{if eq(parameters.PublishAlpha, 'true')}}:
-      - stage: Integration
-        dependsOn: ${{parameters.DependsOn}}
-        jobs:
-          - deployment: PublishToGithub
-            variables:
-              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
-            environment: github
-            displayName: Publish dev version to GitHub
-            pool:
-              name: ${{ parameters.LinuxPool }}
-              vmImage: ${{ parameters.OSVmImage }}
-            strategy:
-              runOnce:
-                deploy:
-                  steps:
-                    - task: NodeTool@0
-                      inputs:
-                        versionSpec: "14.x"
-                      displayName: "Install Node.js"
-                    - script: |
-                        echo "Publish $(Build.ArtifactStagingDirectory)/$(TAR_NAME)"
-                        ls $(Build.ArtifactStagingDirectory)
-                      displayName: "Publish to GitHub"
-          - deployment: PublishToNpm
-            variables:
-              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
-            environment: npm
-            displayName: Publish dev version to NPM
-            pool:
-              name: ${{ parameters.LinuxPool }}
-              vmImage: ${{ parameters.OSVmImage }}
-            strategy:
-              runOnce:
-                deploy:
-                  steps:
-                    - task: NodeTool@0
-                      inputs:
-                        versionSpec: "14.x"
-                      displayName: "Install Node.js"
-                    - script: |
-                        echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                        npm publish --dry-run $(Build.ArtifactStagingDirectory)/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
-                      displayName: "Publish to NPM"
+  - stage: Integration
+    dependsOn: ${{parameters.DependsOn}}
+    jobs:
+      - deployment: PublishToGithub
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+        environment: github
+        displayName: Publish dev version to GitHub
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "14.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    echo "Publish $(Pipeline.Workspace)/$(TAR_NAME)"
+                    tree $(Pipeline.Workspace)
+                  displayName: "Publish to GitHub"
+      - deployment: PublishToNpm
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+        environment: npm
+        displayName: Publish dev version to NPM
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "14.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
+                    npm publish --dry-run $(Pipeline.Workspace)/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                  displayName: "Publish to NPM"
