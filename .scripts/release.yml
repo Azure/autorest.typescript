@@ -44,7 +44,7 @@ stages:
                     - task: DownloadBuildArtifacts@0
                       inputs:
                         downloadType: "single"
-                        artifactName: $(TAR_NAME)
+                        artifactName: packages
                         downloadPath: "$(System.ArtifactsDirectory)"
                     - script: |
                         echo "Publish $(System.ArtifactsDirectory)/$(TAR_NAME) $(DEV_VERSION )"
@@ -70,7 +70,7 @@ stages:
                     - task: DownloadBuildArtifacts@0
                       inputs:
                         downloadType: "single"
-                        artifactName: $(TAR_NAME)
+                        artifactName: packages
                         downloadPath: "$(System.ArtifactsDirectory"
                     - script: |
                         echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
