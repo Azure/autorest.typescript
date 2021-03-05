@@ -1,10 +1,10 @@
-import { spawn, ChildProcess } from "child_process";
+import { spawn } from "child_process";
 import { join as joinPath } from "path";
 import { bold } from "chalk";
 import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
-import { read } from "fs";
 import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
+import { onExit } from "./childProcessOnExit";
 
 const SMOKE_PATH = joinPath(".", "test", "smoke", "generated");
 
@@ -16,21 +16,6 @@ interface SmokeResult {
   readme: string;
   success: boolean;
 }
-
-const onExit = (childProcess: ChildProcess) => {
-  return new Promise((resolve, reject) => {
-    childProcess.once("exit", (code: number, signal: string) => {
-      if (code === 0) {
-        resolve();
-      }
-      reject(new Error(`Exit with code: ${code}`));
-    });
-
-    childProcess.once("error", (error: Error) => {
-      reject(error);
-    });
-  });
-};
 
 const generateFromReadme = async ({
   path,

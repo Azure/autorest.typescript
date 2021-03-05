@@ -43,6 +43,7 @@ import { Mapper, ParameterPath } from "@azure/core-http";
 import { generateOperationJSDoc } from "./utils/docsUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
 import {
+  addPagingEsNextRef,
   addPagingImports,
   preparePageableOperations,
   writeAsyncIterators
@@ -1029,8 +1030,12 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { className, sourceFileName, mappers } = clientDetails;
-
+  const { className, mappers } = clientDetails;
+  addPagingEsNextRef(
+    operationGroupDetails.operations,
+    clientDetails,
+    operationGroupFile
+  );
   addTracingOperationImports(clientDetails, operationGroupFile);
   addPagingImports(
     operationGroupDetails.operations,

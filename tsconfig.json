@@ -14,13 +14,14 @@
     "declaration": true,
     "stripInternal": true,
     "noEmitHelpers": false,
-    "target": "es2018",
+    "target": "es5",
     "types": ["node", "mocha"],
-    "lib": ["es2018"],
+    "lib": ["ESNext.AsyncIterable"],
     "experimentalDecorators": true,
     "newLine": "LF",
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "downlevelIteration": true
   },
   "include": ["src"],
   "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]

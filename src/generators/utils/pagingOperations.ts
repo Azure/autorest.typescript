@@ -52,11 +52,25 @@ export function addPagingImports(
     hasAsyncIteratorOperations(operations)
   ) {
     sourceFile.addImportDeclarations([
+      { moduleSpecifier: "@azure/core-paging" },
       {
         namedImports: ["PagedAsyncIterableIterator"],
         moduleSpecifier: "@azure/core-paging"
       }
     ]);
+  }
+}
+
+export function addPagingEsNextRef(
+  operations: OperationDetails[],
+  { options }: ClientDetails,
+  sourceFile: SourceFile
+) {
+  if (
+    !options.disablePagingAsyncIterators &&
+    hasAsyncIteratorOperations(operations)
+  ) {
+    sourceFile.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
   }
 }
 

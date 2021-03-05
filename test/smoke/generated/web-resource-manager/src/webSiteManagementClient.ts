@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   AppServiceCertificateOrders,
@@ -67,6 +68,7 @@ import {
   WebSiteManagementClientListPremierAddOnOffersNextResponse
 } from "./models";
 
+/// <reference lib="esnext.asynciterable" />
 export class WebSiteManagementClient extends WebSiteManagementClientContext {
   /**
    * Initializes a new instance of the WebSiteManagementClient class.

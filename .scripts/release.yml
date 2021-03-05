@@ -1,0 +1,63 @@
+parameters:
+  - name: DependsOn
+    type: string
+    default: Build
+
+  - name: LinuxPool
+    type: string
+    default: azsdk-pool-mms-ubuntu-1804-general
+
+  - name: OSVmImage
+    type: string
+    default: ubuntu-18.04
+
+stages:
+  - stage: Integration
+    dependsOn: ${{parameters.DependsOn}}
+    jobs:
+      - deployment: PublishToGithub
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.DEV_VERSION'] ]
+        environment: github
+        displayName: Publish dev version to GitHub
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "14.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
+                - script: |
+                    cd package
+                    tree .
+                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                  displayName: "Publish to GitHub"
+      - deployment: PublishToNpm
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+        environment: npm
+        displayName: Publish dev version to NPM
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "14.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    cd $(Pipeline.Workspace)/packages
+                    npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                    npm publish $(TAR_NAME) --access public
+                    npm config delete //registry.npmjs.org/:_authToken
+                  displayName: "Publish to NPM"

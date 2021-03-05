@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
@@ -13,6 +14,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { ComputeOperationValue, OperationsListResponse } from "../models";
 
+/// <reference lib="esnext.asynciterable" />
 /** Class representing a Operations. */
 export class Operations {
   private readonly client: ComputeManagementClientContext;

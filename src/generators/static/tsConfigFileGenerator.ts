@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { ClientDetails } from "../../models/clientDetails";
 
 export function generateTsConfig(project: Project) {
   const tsConfigContents = {

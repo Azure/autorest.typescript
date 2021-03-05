@@ -8,6 +8,7 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
@@ -59,6 +60,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
+/// <reference lib="esnext.asynciterable" />
 /** Class representing a Paging. */
 export class Paging {
   private readonly client: PagingClientContext;
