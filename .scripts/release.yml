@@ -37,8 +37,8 @@ stages:
                         versionSpec: "14.x"
                       displayName: "Install Node.js"
                     - script: |
-                        echo "Publish $(System.$(Build.ArtifactStagingDirectory))/$(TAR_NAME)"
-                        ls $(System.$(Build.ArtifactStagingDirectory))
+                        echo "Publish $(Build.ArtifactStagingDirectory)/$(TAR_NAME)"
+                        ls $(Build.ArtifactStagingDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             variables:
@@ -58,5 +58,5 @@ stages:
                       displayName: "Install Node.js"
                     - script: |
                         echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                        npm publish --dry-run $(System.$(Build.ArtifactStagingDirectory))/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                        npm publish --dry-run $(Build.ArtifactStagingDirectory)/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                       displayName: "Publish to NPM"
