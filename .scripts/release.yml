@@ -43,7 +43,7 @@ stages:
                         downloadPath: "$(System.ArtifactsDirectory)"
                     - script: |
                         echo "Publish $(System.ArtifactsDirectory)/packages/$(TAR_NAME)"
-                        ls $(System.ArtifactsDirectory)
+                        tree $(System.ArtifactsDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             variables:
