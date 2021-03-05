@@ -32,10 +32,6 @@ stages:
                     versionSpec: "14.x"
                   displayName: "Install Node.js"
                 - script: |
-                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
-                - script: |
-                    cd package
-                    tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish to GitHub"
       - deployment: PublishToNpm
@@ -56,5 +52,5 @@ stages:
                   displayName: "Install Node.js"
                 - script: |
                     echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                    npm publish --dry-run $(Pipeline.Workspace)/packages/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                    npm publish $(Pipeline.Workspace)/packages/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                   displayName: "Publish to NPM"
