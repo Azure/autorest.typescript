@@ -23,7 +23,6 @@ stages:
           - deployment: PublishToGithub
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
-              DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.DEV_VERSION'] ]
             environment: github
             displayName: Publish dev version to GitHub
             pool:
@@ -33,10 +32,6 @@ stages:
               runOnce:
                 deploy:
                   steps:
-                    - script: |
-                        export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
-                      displayName: "Get Dev Version"
-
                     - task: NodeTool@0
                       inputs:
                         versionSpec: "14.x"
@@ -47,7 +42,7 @@ stages:
                         artifactName: packages
                         downloadPath: "$(System.ArtifactsDirectory)"
                     - script: |
-                        echo "Publish $(System.ArtifactsDirectory)/packages/$(TAR_NAME) $(DEV_VERSION )"
+                        echo "Publish $(System.ArtifactsDirectory)/packages/$(TAR_NAME)"
                         ls $(System.ArtifactsDirectory)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
@@ -56,8 +51,8 @@ stages:
             environment: npm
             displayName: Publish dev version to NPM
             pool:
-              name: $[coalesce(variables['Pool'], '')]
-              vmImage: $[coalesce(variables['OSVmImage'], '')]
+              name: ${{ parameters.LinuxPool }}
+              vmImage: ${{ parameters.OSVmImage }}
             strategy:
               runOnce:
                 deploy:
