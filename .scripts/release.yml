@@ -18,6 +18,7 @@ stages:
       - deployment: PublishToGithub
         variables:
           TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.DEV_VERSION'] ]
         environment: github
         displayName: Publish dev version to GitHub
         pool:
@@ -56,5 +57,5 @@ stages:
                   displayName: "Install Node.js"
                 - script: |
                     echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-                    npm publish --dry-run $(Pipeline.Workspace)/packages/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
+                    npm publish $(Pipeline.Workspace)/packages/$(TAR_NAME) --access-level="public" --registry="https://registry.npmjs.org/" --always-auth=true --tag="dev"
                   displayName: "Publish to NPM"
