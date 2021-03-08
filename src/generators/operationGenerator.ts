@@ -673,7 +673,11 @@ function writeNoOverloadsOperationBody(
     const {
       outputOptionsVarName: updatedOptionsName,
       statement: tracingStatement
-    } = getTracingSpanStatement(clientDetails, operationName, options);
+    } = getTracingSpanStatement(
+      clientDetails,
+      operationName,
+      `${options} || {}`
+    );
     operationMethod.addStatements([tracingStatement]);
     // Options from createSpan should be used as operation options, updating
     options = compileOperationOptionsToRequestOptionsBase(
@@ -903,21 +907,34 @@ function writeMultiMediaTypeOperationBody(
   }`
   ]);
 
-  const toOptionsBase = `coreHttp.operationOptionsToRequestOptionsBase(operationArguments.options || {})`;
+  const finalStateVia =
+    operation.lroOptions && operation.lroOptions["final-state-via"];
 
   if (clientDetails.tracing) {
     const operationName = operationMethod.getName();
     const {
       outputOptionsVarName,
       statement: tracingStatement
-    } = getTracingSpanStatement(clientDetails, operationName, toOptionsBase);
+    } = getTracingSpanStatement(
+      clientDetails,
+      operationName,
+      "operationArguments.options || {}"
+    );
     operationMethod.addStatements([
       tracingStatement,
-      `operationArguments.options = ${outputOptionsVarName};`
+      `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
+        outputOptionsVarName,
+        operation.isLRO,
+        finalStateVia
+      )};`
     ]);
   } else {
     operationMethod.addStatements([
-      `operationArguments.options = ${toOptionsBase};`
+      `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
+        "operationArguments.options || {}",
+        operation.isLRO,
+        finalStateVia
+      )};`
     ]);
   }
 
@@ -930,9 +947,6 @@ function writeMultiMediaTypeOperationBody(
       isInline
     );
   } else {
-    const finalStateVia =
-      operation.lroOptions && operation.lroOptions["final-state-via"];
-
     writeLROOperationBody(
       "operationArguments",
       responseName,
