@@ -640,7 +640,7 @@ function addOperationOverloads(
  * @param options the name of the options parameter.
  * @param isLRO whether the operation is an LRO.
  */
-function compileOptionstoOperationOptionsToRequestOptionsBase(
+function compileOperationOptionsToRequestOptionsBase(
   options: string,
   isLRO: boolean,
   finalStateVia: string
@@ -676,13 +676,13 @@ function writeNoOverloadsOperationBody(
     } = getTracingSpanStatement(clientDetails, operationName, options);
     operationMethod.addStatements([tracingStatement]);
     // Options from createSpan should be used as operation options, updating
-    options = compileOptionstoOperationOptionsToRequestOptionsBase(
+    options = compileOperationOptionsToRequestOptionsBase(
       updatedOptionsName,
       operation.isLRO,
       finalStateVia
     );
   } else {
-    options = compileOptionstoOperationOptionsToRequestOptionsBase(
+    options = compileOperationOptionsToRequestOptionsBase(
       vanillaOptionsName,
       operation.isLRO,
       finalStateVia
