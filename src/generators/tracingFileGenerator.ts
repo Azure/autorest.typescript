@@ -25,7 +25,7 @@ export function generateTracingFile(
   file.addImportDeclarations([
     {
       namedImports: ["createSpanFunction"],
-      moduleSpecifier: "@azure/core-http"
+      moduleSpecifier: "@azure/core-tracing"
     }
   ]);
 

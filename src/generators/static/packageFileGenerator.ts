@@ -29,7 +29,7 @@ export function generatePackageJson(
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       "@azure/core-http": "^1.1.4",
       ...(clientDetails.tracing && {
-        "@azure/core-tracing": "1.0.0-preview.9",
+        "@azure/core-tracing": "1.0.0-preview.10",
         "@opentelemetry/api": "^0.10.2"
       }),
 

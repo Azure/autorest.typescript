@@ -635,6 +635,23 @@ function addOperationOverloads(
   }
 }
 
+/**
+ * Convert OperationOptions to RequestBaseOptions
+ * @param options the name of the options parameter.
+ * @param isLRO whether the operation is an LRO.
+ */
+function compileOptionstoOperationOptionsToRequestOptionsBase(
+  options: string,
+  isLRO: boolean,
+  finalStateVia: string
+): string {
+  // In LRO we have a couple extra properties to add that's why we use
+  // the private getOperationOptions function instead of the one in core-http
+  return isLRO
+    ? `this.getOperationOptions(${options}, "${finalStateVia}")`
+    : `coreHttp.operationOptionsToRequestOptionsBase(${options} || {})`;
+}
+
 function writeNoOverloadsOperationBody(
   operation: OperationDetails,
   responseName: string,
@@ -648,22 +665,27 @@ function writeNoOverloadsOperationBody(
 
   const operationSpecName = `${operation.name}OperationSpec`;
 
-  // Convert OperationOptions to RequestBaseOptions
-  // In LRO we have a couple extra properties to add that's why we use
-  // the private getOperationOptions function instead of the one in core-http
-  const toOptionsBase = operation.isLRO
-    ? `this.getOperationOptions(options, "${finalStateVia}")`
-    : `coreHttp.operationOptionsToRequestOptionsBase(options || {})`;
-
-  let options = toOptionsBase;
+  const vanillaOptionsName = "options";
+  let options = vanillaOptionsName;
 
   if (clientDetails.tracing) {
+    const updatedOptionsName = "updatedOptions";
     const operationName = operationMethod.getName();
     operationMethod.addStatements([
-      getTracingSpanStatement(clientDetails, operationName, toOptionsBase)
+      getTracingSpanStatement(clientDetails, operationName, options)
     ]);
     // Options from createSpan should be used as operation options, updating
-    options = "updatedOptions";
+    options = compileOptionstoOperationOptionsToRequestOptionsBase(
+      updatedOptionsName,
+      operation.isLRO,
+      finalStateVia
+    );
+  } else {
+    options = compileOptionstoOperationOptionsToRequestOptionsBase(
+      vanillaOptionsName,
+      operation.isLRO,
+      finalStateVia
+    );
   }
 
   const sendParams = parameterDeclarations
