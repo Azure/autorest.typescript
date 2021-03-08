@@ -669,11 +669,12 @@ function writeNoOverloadsOperationBody(
   let options = vanillaOptionsName;
 
   if (clientDetails.tracing) {
-    const updatedOptionsName = "updatedOptions";
     const operationName = operationMethod.getName();
-    operationMethod.addStatements([
-      getTracingSpanStatement(clientDetails, operationName, options)
-    ]);
+    const {
+      outputOptionsVarName: updatedOptionsName,
+      statement: tracingStatement
+    } = getTracingSpanStatement(clientDetails, operationName, options);
+    operationMethod.addStatements([tracingStatement]);
     // Options from createSpan should be used as operation options, updating
     options = compileOptionstoOperationOptionsToRequestOptionsBase(
       updatedOptionsName,
@@ -718,12 +719,22 @@ function writeNoOverloadsOperationBody(
   }
 }
 
+// a statement that returns an options bag variable
+interface OptionsStatement {
+  statement: string;
+  outputOptionsVarName: string;
+}
+
 function getTracingSpanStatement(
   clientDetails: ClientDetails,
   operationName: string,
   options: string
-) {
-  return `const { span, updatedOptions } = createSpan("${clientDetails.className}-${operationName}", ${options});`;
+): OptionsStatement {
+  const outputOptionsVarName = "updatedOptions";
+  return {
+    statement: `const { span, ${outputOptionsVarName} } = createSpan("${clientDetails.className}-${operationName}", ${options});`,
+    outputOptionsVarName: outputOptionsVarName
+  };
 }
 
 function writeSendOperationRequest(
@@ -896,9 +907,13 @@ function writeMultiMediaTypeOperationBody(
 
   if (clientDetails.tracing) {
     const operationName = operationMethod.getName();
+    const {
+      outputOptionsVarName,
+      statement: tracingStatement
+    } = getTracingSpanStatement(clientDetails, operationName, toOptionsBase);
     operationMethod.addStatements([
-      getTracingSpanStatement(clientDetails, operationName, toOptionsBase),
-      `operationArguments.options = updatedOptions;`
+      tracingStatement,
+      `operationArguments.options = ${outputOptionsVarName};`
     ]);
   } else {
     operationMethod.addStatements([
