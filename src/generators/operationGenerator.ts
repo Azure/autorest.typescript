@@ -850,6 +850,9 @@ function writeMultiMediaTypeOperationBody(
     );
   }
 
+  const optionsVarName = "options";
+  operationMethod.addStatements([`let ${optionsVarName};`]);
+
   // Since contentType is always added as a synthetic parameter by modelerfour, it should always
   // be in the same position for all overloads.
   let contentTypePosition: number = -1;
@@ -879,6 +882,10 @@ function writeMultiMediaTypeOperationBody(
       .map((param, index) => `${param.name}: args[${index}]`)
       .join(",");
 
+    const optionsIndex = overloadParameters.findIndex(
+      param => param.name === "options"
+    );
+
     // Get conditional to handle the current oveload
     const conditional = contentTypeValues
       .map(type => `args[${contentTypePosition}] === "${type}"`)
@@ -887,7 +894,8 @@ function writeMultiMediaTypeOperationBody(
     // Get the string for current overload assignments of operation spec and arguments
     const assignments = [
       `operationSpec = ${operation.name}$${mediaType}OperationSpec`,
-      `operationArguments = {${params}};`
+      `operationArguments = {${params}};`,
+      `${optionsVarName} = args[${optionsIndex}];`
     ].join("\n");
 
     const elseif = i === 0 ? "if" : "else if";
@@ -915,11 +923,7 @@ function writeMultiMediaTypeOperationBody(
     const {
       outputOptionsVarName,
       statement: tracingStatement
-    } = getTracingSpanStatement(
-      clientDetails,
-      operationName,
-      "operationArguments.options || {}"
-    );
+    } = getTracingSpanStatement(clientDetails, operationName, optionsVarName);
     operationMethod.addStatements([
       tracingStatement,
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
@@ -931,7 +935,7 @@ function writeMultiMediaTypeOperationBody(
   } else {
     operationMethod.addStatements([
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
-        "operationArguments.options || {}",
+        optionsVarName,
         operation.isLRO,
         finalStateVia
       )};`
