@@ -58,10 +58,12 @@ export class Primitive {
   ): Promise<PrimitiveGetIntResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getInt",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -91,11 +93,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putInt",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -123,10 +127,12 @@ export class Primitive {
   ): Promise<PrimitiveGetLongResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getLong",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -156,11 +162,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putLong",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -188,10 +196,12 @@ export class Primitive {
   ): Promise<PrimitiveGetFloatResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getFloat",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -221,11 +231,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putFloat",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -253,10 +265,12 @@ export class Primitive {
   ): Promise<PrimitiveGetDoubleResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDouble",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -287,11 +301,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDouble",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -319,10 +335,12 @@ export class Primitive {
   ): Promise<PrimitiveGetBoolResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getBool",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -352,11 +370,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putBool",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -384,10 +404,12 @@ export class Primitive {
   ): Promise<PrimitiveGetStringResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getString",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -417,11 +439,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putString",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -449,10 +473,12 @@ export class Primitive {
   ): Promise<PrimitiveGetDateResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDate",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -482,11 +508,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDate",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -514,10 +542,12 @@ export class Primitive {
   ): Promise<PrimitiveGetDateTimeResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDateTime",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -547,11 +577,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDateTime",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -579,10 +611,12 @@ export class Primitive {
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDateTimeRfc1123",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -612,11 +646,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDateTimeRfc1123",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -644,10 +680,12 @@ export class Primitive {
   ): Promise<PrimitiveGetDurationResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDuration",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -677,11 +715,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDuration",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -709,10 +749,12 @@ export class Primitive {
   ): Promise<PrimitiveGetByteResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getByte",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -742,11 +784,13 @@ export class Primitive {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putByte",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(

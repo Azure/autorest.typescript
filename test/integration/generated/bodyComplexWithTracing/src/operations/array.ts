@@ -40,10 +40,12 @@ export class Array {
   ): Promise<ArrayGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -74,11 +76,13 @@ export class Array {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -106,10 +110,12 @@ export class Array {
   ): Promise<ArrayGetEmptyResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getEmpty",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -139,11 +145,13 @@ export class Array {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putEmpty",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -171,10 +179,12 @@ export class Array {
   ): Promise<ArrayGetNotProvidedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNotProvided",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(

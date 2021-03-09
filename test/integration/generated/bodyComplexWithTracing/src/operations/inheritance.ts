@@ -35,10 +35,12 @@ export class Inheritance {
   ): Promise<InheritanceGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(
@@ -70,11 +72,13 @@ export class Inheritance {
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.client.sendOperationRequest(

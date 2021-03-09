@@ -82,6 +82,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
+    let options;
     if (args[0] === "application/octet-stream") {
       operationSpec = sendOnDefault$binaryOperationSpec;
       operationArguments = {
@@ -89,6 +90,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         data: args[1],
         options: args[2]
       };
+      options = args[2];
     } else if (args[0] === "text/plain") {
       operationSpec = sendOnDefault$textOperationSpec;
       operationArguments = {
@@ -96,14 +98,13 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         data: args[1],
         options: args[2]
       };
+      options = args[2];
     } else {
       throw new TypeError(
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      operationArguments.options || {}
-    );
+    operationArguments.options = this.getOperationOptions(options, "undefined");
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -172,6 +173,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   ): Promise<MediaTypesV3LROClientSendResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
+    let options;
     if (args[1] === "application/octet-stream") {
       operationSpec = send$binaryOperationSpec;
       operationArguments = {
@@ -180,6 +182,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         data: args[2],
         options: args[3]
       };
+      options = args[3];
     } else if (args[1] === "text/plain") {
       operationSpec = send$textOperationSpec;
       operationArguments = {
@@ -188,13 +191,14 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         data: args[2],
         options: args[3]
       };
+      options = args[3];
     } else {
       throw new TypeError(
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
     operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      operationArguments.options || {}
+      options || {}
     );
     return this.sendOperationRequest(
       operationArguments,

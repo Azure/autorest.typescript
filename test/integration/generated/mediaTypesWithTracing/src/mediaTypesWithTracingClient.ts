@@ -66,6 +66,7 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
+    let options;
     if (
       args[0] === "application/pdf" ||
       args[0] === "image/jpeg" ||
@@ -74,9 +75,11 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
+      options = args[1];
     } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
+      options = args[1];
     } else {
       throw new TypeError(
         `"contentType" must be a valid value but instead was "${args[0]}".`
@@ -84,11 +87,11 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
     }
     const { span, updatedOptions } = createSpan(
       "MediaTypesWithTracingClient-analyzeBody",
-      coreHttp.operationOptionsToRequestOptionsBase(
-        operationArguments.options || {}
-      )
+      options
     );
-    operationArguments.options = updatedOptions;
+    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
+      updatedOptions || {}
+    );
     try {
       const result = await this.sendOperationRequest(
         operationArguments,
@@ -115,10 +118,12 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   ): Promise<MediaTypesWithTracingClientContentTypeWithEncodingResponse> {
     const { span, updatedOptions } = createSpan(
       "MediaTypesWithTracingClient-contentTypeWithEncoding",
-      coreHttp.operationOptionsToRequestOptionsBase(options || {})
+      options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {
-      options: updatedOptions
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
     };
     try {
       const result = await this.sendOperationRequest(
