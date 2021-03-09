@@ -58,6 +58,7 @@ export class MediaTypesClient extends MediaTypesClientContext {
   ): Promise<MediaTypesClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
+    let options;
     if (
       args[0] === "application/pdf" ||
       args[0] === "image/jpeg" ||
@@ -66,16 +67,18 @@ export class MediaTypesClient extends MediaTypesClientContext {
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
+      options = args[1];
     } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
       operationArguments = { contentType: args[0], options: args[1] };
+      options = args[1];
     } else {
       throw new TypeError(
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
     operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      operationArguments.options || {}
+      options || {}
     );
     return this.sendOperationRequest(
       operationArguments,
