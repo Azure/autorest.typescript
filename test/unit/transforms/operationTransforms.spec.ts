@@ -175,7 +175,8 @@ describe("OperationTransforms", () => {
         const operationDetails = await transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
-          "ClientName"
+          "ClientName",
+          false
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
@@ -186,7 +187,8 @@ describe("OperationTransforms", () => {
         const operationDetails = transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
-          "ClientName"
+          "ClientName",
+          false
         );
         const operationSpec = transformOperationSpec(
           await operationDetails,
@@ -211,7 +213,8 @@ describe("OperationTransforms", () => {
         const operationDetails = await transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
-          "ClientName"
+          "ClientName",
+          false
         );
         const operationSpec = transformOperationSpec(operationDetails, [
           {
@@ -250,7 +253,8 @@ describe("OperationTransforms", () => {
         const operationDetails = await transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
-          "ClientName"
+          "ClientName",
+          false
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
@@ -270,7 +274,8 @@ describe("OperationTransforms", () => {
         const operationDetails = await transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
-          "ClientName"
+          "ClientName",
+          false
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
