@@ -104,9 +104,10 @@ export function transformOperationSpec(
 
   const hasMultipleRequests = operationDetails.requests.length > 1;
   for (const request of operationDetails.requests) {
-    const isXML = request.mediaType
-      ? request.mediaType === KnownMediaType.Xml
-      : operationDetails.mediaTypes.has(KnownMediaType.Xml);
+    const isXML =
+      operationDetails.mediaTypes.has(KnownMediaType.Xml) ??
+      (request.mediaType && request.mediaType === KnownMediaType.Xml);
+
     const httpInfo = extractHttpDetails(request);
     const {
       requestBody,
@@ -357,10 +358,14 @@ function getPagingItemType(
 export async function transformOperation(
   operation: Operation,
   operationGroup: OperationGroup,
-  clientName: string
+  clientName: string,
+  ignorePageableArrayCheck: boolean
 ): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
-  const pagination = extractPaginationDetails(operation);
+  const pagination = extractPaginationDetails(
+    operation,
+    ignorePageableArrayCheck
+  );
   const name = normalizeName(
     metadata.name,
     NameType.Operation,
@@ -441,12 +446,17 @@ export async function transformOperation(
 }
 
 export function transformOperationGroups(
-  codeModel: CodeModel
+  codeModel: CodeModel,
+  ignorePageableArrayCheck: boolean
 ): Promise<OperationGroupDetails[]> {
   const clientName = getLanguageMetadata(codeModel.language).name;
   return Promise.all(
     codeModel.operationGroups.map(operationGroup =>
-      transformOperationGroup(operationGroup, clientName)
+      transformOperationGroup(
+        operationGroup,
+        clientName,
+        ignorePageableArrayCheck
+      )
     )
   );
 }
@@ -462,7 +472,8 @@ function getOperationGroupName(
 
 export async function transformOperationGroup(
   operationGroup: OperationGroup,
-  clientName: string
+  clientName: string,
+  ignorePageableArrayCheck: boolean
 ): Promise<OperationGroupDetails> {
   const metadata = getLanguageMetadata(operationGroup.language);
   const isTopLevel = !metadata.name;
@@ -473,7 +484,12 @@ export async function transformOperationGroup(
 
   const operations = await Promise.all(
     operationGroup.operations.map(operation =>
-      transformOperation(operation, operationGroup, clientName)
+      transformOperation(
+        operation,
+        operationGroup,
+        clientName,
+        ignorePageableArrayCheck
+      )
     )
   );
   const mediaTypes = getOperationGroupMediaTypes(operations);

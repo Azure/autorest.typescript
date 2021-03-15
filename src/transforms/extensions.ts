@@ -20,9 +20,12 @@ import { cloneDeep } from "lodash";
  * This may result in additional operations being inserted into the model.
  * @param codeModel The model that contains all the information required to generate a service API.
  */
-export function normalizeModelWithExtensions(codeModel: CodeModel) {
+export function normalizeModelWithExtensions(
+  codeModel: CodeModel,
+  ignorePageableArrayCheck: boolean
+) {
   normalizeObjectPropertySerializedNames(codeModel);
-  addPageableMethods(codeModel);
+  addPageableMethods(codeModel, ignorePageableArrayCheck);
   normalizeMultipleContentTypes(codeModel);
 }
 
@@ -81,7 +84,10 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
  * Adds the <operationName>Next method for each operation with an x-ms-pageable extension.
  * @param codeModel
  */
-function addPageableMethods(codeModel: CodeModel) {
+function addPageableMethods(
+  codeModel: CodeModel,
+  ignorePageableArrayCheck: boolean
+) {
   const operationGroups = codeModel.operationGroups;
 
   for (const operationGroup of operationGroups) {
@@ -89,7 +95,10 @@ function addPageableMethods(codeModel: CodeModel) {
     const operations = operationGroup.operations.slice();
 
     for (const operation of operations) {
-      const paginationDetails = extractPaginationDetails(operation);
+      const paginationDetails = extractPaginationDetails(
+        operation,
+        ignorePageableArrayCheck
+      );
       const operationMetadata = getLanguageMetadata(operation.language);
       const operationName = operationMetadata.name;
       const operationDescription = operationMetadata.description;

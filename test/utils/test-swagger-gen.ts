@@ -13,6 +13,7 @@ interface SwaggerConfig {
   tracing?: TracingInfo;
   disableAsyncIterators?: boolean;
   hideClients?: boolean;
+  ignorePageableArrayCheck?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -409,6 +410,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
     packageName: "petstore"
+  },
+  storageBlob: {
+    swaggerOrConfig: "test/integration/swaggers/storageBlob.md",
+    clientName: "StorageBlob",
+    packageName: "StorageBlob",
+    ignorePageableArrayCheck: true
   }
 };
 
@@ -433,7 +440,8 @@ const generateSwaggers = async (
       tracing,
       disableAsyncIterators,
       credentialScopes,
-      hideClients
+      hideClients,
+      ignorePageableArrayCheck
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -476,7 +484,8 @@ const generateSwaggers = async (
       `--use=.`,
       `--package-name=${packageName}`,
       `--package-version=${package_version}`,
-      `--hide-clients=${!!hideClients}`
+      `--hide-clients=${!!hideClients}`,
+      `--ignore-pageable-array-check=${!!ignorePageableArrayCheck}`
     );
     if (isDebugging) {
       commandArguments.push(`--typescript.debugger`);
@@ -484,7 +493,8 @@ const generateSwaggers = async (
     const generationTask = async () => {
       console.log(`=== Start ${name} ===`);
       const childProcess = spawn(autorestCommand, commandArguments, {
-        stdio: [process.stdin, process.stdout, process.stderr]
+        stdio: [process.stdin, process.stdout, process.stderr],
+        shell: process.platform === "win32"
       });
 
       console.log(`${autorestCommand} ${commandArguments.join(" ")}`);
@@ -541,7 +551,8 @@ const buildAutorest = () => {
     return Promise.resolve();
   }
   const childProcess = spawn("npm run build", {
-    stdio: [process.stdin, process.stdout, process.stderr]
+    stdio: [process.stdin, process.stdout, process.stderr],
+    shell: process.platform === "win32"
   });
 
   return onExit(childProcess);
@@ -549,7 +560,8 @@ const buildAutorest = () => {
 
 const logAutorestInfo = async () => {
   const childProcess = spawn("autorest", ["--info"], {
-    stdio: [process.stdin, process.stdout, process.stderr]
+    stdio: [process.stdin, process.stdout, process.stderr],
+    shell: process.platform === "win32"
   });
   await onExit(childProcess);
 };

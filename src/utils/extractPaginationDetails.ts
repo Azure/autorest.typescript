@@ -15,7 +15,8 @@ import { TypeDetails } from "../models/modelDetails";
  * @param operation
  */
 export function extractPaginationDetails(
-  operation: Operation
+  operation: Operation,
+  ignorePageableArrayCheck: boolean
 ): PaginationDetails | undefined {
   const languageMetadata = getLanguageMetadata(operation.language);
   const paginationExtension = languageMetadata.paging;
@@ -50,7 +51,7 @@ export function extractPaginationDetails(
     member: paginationExtension.member,
     nextLinkName,
     itemName,
-    itemTypes: getItemTypes(operation, itemName),
+    itemTypes: getItemTypes(operation, itemName, ignorePageableArrayCheck),
     nextLinkOperationName,
     isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod)
   };
@@ -82,7 +83,11 @@ function getItemName(
 /**
  * Gets the types of the iterable field across all responses.
  */
-function getItemTypes(operation: Operation, itemName: string): TypeDetails[] {
+function getItemTypes(
+  operation: Operation,
+  itemName: string,
+  ignorePageableArrayCheck: boolean
+): TypeDetails[] {
   const operationName = getLanguageMetadata(operation.language).name;
   const operationResponses = operation.responses ?? [];
 
@@ -100,7 +105,8 @@ function getItemTypes(operation: Operation, itemName: string): TypeDetails[] {
       response,
       operationName,
       status,
-      itemName
+      itemName,
+      ignorePageableArrayCheck
     );
 
     const typeDetailsAlreadyFound = itemTypes.some(itemType => {
@@ -122,7 +128,8 @@ function getResponseItemType(
   response: SchemaResponse,
   operationName: string,
   status: string,
-  itemName: string
+  itemName: string,
+  ignorePageableArrayCheck: boolean
 ): TypeDetails {
   const responseSchema = response.schema;
   if (!isObjectSchema(responseSchema)) {
@@ -143,7 +150,10 @@ function getResponseItemType(
     );
   }
 
-  if (itemProperty.schema.type !== SchemaType.Array) {
+  if (
+    itemProperty.schema.type !== SchemaType.Array &&
+    !ignorePageableArrayCheck
+  ) {
     throw new Error(
       `Possible malformed Swagger. Response for status "${status}" in Operation "${operationName}", expected property "${itemName}" to be of type array.`
     );

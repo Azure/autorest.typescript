@@ -88,12 +88,16 @@ export async function transformCodeModel(
   );
 
   sortObjectSchemasHierarchically(codeModel);
-  normalizeModelWithExtensions(codeModel);
+
+  const ignorePageableArrayCheck: boolean =
+    (await host.GetValue("ignore-pageable-array-check")) || false;
+
+  normalizeModelWithExtensions(codeModel, ignorePageableArrayCheck);
 
   const [uberParents, operationGroups] = await Promise.all([
     getUberParents(codeModel),
 
-    transformOperationGroups(codeModel)
+    transformOperationGroups(codeModel, ignorePageableArrayCheck)
   ]);
 
   const options = await transformOptions(host, operationGroups);
