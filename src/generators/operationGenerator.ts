@@ -150,11 +150,22 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
   const formDataParams = buildParameters(spec, "formDataParameters");
-  const contentType = buildContentType(spec);
   const mediaType = buildMediaType(spec);
 
+  let targetMediaType: string | undefined = "";
+  if (Array.isArray(spec.requestBody)) {
+    targetMediaType = spec.requestBody[0]?.targetMediaType;
+  } else {
+    targetMediaType = spec.requestBody?.targetMediaType;
+  }
+
+  const contentType =
+    targetMediaType != KnownMediaType.Json ? buildContentType(spec) : "";
+
   const serializerName = spec.isXML
-    ? "serializer: xmlSerializer"
+    ? targetMediaType != KnownMediaType.Json
+      ? "serializer: xmlSerializer"
+      : "serializer"
     : "serializer";
 
   writer.block(() => {
@@ -205,7 +216,7 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
       writer.write(", ");
     }
 
-    if (spec.isXML) {
+    if (spec.isXML && targetMediaType != KnownMediaType.Json) {
       writer.write("isXML: true");
       writer.write(", ");
     }
