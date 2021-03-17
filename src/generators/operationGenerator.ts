@@ -152,7 +152,10 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   const formDataParams = buildParameters(spec, "formDataParameters");
   const mediaType = buildMediaType(spec);
 
-  let targetMediaType: string | undefined = "";
+  // The targetMediaType should be used to determine if we want to
+  // build content type. Else, we will end up with mediaType json
+  // and content type xml.
+  let targetMediaType: string | undefined = undefined;
   if (Array.isArray(spec.requestBody)) {
     targetMediaType = spec.requestBody[0]?.targetMediaType;
   } else {
@@ -160,10 +163,12 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   }
 
   const contentType =
-    targetMediaType != KnownMediaType.Json ? buildContentType(spec) : "";
+    targetMediaType !== KnownMediaType.Json
+      ? buildContentType(spec)
+      : undefined;
 
   const serializerName = spec.isXML
-    ? targetMediaType != KnownMediaType.Json
+    ? targetMediaType !== KnownMediaType.Json
       ? "serializer: xmlSerializer"
       : "serializer"
     : "serializer";

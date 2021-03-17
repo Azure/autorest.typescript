@@ -104,9 +104,7 @@ export function transformOperationSpec(
 
   const hasMultipleRequests = operationDetails.requests.length > 1;
   for (const request of operationDetails.requests) {
-    const isXML =
-      operationDetails.mediaTypes.has(KnownMediaType.Xml) ??
-      (request.mediaType && request.mediaType === KnownMediaType.Xml);
+    const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
 
     const httpInfo = extractHttpDetails(request);
     const {
