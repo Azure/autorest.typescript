@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Int, Float } from "./operations";
+import { IntImpl, FloatImpl } from "./operations";
+import { Int, Float } from "./operationsInterfaces";
 import { NonStringEnumClientContext } from "./nonStringEnumClientContext";
 import { NonStringEnumClientOptionalParams } from "./models";
 
@@ -17,8 +18,8 @@ export class NonStringEnumClient extends NonStringEnumClientContext {
    */
   constructor(options?: NonStringEnumClientOptionalParams) {
     super(options);
-    this.int = new Int(this);
-    this.float = new Float(this);
+    this.int = new IntImpl(this);
+    this.float = new FloatImpl(this);
   }
 
   int: Int;

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ContainerServices } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -25,7 +26,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ContainerServices. */
-export class ContainerServices {
+export class ContainerServicesImpl implements ContainerServices {
   private readonly client: ComputeManagementClientContext;
 
   /**

@@ -10,3 +10,5 @@
 export * from "./models";
 export { KeyVaultManagementClient } from "./keyVaultManagementClient";
 export { KeyVaultManagementClientContext } from "./keyVaultManagementClientContext";
+export * from "./operationsInterfaces";
+export { LROPoller } from "./lro";

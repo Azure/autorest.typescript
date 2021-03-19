@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Implicit, Explicit } from "./operations";
+import { ImplicitImpl, ExplicitImpl } from "./operations";
+import { Implicit, Explicit } from "./operationsInterfaces";
 import { RequiredOptionalClientContext } from "./requiredOptionalClientContext";
 import { RequiredOptionalClientOptionalParams } from "./models";
 
@@ -23,8 +24,8 @@ export class RequiredOptionalClient extends RequiredOptionalClientContext {
     options?: RequiredOptionalClientOptionalParams
   ) {
     super(requiredGlobalPath, requiredGlobalQuery, options);
-    this.implicit = new Implicit(this);
-    this.explicit = new Explicit(this);
+    this.implicit = new ImplicitImpl(this);
+    this.explicit = new ExplicitImpl(this);
   }
 
   implicit: Implicit;

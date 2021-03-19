@@ -406,6 +406,27 @@ export type ApplicationGatewayRewriteRuleSet = SubResource & {
 };
 
 // @public
+export interface ApplicationGateways {
+    backendHealth(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysBackendHealthOptionalParams): Promise<LROPoller<ApplicationGatewaysBackendHealthResponse>>;
+    backendHealthOnDemand(resourceGroupName: string, applicationGatewayName: string, probeRequest: ApplicationGatewayOnDemandProbe, options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams): Promise<LROPoller<ApplicationGatewaysBackendHealthOnDemandResponse>>;
+    createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: ApplicationGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetResponse>;
+    getSslPredefinedPolicy(predefinedPolicyName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGateway>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGateway>;
+    listAvailableRequestHeaders(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableRequestHeadersResponse>;
+    listAvailableResponseHeaders(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableResponseHeadersResponse>;
+    listAvailableServerVariables(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableServerVariablesResponse>;
+    listAvailableSslOptions(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
+    listAvailableSslPredefinedPolicies(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy>;
+    listAvailableWafRuleSets(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+    start(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    updateTags(resourceGroupName: string, applicationGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysUpdateTagsResponse>;
+}
+
+// @public
 export interface ApplicationGatewaysBackendHealthOnDemandOptionalParams extends coreHttp.OperationOptions {
     expand?: string;
 }
@@ -680,6 +701,16 @@ export interface ApplicationSecurityGroupListResult {
 }
 
 // @public
+export interface ApplicationSecurityGroups {
+    createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: ApplicationSecurityGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<ApplicationSecurityGroupsGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
+    updateTags(resourceGroupName: string, applicationSecurityGroupName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ApplicationSecurityGroupsUpdateTagsResponse>;
+}
+
+// @public
 export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurityGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -779,6 +810,11 @@ export interface AvailableDelegation {
 }
 
 // @public
+export interface AvailableDelegations {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableDelegation>;
+}
+
+// @public
 export type AvailableDelegationsListNextResponse = AvailableDelegationsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -798,6 +834,11 @@ export type AvailableDelegationsListResponse = AvailableDelegationsResult & {
 export interface AvailableDelegationsResult {
     readonly nextLink?: string;
     value?: AvailableDelegation[];
+}
+
+// @public
+export interface AvailableEndpointServices {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<EndpointServiceResult>;
 }
 
 // @public
@@ -822,6 +863,12 @@ export interface AvailablePrivateEndpointType {
     name?: string;
     resourceName?: string;
     type?: string;
+}
+
+// @public
+export interface AvailablePrivateEndpointTypes {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
+    listByResourceGroup(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
 }
 
 // @public
@@ -896,6 +943,11 @@ export interface AvailableProvidersListState {
 }
 
 // @public
+export interface AvailableResourceGroupDelegations {
+    list(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableDelegation>;
+}
+
+// @public
 export type AvailableResourceGroupDelegationsListNextResponse = AvailableDelegationsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -917,6 +969,12 @@ export interface AvailableServiceAlias {
     name?: string;
     resourceName?: string;
     type?: string;
+}
+
+// @public
+export interface AvailableServiceAliases {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableServiceAlias>;
+    listByResourceGroup(resourceGroupName: string, location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableServiceAlias>;
 }
 
 // @public
@@ -1028,6 +1086,11 @@ export interface AzureFirewallFqdnTagListResult {
 }
 
 // @public
+export interface AzureFirewallFqdnTags {
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewallFqdnTag>;
+}
+
+// @public
 export type AzureFirewallFqdnTagsListAllNextResponse = AzureFirewallFqdnTagListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1136,6 +1199,16 @@ export interface AzureFirewallRCAction {
 
 // @public
 export type AzureFirewallRCActionType = string;
+
+// @public
+export interface AzureFirewalls {
+    createOrUpdate(resourceGroupName: string, azureFirewallName: string, parameters: AzureFirewall, options?: coreHttp.OperationOptions): Promise<LROPoller<AzureFirewallsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<AzureFirewallsGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
+    updateTags(resourceGroupName: string, azureFirewallName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LROPoller<AzureFirewallsUpdateTagsResponse>>;
+}
 
 // @public
 export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
@@ -1309,6 +1382,15 @@ export interface BastionHostListResult {
 }
 
 // @public
+export interface BastionHosts {
+    createOrUpdate(resourceGroupName: string, bastionHostName: string, parameters: BastionHost, options?: coreHttp.OperationOptions): Promise<LROPoller<BastionHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<BastionHostsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
+}
+
+// @public
 export type BastionHostsCreateOrUpdateResponse = BastionHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1417,6 +1499,11 @@ export interface BgpPeerStatus {
 // @public
 export interface BgpPeerStatusListResult {
     value?: BgpPeerStatus[];
+}
+
+// @public
+export interface BgpServiceCommunities {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BgpServiceCommunity>;
 }
 
 // @public
@@ -1609,6 +1696,18 @@ export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
     readonly monitoringStatus?: string;
     readonly connectionMonitorType?: ConnectionMonitorType;
 };
+
+// @public
+export interface ConnectionMonitors {
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: ConnectionMonitor, options?: coreHttp.OperationOptions): Promise<LROPoller<ConnectionMonitorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsGetResponse>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ConnectionMonitorResult>;
+    query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ConnectionMonitorsQueryResponse>>;
+    start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    updateTags(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsUpdateTagsResponse>;
+}
 
 // @public
 export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult & {
@@ -1827,6 +1926,14 @@ export interface CustomDnsConfigPropertiesFormat {
 }
 
 // @public
+export interface DdosCustomPolicies {
+    createOrUpdate(resourceGroupName: string, ddosCustomPolicyName: string, parameters: DdosCustomPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<DdosCustomPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesGetResponse>;
+    updateTags(resourceGroupName: string, ddosCustomPolicyName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesUpdateTagsResponse>;
+}
+
+// @public
 export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1885,6 +1992,16 @@ export interface DdosProtectionPlan {
 export interface DdosProtectionPlanListResult {
     readonly nextLink?: string;
     value?: DdosProtectionPlan[];
+}
+
+// @public
+export interface DdosProtectionPlans {
+    createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: DdosProtectionPlan, options?: coreHttp.OperationOptions): Promise<LROPoller<DdosProtectionPlansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<DdosProtectionPlansGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
+    updateTags(resourceGroupName: string, ddosProtectionPlanName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<DdosProtectionPlansUpdateTagsResponse>;
 }
 
 // @public
@@ -1953,6 +2070,12 @@ export interface DdosSettings {
 
 // @public
 export type DdosSettingsProtectionCoverage = string;
+
+// @public
+export interface DefaultSecurityRules {
+    get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options?: coreHttp.OperationOptions): Promise<DefaultSecurityRulesGetResponse>;
+    list(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityRule>;
+}
 
 // @public
 export type DefaultSecurityRulesGetResponse = SecurityRule & {
@@ -2165,6 +2288,14 @@ export type ExpressRouteCircuitAuthorization = SubResource & {
 };
 
 // @public
+export interface ExpressRouteCircuitAuthorizations {
+    createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: ExpressRouteCircuitAuthorization, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization>;
+}
+
+// @public
 export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRouteCircuitAuthorization & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2215,6 +2346,14 @@ export type ExpressRouteCircuitConnection = SubResource & {
 export interface ExpressRouteCircuitConnectionListResult {
     nextLink?: string;
     value?: ExpressRouteCircuitConnection[];
+}
+
+// @public
+export interface ExpressRouteCircuitConnections {
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitConnectionsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitConnection>;
 }
 
 // @public
@@ -2308,6 +2447,14 @@ export interface ExpressRouteCircuitPeeringListResult {
 }
 
 // @public
+export interface ExpressRouteCircuitPeerings {
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: ExpressRouteCircuitPeering, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitPeeringsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitPeering>;
+}
+
+// @public
 export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCircuitPeering & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2364,6 +2511,21 @@ export interface ExpressRouteCircuitRoutesTableSummary {
     statePfxRcd?: string;
     upDown?: string;
     v?: number;
+}
+
+// @public
+export interface ExpressRouteCircuits {
+    createOrUpdate(resourceGroupName: string, circuitName: string, parameters: ExpressRouteCircuit, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetResponse>;
+    getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetPeeringStatsResponse>;
+    getStats(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetStatsResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
+    listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitsListArpTableResponse>>;
+    listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
+    updateTags(resourceGroupName: string, circuitName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsUpdateTagsResponse>;
 }
 
 // @public
@@ -2534,6 +2696,14 @@ export interface ExpressRouteConnectionList {
 }
 
 // @public
+export interface ExpressRouteConnections {
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, putExpressRouteConnectionParameters: ExpressRouteConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsGetResponse>;
+    list(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsListResponse>;
+}
+
+// @public
 export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2607,6 +2777,14 @@ export interface ExpressRouteCrossConnectionPeeringList {
 }
 
 // @public
+export interface ExpressRouteCrossConnectionPeerings {
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: ExpressRouteCrossConnectionPeering, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
+    list(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering>;
+}
+
+// @public
 export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressRouteCrossConnectionPeering & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2645,6 +2823,18 @@ export interface ExpressRouteCrossConnectionRoutesTableSummary {
     neighbor?: string;
     stateOrPrefixesReceived?: string;
     upDown?: string;
+}
+
+// @public
+export interface ExpressRouteCrossConnections {
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: ExpressRouteCrossConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
+    listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCrossConnectionsListArpTableResponse>>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
+    listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>>;
+    updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse>;
 }
 
 // @public
@@ -2763,6 +2953,15 @@ export interface ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds {
 }
 
 // @public
+export interface ExpressRouteGateways {
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, putExpressRouteGatewayParameters: ExpressRouteGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRouteGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListByResourceGroupResponse>;
+    listBySubscription(options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListBySubscriptionResponse>;
+}
+
+// @public
 export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2832,6 +3031,12 @@ export interface ExpressRouteLinkMacSecConfig {
 }
 
 // @public
+export interface ExpressRouteLinks {
+    get(resourceGroupName: string, expressRoutePortName: string, linkName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteLinksGetResponse>;
+    list(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteLink>;
+}
+
+// @public
 export type ExpressRouteLinksGetResponse = ExpressRouteLink & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2882,6 +3087,16 @@ export type ExpressRoutePort = Resource & {
 export interface ExpressRoutePortListResult {
     nextLink?: string;
     value?: ExpressRoutePort[];
+}
+
+// @public
+export interface ExpressRoutePorts {
+    createOrUpdate(resourceGroupName: string, expressRoutePortName: string, parameters: ExpressRoutePort, options?: coreHttp.OperationOptions): Promise<LROPoller<ExpressRoutePortsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
+    updateTags(resourceGroupName: string, expressRoutePortName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsUpdateTagsResponse>;
 }
 
 // @public
@@ -2957,6 +3172,12 @@ export interface ExpressRoutePortsLocationListResult {
 }
 
 // @public
+export interface ExpressRoutePortsLocations {
+    get(locationName: string, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsLocationsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePortsLocation>;
+}
+
+// @public
 export type ExpressRoutePortsLocationsGetResponse = ExpressRoutePortsLocation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3008,6 +3229,11 @@ export interface ExpressRouteServiceProviderListResult {
 }
 
 // @public
+export interface ExpressRouteServiceProviders {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteServiceProvider>;
+}
+
+// @public
 export type ExpressRouteServiceProvidersListNextResponse = ExpressRouteServiceProviderListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3022,6 +3248,15 @@ export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProvid
         parsedBody: ExpressRouteServiceProviderListResult;
     };
 };
+
+// @public
+export interface FirewallPolicies {
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, parameters: FirewallPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<FirewallPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, firewallPolicyName: string, options?: FirewallPoliciesGetOptionalParams): Promise<FirewallPoliciesGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
+}
 
 // @public
 export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy & {
@@ -3188,6 +3423,14 @@ export interface FirewallPolicyRuleGroupListResult {
 }
 
 // @public
+export interface FirewallPolicyRuleGroups {
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, parameters: FirewallPolicyRuleGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<FirewallPolicyRuleGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<FirewallPolicyRuleGroupsGetResponse>;
+    list(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicyRuleGroup>;
+}
+
+// @public
 export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3281,6 +3524,14 @@ export interface FlowLogInformation {
 export interface FlowLogListResult {
     readonly nextLink?: string;
     value?: FlowLog[];
+}
+
+// @public
+export interface FlowLogs {
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: coreHttp.OperationOptions): Promise<LROPoller<FlowLogsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<FlowLogsGetResponse>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FlowLog>;
 }
 
 // @public
@@ -3409,6 +3660,14 @@ export type HubRouteTable = SubResource & {
 };
 
 // @public
+export interface HubRouteTables {
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, routeTableParameters: HubRouteTable, options?: coreHttp.OperationOptions): Promise<LROPoller<HubRouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<HubRouteTablesGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HubRouteTable>;
+}
+
+// @public
 export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3452,6 +3711,12 @@ export type HubVirtualNetworkConnection = SubResource & {
     routingConfiguration?: RoutingConfiguration;
     readonly provisioningState?: ProvisioningState;
 };
+
+// @public
+export interface HubVirtualNetworkConnections {
+    get(resourceGroupName: string, virtualHubName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<HubVirtualNetworkConnectionsGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HubVirtualNetworkConnection>;
+}
 
 // @public
 export type HubVirtualNetworkConnectionsGetResponse = HubVirtualNetworkConnection & {
@@ -3525,6 +3790,14 @@ export interface InboundNatRuleListResult {
 }
 
 // @public
+export interface InboundNatRules {
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: coreHttp.OperationOptions): Promise<LROPoller<InboundNatRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesGetOptionalParams): Promise<InboundNatRulesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InboundNatRule>;
+}
+
+// @public
 export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3591,6 +3864,16 @@ export interface IpAllocationListResult {
 
 // @public
 export type IPAllocationMethod = string;
+
+// @public
+export interface IpAllocations {
+    createOrUpdate(resourceGroupName: string, ipAllocationName: string, parameters: IpAllocation, options?: coreHttp.OperationOptions): Promise<LROPoller<IpAllocationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipAllocationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ipAllocationName: string, options?: IpAllocationsGetOptionalParams): Promise<IpAllocationsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
+    updateTags(resourceGroupName: string, ipAllocationName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<IpAllocationsUpdateTagsResponse>;
+}
 
 // @public
 export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
@@ -3700,6 +3983,16 @@ export type IpGroup = Resource & {
 export interface IpGroupListResult {
     nextLink?: string;
     value?: IpGroup[];
+}
+
+// @public
+export interface IpGroups {
+    createOrUpdate(resourceGroupName: string, ipGroupsName: string, parameters: IpGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<IpGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipGroupsName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ipGroupsName: string, options?: IpGroupsGetOptionalParams): Promise<IpGroupsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
+    updateGroups(resourceGroupName: string, ipGroupsName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<IpGroupsUpdateGroupsResponse>;
 }
 
 // @public
@@ -5381,6 +5674,14 @@ export interface LoadBalancerBackendAddressPoolListResult {
 }
 
 // @public
+export interface LoadBalancerBackendAddressPools {
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, parameters: BackendAddressPool, options?: coreHttp.OperationOptions): Promise<LROPoller<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerBackendAddressPoolsGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackendAddressPool>;
+}
+
+// @public
 export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddressPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5420,6 +5721,12 @@ export interface LoadBalancerFrontendIPConfigurationListResult {
 }
 
 // @public
+export interface LoadBalancerFrontendIPConfigurations {
+    get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerFrontendIPConfigurationsGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FrontendIPConfiguration>;
+}
+
+// @public
 export type LoadBalancerFrontendIPConfigurationsGetResponse = FrontendIPConfiguration & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5456,6 +5763,12 @@ export interface LoadBalancerLoadBalancingRuleListResult {
 }
 
 // @public
+export interface LoadBalancerLoadBalancingRules {
+    get(resourceGroupName: string, loadBalancerName: string, loadBalancingRuleName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerLoadBalancingRulesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancingRule>;
+}
+
+// @public
 export type LoadBalancerLoadBalancingRulesGetResponse = LoadBalancingRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5478,6 +5791,11 @@ export type LoadBalancerLoadBalancingRulesListResponse = LoadBalancerLoadBalanci
         parsedBody: LoadBalancerLoadBalancingRuleListResult;
     };
 };
+
+// @public
+export interface LoadBalancerNetworkInterfaces {
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+}
 
 // @public
 export type LoadBalancerNetworkInterfacesListNextResponse = NetworkInterfaceListResult & {
@@ -5503,6 +5821,12 @@ export interface LoadBalancerOutboundRuleListResult {
 
 // @public
 export type LoadBalancerOutboundRuleProtocol = string;
+
+// @public
+export interface LoadBalancerOutboundRules {
+    get(resourceGroupName: string, loadBalancerName: string, outboundRuleName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerOutboundRulesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<OutboundRule>;
+}
 
 // @public
 export type LoadBalancerOutboundRulesGetResponse = OutboundRule & {
@@ -5535,6 +5859,12 @@ export interface LoadBalancerProbeListResult {
 }
 
 // @public
+export interface LoadBalancerProbes {
+    get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerProbesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Probe>;
+}
+
+// @public
 export type LoadBalancerProbesGetResponse = Probe & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5557,6 +5887,16 @@ export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult & {
         parsedBody: LoadBalancerProbeListResult;
     };
 };
+
+// @public
+export interface LoadBalancers {
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: LoadBalancer, options?: coreHttp.OperationOptions): Promise<LROPoller<LoadBalancersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancersGetOptionalParams): Promise<LoadBalancersGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
+    updateTags(resourceGroupName: string, loadBalancerName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LoadBalancersUpdateTagsResponse>;
+}
 
 // @public
 export type LoadBalancersCreateOrUpdateResponse = LoadBalancer & {
@@ -5668,6 +6008,15 @@ export interface LocalNetworkGatewayListResult {
 }
 
 // @public
+export interface LocalNetworkGateways {
+    createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: LocalNetworkGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<LocalNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LocalNetworkGateway>;
+    updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysUpdateTagsResponse>;
+}
+
+// @public
 export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5714,6 +6063,16 @@ export interface LogSpecification {
     displayName?: string;
     name?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
 
 // @public
 export type ManagedRuleEnabledState = string;
@@ -5809,6 +6168,16 @@ export type NatGateway = Resource & {
 export interface NatGatewayListResult {
     nextLink?: string;
     value?: NatGateway[];
+}
+
+// @public
+export interface NatGateways {
+    createOrUpdate(resourceGroupName: string, natGatewayName: string, parameters: NatGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<NatGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, natGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, natGatewayName: string, options?: NatGatewaysGetOptionalParams): Promise<NatGatewaysGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
+    updateTags(resourceGroupName: string, natGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NatGatewaysUpdateTagsResponse>;
 }
 
 // @public
@@ -5996,6 +6365,12 @@ export interface NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties 
 }
 
 // @public
+export interface NetworkInterfaceIPConfigurations {
+    get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: coreHttp.OperationOptions): Promise<NetworkInterfaceIPConfigurationsGetResponse>;
+    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
+}
+
+// @public
 export type NetworkInterfaceIPConfigurationsGetResponse = NetworkInterfaceIPConfiguration & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6032,6 +6407,11 @@ export interface NetworkInterfaceLoadBalancerListResult {
 }
 
 // @public
+export interface NetworkInterfaceLoadBalancers {
+    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
+}
+
+// @public
 export type NetworkInterfaceLoadBalancersListNextResponse = NetworkInterfaceLoadBalancerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6046,6 +6426,23 @@ export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBala
         parsedBody: NetworkInterfaceLoadBalancerListResult;
     };
 };
+
+// @public
+export interface NetworkInterfaces {
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: NetworkInterface, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkInterfacesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesGetOptionalParams): Promise<NetworkInterfacesGetResponse>;
+    getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkInterfacesGetEffectiveRouteTableResponse>>;
+    getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse>;
+    getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+    listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>>;
+    listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
+    listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+    listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+    updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkInterfacesUpdateTagsResponse>;
+}
 
 // @public
 export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface & {
@@ -6227,6 +6624,14 @@ export interface NetworkInterfaceTapConfigurationListResult {
 }
 
 // @public
+export interface NetworkInterfaceTapConfigurations {
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, tapConfigurationParameters: NetworkInterfaceTapConfiguration, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<NetworkInterfaceTapConfigurationsGetResponse>;
+    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration>;
+}
+
+// @public
 export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInterfaceTapConfiguration & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6262,389 +6667,200 @@ export type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapC
 // @public (undocumented)
 export class NetworkManagementClient extends NetworkManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: NetworkManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "ApplicationGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     applicationGateways: ApplicationGateways;
-    // Warning: (ae-forgotten-export) The symbol "ApplicationSecurityGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     applicationSecurityGroups: ApplicationSecurityGroups;
-    // Warning: (ae-forgotten-export) The symbol "AvailableDelegations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availableDelegations: AvailableDelegations;
-    // Warning: (ae-forgotten-export) The symbol "AvailableEndpointServices" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availableEndpointServices: AvailableEndpointServices;
-    // Warning: (ae-forgotten-export) The symbol "AvailablePrivateEndpointTypes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availablePrivateEndpointTypes: AvailablePrivateEndpointTypes;
-    // Warning: (ae-forgotten-export) The symbol "AvailableResourceGroupDelegations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availableResourceGroupDelegations: AvailableResourceGroupDelegations;
-    // Warning: (ae-forgotten-export) The symbol "AvailableServiceAliases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availableServiceAliases: AvailableServiceAliases;
-    // Warning: (ae-forgotten-export) The symbol "AzureFirewallFqdnTags" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     azureFirewallFqdnTags: AzureFirewallFqdnTags;
-    // Warning: (ae-forgotten-export) The symbol "AzureFirewalls" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     azureFirewalls: AzureFirewalls;
-    // Warning: (ae-forgotten-export) The symbol "BastionHosts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     bastionHosts: BastionHosts;
-    // Warning: (ae-forgotten-export) The symbol "BgpServiceCommunities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     bgpServiceCommunities: BgpServiceCommunities;
     checkDnsNameAvailability(location: string, domainNameLabel: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ConnectionMonitors" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     connectionMonitors: ConnectionMonitors;
-    // Warning: (ae-forgotten-export) The symbol "DdosCustomPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     ddosCustomPolicies: DdosCustomPolicies;
-    // Warning: (ae-forgotten-export) The symbol "DdosProtectionPlans" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     ddosProtectionPlans: DdosProtectionPlans;
-    // Warning: (ae-forgotten-export) The symbol "DefaultSecurityRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     defaultSecurityRules: DefaultSecurityRules;
-    // Warning: (ae-forgotten-export) The symbol "LROPoller" needs to be exported by the entry point index.d.ts
     deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCircuitAuthorizations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCircuitAuthorizations: ExpressRouteCircuitAuthorizations;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCircuitConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCircuitConnections: ExpressRouteCircuitConnections;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCircuitPeerings" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCircuitPeerings: ExpressRouteCircuitPeerings;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCircuits" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCircuits: ExpressRouteCircuits;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteConnections: ExpressRouteConnections;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCrossConnectionPeerings" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCrossConnectionPeerings: ExpressRouteCrossConnectionPeerings;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteCrossConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteCrossConnections: ExpressRouteCrossConnections;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteGateways: ExpressRouteGateways;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteLinks: ExpressRouteLinks;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRoutePorts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRoutePorts: ExpressRoutePorts;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRoutePortsLocations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRoutePortsLocations: ExpressRoutePortsLocations;
-    // Warning: (ae-forgotten-export) The symbol "ExpressRouteServiceProviders" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     expressRouteServiceProviders: ExpressRouteServiceProviders;
-    // Warning: (ae-forgotten-export) The symbol "FirewallPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     firewallPolicies: FirewallPolicies;
-    // Warning: (ae-forgotten-export) The symbol "FirewallPolicyRuleGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     firewallPolicyRuleGroups: FirewallPolicyRuleGroups;
-    // Warning: (ae-forgotten-export) The symbol "FlowLogs" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     flowLogs: FlowLogs;
     generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
-    // Warning: (ae-forgotten-export) The symbol "HubRouteTables" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     hubRouteTables: HubRouteTables;
-    // Warning: (ae-forgotten-export) The symbol "HubVirtualNetworkConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     hubVirtualNetworkConnections: HubVirtualNetworkConnections;
-    // Warning: (ae-forgotten-export) The symbol "InboundNatRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     inboundNatRules: InboundNatRules;
-    // Warning: (ae-forgotten-export) The symbol "IpAllocations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     ipAllocations: IpAllocations;
-    // Warning: (ae-forgotten-export) The symbol "IpGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     ipGroups: IpGroups;
     listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionActiveSession>;
     listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
     listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionSessionState>;
     listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerBackendAddressPools" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerBackendAddressPools: LoadBalancerBackendAddressPools;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerFrontendIPConfigurations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerFrontendIPConfigurations: LoadBalancerFrontendIPConfigurations;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerLoadBalancingRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerLoadBalancingRules: LoadBalancerLoadBalancingRules;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerNetworkInterfaces" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerNetworkInterfaces: LoadBalancerNetworkInterfaces;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerOutboundRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerOutboundRules: LoadBalancerOutboundRules;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancerProbes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancerProbes: LoadBalancerProbes;
-    // Warning: (ae-forgotten-export) The symbol "LoadBalancers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     loadBalancers: LoadBalancers;
-    // Warning: (ae-forgotten-export) The symbol "LocalNetworkGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     localNetworkGateways: LocalNetworkGateways;
-    // Warning: (ae-forgotten-export) The symbol "NatGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     natGateways: NatGateways;
-    // Warning: (ae-forgotten-export) The symbol "NetworkInterfaceIPConfigurations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkInterfaceIPConfigurations: NetworkInterfaceIPConfigurations;
-    // Warning: (ae-forgotten-export) The symbol "NetworkInterfaceLoadBalancers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkInterfaceLoadBalancers: NetworkInterfaceLoadBalancers;
-    // Warning: (ae-forgotten-export) The symbol "NetworkInterfaces" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkInterfaces: NetworkInterfaces;
-    // Warning: (ae-forgotten-export) The symbol "NetworkInterfaceTapConfigurations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkInterfaceTapConfigurations: NetworkInterfaceTapConfigurations;
-    // Warning: (ae-forgotten-export) The symbol "NetworkProfiles" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkProfiles: NetworkProfiles;
-    // Warning: (ae-forgotten-export) The symbol "NetworkSecurityGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkSecurityGroups: NetworkSecurityGroups;
-    // Warning: (ae-forgotten-export) The symbol "NetworkVirtualAppliances" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkVirtualAppliances: NetworkVirtualAppliances;
-    // Warning: (ae-forgotten-export) The symbol "NetworkWatchers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     networkWatchers: NetworkWatchers;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "P2SVpnGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     p2SVpnGateways: P2SVpnGateways;
-    // Warning: (ae-forgotten-export) The symbol "PacketCaptures" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     packetCaptures: PacketCaptures;
-    // Warning: (ae-forgotten-export) The symbol "PeerExpressRouteCircuitConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     peerExpressRouteCircuitConnections: PeerExpressRouteCircuitConnections;
-    // Warning: (ae-forgotten-export) The symbol "PrivateDnsZoneGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateDnsZoneGroups: PrivateDnsZoneGroups;
-    // Warning: (ae-forgotten-export) The symbol "PrivateEndpoints" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateEndpoints: PrivateEndpoints;
-    // Warning: (ae-forgotten-export) The symbol "PrivateLinkServices" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateLinkServices: PrivateLinkServices;
-    // Warning: (ae-forgotten-export) The symbol "PublicIPAddresses" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     publicIPAddresses: PublicIPAddresses;
-    // Warning: (ae-forgotten-export) The symbol "PublicIPPrefixes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     publicIPPrefixes: PublicIPPrefixes;
-    // Warning: (ae-forgotten-export) The symbol "ResourceNavigationLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     resourceNavigationLinks: ResourceNavigationLinks;
-    // Warning: (ae-forgotten-export) The symbol "RouteFilterRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     routeFilterRules: RouteFilterRules;
-    // Warning: (ae-forgotten-export) The symbol "RouteFilters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     routeFilters: RouteFilters;
-    // Warning: (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     routes: Routes;
-    // Warning: (ae-forgotten-export) The symbol "RouteTables" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     routeTables: RouteTables;
-    // Warning: (ae-forgotten-export) The symbol "SecurityPartnerProviders" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     securityPartnerProviders: SecurityPartnerProviders;
-    // Warning: (ae-forgotten-export) The symbol "SecurityRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     securityRules: SecurityRules;
-    // Warning: (ae-forgotten-export) The symbol "ServiceAssociationLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceAssociationLinks: ServiceAssociationLinks;
-    // Warning: (ae-forgotten-export) The symbol "ServiceEndpointPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceEndpointPolicies: ServiceEndpointPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ServiceEndpointPolicyDefinitions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinitions;
-    // Warning: (ae-forgotten-export) The symbol "ServiceTags" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceTags: ServiceTags;
-    // Warning: (ae-forgotten-export) The symbol "Subnets" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     subnets: Subnets;
     supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientSupportedSecurityProvidersResponse>;
-    // Warning: (ae-forgotten-export) The symbol "Usages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     usages: Usages;
-    // Warning: (ae-forgotten-export) The symbol "VirtualHubRouteTableV2S" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualHubRouteTableV2S: VirtualHubRouteTableV2S;
-    // Warning: (ae-forgotten-export) The symbol "VirtualHubs" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualHubs: VirtualHubs;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworkGatewayConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworkGatewayConnections: VirtualNetworkGatewayConnections;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworkGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworkGateways: VirtualNetworkGateways;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworkPeerings" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworkPeerings: VirtualNetworkPeerings;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworks: VirtualNetworks;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworkTaps" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworkTaps: VirtualNetworkTaps;
-    // Warning: (ae-forgotten-export) The symbol "VirtualRouterPeerings" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualRouterPeerings: VirtualRouterPeerings;
-    // Warning: (ae-forgotten-export) The symbol "VirtualRouters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualRouters: VirtualRouters;
-    // Warning: (ae-forgotten-export) The symbol "VirtualWans" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualWans: VirtualWans;
-    // Warning: (ae-forgotten-export) The symbol "VpnConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnConnections: VpnConnections;
-    // Warning: (ae-forgotten-export) The symbol "VpnGateways" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnGateways: VpnGateways;
-    // Warning: (ae-forgotten-export) The symbol "VpnLinkConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnLinkConnections: VpnLinkConnections;
-    // Warning: (ae-forgotten-export) The symbol "VpnServerConfigurations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnServerConfigurations: VpnServerConfigurations;
-    // Warning: (ae-forgotten-export) The symbol "VpnServerConfigurationsAssociatedWithVirtualWan" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnServerConfigurationsAssociatedWithVirtualWan: VpnServerConfigurationsAssociatedWithVirtualWan;
-    // Warning: (ae-forgotten-export) The symbol "VpnSiteLinkConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnSiteLinkConnections: VpnSiteLinkConnections;
-    // Warning: (ae-forgotten-export) The symbol "VpnSiteLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnSiteLinks: VpnSiteLinks;
-    // Warning: (ae-forgotten-export) The symbol "VpnSites" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnSites: VpnSites;
-    // Warning: (ae-forgotten-export) The symbol "VpnSitesConfiguration" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vpnSitesConfiguration: VpnSitesConfiguration;
-    // Warning: (ae-forgotten-export) The symbol "WebApplicationFirewallPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
 }
@@ -6774,6 +6990,16 @@ export interface NetworkProfileListResult {
 }
 
 // @public
+export interface NetworkProfiles {
+    createOrUpdate(resourceGroupName: string, networkProfileName: string, parameters: NetworkProfile, options?: coreHttp.OperationOptions): Promise<NetworkProfilesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, networkProfileName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkProfileName: string, options?: NetworkProfilesGetOptionalParams): Promise<NetworkProfilesGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
+    updateTags(resourceGroupName: string, networkProfileName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkProfilesUpdateTagsResponse>;
+}
+
+// @public
 export type NetworkProfilesCreateOrUpdateResponse = NetworkProfile & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6870,6 +7096,16 @@ export interface NetworkSecurityGroupResult {
 }
 
 // @public
+export interface NetworkSecurityGroups {
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: NetworkSecurityGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkSecurityGroupName: string, options?: NetworkSecurityGroupsGetOptionalParams): Promise<NetworkSecurityGroupsGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
+    updateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkSecurityGroupsUpdateTagsResponse>;
+}
+
+// @public
 export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6961,6 +7197,16 @@ export interface NetworkVirtualApplianceListResult {
 }
 
 // @public
+export interface NetworkVirtualAppliances {
+    createOrUpdate(resourceGroupName: string, networkVirtualApplianceName: string, parameters: NetworkVirtualAppliance, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkVirtualAppliancesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkVirtualApplianceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkVirtualApplianceName: string, options?: NetworkVirtualAppliancesGetOptionalParams): Promise<NetworkVirtualAppliancesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
+    updateTags(resourceGroupName: string, networkVirtualApplianceName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkVirtualAppliancesUpdateTagsResponse>;
+}
+
+// @public
 export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppliance & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7031,6 +7277,28 @@ export type NetworkWatcher = Resource & {
 // @public
 export interface NetworkWatcherListResult {
     value?: NetworkWatcher[];
+}
+
+// @public
+export interface NetworkWatchers {
+    checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: ConnectivityParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersCheckConnectivityResponse>>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: NetworkWatcher, options?: coreHttp.OperationOptions): Promise<NetworkWatchersCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetResponse>;
+    getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: AzureReachabilityReportParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetAzureReachabilityReportResponse>>;
+    getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogStatusParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetFlowLogStatusResponse>>;
+    getNetworkConfigurationDiagnostic(resourceGroupName: string, networkWatcherName: string, parameters: NetworkConfigurationDiagnosticParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>>;
+    getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: NextHopParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetNextHopResponse>>;
+    getTopology(resourceGroupName: string, networkWatcherName: string, parameters: TopologyParameters, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetTopologyResponse>;
+    getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: TroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetTroubleshootingResponse>>;
+    getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: QueryTroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetTroubleshootingResultResponse>>;
+    getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: SecurityGroupViewParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersGetVMSecurityRulesResponse>>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
+    listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: AvailableProvidersListParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersListAvailableProvidersResponse>>;
+    setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogInformation, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersSetFlowLogConfigurationResponse>>;
+    updateTags(resourceGroupName: string, networkWatcherName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkWatchersUpdateTagsResponse>;
+    verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: VerificationIPFlowParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NetworkWatchersVerifyIPFlowResponse>>;
 }
 
 // @public
@@ -7230,6 +7498,11 @@ export interface OperationPropertiesFormatServiceSpecification {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7313,6 +7586,20 @@ export type P2SVpnGateway = Resource & {
     vpnServerConfiguration?: SubResource;
     readonly vpnClientConnectionHealth?: VpnClientConnectionHealth;
 };
+
+// @public
+export interface P2SVpnGateways {
+    createOrUpdate(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: P2SVpnGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<P2SVpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    disconnectP2SVpnConnections(resourceGroupName: string, p2SVpnGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    generateVpnProfile(resourceGroupName: string, gatewayName: string, parameters: P2SVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<P2SVpnGatewaysGenerateVpnProfileResponse>>;
+    get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysGetResponse>;
+    getP2SVpnConnectionHealth(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
+    getP2SVpnConnectionHealthDetailed(resourceGroupName: string, gatewayName: string, request: P2SVpnConnectionHealthRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
+    updateTags(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysUpdateTagsResponse>;
+}
 
 // @public
 export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway & {
@@ -7467,6 +7754,16 @@ export type PacketCaptureResultProperties = PacketCaptureParameters & {
 };
 
 // @public
+export interface PacketCaptures {
+    create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: PacketCapture, options?: coreHttp.OperationOptions): Promise<LROPoller<PacketCapturesCreateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PacketCapturesGetResponse>;
+    getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<PacketCapturesGetStatusResponse>>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PacketCaptureResult>;
+    stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type PacketCapturesCreateResponse = PacketCaptureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7561,6 +7858,12 @@ export interface PeerExpressRouteCircuitConnectionListResult {
 }
 
 // @public
+export interface PeerExpressRouteCircuitConnections {
+    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PeerExpressRouteCircuitConnection>;
+}
+
+// @public
 export type PeerExpressRouteCircuitConnectionsGetResponse = PeerExpressRouteCircuitConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7624,6 +7927,14 @@ export type PrivateDnsZoneGroup = SubResource & {
 export interface PrivateDnsZoneGroupListResult {
     readonly nextLink?: string;
     value?: PrivateDnsZoneGroup[];
+}
+
+// @public
+export interface PrivateDnsZoneGroups {
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, parameters: PrivateDnsZoneGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateDnsZoneGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PrivateDnsZoneGroupsGetResponse>;
+    list(privateEndpointName: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateDnsZoneGroup>;
 }
 
 // @public
@@ -7691,6 +8002,15 @@ export interface PrivateEndpointConnectionListResult {
 export interface PrivateEndpointListResult {
     readonly nextLink?: string;
     value?: PrivateEndpoint[];
+}
+
+// @public
+export interface PrivateEndpoints {
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, parameters: PrivateEndpoint, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateEndpointsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, privateEndpointName: string, options?: PrivateEndpointsGetOptionalParams): Promise<PrivateEndpointsGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
 }
 
 // @public
@@ -7805,6 +8125,23 @@ export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
 
 // @public
 export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
+
+// @public
+export interface PrivateLinkServices {
+    checkPrivateLinkServiceVisibility(location: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
+    checkPrivateLinkServiceVisibilityByResourceGroup(location: string, resourceGroupName: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse>;
+    createOrUpdate(resourceGroupName: string, serviceName: string, parameters: PrivateLinkService, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateLinkServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deletePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serviceName: string, options?: PrivateLinkServicesGetOptionalParams): Promise<PrivateLinkServicesGetResponse>;
+    getPrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams): Promise<PrivateLinkServicesGetPrivateEndpointConnectionResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkService>;
+    listAutoApprovedPrivateLinkServices(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
+    listAutoApprovedPrivateLinkServicesByResourceGroup(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkService>;
+    listPrivateEndpointConnections(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+    updatePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, parameters: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse>;
+}
 
 // @public
 export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse = PrivateLinkServiceVisibility & {
@@ -8021,6 +8358,19 @@ export interface PublicIPAddressDnsSettings {
 }
 
 // @public
+export interface PublicIPAddresses {
+    createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: PublicIPAddress, options?: coreHttp.OperationOptions): Promise<LROPoller<PublicIPAddressesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpAddressName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, publicIpAddressName: string, options?: PublicIPAddressesGetOptionalParams): Promise<PublicIPAddressesGetResponse>;
+    getVirtualMachineScaleSetPublicIPAddress(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, publicIpAddressName: string, options?: PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams): Promise<PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
+    listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
+    listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
+    updateTags(resourceGroupName: string, publicIpAddressName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PublicIPAddressesUpdateTagsResponse>;
+}
+
+// @public
 export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8157,6 +8507,16 @@ export type PublicIPPrefix = Resource & {
 };
 
 // @public
+export interface PublicIPPrefixes {
+    createOrUpdate(resourceGroupName: string, publicIpPrefixName: string, parameters: PublicIPPrefix, options?: coreHttp.OperationOptions): Promise<LROPoller<PublicIPPrefixesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpPrefixName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, publicIpPrefixName: string, options?: PublicIPPrefixesGetOptionalParams): Promise<PublicIPPrefixesGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
+    updateTags(resourceGroupName: string, publicIpPrefixName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PublicIPPrefixesUpdateTagsResponse>;
+}
+
+// @public
 export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8284,6 +8644,11 @@ export type ResourceNavigationLink = SubResource & {
 };
 
 // @public
+export interface ResourceNavigationLinks {
+    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<ResourceNavigationLinksListResponse>;
+}
+
+// @public
 export type ResourceNavigationLinksListResponse = ResourceNavigationLinksListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8351,6 +8716,14 @@ export interface RouteFilterRuleListResult {
 }
 
 // @public
+export interface RouteFilterRules {
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: RouteFilterRule, options?: coreHttp.OperationOptions): Promise<LROPoller<RouteFilterRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<RouteFilterRulesGetResponse>;
+    listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilterRule>;
+}
+
+// @public
 export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8385,6 +8758,16 @@ export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResul
 
 // @public
 export type RouteFilterRuleType = string;
+
+// @public
+export interface RouteFilters {
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: RouteFilter, options?: coreHttp.OperationOptions): Promise<LROPoller<RouteFiltersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeFilterName: string, options?: RouteFiltersGetOptionalParams): Promise<RouteFiltersGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
+    updateTags(resourceGroupName: string, routeFilterName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<RouteFiltersUpdateTagsResponse>;
+}
 
 // @public
 export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
@@ -8458,6 +8841,14 @@ export interface RouteListResult {
 export type RouteNextHopType = string;
 
 // @public
+export interface Routes {
+    createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Route, options?: coreHttp.OperationOptions): Promise<LROPoller<RoutesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<RoutesGetResponse>;
+    list(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Route>;
+}
+
+// @public
 export type RoutesCreateOrUpdateResponse = Route & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8503,6 +8894,16 @@ export type RouteTable = Resource & {
 export interface RouteTableListResult {
     nextLink?: string;
     value?: RouteTable[];
+}
+
+// @public
+export interface RouteTables {
+    createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: RouteTable, options?: coreHttp.OperationOptions): Promise<LROPoller<RouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeTableName: string, options?: RouteTablesGetOptionalParams): Promise<RouteTablesGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
+    updateTags(resourceGroupName: string, routeTableName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<RouteTablesUpdateTagsResponse>;
 }
 
 // @public
@@ -8606,6 +9007,16 @@ export type SecurityPartnerProviderConnectionStatus = string;
 export interface SecurityPartnerProviderListResult {
     nextLink?: string;
     value?: SecurityPartnerProvider[];
+}
+
+// @public
+export interface SecurityPartnerProviders {
+    createOrUpdate(resourceGroupName: string, securityPartnerProviderName: string, parameters: SecurityPartnerProvider, options?: coreHttp.OperationOptions): Promise<LROPoller<SecurityPartnerProvidersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<SecurityPartnerProvidersGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
+    updateTags(resourceGroupName: string, securityPartnerProviderName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<SecurityPartnerProvidersUpdateTagsResponse>;
 }
 
 // @public
@@ -8714,6 +9125,14 @@ export interface SecurityRuleListResult {
 export type SecurityRuleProtocol = string;
 
 // @public
+export interface SecurityRules {
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: SecurityRule, options?: coreHttp.OperationOptions): Promise<LROPoller<SecurityRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<SecurityRulesGetResponse>;
+    list(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityRule>;
+}
+
+// @public
 export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8759,6 +9178,11 @@ export type ServiceAssociationLink = SubResource & {
 };
 
 // @public
+export interface ServiceAssociationLinks {
+    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<ServiceAssociationLinksListResponse>;
+}
+
+// @public
 export type ServiceAssociationLinksListResponse = ServiceAssociationLinksListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8770,6 +9194,16 @@ export type ServiceAssociationLinksListResponse = ServiceAssociationLinksListRes
 export interface ServiceAssociationLinksListResult {
     readonly nextLink?: string;
     value?: ServiceAssociationLink[];
+}
+
+// @public
+export interface ServiceEndpointPolicies {
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: ServiceEndpointPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ServiceEndpointPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serviceEndpointPolicyName: string, options?: ServiceEndpointPoliciesGetOptionalParams): Promise<ServiceEndpointPoliciesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
+    updateTags(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ServiceEndpointPoliciesUpdateTagsResponse>;
 }
 
 // @public
@@ -8860,6 +9294,14 @@ export interface ServiceEndpointPolicyDefinitionListResult {
 }
 
 // @public
+export interface ServiceEndpointPolicyDefinitions {
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition>;
+}
+
+// @public
 export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndpointPolicyDefinition & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8921,6 +9363,11 @@ export interface ServiceTagInformationPropertiesFormat {
     readonly changeNumber?: string;
     readonly region?: string;
     readonly systemService?: string;
+}
+
+// @public
+export interface ServiceTags {
+    list(location: string, options?: coreHttp.OperationOptions): Promise<ServiceTagsListResponse>;
 }
 
 // @public
@@ -8990,6 +9437,16 @@ export interface SubnetAssociation {
 export interface SubnetListResult {
     nextLink?: string;
     value?: Subnet[];
+}
+
+// @public
+export interface Subnets {
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Subnet, options?: coreHttp.OperationOptions): Promise<LROPoller<SubnetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: SubnetsGetOptionalParams): Promise<SubnetsGetResponse>;
+    list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Subnet>;
+    prepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    unprepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
 }
 
 // @public
@@ -9160,6 +9617,11 @@ export interface UsageName {
 }
 
 // @public
+export interface Usages {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Usage>;
+}
+
+// @public
 export type UsagesListNextResponse = UsagesListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9263,6 +9725,14 @@ export type VirtualHubRouteTableV2 = SubResource & {
 };
 
 // @public
+export interface VirtualHubRouteTableV2S {
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualHubRouteTableV2SCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubRouteTableV2SGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHubRouteTableV2>;
+}
+
+// @public
 export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTableV2 & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9301,6 +9771,16 @@ export interface VirtualHubRouteV2 {
     destinationType?: string;
     nextHops?: string[];
     nextHopType?: string;
+}
+
+// @public
+export interface VirtualHubs {
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, virtualHubParameters: VirtualHub, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualHubsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
+    updateTags(resourceGroupName: string, virtualHubName: string, virtualHubParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualHubsUpdateTagsResponse>;
 }
 
 // @public
@@ -9470,6 +9950,20 @@ export interface VirtualNetworkGatewayConnectionListResult {
 export type VirtualNetworkGatewayConnectionProtocol = string;
 
 // @public
+export interface VirtualNetworkGatewayConnections {
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VirtualNetworkGatewayConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetResponse>;
+    getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection>;
+    resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionResetSharedKey, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
+    setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionSharedKey, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
+    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams): Promise<LROPoller<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
+}
+
+// @public
 export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetworkGatewayConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9589,6 +10083,32 @@ export interface VirtualNetworkGatewayListConnectionsResult {
 export interface VirtualNetworkGatewayListResult {
     readonly nextLink?: string;
     value?: VirtualNetworkGateway[];
+}
+
+// @public
+export interface VirtualNetworkGateways {
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VirtualNetworkGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    disconnectVirtualNetworkGatewayVpnConnections(resourceGroupName: string, virtualNetworkGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
+    generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
+    get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysGetResponse>;
+    getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
+    getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<LROPoller<VirtualNetworkGatewaysGetBgpPeerStatusResponse>>;
+    getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
+    getVpnclientConnectionHealth(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>>;
+    getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>>;
+    getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGateway>;
+    listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity>;
+    reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysResetOptionalParams): Promise<LROPoller<VirtualNetworkGatewaysResetResponse>>;
+    resetVpnClientSharedKey(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: VpnClientIPsecParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>>;
+    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams): Promise<LROPoller<VirtualNetworkGatewaysStartPacketCaptureResponse>>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysStopPacketCaptureResponse>>;
+    supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkGatewaysUpdateTagsResponse>>;
+    vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnDeviceScriptParameters, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
 }
 
 // @public
@@ -9844,6 +10364,14 @@ export interface VirtualNetworkPeeringListResult {
 }
 
 // @public
+export interface VirtualNetworkPeerings {
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: VirtualNetworkPeering, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkPeeringsGetResponse>;
+    list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkPeering>;
+}
+
+// @public
 export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9878,6 +10406,18 @@ export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult
 
 // @public
 export type VirtualNetworkPeeringState = string;
+
+// @public
+export interface VirtualNetworks {
+    checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, ipAddress: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: VirtualNetwork, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworksGetOptionalParams): Promise<VirtualNetworksGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
+    listUsage(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkUsage>;
+    updateTags(resourceGroupName: string, virtualNetworkName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualNetworksUpdateTagsResponse>;
+}
 
 // @public
 export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailabilityResult & {
@@ -9980,6 +10520,16 @@ export type VirtualNetworkTap = Resource & {
 export interface VirtualNetworkTapListResult {
     nextLink?: string;
     value?: VirtualNetworkTap[];
+}
+
+// @public
+export interface VirtualNetworkTaps {
+    createOrUpdate(resourceGroupName: string, tapName: string, parameters: VirtualNetworkTap, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkTapsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkTapsGetResponse>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
+    updateTags(resourceGroupName: string, tapName: string, tapParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualNetworkTapsUpdateTagsResponse>;
 }
 
 // @public
@@ -10088,6 +10638,14 @@ export interface VirtualRouterPeeringListResult {
 }
 
 // @public
+export interface VirtualRouterPeerings {
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, peeringName: string, parameters: VirtualRouterPeering, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualRouterPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualRouterPeeringsGetResponse>;
+    list(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouterPeering>;
+}
+
+// @public
 export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -10119,6 +10677,15 @@ export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult &
         parsedBody: VirtualRouterPeeringListResult;
     };
 };
+
+// @public
+export interface VirtualRouters {
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, parameters: VirtualRouter, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualRoutersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualRouterName: string, options?: VirtualRoutersGetOptionalParams): Promise<VirtualRoutersGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
+}
 
 // @public
 export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter & {
@@ -10186,6 +10753,16 @@ export type VirtualWAN = Resource & {
     readonly provisioningState?: ProvisioningState;
     typePropertiesType?: string;
 };
+
+// @public
+export interface VirtualWans {
+    createOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualWansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<VirtualWansGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
+    updateTags(resourceGroupName: string, virtualWANName: string, wANParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualWansUpdateTagsResponse>;
+}
 
 // @public
 export type VirtualWansCreateOrUpdateResponse = VirtualWAN & {
@@ -10384,6 +10961,14 @@ export type VpnConnection = SubResource & {
 };
 
 // @public
+export interface VpnConnections {
+    createOrUpdate(resourceGroupName: string, gatewayName: string, connectionName: string, vpnConnectionParameters: VpnConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<VpnConnectionsGetResponse>;
+    listByVpnGateway(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnConnection>;
+}
+
+// @public
 export type VpnConnectionsCreateOrUpdateResponse = VpnConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -10438,6 +11023,17 @@ export type VpnGateway = Resource & {
 
 // @public
 export type VpnGatewayGeneration = string;
+
+// @public
+export interface VpnGateways {
+    createOrUpdate(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: VpnGateway, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<VpnGatewaysGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
+    reset(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnGatewaysResetResponse>>;
+    updateTags(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnGatewaysUpdateTagsResponse>;
+}
 
 // @public
 export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
@@ -10515,6 +11111,11 @@ export interface VpnLinkBgpSettings {
 }
 
 // @public
+export interface VpnLinkConnections {
+    listByVpnConnection(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSiteLinkConnection>;
+}
+
+// @public
 export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkConnectionsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -10582,6 +11183,21 @@ export type VpnServerConfiguration = Resource & {
     readonly p2SVpnGateways?: P2SVpnGateway[];
     readonly etagPropertiesEtag?: string;
 };
+
+// @public
+export interface VpnServerConfigurations {
+    createOrUpdate(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: VpnServerConfiguration, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnServerConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<VpnServerConfigurationsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
+    updateTags(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnServerConfigurationsUpdateTagsResponse>;
+}
+
+// @public
+export interface VpnServerConfigurationsAssociatedWithVirtualWan {
+    list(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>>;
+}
 
 // @public
 export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnServerConfigurationsResponse & {
@@ -10719,12 +11335,23 @@ export type VpnSiteLinkConnection = SubResource & {
 };
 
 // @public
+export interface VpnSiteLinkConnections {
+    get(resourceGroupName: string, gatewayName: string, connectionName: string, linkConnectionName: string, options?: coreHttp.OperationOptions): Promise<VpnSiteLinkConnectionsGetResponse>;
+}
+
+// @public
 export type VpnSiteLinkConnectionsGetResponse = VpnSiteLinkConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnSiteLinkConnection;
     };
 };
+
+// @public
+export interface VpnSiteLinks {
+    get(resourceGroupName: string, vpnSiteName: string, vpnSiteLinkName: string, options?: coreHttp.OperationOptions): Promise<VpnSiteLinksGetResponse>;
+    listByVpnSite(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSiteLink>;
+}
 
 // @public
 export type VpnSiteLinksGetResponse = VpnSiteLink & {
@@ -10749,6 +11376,21 @@ export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult & {
         parsedBody: ListVpnSiteLinksResult;
     };
 };
+
+// @public
+export interface VpnSites {
+    createOrUpdate(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: VpnSite, options?: coreHttp.OperationOptions): Promise<LROPoller<VpnSitesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<VpnSitesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
+    updateTags(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnSitesUpdateTagsResponse>;
+}
+
+// @public
+export interface VpnSitesConfiguration {
+    download(resourceGroupName: string, virtualWANName: string, request: GetVpnSitesConfigurationRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
 
 // @public
 export type VpnSitesCreateOrUpdateResponse = VpnSite & {
@@ -10834,6 +11476,15 @@ export type WebApplicationFirewallMode = string;
 
 // @public
 export type WebApplicationFirewallOperator = string;
+
+// @public
+export interface WebApplicationFirewallPolicies {
+    createOrUpdate(resourceGroupName: string, policyName: string, parameters: WebApplicationFirewallPolicy, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
+}
 
 // @public
 export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicationFirewallPolicy & {

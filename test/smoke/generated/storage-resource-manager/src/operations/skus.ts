@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Skus } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -16,7 +17,7 @@ import { SkuInformation, SkusListResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Skus. */
-export class Skus {
+export class SkusImpl implements Skus {
   private readonly client: StorageManagementClientContext;
 
   /**

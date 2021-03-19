@@ -8,19 +8,16 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Usage } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import {
-  Usage as UsageModel,
-  UsageListResponse,
-  UsageListNextResponse
-} from "../models";
+import { UsageDef, UsageListResponse, UsageListNextResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Usage. */
-export class Usage {
+export class UsageImpl implements Usage {
   private readonly client: ComputeManagementClientContext;
 
   /**
@@ -40,7 +37,7 @@ export class Usage {
   public list(
     location: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<UsageModel> {
+  ): PagedAsyncIterableIterator<UsageDef> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {
@@ -58,7 +55,7 @@ export class Usage {
   private async *listPagingPage(
     location: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<UsageModel[]> {
+  ): AsyncIterableIterator<UsageDef[]> {
     let result = await this._list(location, options);
     yield result.value || [];
     let continuationToken = result.nextLink;
@@ -72,7 +69,7 @@ export class Usage {
   private async *listPagingAll(
     location: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<UsageModel> {
+  ): AsyncIterableIterator<UsageDef> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
     }

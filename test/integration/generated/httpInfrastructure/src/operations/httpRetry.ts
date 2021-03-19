@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { HttpRetry } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { HttpInfrastructureClientContext } from "../httpInfrastructureClientCont
 import { HttpRetryOptions502Response } from "../models";
 
 /** Class representing a HttpRetry. */
-export class HttpRetry {
+export class HttpRetryImpl implements HttpRetry {
   private readonly client: HttpInfrastructureClientContext;
 
   /**

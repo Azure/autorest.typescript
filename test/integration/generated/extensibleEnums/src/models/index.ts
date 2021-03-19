@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export interface Pet {
+export interface PetDef {
   /** name */
   name?: string;
   /** Type of Pet */
@@ -44,7 +44,7 @@ export type DaysOfWeekExtensibleEnum = string;
 
 /** Known values of {@link IntEnum} that the service accepts. */
 export const enum KnownIntEnum {
-  /** one */
+  /** This is a really long comment to see what wrapping looks like. This comment is really long and it should wrap for readability. Please wrap. This should wrap. */
   One = "1",
   /** two */
   Two = "2",
@@ -57,39 +57,39 @@ export const enum KnownIntEnum {
  * {@link KnownIntEnum} can be used interchangeably with IntEnum,
  *  this enum contains the known values that the service supports.
  * ### Know values supported by the service
- * **1**: one \
+ * **1**: This is a really long comment to see what wrapping looks like. This comment is really long and it should wrap for readability. Please wrap. This should wrap. \
  * **2**: two \
  * **3**: three
  */
 export type IntEnum = string;
 
 /** Contains response data for the getByPetId operation. */
-export type PetGetByPetIdResponse = Pet & {
+export type PetGetByPetIdResponse = PetDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: Pet;
+    parsedBody: PetDef;
   };
 };
 
 /** Optional parameters. */
 export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
   /** pet param */
-  petParam?: Pet;
+  petParam?: PetDef;
 }
 
 /** Contains response data for the addPet operation. */
-export type PetAddPetResponse = Pet & {
+export type PetAddPetResponse = PetDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: Pet;
+    parsedBody: PetDef;
   };
 };
 

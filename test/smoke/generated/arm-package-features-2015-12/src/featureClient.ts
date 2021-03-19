@@ -9,7 +9,8 @@
 import * as coreHttp from "@azure/core-http";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { Features } from "./operations";
+import { FeaturesImpl } from "./operations";
+import { Features } from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { FeatureClientContext } from "./featureClientContext";
@@ -34,7 +35,7 @@ export class FeatureClient extends FeatureClientContext {
     options?: FeatureClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.features = new Features(this);
+    this.features = new FeaturesImpl(this);
   }
 
   /**

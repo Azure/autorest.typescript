@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { SkipUrlEncoding } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesCl
 import { SkipUrlEncodingGetMethodQueryNullOptionalParams } from "../models";
 
 /** Class representing a SkipUrlEncoding. */
-export class SkipUrlEncoding {
+export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   private readonly client: AzureSpecialPropertiesClientContext;
 
   /**

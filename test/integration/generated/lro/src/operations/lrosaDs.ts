@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { LrosaDs } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -58,7 +59,7 @@ import {
 } from "../models";
 
 /** Class representing a LrosaDs. */
-export class LrosaDs {
+export class LrosaDsImpl implements LrosaDs {
   private readonly client: LROClientContext;
 
   /**

@@ -10,3 +10,4 @@
 export * from "./models";
 export { CustomUrlPagingClient } from "./customUrlPagingClient";
 export { CustomUrlPagingClientContext } from "./customUrlPagingClientContext";
+export * from "./operationsInterfaces";

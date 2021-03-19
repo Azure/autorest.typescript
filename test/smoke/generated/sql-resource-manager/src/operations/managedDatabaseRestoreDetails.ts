@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { ManagedDatabaseRestoreDetails } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -16,7 +17,8 @@ import {
 } from "../models";
 
 /** Class representing a ManagedDatabaseRestoreDetails. */
-export class ManagedDatabaseRestoreDetails {
+export class ManagedDatabaseRestoreDetailsImpl
+  implements ManagedDatabaseRestoreDetails {
   private readonly client: SqlManagementClientContext;
 
   /**

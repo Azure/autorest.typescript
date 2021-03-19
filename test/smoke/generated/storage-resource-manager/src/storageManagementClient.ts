@@ -8,6 +8,21 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  OperationsImpl,
+  SkusImpl,
+  StorageAccountsImpl,
+  UsagesImpl,
+  ManagementPoliciesImpl,
+  PrivateEndpointConnectionsImpl,
+  PrivateLinkResourcesImpl,
+  ObjectReplicationPoliciesImpl,
+  EncryptionScopesImpl,
+  BlobServicesImpl,
+  BlobContainersImpl,
+  FileServicesImpl,
+  FileSharesImpl
+} from "./operations";
+import {
   Operations,
   Skus,
   StorageAccounts,
@@ -21,7 +36,7 @@ import {
   BlobContainers,
   FileServices,
   FileShares
-} from "./operations";
+} from "./operationsInterfaces";
 import { StorageManagementClientContext } from "./storageManagementClientContext";
 import { StorageManagementClientOptionalParams } from "./models";
 
@@ -38,19 +53,19 @@ export class StorageManagementClient extends StorageManagementClientContext {
     options?: StorageManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new Operations(this);
-    this.skus = new Skus(this);
-    this.storageAccounts = new StorageAccounts(this);
-    this.usages = new Usages(this);
-    this.managementPolicies = new ManagementPolicies(this);
-    this.privateEndpointConnections = new PrivateEndpointConnections(this);
-    this.privateLinkResources = new PrivateLinkResources(this);
-    this.objectReplicationPolicies = new ObjectReplicationPolicies(this);
-    this.encryptionScopes = new EncryptionScopes(this);
-    this.blobServices = new BlobServices(this);
-    this.blobContainers = new BlobContainers(this);
-    this.fileServices = new FileServices(this);
-    this.fileShares = new FileShares(this);
+    this.operations = new OperationsImpl(this);
+    this.skus = new SkusImpl(this);
+    this.storageAccounts = new StorageAccountsImpl(this);
+    this.usages = new UsagesImpl(this);
+    this.managementPolicies = new ManagementPoliciesImpl(this);
+    this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
+    this.privateLinkResources = new PrivateLinkResourcesImpl(this);
+    this.objectReplicationPolicies = new ObjectReplicationPoliciesImpl(this);
+    this.encryptionScopes = new EncryptionScopesImpl(this);
+    this.blobServices = new BlobServicesImpl(this);
+    this.blobContainers = new BlobContainersImpl(this);
+    this.fileServices = new FileServicesImpl(this);
+    this.fileShares = new FileSharesImpl(this);
   }
 
   operations: Operations;

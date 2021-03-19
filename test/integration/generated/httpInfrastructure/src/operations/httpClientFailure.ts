@@ -6,13 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { HttpClientFailure } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 
 /** Class representing a HttpClientFailure. */
-export class HttpClientFailure {
+export class HttpClientFailureImpl implements HttpClientFailure {
   private readonly client: HttpInfrastructureClientContext;
 
   /**

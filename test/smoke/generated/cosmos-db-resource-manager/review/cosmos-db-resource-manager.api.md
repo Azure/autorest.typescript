@@ -76,6 +76,22 @@ export interface CassandraPartitionKey {
 }
 
 // @public
+export interface CassandraResources {
+    createUpdateCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>>;
+    createUpdateCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>>;
+    deleteCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraKeyspaceResponse>;
+    getCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse>;
+    getCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraTableResponse>;
+    getCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraTableThroughputResponse>;
+    listCassandraKeyspaces(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CassandraKeyspaceGetResults>;
+    listCassandraTables(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CassandraTableGetResults>;
+    updateCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>>;
+    updateCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesUpdateCassandraTableThroughputResponse>>;
+}
+
+// @public
 export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse = CassandraKeyspaceGetResults & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -203,6 +219,13 @@ export interface ClusterKey {
 }
 
 // @public
+export interface Collection {
+    listMetricDefinitions(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+    listUsages(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, options?: CollectionListUsagesOptionalParams): PagedAsyncIterableIterator<Usage>;
+}
+
+// @public
 export type CollectionListMetricDefinitionsResponse = MetricDefinitionsListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -232,6 +255,12 @@ export type CollectionListUsagesResponse = UsagesResult & {
 };
 
 // @public
+export interface CollectionPartition {
+    listMetrics(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PartitionMetric>;
+    listUsages(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, options?: CollectionPartitionListUsagesOptionalParams): PagedAsyncIterableIterator<PartitionUsage>;
+}
+
+// @public
 export type CollectionPartitionListMetricsResponse = PartitionMetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -253,12 +282,22 @@ export type CollectionPartitionListUsagesResponse = PartitionUsagesResult & {
 };
 
 // @public
+export interface CollectionPartitionRegion {
+    listMetrics(resourceGroupName: string, accountName: string, region: string, databaseRid: string, collectionRid: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PartitionMetric>;
+}
+
+// @public
 export type CollectionPartitionRegionListMetricsResponse = PartitionMetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PartitionMetricListResult;
     };
 };
+
+// @public
+export interface CollectionRegion {
+    listMetrics(resourceGroupName: string, accountName: string, region: string, databaseRid: string, collectionRid: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+}
 
 // @public
 export type CollectionRegionListMetricsResponse = MetricListResult & {
@@ -313,88 +352,46 @@ export interface ContainerPartitionKey {
 // @public (undocumented)
 export class CosmosDBManagementClient extends CosmosDBManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "CassandraResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     cassandraResources: CassandraResources;
-    // Warning: (ae-forgotten-export) The symbol "Collection" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     collection: Collection;
-    // Warning: (ae-forgotten-export) The symbol "CollectionPartition" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     collectionPartition: CollectionPartition;
-    // Warning: (ae-forgotten-export) The symbol "CollectionPartitionRegion" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     collectionPartitionRegion: CollectionPartitionRegion;
-    // Warning: (ae-forgotten-export) The symbol "CollectionRegion" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     collectionRegion: CollectionRegion;
-    // Warning: (ae-forgotten-export) The symbol "Database" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     database: Database;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseAccountRegion" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseAccountRegion: DatabaseAccountRegion;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseAccounts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseAccounts: DatabaseAccounts;
-    // Warning: (ae-forgotten-export) The symbol "GremlinResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     gremlinResources: GremlinResources;
-    // Warning: (ae-forgotten-export) The symbol "MongoDBResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     mongoDBResources: MongoDBResources;
-    // Warning: (ae-forgotten-export) The symbol "NotebookWorkspaces" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     notebookWorkspaces: NotebookWorkspaces;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "PartitionKeyRangeId" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     partitionKeyRangeId: PartitionKeyRangeId;
-    // Warning: (ae-forgotten-export) The symbol "PartitionKeyRangeIdRegion" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     partitionKeyRangeIdRegion: PartitionKeyRangeIdRegion;
-    // Warning: (ae-forgotten-export) The symbol "Percentile" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     percentile: Percentile;
-    // Warning: (ae-forgotten-export) The symbol "PercentileSourceTarget" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     percentileSourceTarget: PercentileSourceTarget;
-    // Warning: (ae-forgotten-export) The symbol "PercentileTarget" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     percentileTarget: PercentileTarget;
-    // Warning: (ae-forgotten-export) The symbol "PrivateEndpointConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
-    // Warning: (ae-forgotten-export) The symbol "PrivateLinkResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
-    // Warning: (ae-forgotten-export) The symbol "SqlResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     sqlResources: SqlResources;
-    // Warning: (ae-forgotten-export) The symbol "TableResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     tableResources: TableResources;
 }
@@ -418,6 +415,13 @@ export interface CosmosDBManagementClientOptionalParams extends coreHttp.Service
 export interface CreateUpdateOptions {
     [property: string]: any;
     throughput?: string;
+}
+
+// @public
+export interface Database {
+    listMetricDefinitions(resourceGroupName: string, accountName: string, databaseRid: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, accountName: string, databaseRid: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+    listUsages(resourceGroupName: string, accountName: string, databaseRid: string, options?: DatabaseListUsagesOptionalParams): PagedAsyncIterableIterator<Usage>;
 }
 
 // @public
@@ -496,12 +500,39 @@ export interface DatabaseAccountRegenerateKeyParameters {
 }
 
 // @public
+export interface DatabaseAccountRegion {
+    listMetrics(resourceGroupName: string, accountName: string, region: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+}
+
+// @public
 export type DatabaseAccountRegionListMetricsResponse = MetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MetricListResult;
     };
 };
+
+// @public
+export interface DatabaseAccounts {
+    checkNameExists(accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, accountName: string, createUpdateParameters: DatabaseAccountCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabaseAccountsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    failoverPriorityChange(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsGetResponse>;
+    getReadOnlyKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
+    listConnectionStrings(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsListConnectionStringsResponse>;
+    listKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsListKeysResponse>;
+    listMetricDefinitions(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, accountName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+    listReadOnlyKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsListReadOnlyKeysResponse>;
+    listUsages(resourceGroupName: string, accountName: string, options?: DatabaseAccountsListUsagesOptionalParams): PagedAsyncIterableIterator<Usage>;
+    offlineRegion(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    onlineRegion(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    regenerateKey(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabaseAccountsUpdateResponse>>;
+}
 
 // @public
 export type DatabaseAccountsCreateOrUpdateResponse = DatabaseAccountGetResults & {
@@ -756,6 +787,22 @@ export interface GremlinGraphResource {
     indexingPolicy?: IndexingPolicy;
     partitionKey?: ContainerPartitionKey;
     uniqueKeyPolicy?: UniqueKeyPolicy;
+}
+
+// @public
+export interface GremlinResources {
+    createUpdateGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinDatabaseResponse>>;
+    createUpdateGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinGraphResponse>>;
+    deleteGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinDatabaseResponse>;
+    getGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse>;
+    getGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinGraphResponse>;
+    getGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinGraphThroughputResponse>;
+    listGremlinDatabases(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GremlinDatabaseGetResults>;
+    listGremlinGraphs(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GremlinGraphGetResults>;
+    updateGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>>;
+    updateGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesUpdateGremlinGraphThroughputResponse>>;
 }
 
 // @public
@@ -1056,6 +1103,16 @@ interface Location_2 {
 
 export { Location_2 as Location }
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
 // @public
 export interface Metric {
     readonly endTime?: Date;
@@ -1165,6 +1222,22 @@ export interface MongoDBDatabaseListResult {
 // @public
 export interface MongoDBDatabaseResource {
     id: string;
+}
+
+// @public
+export interface MongoDBResources {
+    createUpdateMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>>;
+    createUpdateMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>>;
+    deleteMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBCollectionResponse>;
+    getMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse>;
+    getMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBDatabaseResponse>;
+    getMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse>;
+    listMongoDBCollections(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MongoDBCollectionGetResults>;
+    listMongoDBDatabases(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MongoDBDatabaseGetResults>;
+    updateMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>>;
+    updateMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>>;
 }
 
 // @public
@@ -1292,6 +1365,17 @@ export interface NotebookWorkspaceListResult {
 export type NotebookWorkspaceName = string;
 
 // @public
+export interface NotebookWorkspaces {
+    createOrUpdate(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<NotebookWorkspacesGetResponse>;
+    listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NotebookWorkspace>;
+    listConnectionInfo(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<NotebookWorkspacesListConnectionInfoResponse>;
+    regenerateAuthToken(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    start(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1345,6 +1429,11 @@ export interface OperationListResult {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1366,12 +1455,22 @@ export interface OptionsResource {
 }
 
 // @public
+export interface PartitionKeyRangeId {
+    listMetrics(resourceGroupName: string, accountName: string, databaseRid: string, collectionRid: string, partitionKeyRangeId: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PartitionMetric>;
+}
+
+// @public
 export type PartitionKeyRangeIdListMetricsResponse = PartitionMetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PartitionMetricListResult;
     };
 };
+
+// @public
+export interface PartitionKeyRangeIdRegion {
+    listMetrics(resourceGroupName: string, accountName: string, region: string, databaseRid: string, collectionRid: string, partitionKeyRangeId: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PartitionMetric>;
+}
 
 // @public
 export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListResult & {
@@ -1404,6 +1503,11 @@ export type PartitionUsage = Usage & {
 // @public
 export interface PartitionUsagesResult {
     readonly value?: PartitionUsage[];
+}
+
+// @public
+export interface Percentile {
+    listMetrics(resourceGroupName: string, accountName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PercentileMetric>;
 }
 
 // @public
@@ -1441,12 +1545,22 @@ export type PercentileMetricValue = MetricValue & {
 };
 
 // @public
+export interface PercentileSourceTarget {
+    listMetrics(resourceGroupName: string, accountName: string, sourceRegion: string, targetRegion: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PercentileMetric>;
+}
+
+// @public
 export type PercentileSourceTargetListMetricsResponse = PercentileMetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PercentileMetricListResult;
     };
 };
+
+// @public
+export interface PercentileTarget {
+    listMetrics(resourceGroupName: string, accountName: string, targetRegion: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PercentileMetric>;
+}
 
 // @public
 export type PercentileTargetListMetricsResponse = PercentileMetricListResult & {
@@ -1476,6 +1590,14 @@ export type PrivateEndpointConnectionAutoGenerated = ProxyResource & {
 // @public
 export interface PrivateEndpointConnectionListResult {
     value?: PrivateEndpointConnectionAutoGenerated[];
+}
+
+// @public
+export interface PrivateEndpointConnections {
+    createOrUpdate(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnectionAutoGenerated, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateEndpointConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
+    listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnectionAutoGenerated>;
 }
 
 // @public
@@ -1518,6 +1640,12 @@ export type PrivateLinkResource = ARMProxyResource & {
 // @public
 export interface PrivateLinkResourceListResult {
     value?: PrivateLinkResource[];
+}
+
+// @public
+export interface PrivateLinkResources {
+    get(resourceGroupName: string, accountName: string, groupName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesGetResponse>;
+    listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkResource>;
 }
 
 // @public
@@ -1645,6 +1773,34 @@ export interface SqlDatabaseListResult {
 // @public
 export interface SqlDatabaseResource {
     id: string;
+}
+
+// @public
+export interface SqlResources {
+    createUpdateSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlContainerResponse>>;
+    createUpdateSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlDatabaseResponse>>;
+    createUpdateSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlStoredProcedureResponse>>;
+    createUpdateSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlTriggerResponse>>;
+    createUpdateSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>>;
+    deleteSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlContainerResponse>;
+    getSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlContainerThroughputResponse>;
+    getSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlDatabaseResponse>;
+    getSqlDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlDatabaseThroughputResponse>;
+    getSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlStoredProcedureResponse>;
+    getSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlTriggerResponse>;
+    getSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlUserDefinedFunctionResponse>;
+    listSqlContainers(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlContainerGetResults>;
+    listSqlDatabases(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlDatabaseGetResults>;
+    listSqlStoredProcedures(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlStoredProcedureGetResults>;
+    listSqlTriggers(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlTriggerGetResults>;
+    listSqlUserDefinedFunctions(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults>;
+    updateSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesUpdateSqlContainerThroughputResponse>>;
+    updateSqlDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesUpdateSqlDatabaseThroughputResponse>>;
 }
 
 // @public
@@ -1909,6 +2065,16 @@ export interface TableListResult {
 // @public
 export interface TableResource {
     id: string;
+}
+
+// @public
+export interface TableResources {
+    createUpdateTable(resourceGroupName: string, accountName: string, tableName: string, createUpdateTableParameters: TableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<TableResourcesCreateUpdateTableResponse>>;
+    deleteTable(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getTable(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<TableResourcesGetTableResponse>;
+    getTableThroughput(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<TableResourcesGetTableThroughputResponse>;
+    listTables(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TableGetResults>;
+    updateTableThroughput(resourceGroupName: string, accountName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<TableResourcesUpdateTableThroughputResponse>>;
 }
 
 // @public

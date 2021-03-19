@@ -853,7 +853,7 @@ export interface PrivateLinkResourceListResult {
 }
 
 /** List storage account object replication policies. */
-export interface ObjectReplicationPolicies {
+export interface ObjectReplicationPoliciesDef {
   /** The replication policy between two storage accounts. */
   value?: ObjectReplicationPolicy[];
 }
@@ -2523,14 +2523,14 @@ export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResour
 };
 
 /** Contains response data for the list operation. */
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies & {
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: ObjectReplicationPolicies;
+    parsedBody: ObjectReplicationPoliciesDef;
   };
 };
 

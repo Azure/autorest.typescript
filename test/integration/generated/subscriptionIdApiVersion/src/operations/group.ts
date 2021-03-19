@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Group } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { SubscriptionIdApiVersionClientContext } from "../subscriptionIdApiVersi
 import { GroupGetSampleResourceGroupResponse } from "../models";
 
 /** Class representing a Group. */
-export class Group {
+export class GroupImpl implements Group {
   private readonly client: SubscriptionIdApiVersionClientContext;
 
   /**

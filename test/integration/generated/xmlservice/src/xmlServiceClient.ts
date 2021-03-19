@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Xml } from "./operations";
+import { XmlImpl } from "./operations";
+import { Xml } from "./operationsInterfaces";
 import { XmlServiceClientContext } from "./xmlServiceClientContext";
 import { XmlServiceClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class XmlServiceClient extends XmlServiceClientContext {
    */
   constructor(options?: XmlServiceClientOptionalParams) {
     super(options);
-    this.xml = new Xml(this);
+    this.xml = new XmlImpl(this);
   }
 
   xml: Xml;

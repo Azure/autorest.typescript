@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Readonlyproperty } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
 
 /** Class representing a Readonlyproperty. */
-export class Readonlyproperty {
+export class ReadonlypropertyImpl implements Readonlyproperty {
   private readonly client: BodyComplexClientContext;
 
   /**

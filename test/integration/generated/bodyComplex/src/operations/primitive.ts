@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Primitive } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -36,7 +37,7 @@ import {
 } from "../models";
 
 /** Class representing a Primitive. */
-export class Primitive {
+export class PrimitiveImpl implements Primitive {
   private readonly client: BodyComplexClientContext;
 
   /**

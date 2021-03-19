@@ -29,7 +29,7 @@ import {
   UnlinkParameters as UnlinkParametersMapper,
   ServerCommunicationLink as ServerCommunicationLinkMapper,
   TransparentDataEncryption as TransparentDataEncryptionMapper,
-  DatabaseAutomaticTuning as DatabaseAutomaticTuningMapper,
+  DatabaseAutomaticTuningDef as DatabaseAutomaticTuningDefMapper,
   EncryptionProtector as EncryptionProtectorMapper,
   FailoverGroup as FailoverGroupMapper,
   FailoverGroupUpdate as FailoverGroupUpdateMapper,
@@ -53,7 +53,7 @@ import {
   JobTargetGroup as JobTargetGroupMapper,
   BackupLongTermRetentionPolicy as BackupLongTermRetentionPolicyMapper,
   ManagedBackupShortTermRetentionPolicy as ManagedBackupShortTermRetentionPolicyMapper,
-  ServerAutomaticTuning as ServerAutomaticTuningMapper,
+  ServerAutomaticTuningDef as ServerAutomaticTuningDefMapper,
   ServerDnsAliasAcquisition as ServerDnsAliasAcquisitionMapper,
   ServerSecurityAlertPolicy as ServerSecurityAlertPolicyMapper,
   CreateDatabaseRestorePointDefinition as CreateDatabaseRestorePointDefinitionMapper,
@@ -509,7 +509,7 @@ export const apiVersion3: OperationQueryParameter = {
 
 export const parameters17: OperationParameter = {
   parameterPath: "parameters",
-  mapper: DatabaseAutomaticTuningMapper
+  mapper: DatabaseAutomaticTuningDefMapper
 };
 
 export const encryptionProtectorName: OperationURLParameter = {
@@ -1085,7 +1085,7 @@ export const restorableDroppedDatabaseId: OperationURLParameter = {
 
 export const parameters41: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ServerAutomaticTuningMapper
+  mapper: ServerAutomaticTuningDefMapper
 };
 
 export const dnsAliasName: OperationURLParameter = {

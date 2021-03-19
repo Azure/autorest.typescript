@@ -10,12 +10,8 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 // @public (undocumented)
 export class ManagementLinkClient extends ManagementLinkClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "ResourceLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     resourceLinks: ResourceLinks;
 }
@@ -59,6 +55,11 @@ export interface OperationListResult {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -98,6 +99,15 @@ export interface ResourceLinkProperties {
 export interface ResourceLinkResult {
     readonly nextLink?: string;
     value: ResourceLink[];
+}
+
+// @public
+export interface ResourceLinks {
+    createOrUpdate(linkId: string, parameters: ResourceLink, options?: coreHttp.OperationOptions): Promise<ResourceLinksCreateOrUpdateResponse>;
+    delete(linkId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(linkId: string, options?: coreHttp.OperationOptions): Promise<ResourceLinksGetResponse>;
+    listAtSourceScope(scope: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscription(options?: ResourceLinksListAtSubscriptionOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
 }
 
 // @public

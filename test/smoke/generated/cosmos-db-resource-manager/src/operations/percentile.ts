@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Percentile } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -16,7 +17,7 @@ import { PercentileMetric, PercentileListMetricsResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Percentile. */
-export class Percentile {
+export class PercentileImpl implements Percentile {
   private readonly client: CosmosDBManagementClientContext;
 
   /**

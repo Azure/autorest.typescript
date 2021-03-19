@@ -10,6 +10,23 @@ import * as coreHttp from "@azure/core-http";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
+  AppServiceCertificateOrdersImpl,
+  CertificateRegistrationProviderImpl,
+  DomainsImpl,
+  TopLevelDomainsImpl,
+  DomainRegistrationProviderImpl,
+  CertificatesImpl,
+  DeletedWebAppsImpl,
+  DiagnosticsImpl,
+  ProviderImpl,
+  RecommendationsImpl,
+  WebAppsImpl,
+  StaticSitesImpl,
+  AppServiceEnvironmentsImpl,
+  AppServicePlansImpl,
+  ResourceHealthMetadataImpl
+} from "./operations";
+import {
   AppServiceCertificateOrders,
   CertificateRegistrationProvider,
   Domains,
@@ -25,7 +42,7 @@ import {
   AppServiceEnvironments,
   AppServicePlans,
   ResourceHealthMetadata
-} from "./operations";
+} from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { WebSiteManagementClientContext } from "./webSiteManagementClientContext";
@@ -83,23 +100,25 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     options?: WebSiteManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.appServiceCertificateOrders = new AppServiceCertificateOrders(this);
-    this.certificateRegistrationProvider = new CertificateRegistrationProvider(
+    this.appServiceCertificateOrders = new AppServiceCertificateOrdersImpl(
       this
     );
-    this.domains = new Domains(this);
-    this.topLevelDomains = new TopLevelDomains(this);
-    this.domainRegistrationProvider = new DomainRegistrationProvider(this);
-    this.certificates = new Certificates(this);
-    this.deletedWebApps = new DeletedWebApps(this);
-    this.diagnostics = new Diagnostics(this);
-    this.provider = new Provider(this);
-    this.recommendations = new Recommendations(this);
-    this.webApps = new WebApps(this);
-    this.staticSites = new StaticSites(this);
-    this.appServiceEnvironments = new AppServiceEnvironments(this);
-    this.appServicePlans = new AppServicePlans(this);
-    this.resourceHealthMetadata = new ResourceHealthMetadata(this);
+    this.certificateRegistrationProvider = new CertificateRegistrationProviderImpl(
+      this
+    );
+    this.domains = new DomainsImpl(this);
+    this.topLevelDomains = new TopLevelDomainsImpl(this);
+    this.domainRegistrationProvider = new DomainRegistrationProviderImpl(this);
+    this.certificates = new CertificatesImpl(this);
+    this.deletedWebApps = new DeletedWebAppsImpl(this);
+    this.diagnostics = new DiagnosticsImpl(this);
+    this.provider = new ProviderImpl(this);
+    this.recommendations = new RecommendationsImpl(this);
+    this.webApps = new WebAppsImpl(this);
+    this.staticSites = new StaticSitesImpl(this);
+    this.appServiceEnvironments = new AppServiceEnvironmentsImpl(this);
+    this.appServicePlans = new AppServicePlansImpl(this);
+    this.resourceHealthMetadata = new ResourceHealthMetadataImpl(this);
   }
 
   /**

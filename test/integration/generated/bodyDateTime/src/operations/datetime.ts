@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Datetime } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -29,7 +30,7 @@ import {
 } from "../models";
 
 /** Class representing a Datetime. */
-export class Datetime {
+export class DatetimeImpl implements Datetime {
   private readonly client: BodyDateTimeClientContext;
 
   /**

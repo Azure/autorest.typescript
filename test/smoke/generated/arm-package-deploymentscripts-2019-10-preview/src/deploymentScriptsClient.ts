@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { DeploymentScripts } from "./operations";
+import { DeploymentScriptsImpl } from "./operations";
+import { DeploymentScripts } from "./operationsInterfaces";
 import { DeploymentScriptsClientContext } from "./deploymentScriptsClientContext";
 import { DeploymentScriptsClientOptionalParams } from "./models";
 
@@ -24,7 +25,7 @@ export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
     options?: DeploymentScriptsClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.deploymentScripts = new DeploymentScripts(this);
+    this.deploymentScripts = new DeploymentScriptsImpl(this);
   }
 
   deploymentScripts: DeploymentScripts;

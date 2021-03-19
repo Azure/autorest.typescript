@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PrivateLinkResources } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { StorageManagementClientContext } from "../storageManagementClientContex
 import { PrivateLinkResourcesListByStorageAccountResponse } from "../models";
 
 /** Class representing a PrivateLinkResources. */
-export class PrivateLinkResources {
+export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private readonly client: StorageManagementClientContext;
 
   /**

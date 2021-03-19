@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { VpnSitesConfiguration } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -14,7 +15,7 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { GetVpnSitesConfigurationRequest } from "../models";
 
 /** Class representing a VpnSitesConfiguration. */
-export class VpnSitesConfiguration {
+export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
   private readonly client: NetworkManagementClientContext;
 
   /**

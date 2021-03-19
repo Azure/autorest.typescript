@@ -9,3 +9,4 @@
 export * from "./models";
 export { AzureSpecialPropertiesClient } from "./azureSpecialPropertiesClient";
 export { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
+export * from "./operationsInterfaces";

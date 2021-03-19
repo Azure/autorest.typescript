@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Pet } from "./operations";
+import { PetImpl } from "./operations";
+import { Pet } from "./operationsInterfaces";
 import { XmsErrorResponsesClientContext } from "./xmsErrorResponsesClientContext";
 import { XmsErrorResponsesClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class XmsErrorResponsesClient extends XmsErrorResponsesClientContext {
    */
   constructor(options?: XmsErrorResponsesClientOptionalParams) {
     super(options);
-    this.pet = new Pet(this);
+    this.pet = new PetImpl(this);
   }
 
   pet: Pet;

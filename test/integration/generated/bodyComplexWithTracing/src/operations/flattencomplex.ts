@@ -8,6 +8,7 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import { Flattencomplex } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -15,7 +16,7 @@ import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext"
 import { FlattencomplexGetValidResponse } from "../models";
 
 /** Class representing a Flattencomplex. */
-export class Flattencomplex {
+export class FlattencomplexImpl implements Flattencomplex {
   private readonly client: BodyComplexWithTracingContext;
 
   /**

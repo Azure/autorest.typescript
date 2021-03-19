@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { BarApi } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { MediaTypesV3ClientContext } from "../mediaTypesV3ClientContext";
@@ -15,7 +16,7 @@ import {
 } from "../models";
 
 /** Class representing a BarApi. */
-export class BarApi {
+export class BarApiImpl implements BarApi {
   private readonly client: MediaTypesV3ClientContext;
 
   /**

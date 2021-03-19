@@ -9,3 +9,4 @@
 export * from "./models";
 export { XmlServiceClient } from "./xmlServiceClient";
 export { XmlServiceClientContext } from "./xmlServiceClientContext";
+export * from "./operationsInterfaces";

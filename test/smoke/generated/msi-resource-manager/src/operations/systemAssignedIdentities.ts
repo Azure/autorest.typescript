@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { SystemAssignedIdentities } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityCl
 import { SystemAssignedIdentitiesGetByScopeResponse } from "../models";
 
 /** Class representing a SystemAssignedIdentities. */
-export class SystemAssignedIdentities {
+export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {
   private readonly client: ManagedServiceIdentityClientContext;
 
   /**

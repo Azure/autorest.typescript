@@ -716,7 +716,7 @@ export const ListUsagesResult: coreHttp.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Usage"
+              className: "UsageDef"
             }
           }
         }
@@ -731,10 +731,10 @@ export const ListUsagesResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Usage: coreHttp.CompositeMapper = {
+export const UsageDef: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "Usage",
+    className: "UsageDef",
     modelProperties: {
       unit: {
         defaultValue: "Count",

@@ -8,6 +8,29 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  DatabaseAccountsImpl,
+  OperationsImpl,
+  DatabaseImpl,
+  CollectionImpl,
+  CollectionRegionImpl,
+  DatabaseAccountRegionImpl,
+  PercentileSourceTargetImpl,
+  PercentileTargetImpl,
+  PercentileImpl,
+  CollectionPartitionRegionImpl,
+  CollectionPartitionImpl,
+  PartitionKeyRangeIdImpl,
+  PartitionKeyRangeIdRegionImpl,
+  SqlResourcesImpl,
+  MongoDBResourcesImpl,
+  TableResourcesImpl,
+  CassandraResourcesImpl,
+  GremlinResourcesImpl,
+  NotebookWorkspacesImpl,
+  PrivateLinkResourcesImpl,
+  PrivateEndpointConnectionsImpl
+} from "./operations";
+import {
   DatabaseAccounts,
   Operations,
   Database,
@@ -29,7 +52,7 @@ import {
   NotebookWorkspaces,
   PrivateLinkResources,
   PrivateEndpointConnections
-} from "./operations";
+} from "./operationsInterfaces";
 import { CosmosDBManagementClientContext } from "./cosmosDBManagementClientContext";
 import { CosmosDBManagementClientOptionalParams } from "./models";
 
@@ -46,27 +69,27 @@ export class CosmosDBManagementClient extends CosmosDBManagementClientContext {
     options?: CosmosDBManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.databaseAccounts = new DatabaseAccounts(this);
-    this.operations = new Operations(this);
-    this.database = new Database(this);
-    this.collection = new Collection(this);
-    this.collectionRegion = new CollectionRegion(this);
-    this.databaseAccountRegion = new DatabaseAccountRegion(this);
-    this.percentileSourceTarget = new PercentileSourceTarget(this);
-    this.percentileTarget = new PercentileTarget(this);
-    this.percentile = new Percentile(this);
-    this.collectionPartitionRegion = new CollectionPartitionRegion(this);
-    this.collectionPartition = new CollectionPartition(this);
-    this.partitionKeyRangeId = new PartitionKeyRangeId(this);
-    this.partitionKeyRangeIdRegion = new PartitionKeyRangeIdRegion(this);
-    this.sqlResources = new SqlResources(this);
-    this.mongoDBResources = new MongoDBResources(this);
-    this.tableResources = new TableResources(this);
-    this.cassandraResources = new CassandraResources(this);
-    this.gremlinResources = new GremlinResources(this);
-    this.notebookWorkspaces = new NotebookWorkspaces(this);
-    this.privateLinkResources = new PrivateLinkResources(this);
-    this.privateEndpointConnections = new PrivateEndpointConnections(this);
+    this.databaseAccounts = new DatabaseAccountsImpl(this);
+    this.operations = new OperationsImpl(this);
+    this.database = new DatabaseImpl(this);
+    this.collection = new CollectionImpl(this);
+    this.collectionRegion = new CollectionRegionImpl(this);
+    this.databaseAccountRegion = new DatabaseAccountRegionImpl(this);
+    this.percentileSourceTarget = new PercentileSourceTargetImpl(this);
+    this.percentileTarget = new PercentileTargetImpl(this);
+    this.percentile = new PercentileImpl(this);
+    this.collectionPartitionRegion = new CollectionPartitionRegionImpl(this);
+    this.collectionPartition = new CollectionPartitionImpl(this);
+    this.partitionKeyRangeId = new PartitionKeyRangeIdImpl(this);
+    this.partitionKeyRangeIdRegion = new PartitionKeyRangeIdRegionImpl(this);
+    this.sqlResources = new SqlResourcesImpl(this);
+    this.mongoDBResources = new MongoDBResourcesImpl(this);
+    this.tableResources = new TableResourcesImpl(this);
+    this.cassandraResources = new CassandraResourcesImpl(this);
+    this.gremlinResources = new GremlinResourcesImpl(this);
+    this.notebookWorkspaces = new NotebookWorkspacesImpl(this);
+    this.privateLinkResources = new PrivateLinkResourcesImpl(this);
+    this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
   }
 
   databaseAccounts: DatabaseAccounts;

@@ -8,6 +8,7 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import { Inheritance } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -15,7 +16,7 @@ import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext"
 import { InheritanceGetValidResponse, Siamese } from "../models";
 
 /** Class representing a Inheritance. */
-export class Inheritance {
+export class InheritanceImpl implements Inheritance {
   private readonly client: BodyComplexWithTracingContext;
 
   /**

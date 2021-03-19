@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Dictionary } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -65,7 +66,7 @@ import {
 } from "../models";
 
 /** Class representing a Dictionary. */
-export class Dictionary {
+export class DictionaryImpl implements Dictionary {
   private readonly client: BodyDictionaryClientContext;
 
   /**

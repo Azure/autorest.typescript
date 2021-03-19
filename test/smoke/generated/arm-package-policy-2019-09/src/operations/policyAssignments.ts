@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PolicyAssignments } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -38,7 +39,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a PolicyAssignments. */
-export class PolicyAssignments {
+export class PolicyAssignmentsImpl implements PolicyAssignments {
   private readonly client: PolicyClientContext;
 
   /**

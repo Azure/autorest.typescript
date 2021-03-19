@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Pet } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -17,7 +18,7 @@ import {
 } from "../models";
 
 /** Class representing a Pet. */
-export class Pet {
+export class PetImpl implements Pet {
   private readonly client: ExtensibleEnumsClientContext;
 
   /**
@@ -69,7 +70,7 @@ const getByPetIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Pet
+      bodyMapper: Mappers.PetDef
     }
   },
   urlParameters: [Parameters.$host, Parameters.petId],
@@ -81,7 +82,7 @@ const addPetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Pet
+      bodyMapper: Mappers.PetDef
     }
   },
   requestBody: Parameters.petParam,

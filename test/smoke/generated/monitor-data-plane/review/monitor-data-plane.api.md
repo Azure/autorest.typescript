@@ -56,6 +56,11 @@ export interface AzureTimeSeriesData {
 }
 
 // @public
+export interface Metrics {
+    create(contentType: string, contentLength: number, authorization: string, subscriptionId: string, resourceGroupName: string, resourceProvider: string, resourceTypeName: string, resourceName: string, body: AzureMetricsDocument, options?: coreHttp.OperationOptions): Promise<MetricsCreateResponse>;
+}
+
+// @public
 export type MetricsCreateResponse = AzureMetricsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -66,8 +71,6 @@ export type MetricsCreateResponse = AzureMetricsResult & {
 // @public (undocumented)
 export class MonitorClient extends MonitorClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: MonitorClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Metrics" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     metrics: Metrics;
 }

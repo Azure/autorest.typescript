@@ -10,3 +10,4 @@
 export * from "./models";
 export { FeatureClient } from "./featureClient";
 export { FeatureClientContext } from "./featureClientContext";
+export * from "./operationsInterfaces";

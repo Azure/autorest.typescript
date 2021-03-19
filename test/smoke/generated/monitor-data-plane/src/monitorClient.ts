@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { Metrics } from "./operations";
+import { MetricsImpl } from "./operations";
+import { Metrics } from "./operationsInterfaces";
 import { MonitorClientContext } from "./monitorClientContext";
 import { MonitorClientOptionalParams } from "./models";
 
@@ -22,7 +23,7 @@ export class MonitorClient extends MonitorClientContext {
     options?: MonitorClientOptionalParams
   ) {
     super(credentials, options);
-    this.metrics = new Metrics(this);
+    this.metrics = new MetricsImpl(this);
   }
 
   metrics: Metrics;

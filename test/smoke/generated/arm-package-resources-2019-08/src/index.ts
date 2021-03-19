@@ -10,3 +10,5 @@
 export * from "./models";
 export { ResourceManagementClient } from "./resourceManagementClient";
 export { ResourceManagementClientContext } from "./resourceManagementClientContext";
+export * from "./operationsInterfaces";
+export { LROPoller } from "./lro";

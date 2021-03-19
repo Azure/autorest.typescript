@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Float } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
@@ -16,7 +17,7 @@ import {
 } from "../models";
 
 /** Class representing a Float. */
-export class Float {
+export class FloatImpl implements Float {
   private readonly client: NonStringEnumClientContext;
 
   /**

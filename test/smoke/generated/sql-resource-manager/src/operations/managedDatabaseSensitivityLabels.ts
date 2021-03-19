@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ManagedDatabaseSensitivityLabels } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -29,7 +30,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ManagedDatabaseSensitivityLabels. */
-export class ManagedDatabaseSensitivityLabels {
+export class ManagedDatabaseSensitivityLabelsImpl
+  implements ManagedDatabaseSensitivityLabels {
   private readonly client: SqlManagementClientContext;
 
   /**

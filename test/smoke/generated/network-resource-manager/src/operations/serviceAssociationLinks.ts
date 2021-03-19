@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { ServiceAssociationLinks } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 import { ServiceAssociationLinksListResponse } from "../models";
 
 /** Class representing a ServiceAssociationLinks. */
-export class ServiceAssociationLinks {
+export class ServiceAssociationLinksImpl implements ServiceAssociationLinks {
   private readonly client: NetworkManagementClientContext;
 
   /**

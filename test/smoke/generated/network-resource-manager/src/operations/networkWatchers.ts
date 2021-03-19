@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { NetworkWatchers } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -49,7 +50,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a NetworkWatchers. */
-export class NetworkWatchers {
+export class NetworkWatchersImpl implements NetworkWatchers {
   private readonly client: NetworkManagementClientContext;
 
   /**

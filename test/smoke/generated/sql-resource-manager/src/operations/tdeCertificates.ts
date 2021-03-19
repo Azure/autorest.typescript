@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { TdeCertificates } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -14,7 +15,7 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { TdeCertificate } from "../models";
 
 /** Class representing a TdeCertificates. */
-export class TdeCertificates {
+export class TdeCertificatesImpl implements TdeCertificates {
   private readonly client: SqlManagementClientContext;
 
   /**

@@ -50,6 +50,11 @@ export interface OperationListResult {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -83,16 +88,10 @@ export interface Subscription {
 // @public (undocumented)
 export class SubscriptionClient extends SubscriptionClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: SubscriptionClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "Subscriptions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     subscriptions: Subscriptions;
-    // Warning: (ae-forgotten-export) The symbol "Tenants" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     tenants: Tenants;
 }
@@ -124,6 +123,13 @@ export interface SubscriptionPolicies {
     readonly locationPlacementId?: string;
     readonly quotaId?: string;
     readonly spendingLimit?: SpendingLimit;
+}
+
+// @public
+export interface Subscriptions {
+    get(subscriptionId: string, options?: coreHttp.OperationOptions): Promise<SubscriptionsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Subscription>;
+    listLocations(subscriptionId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Location_2>;
 }
 
 // @public
@@ -179,6 +185,11 @@ export interface TenantIdDescription {
 export interface TenantListResult {
     nextLink: string;
     value?: TenantIdDescription[];
+}
+
+// @public
+export interface Tenants {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TenantIdDescription>;
 }
 
 // @public

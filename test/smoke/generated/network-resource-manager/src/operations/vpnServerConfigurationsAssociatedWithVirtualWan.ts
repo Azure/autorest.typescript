@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { VpnServerConfigurationsAssociatedWithVirtualWan } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -14,7 +15,8 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
 
 /** Class representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
-export class VpnServerConfigurationsAssociatedWithVirtualWan {
+export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
+  implements VpnServerConfigurationsAssociatedWithVirtualWan {
   private readonly client: NetworkManagementClientContext;
 
   /**

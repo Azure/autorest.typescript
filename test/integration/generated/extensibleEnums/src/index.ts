@@ -9,3 +9,4 @@
 export * from "./models";
 export { ExtensibleEnumsClient } from "./extensibleEnumsClient";
 export { ExtensibleEnumsClientContext } from "./extensibleEnumsClientContext";
+export * from "./operationsInterfaces";

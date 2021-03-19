@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { FlowLogs } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -23,7 +24,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a FlowLogs. */
-export class FlowLogs {
+export class FlowLogsImpl implements FlowLogs {
   private readonly client: NetworkManagementClientContext;
 
   /**

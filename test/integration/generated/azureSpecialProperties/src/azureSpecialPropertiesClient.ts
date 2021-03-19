@@ -8,6 +8,16 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  XMsClientRequestIdImpl,
+  SubscriptionInCredentialsImpl,
+  SubscriptionInMethodImpl,
+  ApiVersionDefaultImpl,
+  ApiVersionLocalImpl,
+  SkipUrlEncodingImpl,
+  OdataImpl,
+  HeaderImpl
+} from "./operations";
+import {
   XMsClientRequestId,
   SubscriptionInCredentials,
   SubscriptionInMethod,
@@ -16,7 +26,7 @@ import {
   SkipUrlEncoding,
   Odata,
   Header
-} from "./operations";
+} from "./operationsInterfaces";
 import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
@@ -34,14 +44,14 @@ export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientCo
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.xMsClientRequestId = new XMsClientRequestId(this);
-    this.subscriptionInCredentials = new SubscriptionInCredentials(this);
-    this.subscriptionInMethod = new SubscriptionInMethod(this);
-    this.apiVersionDefault = new ApiVersionDefault(this);
-    this.apiVersionLocal = new ApiVersionLocal(this);
-    this.skipUrlEncoding = new SkipUrlEncoding(this);
-    this.odata = new Odata(this);
-    this.header = new Header(this);
+    this.xMsClientRequestId = new XMsClientRequestIdImpl(this);
+    this.subscriptionInCredentials = new SubscriptionInCredentialsImpl(this);
+    this.subscriptionInMethod = new SubscriptionInMethodImpl(this);
+    this.apiVersionDefault = new ApiVersionDefaultImpl(this);
+    this.apiVersionLocal = new ApiVersionLocalImpl(this);
+    this.skipUrlEncoding = new SkipUrlEncodingImpl(this);
+    this.odata = new OdataImpl(this);
+    this.header = new HeaderImpl(this);
   }
 
   xMsClientRequestId: XMsClientRequestId;

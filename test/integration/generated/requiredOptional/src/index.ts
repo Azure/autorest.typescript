@@ -9,3 +9,4 @@
 export * from "./models";
 export { RequiredOptionalClient } from "./requiredOptionalClient";
 export { RequiredOptionalClientContext } from "./requiredOptionalClientContext";
+export * from "./operationsInterfaces";

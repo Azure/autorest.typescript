@@ -10,3 +10,5 @@
 export * from "./models";
 export { WebSiteManagementClient } from "./webSiteManagementClient";
 export { WebSiteManagementClientContext } from "./webSiteManagementClientContext";
+export * from "./operationsInterfaces";
+export { LROPoller } from "./lro";

@@ -6,7 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { LROs, LRORetrys, LrosaDs, LROsCustomHeader } from "./operations";
+import {
+  LROsImpl,
+  LRORetrysImpl,
+  LrosaDsImpl,
+  LROsCustomHeaderImpl
+} from "./operations";
+import {
+  LROs,
+  LRORetrys,
+  LrosaDs,
+  LROsCustomHeader
+} from "./operationsInterfaces";
 import { LROClientContext } from "./lROClientContext";
 import { LROClientOptionalParams } from "./models";
 
@@ -17,10 +28,10 @@ export class LROClient extends LROClientContext {
    */
   constructor(options?: LROClientOptionalParams) {
     super(options);
-    this.lROs = new LROs(this);
-    this.lRORetrys = new LRORetrys(this);
-    this.lrosaDs = new LrosaDs(this);
-    this.lROsCustomHeader = new LROsCustomHeader(this);
+    this.lROs = new LROsImpl(this);
+    this.lRORetrys = new LRORetrysImpl(this);
+    this.lrosaDs = new LrosaDsImpl(this);
+    this.lROsCustomHeader = new LROsCustomHeaderImpl(this);
   }
 
   lROs: LROs;

@@ -113,11 +113,21 @@ export interface DeploymentScriptPropertiesBase {
     storageAccountSettings?: StorageAccountConfiguration;
 }
 
+// @public
+export interface DeploymentScripts {
+    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentScriptsCreateResponse>>;
+    delete(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetResponse>;
+    getLogs(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetLogsResponse>;
+    getLogsDefault(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsDefaultOptionalParams): Promise<DeploymentScriptsGetLogsDefaultResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    update(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsUpdateOptionalParams): Promise<DeploymentScriptsUpdateResponse>;
+}
+
 // @public (undocumented)
 export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "DeploymentScripts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     deploymentScripts: DeploymentScripts;
 }
@@ -311,6 +321,16 @@ export const enum KnownScriptType {
     // (undocumented)
     AzurePowerShell = "AzurePowerShell"
 }
+
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
 
 // @public
 export interface ManagedServiceIdentity {

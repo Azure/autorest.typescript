@@ -8,10 +8,15 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  SystemAssignedIdentitiesImpl,
+  OperationsImpl,
+  UserAssignedIdentitiesImpl
+} from "./operations";
+import {
   SystemAssignedIdentities,
   Operations,
   UserAssignedIdentities
-} from "./operations";
+} from "./operationsInterfaces";
 import { ManagedServiceIdentityClientContext } from "./managedServiceIdentityClientContext";
 import { ManagedServiceIdentityClientOptionalParams } from "./models";
 
@@ -28,9 +33,9 @@ export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientCo
     options?: ManagedServiceIdentityClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.systemAssignedIdentities = new SystemAssignedIdentities(this);
-    this.operations = new Operations(this);
-    this.userAssignedIdentities = new UserAssignedIdentities(this);
+    this.systemAssignedIdentities = new SystemAssignedIdentitiesImpl(this);
+    this.operations = new OperationsImpl(this);
+    this.userAssignedIdentities = new UserAssignedIdentitiesImpl(this);
   }
 
   systemAssignedIdentities: SystemAssignedIdentities;

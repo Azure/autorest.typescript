@@ -7,7 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-http";
-import { Pet as PetMapper } from "../models/mappers";
+import { PetDef as PetDefMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -58,5 +58,5 @@ export const contentType: OperationParameter = {
 
 export const petParam: OperationParameter = {
   parameterPath: ["options", "petParam"],
-  mapper: PetMapper
+  mapper: PetDefMapper
 };

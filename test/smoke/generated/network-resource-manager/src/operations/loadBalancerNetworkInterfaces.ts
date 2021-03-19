@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { LoadBalancerNetworkInterfaces } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -20,7 +21,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a LoadBalancerNetworkInterfaces. */
-export class LoadBalancerNetworkInterfaces {
+export class LoadBalancerNetworkInterfacesImpl
+  implements LoadBalancerNetworkInterfaces {
   private readonly client: NetworkManagementClientContext;
 
   /**

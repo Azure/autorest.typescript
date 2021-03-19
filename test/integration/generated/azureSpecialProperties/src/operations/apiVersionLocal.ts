@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { ApiVersionLocal } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesCl
 import { ApiVersionLocalGetMethodLocalNullOptionalParams } from "../models";
 
 /** Class representing a ApiVersionLocal. */
-export class ApiVersionLocal {
+export class ApiVersionLocalImpl implements ApiVersionLocal {
   private readonly client: AzureSpecialPropertiesClientContext;
 
   /**

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { GalleryApplicationVersions } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -26,7 +27,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a GalleryApplicationVersions. */
-export class GalleryApplicationVersions {
+export class GalleryApplicationVersionsImpl
+  implements GalleryApplicationVersions {
   private readonly client: ComputeManagementClientContext;
 
   /**

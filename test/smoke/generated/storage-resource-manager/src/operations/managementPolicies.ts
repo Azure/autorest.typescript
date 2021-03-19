@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { ManagementPolicies } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -18,7 +19,7 @@ import {
 } from "../models";
 
 /** Class representing a ManagementPolicies. */
-export class ManagementPolicies {
+export class ManagementPoliciesImpl implements ManagementPolicies {
   private readonly client: StorageManagementClientContext;
 
   /**

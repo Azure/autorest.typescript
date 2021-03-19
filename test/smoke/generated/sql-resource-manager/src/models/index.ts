@@ -3703,7 +3703,7 @@ export type TransparentDataEncryptionActivity = ProxyResource & {
 };
 
 /** Database-level Automatic Tuning. */
-export type DatabaseAutomaticTuning = ProxyResource & {
+export type DatabaseAutomaticTuningDef = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
@@ -4563,7 +4563,7 @@ export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
 };
 
 /** Server-level Automatic Tuning. */
-export type ServerAutomaticTuning = ProxyResource & {
+export type ServerAutomaticTuningDef = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
@@ -8151,26 +8151,26 @@ export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
 };
 
 /** Contains response data for the get operation. */
-export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning & {
+export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: DatabaseAutomaticTuning;
+    parsedBody: DatabaseAutomaticTuningDef;
   };
 };
 
 /** Contains response data for the update operation. */
-export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning & {
+export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: DatabaseAutomaticTuning;
+    parsedBody: DatabaseAutomaticTuningDef;
   };
 };
 
@@ -10287,26 +10287,26 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesList
 };
 
 /** Contains response data for the get operation. */
-export type ServerAutomaticTuningGetResponse = ServerAutomaticTuning & {
+export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: ServerAutomaticTuning;
+    parsedBody: ServerAutomaticTuningDef;
   };
 };
 
 /** Contains response data for the update operation. */
-export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning & {
+export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: ServerAutomaticTuning;
+    parsedBody: ServerAutomaticTuningDef;
   };
 };
 

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { StringOperations, Enum } from "./operations";
+import { StringOperationsImpl, EnumImpl } from "./operations";
+import { StringOperations, Enum } from "./operationsInterfaces";
 import { BodyStringClientContext } from "./bodyStringClientContext";
 import { BodyStringClientOptionalParams } from "./models";
 
@@ -17,8 +18,8 @@ export class BodyStringClient extends BodyStringClientContext {
    */
   constructor(options?: BodyStringClientOptionalParams) {
     super(options);
-    this.string = new StringOperations(this);
-    this.enum = new Enum(this);
+    this.string = new StringOperationsImpl(this);
+    this.enum = new EnumImpl(this);
   }
 
   string: StringOperations;

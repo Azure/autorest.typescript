@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Paths } from "./operations";
+import { PathsImpl } from "./operations";
+import { Paths } from "./operationsInterfaces";
 import { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
@@ -21,7 +22,7 @@ export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContex
     options?: CustomUrlMoreOptionsClientOptionalParams
   ) {
     super(subscriptionId, options);
-    this.paths = new Paths(this);
+    this.paths = new PathsImpl(this);
   }
 
   paths: Paths;

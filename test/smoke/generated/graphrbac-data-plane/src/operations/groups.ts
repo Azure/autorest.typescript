@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Groups } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -35,7 +36,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Groups. */
-export class Groups {
+export class GroupsImpl implements Groups {
   private readonly client: GraphRbacManagementClientContext;
 
   /**

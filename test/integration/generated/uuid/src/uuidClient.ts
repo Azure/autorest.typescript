@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Get } from "./operations";
+import { GetImpl } from "./operations";
+import { Get } from "./operationsInterfaces";
 import { UuidClientContext } from "./uuidClientContext";
 import { UuidClientOptionalParams } from "./models";
 
@@ -18,7 +19,7 @@ export class UuidClient extends UuidClientContext {
    */
   constructor($host: string, options?: UuidClientOptionalParams) {
     super($host, options);
-    this.get = new Get(this);
+    this.get = new GetImpl(this);
   }
 
   get: Get;

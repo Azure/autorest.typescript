@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { DatabaseOperations } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -20,7 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a DatabaseOperations. */
-export class DatabaseOperations {
+export class DatabaseOperationsImpl implements DatabaseOperations {
   private readonly client: SqlManagementClientContext;
 
   /**

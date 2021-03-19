@@ -10,3 +10,4 @@
 export * from "./models";
 export { PolicyClient } from "./policyClient";
 export { PolicyClientContext } from "./policyClientContext";
+export * from "./operationsInterfaces";
