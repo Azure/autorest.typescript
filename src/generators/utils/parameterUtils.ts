@@ -13,7 +13,7 @@ import {
   Parameter
 } from "@autorest/codemodel";
 import { wrapString, IndentationType } from "./stringUtils";
-import { ClassDeclaration } from "ts-morph";
+import { ClassDeclaration, InterfaceDeclaration } from "ts-morph";
 import { ParameterWithDescription } from "./docsUtils";
 import {
   NameType,
@@ -109,7 +109,7 @@ export function getOperationParameterSignatures(
   operation: OperationDetails,
   parameters: ParameterDetails[],
   importedModels: Set<string>,
-  operationGroupClass: ClassDeclaration
+  operationGroupClass: ClassDeclaration | InterfaceDeclaration
 ) {
   const operationParameters = filterOperationParameters(parameters, operation, {
     includeContentType: true

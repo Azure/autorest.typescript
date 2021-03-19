@@ -1,5 +1,6 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
+import { hasLROOperation } from "../generators/operationGenerator";
 
 export function generateIndexFile(
   clientDetails: ClientDetails,
@@ -33,4 +34,32 @@ export function generateIndexFile(
       namedExports: [`${clientDetails.className}Context`]
     }
   ]);
+
+  let includeLRO = false;
+  const operationGroups = clientDetails.operationGroups.filter(
+    og => !og.isTopLevel
+  );
+
+  if (operationGroups.length) {
+    indexFile.addExportDeclarations([
+      {
+        moduleSpecifier: "./operationsInterfaces"
+      }
+    ]);
+  }
+
+  operationGroups.forEach(og => {
+    if (hasLROOperation(og)) {
+      includeLRO = true;
+    }
+  });
+
+  if (includeLRO) {
+    indexFile.addExportDeclarations([
+      {
+        moduleSpecifier: `./lro`,
+        namedExports: ["LROPoller"]
+      }
+    ]);
+  }
 }

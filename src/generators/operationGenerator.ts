@@ -435,9 +435,10 @@ function addClass(
     true /** shouldGuard */
   );
   const operationGroupClass = operationGroupFile.addClass({
-    name: className,
+    name: `${className}Impl`,
     docs: [`Class representing a ${className}.`],
-    isExported: true
+    isExported: true,
+    implements: [`${className}`]
   });
   operationGroupClass.addProperty({
     name: "client",
@@ -1098,6 +1099,17 @@ function addImports(
     operationGroupFile
   );
 
+  const interfaceName = normalizeName(
+    operationGroupDetails.name,
+    NameType.OperationGroup,
+    true /** shouldGuard */
+  );
+
+  operationGroupFile.addImportDeclaration({
+    namedImports: [`${interfaceName}`],
+    moduleSpecifier: "../operationsInterfaces"
+  });
+
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
@@ -1137,6 +1149,6 @@ function addImports(
   }
 }
 
-function hasLROOperation(operationGroupDetails: OperationGroupDetails) {
+export function hasLROOperation(operationGroupDetails: OperationGroupDetails) {
   return operationGroupDetails.operations.some(o => o.isLRO);
 }

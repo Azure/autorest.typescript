@@ -5,6 +5,8 @@ import {
 import { ClientDetails } from "../../models/clientDetails";
 import {
   ClassDeclaration,
+  InterfaceDeclaration,
+  MethodDeclaration,
   OptionalKind,
   ParameterDeclarationStructure,
   Scope,
@@ -112,7 +114,7 @@ export function preparePageableOperations(
 export function writeAsyncIterators(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
-  operationGroupClass: ClassDeclaration,
+  operationGroupClass: ClassDeclaration | InterfaceDeclaration,
   importedModels: Set<string>
 ) {
   if (clientDetails.options.disablePagingAsyncIterators) {
@@ -219,8 +221,10 @@ export function writeAsyncIterators(
       };
 
       writePublicMethod(operation, operationGroupClass, pagingMethodSettings);
-      writePageMethod(operation, operationGroupClass, pagingMethodSettings);
-      writeAllMethod(operationGroupClass, pagingMethodSettings);
+      if (operationGroupClass instanceof ClassDeclaration) {
+        writePageMethod(operation, operationGroupClass, pagingMethodSettings);
+        writeAllMethod(operationGroupClass, pagingMethodSettings);
+      }
     });
 }
 
@@ -246,7 +250,7 @@ function getPublicMethodName(initialOperationName: string) {
  */
 function writePublicMethod(
   operation: OperationDetails,
-  operationGroupClass: ClassDeclaration,
+  operationGroupClass: ClassDeclaration | InterfaceDeclaration,
   pagingMethodSettings: PagingMethodSettings
 ) {
   const returnType = `PagedAsyncIterableIterator<${pagingMethodSettings.bodyResponseType}>`;
@@ -264,19 +268,20 @@ function writePublicMethod(
     ]
   });
 
-  // Extract the parameter names for the All method to call it
-  let allMethodParameters = pagingMethodSettings.allMethod.parameters
-    .map(p => p.name)
-    .join();
+  if (operationGroupClass instanceof ClassDeclaration) {
+    // Extract the parameter names for the All method to call it
+    let allMethodParameters = pagingMethodSettings.allMethod.parameters
+      .map(p => p.name)
+      .join();
 
-  // Extract the parameter names for the page method to call it
-  const pageMethodNameParams = pagingMethodSettings.pageMethod.parameters
-    .map(p => p.name)
-    .join();
+    // Extract the parameter names for the page method to call it
+    const pageMethodNameParams = pagingMethodSettings.pageMethod.parameters
+      .map(p => p.name)
+      .join();
 
-  method.addStatements([
-    `const iter = this.${pagingMethodSettings.allMethod.name}(${allMethodParameters});`,
-    `return {
+    (method as MethodDeclaration).addStatements([
+      `const iter = this.${pagingMethodSettings.allMethod.name}(${allMethodParameters});`,
+      `return {
         next() {
           return iter.next();
         },
@@ -287,7 +292,8 @@ function writePublicMethod(
           return this.${pagingMethodSettings.pageMethod.name}(${pageMethodNameParams});
         }
       };`
-  ]);
+    ]);
+  }
 }
 
 /**
