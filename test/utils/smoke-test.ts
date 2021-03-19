@@ -97,8 +97,6 @@ directive:
 `);
   }
 
-  console.log(`File To Be Updated: ${path}`);
-  console.log(`Transformation To be Added: ${transformCode}`);
   try {
     appendFileSync(path, transformCode);
   } catch (err) {
