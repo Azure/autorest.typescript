@@ -131,6 +131,24 @@ const addTransformsToLibraries = async (
   }
 };
 
+const removeTransform = async (path: string): Promise<unknown> => {
+  path = path.replace("./.tmp/specs/", "");
+  console.log(`Removing changes to ${path}`);
+  const childProdcess = spawn("git", ["checkout", path], {
+    cwd: SPECS_PATH,
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  return await onExit(childProdcess);
+};
+
+const removeTransformsToLibraries = async (
+  spec: SpecDefinition
+): Promise<void> => {
+  if (Object.keys(specToModify).includes(spec.path)) {
+    await removeTransform(spec.path);
+  }
+};
+
 const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   let success = false;
   const readmeUrl = spec.path;
@@ -139,6 +157,7 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
     await addTransformsToLibraries(spec);
     const projectPath = await generateFromReadme(spec);
     await buildGenerated(projectPath);
+    await removeTransformsToLibraries(spec);
     success = true;
   } catch (e) {
     logError(e);
