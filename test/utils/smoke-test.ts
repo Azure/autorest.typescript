@@ -152,7 +152,7 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   let success = false;
   const readmeUrl = spec.path;
   try {
-    checkoutBranch(spec.branch);
+    await checkoutBranch(spec.branch);
     await addTransformsToLibraries(spec);
     const projectPath = await generateFromReadme(spec);
     await buildGenerated(projectPath);
