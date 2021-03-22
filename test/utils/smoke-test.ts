@@ -133,7 +133,6 @@ const addTransformsToLibraries = async (
 
 const removeTransform = async (path: string): Promise<unknown> => {
   path = path.replace("./.tmp/specs/", "");
-  console.log(`Removing changes to ${path}`);
   const childProdcess = spawn("git", ["checkout", path], {
     cwd: SPECS_PATH,
     stdio: [process.stdin, process.stdout, process.stderr]
