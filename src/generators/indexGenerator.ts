@@ -35,7 +35,6 @@ export function generateIndexFile(
     }
   ]);
 
-  let includeLRO = false;
   const operationGroups = clientDetails.operationGroups.filter(
     og => !og.isTopLevel
   );
@@ -48,11 +47,7 @@ export function generateIndexFile(
     ]);
   }
 
-  operationGroups.forEach(og => {
-    if (hasLROOperation(og)) {
-      includeLRO = true;
-    }
-  });
+  const includeLRO = operationGroups.find(hasLROOperation) !== undefined;
 
   if (includeLRO) {
     indexFile.addExportDeclarations([
