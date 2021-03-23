@@ -110,7 +110,7 @@ function getReturnType(
 }
 
 /**
- * Adds an Operation group class to the generated file
+ * Adds an Operation group interface to the generated file
  */
 function addInterface(
   operationGroupFile: SourceFile,
