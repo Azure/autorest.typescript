@@ -163,7 +163,7 @@ function addInterface(
  */
 export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
-  operationGroupClass: InterfaceDeclaration,
+  operationGroupInterface: InterfaceDeclaration,
   importedModels: Set<string>,
   modelNames: Set<string>,
   clientDetails: ClientDetails
