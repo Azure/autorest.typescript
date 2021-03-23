@@ -159,7 +159,7 @@ function addInterface(
 }
 
 /**
- * Write operations implementation, extracted from OperationGroupDetails, to the generated file
+ * Write operations signatures, extracted from OperationGroupDetails, to the generated file
  */
 export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
