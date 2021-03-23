@@ -176,7 +176,7 @@ export function writeOperations(
     importedModels
   );
   operationGroupDetails.operations.forEach(operation => {
-    if (operation.scope != Scope.Private) {
+    if (operation.scope !== Scope.Private) {
       const { baseMethodParameters } = getOperationParameterSignatures(
         operation,
         clientDetails.parameters,
