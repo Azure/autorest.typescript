@@ -121,15 +121,15 @@ function addInterface(
 
   let allModelsNames = getAllModelsNames(clientDetails);
 
-  const className = normalizeName(
+  const interfaceName = normalizeName(
     operationGroupDetails.name,
     NameType.OperationGroup,
     true /** shouldGuard */
   );
 
   const operationGroupClass = operationGroupFile.addInterface({
-    name: className,
-    docs: [`Interface representing a ${className}.`],
+    name: interfaceName,
+    docs: [`Interface representing a ${interfaceName}.`],
     isExported: true
   });
 
@@ -145,7 +145,7 @@ function addInterface(
   if (importedModels.size) {
     // Add alias to any model that collides with the class name
     const namedImports = [...importedModels].map(model => {
-      if (model === className) {
+      if (model === interfaceName) {
         return `${model} as ${model}Model`;
       }
       return model;
@@ -172,7 +172,7 @@ export function writeOperations(
   writeAsyncIterators(
     operationGroupDetails,
     clientDetails,
-    operationGroupClass,
+    operationGroupInterface,
     importedModels
   );
   operationGroupDetails.operations.forEach(operation => {
@@ -181,7 +181,7 @@ export function writeOperations(
         operation,
         clientDetails.parameters,
         importedModels,
-        operationGroupClass
+        operationGroupInterface
       );
       const returnType = getReturnType(operation, importedModels, modelNames);
       const name = `${operation.namePrefix || ""}${normalizeName(
@@ -189,7 +189,7 @@ export function writeOperations(
         NameType.Property
       )}`;
 
-      operationGroupClass.addMethod({
+      operationGroupInterface.addMethod({
         name,
         parameters: baseMethodParameters,
         returnType,
@@ -209,7 +209,6 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { className, mappers } = clientDetails;
   addPagingEsNextRef(
     operationGroupDetails.operations,
     clientDetails,

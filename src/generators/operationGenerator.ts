@@ -1099,14 +1099,14 @@ function addImports(
     operationGroupFile
   );
 
-  const interfaceName = normalizeName(
+  const operationGroupInterfaceName = normalizeName(
     operationGroupDetails.name,
     NameType.OperationGroup,
     true /** shouldGuard */
   );
 
   operationGroupFile.addImportDeclaration({
-    namedImports: [`${interfaceName}`],
+    namedImports: [`${operationGroupInterfaceName}`],
     moduleSpecifier: "../operationsInterfaces"
   });
 
