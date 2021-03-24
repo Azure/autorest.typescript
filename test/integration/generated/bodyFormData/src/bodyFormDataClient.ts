@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Formdata } from "./operations";
+import { FormdataImpl } from "./operations";
+import { Formdata } from "./operationsInterfaces";
 import { BodyFormDataClientContext } from "./bodyFormDataClientContext";
 import { BodyFormDataClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyFormDataClient extends BodyFormDataClientContext {
    */
   constructor(options?: BodyFormDataClientOptionalParams) {
     super(options);
-    this.formdata = new Formdata(this);
+    this.formdata = new FormdataImpl(this);
   }
 
   formdata: Formdata;

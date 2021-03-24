@@ -38,12 +38,8 @@ export type ApplicationArtifactType = "Template" | "Custom";
 // @public (undocumented)
 export class ApplicationClient extends ApplicationClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ApplicationClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "ApplicationDefinitions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     applicationDefinitions: ApplicationDefinitions;
-    // Warning: (ae-forgotten-export) The symbol "Applications" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     applications: Applications;
 }
@@ -83,6 +79,17 @@ export type ApplicationDefinition = GenericResource & {
 export interface ApplicationDefinitionListResult {
     nextLink?: string;
     value?: ApplicationDefinition[];
+}
+
+// @public
+export interface ApplicationDefinitions {
+    createOrUpdate(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateResponse>>;
+    createOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, applicationDefinitionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteById(applicationDefinitionId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationDefinitionName: string, options?: coreHttp.OperationOptions): Promise<ApplicationDefinitionsGetResponse>;
+    getById(applicationDefinitionId: string, options?: coreHttp.OperationOptions): Promise<ApplicationDefinitionsGetByIdResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationDefinition>;
 }
 
 // @public
@@ -159,6 +166,20 @@ export type ApplicationPatchable = GenericResource & {
 export interface ApplicationProviderAuthorization {
     principalId: string;
     roleDefinitionId: string;
+}
+
+// @public
+export interface Applications {
+    createOrUpdate(resourceGroupName: string, applicationName: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationsCreateOrUpdateResponse>>;
+    createOrUpdateById(applicationId: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, applicationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteById(applicationId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationName: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetResponse>;
+    getById(applicationId: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetByIdResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
+    update(resourceGroupName: string, applicationName: string, options?: ApplicationsUpdateOptionalParams): Promise<ApplicationsUpdateResponse>;
+    updateById(applicationId: string, options?: ApplicationsUpdateByIdOptionalParams): Promise<ApplicationsUpdateByIdResponse>;
 }
 
 // @public
@@ -299,6 +320,16 @@ export const enum KnownProvisioningState {
     // (undocumented)
     Updating = "Updating"
 }
+
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
 
 // @public
 export interface Plan {

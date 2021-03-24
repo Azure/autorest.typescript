@@ -5,6 +5,7 @@ import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
 import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
 import { onExit } from "./childProcessOnExit";
+import { appendFileSync } from "fs";
 
 const SMOKE_PATH = joinPath(".", "test", "smoke", "generated");
 
@@ -75,13 +76,87 @@ const buildGenerated = async (projectPath?: string) => {
   await onExit(npmBuild);
 };
 
+const addTransform = async (
+  path: string,
+  modelNames: string[]
+): Promise<void> => {
+  let transformCode: string = "";
+
+  for (let i = 0; i < modelNames.length; i++) {
+    transformCode = transformCode.concat(`
+  
+### Change client name of ${modelNames[i]} model
+\`\`\`yaml
+directive:
+  - from: swagger-document
+    where: $.definitions.${modelNames[i]}
+    transform: >
+      $["x-ms-client-name"] = "${modelNames[i]}Def";
+\`\`\`
+
+`);
+  }
+
+  try {
+    appendFileSync(path, transformCode);
+  } catch (err) {
+    throw new Error(
+      `Failed to add transformation to file: ${path}. Transformation to be added: ${transformCode}. Error: ${err}`
+    );
+  }
+};
+
+const specToModify: { [property: string]: string[] } = {
+  "./.tmp/specs/specification/sql/resource-manager/readme.md": [
+    "DatabaseAutomaticTuning",
+    "ServerAutomaticTuning"
+  ],
+  "./.tmp/specs/specification/web/resource-manager/readme.md": [
+    "ResourceHealthMetadata"
+  ],
+  "./.tmp/specs/specification/graphrbac/data-plane/readme.md": [
+    "OAuth2PermissionGrant"
+  ],
+  "./.tmp/specs/specification/compute/resource-manager/readme.md": ["Usage"],
+  "./.tmp/specs/specification/storage/resource-manager/readme.md": [
+    "ObjectReplicationPolicies"
+  ]
+};
+
+const addTransformsToLibraries = async (
+  spec: SpecDefinition
+): Promise<void> => {
+  if (Object.keys(specToModify).includes(spec.path)) {
+    await addTransform(spec.path, specToModify[spec.path]);
+  }
+};
+
+const removeTransform = async (path: string): Promise<unknown> => {
+  path = path.replace("./.tmp/specs/", "");
+  const childProdcess = spawn("git", ["checkout", path], {
+    cwd: SPECS_PATH,
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  return await onExit(childProdcess);
+};
+
+const removeTransformsToLibraries = async (
+  spec: SpecDefinition
+): Promise<void> => {
+  if (Object.keys(specToModify).includes(spec.path)) {
+    await removeTransform(spec.path);
+  }
+};
+
 const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   let success = false;
   const readmeUrl = spec.path;
   try {
-    checkoutBranch(spec.branch);
+    await checkoutBranch(spec.branch);
+    await addTransformsToLibraries(spec);
     const projectPath = await generateFromReadme(spec);
     await buildGenerated(projectPath);
+    await removeTransformsToLibraries(spec);
     success = true;
   } catch (e) {
     logError(e);

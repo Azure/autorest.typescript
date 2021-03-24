@@ -9,3 +9,4 @@
 export * from "./models";
 export { BodyComplexWithTracing } from "./bodyComplexWithTracing";
 export { BodyComplexWithTracingContext } from "./bodyComplexWithTracingContext";
+export * from "./operationsInterfaces";

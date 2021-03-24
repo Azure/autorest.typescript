@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { RecoverableManagedDatabases } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -21,7 +22,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a RecoverableManagedDatabases. */
-export class RecoverableManagedDatabases {
+export class RecoverableManagedDatabasesImpl
+  implements RecoverableManagedDatabases {
   private readonly client: SqlManagementClientContext;
 
   /**

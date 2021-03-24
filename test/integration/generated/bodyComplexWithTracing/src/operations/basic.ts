@@ -8,13 +8,14 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import { Basic } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
   BasicGetValidResponse,
-  Basic as BasicModel,
+  BasicDef,
   BasicGetInvalidResponse,
   BasicGetEmptyResponse,
   BasicGetNullResponse,
@@ -22,7 +23,7 @@ import {
 } from "../models";
 
 /** Class representing a Basic. */
-export class Basic {
+export class BasicImpl implements Basic {
   private readonly client: BodyComplexWithTracingContext;
 
   /**
@@ -72,7 +73,7 @@ export class Basic {
    * @param options The options parameters.
    */
   async putValid(
-    complexBody: BasicModel,
+    complexBody: BasicDef,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
@@ -242,7 +243,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Basic
+      bodyMapper: Mappers.BasicDef
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -273,7 +274,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Basic
+      bodyMapper: Mappers.BasicDef
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -288,7 +289,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Basic
+      bodyMapper: Mappers.BasicDef
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -303,7 +304,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Basic
+      bodyMapper: Mappers.BasicDef
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -318,7 +319,7 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Basic
+      bodyMapper: Mappers.BasicDef
     },
     default: {
       bodyMapper: Mappers.ErrorModel

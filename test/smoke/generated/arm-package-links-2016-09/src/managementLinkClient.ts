@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { Operations, ResourceLinks } from "./operations";
+import { OperationsImpl, ResourceLinksImpl } from "./operations";
+import { Operations, ResourceLinks } from "./operationsInterfaces";
 import { ManagementLinkClientContext } from "./managementLinkClientContext";
 import { ManagementLinkClientOptionalParams } from "./models";
 
@@ -24,8 +25,8 @@ export class ManagementLinkClient extends ManagementLinkClientContext {
     options?: ManagementLinkClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new Operations(this);
-    this.resourceLinks = new ResourceLinks(this);
+    this.operations = new OperationsImpl(this);
+    this.resourceLinks = new ResourceLinksImpl(this);
   }
 
   operations: Operations;

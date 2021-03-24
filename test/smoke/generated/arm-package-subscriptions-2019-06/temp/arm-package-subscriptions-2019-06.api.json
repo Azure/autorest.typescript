@@ -523,6 +523,84 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Operations:interface",
+          "docComment": "/**\n * Interface representing a Operations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Operations "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Operations",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Operations#list:member(1)",
+              "docComment": "/**\n * Lists all of the available Microsoft.Resources REST API operations.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  }
+                }
+              ],
+              "name": "list"
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
@@ -960,7 +1038,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operations",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Operations:class"
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Operations:interface"
                 },
                 {
                   "kind": "Content",
@@ -987,7 +1065,7 @@
                 {
                   "kind": "Reference",
                   "text": "Subscriptions",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:class"
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -1014,7 +1092,7 @@
                 {
                   "kind": "Reference",
                   "text": "Tenants",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:class"
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:interface"
                 },
                 {
                   "kind": "Content",
@@ -1449,6 +1527,238 @@
                 "startIndex": 1,
                 "endIndex": 2
               }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:interface",
+          "docComment": "/**\n * Interface representing a Subscriptions.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Subscriptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Subscriptions",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#get:member(1)",
+              "docComment": "/**\n * Gets details about a specified subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get(subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsGetResponse",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 10
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 5
+                  }
+                }
+              ],
+              "name": "get"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#list:member(1)",
+              "docComment": "/**\n * Gets all subscriptions for a tenant.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  }
+                }
+              ],
+              "name": "list"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#listLocations:member(1)",
+              "docComment": "/**\n * This operation provides all the locations that are available for resource providers; however, each resource provider may support a subset of this list.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listLocations(subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Location",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 10
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 5
+                  }
+                }
+              ],
+              "name": "listLocations"
             }
           ],
           "extendsTokenRanges": []
@@ -1954,6 +2264,84 @@
                 "startIndex": 1,
                 "endIndex": 3
               }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:interface",
+          "docComment": "/**\n * Interface representing a Tenants.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Tenants "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Tenants",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Tenants#list:member(1)",
+              "docComment": "/**\n * Gets the tenants for your account.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  }
+                }
+              ],
+              "name": "list"
             }
           ],
           "extendsTokenRanges": []

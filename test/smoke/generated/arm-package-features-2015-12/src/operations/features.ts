@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Features } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -25,7 +26,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Features. */
-export class Features {
+export class FeaturesImpl implements Features {
   private readonly client: FeatureClientContext;
 
   /**

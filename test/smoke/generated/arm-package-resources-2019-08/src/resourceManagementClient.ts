@@ -8,6 +8,15 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  OperationsImpl,
+  DeploymentsImpl,
+  ProvidersImpl,
+  ResourcesImpl,
+  ResourceGroupsImpl,
+  TagsImpl,
+  DeploymentOperationsImpl
+} from "./operations";
+import {
   Operations,
   Deployments,
   Providers,
@@ -15,7 +24,7 @@ import {
   ResourceGroups,
   Tags,
   DeploymentOperations
-} from "./operations";
+} from "./operationsInterfaces";
 import { ResourceManagementClientContext } from "./resourceManagementClientContext";
 import { ResourceManagementClientOptionalParams } from "./models";
 
@@ -32,13 +41,13 @@ export class ResourceManagementClient extends ResourceManagementClientContext {
     options?: ResourceManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new Operations(this);
-    this.deployments = new Deployments(this);
-    this.providers = new Providers(this);
-    this.resources = new Resources(this);
-    this.resourceGroups = new ResourceGroups(this);
-    this.tags = new Tags(this);
-    this.deploymentOperations = new DeploymentOperations(this);
+    this.operations = new OperationsImpl(this);
+    this.deployments = new DeploymentsImpl(this);
+    this.providers = new ProvidersImpl(this);
+    this.resources = new ResourcesImpl(this);
+    this.resourceGroups = new ResourceGroupsImpl(this);
+    this.tags = new TagsImpl(this);
+    this.deploymentOperations = new DeploymentOperationsImpl(this);
   }
 
   operations: Operations;

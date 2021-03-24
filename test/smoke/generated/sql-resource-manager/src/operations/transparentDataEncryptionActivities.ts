@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { TransparentDataEncryptionActivities } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -20,7 +21,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a TransparentDataEncryptionActivities. */
-export class TransparentDataEncryptionActivities {
+export class TransparentDataEncryptionActivitiesImpl
+  implements TransparentDataEncryptionActivities {
   private readonly client: SqlManagementClientContext;
 
   /**

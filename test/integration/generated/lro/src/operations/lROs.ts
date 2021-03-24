@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { LROs } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -79,7 +80,7 @@ import {
 } from "../models";
 
 /** Class representing a LROs. */
-export class LROs {
+export class LROsImpl implements LROs {
   private readonly client: LROClientContext;
 
   /**

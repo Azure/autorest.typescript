@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Polymorphism } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -22,7 +23,7 @@ import {
 } from "../models";
 
 /** Class representing a Polymorphism. */
-export class Polymorphism {
+export class PolymorphismImpl implements Polymorphism {
   private readonly client: BodyComplexClientContext;
 
   /**

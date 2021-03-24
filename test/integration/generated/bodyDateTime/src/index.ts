@@ -9,3 +9,4 @@
 export * from "./models";
 export { BodyDateTimeClient } from "./bodyDateTimeClient";
 export { BodyDateTimeClientContext } from "./bodyDateTimeClientContext";
+export * from "./operationsInterfaces";

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { DeploymentScripts } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -30,7 +31,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a DeploymentScripts. */
-export class DeploymentScripts {
+export class DeploymentScriptsImpl implements DeploymentScripts {
   private readonly client: DeploymentScriptsClientContext;
 
   /**

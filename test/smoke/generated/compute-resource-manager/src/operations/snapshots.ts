@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Snapshots } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -29,7 +30,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Snapshots. */
-export class Snapshots {
+export class SnapshotsImpl implements Snapshots {
   private readonly client: ComputeManagementClientContext;
 
   /**

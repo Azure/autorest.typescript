@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { AvailabilitySets } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -30,7 +31,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a AvailabilitySets. */
-export class AvailabilitySets {
+export class AvailabilitySetsImpl implements AvailabilitySets {
   private readonly client: ComputeManagementClientContext;
 
   /**

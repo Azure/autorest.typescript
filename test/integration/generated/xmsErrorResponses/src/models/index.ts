@@ -28,7 +28,7 @@ export interface PetAction {
   actionResponse?: string;
 }
 
-export type Pet = Animal & {
+export type PetDef = Animal & {
   /**
    * Gets the Pet by id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -66,14 +66,14 @@ export type PetHungryOrThirstyError = PetSadError & {
 };
 
 /** Contains response data for the getPetById operation. */
-export type PetGetPetByIdResponse = Pet & {
+export type PetGetPetByIdResponse = PetDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: Pet;
+    parsedBody: PetDef;
   };
 };
 
@@ -88,6 +88,13 @@ export type PetDoSomethingResponse = PetAction & {
     parsedBody: PetAction;
   };
 };
+
+/** Optional parameters. */
+export interface PetHasModelsParamOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Make sure model deserialization doesn't conflict with this param name, which has input name 'models'. Use client default value in call */
+  models?: string;
+}
 
 /** Optional parameters. */
 export interface XmsErrorResponsesClientOptionalParams

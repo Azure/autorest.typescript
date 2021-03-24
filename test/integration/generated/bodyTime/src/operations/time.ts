@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Time } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { BodyTimeClientContext } from "../bodyTimeClientContext";
 import { TimeGetResponse, TimePutResponse } from "../models";
 
 /** Class representing a Time. */
-export class Time {
+export class TimeImpl implements Time {
   private readonly client: BodyTimeClientContext;
 
   /**

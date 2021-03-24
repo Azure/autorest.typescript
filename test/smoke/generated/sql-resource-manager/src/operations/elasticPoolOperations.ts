@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ElasticPoolOperations } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -20,7 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ElasticPoolOperations. */
-export class ElasticPoolOperations {
+export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
   private readonly client: SqlManagementClientContext;
 
   /**

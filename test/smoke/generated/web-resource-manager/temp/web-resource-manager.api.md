@@ -195,6 +195,30 @@ export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertifica
 export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem = string;
 
 // @public
+export interface AppServiceCertificateOrders {
+    createOrUpdate(resourceGroupName: string, certificateOrderName: string, certificateDistinguishedName: AppServiceCertificateOrder, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServiceCertificateOrdersCreateOrUpdateResponse>>;
+    createOrUpdateCertificate(resourceGroupName: string, certificateOrderName: string, name: string, keyVaultCertificate: AppServiceCertificateResource, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>>;
+    delete(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteCertificate(resourceGroupName: string, certificateOrderName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersGetResponse>;
+    getCertificate(resourceGroupName: string, certificateOrderName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersGetCertificateResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServiceCertificateOrder>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServiceCertificateOrder>;
+    listCertificates(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServiceCertificateResource>;
+    reissue(resourceGroupName: string, certificateOrderName: string, reissueCertificateOrderRequest: ReissueCertificateOrderRequest, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    renew(resourceGroupName: string, certificateOrderName: string, renewCertificateOrderRequest: RenewCertificateOrderRequest, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resendEmail(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resendRequestEmails(resourceGroupName: string, certificateOrderName: string, nameIdentifier: NameIdentifier, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    retrieveCertificateActions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersRetrieveCertificateActionsResponse>;
+    retrieveCertificateEmailHistory(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse>;
+    retrieveSiteSeal(resourceGroupName: string, certificateOrderName: string, siteSealRequest: SiteSealRequest, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersRetrieveSiteSealResponse>;
+    update(resourceGroupName: string, certificateOrderName: string, certificateDistinguishedName: AppServiceCertificateOrderPatchResource, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersUpdateResponse>;
+    updateCertificate(resourceGroupName: string, certificateOrderName: string, name: string, keyVaultCertificate: AppServiceCertificatePatchResource, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersUpdateCertificateResponse>;
+    validatePurchaseInformation(appServiceCertificateOrder: AppServiceCertificateOrder, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    verifyDomainOwnership(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
+
+// @public
 export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppServiceCertificateResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -464,6 +488,46 @@ export type AppServiceEnvironmentResource = Resource & {
     sslCertKeyVaultId?: string;
     sslCertKeyVaultSecretName?: string;
 };
+
+// @public
+export interface AppServiceEnvironments {
+    createOrUpdate(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentResource, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateResponse>>;
+    createOrUpdateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>>;
+    createOrUpdateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>>;
+    delete(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsDeleteOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetResponse>;
+    getDiagnosticsItem(resourceGroupName: string, name: string, diagnosticsName: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
+    getMultiRolePool(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
+    getVipInfo(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
+    getWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetWorkerPoolResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
+    listAppServicePlans(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServicePlan>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
+    listCapacities(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StampCapacity>;
+    listChangeVnet(resourceGroupName: string, name: string, vnetInfo: VirtualNetworkProfile, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+    listDiagnostics(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsListDiagnosticsResponse>;
+    listInboundNetworkDependenciesEndpoints(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InboundEnvironmentEndpoint>;
+    listMultiRoleMetricDefinitions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceMetricDefinition>;
+    listMultiRolePoolInstanceMetricDefinitions(resourceGroupName: string, name: string, instance: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceMetricDefinition>;
+    listMultiRolePools(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkerPoolResource>;
+    listMultiRolePoolSkus(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SkuInfo>;
+    listMultiRoleUsages(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Usage>;
+    listOperations(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsListOperationsResponse>;
+    listOutboundNetworkDependenciesEndpoints(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
+    listResume(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+    listSuspend(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+    listUsages(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListUsagesOptionalParams): PagedAsyncIterableIterator<CsmUsageQuota>;
+    listWebApps(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListWebAppsOptionalParams): PagedAsyncIterableIterator<Site>;
+    listWebWorkerMetricDefinitions(resourceGroupName: string, name: string, workerPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceMetricDefinition>;
+    listWebWorkerUsages(resourceGroupName: string, name: string, workerPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Usage>;
+    listWorkerPoolInstanceMetricDefinitions(resourceGroupName: string, name: string, workerPoolName: string, instance: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceMetricDefinition>;
+    listWorkerPools(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkerPoolResource>;
+    listWorkerPoolSkus(resourceGroupName: string, name: string, workerPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SkuInfo>;
+    reboot(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsUpdateResponse>;
+    updateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse>;
+    updateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
+}
 
 // @public
 export type AppServiceEnvironmentsChangeVnetNextResponse = WebAppCollection & {
@@ -993,6 +1057,37 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
 export type AppServicePlanRestrictions = "None" | "Free" | "Shared" | "Basic" | "Standard" | "Premium";
 
 // @public
+export interface AppServicePlans {
+    createOrUpdate(resourceGroupName: string, name: string, appServicePlan: AppServicePlan, options?: coreHttp.OperationOptions): Promise<LROPoller<AppServicePlansCreateOrUpdateResponse>>;
+    createOrUpdateVnetRoute(resourceGroupName: string, name: string, vnetName: string, routeName: string, route: VnetRoute, options?: coreHttp.OperationOptions): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse>;
+    delete(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteVnetRoute(resourceGroupName: string, name: string, vnetName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetResponse>;
+    getHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetHybridConnectionResponse>;
+    getHybridConnectionPlanLimit(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetHybridConnectionPlanLimitResponse>;
+    getRouteForVnet(resourceGroupName: string, name: string, vnetName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetRouteForVnetResponse>;
+    getServerFarmSkus(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetServerFarmSkusResponse>;
+    getVnetFromServerFarm(resourceGroupName: string, name: string, vnetName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetVnetFromServerFarmResponse>;
+    getVnetGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansGetVnetGatewayResponse>;
+    list(options?: AppServicePlansListOptionalParams): PagedAsyncIterableIterator<AppServicePlan>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AppServicePlan>;
+    listCapabilities(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansListCapabilitiesResponse>;
+    listHybridConnectionKeys(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansListHybridConnectionKeysResponse>;
+    listHybridConnections(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HybridConnection>;
+    listRoutesForVnet(resourceGroupName: string, name: string, vnetName: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansListRoutesForVnetResponse>;
+    listUsages(resourceGroupName: string, name: string, options?: AppServicePlansListUsagesOptionalParams): PagedAsyncIterableIterator<CsmUsageQuota>;
+    listVnets(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServicePlansListVnetsResponse>;
+    listWebApps(resourceGroupName: string, name: string, options?: AppServicePlansListWebAppsOptionalParams): PagedAsyncIterableIterator<Site>;
+    listWebAppsByHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<string>;
+    rebootWorker(resourceGroupName: string, name: string, workerName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    restartWebApps(resourceGroupName: string, name: string, options?: AppServicePlansRestartWebAppsOptionalParams): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, name: string, appServicePlan: AppServicePlanPatchResource, options?: coreHttp.OperationOptions): Promise<AppServicePlansUpdateResponse>;
+    updateVnetGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, connectionEnvelope: VnetGateway, options?: coreHttp.OperationOptions): Promise<AppServicePlansUpdateVnetGatewayResponse>;
+    updateVnetRoute(resourceGroupName: string, name: string, vnetName: string, routeName: string, route: VnetRoute, options?: coreHttp.OperationOptions): Promise<AppServicePlansUpdateVnetRouteResponse>;
+}
+
+// @public
 export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1505,6 +1600,11 @@ export type CertificatePatchResource = ProxyOnlyResource & {
 export type CertificateProductType = "StandardDomainValidatedSsl" | "StandardDomainValidatedWildCardSsl";
 
 // @public
+export interface CertificateRegistrationProvider {
+    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CsmOperationDescription>;
+}
+
+// @public
 export type CertificateRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1519,6 +1619,16 @@ export type CertificateRegistrationProviderListOperationsResponse = CsmOperation
         parsedBody: CsmOperationCollection;
     };
 };
+
+// @public
+export interface Certificates {
+    createOrUpdate(resourceGroupName: string, name: string, certificateEnvelope: Certificate, options?: coreHttp.OperationOptions): Promise<CertificatesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<CertificatesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Certificate>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Certificate>;
+    update(resourceGroupName: string, name: string, certificateEnvelope: CertificatePatchResource, options?: coreHttp.OperationOptions): Promise<CertificatesUpdateResponse>;
+}
 
 // @public
 export type CertificatesCreateOrUpdateResponse = Certificate & {
@@ -1935,6 +2045,13 @@ export interface DeletedWebAppCollection {
 }
 
 // @public
+export interface DeletedWebApps {
+    getDeletedWebAppByLocation(location: string, deletedSiteId: string, options?: coreHttp.OperationOptions): Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeletedSite>;
+    listByLocation(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeletedSite>;
+}
+
+// @public
 export type DeletedWebAppsGetDeletedWebAppByLocationResponse = DeletedSite & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2108,6 +2225,32 @@ export interface DiagnosticMetricSet {
     timeGrain?: string;
     unit?: string;
     values?: DiagnosticMetricSample[];
+}
+
+// @public
+export interface Diagnostics {
+    executeSiteAnalysis(resourceGroupName: string, siteName: string, diagnosticCategory: string, analysisName: string, options?: DiagnosticsExecuteSiteAnalysisOptionalParams): Promise<DiagnosticsExecuteSiteAnalysisResponse>;
+    executeSiteAnalysisSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, analysisName: string, slot: string, options?: DiagnosticsExecuteSiteAnalysisSlotOptionalParams): Promise<DiagnosticsExecuteSiteAnalysisSlotResponse>;
+    executeSiteDetector(resourceGroupName: string, siteName: string, detectorName: string, diagnosticCategory: string, options?: DiagnosticsExecuteSiteDetectorOptionalParams): Promise<DiagnosticsExecuteSiteDetectorResponse>;
+    executeSiteDetectorSlot(resourceGroupName: string, siteName: string, detectorName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsExecuteSiteDetectorSlotOptionalParams): Promise<DiagnosticsExecuteSiteDetectorSlotResponse>;
+    getHostingEnvironmentDetectorResponse(resourceGroupName: string, name: string, detectorName: string, options?: DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams): Promise<DiagnosticsGetHostingEnvironmentDetectorResponseResponse>;
+    getSiteAnalysis(resourceGroupName: string, siteName: string, diagnosticCategory: string, analysisName: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteAnalysisResponse>;
+    getSiteAnalysisSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, analysisName: string, slot: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteAnalysisSlotResponse>;
+    getSiteDetector(resourceGroupName: string, siteName: string, diagnosticCategory: string, detectorName: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteDetectorResponse>;
+    getSiteDetectorResponse(resourceGroupName: string, siteName: string, detectorName: string, options?: DiagnosticsGetSiteDetectorResponseOptionalParams): Promise<DiagnosticsGetSiteDetectorResponseResponse>;
+    getSiteDetectorResponseSlot(resourceGroupName: string, siteName: string, detectorName: string, slot: string, options?: DiagnosticsGetSiteDetectorResponseSlotOptionalParams): Promise<DiagnosticsGetSiteDetectorResponseSlotResponse>;
+    getSiteDetectorSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, detectorName: string, slot: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteDetectorSlotResponse>;
+    getSiteDiagnosticCategory(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteDiagnosticCategoryResponse>;
+    getSiteDiagnosticCategorySlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: coreHttp.OperationOptions): Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse>;
+    listHostingEnvironmentDetectorResponses(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DetectorResponse>;
+    listSiteAnalyses(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AnalysisDefinition>;
+    listSiteAnalysesSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AnalysisDefinition>;
+    listSiteDetectorResponses(resourceGroupName: string, siteName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DetectorResponse>;
+    listSiteDetectorResponsesSlot(resourceGroupName: string, siteName: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DetectorResponse>;
+    listSiteDetectors(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DetectorDefinition>;
+    listSiteDetectorsSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DetectorDefinition>;
+    listSiteDiagnosticCategories(resourceGroupName: string, siteName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiagnosticCategory>;
+    listSiteDiagnosticCategoriesSlot(resourceGroupName: string, siteName: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiagnosticCategory>;
 }
 
 // @public
@@ -2524,6 +2667,11 @@ export interface DomainRecommendationSearchParameters {
 }
 
 // @public
+export interface DomainRegistrationProvider {
+    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CsmOperationDescription>;
+}
+
+// @public
 export type DomainRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2538,6 +2686,25 @@ export type DomainRegistrationProviderListOperationsResponse = CsmOperationColle
         parsedBody: CsmOperationCollection;
     };
 };
+
+// @public
+export interface Domains {
+    checkAvailability(identifier: NameIdentifier, options?: coreHttp.OperationOptions): Promise<DomainsCheckAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, domainName: string, domain: Domain, options?: coreHttp.OperationOptions): Promise<LROPoller<DomainsCreateOrUpdateResponse>>;
+    createOrUpdateOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, domainOwnershipIdentifier: DomainOwnershipIdentifier, options?: coreHttp.OperationOptions): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
+    delete(resourceGroupName: string, domainName: string, options?: DomainsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, domainName: string, options?: coreHttp.OperationOptions): Promise<DomainsGetResponse>;
+    getControlCenterSsoRequest(options?: coreHttp.OperationOptions): Promise<DomainsGetControlCenterSsoRequestResponse>;
+    getOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, options?: coreHttp.OperationOptions): Promise<DomainsGetOwnershipIdentifierResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Domain>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Domain>;
+    listOwnershipIdentifiers(resourceGroupName: string, domainName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DomainOwnershipIdentifier>;
+    listRecommendations(parameters: DomainRecommendationSearchParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NameIdentifier>;
+    renew(resourceGroupName: string, domainName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, domainName: string, domain: DomainPatchResource, options?: coreHttp.OperationOptions): Promise<DomainsUpdateResponse>;
+    updateOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, domainOwnershipIdentifier: DomainOwnershipIdentifier, options?: coreHttp.OperationOptions): Promise<DomainsUpdateOwnershipIdentifierResponse>;
+}
 
 // @public
 export type DomainsCheckAvailabilityResponse = DomainAvailabilityCheckResult & {
@@ -3255,6 +3422,16 @@ export interface LogSpecification {
     name?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
 // @public
 export type ManagedPipelineMode = "Integrated" | "Classic";
 
@@ -3662,6 +3839,13 @@ export interface ProcessThreadInfoCollection {
 }
 
 // @public
+export interface Provider {
+    listAvailableStacks(options?: ProviderGetAvailableStacksOptionalParams): PagedAsyncIterableIterator<ApplicationStackResource>;
+    listAvailableStacksOnPrem(options?: ProviderGetAvailableStacksOnPremOptionalParams): PagedAsyncIterableIterator<ApplicationStackResource>;
+    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CsmOperationDescription>;
+}
+
+// @public
 export interface ProviderGetAvailableStacksNextOptionalParams extends coreHttp.OperationOptions {
     // (undocumented)
     osTypeSelected?: Enum4;
@@ -3832,6 +4016,25 @@ export type RecommendationRule = ProxyOnlyResource & {
     bladeName?: string;
     forwardLink?: string;
 };
+
+// @public
+export interface Recommendations {
+    disableAllForHostingEnvironment(resourceGroupName: string, environmentName: string, hostingEnvironmentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableAllForWebApp(resourceGroupName: string, siteName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableRecommendationForHostingEnvironment(resourceGroupName: string, environmentName: string, name: string, hostingEnvironmentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableRecommendationForSite(resourceGroupName: string, siteName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableRecommendationForSubscription(name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    getRuleDetailsByHostingEnvironment(resourceGroupName: string, hostingEnvironmentName: string, name: string, options?: RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams): Promise<RecommendationsGetRuleDetailsByHostingEnvironmentResponse>;
+    getRuleDetailsByWebApp(resourceGroupName: string, siteName: string, name: string, options?: RecommendationsGetRuleDetailsByWebAppOptionalParams): Promise<RecommendationsGetRuleDetailsByWebAppResponse>;
+    list(options?: RecommendationsListOptionalParams): PagedAsyncIterableIterator<Recommendation>;
+    listHistoryForHostingEnvironment(resourceGroupName: string, hostingEnvironmentName: string, options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams): PagedAsyncIterableIterator<Recommendation>;
+    listHistoryForWebApp(resourceGroupName: string, siteName: string, options?: RecommendationsListHistoryForWebAppOptionalParams): PagedAsyncIterableIterator<Recommendation>;
+    listRecommendedRulesForHostingEnvironment(resourceGroupName: string, hostingEnvironmentName: string, options?: RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams): PagedAsyncIterableIterator<Recommendation>;
+    listRecommendedRulesForWebApp(resourceGroupName: string, siteName: string, options?: RecommendationsListRecommendedRulesForWebAppOptionalParams): PagedAsyncIterableIterator<Recommendation>;
+    resetAllFilters(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resetAllFiltersForHostingEnvironment(resourceGroupName: string, environmentName: string, hostingEnvironmentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resetAllFiltersForWebApp(resourceGroupName: string, siteName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
 
 // @public
 export interface RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams extends coreHttp.OperationOptions {
@@ -4068,30 +4271,40 @@ export interface ResourceCollection {
 }
 
 // @public
-export type ResourceHealthMetadata = ProxyOnlyResource & {
+export interface ResourceHealthMetadata {
+    getBySite(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<ResourceHealthMetadataGetBySiteResponse>;
+    getBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+    listBySite(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+    listBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+}
+
+// @public
+export interface ResourceHealthMetadataCollection {
+    readonly nextLink?: string;
+    value: ResourceHealthMetadataDef[];
+}
+
+// @public
+export type ResourceHealthMetadataDef = ProxyOnlyResource & {
     category?: string;
     signalAvailability?: boolean;
 };
 
 // @public
-export interface ResourceHealthMetadataCollection {
-    readonly nextLink?: string;
-    value: ResourceHealthMetadata[];
-}
-
-// @public
-export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadata & {
+export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: ResourceHealthMetadata;
+        parsedBody: ResourceHealthMetadataDef;
     };
 };
 
 // @public
-export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadata & {
+export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: ResourceHealthMetadata;
+        parsedBody: ResourceHealthMetadataDef;
     };
 };
 
@@ -4853,6 +5066,36 @@ export type StaticSiteResetPropertiesARMResource = ProxyOnlyResource & {
 };
 
 // @public
+export interface StaticSites {
+    createOrUpdateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: coreHttp.OperationOptions): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
+    createOrUpdateStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, appSettings: StringDictionary, options?: coreHttp.OperationOptions): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
+    createOrUpdateStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: coreHttp.OperationOptions): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
+    createOrUpdateStaticSiteFunctionAppSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: coreHttp.OperationOptions): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse>;
+    createUserRolesInvitationLink(resourceGroupName: string, name: string, staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource, options?: coreHttp.OperationOptions): Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
+    deleteStaticSite(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteStaticSiteUser(resourceGroupName: string, name: string, authprovider: string, userid: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    detachStaticSite(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    getStaticSite(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<StaticSitesGetStaticSiteResponse>;
+    getStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: coreHttp.OperationOptions): Promise<StaticSitesGetStaticSiteBuildResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteARMResource>;
+    listStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, options?: coreHttp.OperationOptions): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
+    listStaticSiteBuildFunctions(resourceGroupName: string, name: string, prId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
+    listStaticSiteBuilds(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteBuildARMResource>;
+    listStaticSiteCustomDomains(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource>;
+    listStaticSiteFunctionAppSettings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
+    listStaticSiteFunctions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
+    listStaticSitesByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteARMResource>;
+    listStaticSiteSecrets(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<StaticSitesListStaticSiteSecretsResponse>;
+    listStaticSiteUsers(resourceGroupName: string, name: string, authprovider: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StaticSiteUserARMResource>;
+    resetStaticSiteApiKey(resourceGroupName: string, name: string, resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    updateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSitePatchResource, options?: coreHttp.OperationOptions): Promise<StaticSitesUpdateStaticSiteResponse>;
+    updateStaticSiteUser(resourceGroupName: string, name: string, authprovider: string, userid: string, staticSiteUserEnvelope: StaticSiteUserARMResource, options?: coreHttp.OperationOptions): Promise<StaticSitesUpdateStaticSiteUserResponse>;
+    validateCustomDomainCanBeAddedToStaticSite(resourceGroupName: string, name: string, domainName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
+
+// @public
 export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse = StringDictionary & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5162,6 +5405,13 @@ export interface TopLevelDomainCollection {
 }
 
 // @public
+export interface TopLevelDomains {
+    get(name: string, options?: coreHttp.OperationOptions): Promise<TopLevelDomainsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TopLevelDomain>;
+    listAgreements(name: string, agreementOption: TopLevelDomainAgreementOption, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TldLegalAgreement>;
+}
+
+// @public
 export type TopLevelDomainsGetResponse = TopLevelDomain & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5407,6 +5657,377 @@ export interface WebAppCollection {
 export interface WebAppInstanceCollection {
     readonly nextLink?: string;
     value: SiteInstance[];
+}
+
+// @public
+export interface WebApps {
+    addPremierAddOn(resourceGroupName: string, name: string, premierAddOnName: string, premierAddOn: PremierAddOn, options?: coreHttp.OperationOptions): Promise<WebAppsAddPremierAddOnResponse>;
+    addPremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, premierAddOn: PremierAddOn, options?: coreHttp.OperationOptions): Promise<WebAppsAddPremierAddOnSlotResponse>;
+    analyzeCustomHostname(resourceGroupName: string, name: string, options?: WebAppsAnalyzeCustomHostnameOptionalParams): Promise<WebAppsAnalyzeCustomHostnameResponse>;
+    analyzeCustomHostnameSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsAnalyzeCustomHostnameSlotOptionalParams): Promise<WebAppsAnalyzeCustomHostnameSlotResponse>;
+    applySlotConfigToProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    applySlotConfigurationSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    approveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    backup(resourceGroupName: string, name: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsBackupResponse>;
+    backupSlot(resourceGroupName: string, name: string, slot: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsBackupSlotResponse>;
+    copyProductionSlot(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    copySlot(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createDeployment(resourceGroupName: string, name: string, id: string, deployment: Deployment, options?: coreHttp.OperationOptions): Promise<WebAppsCreateDeploymentResponse>;
+    createDeploymentSlot(resourceGroupName: string, name: string, id: string, slot: string, deployment: Deployment, options?: coreHttp.OperationOptions): Promise<WebAppsCreateDeploymentSlotResponse>;
+    createFunction(resourceGroupName: string, name: string, functionName: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateFunctionResponse>>;
+    createInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateInstanceFunctionSlotResponse>>;
+    createInstanceMSDeployOperation(resourceGroupName: string, name: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationResponse>>;
+    createInstanceMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
+    createMSDeployOperation(resourceGroupName: string, name: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateMSDeployOperationResponse>>;
+    createMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateMSDeployOperationSlotResponse>>;
+    createOrUpdate(resourceGroupName: string, name: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateOrUpdateResponse>>;
+    createOrUpdateConfiguration(resourceGroupName: string, name: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateConfigurationResponse>;
+    createOrUpdateConfigurationSlot(resourceGroupName: string, name: string, slot: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse>;
+    createOrUpdateDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, domainOwnershipIdentifier: Identifier, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse>;
+    createOrUpdateDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, domainOwnershipIdentifier: Identifier, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse>;
+    createOrUpdateFunctionSecret(resourceGroupName: string, name: string, functionName: string, keyName: string, key: KeyInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateFunctionSecretResponse>;
+    createOrUpdateFunctionSecretSlot(resourceGroupName: string, name: string, functionName: string, keyName: string, slot: string, key: KeyInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse>;
+    createOrUpdateHostNameBinding(resourceGroupName: string, name: string, hostName: string, hostNameBinding: HostNameBinding, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHostNameBindingResponse>;
+    createOrUpdateHostNameBindingSlot(resourceGroupName: string, name: string, hostName: string, slot: string, hostNameBinding: HostNameBinding, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse>;
+    createOrUpdateHostSecret(resourceGroupName: string, name: string, keyType: string, keyName: string, key: KeyInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHostSecretResponse>;
+    createOrUpdateHostSecretSlot(resourceGroupName: string, name: string, keyType: string, keyName: string, slot: string, key: KeyInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHostSecretSlotResponse>;
+    createOrUpdateHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, connectionEnvelope: HybridConnection, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHybridConnectionResponse>;
+    createOrUpdateHybridConnectionSlot(resourceGroupName: string, name: string, namespaceName: string, relayName: string, slot: string, connectionEnvelope: HybridConnection, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse>;
+    createOrUpdatePublicCertificate(resourceGroupName: string, name: string, publicCertificateName: string, publicCertificate: PublicCertificate, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdatePublicCertificateResponse>;
+    createOrUpdatePublicCertificateSlot(resourceGroupName: string, name: string, publicCertificateName: string, slot: string, publicCertificate: PublicCertificate, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse>;
+    createOrUpdateRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse>;
+    createOrUpdateRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse>;
+    createOrUpdateSlot(resourceGroupName: string, name: string, slot: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateOrUpdateSlotResponse>>;
+    createOrUpdateSourceControl(resourceGroupName: string, name: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlResponse>>;
+    createOrUpdateSourceControlSlot(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlSlotResponse>>;
+    createOrUpdateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
+    createOrUpdateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
+    createOrUpdateVnetConnectionGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, connectionEnvelope: VnetGateway, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse>;
+    createOrUpdateVnetConnectionGatewaySlot(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, slot: string, connectionEnvelope: VnetGateway, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse>;
+    createOrUpdateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
+    delete(resourceGroupName: string, name: string, options?: WebAppsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteBackup(resourceGroupName: string, name: string, backupId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteBackupConfiguration(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteBackupConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteBackupSlot(resourceGroupName: string, name: string, backupId: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteContinuousWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteDeployment(resourceGroupName: string, name: string, id: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteDeploymentSlot(resourceGroupName: string, name: string, id: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteFunction(resourceGroupName: string, name: string, functionName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteFunctionSecret(resourceGroupName: string, name: string, functionName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteFunctionSecretSlot(resourceGroupName: string, name: string, functionName: string, keyName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHostNameBinding(resourceGroupName: string, name: string, hostName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHostNameBindingSlot(resourceGroupName: string, name: string, slot: string, hostName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHostSecret(resourceGroupName: string, name: string, keyType: string, keyName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHostSecretSlot(resourceGroupName: string, name: string, keyType: string, keyName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteHybridConnectionSlot(resourceGroupName: string, name: string, namespaceName: string, relayName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteInstanceProcess(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteInstanceProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deletePremierAddOn(resourceGroupName: string, name: string, premierAddOnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deletePremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsDeletePrivateEndpointConnectionResponse>>;
+    deleteProcess(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deletePublicCertificate(resourceGroupName: string, name: string, publicCertificateName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deletePublicCertificateSlot(resourceGroupName: string, name: string, slot: string, publicCertificateName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsDeleteSlotOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteSourceControl(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSourceControlSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSwiftVirtualNetwork(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteSwiftVirtualNetworkSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteTriggeredWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteTriggeredWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteVnetConnection(resourceGroupName: string, name: string, vnetName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    discoverBackup(resourceGroupName: string, name: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<WebAppsDiscoverBackupResponse>;
+    discoverBackupSlot(resourceGroupName: string, name: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<WebAppsDiscoverBackupSlotResponse>;
+    generateNewSitePublishingPassword(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    generateNewSitePublishingPasswordSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetResponse>;
+    getAppSettingKeyVaultReference(resourceGroupName: string, name: string, appSettingKey: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
+    getAppSettingsKeyVaultReferences(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
+    getAuthSettings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetAuthSettingsResponse>;
+    getAuthSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetAuthSettingsSlotResponse>;
+    getBackupConfiguration(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetBackupConfigurationResponse>;
+    getBackupConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetBackupConfigurationSlotResponse>;
+    getBackupStatus(resourceGroupName: string, name: string, backupId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetBackupStatusResponse>;
+    getBackupStatusSlot(resourceGroupName: string, name: string, backupId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetBackupStatusSlotResponse>;
+    getConfiguration(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetConfigurationResponse>;
+    getConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetConfigurationSlotResponse>;
+    getConfigurationSnapshot(resourceGroupName: string, name: string, snapshotId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetConfigurationSnapshotResponse>;
+    getConfigurationSnapshotSlot(resourceGroupName: string, name: string, snapshotId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetConfigurationSnapshotSlotResponse>;
+    getContainerLogsZip(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetContainerLogsZipResponse>;
+    getContainerLogsZipSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetContainerLogsZipSlotResponse>;
+    getContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetContinuousWebJobResponse>;
+    getContinuousWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetContinuousWebJobSlotResponse>;
+    getDeployment(resourceGroupName: string, name: string, id: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDeploymentResponse>;
+    getDeploymentSlot(resourceGroupName: string, name: string, id: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDeploymentSlotResponse>;
+    getDiagnosticLogsConfiguration(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDiagnosticLogsConfigurationResponse>;
+    getDiagnosticLogsConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse>;
+    getDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDomainOwnershipIdentifierResponse>;
+    getDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse>;
+    getFunction(resourceGroupName: string, name: string, functionName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetFunctionResponse>;
+    getFunctionsAdminToken(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetFunctionsAdminTokenResponse>;
+    getFunctionsAdminTokenSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetFunctionsAdminTokenSlotResponse>;
+    getHostNameBinding(resourceGroupName: string, name: string, hostName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetHostNameBindingResponse>;
+    getHostNameBindingSlot(resourceGroupName: string, name: string, slot: string, hostName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetHostNameBindingSlotResponse>;
+    getHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetHybridConnectionResponse>;
+    getHybridConnectionSlot(resourceGroupName: string, name: string, namespaceName: string, relayName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetHybridConnectionSlotResponse>;
+    getInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceFunctionSlotResponse>;
+    getInstanceInfo(resourceGroupName: string, name: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceInfoResponse>;
+    getInstanceInfoSlot(resourceGroupName: string, name: string, instanceId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceInfoSlotResponse>;
+    getInstanceMSDeployLog(resourceGroupName: string, name: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceMSDeployLogResponse>;
+    getInstanceMSDeployLogSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceMSDeployLogSlotResponse>;
+    getInstanceMsDeployStatus(resourceGroupName: string, name: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceMsDeployStatusResponse>;
+    getInstanceMsDeployStatusSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceMsDeployStatusSlotResponse>;
+    getInstanceProcess(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessResponse>;
+    getInstanceProcessDump(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessDumpResponse>;
+    getInstanceProcessDumpSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessDumpSlotResponse>;
+    getInstanceProcessModule(resourceGroupName: string, name: string, processId: string, baseAddress: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessModuleResponse>;
+    getInstanceProcessModuleSlot(resourceGroupName: string, name: string, processId: string, baseAddress: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessModuleSlotResponse>;
+    getInstanceProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetInstanceProcessSlotResponse>;
+    getMigrateMySqlStatus(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMigrateMySqlStatusResponse>;
+    getMigrateMySqlStatusSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMigrateMySqlStatusSlotResponse>;
+    getMSDeployLog(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMSDeployLogResponse>;
+    getMSDeployLogSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMSDeployLogSlotResponse>;
+    getMSDeployStatus(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMSDeployStatusResponse>;
+    getMSDeployStatusSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetMSDeployStatusSlotResponse>;
+    getNetworkTraceOperation(resourceGroupName: string, name: string, operationId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTraceOperationResponse>;
+    getNetworkTraceOperationSlot(resourceGroupName: string, name: string, operationId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTraceOperationSlotResponse>;
+    getNetworkTraceOperationSlotV2(resourceGroupName: string, name: string, operationId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTraceOperationSlotV2Response>;
+    getNetworkTraceOperationV2(resourceGroupName: string, name: string, operationId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTraceOperationV2Response>;
+    getNetworkTraces(resourceGroupName: string, name: string, operationId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTracesResponse>;
+    getNetworkTracesSlot(resourceGroupName: string, name: string, operationId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTracesSlotResponse>;
+    getNetworkTracesSlotV2(resourceGroupName: string, name: string, operationId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTracesSlotV2Response>;
+    getNetworkTracesV2(resourceGroupName: string, name: string, operationId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetNetworkTracesV2Response>;
+    getPremierAddOn(resourceGroupName: string, name: string, premierAddOnName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPremierAddOnResponse>;
+    getPremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPremierAddOnSlotResponse>;
+    getPrivateAccess(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPrivateAccessResponse>;
+    getPrivateAccessSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPrivateAccessSlotResponse>;
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPrivateLinkResourcesResponse>;
+    getProcess(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessResponse>;
+    getProcessDump(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessDumpResponse>;
+    getProcessDumpSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessDumpSlotResponse>;
+    getProcessModule(resourceGroupName: string, name: string, processId: string, baseAddress: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessModuleResponse>;
+    getProcessModuleSlot(resourceGroupName: string, name: string, processId: string, baseAddress: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessModuleSlotResponse>;
+    getProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetProcessSlotResponse>;
+    getPublicCertificate(resourceGroupName: string, name: string, publicCertificateName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPublicCertificateResponse>;
+    getPublicCertificateSlot(resourceGroupName: string, name: string, slot: string, publicCertificateName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetPublicCertificateSlotResponse>;
+    getRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetRelayServiceConnectionResponse>;
+    getRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetRelayServiceConnectionSlotResponse>;
+    getSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSiteExtensionResponse>;
+    getSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSiteExtensionSlotResponse>;
+    getSitePhpErrorLogFlag(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSitePhpErrorLogFlagResponse>;
+    getSitePhpErrorLogFlagSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSitePhpErrorLogFlagSlotResponse>;
+    getSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSlotResponse>;
+    getSourceControl(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSourceControlResponse>;
+    getSourceControlSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSourceControlSlotResponse>;
+    getSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSwiftVirtualNetworkConnectionResponse>;
+    getSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetSwiftVirtualNetworkConnectionSlotResponse>;
+    getTriggeredWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetTriggeredWebJobResponse>;
+    getTriggeredWebJobHistory(resourceGroupName: string, name: string, webJobName: string, id: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetTriggeredWebJobHistoryResponse>;
+    getTriggeredWebJobHistorySlot(resourceGroupName: string, name: string, webJobName: string, id: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetTriggeredWebJobHistorySlotResponse>;
+    getTriggeredWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetTriggeredWebJobSlotResponse>;
+    getVnetConnection(resourceGroupName: string, name: string, vnetName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetVnetConnectionResponse>;
+    getVnetConnectionGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetVnetConnectionGatewayResponse>;
+    getVnetConnectionGatewaySlot(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetVnetConnectionGatewaySlotResponse>;
+    getVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetVnetConnectionSlotResponse>;
+    getWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebJobResponse>;
+    getWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebJobSlotResponse>;
+    getWebSiteContainerLogs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebSiteContainerLogsResponse>;
+    getWebSiteContainerLogsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebSiteContainerLogsSlotResponse>;
+    installSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsInstallSiteExtensionResponse>>;
+    installSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsInstallSiteExtensionSlotResponse>>;
+    isCloneable(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsIsCloneableResponse>;
+    isCloneableSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsIsCloneableSlotResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+    listApplicationSettings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListApplicationSettingsResponse>;
+    listApplicationSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListApplicationSettingsSlotResponse>;
+    listAzureStorageAccounts(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListAzureStorageAccountsResponse>;
+    listAzureStorageAccountsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListAzureStorageAccountsSlotResponse>;
+    listBackups(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupItem>;
+    listBackupsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupItem>;
+    listBackupStatusSecrets(resourceGroupName: string, name: string, backupId: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsListBackupStatusSecretsResponse>;
+    listBackupStatusSecretsSlot(resourceGroupName: string, name: string, backupId: string, slot: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsListBackupStatusSecretsSlotResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: WebAppsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Site>;
+    listConfigurations(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteConfigResource>;
+    listConfigurationSnapshotInfo(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo>;
+    listConfigurationSnapshotInfoSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo>;
+    listConfigurationsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteConfigResource>;
+    listConnectionStrings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListConnectionStringsResponse>;
+    listConnectionStringsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListConnectionStringsSlotResponse>;
+    listContinuousWebJobs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContinuousWebJob>;
+    listContinuousWebJobsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContinuousWebJob>;
+    listDeploymentLog(resourceGroupName: string, name: string, id: string, options?: coreHttp.OperationOptions): Promise<WebAppsListDeploymentLogResponse>;
+    listDeploymentLogSlot(resourceGroupName: string, name: string, id: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListDeploymentLogSlotResponse>;
+    listDeployments(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Deployment>;
+    listDeploymentsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Deployment>;
+    listDomainOwnershipIdentifiers(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identifier>;
+    listDomainOwnershipIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identifier>;
+    listFunctionKeys(resourceGroupName: string, name: string, functionName: string, options?: coreHttp.OperationOptions): Promise<WebAppsListFunctionKeysResponse>;
+    listFunctionKeysSlot(resourceGroupName: string, name: string, functionName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListFunctionKeysSlotResponse>;
+    listFunctions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FunctionEnvelope>;
+    listFunctionSecrets(resourceGroupName: string, name: string, functionName: string, options?: coreHttp.OperationOptions): Promise<WebAppsListFunctionSecretsResponse>;
+    listFunctionSecretsSlot(resourceGroupName: string, name: string, functionName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListFunctionSecretsSlotResponse>;
+    listHostKeys(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListHostKeysResponse>;
+    listHostKeysSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListHostKeysSlotResponse>;
+    listHostNameBindings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HostNameBinding>;
+    listHostNameBindingsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HostNameBinding>;
+    listHybridConnections(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListHybridConnectionsResponse>;
+    listHybridConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListHybridConnectionsSlotResponse>;
+    listInstanceFunctionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FunctionEnvelope>;
+    listInstanceIdentifiers(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteInstance>;
+    listInstanceIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteInstance>;
+    listInstanceProcesses(resourceGroupName: string, name: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessInfo>;
+    listInstanceProcessesSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessInfo>;
+    listInstanceProcessModules(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessModuleInfo>;
+    listInstanceProcessModulesSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessModuleInfo>;
+    listInstanceProcessThreads(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessThreadInfo>;
+    listInstanceProcessThreadsSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessThreadInfo>;
+    listMetadata(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListMetadataResponse>;
+    listMetadataSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListMetadataSlotResponse>;
+    listNetworkFeatures(resourceGroupName: string, name: string, view: string, options?: coreHttp.OperationOptions): Promise<WebAppsListNetworkFeaturesResponse>;
+    listNetworkFeaturesSlot(resourceGroupName: string, name: string, view: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListNetworkFeaturesSlotResponse>;
+    listPerfMonCounters(resourceGroupName: string, name: string, options?: WebAppsListPerfMonCountersOptionalParams): PagedAsyncIterableIterator<PerfMonResponse>;
+    listPerfMonCountersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListPerfMonCountersSlotOptionalParams): PagedAsyncIterableIterator<PerfMonResponse>;
+    listPremierAddOns(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListPremierAddOnsResponse>;
+    listPremierAddOnsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListPremierAddOnsSlotResponse>;
+    listProcesses(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessInfo>;
+    listProcessesSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessInfo>;
+    listProcessModules(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessModuleInfo>;
+    listProcessModulesSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessModuleInfo>;
+    listProcessThreads(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessThreadInfo>;
+    listProcessThreadsSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessThreadInfo>;
+    listPublicCertificates(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicCertificate>;
+    listPublicCertificatesSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicCertificate>;
+    listPublishingCredentials(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsListPublishingCredentialsResponse>>;
+    listPublishingCredentialsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsListPublishingCredentialsSlotResponse>>;
+    listPublishingProfileXmlWithSecrets(resourceGroupName: string, name: string, publishingProfileOptions: CsmPublishingProfileOptions, options?: coreHttp.OperationOptions): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse>;
+    listPublishingProfileXmlWithSecretsSlot(resourceGroupName: string, name: string, slot: string, publishingProfileOptions: CsmPublishingProfileOptions, options?: coreHttp.OperationOptions): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse>;
+    listRelayServiceConnections(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListRelayServiceConnectionsResponse>;
+    listRelayServiceConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListRelayServiceConnectionsSlotResponse>;
+    listSiteBackups(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupItem>;
+    listSiteBackupsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupItem>;
+    listSiteExtensions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteExtensionInfo>;
+    listSiteExtensionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SiteExtensionInfo>;
+    listSitePushSettings(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListSitePushSettingsResponse>;
+    listSitePushSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListSitePushSettingsSlotResponse>;
+    listSlotConfigurationNames(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListSlotConfigurationNamesResponse>;
+    listSlotDifferencesFromProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SlotDifference>;
+    listSlotDifferencesSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SlotDifference>;
+    listSlots(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+    listSnapshots(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    listSnapshotsFromDRSecondary(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    listSnapshotsFromDRSecondarySlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    listSnapshotsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    listSyncFunctionTriggers(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListSyncFunctionTriggersResponse>;
+    listSyncFunctionTriggersSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListSyncFunctionTriggersSlotResponse>;
+    listSyncStatus(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listSyncStatusSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listTriggeredWebJobHistory(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TriggeredJobHistory>;
+    listTriggeredWebJobHistorySlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TriggeredJobHistory>;
+    listTriggeredWebJobs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TriggeredWebJob>;
+    listTriggeredWebJobsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TriggeredWebJob>;
+    listUsages(resourceGroupName: string, name: string, options?: WebAppsListUsagesOptionalParams): PagedAsyncIterableIterator<CsmUsageQuota>;
+    listUsagesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListUsagesSlotOptionalParams): PagedAsyncIterableIterator<CsmUsageQuota>;
+    listVnetConnections(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListVnetConnectionsResponse>;
+    listVnetConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListVnetConnectionsSlotResponse>;
+    listWebJobs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebJob>;
+    listWebJobsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebJob>;
+    migrateMySql(resourceGroupName: string, name: string, migrationRequestEnvelope: MigrateMySqlRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsMigrateMySqlResponse>>;
+    migrateStorage(subscriptionName: string, resourceGroupName: string, name: string, migrationOptions: StorageMigrationOptions, options?: coreHttp.OperationOptions): Promise<LROPoller<WebAppsMigrateStorageResponse>>;
+    putPrivateAccessVnet(resourceGroupName: string, name: string, access: PrivateAccess, options?: coreHttp.OperationOptions): Promise<WebAppsPutPrivateAccessVnetResponse>;
+    putPrivateAccessVnetSlot(resourceGroupName: string, name: string, slot: string, access: PrivateAccess, options?: coreHttp.OperationOptions): Promise<WebAppsPutPrivateAccessVnetSlotResponse>;
+    recoverSiteConfigurationSnapshot(resourceGroupName: string, name: string, snapshotId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    recoverSiteConfigurationSnapshotSlot(resourceGroupName: string, name: string, snapshotId: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resetProductionSlotConfig(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resetSlotConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    restart(resourceGroupName: string, name: string, options?: WebAppsRestartOptionalParams): Promise<coreHttp.RestResponse>;
+    restartSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsRestartSlotOptionalParams): Promise<coreHttp.RestResponse>;
+    restore(resourceGroupName: string, name: string, backupId: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreFromBackupBlob(resourceGroupName: string, name: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreFromBackupBlobSlot(resourceGroupName: string, name: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreFromDeletedApp(resourceGroupName: string, name: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreFromDeletedAppSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreSlot(resourceGroupName: string, name: string, backupId: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreSnapshot(resourceGroupName: string, name: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restoreSnapshotSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    runTriggeredWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    runTriggeredWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    start(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    startContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    startContinuousWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    startNetworkTrace(resourceGroupName: string, name: string, options?: WebAppsStartNetworkTraceOptionalParams): Promise<LROPoller<WebAppsStartNetworkTraceResponse>>;
+    startNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartNetworkTraceSlotOptionalParams): Promise<LROPoller<WebAppsStartNetworkTraceSlotResponse>>;
+    startSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    startWebSiteNetworkTrace(resourceGroupName: string, name: string, options?: WebAppsStartWebSiteNetworkTraceOptionalParams): Promise<WebAppsStartWebSiteNetworkTraceResponse>;
+    startWebSiteNetworkTraceOperation(resourceGroupName: string, name: string, options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationResponse>>;
+    startWebSiteNetworkTraceOperationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>>;
+    startWebSiteNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartWebSiteNetworkTraceSlotOptionalParams): Promise<WebAppsStartWebSiteNetworkTraceSlotResponse>;
+    stop(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopContinuousWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopNetworkTrace(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopWebSiteNetworkTrace(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    stopWebSiteNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    swapSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    swapSlotWithProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    syncFunctions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    syncFunctionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    syncFunctionTriggers(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    syncFunctionTriggersSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    syncRepository(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    syncRepositorySlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, name: string, siteEnvelope: SitePatchResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateResponse>;
+    updateApplicationSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateApplicationSettingsResponse>;
+    updateApplicationSettingsSlot(resourceGroupName: string, name: string, slot: string, appSettings: StringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateApplicationSettingsSlotResponse>;
+    updateAuthSettings(resourceGroupName: string, name: string, siteAuthSettings: SiteAuthSettings, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateAuthSettingsResponse>;
+    updateAuthSettingsSlot(resourceGroupName: string, name: string, slot: string, siteAuthSettings: SiteAuthSettings, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateAuthSettingsSlotResponse>;
+    updateAzureStorageAccounts(resourceGroupName: string, name: string, azureStorageAccounts: AzureStoragePropertyDictionaryResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateAzureStorageAccountsResponse>;
+    updateAzureStorageAccountsSlot(resourceGroupName: string, name: string, slot: string, azureStorageAccounts: AzureStoragePropertyDictionaryResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse>;
+    updateBackupConfiguration(resourceGroupName: string, name: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateBackupConfigurationResponse>;
+    updateBackupConfigurationSlot(resourceGroupName: string, name: string, slot: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateBackupConfigurationSlotResponse>;
+    updateConfiguration(resourceGroupName: string, name: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateConfigurationResponse>;
+    updateConfigurationSlot(resourceGroupName: string, name: string, slot: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateConfigurationSlotResponse>;
+    updateConnectionStrings(resourceGroupName: string, name: string, connectionStrings: ConnectionStringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateConnectionStringsResponse>;
+    updateConnectionStringsSlot(resourceGroupName: string, name: string, slot: string, connectionStrings: ConnectionStringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateConnectionStringsSlotResponse>;
+    updateDiagnosticLogsConfig(resourceGroupName: string, name: string, siteLogsConfig: SiteLogsConfig, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateDiagnosticLogsConfigResponse>;
+    updateDiagnosticLogsConfigSlot(resourceGroupName: string, name: string, slot: string, siteLogsConfig: SiteLogsConfig, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse>;
+    updateDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, domainOwnershipIdentifier: Identifier, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateDomainOwnershipIdentifierResponse>;
+    updateDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, domainOwnershipIdentifier: Identifier, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse>;
+    updateHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, connectionEnvelope: HybridConnection, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateHybridConnectionResponse>;
+    updateHybridConnectionSlot(resourceGroupName: string, name: string, namespaceName: string, relayName: string, slot: string, connectionEnvelope: HybridConnection, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateHybridConnectionSlotResponse>;
+    updateMetadata(resourceGroupName: string, name: string, metadata: StringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateMetadataResponse>;
+    updateMetadataSlot(resourceGroupName: string, name: string, slot: string, metadata: StringDictionary, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateMetadataSlotResponse>;
+    updatePremierAddOn(resourceGroupName: string, name: string, premierAddOnName: string, premierAddOn: PremierAddOnPatchResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdatePremierAddOnResponse>;
+    updatePremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, premierAddOn: PremierAddOnPatchResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdatePremierAddOnSlotResponse>;
+    updateRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateRelayServiceConnectionResponse>;
+    updateRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse>;
+    updateSitePushSettings(resourceGroupName: string, name: string, pushSettings: PushSettings, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSitePushSettingsResponse>;
+    updateSitePushSettingsSlot(resourceGroupName: string, name: string, slot: string, pushSettings: PushSettings, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSitePushSettingsSlotResponse>;
+    updateSlot(resourceGroupName: string, name: string, slot: string, siteEnvelope: SitePatchResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSlotResponse>;
+    updateSlotConfigurationNames(resourceGroupName: string, name: string, slotConfigNames: SlotConfigNamesResource, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSlotConfigurationNamesResponse>;
+    updateSourceControl(resourceGroupName: string, name: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSourceControlResponse>;
+    updateSourceControlSlot(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSourceControlSlotResponse>;
+    updateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
+    updateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    updateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateVnetConnectionResponse>;
+    updateVnetConnectionGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, connectionEnvelope: VnetGateway, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateVnetConnectionGatewayResponse>;
+    updateVnetConnectionGatewaySlot(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, slot: string, connectionEnvelope: VnetGateway, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse>;
+    updateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: coreHttp.OperationOptions): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
 }
 
 // @public
@@ -8276,41 +8897,23 @@ export type WebSiteInstanceStatus = ProxyOnlyResource & {
 // @public (undocumented)
 export class WebSiteManagementClient extends WebSiteManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "AppServiceCertificateOrders" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     appServiceCertificateOrders: AppServiceCertificateOrders;
-    // Warning: (ae-forgotten-export) The symbol "AppServiceEnvironments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     appServiceEnvironments: AppServiceEnvironments;
-    // Warning: (ae-forgotten-export) The symbol "AppServicePlans" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     appServicePlans: AppServicePlans;
-    // Warning: (ae-forgotten-export) The symbol "CertificateRegistrationProvider" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     certificateRegistrationProvider: CertificateRegistrationProvider;
-    // Warning: (ae-forgotten-export) The symbol "Certificates" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     certificates: Certificates;
     checkNameAvailability(name: string, typeParam: CheckNameResourceTypes, options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
-    // Warning: (ae-forgotten-export) The symbol "DeletedWebApps" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     deletedWebApps: DeletedWebApps;
-    // Warning: (ae-forgotten-export) The symbol "Diagnostics" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     diagnostics: Diagnostics;
-    // Warning: (ae-forgotten-export) The symbol "DomainRegistrationProvider" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     domainRegistrationProvider: DomainRegistrationProvider;
-    // Warning: (ae-forgotten-export) The symbol "Domains" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     domains: Domains;
     getPublishingUser(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientGetPublishingUserResponse>;
@@ -8323,24 +8926,14 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     listSkus(options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientListSkusResponse>;
     listSourceControls(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SourceControl>;
     move(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    // Warning: (ae-forgotten-export) The symbol "Provider" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     provider: Provider;
-    // Warning: (ae-forgotten-export) The symbol "Recommendations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     recommendations: Recommendations;
-    // Warning: (ae-forgotten-export) The symbol "ResourceHealthMetadata" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    resourceHealthMetadata: ResourceHealthMetadata_2;
-    // Warning: (ae-forgotten-export) The symbol "StaticSites" needs to be exported by the entry point index.d.ts
-    //
+    resourceHealthMetadata: ResourceHealthMetadata;
     // (undocumented)
     staticSites: StaticSites;
-    // Warning: (ae-forgotten-export) The symbol "TopLevelDomains" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     topLevelDomains: TopLevelDomains;
     updatePublishingUser(userDetails: User, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientUpdatePublishingUserResponse>;
@@ -8348,8 +8941,6 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     validate(resourceGroupName: string, validateRequest: ValidateRequest, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientValidateResponse>;
     validateMove(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     verifyHostingEnvironmentVnet(parameters: VnetParameters, options?: coreHttp.OperationOptions): Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse>;
-    // Warning: (ae-forgotten-export) The symbol "WebApps" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     webApps: WebApps;
 }

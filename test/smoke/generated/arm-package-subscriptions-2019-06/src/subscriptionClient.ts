@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { Operations, Subscriptions, Tenants } from "./operations";
+import { OperationsImpl, SubscriptionsImpl, TenantsImpl } from "./operations";
+import { Operations, Subscriptions, Tenants } from "./operationsInterfaces";
 import { SubscriptionClientContext } from "./subscriptionClientContext";
 import { SubscriptionClientOptionalParams } from "./models";
 
@@ -22,9 +23,9 @@ export class SubscriptionClient extends SubscriptionClientContext {
     options?: SubscriptionClientOptionalParams
   ) {
     super(credentials, options);
-    this.operations = new Operations(this);
-    this.subscriptions = new Subscriptions(this);
-    this.tenants = new Tenants(this);
+    this.operations = new OperationsImpl(this);
+    this.subscriptions = new SubscriptionsImpl(this);
+    this.tenants = new TenantsImpl(this);
   }
 
   operations: Operations;

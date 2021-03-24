@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { SyncGroups } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -36,7 +37,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a SyncGroups. */
-export class SyncGroups {
+export class SyncGroupsImpl implements SyncGroups {
   private readonly client: SqlManagementClientContext;
 
   /**

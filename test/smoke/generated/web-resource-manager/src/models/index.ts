@@ -2697,7 +2697,7 @@ export interface HybridConnectionCollection {
 /** Collection of resource health metadata. */
 export interface ResourceHealthMetadataCollection {
   /** Collection of resources. */
-  value: ResourceHealthMetadata[];
+  value: ResourceHealthMetadataDef[];
   /**
    * Link to next page of resources.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5910,7 +5910,7 @@ export type HybridConnectionLimits = ProxyOnlyResource & {
 };
 
 /** Used for getting ResourceHealthCheck settings. */
-export type ResourceHealthMetadata = ProxyOnlyResource & {
+export type ResourceHealthMetadataDef = ProxyOnlyResource & {
   /** The category that the resource matches in the RHC Policy File */
   category?: string;
   /** Is there a health signal for the resource */
@@ -14140,14 +14140,14 @@ export type ResourceHealthMetadataListBySiteResponse = ResourceHealthMetadataCol
 };
 
 /** Contains response data for the getBySite operation. */
-export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadata & {
+export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadata;
+    parsedBody: ResourceHealthMetadataDef;
   };
 };
 
@@ -14164,14 +14164,14 @@ export type ResourceHealthMetadataListBySiteSlotResponse = ResourceHealthMetadat
 };
 
 /** Contains response data for the getBySiteSlot operation. */
-export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadata & {
+export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
     /** The response body as text (string format) */
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadata;
+    parsedBody: ResourceHealthMetadataDef;
   };
 };
 

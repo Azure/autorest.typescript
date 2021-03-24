@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ManagedInstances } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -29,7 +30,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ManagedInstances. */
-export class ManagedInstances {
+export class ManagedInstancesImpl implements ManagedInstances {
   private readonly client: SqlManagementClientContext;
 
   /**

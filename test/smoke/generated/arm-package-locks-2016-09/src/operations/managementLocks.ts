@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ManagementLocks } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -42,7 +43,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ManagementLocks. */
-export class ManagementLocks {
+export class ManagementLocksImpl implements ManagementLocks {
   private readonly client: ManagementLockClientContext;
 
   /**

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PartitionKeyRangeId } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -19,7 +20,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a PartitionKeyRangeId. */
-export class PartitionKeyRangeId {
+export class PartitionKeyRangeIdImpl implements PartitionKeyRangeId {
   private readonly client: CosmosDBManagementClientContext;
 
   /**

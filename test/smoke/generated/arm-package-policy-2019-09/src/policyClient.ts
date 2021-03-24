@@ -8,10 +8,15 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  PolicyAssignmentsImpl,
+  PolicyDefinitionsImpl,
+  PolicySetDefinitionsImpl
+} from "./operations";
+import {
   PolicyAssignments,
   PolicyDefinitions,
   PolicySetDefinitions
-} from "./operations";
+} from "./operationsInterfaces";
 import { PolicyClientContext } from "./policyClientContext";
 import { PolicyClientOptionalParams } from "./models";
 
@@ -28,9 +33,9 @@ export class PolicyClient extends PolicyClientContext {
     options?: PolicyClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.policyAssignments = new PolicyAssignments(this);
-    this.policyDefinitions = new PolicyDefinitions(this);
-    this.policySetDefinitions = new PolicySetDefinitions(this);
+    this.policyAssignments = new PolicyAssignmentsImpl(this);
+    this.policyDefinitions = new PolicyDefinitionsImpl(this);
+    this.policySetDefinitions = new PolicySetDefinitionsImpl(this);
   }
 
   policyAssignments: PolicyAssignments;

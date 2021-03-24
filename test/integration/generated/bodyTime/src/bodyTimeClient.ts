@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Time } from "./operations";
+import { TimeImpl } from "./operations";
+import { Time } from "./operationsInterfaces";
 import { BodyTimeClientContext } from "./bodyTimeClientContext";
 import { BodyTimeClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyTimeClient extends BodyTimeClientContext {
    */
   constructor(options?: BodyTimeClientOptionalParams) {
     super(options);
-    this.time = new Time(this);
+    this.time = new TimeImpl(this);
   }
 
   time: Time;

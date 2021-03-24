@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ServerCommunicationLinks } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -22,7 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ServerCommunicationLinks. */
-export class ServerCommunicationLinks {
+export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   private readonly client: SqlManagementClientContext;
 
   /**

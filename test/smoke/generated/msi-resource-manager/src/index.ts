@@ -10,3 +10,4 @@
 export * from "./models";
 export { ManagedServiceIdentityClient } from "./managedServiceIdentityClient";
 export { ManagedServiceIdentityClientContext } from "./managedServiceIdentityClientContext";
+export * from "./operationsInterfaces";

@@ -72,6 +72,23 @@ export type BlobContainer = AzureEntityResource & {
 };
 
 // @public
+export interface BlobContainers {
+    clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, legalHold: LegalHold, options?: coreHttp.OperationOptions): Promise<BlobContainersClearLegalHoldResponse>;
+    create(resourceGroupName: string, accountName: string, containerName: string, blobContainer: BlobContainer, options?: coreHttp.OperationOptions): Promise<BlobContainersCreateResponse>;
+    createOrUpdateImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams): Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse>;
+    delete(resourceGroupName: string, accountName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: coreHttp.OperationOptions): Promise<BlobContainersDeleteImmutabilityPolicyResponse>;
+    extendImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: BlobContainersExtendImmutabilityPolicyOptionalParams): Promise<BlobContainersExtendImmutabilityPolicyResponse>;
+    get(resourceGroupName: string, accountName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<BlobContainersGetResponse>;
+    getImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersGetImmutabilityPolicyOptionalParams): Promise<BlobContainersGetImmutabilityPolicyResponse>;
+    lease(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersLeaseOptionalParams): Promise<BlobContainersLeaseResponse>;
+    list(resourceGroupName: string, accountName: string, options?: BlobContainersListOptionalParams): PagedAsyncIterableIterator<ListContainerItem>;
+    lockImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: coreHttp.OperationOptions): Promise<BlobContainersLockImmutabilityPolicyResponse>;
+    setLegalHold(resourceGroupName: string, accountName: string, containerName: string, legalHold: LegalHold, options?: coreHttp.OperationOptions): Promise<BlobContainersSetLegalHoldResponse>;
+    update(resourceGroupName: string, accountName: string, containerName: string, blobContainer: BlobContainer, options?: coreHttp.OperationOptions): Promise<BlobContainersUpdateResponse>;
+}
+
+// @public
 export type BlobContainersClearLegalHoldResponse = LegalHold & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -280,6 +297,13 @@ export type BlobServiceProperties = Resource & {
 };
 
 // @public
+export interface BlobServices {
+    getServiceProperties(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<BlobServicesGetServicePropertiesResponse>;
+    list(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BlobServiceProperties>;
+    setServiceProperties(resourceGroupName: string, accountName: string, parameters: BlobServiceProperties, options?: coreHttp.OperationOptions): Promise<BlobServicesSetServicePropertiesResponse>;
+}
+
+// @public
 export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -419,6 +443,14 @@ export interface EncryptionScopeListResult {
 }
 
 // @public
+export interface EncryptionScopes {
+    get(resourceGroupName: string, accountName: string, encryptionScopeName: string, options?: coreHttp.OperationOptions): Promise<EncryptionScopesGetResponse>;
+    list(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<EncryptionScope>;
+    patch(resourceGroupName: string, accountName: string, encryptionScopeName: string, encryptionScope: EncryptionScope, options?: coreHttp.OperationOptions): Promise<EncryptionScopesPatchResponse>;
+    put(resourceGroupName: string, accountName: string, encryptionScopeName: string, encryptionScope: EncryptionScope, options?: coreHttp.OperationOptions): Promise<EncryptionScopesPutResponse>;
+}
+
+// @public
 export type EncryptionScopesGetResponse = EncryptionScope & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -510,6 +542,13 @@ export type FileServiceProperties = Resource & {
 };
 
 // @public
+export interface FileServices {
+    getServiceProperties(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<FileServicesGetServicePropertiesResponse>;
+    list(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<FileServicesListResponse>;
+    setServiceProperties(resourceGroupName: string, accountName: string, parameters: FileServiceProperties, options?: coreHttp.OperationOptions): Promise<FileServicesSetServicePropertiesResponse>;
+}
+
+// @public
 export type FileServicesGetServicePropertiesResponse = FileServiceProperties & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -575,6 +614,16 @@ export type FileShareItem = AzureEntityResource & {
 export interface FileShareItems {
     readonly nextLink?: string;
     readonly value?: FileShareItem[];
+}
+
+// @public
+export interface FileShares {
+    create(resourceGroupName: string, accountName: string, shareName: string, fileShare: FileShare, options?: coreHttp.OperationOptions): Promise<FileSharesCreateResponse>;
+    delete(resourceGroupName: string, accountName: string, shareName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, accountName: string, shareName: string, options?: coreHttp.OperationOptions): Promise<FileSharesGetResponse>;
+    list(resourceGroupName: string, accountName: string, options?: FileSharesListOptionalParams): PagedAsyncIterableIterator<FileShareItem>;
+    restore(resourceGroupName: string, accountName: string, shareName: string, deletedShare: DeletedShare, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, accountName: string, shareName: string, fileShare: FileShare, options?: coreHttp.OperationOptions): Promise<FileSharesUpdateResponse>;
 }
 
 // @public
@@ -1106,6 +1155,23 @@ export interface ListServiceSasResponse {
     readonly serviceSasToken?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
+// @public
+export interface ManagementPolicies {
+    createOrUpdate(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, properties: ManagementPolicy, options?: coreHttp.OperationOptions): Promise<ManagementPoliciesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, options?: coreHttp.OperationOptions): Promise<ManagementPoliciesGetResponse>;
+}
+
 // @public
 export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
     _response: coreHttp.HttpResponse & {
@@ -1198,7 +1264,10 @@ export interface NetworkRuleSet {
 
 // @public
 export interface ObjectReplicationPolicies {
-    value?: ObjectReplicationPolicy[];
+    createOrUpdate(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, properties: ObjectReplicationPolicy, options?: coreHttp.OperationOptions): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: coreHttp.OperationOptions): Promise<ObjectReplicationPoliciesGetResponse>;
+    list(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ObjectReplicationPolicy>;
 }
 
 // @public
@@ -1210,6 +1279,11 @@ export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationP
 };
 
 // @public
+export interface ObjectReplicationPoliciesDef {
+    value?: ObjectReplicationPolicy[];
+}
+
+// @public
 export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1218,10 +1292,10 @@ export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
 };
 
 // @public
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies & {
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: ObjectReplicationPolicies;
+        parsedBody: ObjectReplicationPoliciesDef;
     };
 };
 
@@ -1270,6 +1344,11 @@ export interface OperationListResult {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1301,6 +1380,14 @@ export interface PrivateEndpointConnectionListResult {
 
 // @public
 export type PrivateEndpointConnectionProvisioningState = string;
+
+// @public
+export interface PrivateEndpointConnections {
+    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
+    list(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+    put(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsPutResponse>;
+}
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -1339,6 +1426,11 @@ export type PrivateLinkResource = Resource & {
 // @public
 export interface PrivateLinkResourceListResult {
     value?: PrivateLinkResource[];
+}
+
+// @public
+export interface PrivateLinkResources {
+    listByStorageAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesListByStorageAccountResponse>;
 }
 
 // @public
@@ -1471,6 +1563,11 @@ export interface SkuInformation {
 export type SkuName = string;
 
 // @public
+export interface Skus {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SkuInformation>;
+}
+
+// @public
 export type SkusListResponse = StorageSkuListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1581,6 +1678,24 @@ export interface StorageAccountMicrosoftEndpoints {
 // @public
 export interface StorageAccountRegenerateKeyParameters {
     keyName: string;
+}
+
+// @public
+export interface StorageAccounts {
+    checkNameAvailability(accountName: StorageAccountCheckNameAvailabilityParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsCheckNameAvailabilityResponse>;
+    create(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<StorageAccountsCreateResponse>>;
+    delete(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    failover(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getProperties(resourceGroupName: string, accountName: string, options?: StorageAccountsGetPropertiesOptionalParams): Promise<StorageAccountsGetPropertiesResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StorageAccount>;
+    listAccountSAS(resourceGroupName: string, accountName: string, parameters: AccountSasParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsListAccountSASResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StorageAccount>;
+    listKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<StorageAccountsListKeysResponse>;
+    listServiceSAS(resourceGroupName: string, accountName: string, parameters: ServiceSasParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsListServiceSASResponse>;
+    regenerateKey(resourceGroupName: string, accountName: string, regenerateKey: StorageAccountRegenerateKeyParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsRegenerateKeyResponse>;
+    restoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<StorageAccountsRestoreBlobRangesResponse>>;
+    revokeUserDelegationKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, accountName: string, parameters: StorageAccountUpdateParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsUpdateResponse>;
 }
 
 // @public
@@ -1707,56 +1822,30 @@ export interface StorageAccountUpdateParameters {
 // @public (undocumented)
 export class StorageManagementClient extends StorageManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: StorageManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "BlobContainers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     blobContainers: BlobContainers;
-    // Warning: (ae-forgotten-export) The symbol "BlobServices" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     blobServices: BlobServices;
-    // Warning: (ae-forgotten-export) The symbol "EncryptionScopes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     encryptionScopes: EncryptionScopes;
-    // Warning: (ae-forgotten-export) The symbol "FileServices" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     fileServices: FileServices;
-    // Warning: (ae-forgotten-export) The symbol "FileShares" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     fileShares: FileShares;
-    // Warning: (ae-forgotten-export) The symbol "ManagementPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managementPolicies: ManagementPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ObjectReplicationPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    objectReplicationPolicies: ObjectReplicationPolicies_2;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
+    objectReplicationPolicies: ObjectReplicationPolicies;
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "PrivateEndpointConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
-    // Warning: (ae-forgotten-export) The symbol "PrivateLinkResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
-    // Warning: (ae-forgotten-export) The symbol "Skus" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     skus: Skus;
-    // Warning: (ae-forgotten-export) The symbol "StorageAccounts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     storageAccounts: StorageAccounts;
-    // Warning: (ae-forgotten-export) The symbol "Usages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     usages: Usages;
 }
@@ -1835,6 +1924,11 @@ export interface UsageListResult {
 export interface UsageName {
     readonly localizedValue?: string;
     readonly value?: string;
+}
+
+// @public
+export interface Usages {
+    listByLocation(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Usage>;
 }
 
 // @public

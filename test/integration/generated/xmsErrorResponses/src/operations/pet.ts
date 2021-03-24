@@ -6,14 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Pet } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmsErrorResponsesClientContext } from "../xmsErrorResponsesClientContext";
-import { PetGetPetByIdResponse, PetDoSomethingResponse } from "../models";
+import {
+  PetGetPetByIdResponse,
+  PetDoSomethingResponse,
+  PetHasModelsParamOptionalParams
+} from "../models";
 
 /** Class representing a Pet. */
-export class Pet {
+export class PetImpl implements Pet {
   private readonly client: XmsErrorResponsesClientContext;
 
   /**
@@ -61,6 +66,23 @@ export class Pet {
       doSomethingOperationSpec
     ) as Promise<PetDoSomethingResponse>;
   }
+
+  /**
+   * Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
+   * conflict with the input param name 'models'
+   * @param options The options parameters.
+   */
+  hasModelsParam(
+    options?: PetHasModelsParamOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      hasModelsParamOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
 }
 // Operation Specifications
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
@@ -70,7 +92,7 @@ const getPetByIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Pet
+      bodyMapper: Mappers.PetDef
     },
     202: {},
     400: {
@@ -107,6 +129,24 @@ const doSomethingOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host, Parameters.whatAction],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const hasModelsParamOperationSpec: coreHttp.OperationSpec = {
+  path: "/errorStatusCodes/Pets/hasModelsParam",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    500: {
+      bodyMapper: Mappers.PetActionError,
+      isError: true
+    },
+    default: {
+      bodyMapper: Mappers.PetActionError
+    }
+  },
+  queryParameters: [Parameters.models],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

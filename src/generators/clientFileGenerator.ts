@@ -95,10 +95,27 @@ export function generateClient(
 
   if (hasImportedOperations) {
     clientFile.addImportDeclaration({
-      namedImports: importedOperations.map(o =>
-        normalizeName(o.name, NameType.OperationGroup, true /* shouldGuard */)
+      namedImports: importedOperations.map(
+        o =>
+          `${normalizeName(
+            o.name,
+            NameType.OperationGroup,
+            true /* shouldGuard */
+          )}Impl`
       ),
       moduleSpecifier: "./operations"
+    });
+
+    clientFile.addImportDeclaration({
+      namedImports: importedOperations.map(
+        o =>
+          `${normalizeName(
+            o.name,
+            NameType.OperationGroup,
+            true /* shouldGuard */
+          )}`
+      ),
+      moduleSpecifier: "./operationsInterfaces"
     });
   }
 
@@ -248,7 +265,7 @@ function writeConstructor(
 
   clientConstructor.addStatements([
     ...operationDeclarationDetails.map(
-      ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
+      ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
     )
   ]);
 }

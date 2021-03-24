@@ -8,6 +8,38 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  OperationsImpl,
+  AvailabilitySetsImpl,
+  ProximityPlacementGroupsImpl,
+  DedicatedHostGroupsImpl,
+  DedicatedHostsImpl,
+  SshPublicKeysImpl,
+  VirtualMachineExtensionImagesImpl,
+  VirtualMachineExtensionsImpl,
+  VirtualMachineImagesImpl,
+  UsageImpl,
+  VirtualMachinesImpl,
+  VirtualMachineSizesImpl,
+  ImagesImpl,
+  VirtualMachineScaleSetsImpl,
+  VirtualMachineScaleSetExtensionsImpl,
+  VirtualMachineScaleSetRollingUpgradesImpl,
+  VirtualMachineScaleSetVMExtensionsImpl,
+  VirtualMachineScaleSetVMsImpl,
+  LogAnalyticsImpl,
+  VirtualMachineRunCommandsImpl,
+  ResourceSkusImpl,
+  DisksImpl,
+  SnapshotsImpl,
+  DiskEncryptionSetsImpl,
+  GalleriesImpl,
+  GalleryImagesImpl,
+  GalleryImageVersionsImpl,
+  GalleryApplicationsImpl,
+  GalleryApplicationVersionsImpl,
+  ContainerServicesImpl
+} from "./operations";
+import {
   Operations,
   AvailabilitySets,
   ProximityPlacementGroups,
@@ -38,7 +70,7 @@ import {
   GalleryApplications,
   GalleryApplicationVersions,
   ContainerServices
-} from "./operations";
+} from "./operationsInterfaces";
 import { ComputeManagementClientContext } from "./computeManagementClientContext";
 import { ComputeManagementClientOptionalParams } from "./models";
 
@@ -56,44 +88,44 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
     options?: ComputeManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new Operations(this);
-    this.availabilitySets = new AvailabilitySets(this);
-    this.proximityPlacementGroups = new ProximityPlacementGroups(this);
-    this.dedicatedHostGroups = new DedicatedHostGroups(this);
-    this.dedicatedHosts = new DedicatedHosts(this);
-    this.sshPublicKeys = new SshPublicKeys(this);
-    this.virtualMachineExtensionImages = new VirtualMachineExtensionImages(
+    this.operations = new OperationsImpl(this);
+    this.availabilitySets = new AvailabilitySetsImpl(this);
+    this.proximityPlacementGroups = new ProximityPlacementGroupsImpl(this);
+    this.dedicatedHostGroups = new DedicatedHostGroupsImpl(this);
+    this.dedicatedHosts = new DedicatedHostsImpl(this);
+    this.sshPublicKeys = new SshPublicKeysImpl(this);
+    this.virtualMachineExtensionImages = new VirtualMachineExtensionImagesImpl(
       this
     );
-    this.virtualMachineExtensions = new VirtualMachineExtensions(this);
-    this.virtualMachineImages = new VirtualMachineImages(this);
-    this.usage = new Usage(this);
-    this.virtualMachines = new VirtualMachines(this);
-    this.virtualMachineSizes = new VirtualMachineSizes(this);
-    this.images = new Images(this);
-    this.virtualMachineScaleSets = new VirtualMachineScaleSets(this);
-    this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensions(
+    this.virtualMachineExtensions = new VirtualMachineExtensionsImpl(this);
+    this.virtualMachineImages = new VirtualMachineImagesImpl(this);
+    this.usage = new UsageImpl(this);
+    this.virtualMachines = new VirtualMachinesImpl(this);
+    this.virtualMachineSizes = new VirtualMachineSizesImpl(this);
+    this.images = new ImagesImpl(this);
+    this.virtualMachineScaleSets = new VirtualMachineScaleSetsImpl(this);
+    this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensionsImpl(
       this
     );
-    this.virtualMachineScaleSetRollingUpgrades = new VirtualMachineScaleSetRollingUpgrades(
+    this.virtualMachineScaleSetRollingUpgrades = new VirtualMachineScaleSetRollingUpgradesImpl(
       this
     );
-    this.virtualMachineScaleSetVMExtensions = new VirtualMachineScaleSetVMExtensions(
+    this.virtualMachineScaleSetVMExtensions = new VirtualMachineScaleSetVMExtensionsImpl(
       this
     );
-    this.virtualMachineScaleSetVMs = new VirtualMachineScaleSetVMs(this);
-    this.logAnalytics = new LogAnalytics(this);
-    this.virtualMachineRunCommands = new VirtualMachineRunCommands(this);
-    this.resourceSkus = new ResourceSkus(this);
-    this.disks = new Disks(this);
-    this.snapshots = new Snapshots(this);
-    this.diskEncryptionSets = new DiskEncryptionSets(this);
-    this.galleries = new Galleries(this);
-    this.galleryImages = new GalleryImages(this);
-    this.galleryImageVersions = new GalleryImageVersions(this);
-    this.galleryApplications = new GalleryApplications(this);
-    this.galleryApplicationVersions = new GalleryApplicationVersions(this);
-    this.containerServices = new ContainerServices(this);
+    this.virtualMachineScaleSetVMs = new VirtualMachineScaleSetVMsImpl(this);
+    this.logAnalytics = new LogAnalyticsImpl(this);
+    this.virtualMachineRunCommands = new VirtualMachineRunCommandsImpl(this);
+    this.resourceSkus = new ResourceSkusImpl(this);
+    this.disks = new DisksImpl(this);
+    this.snapshots = new SnapshotsImpl(this);
+    this.diskEncryptionSets = new DiskEncryptionSetsImpl(this);
+    this.galleries = new GalleriesImpl(this);
+    this.galleryImages = new GalleryImagesImpl(this);
+    this.galleryImageVersions = new GalleryImageVersionsImpl(this);
+    this.galleryApplications = new GalleryApplicationsImpl(this);
+    this.galleryApplicationVersions = new GalleryApplicationVersionsImpl(this);
+    this.containerServices = new ContainerServicesImpl(this);
   }
 
   operations: Operations;

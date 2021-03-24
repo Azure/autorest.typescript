@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { VirtualMachineScaleSetRollingUpgrades } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -14,7 +15,8 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
 
 /** Class representing a VirtualMachineScaleSetRollingUpgrades. */
-export class VirtualMachineScaleSetRollingUpgrades {
+export class VirtualMachineScaleSetRollingUpgradesImpl
+  implements VirtualMachineScaleSetRollingUpgrades {
   private readonly client: ComputeManagementClientContext;
 
   /**

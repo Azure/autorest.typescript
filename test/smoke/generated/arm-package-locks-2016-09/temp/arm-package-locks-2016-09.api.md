@@ -8,6 +8,11 @@ import * as coreHttp from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
+export interface AuthorizationOperations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type AuthorizationOperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -39,12 +44,8 @@ export type LockLevel = string;
 // @public (undocumented)
 export class ManagementLockClient extends ManagementLockClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLockClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "AuthorizationOperations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     authorizationOperations: AuthorizationOperations;
-    // Warning: (ae-forgotten-export) The symbol "ManagementLocks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managementLocks: ManagementLocks;
 }
@@ -86,6 +87,26 @@ export interface ManagementLockObject {
 // @public
 export interface ManagementLockOwner {
     applicationId?: string;
+}
+
+// @public
+export interface ManagementLocks {
+    createOrUpdateAtResourceGroupLevel(resourceGroupName: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
+    createOrUpdateAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
+    createOrUpdateAtSubscriptionLevel(lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
+    createOrUpdateByScope(scope: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
+    deleteAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteAtSubscriptionLevel(lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteByScope(scope: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    getAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
+    getAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtResourceLevelResponse>;
+    getAtSubscriptionLevel(lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
+    getByScope(scope: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetByScopeResponse>;
+    listAtResourceGroupLevel(resourceGroupName: string, options?: ManagementLocksListAtResourceGroupLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, options?: ManagementLocksListAtResourceLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevel(options?: ManagementLocksListAtSubscriptionLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScope(scope: string, options?: ManagementLocksListByScopeOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
 }
 
 // @public

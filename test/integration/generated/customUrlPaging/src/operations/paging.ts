@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Paging } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -22,7 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Paging. */
-export class Paging {
+export class PagingImpl implements Paging {
   private readonly client: CustomUrlPagingClientContext;
 
   /**

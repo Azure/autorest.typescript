@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Group } from "./operations";
+import { GroupImpl } from "./operations";
+import { Group } from "./operationsInterfaces";
 import { SubscriptionIdApiVersionClientContext } from "./subscriptionIdApiVersionClientContext";
 import { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
@@ -21,7 +22,7 @@ export class SubscriptionIdApiVersionClient extends SubscriptionIdApiVersionClie
     options?: SubscriptionIdApiVersionClientOptionalParams
   ) {
     super(subscriptionId, options);
-    this.group = new Group(this);
+    this.group = new GroupImpl(this);
   }
 
   group: Group;

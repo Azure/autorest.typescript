@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Domains } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -21,7 +22,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Domains. */
-export class Domains {
+export class DomainsImpl implements Domains {
   private readonly client: GraphRbacManagementClientContext;
 
   /**

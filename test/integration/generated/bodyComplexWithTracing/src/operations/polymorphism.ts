@@ -8,6 +8,7 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import { Polymorphism } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -24,7 +25,7 @@ import {
 } from "../models";
 
 /** Class representing a Polymorphism. */
-export class Polymorphism {
+export class PolymorphismImpl implements Polymorphism {
   private readonly client: BodyComplexWithTracingContext;
 
   /**

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { LROsCustomHeader } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -23,7 +24,7 @@ import {
 } from "../models";
 
 /** Class representing a LROsCustomHeader. */
-export class LROsCustomHeader {
+export class LROsCustomHeaderImpl implements LROsCustomHeader {
   private readonly client: LROClientContext;
 
   /**

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { JobExecutions } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -30,7 +31,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a JobExecutions. */
-export class JobExecutions {
+export class JobExecutionsImpl implements JobExecutions {
   private readonly client: SqlManagementClientContext;
 
   /**

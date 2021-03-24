@@ -1,3 +1,4 @@
+import { Documents } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -28,7 +29,7 @@ import {
 } from "../models";
 
 /** Class representing a Documents. */
-export class Documents {
+export class DocumentsImpl implements Documents {
   private readonly client: SearchClientContext;
 
   /**

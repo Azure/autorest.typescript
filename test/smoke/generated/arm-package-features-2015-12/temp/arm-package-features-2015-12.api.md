@@ -10,8 +10,6 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 // @public (undocumented)
 export class FeatureClient extends FeatureClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: FeatureClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Features" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     features: Features;
     listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
@@ -68,6 +66,15 @@ export interface FeatureResult {
     name?: string;
     properties?: FeatureProperties;
     type?: string;
+}
+
+// @public
+export interface Features {
+    get(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesGetResponse>;
+    list(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FeatureResult>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FeatureResult>;
+    register(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesRegisterResponse>;
+    unregister(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesUnregisterResponse>;
 }
 
 // @public

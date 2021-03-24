@@ -8,11 +8,17 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  VaultsImpl,
+  PrivateEndpointConnectionsImpl,
+  PrivateLinkResourcesImpl,
+  OperationsImpl
+} from "./operations";
+import {
   Vaults,
   PrivateEndpointConnections,
   PrivateLinkResources,
   Operations
-} from "./operations";
+} from "./operationsInterfaces";
 import { KeyVaultManagementClientContext } from "./keyVaultManagementClientContext";
 import { KeyVaultManagementClientOptionalParams } from "./models";
 
@@ -30,10 +36,10 @@ export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
     options?: KeyVaultManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.vaults = new Vaults(this);
-    this.privateEndpointConnections = new PrivateEndpointConnections(this);
-    this.privateLinkResources = new PrivateLinkResources(this);
-    this.operations = new Operations(this);
+    this.vaults = new VaultsImpl(this);
+    this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
+    this.privateLinkResources = new PrivateLinkResourcesImpl(this);
+    this.operations = new OperationsImpl(this);
   }
 
   vaults: Vaults;

@@ -6,13 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { SubscriptionInCredentials } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 
 /** Class representing a SubscriptionInCredentials. */
-export class SubscriptionInCredentials {
+export class SubscriptionInCredentialsImpl
+  implements SubscriptionInCredentials {
   private readonly client: AzureSpecialPropertiesClientContext;
 
   /**

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Paths, Queries, PathItems } from "./operations";
+import { PathsImpl, QueriesImpl, PathItemsImpl } from "./operations";
+import { Paths, Queries, PathItems } from "./operationsInterfaces";
 import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
@@ -18,9 +19,9 @@ export class UrlClient extends UrlClientContext {
    */
   constructor(globalStringPath: string, options?: UrlClientOptionalParams) {
     super(globalStringPath, options);
-    this.paths = new Paths(this);
-    this.queries = new Queries(this);
-    this.pathItems = new PathItems(this);
+    this.paths = new PathsImpl(this);
+    this.queries = new QueriesImpl(this);
+    this.pathItems = new PathItemsImpl(this);
   }
 
   paths: Paths;

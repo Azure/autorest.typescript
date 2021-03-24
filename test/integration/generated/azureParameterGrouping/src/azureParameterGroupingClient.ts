@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ParameterGrouping } from "./operations";
+import { ParameterGroupingImpl } from "./operations";
+import { ParameterGrouping } from "./operationsInterfaces";
 import { AzureParameterGroupingClientContext } from "./azureParameterGroupingClientContext";
 import { AzureParameterGroupingClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class AzureParameterGroupingClient extends AzureParameterGroupingClientCo
    */
   constructor(options?: AzureParameterGroupingClientOptionalParams) {
     super(options);
-    this.parameterGrouping = new ParameterGrouping(this);
+    this.parameterGrouping = new ParameterGroupingImpl(this);
   }
 
   parameterGrouping: ParameterGrouping;

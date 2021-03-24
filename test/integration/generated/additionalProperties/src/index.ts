@@ -9,3 +9,4 @@
 export * from "./models";
 export { AdditionalPropertiesClient } from "./additionalPropertiesClient";
 export { AdditionalPropertiesClientContext } from "./additionalPropertiesClientContext";
+export * from "./operationsInterfaces";

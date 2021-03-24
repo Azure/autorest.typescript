@@ -8,6 +8,7 @@
 
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
+import { Readonlyproperty } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -15,7 +16,7 @@ import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext"
 import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
 
 /** Class representing a Readonlyproperty. */
-export class Readonlyproperty {
+export class ReadonlypropertyImpl implements Readonlyproperty {
   private readonly client: BodyComplexWithTracingContext;
 
   /**

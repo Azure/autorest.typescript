@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { Applications, ApplicationDefinitions } from "./operations";
+import { ApplicationsImpl, ApplicationDefinitionsImpl } from "./operations";
+import { Applications, ApplicationDefinitions } from "./operationsInterfaces";
 import { ApplicationClientContext } from "./applicationClientContext";
 import { ApplicationClientOptionalParams } from "./models";
 
@@ -24,8 +25,8 @@ export class ApplicationClient extends ApplicationClientContext {
     options?: ApplicationClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.applications = new Applications(this);
-    this.applicationDefinitions = new ApplicationDefinitions(this);
+    this.applications = new ApplicationsImpl(this);
+    this.applicationDefinitions = new ApplicationDefinitionsImpl(this);
   }
 
   applications: Applications;

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { TableResources } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -26,7 +27,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a TableResources. */
-export class TableResources {
+export class TableResourcesImpl implements TableResources {
   private readonly client: CosmosDBManagementClientContext;
 
   /**

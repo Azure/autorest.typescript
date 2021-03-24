@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Disks } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -29,7 +30,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Disks. */
-export class Disks {
+export class DisksImpl implements Disks {
   private readonly client: ComputeManagementClientContext;
 
   /**

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Files } from "./operations";
+import { FilesImpl } from "./operations";
+import { Files } from "./operationsInterfaces";
 import { BodyFileClientContext } from "./bodyFileClientContext";
 import { BodyFileClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyFileClient extends BodyFileClientContext {
    */
   constructor(options?: BodyFileClientOptionalParams) {
     super(options);
-    this.files = new Files(this);
+    this.files = new FilesImpl(this);
   }
 
   files: Files;

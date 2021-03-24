@@ -7,6 +7,15 @@
  */
 
 import {
+  HttpFailureImpl,
+  HttpSuccessImpl,
+  HttpRedirectsImpl,
+  HttpClientFailureImpl,
+  HttpServerFailureImpl,
+  HttpRetryImpl,
+  MultipleResponsesImpl
+} from "./operations";
+import {
   HttpFailure,
   HttpSuccess,
   HttpRedirects,
@@ -14,7 +23,7 @@ import {
   HttpServerFailure,
   HttpRetry,
   MultipleResponses
-} from "./operations";
+} from "./operationsInterfaces";
 import { HttpInfrastructureClientContext } from "./httpInfrastructureClientContext";
 import { HttpInfrastructureClientOptionalParams } from "./models";
 
@@ -25,13 +34,13 @@ export class HttpInfrastructureClient extends HttpInfrastructureClientContext {
    */
   constructor(options?: HttpInfrastructureClientOptionalParams) {
     super(options);
-    this.httpFailure = new HttpFailure(this);
-    this.httpSuccess = new HttpSuccess(this);
-    this.httpRedirects = new HttpRedirects(this);
-    this.httpClientFailure = new HttpClientFailure(this);
-    this.httpServerFailure = new HttpServerFailure(this);
-    this.httpRetry = new HttpRetry(this);
-    this.multipleResponses = new MultipleResponses(this);
+    this.httpFailure = new HttpFailureImpl(this);
+    this.httpSuccess = new HttpSuccessImpl(this);
+    this.httpRedirects = new HttpRedirectsImpl(this);
+    this.httpClientFailure = new HttpClientFailureImpl(this);
+    this.httpServerFailure = new HttpServerFailureImpl(this);
+    this.httpRetry = new HttpRetryImpl(this);
+    this.multipleResponses = new MultipleResponsesImpl(this);
   }
 
   httpFailure: HttpFailure;

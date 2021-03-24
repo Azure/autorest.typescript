@@ -41,16 +41,10 @@ export type IdentityUpdate = Resource & {
 // @public (undocumented)
 export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "SystemAssignedIdentities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     systemAssignedIdentities: SystemAssignedIdentities;
-    // Warning: (ae-forgotten-export) The symbol "UserAssignedIdentities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     userAssignedIdentities: UserAssignedIdentities;
 }
@@ -94,6 +88,11 @@ export interface OperationListResult {
 }
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -117,6 +116,11 @@ export interface Resource {
     readonly id?: string;
     readonly name?: string;
     readonly type?: string;
+}
+
+// @public
+export interface SystemAssignedIdentities {
+    getByScope(scope: string, options?: coreHttp.OperationOptions): Promise<SystemAssignedIdentitiesGetByScopeResponse>;
 }
 
 // @public
@@ -146,6 +150,16 @@ export type TrackedResource = Resource & {
     };
     location: string;
 };
+
+// @public
+export interface UserAssignedIdentities {
+    createOrUpdate(resourceGroupName: string, resourceName: string, parameters: Identity, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, resourceName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, resourceName: string, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identity>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identity>;
+    update(resourceGroupName: string, resourceName: string, parameters: IdentityUpdate, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesUpdateResponse>;
+}
 
 // @public
 export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {

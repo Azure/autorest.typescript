@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { VirtualHubRouteTableV2S } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -23,7 +24,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a VirtualHubRouteTableV2S. */
-export class VirtualHubRouteTableV2S {
+export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   private readonly client: NetworkManagementClientContext;
 
   /**

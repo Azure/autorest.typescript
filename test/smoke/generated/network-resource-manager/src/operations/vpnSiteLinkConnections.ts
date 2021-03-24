@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { VpnSiteLinkConnections } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 import { VpnSiteLinkConnectionsGetResponse } from "../models";
 
 /** Class representing a VpnSiteLinkConnections. */
-export class VpnSiteLinkConnections {
+export class VpnSiteLinkConnectionsImpl implements VpnSiteLinkConnections {
   private readonly client: NetworkManagementClientContext;
 
   /**

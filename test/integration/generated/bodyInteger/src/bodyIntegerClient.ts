@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Int } from "./operations";
+import { IntImpl } from "./operations";
+import { Int } from "./operationsInterfaces";
 import { BodyIntegerClientContext } from "./bodyIntegerClientContext";
 import { BodyIntegerClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyIntegerClient extends BodyIntegerClientContext {
    */
   constructor(options?: BodyIntegerClientOptionalParams) {
     super(options);
-    this.int = new Int(this);
+    this.int = new IntImpl(this);
   }
 
   int: Int;

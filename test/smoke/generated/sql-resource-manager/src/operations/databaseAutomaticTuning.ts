@@ -6,18 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { DatabaseAutomaticTuning } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   DatabaseAutomaticTuningGetResponse,
-  DatabaseAutomaticTuning as DatabaseAutomaticTuningModel,
+  DatabaseAutomaticTuningDef,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
 /** Class representing a DatabaseAutomaticTuning. */
-export class DatabaseAutomaticTuning {
+export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
   private readonly client: SqlManagementClientContext;
 
   /**
@@ -67,7 +68,7 @@ export class DatabaseAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    parameters: DatabaseAutomaticTuningModel,
+    parameters: DatabaseAutomaticTuningDef,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseAutomaticTuningUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -92,7 +93,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseAutomaticTuning
+      bodyMapper: Mappers.DatabaseAutomaticTuningDef
     },
     default: {}
   },
@@ -113,7 +114,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseAutomaticTuning
+      bodyMapper: Mappers.DatabaseAutomaticTuningDef
     },
     default: {}
   },

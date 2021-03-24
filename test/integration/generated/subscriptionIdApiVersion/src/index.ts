@@ -9,3 +9,4 @@
 export * from "./models";
 export { SubscriptionIdApiVersionClient } from "./subscriptionIdApiVersionClient";
 export { SubscriptionIdApiVersionClientContext } from "./subscriptionIdApiVersionClientContext";
+export * from "./operationsInterfaces";

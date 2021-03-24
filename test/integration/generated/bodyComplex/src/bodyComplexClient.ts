@@ -7,6 +7,17 @@
  */
 
 import {
+  BasicImpl,
+  PrimitiveImpl,
+  ArrayImpl,
+  DictionaryImpl,
+  InheritanceImpl,
+  PolymorphismImpl,
+  PolymorphicrecursiveImpl,
+  ReadonlypropertyImpl,
+  FlattencomplexImpl
+} from "./operations";
+import {
   Basic,
   Primitive,
   Array,
@@ -16,7 +27,7 @@ import {
   Polymorphicrecursive,
   Readonlyproperty,
   Flattencomplex
-} from "./operations";
+} from "./operationsInterfaces";
 import { BodyComplexClientContext } from "./bodyComplexClientContext";
 import { BodyComplexClientOptionalParams } from "./models";
 
@@ -27,15 +38,15 @@ export class BodyComplexClient extends BodyComplexClientContext {
    */
   constructor(options?: BodyComplexClientOptionalParams) {
     super(options);
-    this.basic = new Basic(this);
-    this.primitive = new Primitive(this);
-    this.array = new Array(this);
-    this.dictionary = new Dictionary(this);
-    this.inheritance = new Inheritance(this);
-    this.polymorphism = new Polymorphism(this);
-    this.polymorphicrecursive = new Polymorphicrecursive(this);
-    this.readonlyproperty = new Readonlyproperty(this);
-    this.flattencomplex = new Flattencomplex(this);
+    this.basic = new BasicImpl(this);
+    this.primitive = new PrimitiveImpl(this);
+    this.array = new ArrayImpl(this);
+    this.dictionary = new DictionaryImpl(this);
+    this.inheritance = new InheritanceImpl(this);
+    this.polymorphism = new PolymorphismImpl(this);
+    this.polymorphicrecursive = new PolymorphicrecursiveImpl(this);
+    this.readonlyproperty = new ReadonlypropertyImpl(this);
+    this.flattencomplex = new FlattencomplexImpl(this);
   }
 
   basic: Basic;

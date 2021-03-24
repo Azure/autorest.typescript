@@ -106,6 +106,24 @@ export interface ApplicationListResult {
 }
 
 // @public
+export interface Applications {
+    addOwner(applicationObjectId: string, parameters: AddOwnerParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    create(parameters: ApplicationCreateParameters, options?: coreHttp.OperationOptions): Promise<ApplicationsCreateResponse>;
+    delete(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetResponse>;
+    getServicePrincipalsIdByAppId(applicationID: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
+    list(options?: ApplicationsListOptionalParams): PagedAsyncIterableIterator<Application>;
+    listKeyCredentials(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<KeyCredential>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
+    listOwners(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listPasswordCredentials(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PasswordCredential>;
+    patch(applicationObjectId: string, parameters: ApplicationUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    removeOwner(applicationObjectId: string, ownerObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    updateKeyCredentials(applicationObjectId: string, parameters: KeyCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    updatePasswordCredentials(applicationObjectId: string, parameters: PasswordCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
+
+// @public
 export type ApplicationsCreateResponse = Application & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -215,6 +233,14 @@ export interface CheckGroupMembershipResult {
 export type ConsentType = string;
 
 // @public
+export interface DeletedApplications {
+    hardDelete(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    list(options?: DeletedApplicationsListOptionalParams): PagedAsyncIterableIterator<Application>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
+    restore(objectId: string, options?: coreHttp.OperationOptions): Promise<DeletedApplicationsRestoreResponse>;
+}
+
+// @public
 export type DeletedApplicationsListNextResponse = ApplicationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -275,6 +301,12 @@ export interface DomainListResult {
 }
 
 // @public
+export interface Domains {
+    get(domainName: string, options?: coreHttp.OperationOptions): Promise<DomainsGetResponse>;
+    list(options?: DomainsListOptionalParams): PagedAsyncIterableIterator<Domain>;
+}
+
+// @public
 export type DomainsGetResponse = Domain & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -312,40 +344,22 @@ export interface GraphError {
 // @public (undocumented)
 export class GraphRbacManagementClient extends GraphRbacManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Applications" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     applications: Applications;
-    // Warning: (ae-forgotten-export) The symbol "DeletedApplications" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     deletedApplications: DeletedApplications;
-    // Warning: (ae-forgotten-export) The symbol "Domains" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     domains: Domains;
-    // Warning: (ae-forgotten-export) The symbol "Groups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     groups: Groups;
-    // Warning: (ae-forgotten-export) The symbol "OAuth2PermissionGrant" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    oAuth2PermissionGrant: OAuth2PermissionGrant_2;
-    // Warning: (ae-forgotten-export) The symbol "Objects" needs to be exported by the entry point index.d.ts
-    //
+    oAuth2PermissionGrant: OAuth2PermissionGrant;
     // (undocumented)
     objects: Objects;
-    // Warning: (ae-forgotten-export) The symbol "ServicePrincipals" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     servicePrincipals: ServicePrincipals;
-    // Warning: (ae-forgotten-export) The symbol "SignedInUser" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     signedInUser: SignedInUser;
-    // Warning: (ae-forgotten-export) The symbol "Users" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     users: Users;
 }
@@ -402,6 +416,24 @@ export interface GroupListResult {
 
 // @public
 export type GroupMembershipClaimTypes = string;
+
+// @public
+export interface Groups {
+    addMember(groupObjectId: string, parameters: GroupAddMemberParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    addOwner(objectId: string, parameters: AddOwnerParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    create(parameters: GroupCreateParameters, options?: coreHttp.OperationOptions): Promise<GroupsCreateResponse>;
+    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(objectId: string, options?: coreHttp.OperationOptions): Promise<GroupsGetResponse>;
+    isMemberOf(parameters: CheckGroupMembershipParameters, options?: coreHttp.OperationOptions): Promise<GroupsIsMemberOfResponse>;
+    list(options?: GroupsListOptionalParams): PagedAsyncIterableIterator<ADGroup>;
+    listGroupMembers(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listGroupMembersNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listMemberGroups(objectId: string, parameters: GroupGetMemberGroupsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<string>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ADGroup>;
+    listOwners(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    removeMember(groupObjectId: string, memberObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    removeOwner(objectId: string, ownerObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
 
 // @public
 export type GroupsCreateResponse = ADGroup & {
@@ -556,8 +588,29 @@ export interface OAuth2Permission {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuth2PermissionGrant {
+    create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
+    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
+}
+
+// @public
+export interface OAuth2PermissionGrantCreateOptionalParams extends coreHttp.OperationOptions {
+    body?: OAuth2PermissionGrantDef;
+}
+
+// @public
+export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: OAuth2PermissionGrantDef;
+    };
+};
+
+// @public (undocumented)
+export interface OAuth2PermissionGrantDef {
     clientId?: string;
     consentType?: ConsentType;
     expiryTime?: string;
@@ -568,19 +621,6 @@ export interface OAuth2PermissionGrant {
     scope?: string;
     startTime?: string;
 }
-
-// @public
-export interface OAuth2PermissionGrantCreateOptionalParams extends coreHttp.OperationOptions {
-    body?: OAuth2PermissionGrant;
-}
-
-// @public
-export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrant & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OAuth2PermissionGrant;
-    };
-};
 
 // @public
 export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult & {
@@ -606,7 +646,13 @@ export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult 
 // @public
 export interface OAuth2PermissionGrantListResult {
     odataNextLink?: string;
-    value?: OAuth2PermissionGrant[];
+    value?: OAuth2PermissionGrantDef[];
+}
+
+// @public
+export interface Objects {
+    listObjectsByObjectIds(parameters: GetObjectsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listObjectsByObjectIdsNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
 }
 
 // @public
@@ -753,6 +799,21 @@ export interface ServicePrincipalObjectResult {
 }
 
 // @public
+export interface ServicePrincipals {
+    create(parameters: ServicePrincipalCreateParameters, options?: coreHttp.OperationOptions): Promise<ServicePrincipalsCreateResponse>;
+    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(objectId: string, options?: coreHttp.OperationOptions): Promise<ServicePrincipalsGetResponse>;
+    list(options?: ServicePrincipalsListOptionalParams): PagedAsyncIterableIterator<ServicePrincipal>;
+    listKeyCredentials(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<KeyCredential>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServicePrincipal>;
+    listOwners(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listPasswordCredentials(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PasswordCredential>;
+    update(objectId: string, parameters: ServicePrincipalUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    updateKeyCredentials(objectId: string, parameters: KeyCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    updatePasswordCredentials(objectId: string, parameters: PasswordCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+}
+
+// @public
 export type ServicePrincipalsCreateResponse = ServicePrincipal & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -823,6 +884,13 @@ export type ServicePrincipalsListResponse = ServicePrincipalListResult & {
 
 // @public
 export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
+
+// @public
+export interface SignedInUser {
+    get(options?: coreHttp.OperationOptions): Promise<SignedInUserGetResponse>;
+    listOwnedObjects(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listOwnedObjectsNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+}
 
 // @public
 export type SignedInUserGetResponse = User & {
@@ -906,6 +974,17 @@ export interface UserGetMemberGroupsResult {
 export interface UserListResult {
     odataNextLink?: string;
     value?: User[];
+}
+
+// @public
+export interface Users {
+    create(parameters: UserCreateParameters, options?: coreHttp.OperationOptions): Promise<UsersCreateResponse>;
+    delete(upnOrObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(upnOrObjectId: string, options?: coreHttp.OperationOptions): Promise<UsersGetResponse>;
+    list(options?: UsersListOptionalParams): PagedAsyncIterableIterator<User>;
+    listMemberGroups(objectId: string, parameters: UserGetMemberGroupsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<string>;
+    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<User>;
+    update(upnOrObjectId: string, parameters: UserUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
 }
 
 // @public

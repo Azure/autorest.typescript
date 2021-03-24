@@ -7,7 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { AuthorizationOperations, ManagementLocks } from "./operations";
+import { AuthorizationOperationsImpl, ManagementLocksImpl } from "./operations";
+import {
+  AuthorizationOperations,
+  ManagementLocks
+} from "./operationsInterfaces";
 import { ManagementLockClientContext } from "./managementLockClientContext";
 import { ManagementLockClientOptionalParams } from "./models";
 
@@ -24,8 +28,8 @@ export class ManagementLockClient extends ManagementLockClientContext {
     options?: ManagementLockClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.authorizationOperations = new AuthorizationOperations(this);
-    this.managementLocks = new ManagementLocks(this);
+    this.authorizationOperations = new AuthorizationOperationsImpl(this);
+    this.managementLocks = new ManagementLocksImpl(this);
   }
 
   authorizationOperations: AuthorizationOperations;

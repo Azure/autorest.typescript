@@ -6,18 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { ServerAutomaticTuning } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ServerAutomaticTuningGetResponse,
-  ServerAutomaticTuning as ServerAutomaticTuningModel,
+  ServerAutomaticTuningDef,
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
 /** Class representing a ServerAutomaticTuning. */
-export class ServerAutomaticTuning {
+export class ServerAutomaticTuningImpl implements ServerAutomaticTuning {
   private readonly client: SqlManagementClientContext;
 
   /**
@@ -62,7 +63,7 @@ export class ServerAutomaticTuning {
   update(
     resourceGroupName: string,
     serverName: string,
-    parameters: ServerAutomaticTuningModel,
+    parameters: ServerAutomaticTuningDef,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAutomaticTuningUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
@@ -86,7 +87,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ServerAutomaticTuning
+      bodyMapper: Mappers.ServerAutomaticTuningDef
     },
     default: {}
   },
@@ -106,7 +107,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.ServerAutomaticTuning
+      bodyMapper: Mappers.ServerAutomaticTuningDef
     },
     default: {}
   },

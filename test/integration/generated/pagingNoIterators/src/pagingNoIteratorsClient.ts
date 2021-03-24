@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Paging } from "./operations";
+import { PagingImpl } from "./operations";
+import { Paging } from "./operationsInterfaces";
 import { PagingNoIteratorsClientContext } from "./pagingNoIteratorsClientContext";
 import { PagingNoIteratorsClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class PagingNoIteratorsClient extends PagingNoIteratorsClientContext {
    */
   constructor(options?: PagingNoIteratorsClientOptionalParams) {
     super(options);
-    this.paging = new Paging(this);
+    this.paging = new PagingImpl(this);
   }
 
   paging: Paging;

@@ -562,6 +562,220 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!Metrics:interface",
+          "docComment": "/**\n * Interface representing a Metrics.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Metrics "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Metrics",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "monitor-data-plane!Metrics#create:member(1)",
+              "docComment": "/**\n * **Post the metric values for a resource**.\n *\n * @param contentType - Supports application/json and application/x-ndjson\n *\n * @param contentLength - Content length of the payload\n *\n * @param authorization - Authorization token issue for issued for audience \"https:\\\\monitoring.azure.com\\\"\n *\n * @param subscriptionId - The azure subscription id\n *\n * @param resourceGroupName - The ARM resource group name\n *\n * @param resourceProvider - The ARM resource provider name\n *\n * @param resourceTypeName - The ARM resource type name\n *\n * @param resourceName - The ARM resource name\n *\n * @param body - The Azure metrics document json payload\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "create(contentType: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", contentLength: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", authorization: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceProvider: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceTypeName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", body: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AzureMetricsDocument",
+                  "canonicalReference": "monitor-data-plane!AzureMetricsDocument:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationOptions",
+                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MetricsCreateResponse",
+                  "canonicalReference": "monitor-data-plane!MetricsCreateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 22,
+                "endIndex": 26
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "contentType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "contentLength",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "authorization",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                },
+                {
+                  "parameterName": "resourceProvider",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  }
+                },
+                {
+                  "parameterName": "resourceTypeName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 13,
+                    "endIndex": 14
+                  }
+                },
+                {
+                  "parameterName": "resourceName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 15,
+                    "endIndex": 16
+                  }
+                },
+                {
+                  "parameterName": "body",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 17,
+                    "endIndex": 18
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 19,
+                    "endIndex": 21
+                  }
+                }
+              ],
+              "name": "create"
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "monitor-data-plane!MetricsCreateResponse:type",
           "docComment": "/**\n * Contains response data for the create operation.\n */\n",
@@ -703,7 +917,7 @@
                 {
                   "kind": "Reference",
                   "text": "Metrics",
-                  "canonicalReference": "monitor-data-plane!Metrics:class"
+                  "canonicalReference": "monitor-data-plane!Metrics:interface"
                 },
                 {
                   "kind": "Content",

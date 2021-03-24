@@ -9,3 +9,4 @@
 export * from "./models";
 export { BodyStringClient } from "./bodyStringClient";
 export { BodyStringClientContext } from "./bodyStringClientContext";
+export * from "./operationsInterfaces";

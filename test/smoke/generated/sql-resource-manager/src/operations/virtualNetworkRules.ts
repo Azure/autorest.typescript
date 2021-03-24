@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { VirtualNetworkRules } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -23,7 +24,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a VirtualNetworkRules. */
-export class VirtualNetworkRules {
+export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
   private readonly client: SqlManagementClientContext;
 
   /**

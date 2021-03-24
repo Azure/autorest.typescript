@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Queries } from "./operations";
+import { QueriesImpl } from "./operations";
+import { Queries } from "./operationsInterfaces";
 import { UrlMultiClientContext } from "./urlMultiClientContext";
 import { UrlMultiClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class UrlMultiClient extends UrlMultiClientContext {
    */
   constructor(options?: UrlMultiClientOptionalParams) {
     super(options);
-    this.queries = new Queries(this);
+    this.queries = new QueriesImpl(this);
   }
 
   queries: Queries;

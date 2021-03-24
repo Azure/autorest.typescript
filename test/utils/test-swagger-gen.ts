@@ -77,13 +77,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true
   },
   bodyComplex: {
-    swaggerOrConfig: "body-complex.json",
+    swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "BodyComplexClient",
     packageName: "body-complex",
     licenseHeader: true
   },
   bodyComplexWithTracing: {
-    swaggerOrConfig: "body-complex.json",
+    swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "bodyComplexWithTracing",
     packageName: "body-complex-tracing",
     licenseHeader: true,
@@ -353,13 +353,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true
   },
   extensibleEnums: {
-    swaggerOrConfig: "extensible-enums-swagger.json",
+    swaggerOrConfig: "test/integration/swaggers/extensibleEnums.md",
     clientName: "ExtensibleEnumsClient",
     packageName: "extensible-enums",
     licenseHeader: true
   },
   xmsErrorResponses: {
-    swaggerOrConfig: "xms-error-responses.json",
+    swaggerOrConfig: "test/integration/swaggers/xmsErrorResponses.md",
     clientName: "XmsErrorResponsesClient",
     packageName: "xms-error-responses",
     licenseHeader: true
@@ -484,7 +484,8 @@ const generateSwaggers = async (
     const generationTask = async () => {
       console.log(`=== Start ${name} ===`);
       const childProcess = spawn(autorestCommand, commandArguments, {
-        stdio: [process.stdin, process.stdout, process.stderr]
+        stdio: [process.stdin, process.stdout, process.stderr],
+        shell: process.platform === "win32"
       });
 
       console.log(`${autorestCommand} ${commandArguments.join(" ")}`);
@@ -541,7 +542,8 @@ const buildAutorest = () => {
     return Promise.resolve();
   }
   const childProcess = spawn("npm run build", {
-    stdio: [process.stdin, process.stdout, process.stderr]
+    stdio: [process.stdin, process.stdout, process.stderr],
+    shell: process.platform === "win32"
   });
 
   return onExit(childProcess);
@@ -549,7 +551,8 @@ const buildAutorest = () => {
 
 const logAutorestInfo = async () => {
   const childProcess = spawn("autorest", ["--info"], {
-    stdio: [process.stdin, process.stdout, process.stderr]
+    stdio: [process.stdin, process.stdout, process.stderr],
+    shell: process.platform === "win32"
   });
   await onExit(childProcess);
 };

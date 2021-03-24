@@ -6,13 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Get } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { UuidClientContext } from "../uuidClientContext";
 import { GetUuidResponse } from "../models";
 
 /** Class representing a Get. */
-export class Get {
+export class GetImpl implements Get {
   private readonly client: UuidClientContext;
 
   /**

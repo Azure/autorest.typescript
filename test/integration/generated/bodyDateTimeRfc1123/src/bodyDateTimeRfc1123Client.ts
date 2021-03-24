@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Datetimerfc1123 } from "./operations";
+import { Datetimerfc1123Impl } from "./operations";
+import { Datetimerfc1123 } from "./operationsInterfaces";
 import { BodyDateTimeRfc1123ClientContext } from "./bodyDateTimeRfc1123ClientContext";
 import { BodyDateTimeRfc1123ClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyDateTimeRfc1123Client extends BodyDateTimeRfc1123ClientContext 
    */
   constructor(options?: BodyDateTimeRfc1123ClientOptionalParams) {
     super(options);
-    this.datetimerfc1123 = new Datetimerfc1123(this);
+    this.datetimerfc1123 = new Datetimerfc1123Impl(this);
   }
 
   datetimerfc1123: Datetimerfc1123;

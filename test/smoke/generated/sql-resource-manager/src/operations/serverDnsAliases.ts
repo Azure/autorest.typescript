@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ServerDnsAliases } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -24,7 +25,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ServerDnsAliases. */
-export class ServerDnsAliases {
+export class ServerDnsAliasesImpl implements ServerDnsAliases {
   private readonly client: SqlManagementClientContext;
 
   /**

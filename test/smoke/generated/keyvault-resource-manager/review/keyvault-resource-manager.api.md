@@ -85,20 +85,12 @@ export type KeyPermissions = string;
 // @public (undocumented)
 export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "PrivateEndpointConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
-    // Warning: (ae-forgotten-export) The symbol "PrivateLinkResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
-    // Warning: (ae-forgotten-export) The symbol "Vaults" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     vaults: Vaults;
 }
@@ -302,6 +294,16 @@ export interface LogSpecification {
     name?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
 // @public
 export type NetworkRuleAction = string;
 
@@ -336,6 +338,11 @@ export interface OperationDisplay {
 export interface OperationListResult {
     nextLink?: string;
     value?: Operation[];
+}
+
+// @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
 }
 
 // @public
@@ -385,6 +392,13 @@ export interface PrivateEndpointConnectionItem {
 
 // @public
 export type PrivateEndpointConnectionProvisioningState = string;
+
+// @public
+export interface PrivateEndpointConnections {
+    delete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateEndpointConnectionsDeleteResponse>>;
+    get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
+    put(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsPutResponse>;
+}
 
 // @public
 export interface PrivateEndpointConnectionsDeleteHeaders {
@@ -437,6 +451,11 @@ export type PrivateLinkResource = Resource & {
 // @public
 export interface PrivateLinkResourceListResult {
     value?: PrivateLinkResource[];
+}
+
+// @public
+export interface PrivateLinkResources {
+    listByVault(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesListByVaultResponse>;
 }
 
 // @public
@@ -584,6 +603,22 @@ export interface VaultProperties {
     softDeleteRetentionInDays?: number;
     tenantId: string;
     vaultUri?: string;
+}
+
+// @public
+export interface Vaults {
+    checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: coreHttp.OperationOptions): Promise<VaultsCheckNameAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VaultsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<VaultsGetResponse>;
+    getDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<VaultsGetDeletedResponse>;
+    list(options?: VaultsListOptionalParams): PagedAsyncIterableIterator<Resource>;
+    listByResourceGroup(resourceGroupName: string, options?: VaultsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Vault>;
+    listBySubscription(options?: VaultsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Vault>;
+    listDeleted(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeletedVault>;
+    purgeDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vaultName: string, parameters: VaultPatchParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateResponse>;
+    updateAccessPolicy(resourceGroupName: string, vaultName: string, operationKind: AccessPolicyUpdateKind, parameters: VaultAccessPolicyParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateAccessPolicyResponse>;
 }
 
 // @public

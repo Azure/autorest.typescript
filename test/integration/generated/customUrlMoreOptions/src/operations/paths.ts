@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Paths } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { CustomUrlMoreOptionsClientContext } from "../customUrlMoreOptionsClient
 import { PathsGetEmptyOptionalParams } from "../models";
 
 /** Class representing a Paths. */
-export class Paths {
+export class PathsImpl implements Paths {
   private readonly client: CustomUrlMoreOptionsClientContext;
 
   /**

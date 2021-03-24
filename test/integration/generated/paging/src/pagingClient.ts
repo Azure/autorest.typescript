@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Paging } from "./operations";
+import { PagingImpl } from "./operations";
+import { Paging } from "./operationsInterfaces";
 import { PagingClientContext } from "./pagingClientContext";
 import { PagingClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class PagingClient extends PagingClientContext {
    */
   constructor(options?: PagingClientOptionalParams) {
     super(options);
-    this.paging = new Paging(this);
+    this.paging = new PagingImpl(this);
   }
 
   paging: Paging;

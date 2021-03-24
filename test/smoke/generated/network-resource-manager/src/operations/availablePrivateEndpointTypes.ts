@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { AvailablePrivateEndpointTypes } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -22,7 +23,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a AvailablePrivateEndpointTypes. */
-export class AvailablePrivateEndpointTypes {
+export class AvailablePrivateEndpointTypesImpl
+  implements AvailablePrivateEndpointTypes {
   private readonly client: NetworkManagementClientContext;
 
   /**

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { StorageAccounts } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -39,7 +40,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a StorageAccounts. */
-export class StorageAccounts {
+export class StorageAccountsImpl implements StorageAccounts {
   private readonly client: StorageManagementClientContext;
 
   /**

@@ -9,3 +9,4 @@
 export * from "./models";
 export { BodyBooleanClient } from "./bodyBooleanClient";
 export { BodyBooleanClientContext } from "./bodyBooleanClientContext";
+export * from "./operationsInterfaces";

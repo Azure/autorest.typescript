@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ServerBlobAuditingPolicies } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -23,7 +24,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ServerBlobAuditingPolicies. */
-export class ServerBlobAuditingPolicies {
+export class ServerBlobAuditingPoliciesImpl
+  implements ServerBlobAuditingPolicies {
   private readonly client: SqlManagementClientContext;
 
   /**

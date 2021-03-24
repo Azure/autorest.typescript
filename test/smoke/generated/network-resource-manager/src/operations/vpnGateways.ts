@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { VpnGateways } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -28,7 +29,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a VpnGateways. */
-export class VpnGateways {
+export class VpnGatewaysImpl implements VpnGateways {
   private readonly client: NetworkManagementClientContext;
 
   /**

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { FooApi } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { MediaTypesV3ClientContext } from "../mediaTypesV3ClientContext";
@@ -19,7 +20,7 @@ import {
 } from "../models";
 
 /** Class representing a FooApi. */
-export class FooApi {
+export class FooApiImpl implements FooApi {
   private readonly client: MediaTypesV3ClientContext;
 
   /**

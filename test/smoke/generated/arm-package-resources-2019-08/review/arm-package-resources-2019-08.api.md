@@ -115,6 +115,20 @@ export interface DeploymentOperationProperties {
 }
 
 // @public
+export interface DeploymentOperations {
+    get(resourceGroupName: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetResponse>;
+    getAtManagementGroupScope(groupId: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse>;
+    getAtScope(scope: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtScopeResponse>;
+    getAtSubscriptionScope(deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse>;
+    getAtTenantScope(deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtTenantScopeResponse>;
+    list(resourceGroupName: string, deploymentName: string, options?: DeploymentOperationsListOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+    listAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+    listAtScope(scope: string, deploymentName: string, options?: DeploymentOperationsListAtScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+    listAtSubscriptionScope(deploymentName: string, options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+    listAtTenantScope(deploymentName: string, options?: DeploymentOperationsListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+}
+
+// @public
 export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -317,6 +331,53 @@ export interface DeploymentPropertiesExtended {
     template?: any;
     templateLink?: TemplateLink;
     readonly timestamp?: Date;
+}
+
+// @public
+export interface Deployments {
+    calculateTemplateHash(template: any, options?: coreHttp.OperationOptions): Promise<DeploymentsCalculateTemplateHashResponse>;
+    cancel(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    cancelAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    cancelAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    cancelAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    cancelAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistence(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistenceAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistenceAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistenceAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistenceAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsCreateOrUpdateResponse>>;
+    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
+    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsCreateOrUpdateAtScopeResponse>>;
+    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
+    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
+    delete(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    exportTemplate(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateResponse>;
+    exportTemplateAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
+    exportTemplateAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtScopeResponse>;
+    exportTemplateAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse>;
+    exportTemplateAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtTenantScopeResponse>;
+    get(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetResponse>;
+    getAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtManagementGroupScopeResponse>;
+    getAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtScopeResponse>;
+    getAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtSubscriptionScopeResponse>;
+    getAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtTenantScopeResponse>;
+    listAtManagementGroupScope(groupId: string, options?: DeploymentsListAtManagementGroupScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
+    listAtScope(scope: string, options?: DeploymentsListAtScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
+    listAtSubscriptionScope(options?: DeploymentsListAtSubscriptionScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
+    listAtTenantScope(options?: DeploymentsListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
+    listByResourceGroup(resourceGroupName: string, options?: DeploymentsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
+    validate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateResponse>;
+    validateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
+    validateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtScopeResponse>;
+    validateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
+    validateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtTenantScopeResponse>;
+    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsWhatIfResponse>>;
+    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentsWhatIfAtSubscriptionScopeResponse>>;
 }
 
 // @public
@@ -744,6 +805,16 @@ export interface Identity {
     };
 }
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
 // @public
 export interface OnErrorDeployment {
     deploymentName?: string;
@@ -778,6 +849,11 @@ export interface OperationDisplay {
 export interface OperationListResult {
     nextLink?: string;
     value?: Operation[];
+}
+
+// @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
 }
 
 // @public
@@ -839,6 +915,16 @@ export interface ProviderResourceType {
         [propertyName: string]: string;
     };
     resourceType?: string;
+}
+
+// @public
+export interface Providers {
+    get(resourceProviderNamespace: string, options?: ProvidersGetOptionalParams): Promise<ProvidersGetResponse>;
+    getAtTenantScope(resourceProviderNamespace: string, options?: ProvidersGetAtTenantScopeOptionalParams): Promise<ProvidersGetAtTenantScopeResponse>;
+    list(options?: ProvidersListOptionalParams): PagedAsyncIterableIterator<Provider>;
+    listAtTenantScope(options?: ProvidersListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<Provider>;
+    register(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): Promise<ProvidersRegisterResponse>;
+    unregister(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): Promise<ProvidersUnregisterResponse>;
 }
 
 // @public
@@ -997,6 +1083,17 @@ export interface ResourceGroupProperties {
 }
 
 // @public
+export interface ResourceGroups {
+    checkExistence(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, parameters: ResourceGroup, options?: coreHttp.OperationOptions): Promise<ResourceGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<ResourceGroupsExportTemplateResponse>>;
+    get(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ResourceGroupsGetResponse>;
+    list(options?: ResourceGroupsListOptionalParams): PagedAsyncIterableIterator<ResourceGroup>;
+    update(resourceGroupName: string, parameters: ResourceGroupPatchable, options?: coreHttp.OperationOptions): Promise<ResourceGroupsUpdateResponse>;
+}
+
+// @public
 export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1069,32 +1166,18 @@ export interface ResourceListResult {
 // @public (undocumented)
 export class ResourceManagementClient extends ResourceManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ResourceManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "DeploymentOperations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     deploymentOperations: DeploymentOperations;
-    // Warning: (ae-forgotten-export) The symbol "Deployments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     deployments: Deployments;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "Providers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     providers: Providers;
-    // Warning: (ae-forgotten-export) The symbol "ResourceGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     resourceGroups: ResourceGroups;
-    // Warning: (ae-forgotten-export) The symbol "Resources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     resources: Resources;
-    // Warning: (ae-forgotten-export) The symbol "Tags" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     tags: Tags;
 }
@@ -1124,6 +1207,24 @@ export interface ResourceProviderOperationDisplayProperties {
     provider?: string;
     publisher?: string;
     resource?: string;
+}
+
+// @public
+export interface Resources {
+    checkExistence(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    checkExistenceById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<LROPoller<ResourcesCreateOrUpdateResponse>>;
+    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<LROPoller<ResourcesCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetResponse>;
+    getById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetByIdResponse>;
+    list(options?: ResourcesListOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
+    listByResourceGroup(resourceGroupName: string, options?: ResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
+    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<LROPoller<ResourcesUpdateResponse>>;
+    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<LROPoller<ResourcesUpdateByIdResponse>>;
+    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
 }
 
 // @public
@@ -1277,6 +1378,15 @@ export interface TagDetails {
     readonly id?: string;
     tagName?: string;
     values?: TagValue[];
+}
+
+// @public
+export interface Tags {
+    createOrUpdate(tagName: string, options?: coreHttp.OperationOptions): Promise<TagsCreateOrUpdateResponse>;
+    createOrUpdateValue(tagName: string, tagValue: string, options?: coreHttp.OperationOptions): Promise<TagsCreateOrUpdateValueResponse>;
+    delete(tagName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    deleteValue(tagName: string, tagValue: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TagDetails>;
 }
 
 // @public

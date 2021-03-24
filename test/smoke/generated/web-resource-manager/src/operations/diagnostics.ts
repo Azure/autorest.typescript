@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Diagnostics } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -59,7 +60,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Diagnostics. */
-export class Diagnostics {
+export class DiagnosticsImpl implements Diagnostics {
   private readonly client: WebSiteManagementClientContext;
 
   /**

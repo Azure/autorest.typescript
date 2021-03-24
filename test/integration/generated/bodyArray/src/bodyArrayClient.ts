@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Array } from "./operations";
+import { ArrayImpl } from "./operations";
+import { Array } from "./operationsInterfaces";
 import { BodyArrayClientContext } from "./bodyArrayClientContext";
 import { BodyArrayClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyArrayClient extends BodyArrayClientContext {
    */
   constructor(options?: BodyArrayClientOptionalParams) {
     super(options);
-    this.array = new Array(this);
+    this.array = new ArrayImpl(this);
   }
 
   array: Array;

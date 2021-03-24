@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PrivateLinkServices } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -40,7 +41,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a PrivateLinkServices. */
-export class PrivateLinkServices {
+export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private readonly client: NetworkManagementClientContext;
 
   /**

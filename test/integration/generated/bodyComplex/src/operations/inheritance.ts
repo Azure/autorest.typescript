@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Inheritance } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import { InheritanceGetValidResponse, Siamese } from "../models";
 
 /** Class representing a Inheritance. */
-export class Inheritance {
+export class InheritanceImpl implements Inheritance {
   private readonly client: BodyComplexClientContext;
 
   /**

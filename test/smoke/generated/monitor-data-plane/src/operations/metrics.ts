@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { Metrics } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -13,7 +14,7 @@ import { MonitorClientContext } from "../monitorClientContext";
 import { AzureMetricsDocument, MetricsCreateResponse } from "../models";
 
 /** Class representing a Metrics. */
-export class Metrics {
+export class MetricsImpl implements Metrics {
   private readonly client: MonitorClientContext;
 
   /**

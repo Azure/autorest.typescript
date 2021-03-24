@@ -8,6 +8,17 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  SignedInUserImpl,
+  ApplicationsImpl,
+  DeletedApplicationsImpl,
+  GroupsImpl,
+  ServicePrincipalsImpl,
+  UsersImpl,
+  ObjectsImpl,
+  DomainsImpl,
+  OAuth2PermissionGrantImpl
+} from "./operations";
+import {
   SignedInUser,
   Applications,
   DeletedApplications,
@@ -17,7 +28,7 @@ import {
   Objects,
   Domains,
   OAuth2PermissionGrant
-} from "./operations";
+} from "./operationsInterfaces";
 import { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
@@ -34,15 +45,15 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     options?: GraphRbacManagementClientOptionalParams
   ) {
     super(credentials, tenantID, options);
-    this.signedInUser = new SignedInUser(this);
-    this.applications = new Applications(this);
-    this.deletedApplications = new DeletedApplications(this);
-    this.groups = new Groups(this);
-    this.servicePrincipals = new ServicePrincipals(this);
-    this.users = new Users(this);
-    this.objects = new Objects(this);
-    this.domains = new Domains(this);
-    this.oAuth2PermissionGrant = new OAuth2PermissionGrant(this);
+    this.signedInUser = new SignedInUserImpl(this);
+    this.applications = new ApplicationsImpl(this);
+    this.deletedApplications = new DeletedApplicationsImpl(this);
+    this.groups = new GroupsImpl(this);
+    this.servicePrincipals = new ServicePrincipalsImpl(this);
+    this.users = new UsersImpl(this);
+    this.objects = new ObjectsImpl(this);
+    this.domains = new DomainsImpl(this);
+    this.oAuth2PermissionGrant = new OAuth2PermissionGrantImpl(this);
   }
 
   signedInUser: SignedInUser;

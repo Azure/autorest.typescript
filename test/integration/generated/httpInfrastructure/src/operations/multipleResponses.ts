@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { MultipleResponses } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -35,7 +36,7 @@ import {
 } from "../models";
 
 /** Class representing a MultipleResponses. */
-export class MultipleResponses {
+export class MultipleResponsesImpl implements MultipleResponses {
   private readonly client: HttpInfrastructureClientContext;
 
   /**

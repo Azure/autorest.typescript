@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { WebApplicationFirewallPolicies } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -25,7 +26,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a WebApplicationFirewallPolicies. */
-export class WebApplicationFirewallPolicies {
+export class WebApplicationFirewallPoliciesImpl
+  implements WebApplicationFirewallPolicies {
   private readonly client: NetworkManagementClientContext;
 
   /**

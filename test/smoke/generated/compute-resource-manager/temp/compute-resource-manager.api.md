@@ -93,6 +93,17 @@ export interface AvailabilitySetListResult {
 }
 
 // @public
+export interface AvailabilitySets {
+    createOrUpdate(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySet, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsGetResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailabilitySet>;
+    listAvailableSizes(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
+    listBySubscription(options?: AvailabilitySetsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<AvailabilitySet>;
+    update(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySetUpdate, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsUpdateResponse>;
+}
+
+// @public
 export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -220,124 +231,64 @@ export interface ComponentsNj115SSchemasVirtualmachinescalesetidentityProperties
 // @public (undocumented)
 export class ComputeManagementClient extends ComputeManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "AvailabilitySets" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     availabilitySets: AvailabilitySets;
-    // Warning: (ae-forgotten-export) The symbol "ContainerServices" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     containerServices: ContainerServices;
-    // Warning: (ae-forgotten-export) The symbol "DedicatedHostGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     dedicatedHostGroups: DedicatedHostGroups;
-    // Warning: (ae-forgotten-export) The symbol "DedicatedHosts" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     dedicatedHosts: DedicatedHosts;
-    // Warning: (ae-forgotten-export) The symbol "DiskEncryptionSets" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     diskEncryptionSets: DiskEncryptionSets;
-    // Warning: (ae-forgotten-export) The symbol "Disks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     disks: Disks;
-    // Warning: (ae-forgotten-export) The symbol "Galleries" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     galleries: Galleries;
-    // Warning: (ae-forgotten-export) The symbol "GalleryApplications" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     galleryApplications: GalleryApplications;
-    // Warning: (ae-forgotten-export) The symbol "GalleryApplicationVersions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     galleryApplicationVersions: GalleryApplicationVersions;
-    // Warning: (ae-forgotten-export) The symbol "GalleryImages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     galleryImages: GalleryImages;
-    // Warning: (ae-forgotten-export) The symbol "GalleryImageVersions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     galleryImageVersions: GalleryImageVersions;
-    // Warning: (ae-forgotten-export) The symbol "Images" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     images: Images;
-    // Warning: (ae-forgotten-export) The symbol "LogAnalytics" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     logAnalytics: LogAnalytics;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "ProximityPlacementGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     proximityPlacementGroups: ProximityPlacementGroups;
-    // Warning: (ae-forgotten-export) The symbol "ResourceSkus" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     resourceSkus: ResourceSkus;
-    // Warning: (ae-forgotten-export) The symbol "Snapshots" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     snapshots: Snapshots;
-    // Warning: (ae-forgotten-export) The symbol "SshPublicKeys" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     sshPublicKeys: SshPublicKeys;
-    // Warning: (ae-forgotten-export) The symbol "Usage" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    usage: Usage_2;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineExtensionImages" needs to be exported by the entry point index.d.ts
-    //
+    usage: Usage;
     // (undocumented)
     virtualMachineExtensionImages: VirtualMachineExtensionImages;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineExtensions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineExtensions: VirtualMachineExtensions;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineImages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineImages: VirtualMachineImages;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineRunCommands" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineRunCommands: VirtualMachineRunCommands;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachines" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachines: VirtualMachines;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetExtensions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineScaleSetExtensions: VirtualMachineScaleSetExtensions;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetRollingUpgrades" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineScaleSetRollingUpgrades: VirtualMachineScaleSetRollingUpgrades;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSets" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineScaleSets: VirtualMachineScaleSets;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetVMExtensions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineScaleSetVMExtensions: VirtualMachineScaleSetVMExtensions;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetVMs" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineScaleSetVMs: VirtualMachineScaleSetVMs;
-    // Warning: (ae-forgotten-export) The symbol "VirtualMachineSizes" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualMachineSizes: VirtualMachineSizes;
 }
@@ -435,6 +386,15 @@ export type ContainerServiceOrchestratorTypes = "Swarm" | "DCOS" | "Custom" | "K
 export interface ContainerServicePrincipalProfile {
     clientId: string;
     secret: string;
+}
+
+// @public
+export interface ContainerServices {
+    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: coreHttp.OperationOptions): Promise<LROPoller<ContainerServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<ContainerServicesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
 }
 
 // @public
@@ -587,6 +547,16 @@ export interface DedicatedHostGroupListResult {
 }
 
 // @public
+export interface DedicatedHostGroups {
+    createOrUpdate(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroup, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHostGroup>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHostGroup>;
+    update(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroupUpdate, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsUpdateResponse>;
+}
+
+// @public
 export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -663,6 +633,15 @@ export type DedicatedHostLicenseTypes = "None" | "Windows_Server_Hybrid" | "Wind
 export interface DedicatedHostListResult {
     nextLink?: string;
     value: DedicatedHost[];
+}
+
+// @public
+export interface DedicatedHosts {
+    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: coreHttp.OperationOptions): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<DedicatedHostsGetResponse>;
+    listByHostGroup(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHost>;
+    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DedicatedHostsUpdateResponse>>;
 }
 
 // @public
@@ -793,6 +772,16 @@ export interface DiskEncryptionSetList {
 export type DiskEncryptionSetParameters = SubResource & {};
 
 // @public
+export interface DiskEncryptionSets {
+    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: coreHttp.OperationOptions): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<DiskEncryptionSetsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
+    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DiskEncryptionSetsUpdateResponse>>;
+}
+
+// @public
 export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -881,6 +870,18 @@ export interface DiskInstanceView {
 export interface DiskList {
     nextLink?: string;
     value: Disk[];
+}
+
+// @public
+export interface Disks {
+    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<DisksGetResponse>;
+    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksGrantAccessResponse>>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
+    revokeAccess(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksUpdateResponse>>;
 }
 
 // @public
@@ -1018,6 +1019,16 @@ export type EncryptionType = string;
 export type Enum31 = number;
 
 // @public
+export interface Galleries {
+    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleriesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<GalleriesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
+    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleriesUpdateResponse>>;
+}
+
+// @public
 export type GalleriesCreateOrUpdateResponse = Gallery & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1099,6 +1110,15 @@ export interface GalleryApplicationList {
 }
 
 // @public
+export interface GalleryApplications {
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<GalleryApplicationsGetResponse>;
+    listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplication>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationsUpdateResponse>>;
+}
+
+// @public
 export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1172,6 +1192,15 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
     contentType?: string;
     enableHealthCheck?: boolean;
 };
+
+// @public
+export interface GalleryApplicationVersions {
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsGetOptionalParams): Promise<GalleryApplicationVersionsGetResponse>;
+    listByGalleryApplication(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplicationVersion>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationVersionsUpdateResponse>>;
+}
 
 // @public
 export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicationVersion & {
@@ -1298,6 +1327,15 @@ export interface GalleryImageList {
 export type GalleryImagePropertiesProvisioningState = string;
 
 // @public
+export interface GalleryImages {
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<GalleryImagesGetResponse>;
+    listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImage>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImagesUpdateResponse>>;
+}
+
+// @public
 export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1375,6 +1413,15 @@ export type GalleryImageVersionPropertiesProvisioningState = string;
 
 // @public
 export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {};
+
+// @public
+export interface GalleryImageVersions {
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImageVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsGetOptionalParams): Promise<GalleryImageVersionsGetResponse>;
+    listByGalleryImage(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImageVersion>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImageVersionsUpdateResponse>>;
+}
 
 // @public
 export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
@@ -1540,6 +1587,16 @@ export type ImageReference = SubResource & {
     version?: string;
     readonly exactVersion?: string;
 };
+
+// @public
+export interface Images {
+    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: coreHttp.OperationOptions): Promise<LROPoller<ImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, imageName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
+    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ImagesUpdateResponse>>;
+}
 
 // @public
 export type ImagesCreateOrUpdateResponse = Image_2 & {
@@ -2416,7 +2473,13 @@ export interface LinuxConfiguration {
 // @public
 export interface ListUsagesResult {
     nextLink?: string;
-    value: Usage[];
+    value: UsageDef[];
+}
+
+// @public
+export interface LogAnalytics {
+    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: coreHttp.OperationOptions): Promise<LROPoller<LogAnalyticsExportRequestRateByIntervalResponse>>;
+    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: coreHttp.OperationOptions): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>>;
 }
 
 // @public
@@ -2456,6 +2519,16 @@ export interface LogAnalyticsOperationResult {
 export interface LogAnalyticsOutput {
     readonly output?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
 
 // @public
 export type MaintenanceOperationResultCodeTypes = "None" | "RetryLater" | "MaintenanceAborted" | "MaintenanceCompleted";
@@ -2497,6 +2570,11 @@ export type OperatingSystemStateTypes = "Generalized" | "Specialized";
 
 // @public
 export type OperatingSystemTypes = "Windows" | "Linux";
+
+// @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ComputeOperationValue>;
+}
 
 // @public
 export type OperationsListResponse = ComputeOperationListResult & {
@@ -2587,6 +2665,16 @@ export type ProximityPlacementGroup = Resource & {
 export interface ProximityPlacementGroupListResult {
     nextLink?: string;
     value: ProximityPlacementGroup[];
+}
+
+// @public
+export interface ProximityPlacementGroups {
+    createOrUpdate(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroup, options?: coreHttp.OperationOptions): Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, proximityPlacementGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsGetOptionalParams): Promise<ProximityPlacementGroupsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProximityPlacementGroup>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProximityPlacementGroup>;
+    update(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroupUpdate, options?: coreHttp.OperationOptions): Promise<ProximityPlacementGroupsUpdateResponse>;
 }
 
 // @public
@@ -2789,6 +2877,11 @@ export type ResourceSkuRestrictionsReasonCode = "QuotaId" | "NotAvailableForSubs
 export type ResourceSkuRestrictionsType = "Location" | "Zone";
 
 // @public
+export interface ResourceSkus {
+    list(options?: ResourceSkusListOptionalParams): PagedAsyncIterableIterator<ResourceSku>;
+}
+
+// @public
 export interface ResourceSkusListNextOptionalParams extends coreHttp.OperationOptions {
     filter?: string;
 }
@@ -2967,6 +3060,18 @@ export interface SnapshotList {
 }
 
 // @public
+export interface Snapshots {
+    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<SnapshotsGetResponse>;
+    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsGrantAccessResponse>>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
+    revokeAccess(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsUpdateResponse>>;
+}
+
+// @public
 export type SnapshotsCreateOrUpdateResponse = Snapshot & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3081,6 +3186,17 @@ export interface SshPublicKeyGenerateKeyPairResult {
 export type SshPublicKeyResource = Resource & {
     publicKey?: string;
 };
+
+// @public
+export interface SshPublicKeys {
+    create(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyResource, options?: coreHttp.OperationOptions): Promise<SshPublicKeysCreateResponse>;
+    delete(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    generateKeyPair(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<SshPublicKeysGenerateKeyPairResponse>;
+    get(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<SshPublicKeysGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SshPublicKeyResource>;
+    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SshPublicKeyResource>;
+    update(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyUpdateResource, options?: coreHttp.OperationOptions): Promise<SshPublicKeysUpdateResponse>;
+}
 
 // @public
 export type SshPublicKeysCreateResponse = SshPublicKeyResource & {
@@ -3264,6 +3380,11 @@ export type UpgradeState = "RollingForward" | "Cancelled" | "Completed" | "Fault
 
 // @public
 export interface Usage {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<UsageDef>;
+}
+
+// @public
+export interface UsageDef {
     currentValue: number;
     limit: number;
     name: UsageName;
@@ -3395,6 +3516,13 @@ export type VirtualMachineExtensionImage = Resource & {
 };
 
 // @public
+export interface VirtualMachineExtensionImages {
+    get(location: string, publisherName: string, version: string, typeParam: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineExtensionImagesGetResponse>;
+    listTypes(location: string, publisherName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineExtensionImagesListTypesResponse>;
+    listVersions(location: string, publisherName: string, typeParam: string, options?: VirtualMachineExtensionImagesListVersionsOptionalParams): Promise<VirtualMachineExtensionImagesListVersionsResponse>;
+}
+
+// @public
 export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3434,6 +3562,15 @@ export interface VirtualMachineExtensionInstanceView {
     substatuses?: InstanceViewStatus[];
     type?: string;
     typeHandlerVersion?: string;
+}
+
+// @public
+export interface VirtualMachineExtensions {
+    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsGetOptionalParams): Promise<VirtualMachineExtensionsGetResponse>;
+    list(resourceGroupName: string, vmName: string, options?: VirtualMachineExtensionsListOptionalParams): Promise<VirtualMachineExtensionsListResponse>;
+    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -3530,6 +3667,15 @@ export type VirtualMachineImageResource = SubResource & {
 };
 
 // @public
+export interface VirtualMachineImages {
+    get(location: string, publisherName: string, offer: string, skus: string, version: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesGetResponse>;
+    list(location: string, publisherName: string, offer: string, skus: string, options?: VirtualMachineImagesListOptionalParams): Promise<VirtualMachineImagesListResponse>;
+    listOffers(location: string, publisherName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListOffersResponse>;
+    listPublishers(location: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListPublishersResponse>;
+    listSkus(location: string, publisherName: string, offer: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListSkusResponse>;
+}
+
+// @public
 export type VirtualMachineImagesGetResponse = VirtualMachineImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3610,6 +3756,12 @@ export interface VirtualMachineReimageParameters {
 }
 
 // @public
+export interface VirtualMachineRunCommands {
+    get(location: string, commandId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineRunCommandsGetResponse>;
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RunCommandDocumentBase>;
+}
+
+// @public
 export type VirtualMachineRunCommandsGetResponse = RunCommandDocument & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3632,6 +3784,32 @@ export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
         parsedBody: RunCommandListResult;
     };
 };
+
+// @public
+export interface VirtualMachines {
+    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesCaptureResponse>>;
+    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesCreateOrUpdateResponse>>;
+    deallocate(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    generalize(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesGetResponse>;
+    instanceView(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesInstanceViewResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachine>;
+    listAll(options?: VirtualMachinesListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
+    listAvailableSizes(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
+    listByLocation(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachine>;
+    performMaintenance(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    reapply(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesRunCommandResponse>>;
+    simulateEviction(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    start(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesUpdateResponse>>;
+}
 
 // @public
 export type VirtualMachineScaleSet = Resource & {
@@ -3691,6 +3869,15 @@ export interface VirtualMachineScaleSetExtensionListResult {
 // @public
 export interface VirtualMachineScaleSetExtensionProfile {
     extensions?: VirtualMachineScaleSetExtension[];
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensions {
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetExtensionsGetResponse>;
+    list(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
+    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -3895,12 +4082,46 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 };
 
 // @public
+export interface VirtualMachineScaleSetRollingUpgrades {
+    cancel(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    getLatest(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
+    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgradeStatusInfo & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RollingUpgradeStatusInfo;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSets {
+    convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetsCreateOrUpdateResponse>>;
+    deallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
+    get(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetResponse>;
+    getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
+    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
+    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
+    listOSUpgradeHistory(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
+    listSkus(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
+    performMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    reimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    start(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetsUpdateResponse>>;
+    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
 
 // @public
 export type VirtualMachineScaleSetScaleInRules = string;
@@ -4192,6 +4413,15 @@ export type VirtualMachineScaleSetVM = Resource & {
 };
 
 // @public
+export interface VirtualMachineScaleSetVMExtensions {
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsGetResponse>;
+    list(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMExtensionsListOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsListResponse>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
+}
+
+// @public
 export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMachineExtension & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4299,6 +4529,25 @@ export interface VirtualMachineScaleSetVMProtectionPolicy {
 
 // @public
 export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters & {};
+
+// @public
+export interface VirtualMachineScaleSetVMs {
+    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetResponse>;
+    getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
+    list(resourceGroupName: string, virtualMachineScaleSetName: string, options?: VirtualMachineScaleSetVMsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetVM>;
+    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMsRunCommandResponse>>;
+    simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMsUpdateResponse>>;
+}
 
 // @public
 export type VirtualMachineScaleSetVMsGetInstanceViewResponse = VirtualMachineScaleSetVMInstanceView & {
@@ -4421,6 +4670,11 @@ export interface VirtualMachineSize {
 // @public
 export interface VirtualMachineSizeListResult {
     value?: VirtualMachineSize[];
+}
+
+// @public
+export interface VirtualMachineSizes {
+    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
 }
 
 // @public

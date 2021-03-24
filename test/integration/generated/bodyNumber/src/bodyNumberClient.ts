@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { NumberOperations } from "./operations";
+import { NumberOperationsImpl } from "./operations";
+import { NumberOperations } from "./operationsInterfaces";
 import { BodyNumberClientContext } from "./bodyNumberClientContext";
 import { BodyNumberClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyNumberClient extends BodyNumberClientContext {
    */
   constructor(options?: BodyNumberClientOptionalParams) {
     super(options);
-    this.number = new NumberOperations(this);
+    this.number = new NumberOperationsImpl(this);
   }
 
   number: NumberOperations;

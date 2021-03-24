@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Certificates } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -26,7 +27,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Certificates. */
-export class Certificates {
+export class CertificatesImpl implements Certificates {
   private readonly client: WebSiteManagementClientContext;
 
   /**

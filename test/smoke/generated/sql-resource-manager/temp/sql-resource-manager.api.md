@@ -74,6 +74,13 @@ export interface AutoPauseDelayTimeRange {
 }
 
 // @public
+export interface BackupLongTermRetentionPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: BackupLongTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<BackupLongTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
+}
+
+// @public
 export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTermRetentionPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -105,6 +112,14 @@ export type BackupLongTermRetentionPolicy = ProxyResource & {
     yearlyRetention?: string;
     weekOfYear?: number;
 };
+
+// @public
+export interface BackupShortTermRetentionPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<BackupShortTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<BackupShortTermRetentionPoliciesUpdateResponse>>;
+}
 
 // @public
 export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShortTermRetentionPolicy & {
@@ -161,6 +176,11 @@ export interface BackupShortTermRetentionPolicyListResult {
 
 // @public
 export type BlobAuditingPolicyState = "Enabled" | "Disabled";
+
+// @public
+export interface Capabilities {
+    listByLocation(locationName: string, options?: CapabilitiesListByLocationOptionalParams): Promise<CapabilitiesListByLocationResponse>;
+}
 
 // @public
 export interface CapabilitiesListByLocationOptionalParams extends coreHttp.OperationOptions {
@@ -258,7 +278,13 @@ export type Database = TrackedResource & {
 };
 
 // @public
-export type DatabaseAutomaticTuning = ProxyResource & {
+export interface DatabaseAutomaticTuning {
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuningDef, options?: coreHttp.OperationOptions): Promise<DatabaseAutomaticTuningUpdateResponse>;
+}
+
+// @public
+export type DatabaseAutomaticTuningDef = ProxyResource & {
     desiredState?: AutomaticTuningMode;
     readonly actualState?: AutomaticTuningMode;
     options?: {
@@ -267,20 +293,27 @@ export type DatabaseAutomaticTuning = ProxyResource & {
 };
 
 // @public
-export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning & {
+export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: DatabaseAutomaticTuning;
+        parsedBody: DatabaseAutomaticTuningDef;
     };
 };
 
 // @public
-export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning & {
+export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: DatabaseAutomaticTuning;
+        parsedBody: DatabaseAutomaticTuningDef;
     };
 };
+
+// @public
+export interface DatabaseBlobAuditingPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
+}
 
 // @public
 export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAuditingPolicy & {
@@ -371,6 +404,12 @@ export interface DatabaseOperationListResult {
 }
 
 // @public
+export interface DatabaseOperations {
+    cancel(resourceGroupName: string, serverName: string, databaseName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseOperation>;
+}
+
+// @public
 export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -388,6 +427,26 @@ export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResu
 
 // @public
 export type DatabaseReadScale = string;
+
+// @public
+export interface Databases {
+    createImportOperation(resourceGroupName: string, serverName: string, databaseName: string, extensionName: ExtensionName, parameters: ImportExtensionRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesCreateImportOperationResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: Database, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    export(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesExportResponse>>;
+    failover(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesFailoverOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabasesGetResponse>;
+    import(resourceGroupName: string, serverName: string, parameters: ImportRequest, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesImportResponse>>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Database>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Database>;
+    listMetricDefinitions(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, serverName: string, databaseName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+    pause(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesPauseResponse>>;
+    rename(resourceGroupName: string, serverName: string, databaseName: string, parameters: ResourceMoveDefinition, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    resume(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesResumeResponse>>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabasesUpdateResponse>>;
+    upgradeDataWarehouse(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
 
 // @public
 export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
@@ -534,6 +593,12 @@ export type DatabasesUpdateResponse = Database & {
 };
 
 // @public
+export interface DatabaseThreatDetectionPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: DatabaseSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: coreHttp.OperationOptions): Promise<DatabaseThreatDetectionPoliciesGetResponse>;
+}
+
+// @public
 export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -605,6 +670,11 @@ export interface DatabaseUsageListResult {
 }
 
 // @public
+export interface DatabaseUsages {
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseUsage>;
+}
+
+// @public
 export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -637,6 +707,13 @@ export interface DatabaseVulnerabilityAssessmentRuleBaselineItem {
 }
 
 // @public
+export interface DatabaseVulnerabilityAssessmentRuleBaselines {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -651,6 +728,22 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVu
         parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
     };
 };
+
+// @public
+export interface DatabaseVulnerabilityAssessments {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
+}
+
+// @public
+export interface DatabaseVulnerabilityAssessmentScans {
+    export(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentScansExportResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentScansGetResponse>;
+    initiateScan(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
+}
 
 // @public
 export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
@@ -725,6 +818,12 @@ export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVul
 export type DataMaskingFunction = "Default" | "CCN" | "Email" | "Number" | "SSN" | "Text";
 
 // @public
+export interface DataMaskingPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DataMaskingPolicy, options?: coreHttp.OperationOptions): Promise<DataMaskingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DataMaskingPoliciesGetResponse>;
+}
+
+// @public
 export type DataMaskingPoliciesCreateOrUpdateResponse = DataMaskingPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -774,6 +873,12 @@ export interface DataMaskingRuleListResult {
 }
 
 // @public
+export interface DataMaskingRules {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, dataMaskingRuleName: string, parameters: DataMaskingRule, options?: coreHttp.OperationOptions): Promise<DataMaskingRulesCreateOrUpdateResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DataMaskingRule>;
+}
+
+// @public
 export type DataMaskingRulesCreateOrUpdateResponse = DataMaskingRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -819,6 +924,11 @@ export type ElasticPool = TrackedResource & {
 };
 
 // @public
+export interface ElasticPoolActivities {
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolActivity>;
+}
+
+// @public
 export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivityListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -854,6 +964,11 @@ export type ElasticPoolActivity = ProxyResource & {
 // @public
 export interface ElasticPoolActivityListResult {
     value: ElasticPoolActivity[];
+}
+
+// @public
+export interface ElasticPoolDatabaseActivities {
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolDatabaseActivity>;
 }
 
 // @public
@@ -935,6 +1050,12 @@ export interface ElasticPoolOperationListResult {
 }
 
 // @public
+export interface ElasticPoolOperations {
+    cancel(resourceGroupName: string, serverName: string, elasticPoolName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolOperation>;
+}
+
+// @public
 export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -986,6 +1107,18 @@ export interface ElasticPoolPerformanceLevelCapability {
     readonly supportedPerDatabaseMaxPerformanceLevels?: ElasticPoolPerDatabaseMaxPerformanceLevelCapability[];
     readonly supportedPerDatabaseMaxSizes?: MaxSizeRangeCapability[];
     readonly zoneRedundant?: boolean;
+}
+
+// @public
+export interface ElasticPools {
+    createOrUpdate(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPool, options?: coreHttp.OperationOptions): Promise<LROPoller<ElasticPoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<ElasticPoolsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ElasticPoolsListByServerOptionalParams): PagedAsyncIterableIterator<ElasticPool>;
+    listMetricDefinitions(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, serverName: string, elasticPoolName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
+    update(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPoolUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ElasticPoolsUpdateResponse>>;
 }
 
 // @public
@@ -1092,6 +1225,14 @@ export interface EncryptionProtectorListResult {
 export type EncryptionProtectorName = string;
 
 // @public
+export interface EncryptionProtectors {
+    createOrUpdate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, parameters: EncryptionProtector, options?: coreHttp.OperationOptions): Promise<LROPoller<EncryptionProtectorsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<EncryptionProtectorsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<EncryptionProtector>;
+    revalidate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1135,6 +1276,13 @@ export interface ExportRequest {
     storageKey: string;
     storageKeyType: StorageKeyType;
     storageUri: string;
+}
+
+// @public
+export interface ExtendedDatabaseBlobAuditingPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExtendedDatabaseBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy>;
 }
 
 // @public
@@ -1187,6 +1335,13 @@ export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
 export interface ExtendedDatabaseBlobAuditingPolicyListResult {
     readonly nextLink?: string;
     readonly value?: ExtendedDatabaseBlobAuditingPolicy[];
+}
+
+// @public
+export interface ExtendedServerBlobAuditingPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ExtendedServerBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
 }
 
 // @public
@@ -1280,6 +1435,17 @@ export interface FailoverGroupReadWriteEndpoint {
 export type FailoverGroupReplicationRole = string;
 
 // @public
+export interface FailoverGroups {
+    createOrUpdate(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<FailoverGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<FailoverGroupsFailoverResponse>>;
+    forceFailoverAllowDataLoss(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<FailoverGroupsForceFailoverAllowDataLossResponse>>;
+    get(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<FailoverGroupsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FailoverGroup>;
+    update(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroupUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<FailoverGroupsUpdateResponse>>;
+}
+
+// @public
 export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1363,6 +1529,14 @@ export interface FirewallRuleListResult {
 }
 
 // @public
+export interface FirewallRules {
+    createOrUpdate(resourceGroupName: string, serverName: string, firewallRuleName: string, parameters: FirewallRule, options?: coreHttp.OperationOptions): Promise<FirewallRulesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: coreHttp.OperationOptions): Promise<FirewallRulesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallRule>;
+}
+
+// @public
 export type FirewallRulesCreateOrUpdateResponse = FirewallRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1385,6 +1559,13 @@ export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
         parsedBody: FirewallRuleListResult;
     };
 };
+
+// @public
+export interface GeoBackupPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, parameters: GeoBackupPolicy, options?: coreHttp.OperationOptions): Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, options?: coreHttp.OperationOptions): Promise<GeoBackupPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GeoBackupPolicy>;
+}
 
 // @public
 export type GeoBackupPoliciesCreateOrUpdateResponse = GeoBackupPolicy & {
@@ -1502,6 +1683,16 @@ export interface InstanceFailoverGroupReadWriteEndpoint {
 export type InstanceFailoverGroupReplicationRole = string;
 
 // @public
+export interface InstanceFailoverGroups {
+    createOrUpdate(resourceGroupName: string, locationName: string, failoverGroupName: string, parameters: InstanceFailoverGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<InstanceFailoverGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<InstanceFailoverGroupsFailoverResponse>>;
+    forceFailoverAllowDataLoss(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>>;
+    get(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<InstanceFailoverGroupsGetResponse>;
+    listByLocation(resourceGroupName: string, locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstanceFailoverGroup>;
+}
+
+// @public
 export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1584,6 +1775,16 @@ export type InstancePoolLicenseType = string;
 export interface InstancePoolListResult {
     readonly nextLink?: string;
     readonly value?: InstancePool[];
+}
+
+// @public
+export interface InstancePools {
+    createOrUpdate(resourceGroupName: string, instancePoolName: string, parameters: InstancePool, options?: coreHttp.OperationOptions): Promise<LROPoller<InstancePoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): Promise<InstancePoolsGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstancePool>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstancePool>;
+    update(resourceGroupName: string, instancePoolName: string, parameters: InstancePoolUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<InstancePoolsUpdateResponse>>;
 }
 
 // @public
@@ -1681,6 +1882,15 @@ export interface JobAgentListResult {
 }
 
 // @public
+export interface JobAgents {
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgent, options?: coreHttp.OperationOptions): Promise<LROPoller<JobAgentsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): Promise<JobAgentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobAgent>;
+    update(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgentUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<JobAgentsUpdateResponse>>;
+}
+
+// @public
 export type JobAgentsCreateOrUpdateResponse = JobAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1745,6 +1955,14 @@ export interface JobCredentialListResult {
 }
 
 // @public
+export interface JobCredentials {
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, parameters: JobCredential, options?: coreHttp.OperationOptions): Promise<JobCredentialsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: coreHttp.OperationOptions): Promise<JobCredentialsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobCredential>;
+}
+
+// @public
 export type JobCredentialsCreateOrUpdateResponse = JobCredential & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1800,6 +2018,16 @@ export type JobExecutionLifecycle = string;
 export interface JobExecutionListResult {
     readonly nextLink?: string;
     readonly value?: JobExecution[];
+}
+
+// @public
+export interface JobExecutions {
+    cancel(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    create(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<JobExecutionsCreateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<JobExecutionsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<JobExecutionsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobExecutionsListByAgentOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobExecutionsListByJobOptionalParams): PagedAsyncIterableIterator<JobExecution>;
 }
 
 // @public
@@ -1918,6 +2146,14 @@ export interface JobListResult {
 }
 
 // @public
+export interface Jobs {
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, parameters: Job, options?: coreHttp.OperationOptions): Promise<JobsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<JobsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Job>;
+}
+
+// @public
 export interface JobSchedule {
     enabled?: boolean;
     endTime?: Date;
@@ -1994,6 +2230,12 @@ export interface JobStepExecutionOptions {
 }
 
 // @public
+export interface JobStepExecutions {
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepExecutionsGetResponse>;
+    listByJobExecution(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobStepExecutionsListByJobExecutionOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+}
+
+// @public
 export type JobStepExecutionsGetResponse = JobExecution & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2061,6 +2303,16 @@ export interface JobStepOutput {
 export type JobStepOutputType = string;
 
 // @public
+export interface JobSteps {
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, parameters: JobStep, options?: coreHttp.OperationOptions): Promise<JobStepsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepsGetResponse>;
+    getByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepsGetByVersionResponse>;
+    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobStep>;
+    listByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobStep>;
+}
+
+// @public
 export type JobStepsCreateOrUpdateResponse = JobStep & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2125,6 +2377,13 @@ export interface JobTarget {
     serverName?: string;
     shardMapName?: string;
     type: JobTargetType;
+}
+
+// @public
+export interface JobTargetExecutions {
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, targetId: string, options?: coreHttp.OperationOptions): Promise<JobTargetExecutionsGetResponse>;
+    listByJobExecution(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobTargetExecutionsListByJobExecutionOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+    listByStep(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, options?: JobTargetExecutionsListByStepOptionalParams): PagedAsyncIterableIterator<JobExecution>;
 }
 
 // @public
@@ -2226,6 +2485,14 @@ export interface JobTargetGroupListResult {
 export type JobTargetGroupMembershipType = "Include" | "Exclude";
 
 // @public
+export interface JobTargetGroups {
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, parameters: JobTargetGroup, options?: coreHttp.OperationOptions): Promise<JobTargetGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: coreHttp.OperationOptions): Promise<JobTargetGroupsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobTargetGroup>;
+}
+
+// @public
 export type JobTargetGroupsCreateOrUpdateResponse = JobTargetGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2267,6 +2534,12 @@ export type JobVersion = ProxyResource & {};
 export interface JobVersionListResult {
     readonly nextLink?: string;
     readonly value?: JobVersion[];
+}
+
+// @public
+export interface JobVersions {
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: coreHttp.OperationOptions): Promise<JobVersionsGetResponse>;
+    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobVersion>;
 }
 
 // @public
@@ -3307,6 +3580,20 @@ export interface LongTermRetentionBackupListResult {
 }
 
 // @public
+export interface LongTermRetentionBackups {
+    delete(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionBackupsGetResponse>;
+    getByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
+    listByDatabase(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, options?: LongTermRetentionBackupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+    listByLocation(locationName: string, options?: LongTermRetentionBackupsListByLocationOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+    listByResourceGroupDatabase(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+    listByResourceGroupLocation(resourceGroupName: string, locationName: string, options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+    listByResourceGroupServer(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+    listByServer(locationName: string, longTermRetentionServerName: string, options?: LongTermRetentionBackupsListByServerOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
+}
+
+// @public
 export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetentionBackup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3492,6 +3779,20 @@ export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBack
 
 // @public
 export type LongTermRetentionDatabaseState = string;
+
+// @public
+export interface LongTermRetentionManagedInstanceBackups {
+    delete(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deleteByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionManagedInstanceBackupsGetResponse>;
+    getByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse>;
+    listByDatabase(locationName: string, managedInstanceName: string, databaseName: string, options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+    listByInstance(locationName: string, managedInstanceName: string, options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+    listByLocation(locationName: string, options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+    listByResourceGroupDatabase(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+    listByResourceGroupInstance(resourceGroupName: string, locationName: string, managedInstanceName: string, options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+    listByResourceGroupLocation(resourceGroupName: string, locationName: string, options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
+}
 
 // @public
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
@@ -3680,6 +3981,24 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationRe
 // @public
 export type LongTermRetentionPolicyName = string;
 
+// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
+    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
+    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
+    delay(): Promise<void>;
+    }
+
+// @public
+export interface ManagedBackupShortTermRetentionPolicies {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedBackupShortTermRetentionPoliciesUpdateResponse>>;
+}
+
 // @public
 export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
     _response: coreHttp.HttpResponse & {
@@ -3762,6 +4081,11 @@ export interface ManagedDatabaseListResult {
 }
 
 // @public
+export interface ManagedDatabaseRestoreDetails {
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, restoreDetailsName: RestoreDetailsName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseRestoreDetailsGetResponse>;
+}
+
+// @public
 export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDetailsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3784,6 +4108,17 @@ export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
 };
 
 // @public
+export interface ManagedDatabases {
+    completeRestore(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: CompleteDatabaseRestoreDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabase, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedDatabasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabase>;
+    listInaccessibleByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabase>;
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabaseUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedDatabasesUpdateResponse>>;
+}
+
+// @public
 export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3791,6 +4126,13 @@ export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
         [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedDatabaseSecurityAlertPolicies {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ManagedDatabaseSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy>;
+}
 
 // @public
 export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = ManagedDatabaseSecurityAlertPolicy & {
@@ -3840,6 +4182,17 @@ export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
 export interface ManagedDatabaseSecurityAlertPolicyListResult {
     readonly nextLink?: string;
     readonly value?: ManagedDatabaseSecurityAlertPolicy[];
+}
+
+// @public
+export interface ManagedDatabaseSensitivityLabels {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    enableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
+    listCurrentByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+    listRecommendedByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
 }
 
 // @public
@@ -3991,6 +4344,13 @@ export interface ManagedDatabaseUpdate {
 }
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselines {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4005,6 +4365,22 @@ export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = Dat
         parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
     };
 };
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessments {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentsGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentScans {
+    export(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentScansExportResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentScansGetResponse>;
+    initiateScan(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
+}
 
 // @public
 export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
@@ -4110,6 +4486,14 @@ export interface ManagedInstanceAdministratorListResult {
 }
 
 // @public
+export interface ManagedInstanceAdministrators {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceAdministrator, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceAdministratorsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
+}
+
+// @public
 export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanceAdministrator & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4169,6 +4553,14 @@ export interface ManagedInstanceEncryptionProtectorListResult {
 }
 
 // @public
+export interface ManagedInstanceEncryptionProtectors {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, parameters: ManagedInstanceEncryptionProtector, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector>;
+    revalidate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedInstanceEncryptionProtector & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4224,6 +4616,14 @@ export type ManagedInstanceKey = ProxyResource & {
 export interface ManagedInstanceKeyListResult {
     readonly nextLink?: string;
     readonly value?: ManagedInstanceKey[];
+}
+
+// @public
+export interface ManagedInstanceKeys {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, keyName: string, parameters: ManagedInstanceKey, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstanceKeysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceKeysGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceKeysListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceKey>;
 }
 
 // @public
@@ -4292,6 +4692,13 @@ export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
 export interface ManagedInstanceLongTermRetentionBackupListResult {
     readonly nextLink?: string;
     readonly value?: ManagedInstanceLongTermRetentionBackup[];
+}
+
+// @public
+export interface ManagedInstanceLongTermRetentionPolicies {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, parameters: ManagedInstanceLongTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy>;
 }
 
 // @public
@@ -4368,6 +4775,13 @@ export interface ManagedInstanceOperationListResult {
 }
 
 // @public
+export interface ManagedInstanceOperations {
+    cancel(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceOperationsGetResponse>;
+    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceOperation>;
+}
+
+// @public
 export type ManagedInstanceOperationsGetResponse = ManagedInstanceOperation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4399,6 +4813,17 @@ export interface ManagedInstancePairInfo {
 
 // @public
 export type ManagedInstanceProxyOverride = string;
+
+// @public
+export interface ManagedInstances {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstance, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstancesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstancesGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
+    listByInstancePool(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
+    update(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedInstancesUpdateResponse>>;
+}
 
 // @public
 export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
@@ -4475,6 +4900,11 @@ export type ManagedInstancesUpdateResponse = ManagedInstance & {
 };
 
 // @public
+export interface ManagedInstanceTdeCertificates {
+    create(resourceGroupName: string, managedInstanceName: string, parameters: TdeCertificate, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export interface ManagedInstanceUpdate {
     administratorLogin?: string;
     administratorLoginPassword?: string;
@@ -4537,6 +4967,14 @@ export interface ManagedInstanceVulnerabilityAssessmentListResult {
 }
 
 // @public
+export interface ManagedInstanceVulnerabilityAssessments {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ManagedInstanceVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceVulnerabilityAssessmentsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceVulnerabilityAssessment>;
+}
+
+// @public
 export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = ManagedInstanceVulnerabilityAssessment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4567,6 +5005,14 @@ export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = Mana
         parsedBody: ManagedInstanceVulnerabilityAssessmentListResult;
     };
 };
+
+// @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse>;
+    listByRestorableDroppedDatabase(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse>>;
+}
 
 // @public
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -4612,6 +5058,13 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
 
 // @public
 export type ManagedServerCreateMode = string;
+
+// @public
+export interface ManagedServerSecurityAlertPolicies {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ManagedServerSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: coreHttp.OperationOptions): Promise<ManagedServerSecurityAlertPoliciesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy>;
+}
 
 // @public
 export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy & {
@@ -4789,6 +5242,11 @@ export interface OperationListResult {
 export type OperationOrigin = string;
 
 // @public
+export interface Operations {
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
 export type OperationsListNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4853,6 +5311,14 @@ export interface PrivateEndpointConnectionProperties {
 }
 
 // @public
+export interface PrivateEndpointConnections {
+    createOrUpdate(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateEndpointConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+}
+
+// @public
 export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4908,6 +5374,12 @@ export interface PrivateLinkResourceListResult {
 export interface PrivateLinkResourceProperties {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
+}
+
+// @public
+export interface PrivateLinkResources {
+    get(resourceGroupName: string, serverName: string, groupName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkResource>;
 }
 
 // @public
@@ -5006,6 +5478,13 @@ export interface RecommendedElasticPoolMetric {
 }
 
 // @public
+export interface RecommendedElasticPools {
+    get(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: coreHttp.OperationOptions): Promise<RecommendedElasticPoolsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecommendedElasticPool>;
+    listMetrics(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecommendedElasticPoolMetric>;
+}
+
+// @public
 export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5068,6 +5547,12 @@ export interface RecoverableDatabaseListResult {
 }
 
 // @public
+export interface RecoverableDatabases {
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<RecoverableDatabasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecoverableDatabase>;
+}
+
+// @public
 export type RecoverableDatabasesGetResponse = RecoverableDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5092,6 +5577,12 @@ export type RecoverableManagedDatabase = ProxyResource & {
 export interface RecoverableManagedDatabaseListResult {
     readonly nextLink?: string;
     readonly value?: RecoverableManagedDatabase[];
+}
+
+// @public
+export interface RecoverableManagedDatabases {
+    get(resourceGroupName: string, managedInstanceName: string, recoverableDatabaseName: string, options?: coreHttp.OperationOptions): Promise<RecoverableManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecoverableManagedDatabase>;
 }
 
 // @public
@@ -5136,6 +5627,16 @@ export type ReplicationLink = ProxyResource & {
 // @public
 export interface ReplicationLinkListResult {
     value?: ReplicationLink[];
+}
+
+// @public
+export interface ReplicationLinks {
+    delete(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    failover(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    failoverAllowDataLoss(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<ReplicationLinksGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ReplicationLink>;
+    unlink(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, parameters: UnlinkParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
 }
 
 // @public
@@ -5201,6 +5702,12 @@ export interface RestorableDroppedDatabaseListResult {
 }
 
 // @public
+export interface RestorableDroppedDatabases {
+    get(resourceGroupName: string, serverName: string, restorableDroppededDatabaseId: string, options?: coreHttp.OperationOptions): Promise<RestorableDroppedDatabasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
+}
+
+// @public
 export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5228,6 +5735,12 @@ export type RestorableDroppedManagedDatabase = TrackedResource & {
 export interface RestorableDroppedManagedDatabaseListResult {
     readonly nextLink?: string;
     readonly value?: RestorableDroppedManagedDatabase[];
+}
+
+// @public
+export interface RestorableDroppedManagedDatabases {
+    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: coreHttp.OperationOptions): Promise<RestorableDroppedManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase>;
 }
 
 // @public
@@ -5270,6 +5783,14 @@ export type RestorePoint = ProxyResource & {
 export interface RestorePointListResult {
     readonly nextLink?: string;
     readonly value?: RestorePoint[];
+}
+
+// @public
+export interface RestorePoints {
+    create(resourceGroupName: string, serverName: string, databaseName: string, parameters: CreateDatabaseRestorePointDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<RestorePointsCreateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: coreHttp.OperationOptions): Promise<RestorePointsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorePoint>;
 }
 
 // @public
@@ -5336,6 +5857,17 @@ export interface SensitivityLabelListResult {
 
 // @public
 export type SensitivityLabelRank = "None" | "Low" | "Medium" | "High" | "Critical";
+
+// @public
+export interface SensitivityLabels {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: coreHttp.OperationOptions): Promise<SensitivityLabelsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    disableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    enableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: coreHttp.OperationOptions): Promise<SensitivityLabelsGetResponse>;
+    listCurrentByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+    listRecommendedByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+}
 
 // @public
 export type SensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
@@ -5429,7 +5961,13 @@ export type Server = TrackedResource & {
 };
 
 // @public
-export type ServerAutomaticTuning = ProxyResource & {
+export interface ServerAutomaticTuning {
+    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServerAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuningDef, options?: coreHttp.OperationOptions): Promise<ServerAutomaticTuningUpdateResponse>;
+}
+
+// @public
+export type ServerAutomaticTuningDef = ProxyResource & {
     desiredState?: AutomaticTuningServerMode;
     readonly actualState?: AutomaticTuningServerMode;
     options?: {
@@ -5438,18 +5976,18 @@ export type ServerAutomaticTuning = ProxyResource & {
 };
 
 // @public
-export type ServerAutomaticTuningGetResponse = ServerAutomaticTuning & {
+export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: ServerAutomaticTuning;
+        parsedBody: ServerAutomaticTuningDef;
     };
 };
 
 // @public
-export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning & {
+export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
-        parsedBody: ServerAutomaticTuning;
+        parsedBody: ServerAutomaticTuningDef;
     };
 };
 
@@ -5461,6 +5999,15 @@ export type ServerAzureADAdministrator = ProxyResource & {
     tenantId?: string;
     azureADOnlyAuthentication?: boolean;
 };
+
+// @public
+export interface ServerAzureADAdministrators {
+    createOrUpdate(resourceGroupName: string, serverName: string, administratorName: AdministratorName, parameters: ServerAzureADAdministrator, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerAzureADAdministratorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    disableAzureADOnlyAuthentication(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>>;
+    get(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: coreHttp.OperationOptions): Promise<ServerAzureADAdministratorsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerAzureADAdministrator>;
+}
 
 // @public
 export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdministrator & {
@@ -5503,6 +6050,13 @@ export type ServerAzureADAdministratorsListByServerResponse = AdministratorListR
         parsedBody: AdministratorListResult;
     };
 };
+
+// @public
+export interface ServerBlobAuditingPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ServerBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServerBlobAuditingPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
+}
 
 // @public
 export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditingPolicy & {
@@ -5570,6 +6124,14 @@ export interface ServerCommunicationLinkListResult {
 }
 
 // @public
+export interface ServerCommunicationLinks {
+    createOrUpdate(resourceGroupName: string, serverName: string, communicationLinkName: string, parameters: ServerCommunicationLink, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerCommunicationLinksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: coreHttp.OperationOptions): Promise<ServerCommunicationLinksGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerCommunicationLink>;
+}
+
+// @public
 export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunicationLink & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5593,6 +6155,12 @@ export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLi
         parsedBody: ServerCommunicationLinkListResult;
     };
 };
+
+// @public
+export interface ServerConnectionPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: coreHttp.OperationOptions): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, options?: coreHttp.OperationOptions): Promise<ServerConnectionPoliciesGetResponse>;
+}
 
 // @public
 export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPolicy & {
@@ -5628,6 +6196,15 @@ export type ServerDnsAlias = ProxyResource & {
 // @public
 export interface ServerDnsAliasAcquisition {
     oldServerDnsAliasId?: string;
+}
+
+// @public
+export interface ServerDnsAliases {
+    acquire(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerDnsAliasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<ServerDnsAliasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerDnsAlias>;
 }
 
 // @public
@@ -5687,6 +6264,14 @@ export interface ServerKeyListResult {
 }
 
 // @public
+export interface ServerKeys {
+    createOrUpdate(resourceGroupName: string, serverName: string, keyName: string, parameters: ServerKey, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerKeysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<ServerKeysGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerKey>;
+}
+
+// @public
 export type ServerKeysCreateOrUpdateResponse = ServerKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5738,6 +6323,17 @@ export interface ServerPrivateEndpointConnection {
 export type ServerPublicNetworkAccess = string;
 
 // @public
+export interface Servers {
+    checkNameAvailability(parameters: CheckNameAvailabilityRequest, options?: coreHttp.OperationOptions): Promise<ServersCheckNameAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: Server, options?: coreHttp.OperationOptions): Promise<LROPoller<ServersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServersGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Server>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Server>;
+    update(resourceGroupName: string, serverName: string, parameters: ServerUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ServersUpdateResponse>>;
+}
+
+// @public
 export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5753,6 +6349,13 @@ export type ServersCreateOrUpdateResponse = Server & {
         [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerSecurityAlertPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ServerSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<LROPoller<ServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: coreHttp.OperationOptions): Promise<ServerSecurityAlertPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
+}
 
 // @public
 export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAlertPolicy & {
@@ -5880,6 +6483,11 @@ export interface ServerUsageListResult {
 }
 
 // @public
+export interface ServerUsages {
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerUsage>;
+}
+
+// @public
 export type ServerUsagesListByServerResponse = ServerUsageListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5908,6 +6516,14 @@ export type ServerVulnerabilityAssessment = ProxyResource & {
 export interface ServerVulnerabilityAssessmentListResult {
     readonly nextLink?: string;
     readonly value?: ServerVulnerabilityAssessment[];
+}
+
+// @public
+export interface ServerVulnerabilityAssessments {
+    createOrUpdate(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ServerVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ServerVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ServerVulnerabilityAssessmentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerVulnerabilityAssessment>;
 }
 
 // @public
@@ -5977,6 +6593,12 @@ export interface ServiceObjectiveListResult {
 export type ServiceObjectiveName = string;
 
 // @public
+export interface ServiceObjectives {
+    get(resourceGroupName: string, serverName: string, serviceObjectiveName: string, options?: coreHttp.OperationOptions): Promise<ServiceObjectivesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceObjective>;
+}
+
+// @public
 export type ServiceObjectivesGetResponse = ServiceObjective & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6021,6 +6643,12 @@ export interface ServiceTierAdvisorListResult {
 }
 
 // @public
+export interface ServiceTierAdvisors {
+    get(resourceGroupName: string, serverName: string, databaseName: string, serviceTierAdvisorName: string, options?: coreHttp.OperationOptions): Promise<ServiceTierAdvisorsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceTierAdvisor>;
+}
+
+// @public
 export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6058,368 +6686,186 @@ export interface SloUsageMetric {
 // @public (undocumented)
 export class SqlManagementClient extends SqlManagementClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: SqlManagementClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "BackupLongTermRetentionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     backupLongTermRetentionPolicies: BackupLongTermRetentionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "BackupShortTermRetentionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     backupShortTermRetentionPolicies: BackupShortTermRetentionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "Capabilities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     capabilities: Capabilities;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseAutomaticTuning" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    databaseAutomaticTuning: DatabaseAutomaticTuning_2;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseBlobAuditingPolicies" needs to be exported by the entry point index.d.ts
-    //
+    databaseAutomaticTuning: DatabaseAutomaticTuning;
     // (undocumented)
     databaseBlobAuditingPolicies: DatabaseBlobAuditingPolicies;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseOperations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseOperations: DatabaseOperations;
-    // Warning: (ae-forgotten-export) The symbol "Databases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databases: Databases;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseThreatDetectionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseThreatDetectionPolicies: DatabaseThreatDetectionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseUsages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseUsages: DatabaseUsages;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseVulnerabilityAssessmentRuleBaselines" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseVulnerabilityAssessmentRuleBaselines: DatabaseVulnerabilityAssessmentRuleBaselines;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseVulnerabilityAssessments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseVulnerabilityAssessments: DatabaseVulnerabilityAssessments;
-    // Warning: (ae-forgotten-export) The symbol "DatabaseVulnerabilityAssessmentScans" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     databaseVulnerabilityAssessmentScans: DatabaseVulnerabilityAssessmentScans;
-    // Warning: (ae-forgotten-export) The symbol "DataMaskingPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     dataMaskingPolicies: DataMaskingPolicies;
-    // Warning: (ae-forgotten-export) The symbol "DataMaskingRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     dataMaskingRules: DataMaskingRules;
-    // Warning: (ae-forgotten-export) The symbol "ElasticPoolActivities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     elasticPoolActivities: ElasticPoolActivities;
-    // Warning: (ae-forgotten-export) The symbol "ElasticPoolDatabaseActivities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     elasticPoolDatabaseActivities: ElasticPoolDatabaseActivities;
-    // Warning: (ae-forgotten-export) The symbol "ElasticPoolOperations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     elasticPoolOperations: ElasticPoolOperations;
-    // Warning: (ae-forgotten-export) The symbol "ElasticPools" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     elasticPools: ElasticPools;
-    // Warning: (ae-forgotten-export) The symbol "EncryptionProtectors" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     encryptionProtectors: EncryptionProtectors;
-    // Warning: (ae-forgotten-export) The symbol "ExtendedDatabaseBlobAuditingPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     extendedDatabaseBlobAuditingPolicies: ExtendedDatabaseBlobAuditingPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ExtendedServerBlobAuditingPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     extendedServerBlobAuditingPolicies: ExtendedServerBlobAuditingPolicies;
-    // Warning: (ae-forgotten-export) The symbol "FailoverGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     failoverGroups: FailoverGroups;
-    // Warning: (ae-forgotten-export) The symbol "FirewallRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     firewallRules: FirewallRules;
-    // Warning: (ae-forgotten-export) The symbol "GeoBackupPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     geoBackupPolicies: GeoBackupPolicies;
-    // Warning: (ae-forgotten-export) The symbol "InstanceFailoverGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     instanceFailoverGroups: InstanceFailoverGroups;
-    // Warning: (ae-forgotten-export) The symbol "InstancePools" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     instancePools: InstancePools;
-    // Warning: (ae-forgotten-export) The symbol "JobAgents" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobAgents: JobAgents;
-    // Warning: (ae-forgotten-export) The symbol "JobCredentials" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobCredentials: JobCredentials;
-    // Warning: (ae-forgotten-export) The symbol "JobExecutions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobExecutions: JobExecutions;
-    // Warning: (ae-forgotten-export) The symbol "Jobs" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobs: Jobs;
-    // Warning: (ae-forgotten-export) The symbol "JobStepExecutions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobStepExecutions: JobStepExecutions;
-    // Warning: (ae-forgotten-export) The symbol "JobSteps" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobSteps: JobSteps;
-    // Warning: (ae-forgotten-export) The symbol "JobTargetExecutions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobTargetExecutions: JobTargetExecutions;
-    // Warning: (ae-forgotten-export) The symbol "JobTargetGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobTargetGroups: JobTargetGroups;
-    // Warning: (ae-forgotten-export) The symbol "JobVersions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     jobVersions: JobVersions;
-    // Warning: (ae-forgotten-export) The symbol "LongTermRetentionBackups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     longTermRetentionBackups: LongTermRetentionBackups;
-    // Warning: (ae-forgotten-export) The symbol "LongTermRetentionManagedInstanceBackups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     longTermRetentionManagedInstanceBackups: LongTermRetentionManagedInstanceBackups;
-    // Warning: (ae-forgotten-export) The symbol "ManagedBackupShortTermRetentionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedBackupShortTermRetentionPolicies: ManagedBackupShortTermRetentionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseRestoreDetails" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseRestoreDetails: ManagedDatabaseRestoreDetails;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabases: ManagedDatabases;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseSecurityAlertPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseSecurityAlertPolicies: ManagedDatabaseSecurityAlertPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseSensitivityLabels" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseSensitivityLabels: ManagedDatabaseSensitivityLabels;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseVulnerabilityAssessmentRuleBaselines" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseVulnerabilityAssessmentRuleBaselines: ManagedDatabaseVulnerabilityAssessmentRuleBaselines;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseVulnerabilityAssessments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseVulnerabilityAssessments: ManagedDatabaseVulnerabilityAssessments;
-    // Warning: (ae-forgotten-export) The symbol "ManagedDatabaseVulnerabilityAssessmentScans" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedDatabaseVulnerabilityAssessmentScans: ManagedDatabaseVulnerabilityAssessmentScans;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceAdministrators" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceAdministrators: ManagedInstanceAdministrators;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceEncryptionProtectors" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceEncryptionProtectors: ManagedInstanceEncryptionProtectors;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceKeys" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceKeys: ManagedInstanceKeys;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceLongTermRetentionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceLongTermRetentionPolicies: ManagedInstanceLongTermRetentionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceOperations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceOperations: ManagedInstanceOperations;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstances" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstances: ManagedInstances;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceTdeCertificates" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceTdeCertificates: ManagedInstanceTdeCertificates;
-    // Warning: (ae-forgotten-export) The symbol "ManagedInstanceVulnerabilityAssessments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedInstanceVulnerabilityAssessments: ManagedInstanceVulnerabilityAssessments;
-    // Warning: (ae-forgotten-export) The symbol "ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ManagedServerSecurityAlertPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     managedServerSecurityAlertPolicies: ManagedServerSecurityAlertPolicies;
-    // Warning: (ae-forgotten-export) The symbol "Operations" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     operations: Operations;
-    // Warning: (ae-forgotten-export) The symbol "PrivateEndpointConnections" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
-    // Warning: (ae-forgotten-export) The symbol "PrivateLinkResources" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
-    // Warning: (ae-forgotten-export) The symbol "RecommendedElasticPools" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     recommendedElasticPools: RecommendedElasticPools;
-    // Warning: (ae-forgotten-export) The symbol "RecoverableDatabases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     recoverableDatabases: RecoverableDatabases;
-    // Warning: (ae-forgotten-export) The symbol "RecoverableManagedDatabases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     recoverableManagedDatabases: RecoverableManagedDatabases;
-    // Warning: (ae-forgotten-export) The symbol "ReplicationLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     replicationLinks: ReplicationLinks;
-    // Warning: (ae-forgotten-export) The symbol "RestorableDroppedDatabases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     restorableDroppedDatabases: RestorableDroppedDatabases;
-    // Warning: (ae-forgotten-export) The symbol "RestorableDroppedManagedDatabases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     restorableDroppedManagedDatabases: RestorableDroppedManagedDatabases;
-    // Warning: (ae-forgotten-export) The symbol "RestorePoints" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     restorePoints: RestorePoints;
-    // Warning: (ae-forgotten-export) The symbol "SensitivityLabels" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     sensitivityLabels: SensitivityLabels;
-    // Warning: (ae-forgotten-export) The symbol "ServerAutomaticTuning" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    serverAutomaticTuning: ServerAutomaticTuning_2;
-    // Warning: (ae-forgotten-export) The symbol "ServerAzureADAdministrators" needs to be exported by the entry point index.d.ts
-    //
+    serverAutomaticTuning: ServerAutomaticTuning;
     // (undocumented)
     serverAzureADAdministrators: ServerAzureADAdministrators;
-    // Warning: (ae-forgotten-export) The symbol "ServerBlobAuditingPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverBlobAuditingPolicies: ServerBlobAuditingPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ServerCommunicationLinks" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverCommunicationLinks: ServerCommunicationLinks;
-    // Warning: (ae-forgotten-export) The symbol "ServerConnectionPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverConnectionPolicies: ServerConnectionPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ServerDnsAliases" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverDnsAliases: ServerDnsAliases;
-    // Warning: (ae-forgotten-export) The symbol "ServerKeys" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverKeys: ServerKeys;
-    // Warning: (ae-forgotten-export) The symbol "Servers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     servers: Servers;
-    // Warning: (ae-forgotten-export) The symbol "ServerSecurityAlertPolicies" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverSecurityAlertPolicies: ServerSecurityAlertPolicies;
-    // Warning: (ae-forgotten-export) The symbol "ServerUsages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverUsages: ServerUsages;
-    // Warning: (ae-forgotten-export) The symbol "ServerVulnerabilityAssessments" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serverVulnerabilityAssessments: ServerVulnerabilityAssessments;
-    // Warning: (ae-forgotten-export) The symbol "ServiceObjectives" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceObjectives: ServiceObjectives;
-    // Warning: (ae-forgotten-export) The symbol "ServiceTierAdvisors" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     serviceTierAdvisors: ServiceTierAdvisors;
-    // Warning: (ae-forgotten-export) The symbol "SubscriptionUsages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     subscriptionUsages: SubscriptionUsages;
-    // Warning: (ae-forgotten-export) The symbol "SyncAgents" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     syncAgents: SyncAgents;
-    // Warning: (ae-forgotten-export) The symbol "SyncGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     syncGroups: SyncGroups;
-    // Warning: (ae-forgotten-export) The symbol "SyncMembers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     syncMembers: SyncMembers;
-    // Warning: (ae-forgotten-export) The symbol "TdeCertificates" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     tdeCertificates: TdeCertificates;
-    // Warning: (ae-forgotten-export) The symbol "TransparentDataEncryptionActivities" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
-    // Warning: (ae-forgotten-export) The symbol "TransparentDataEncryptions" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     transparentDataEncryptions: TransparentDataEncryptions;
-    // Warning: (ae-forgotten-export) The symbol "Usages" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     usages: Usages;
-    // Warning: (ae-forgotten-export) The symbol "VirtualClusters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualClusters: VirtualClusters;
-    // Warning: (ae-forgotten-export) The symbol "VirtualNetworkRules" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     virtualNetworkRules: VirtualNetworkRules;
-    // Warning: (ae-forgotten-export) The symbol "WorkloadClassifiers" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     workloadClassifiers: WorkloadClassifiers;
-    // Warning: (ae-forgotten-export) The symbol "WorkloadGroups" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     workloadGroups: WorkloadGroups;
 }
@@ -6464,6 +6910,12 @@ export type SubscriptionUsage = ProxyResource & {
 export interface SubscriptionUsageListResult {
     readonly nextLink?: string;
     readonly value?: SubscriptionUsage[];
+}
+
+// @public
+export interface SubscriptionUsages {
+    get(locationName: string, usageName: string, options?: coreHttp.OperationOptions): Promise<SubscriptionUsagesGetResponse>;
+    listByLocation(locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SubscriptionUsage>;
 }
 
 // @public
@@ -6526,6 +6978,16 @@ export interface SyncAgentLinkedDatabaseListResult {
 export interface SyncAgentListResult {
     readonly nextLink?: string;
     readonly value?: SyncAgent[];
+}
+
+// @public
+export interface SyncAgents {
+    createOrUpdate(resourceGroupName: string, serverName: string, syncAgentName: string, parameters: SyncAgent, options?: coreHttp.OperationOptions): Promise<LROPoller<SyncAgentsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    generateKey(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<SyncAgentsGenerateKeyResponse>;
+    get(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<SyncAgentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncAgent>;
+    listLinkedDatabases(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncAgentLinkedDatabase>;
 }
 
 // @public
@@ -6675,6 +7137,21 @@ export interface SyncGroupLogProperties {
 export type SyncGroupLogType = string;
 
 // @public
+export interface SyncGroups {
+    cancelSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<SyncGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<SyncGroupsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncGroup>;
+    listHubSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
+    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum21, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
+    listSyncDatabaseIds(locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
+    refreshHubSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    triggerSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<SyncGroupsUpdateResponse>>;
+}
+
+// @public
 export interface SyncGroupSchema {
     masterSyncMemberName?: string;
     tables?: SyncGroupSchemaTable[];
@@ -6819,6 +7296,17 @@ export interface SyncMemberListResult {
 }
 
 // @public
+export interface SyncMembers {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: coreHttp.OperationOptions): Promise<LROPoller<SyncMembersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<SyncMembersGetResponse>;
+    listBySyncGroup(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncMember>;
+    listMemberSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
+    refreshMemberSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: coreHttp.OperationOptions): Promise<LROPoller<SyncMembersUpdateResponse>>;
+}
+
+// @public
 export type SyncMembersCreateOrUpdateResponse = SyncMember & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6886,6 +7374,11 @@ export type TdeCertificate = ProxyResource & {
 };
 
 // @public
+export interface TdeCertificates {
+    create(resourceGroupName: string, serverName: string, parameters: TdeCertificate, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+}
+
+// @public
 export type TrackedResource = Resource & {
     location: string;
     tags?: {
@@ -6898,6 +7391,11 @@ export type TransparentDataEncryption = ProxyResource & {
     readonly location?: string;
     status?: TransparentDataEncryptionStatus;
 };
+
+// @public
+export interface TransparentDataEncryptionActivities {
+    listByConfiguration(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
+}
 
 // @public
 export type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult & {
@@ -6924,6 +7422,12 @@ export type TransparentDataEncryptionActivityStatus = string;
 
 // @public
 export type TransparentDataEncryptionName = string;
+
+// @public
+export interface TransparentDataEncryptions {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, parameters: TransparentDataEncryption, options?: coreHttp.OperationOptions): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: coreHttp.OperationOptions): Promise<TransparentDataEncryptionsGetResponse>;
+}
 
 // @public
 export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption & {
@@ -6973,6 +7477,11 @@ export interface UsageListResult {
 }
 
 // @public
+export interface Usages {
+    listByInstancePool(resourceGroupName: string, instancePoolName: string, options?: UsagesListByInstancePoolOptionalParams): PagedAsyncIterableIterator<Usage>;
+}
+
+// @public
 export interface UsagesListByInstancePoolNextOptionalParams extends coreHttp.OperationOptions {
     expandChildren?: boolean;
 }
@@ -7009,6 +7518,15 @@ export type VirtualCluster = TrackedResource & {
 export interface VirtualClusterListResult {
     readonly nextLink?: string;
     readonly value?: VirtualCluster[];
+}
+
+// @public
+export interface VirtualClusters {
+    delete(resourceGroupName: string, virtualClusterName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualClusterName: string, options?: coreHttp.OperationOptions): Promise<VirtualClustersGetResponse>;
+    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualCluster>;
+    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualCluster>;
+    update(resourceGroupName: string, virtualClusterName: string, parameters: VirtualClusterUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualClustersUpdateResponse>>;
 }
 
 // @public
@@ -7081,6 +7599,14 @@ export type VirtualNetworkRule = ProxyResource & {
 export interface VirtualNetworkRuleListResult {
     readonly nextLink?: string;
     readonly value?: VirtualNetworkRule[];
+}
+
+// @public
+export interface VirtualNetworkRules {
+    createOrUpdate(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, parameters: VirtualNetworkRule, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualNetworkRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkRulesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkRule>;
 }
 
 // @public
@@ -7179,6 +7705,14 @@ export interface WorkloadClassifierListResult {
 }
 
 // @public
+export interface WorkloadClassifiers {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, parameters: WorkloadClassifier, options?: coreHttp.OperationOptions): Promise<LROPoller<WorkloadClassifiersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: coreHttp.OperationOptions): Promise<WorkloadClassifiersGetResponse>;
+    listByWorkloadGroup(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkloadClassifier>;
+}
+
+// @public
 export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7225,6 +7759,14 @@ export type WorkloadGroup = ProxyResource & {
 export interface WorkloadGroupListResult {
     readonly nextLink?: string;
     readonly value?: WorkloadGroup[];
+}
+
+// @public
+export interface WorkloadGroups {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, parameters: WorkloadGroup, options?: coreHttp.OperationOptions): Promise<LROPoller<WorkloadGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): Promise<WorkloadGroupsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkloadGroup>;
 }
 
 // @public

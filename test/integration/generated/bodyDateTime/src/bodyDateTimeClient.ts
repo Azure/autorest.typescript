@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Datetime } from "./operations";
+import { DatetimeImpl } from "./operations";
+import { Datetime } from "./operationsInterfaces";
 import { BodyDateTimeClientContext } from "./bodyDateTimeClientContext";
 import { BodyDateTimeClientOptionalParams } from "./models";
 
@@ -17,7 +18,7 @@ export class BodyDateTimeClient extends BodyDateTimeClientContext {
    */
   constructor(options?: BodyDateTimeClientOptionalParams) {
     super(options);
-    this.datetime = new Datetime(this);
+    this.datetime = new DatetimeImpl(this);
   }
 
   datetime: Datetime;

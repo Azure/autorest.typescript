@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { ObjectReplicationPolicies } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -21,7 +22,8 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ObjectReplicationPolicies. */
-export class ObjectReplicationPolicies {
+export class ObjectReplicationPoliciesImpl
+  implements ObjectReplicationPolicies {
   private readonly client: StorageManagementClientContext;
 
   /**
@@ -208,7 +210,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ObjectReplicationPolicies
+      bodyMapper: Mappers.ObjectReplicationPoliciesDef
     },
     default: {
       bodyMapper: Mappers.ErrorResponse

@@ -8,6 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { VirtualMachineSizes } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -16,7 +17,7 @@ import { VirtualMachineSize, VirtualMachineSizesListResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a VirtualMachineSizes. */
-export class VirtualMachineSizes {
+export class VirtualMachineSizesImpl implements VirtualMachineSizes {
   private readonly client: ComputeManagementClientContext;
 
   /**

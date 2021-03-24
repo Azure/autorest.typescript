@@ -8,12 +8,13 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { OAuth2PermissionGrant } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
-  OAuth2PermissionGrant as OAuth2PermissionGrantModel,
+  OAuth2PermissionGrantDef,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantListResponse,
   OAuth2PermissionGrantCreateOptionalParams,
@@ -23,7 +24,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a OAuth2PermissionGrant. */
-export class OAuth2PermissionGrant {
+export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
   private readonly client: GraphRbacManagementClientContext;
 
   /**
@@ -40,7 +41,7 @@ export class OAuth2PermissionGrant {
    */
   public list(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantModel> {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -57,7 +58,7 @@ export class OAuth2PermissionGrant {
 
   private async *listPagingPage(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantModel[]> {
+  ): AsyncIterableIterator<OAuth2PermissionGrantDef[]> {
     let result = await this._list(options);
     yield result.value || [];
     let continuationToken = result.odataNextLink;
@@ -70,7 +71,7 @@ export class OAuth2PermissionGrant {
 
   private async *listPagingAll(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantModel> {
+  ): AsyncIterableIterator<OAuth2PermissionGrantDef> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
     }
@@ -84,7 +85,7 @@ export class OAuth2PermissionGrant {
   public listNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantModel> {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {
@@ -102,7 +103,7 @@ export class OAuth2PermissionGrant {
   private async *listNextPagingPage(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<OAuth2PermissionGrantModel[]> {
+  ): AsyncIterableIterator<OAuth2PermissionGrantDef[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
     let continuationToken = result.odataNextLink;
@@ -116,7 +117,7 @@ export class OAuth2PermissionGrant {
   private async *listNextPagingAll(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): AsyncIterableIterator<OAuth2PermissionGrantModel> {
+  ): AsyncIterableIterator<OAuth2PermissionGrantDef> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
     }
@@ -213,7 +214,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.OAuth2PermissionGrant
+      bodyMapper: Mappers.OAuth2PermissionGrantDef
     }
   },
   requestBody: Parameters.body,
