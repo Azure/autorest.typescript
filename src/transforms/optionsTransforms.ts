@@ -17,16 +17,18 @@ export async function transformOptions(
     (await host.GetValue("disable-async-iterators")) === true;
   const credentialScopes = await getCredentialScopes(host);
 
-  const outputDirectoryPath: string = await host.GetValue("outputFolderUri");
-  const outputDirectoryRelativePath: string = outputDirectoryPath
-    .replace(/\/$/, "")
+  const outputDirectoryPath: string | null = await host.GetValue(
+    "outputFolderUri"
+  );
+  const outputDirectoryRelativePath: string | undefined = outputDirectoryPath
+    ?.replace(/\/$/, "")
     .split("/")
     .slice(-3)
     .join("/");
 
   return {
     azureOutputDirectory:
-      outputDirectoryRelativePath.substr(0, 3) === "sdk"
+      outputDirectoryRelativePath?.substr(0, 3) === "sdk"
         ? outputDirectoryRelativePath
         : undefined,
     addCredentials,
