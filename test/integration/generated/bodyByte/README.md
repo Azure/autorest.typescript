@@ -1,27 +1,30 @@
-## Azure BodyByteClient SDK for JavaScript
+# BodyByteClient library for JavaScript
 
 This package contains an isomorphic SDK for BodyByteClient.
+
+Test Infrastructure for AutoRest Swagger BAT
+
+[Package (NPM)](https://www.npmjs.com/package/body-byte) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser JavaScript
+- Browser Javascript
 
-### How to Install
+
+### Install the `body-byte` package
+
+Install the BodyByteClient library for Javascript with `npm`:
 
 ```bash
 npm install body-byte
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### BodyByteClient
 
-## Related projects
-
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`BodyByteClient` is the primary interface for developers using the BodyByteClient library. It provides asynchronous methods to access a specific use of BodyByte.

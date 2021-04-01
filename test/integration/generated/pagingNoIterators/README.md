@@ -1,27 +1,30 @@
-## Azure PagingNoIteratorsClient SDK for JavaScript
+# PagingNoIteratorsClient library for JavaScript
 
 This package contains an isomorphic SDK for PagingNoIteratorsClient.
+
+Long-running Operation for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/paging-no-iterators) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser JavaScript
+- Browser Javascript
 
-### How to Install
+
+### Install the `paging-no-iterators` package
+
+Install the PagingNoIteratorsClient library for Javascript with `npm`:
 
 ```bash
 npm install paging-no-iterators
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### PagingNoIteratorsClient
 
-## Related projects
-
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`PagingNoIteratorsClient` is the primary interface for developers using the PagingNoIteratorsClient library. It provides asynchronous methods to access a specific use of PagingNoIterators.

@@ -1,27 +1,29 @@
-## Azure NoLicenseHeaderClient SDK for JavaScript
+# NoLicenseHeaderClient library for JavaScript
 
 This package contains an isomorphic SDK for NoLicenseHeaderClient.
+
+
+[Package (NPM)](https://www.npmjs.com/package/nolicense-header) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser JavaScript
+- Browser Javascript
 
-### How to Install
+
+### Install the `nolicense-header` package
+
+Install the NoLicenseHeaderClient library for Javascript with `npm`:
 
 ```bash
 npm install nolicense-header
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### NoLicenseHeaderClient
 
-## Related projects
-
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`NoLicenseHeaderClient` is the primary interface for developers using the NoLicenseHeaderClient library. It provides asynchronous methods to access a specific use of NoLicenseHeader.

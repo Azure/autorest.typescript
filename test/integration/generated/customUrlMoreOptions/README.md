@@ -1,27 +1,30 @@
-## Azure CustomUrlMoreOptionsClient SDK for JavaScript
+# CustomUrlMoreOptionsClient library for JavaScript
 
 This package contains an isomorphic SDK for CustomUrlMoreOptionsClient.
+
+Test Infrastructure for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/custom-url-MoreOptions) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser JavaScript
+- Browser Javascript
 
-### How to Install
+
+### Install the `custom-url-MoreOptions` package
+
+Install the CustomUrlMoreOptionsClient library for Javascript with `npm`:
 
 ```bash
 npm install custom-url-MoreOptions
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### CustomUrlMoreOptionsClient
 
-## Related projects
-
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`CustomUrlMoreOptionsClient` is the primary interface for developers using the CustomUrlMoreOptionsClient library. It provides asynchronous methods to access a specific use of CustomUrlMoreOptions.

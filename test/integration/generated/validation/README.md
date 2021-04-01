@@ -1,27 +1,30 @@
-## Azure ValidationClient SDK for JavaScript
+# ValidationClient library for JavaScript
 
 This package contains an isomorphic SDK for ValidationClient.
+
+Test Infrastructure for AutoRest. No server backend exists for these tests.
+
+[Package (NPM)](https://www.npmjs.com/package/validation) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser JavaScript
+- Browser Javascript
 
-### How to Install
+
+### Install the `validation` package
+
+Install the ValidationClient library for Javascript with `npm`:
 
 ```bash
 npm install validation
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### ValidationClient
 
-## Related projects
-
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`ValidationClient` is the primary interface for developers using the ValidationClient library. It provides asynchronous methods to access a specific use of Validation.
