@@ -117,7 +117,7 @@ function createMetadata(
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/master/CONTRIBUTING.md`,
-    projectName: azureHuh ? "Microsoft Azure SDK for Javascript" : undefined
+    projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined
   };
 }
 
@@ -132,7 +132,7 @@ function writeGettingStarted(metadata: Metadata): string {
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
-- Browser Javascript
+- Browser JavaScript
 ${addNewline(
   `### Prerequisites
 
@@ -144,7 +144,7 @@ ${addNewline(
 
 Install the${addSpace(
     metadata.clientDescriptiveName
-  )} library for Javascript with \`npm\`:
+  )} library for JavaScript with \`npm\`:
 
 \`\`\`bash
 npm install ${metadata.clientPackageName}
