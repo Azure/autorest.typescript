@@ -70,7 +70,7 @@ export async function generateTypeScriptLibrary(
     name: packageName,
     scopeName: packageNameParts[2],
     nameWithoutScope: packageNameParts[3],
-    description: clientDetails.description,
+    description: clientDetails.info?.description,
     version: (await host.GetValue("package-version")) || "1.0.0"
   };
 

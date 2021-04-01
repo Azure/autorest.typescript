@@ -117,7 +117,7 @@ export async function transformCodeModel(
   return {
     name: className,
     className,
-    description: codeModel.info.description,
+    info: codeModel.info,
     sourceFileName: normalizeName(className, NameType.File),
     objects: [...objects, ...groups],
     mappers,
