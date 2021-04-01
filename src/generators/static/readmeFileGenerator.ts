@@ -89,6 +89,8 @@ function createMetadata(
      * "Client".
      */
     title.match(/(.*) Client/)?.[1] ??
+    /** I noticed management-plane swaggers do not use spaces in their titles */
+    title.match(/(.*)Client/)?.[1] ??
     clientClassName.match(/(.*)Client/)?.[1] ??
     title.match(/(.*) Service/)?.[1] ??
     "Service";
