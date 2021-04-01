@@ -204,7 +204,7 @@ function writeKeyConcepts(metadata: Metadata): string {
 
 ### ${metadata.clientClassName}
 
-\`${metadata.clientClassName}\` is the primary interface for developers using the ${metadata.clientDescriptiveName} library. It provides asynchronous methods to access a specific use of ${metadata.serviceName}.`;
+\`${metadata.clientClassName}\` is the primary interface for developers using the ${metadata.clientDescriptiveName} library. Explore the methods on this client object to understand the different features of the ${metadata.serviceName} service that you can access.`;
 }
 
 function writeTroubleshooting(metadata: Metadata): string {
@@ -270,7 +270,9 @@ export function generateReadmeFile(
   const readmeFileContents = `
 # ${metadata.clientDescriptiveName} library for JavaScript
 
-This package contains an isomorphic SDK for ${metadata.clientDescriptiveName}.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for ${
+    metadata.clientDescriptiveName
+  }.
 ${addNewline(metadata.description)}
 ${addNewline(
   metadata.packageSourceURL && `[Source code](${metadata.packageSourceURL}) |`
