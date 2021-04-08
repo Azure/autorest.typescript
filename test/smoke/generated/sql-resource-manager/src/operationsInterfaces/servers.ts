@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Server,
   ServersGetResponse,
@@ -63,7 +64,12 @@ export interface Servers {
     serverName: string,
     parameters: Server,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServersCreateOrUpdateResponse>,
+      ServersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -75,7 +81,9 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -89,7 +97,9 @@ export interface Servers {
     serverName: string,
     parameters: ServerUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServersUpdateResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<ServersUpdateResponse>, ServersUpdateResponse>
+  >;
   /**
    * Determines whether a resource can be created with the specified name.
    * @param parameters The name availability request parameters.

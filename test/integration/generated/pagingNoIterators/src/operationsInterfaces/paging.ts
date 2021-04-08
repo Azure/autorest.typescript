@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { LROOperationState } from "../lro";
 import { PollerLike } from "@azure/core-lro";
 import {
   PagingGetNoItemNamePagesResponse,

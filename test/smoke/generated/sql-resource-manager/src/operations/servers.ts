@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Server,
   ServersListByResourceGroupResponse,
@@ -193,7 +194,12 @@ export class ServersImpl implements Servers {
     serverName: string,
     parameters: Server,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServersCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServersCreateOrUpdateResponse>,
+      ServersCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -232,7 +238,9 @@ export class ServersImpl implements Servers {
     resourceGroupName: string,
     serverName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -272,7 +280,9 @@ export class ServersImpl implements Servers {
     serverName: string,
     parameters: ServerUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServersUpdateResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<ServersUpdateResponse>, ServersUpdateResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

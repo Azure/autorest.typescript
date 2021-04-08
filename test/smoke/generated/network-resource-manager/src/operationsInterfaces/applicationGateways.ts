@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ApplicationGateway,
   ApplicationGatewaySslPredefinedPolicy,
@@ -66,7 +67,9 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified application gateway.
    * @param resourceGroupName The name of the resource group.
@@ -90,7 +93,12 @@ export interface ApplicationGateways {
     applicationGatewayName: string,
     parameters: ApplicationGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationGatewaysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysCreateOrUpdateResponse>,
+      ApplicationGatewaysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates the specified application gateway tags.
    * @param resourceGroupName The name of the resource group.
@@ -114,7 +122,9 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Stops the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -125,7 +135,9 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the backend health of the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -136,7 +148,12 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
-  ): Promise<LROPoller<ApplicationGatewaysBackendHealthResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysBackendHealthResponse>,
+      ApplicationGatewaysBackendHealthResponse
+    >
+  >;
   /**
    * Gets the backend health for given combination of backend pool and http setting of the specified
    * application gateway in a resource group.
@@ -150,7 +167,12 @@ export interface ApplicationGateways {
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,
     options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams
-  ): Promise<LROPoller<ApplicationGatewaysBackendHealthOnDemandResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysBackendHealthOnDemandResponse>,
+      ApplicationGatewaysBackendHealthOnDemandResponse
+    >
+  >;
   /**
    * Lists all available server variables.
    * @param options The options parameters.

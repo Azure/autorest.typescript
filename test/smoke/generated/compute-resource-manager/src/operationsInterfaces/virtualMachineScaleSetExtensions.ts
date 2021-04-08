@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetExtension,
   VirtualMachineScaleSetExtensionsCreateOrUpdateResponse,
@@ -47,7 +48,12 @@ export interface VirtualMachineScaleSetExtensions {
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtension,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>,
+      VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * The operation to update an extension.
    * @param resourceGroupName The name of the resource group.
@@ -62,7 +68,12 @@ export interface VirtualMachineScaleSetExtensions {
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
+      VirtualMachineScaleSetExtensionsUpdateResponse
+    >
+  >;
   /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
@@ -75,7 +86,9 @@ export interface VirtualMachineScaleSetExtensions {
     vmScaleSetName: string,
     vmssExtensionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
   VirtualNetworkGatewayConnectionListEntity,
@@ -195,7 +196,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
+      VirtualNetworkGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -256,7 +262,9 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -296,7 +304,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysUpdateTagsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
+      VirtualNetworkGatewaysUpdateTagsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -376,7 +389,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysResetResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysResetResponse>,
+      VirtualNetworkGatewaysResetResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -414,7 +432,9 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -457,7 +477,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     parameters: VpnClientParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>,
+      VirtualNetworkGatewaysGeneratevpnclientpackageResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -501,7 +524,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGenerateVpnProfileResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
+      VirtualNetworkGatewaysGenerateVpnProfileResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -541,7 +569,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
+      VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -579,7 +612,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetBgpPeerStatusResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>,
+      VirtualNetworkGatewaysGetBgpPeerStatusResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -640,7 +678,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetLearnedRoutesResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
+      VirtualNetworkGatewaysGetLearnedRoutesResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -681,7 +724,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     peer: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
+      VirtualNetworkGatewaysGetAdvertisedRoutesResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -725,7 +773,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     vpnclientIpsecParams: VpnClientIPsecParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
+      >,
+      VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -768,7 +821,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
+      >,
+      VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -833,7 +891,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysStartPacketCaptureResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>,
+      VirtualNetworkGatewaysStartPacketCaptureResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -874,7 +937,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysStopPacketCaptureResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
+      VirtualNetworkGatewaysStopPacketCaptureResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -915,7 +983,12 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
+      >,
+      VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -956,7 +1029,9 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayName,

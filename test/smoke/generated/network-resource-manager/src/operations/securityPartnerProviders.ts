@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SecurityPartnerProvider,
   SecurityPartnerProvidersGetResponse,
@@ -144,7 +145,9 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       securityPartnerProviderName,
@@ -206,7 +209,12 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SecurityPartnerProvidersCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>,
+      SecurityPartnerProvidersCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       securityPartnerProviderName,

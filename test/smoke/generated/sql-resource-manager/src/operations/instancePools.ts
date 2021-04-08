@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   InstancePool,
   InstancePoolsGetResponse,
@@ -171,7 +172,12 @@ export class InstancePoolsImpl implements InstancePools {
     instancePoolName: string,
     parameters: InstancePool,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstancePoolsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstancePoolsCreateOrUpdateResponse>,
+      InstancePoolsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       instancePoolName,
@@ -210,7 +216,9 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       instancePoolName,
@@ -250,7 +258,12 @@ export class InstancePoolsImpl implements InstancePools {
     instancePoolName: string,
     parameters: InstancePoolUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstancePoolsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstancePoolsUpdateResponse>,
+      InstancePoolsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       instancePoolName,

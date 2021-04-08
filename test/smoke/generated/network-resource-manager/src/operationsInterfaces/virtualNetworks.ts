@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetwork,
   VirtualNetworkUsage,
@@ -61,7 +62,9 @@ export interface VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified virtual network by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -85,7 +88,12 @@ export interface VirtualNetworks {
     virtualNetworkName: string,
     parameters: VirtualNetwork,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworksCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworksCreateOrUpdateResponse>,
+      VirtualNetworksCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates a virtual network tags.
    * @param resourceGroupName The name of the resource group.

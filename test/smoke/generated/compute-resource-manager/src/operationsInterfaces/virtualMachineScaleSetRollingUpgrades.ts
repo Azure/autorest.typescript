@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
 
 /** Interface representing a VirtualMachineScaleSetRollingUpgrades. */
@@ -22,7 +23,9 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
    * Platform Image OS version. Instances which are already running the latest available OS version are
@@ -35,7 +38,9 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
    * latest available extension version. Instances which are already running the latest extension
@@ -48,7 +53,9 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the status of the latest virtual machine scale set rolling upgrade.
    * @param resourceGroupName The name of the resource group.

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   InstanceFailoverGroup,
   InstanceFailoverGroupsGetResponse,
@@ -62,7 +63,12 @@ export interface InstanceFailoverGroups {
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstanceFailoverGroupsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
+      InstanceFailoverGroupsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -76,7 +82,9 @@ export interface InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Fails over from the current primary managed instance to this managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -90,7 +98,12 @@ export interface InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstanceFailoverGroupsFailoverResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstanceFailoverGroupsFailoverResponse>,
+      InstanceFailoverGroupsFailoverResponse
+    >
+  >;
   /**
    * Fails over from the current primary managed instance to this managed instance. This operation might
    * result in data loss.
@@ -106,6 +119,11 @@ export interface InstanceFailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>
+    PollerLike<
+      LROOperationState<
+        InstanceFailoverGroupsForceFailoverAllowDataLossResponse
+      >,
+      InstanceFailoverGroupsForceFailoverAllowDataLossResponse
+    >
   >;
 }

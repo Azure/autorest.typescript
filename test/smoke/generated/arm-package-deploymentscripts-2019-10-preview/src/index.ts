@@ -11,4 +11,4 @@ export * from "./models";
 export { DeploymentScriptsClient } from "./deploymentScriptsClient";
 export { DeploymentScriptsClientContext } from "./deploymentScriptsClientContext";
 export * from "./operationsInterfaces";
-export { LROPoller } from "./lro";
+export { LROOperationState } from "./lro";

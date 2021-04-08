@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   InstanceFailoverGroup,
   InstanceFailoverGroupsGetResponse,
@@ -150,7 +151,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstanceFailoverGroupsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
+      InstanceFailoverGroupsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
@@ -192,7 +198,9 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
@@ -256,7 +264,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstanceFailoverGroupsFailoverResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstanceFailoverGroupsFailoverResponse>,
+      InstanceFailoverGroupsFailoverResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       locationName,
@@ -299,7 +312,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>
+    PollerLike<
+      LROOperationState<
+        InstanceFailoverGroupsForceFailoverAllowDataLossResponse
+      >,
+      InstanceFailoverGroupsForceFailoverAllowDataLossResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

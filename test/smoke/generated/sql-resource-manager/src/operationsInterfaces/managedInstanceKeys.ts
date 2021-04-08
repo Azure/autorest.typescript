@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstanceKey,
   ManagedInstanceKeysListByInstanceNextOptionalParams,
@@ -62,7 +63,12 @@ export interface ManagedInstanceKeys {
     keyName: string,
     parameters: ManagedInstanceKey,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstanceKeysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
+      ManagedInstanceKeysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the managed instance key with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -76,5 +82,7 @@ export interface ManagedInstanceKeys {
     managedInstanceName: string,
     keyName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

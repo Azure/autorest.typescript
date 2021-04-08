@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkGatewayConnection,
   VirtualNetworkGatewayConnectionsCreateOrUpdateResponse,
@@ -112,7 +113,10 @@ export class VirtualNetworkGatewayConnectionsImpl
     parameters: VirtualNetworkGatewayConnection,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>,
+      VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -174,7 +178,9 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
@@ -214,7 +220,12 @@ export class VirtualNetworkGatewayConnectionsImpl
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsUpdateTagsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
+      VirtualNetworkGatewayConnectionsUpdateTagsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
@@ -258,7 +269,12 @@ export class VirtualNetworkGatewayConnectionsImpl
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
+      VirtualNetworkGatewayConnectionsSetSharedKeyResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkGatewayConnectionName,
@@ -347,7 +363,10 @@ export class VirtualNetworkGatewayConnectionsImpl
     parameters: ConnectionResetSharedKey,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>,
+      VirtualNetworkGatewayConnectionsResetSharedKeyResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -388,7 +407,12 @@ export class VirtualNetworkGatewayConnectionsImpl
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
+      >,
+      VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -431,7 +455,12 @@ export class VirtualNetworkGatewayConnectionsImpl
     parameters: VpnPacketCaptureStopParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
+      >,
+      VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

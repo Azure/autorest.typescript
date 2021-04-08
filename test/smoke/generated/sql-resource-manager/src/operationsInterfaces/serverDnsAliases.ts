@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerDnsAlias,
   ServerDnsAliasesGetResponse,
@@ -59,7 +60,12 @@ export interface ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerDnsAliasesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
+      ServerDnsAliasesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the server DNS alias with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -73,7 +79,9 @@ export interface ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Acquires server DNS alias from another server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -89,5 +97,7 @@ export interface ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

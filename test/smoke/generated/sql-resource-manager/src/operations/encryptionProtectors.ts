@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   EncryptionProtector,
   EncryptionProtectorName,
@@ -121,7 +122,9 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -213,7 +216,12 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     parameters: EncryptionProtector,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<EncryptionProtectorsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
+      EncryptionProtectorsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

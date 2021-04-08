@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkInterfaceTapConfiguration,
   NetworkInterfaceTapConfigurationsGetResponse,
@@ -119,7 +120,9 @@ export class NetworkInterfaceTapConfigurationsImpl
     networkInterfaceName: string,
     tapConfigurationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
@@ -189,7 +192,12 @@ export class NetworkInterfaceTapConfigurationsImpl
     tapConfigurationParameters: NetworkInterfaceTapConfiguration,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        NetworkInterfaceTapConfigurationsCreateOrUpdateResponse
+      >,
+      NetworkInterfaceTapConfigurationsCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -9,7 +9,8 @@
 import * as coreHttp from "@azure/core-http";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "./lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ApplicationGatewaysImpl,
   ApplicationSecurityGroupsImpl,
@@ -717,7 +718,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bslRequest: BastionShareableLinkListRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkManagementClientPutBastionShareableLinkResponse>
+    PollerLike<
+      LROOperationState<NetworkManagementClientPutBastionShareableLinkResponse>,
+      NetworkManagementClientPutBastionShareableLinkResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -759,7 +763,9 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       bastionHostName,
@@ -823,7 +829,12 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkManagementClientGetActiveSessionsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkManagementClientGetActiveSessionsResponse>,
+      NetworkManagementClientGetActiveSessionsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       bastionHostName,
@@ -936,7 +947,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     vpnClientParams: VirtualWanVpnProfileParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
+      >,
       NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
     >
   > {

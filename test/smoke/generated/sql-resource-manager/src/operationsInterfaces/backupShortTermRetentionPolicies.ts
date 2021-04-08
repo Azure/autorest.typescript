@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   BackupShortTermRetentionPolicy,
   ShortTermRetentionPolicyName,
@@ -68,7 +69,12 @@ export interface BackupShortTermRetentionPolicies {
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>,
+      BackupShortTermRetentionPoliciesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -86,5 +92,10 @@ export interface BackupShortTermRetentionPolicies {
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<BackupShortTermRetentionPoliciesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
+      BackupShortTermRetentionPoliciesUpdateResponse
+    >
+  >;
 }

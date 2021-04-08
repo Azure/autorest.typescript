@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerBlobAuditingPolicy,
   ServerBlobAuditingPoliciesGetResponse,
@@ -144,7 +145,12 @@ export class ServerBlobAuditingPoliciesImpl
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerBlobAuditingPoliciesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,
+      ServerBlobAuditingPoliciesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

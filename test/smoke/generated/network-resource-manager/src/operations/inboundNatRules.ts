@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   InboundNatRule,
   InboundNatRulesListResponse,
@@ -137,7 +138,9 @@ export class InboundNatRulesImpl implements InboundNatRules {
     loadBalancerName: string,
     inboundNatRuleName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
@@ -206,7 +209,12 @@ export class InboundNatRulesImpl implements InboundNatRules {
     inboundNatRuleName: string,
     inboundNatRuleParameters: InboundNatRule,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InboundNatRulesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<InboundNatRulesCreateOrUpdateResponse>,
+      InboundNatRulesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,

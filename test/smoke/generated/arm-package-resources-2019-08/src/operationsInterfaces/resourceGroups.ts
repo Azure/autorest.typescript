@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ResourceGroup,
   ResourceGroupsListNextOptionalParams,
@@ -63,7 +64,9 @@ export interface ResourceGroups {
   delete(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets a resource group.
    * @param resourceGroupName The name of the resource group to get. The name is case insensitive.
@@ -96,5 +99,10 @@ export interface ResourceGroups {
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourceGroupsExportTemplateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourceGroupsExportTemplateResponse>,
+      ResourceGroupsExportTemplateResponse
+    >
+  >;
 }

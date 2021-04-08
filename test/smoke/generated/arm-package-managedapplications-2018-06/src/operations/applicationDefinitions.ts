@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsGetResponse,
@@ -122,7 +123,9 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationDefinitionName,
@@ -161,7 +164,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+      ApplicationDefinitionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationDefinitionName,
@@ -241,7 +249,9 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async deleteById(
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
       options: this.getOperationOptions(options, "undefined")
@@ -280,7 +290,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateByIdResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+      ApplicationDefinitionsCreateOrUpdateByIdResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
       parameters,

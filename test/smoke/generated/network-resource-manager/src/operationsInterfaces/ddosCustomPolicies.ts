@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DdosCustomPoliciesGetResponse,
   DdosCustomPolicy,
@@ -28,7 +29,9 @@ export interface DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets information about the specified DDoS custom policy.
    * @param resourceGroupName The name of the resource group.
@@ -52,7 +55,12 @@ export interface DdosCustomPolicies {
     ddosCustomPolicyName: string,
     parameters: DdosCustomPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DdosCustomPoliciesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DdosCustomPoliciesCreateOrUpdateResponse>,
+      DdosCustomPoliciesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update a DDoS custom policy tags.
    * @param resourceGroupName The name of the resource group.

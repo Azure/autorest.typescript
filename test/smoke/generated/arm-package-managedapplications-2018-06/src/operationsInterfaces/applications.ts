@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Application,
   ApplicationsGetResponse,
@@ -62,7 +63,9 @@ export interface Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Creates a new managed application.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -75,7 +78,12 @@ export interface Applications {
     applicationName: string,
     parameters: Application,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationsCreateOrUpdateResponse>,
+      ApplicationsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates an existing managed application. The only value that can be updated via PATCH currently is
    * the tags.
@@ -109,7 +117,9 @@ export interface Applications {
   deleteById(
     applicationId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Creates a new managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed
@@ -122,7 +132,12 @@ export interface Applications {
     applicationId: string,
     parameters: Application,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationsCreateOrUpdateByIdResponse>,
+      ApplicationsCreateOrUpdateByIdResponse
+    >
+  >;
   /**
    * Updates an existing managed application. The only value that can be updated via PATCH currently is
    * the tags.

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   RouteFilter,
   RouteFiltersGetOptionalParams,
@@ -145,7 +146,9 @@ export class RouteFiltersImpl implements RouteFilters {
     resourceGroupName: string,
     routeFilterName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeFilterName,
@@ -207,7 +210,12 @@ export class RouteFiltersImpl implements RouteFilters {
     routeFilterName: string,
     routeFilterParameters: RouteFilter,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<RouteFiltersCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<RouteFiltersCreateOrUpdateResponse>,
+      RouteFiltersCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeFilterName,

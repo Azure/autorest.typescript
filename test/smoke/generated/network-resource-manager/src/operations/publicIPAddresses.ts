@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PublicIPAddress,
   PublicIPAddressesGetOptionalParams,
@@ -318,7 +319,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpAddressName,
@@ -380,7 +383,12 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     publicIpAddressName: string,
     parameters: PublicIPAddress,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PublicIPAddressesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PublicIPAddressesCreateOrUpdateResponse>,
+      PublicIPAddressesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpAddressName,

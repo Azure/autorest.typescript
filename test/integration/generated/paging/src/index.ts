@@ -11,4 +11,4 @@ export * from "./models";
 export { PagingClient } from "./pagingClient";
 export { PagingClientContext } from "./pagingClientContext";
 export * from "./operationsInterfaces";
-export { LROPoller } from "./lro";
+export { LROOperationState } from "./lro";

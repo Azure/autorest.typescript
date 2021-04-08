@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   JobAgent,
   JobAgentsListByServerResponse,
@@ -173,7 +174,12 @@ export class JobAgentsImpl implements JobAgents {
     jobAgentName: string,
     parameters: JobAgent,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobAgentsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobAgentsCreateOrUpdateResponse>,
+      JobAgentsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -215,7 +221,9 @@ export class JobAgentsImpl implements JobAgents {
     serverName: string,
     jobAgentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -258,7 +266,12 @@ export class JobAgentsImpl implements JobAgents {
     jobAgentName: string,
     parameters: JobAgentUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobAgentsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobAgentsUpdateResponse>,
+      JobAgentsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

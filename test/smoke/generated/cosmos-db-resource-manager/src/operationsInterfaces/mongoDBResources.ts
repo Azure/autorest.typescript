@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
   MongoDBCollectionGetResults,
@@ -82,7 +83,12 @@ export interface MongoDBResources {
     databaseName: string,
     createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
+      MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB MongoDB database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -95,7 +101,9 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the MongoDB database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -126,7 +134,12 @@ export interface MongoDBResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
+      >,
+      MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
+    >
   >;
   /**
    * Gets the MongoDB collection under an existing Azure Cosmos DB database account.
@@ -160,7 +173,12 @@ export interface MongoDBResources {
     collectionName: string,
     createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
+      MongoDBResourcesCreateUpdateMongoDBCollectionResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB MongoDB Collection.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -175,7 +193,9 @@ export interface MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the MongoDB collection under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -210,6 +230,11 @@ export interface MongoDBResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+      >,
+      MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+    >
   >;
 }

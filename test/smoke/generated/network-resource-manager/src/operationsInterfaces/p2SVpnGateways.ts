@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   P2SVpnGateway,
   P2SVpnGatewaysGetResponse,
@@ -67,7 +68,12 @@ export interface P2SVpnGateways {
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
+      P2SVpnGatewaysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates virtual wan p2s vpn gateway tags.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
@@ -91,7 +97,9 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -104,7 +112,12 @@ export interface P2SVpnGateways {
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysGenerateVpnProfileResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
+      P2SVpnGatewaysGenerateVpnProfileResponse
+    >
+  >;
   /**
    * Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource
    * group.
@@ -116,7 +129,12 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
+      P2SVpnGatewaysGetP2SVpnConnectionHealthResponse
+    >
+  >;
   /**
    * Gets the sas url to get the connection health detail of P2S clients of the virtual wan P2SVpnGateway
    * in the specified resource group.
@@ -131,7 +149,12 @@ export interface P2SVpnGateways {
     request: P2SVpnConnectionHealthRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>
+    PollerLike<
+      LROOperationState<
+        P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
+      >,
+      P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
+    >
   >;
   /**
    * Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group.
@@ -145,5 +168,7 @@ export interface P2SVpnGateways {
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

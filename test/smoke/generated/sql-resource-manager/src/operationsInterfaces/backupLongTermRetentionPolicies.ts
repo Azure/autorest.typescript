@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LongTermRetentionPolicyName,
   BackupLongTermRetentionPoliciesGetResponse,
@@ -51,7 +52,12 @@ export interface BackupLongTermRetentionPolicies {
     policyName: LongTermRetentionPolicyName,
     parameters: BackupLongTermRetentionPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>,
+      BackupLongTermRetentionPoliciesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets a database's long term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

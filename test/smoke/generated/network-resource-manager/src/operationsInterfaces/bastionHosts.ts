@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   BastionHost,
   BastionHostsGetResponse,
@@ -45,7 +46,9 @@ export interface BastionHosts {
     resourceGroupName: string,
     bastionHostName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Bastion Host.
    * @param resourceGroupName The name of the resource group.
@@ -69,5 +72,10 @@ export interface BastionHosts {
     bastionHostName: string,
     parameters: BastionHost,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<BastionHostsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<BastionHostsCreateOrUpdateResponse>,
+      BastionHostsCreateOrUpdateResponse
+    >
+  >;
 }

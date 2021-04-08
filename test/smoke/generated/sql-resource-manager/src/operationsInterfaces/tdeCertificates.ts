@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import { TdeCertificate } from "../models";
 
 /** Interface representing a TdeCertificates. */
@@ -25,5 +26,7 @@ export interface TdeCertificates {
     serverName: string,
     parameters: TdeCertificate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

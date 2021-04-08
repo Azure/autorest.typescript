@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
   CassandraTableGetResults,
@@ -83,7 +84,12 @@ export interface CassandraResources {
     createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesCreateUpdateCassandraKeyspaceResponse
+      >,
+      CassandraResourcesCreateUpdateCassandraKeyspaceResponse
+    >
   >;
   /**
    * Deletes an existing Azure Cosmos DB Cassandra keyspace.
@@ -97,7 +103,9 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the Cassandra Keyspace under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -128,7 +136,12 @@ export interface CassandraResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
+      >,
+      CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
+    >
   >;
   /**
    * Gets the Cassandra table under an existing Azure Cosmos DB database account.
@@ -162,7 +175,12 @@ export interface CassandraResources {
     tableName: string,
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
+      CassandraResourcesCreateUpdateCassandraTableResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB Cassandra table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -177,7 +195,9 @@ export interface CassandraResources {
     keyspaceName: string,
     tableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the Cassandra table under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -212,6 +232,11 @@ export interface CassandraResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesUpdateCassandraTableThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesUpdateCassandraTableThroughputResponse
+      >,
+      CassandraResourcesUpdateCassandraTableThroughputResponse
+    >
   >;
 }

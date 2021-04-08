@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsListResponse,
@@ -207,7 +208,12 @@ export class ExpressRouteCrossConnectionsImpl
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
+      ExpressRouteCrossConnectionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
@@ -276,7 +282,12 @@ export class ExpressRouteCrossConnectionsImpl
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsListArpTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
+      ExpressRouteCrossConnectionsListArpTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
@@ -321,7 +332,12 @@ export class ExpressRouteCrossConnectionsImpl
     devicePath: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>
+    PollerLike<
+      LROOperationState<
+        ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
+      >,
+      ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -367,7 +383,12 @@ export class ExpressRouteCrossConnectionsImpl
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
+      ExpressRouteCrossConnectionsListRoutesTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,

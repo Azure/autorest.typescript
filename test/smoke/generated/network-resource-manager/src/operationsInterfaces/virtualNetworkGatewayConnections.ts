@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkGatewayConnection,
   VirtualNetworkGatewayConnectionsCreateOrUpdateResponse,
@@ -53,7 +54,12 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     parameters: VirtualNetworkGatewayConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>,
+      VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the specified virtual network gateway connection by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -75,7 +81,9 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a virtual network gateway connection tags.
    * @param resourceGroupName The name of the resource group.
@@ -88,7 +96,12 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
+      VirtualNetworkGatewayConnectionsUpdateTagsResponse
+    >
+  >;
   /**
    * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
    * connection shared key for passed virtual network gateway connection in the specified resource group
@@ -104,7 +117,12 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
+      VirtualNetworkGatewayConnectionsSetSharedKeyResponse
+    >
+  >;
   /**
    * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves information about the specified
    * virtual network gateway connection shared key through Network resource provider.
@@ -133,7 +151,12 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionResetSharedKey,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>,
+      VirtualNetworkGatewayConnectionsResetSharedKeyResponse
+    >
+  >;
   /**
    * Starts packet capture on virtual network gateway connection in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -145,7 +168,12 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
+      >,
+      VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
+    >
   >;
   /**
    * Stops packet capture on virtual network gateway connection in the specified resource group.
@@ -161,6 +189,11 @@ export interface VirtualNetworkGatewayConnections {
     parameters: VpnPacketCaptureStopParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
+      >,
+      VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
+    >
   >;
 }

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
   AppServiceCertificateResource,
@@ -308,7 +309,12 @@ export class AppServiceCertificateOrdersImpl
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceCertificateOrdersCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>,
+      AppServiceCertificateOrdersCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       certificateOrderName,
@@ -445,7 +451,12 @@ export class AppServiceCertificateOrdersImpl
     keyVaultCertificate: AppServiceCertificateResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>
+    PollerLike<
+      LROOperationState<
+        AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
+      >,
+      AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

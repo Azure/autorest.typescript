@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   WorkloadClassifier,
   WorkloadClassifiersGetResponse,
@@ -72,7 +73,12 @@ export interface WorkloadClassifiers {
     workloadClassifierName: string,
     parameters: WorkloadClassifier,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WorkloadClassifiersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WorkloadClassifiersCreateOrUpdateResponse>,
+      WorkloadClassifiersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a workload classifier.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -90,5 +96,7 @@ export interface WorkloadClassifiers {
     workloadGroupName: string,
     workloadClassifierName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
   SqlContainerGetResults,
@@ -477,7 +478,12 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlDatabaseResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+      SqlResourcesCreateUpdateSqlDatabaseResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -518,7 +524,9 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -587,7 +595,12 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesUpdateSqlDatabaseThroughputResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+      SqlResourcesUpdateSqlDatabaseThroughputResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -685,7 +698,12 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlContainerResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+      SqlResourcesCreateUpdateSqlContainerResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -729,7 +747,9 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -803,7 +823,12 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesUpdateSqlContainerThroughputResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+      SqlResourcesUpdateSqlContainerThroughputResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -911,7 +936,12 @@ export class SqlResourcesImpl implements SqlResources {
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlStoredProcedureResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+      SqlResourcesCreateUpdateSqlStoredProcedureResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -958,7 +988,9 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -1067,7 +1099,10 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
+      SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1115,7 +1150,9 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -1222,7 +1259,12 @@ export class SqlResourcesImpl implements SqlResources {
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlTriggerResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+      SqlResourcesCreateUpdateSqlTriggerResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -1269,7 +1311,9 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     triggerName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,

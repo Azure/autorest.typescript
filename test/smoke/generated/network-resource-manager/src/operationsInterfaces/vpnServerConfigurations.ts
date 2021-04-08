@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VpnServerConfiguration,
   VpnServerConfigurationsGetResponse,
@@ -62,7 +63,12 @@ export interface VpnServerConfigurations {
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnServerConfigurationsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnServerConfigurationsCreateOrUpdateResponse>,
+      VpnServerConfigurationsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates VpnServerConfiguration tags.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
@@ -86,5 +92,7 @@ export interface VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

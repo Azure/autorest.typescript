@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ContainerService,
   ContainerServicesCreateOrUpdateResponse,
@@ -53,7 +54,12 @@ export interface ContainerServices {
     containerServiceName: string,
     parameters: ContainerService,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ContainerServicesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ContainerServicesCreateOrUpdateResponse>,
+      ContainerServicesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the properties of the specified container service in the specified subscription and resource
    * group. The operation returns the properties including state, orchestrator, number of masters and
@@ -82,5 +88,7 @@ export interface ContainerServices {
     resourceGroupName: string,
     containerServiceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

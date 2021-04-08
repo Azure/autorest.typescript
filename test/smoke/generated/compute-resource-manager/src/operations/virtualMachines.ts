@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachine,
   VirtualMachinesListAllNextOptionalParams,
@@ -288,7 +289,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesCaptureResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesCaptureResponse>,
+      VirtualMachinesCaptureResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -330,7 +336,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
     vmName: string,
     parameters: VirtualMachine,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesCreateOrUpdateResponse>,
+      VirtualMachinesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -370,7 +381,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
     vmName: string,
     parameters: VirtualMachineUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesUpdateResponse>,
+      VirtualMachinesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -408,7 +424,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -490,7 +508,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -528,7 +548,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -652,7 +674,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPowerOffOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -689,7 +713,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -726,7 +752,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -763,7 +791,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -800,7 +830,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -837,7 +869,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReimageOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -874,7 +908,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -936,7 +972,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
     vmName: string,
     parameters: RunCommandInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesRunCommandResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesRunCommandResponse>,
+      VirtualMachinesRunCommandResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,

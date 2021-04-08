@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   StorageAccount,
   StorageAccountCheckNameAvailabilityParameters,
@@ -82,7 +83,12 @@ export interface StorageAccounts {
     accountName: string,
     parameters: StorageAccountCreateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<StorageAccountsCreateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<StorageAccountsCreateResponse>,
+      StorageAccountsCreateResponse
+    >
+  >;
   /**
    * Deletes a storage account in Microsoft Azure.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -213,7 +219,9 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Restore blobs in the specified blob ranges
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -229,7 +237,12 @@ export interface StorageAccounts {
     accountName: string,
     parameters: BlobRestoreParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<StorageAccountsRestoreBlobRangesResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<StorageAccountsRestoreBlobRangesResponse>,
+      StorageAccountsRestoreBlobRangesResponse
+    >
+  >;
   /**
    * Revoke user delegation keys.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is

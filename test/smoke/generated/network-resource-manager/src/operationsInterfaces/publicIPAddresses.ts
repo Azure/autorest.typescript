@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PublicIPAddress,
   PublicIPAddressesGetOptionalParams,
@@ -79,7 +80,9 @@ export interface PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified public IP address in a specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -103,7 +106,12 @@ export interface PublicIPAddresses {
     publicIpAddressName: string,
     parameters: PublicIPAddress,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PublicIPAddressesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PublicIPAddressesCreateOrUpdateResponse>,
+      PublicIPAddressesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates public IP address tags.
    * @param resourceGroupName The name of the resource group.

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachine,
   VirtualMachinesListAllNextOptionalParams,
@@ -82,7 +83,12 @@ export interface VirtualMachines {
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesCaptureResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesCaptureResponse>,
+      VirtualMachinesCaptureResponse
+    >
+  >;
   /**
    * The operation to create or update a virtual machine. Please note some properties can be set only
    * during virtual machine creation.
@@ -96,7 +102,12 @@ export interface VirtualMachines {
     vmName: string,
     parameters: VirtualMachine,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesCreateOrUpdateResponse>,
+      VirtualMachinesCreateOrUpdateResponse
+    >
+  >;
   /**
    * The operation to update a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -109,7 +120,12 @@ export interface VirtualMachines {
     vmName: string,
     parameters: VirtualMachineUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesUpdateResponse>,
+      VirtualMachinesUpdateResponse
+    >
+  >;
   /**
    * The operation to delete a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -120,7 +136,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Retrieves information about the model view or the instance view of a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -154,7 +172,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Shuts down the virtual machine and releases the compute resources. You are not billed for the
    * compute resources that this virtual machine uses.
@@ -166,7 +186,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Sets the OS state of the virtual machine to generalized. It is recommended to sysprep the virtual
    * machine before performing this operation. <br>For Windows, please refer to [Create a managed image
@@ -194,7 +216,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPowerOffOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to reapply a virtual machine's state.
    * @param resourceGroupName The name of the resource group.
@@ -205,7 +229,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to restart a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -216,7 +242,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to start a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -227,7 +255,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Shuts down the virtual machine, moves it to a new node, and powers it back on.
    * @param resourceGroupName The name of the resource group.
@@ -238,7 +268,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
    * @param resourceGroupName The name of the resource group.
@@ -249,7 +281,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReimageOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to perform maintenance on a virtual machine.
    * @param resourceGroupName The name of the resource group.
@@ -260,7 +294,9 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to simulate the eviction of spot virtual machine. The eviction will occur within 30
    * minutes of calling the API
@@ -285,5 +321,10 @@ export interface VirtualMachines {
     vmName: string,
     parameters: RunCommandInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachinesRunCommandResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachinesRunCommandResponse>,
+      VirtualMachinesRunCommandResponse
+    >
+  >;
 }

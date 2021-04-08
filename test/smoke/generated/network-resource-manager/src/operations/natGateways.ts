@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NatGateway,
   NatGatewaysGetOptionalParams,
@@ -142,7 +143,9 @@ export class NatGatewaysImpl implements NatGateways {
     resourceGroupName: string,
     natGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       natGatewayName,
@@ -204,7 +207,12 @@ export class NatGatewaysImpl implements NatGateways {
     natGatewayName: string,
     parameters: NatGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NatGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NatGatewaysCreateOrUpdateResponse>,
+      NatGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       natGatewayName,

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GalleryImageVersion,
   GalleryImageVersionsCreateOrUpdateResponse,
@@ -139,7 +140,12 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageVersionName: string,
     galleryImageVersion: GalleryImageVersion,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryImageVersionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryImageVersionsCreateOrUpdateResponse>,
+      GalleryImageVersionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -188,7 +194,12 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageVersionName: string,
     galleryImageVersion: GalleryImageVersionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryImageVersionsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryImageVersionsUpdateResponse>,
+      GalleryImageVersionsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -260,7 +271,9 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageName: string,
     galleryImageVersionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,

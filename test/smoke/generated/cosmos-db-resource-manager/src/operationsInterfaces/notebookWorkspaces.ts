@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NotebookWorkspace,
   NotebookWorkspaceName,
@@ -61,7 +62,12 @@ export interface NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
+      NotebookWorkspacesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -74,7 +80,9 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Retrieves the connection info for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -100,7 +108,9 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -113,5 +123,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

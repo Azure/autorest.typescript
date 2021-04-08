@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerBlobAuditingPolicy,
   ServerBlobAuditingPoliciesGetResponse,
@@ -56,5 +57,10 @@ export interface ServerBlobAuditingPolicies {
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,
+      ServerBlobAuditingPoliciesCreateOrUpdateResponse
+    >
+  >;
 }

@@ -42,7 +42,7 @@ export function makeOperation<TResult extends BaseResult>(
 async function update<TResult extends BaseResult>(
   this: LROOperation<TResult>
 ): Promise<LROOperation<TResult>> {
-  const state = { ...this.state };
+  const state = this.state;
 
   const { sendFinalRequest, poll, isTerminal } = state.pollingStrategy;
   const currentResponse = state.lastOperation;
@@ -54,15 +54,11 @@ async function update<TResult extends BaseResult>(
     );
   }
 
-  if (state.result) {
-    state.isCompleted = true;
-    return makeOperation(state);
-  }
-
   // Check if last result is terminal
   if (isTerminal()) {
     state.lastOperation = await sendFinalRequest();
     state.result = state.lastOperation.result;
+    state.isCompleted = true;
   } else {
     state.lastOperation = await poll();
   }

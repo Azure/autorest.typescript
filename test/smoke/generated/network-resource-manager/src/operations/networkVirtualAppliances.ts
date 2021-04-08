@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkVirtualAppliance,
   NetworkVirtualAppliancesGetOptionalParams,
@@ -145,7 +146,9 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkVirtualApplianceName,
@@ -232,7 +235,12 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     networkVirtualApplianceName: string,
     parameters: NetworkVirtualAppliance,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkVirtualAppliancesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,
+      NetworkVirtualAppliancesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkVirtualApplianceName,

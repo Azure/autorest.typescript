@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LoadBalancer,
   LoadBalancersGetOptionalParams,
@@ -48,7 +49,9 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified load balancer.
    * @param resourceGroupName The name of the resource group.
@@ -72,7 +75,12 @@ export interface LoadBalancers {
     loadBalancerName: string,
     parameters: LoadBalancer,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LoadBalancersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LoadBalancersCreateOrUpdateResponse>,
+      LoadBalancersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates a load balancer tags.
    * @param resourceGroupName The name of the resource group.

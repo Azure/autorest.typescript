@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Disk,
   DisksCreateOrUpdateResponse,
@@ -150,7 +151,12 @@ export class DisksImpl implements Disks {
     diskName: string,
     disk: Disk,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DisksCreateOrUpdateResponse>,
+      DisksCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskName,
@@ -192,7 +198,9 @@ export class DisksImpl implements Disks {
     diskName: string,
     disk: DiskUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksUpdateResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<DisksUpdateResponse>, DisksUpdateResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskName,
@@ -256,7 +264,9 @@ export class DisksImpl implements Disks {
     resourceGroupName: string,
     diskName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskName,
@@ -332,7 +342,12 @@ export class DisksImpl implements Disks {
     diskName: string,
     grantAccessData: GrantAccessData,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksGrantAccessResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DisksGrantAccessResponse>,
+      DisksGrantAccessResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskName,
@@ -373,7 +388,9 @@ export class DisksImpl implements Disks {
     resourceGroupName: string,
     diskName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskName,

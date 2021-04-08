@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerCommunicationLink,
   ServerCommunicationLinksGetResponse,
@@ -162,7 +163,12 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
     communicationLinkName: string,
     parameters: ServerCommunicationLink,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerCommunicationLinksCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerCommunicationLinksCreateOrUpdateResponse>,
+      ServerCommunicationLinksCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

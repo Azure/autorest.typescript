@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Route,
   RoutesGetResponse,
@@ -42,7 +43,9 @@ export interface Routes {
     routeTableName: string,
     routeName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified route from a route table.
    * @param resourceGroupName The name of the resource group.
@@ -70,5 +73,10 @@ export interface Routes {
     routeName: string,
     routeParameters: Route,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<RoutesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<RoutesCreateOrUpdateResponse>,
+      RoutesCreateOrUpdateResponse
+    >
+  >;
 }

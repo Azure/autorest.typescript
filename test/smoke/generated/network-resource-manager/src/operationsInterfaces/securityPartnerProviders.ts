@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SecurityPartnerProvider,
   SecurityPartnerProvidersGetResponse,
@@ -47,7 +48,9 @@ export interface SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Security Partner Provider.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +74,12 @@ export interface SecurityPartnerProviders {
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SecurityPartnerProvidersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>,
+      SecurityPartnerProvidersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates tags of a Security Partner Provider resource.
    * @param resourceGroupName The name of the resource group.

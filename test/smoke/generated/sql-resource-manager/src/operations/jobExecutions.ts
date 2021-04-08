@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   JobExecution,
   JobExecutionsListByAgentNextOptionalParams,
@@ -286,7 +287,12 @@ export class JobExecutionsImpl implements JobExecutions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobExecutionsCreateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobExecutionsCreateResponse>,
+      JobExecutionsCreateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -393,7 +399,12 @@ export class JobExecutionsImpl implements JobExecutions {
     jobName: string,
     jobExecutionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobExecutionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobExecutionsCreateOrUpdateResponse>,
+      JobExecutionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

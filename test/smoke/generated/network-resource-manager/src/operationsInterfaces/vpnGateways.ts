@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VpnGateway,
   VpnGatewaysGetResponse,
@@ -61,7 +62,12 @@ export interface VpnGateways {
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnGatewaysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnGatewaysCreateOrUpdateResponse>,
+      VpnGatewaysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates virtual wan vpn gateway tags.
    * @param resourceGroupName The resource group name of the VpnGateway.
@@ -85,7 +91,9 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Resets the primary of the vpn gateway in the specified resource group.
    * @param resourceGroupName The resource group name of the VpnGateway.
@@ -96,5 +104,10 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnGatewaysResetResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnGatewaysResetResponse>,
+      VpnGatewaysResetResponse
+    >
+  >;
 }

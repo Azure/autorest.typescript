@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SecurityRule,
   SecurityRulesGetResponse,
@@ -42,7 +43,9 @@ export interface SecurityRules {
     networkSecurityGroupName: string,
     securityRuleName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Get the specified network security rule.
    * @param resourceGroupName The name of the resource group.
@@ -71,5 +74,10 @@ export interface SecurityRules {
     securityRuleName: string,
     securityRuleParameters: SecurityRule,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SecurityRulesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SecurityRulesCreateOrUpdateResponse>,
+      SecurityRulesCreateOrUpdateResponse
+    >
+  >;
 }

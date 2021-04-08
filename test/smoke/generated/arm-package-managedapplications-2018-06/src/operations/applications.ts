@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Application,
   ApplicationsGetResponse,
@@ -170,7 +171,9 @@ export class ApplicationsImpl implements Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationName,
@@ -209,7 +212,12 @@ export class ApplicationsImpl implements Applications {
     applicationName: string,
     parameters: Application,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationsCreateOrUpdateResponse>,
+      ApplicationsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationName,
@@ -326,7 +334,9 @@ export class ApplicationsImpl implements Applications {
   async deleteById(
     applicationId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationId,
       options: this.getOperationOptions(options, "undefined")
@@ -364,7 +374,12 @@ export class ApplicationsImpl implements Applications {
     applicationId: string,
     parameters: Application,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationsCreateOrUpdateByIdResponse>,
+      ApplicationsCreateOrUpdateByIdResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationId,
       parameters,

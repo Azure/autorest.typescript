@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DeploymentExtended,
   DeploymentsListAtScopeNextOptionalParams,
@@ -111,7 +112,9 @@ export interface Deployments {
     scope: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the deployment exists.
    * @param scope The scope of a deployment.
@@ -135,7 +138,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtScopeResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
+      DeploymentsCreateOrUpdateAtScopeResponse
+    >
+  >;
   /**
    * Gets a deployment.
    * @param scope The scope of a deployment.
@@ -199,7 +207,9 @@ export interface Deployments {
   deleteAtTenantScope(
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
@@ -219,7 +229,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
+      DeploymentsCreateOrUpdateAtTenantScopeResponse
+    >
+  >;
   /**
    * Gets a deployment.
    * @param deploymentName The name of the deployment.
@@ -277,7 +292,9 @@ export interface Deployments {
     groupId: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the deployment exists.
    * @param groupId The management group ID.
@@ -302,7 +319,12 @@ export interface Deployments {
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>
+    PollerLike<
+      LROOperationState<
+        DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+      >,
+      DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+    >
   >;
   /**
    * Gets a deployment.
@@ -367,7 +389,9 @@ export interface Deployments {
   deleteAtSubscriptionScope(
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
@@ -387,7 +411,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
+      DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
+    >
+  >;
   /**
    * Gets a deployment.
    * @param deploymentName The name of the deployment.
@@ -430,7 +459,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsWhatIfAtSubscriptionScopeResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
+      DeploymentsWhatIfAtSubscriptionScopeResponse
+    >
+  >;
   /**
    * Exports the template used for specified deployment.
    * @param deploymentName The name of the deployment.
@@ -458,7 +492,9 @@ export interface Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the deployment exists.
    * @param resourceGroupName The name of the resource group with the deployment to check. The name is
@@ -484,7 +520,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateResponse>,
+      DeploymentsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets a deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -537,7 +578,12 @@ export interface Deployments {
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsWhatIfResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsWhatIfResponse>,
+      DeploymentsWhatIfResponse
+    >
+  >;
   /**
    * Exports the template used for specified deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.

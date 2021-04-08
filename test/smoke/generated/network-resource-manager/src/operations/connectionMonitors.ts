@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ConnectionMonitorResult,
   ConnectionMonitor,
@@ -112,7 +113,12 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     connectionMonitorName: string,
     parameters: ConnectionMonitor,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ConnectionMonitorsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ConnectionMonitorsCreateOrUpdateResponse>,
+      ConnectionMonitorsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -179,7 +185,9 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -248,7 +256,9 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -289,7 +299,9 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -330,7 +342,12 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ConnectionMonitorsQueryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ConnectionMonitorsQueryResponse>,
+      ConnectionMonitorsQueryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,

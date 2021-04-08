@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DeploymentExtended,
   DeploymentsListAtScopeNextOptionalParams,
@@ -333,7 +334,9 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
       deploymentName,
@@ -394,7 +397,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtScopeResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
+      DeploymentsCreateOrUpdateAtScopeResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
       deploymentName,
@@ -549,7 +557,9 @@ export class DeploymentsImpl implements Deployments {
   async deleteAtTenantScope(
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       options: this.getOperationOptions(options, "undefined")
@@ -604,7 +614,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtTenantScopeResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
+      DeploymentsCreateOrUpdateAtTenantScopeResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
@@ -745,7 +760,9 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
       deploymentName,
@@ -807,7 +824,12 @@ export class DeploymentsImpl implements Deployments {
     parameters: ScopedDeployment,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>
+    PollerLike<
+      LROOperationState<
+        DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+      >,
+      DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -963,7 +985,9 @@ export class DeploymentsImpl implements Deployments {
   async deleteAtSubscriptionScope(
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       options: this.getOperationOptions(options, "undefined")
@@ -1018,7 +1042,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
+      DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
@@ -1118,7 +1147,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsWhatIfAtSubscriptionScopeResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
+      DeploymentsWhatIfAtSubscriptionScopeResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
       parameters,
@@ -1199,7 +1233,9 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,
@@ -1262,7 +1298,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: Deployment,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsCreateOrUpdateResponse>,
+      DeploymentsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,
@@ -1376,7 +1417,12 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DeploymentsWhatIfResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DeploymentsWhatIfResponse>,
+      DeploymentsWhatIfResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       deploymentName,

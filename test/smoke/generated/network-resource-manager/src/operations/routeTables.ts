@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   RouteTable,
   RouteTablesGetOptionalParams,
@@ -142,7 +143,9 @@ export class RouteTablesImpl implements RouteTables {
     resourceGroupName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeTableName,
@@ -204,7 +207,12 @@ export class RouteTablesImpl implements RouteTables {
     routeTableName: string,
     parameters: RouteTable,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<RouteTablesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<RouteTablesCreateOrUpdateResponse>,
+      RouteTablesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       routeTableName,

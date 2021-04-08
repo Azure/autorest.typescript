@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Domain,
   NameIdentifier,
@@ -103,7 +104,12 @@ export interface Domains {
     domainName: string,
     domain: Domain,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DomainsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DomainsCreateOrUpdateResponse>,
+      DomainsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Description for Delete a domain.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

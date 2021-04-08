@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCircuitConnection,
   ExpressRouteCircuitConnectionsGetResponse,
@@ -46,7 +47,9 @@ export interface ExpressRouteCircuitConnections {
     peeringName: string,
     connectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Express Route Circuit Connection from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -79,5 +82,10 @@ export interface ExpressRouteCircuitConnections {
     connectionName: string,
     expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>,
+      ExpressRouteCircuitConnectionsCreateOrUpdateResponse
+    >
+  >;
 }

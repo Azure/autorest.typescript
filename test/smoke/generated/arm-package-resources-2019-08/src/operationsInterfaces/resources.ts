@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -58,7 +59,9 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
    * move must be in the same source resource group. The target resource group may be in a different
@@ -74,7 +77,9 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether a resource exists.
    * @param resourceGroupName The name of the resource group containing the resource to check. The name
@@ -114,7 +119,9 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Creates a resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
@@ -136,7 +143,12 @@ export interface Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesCreateOrUpdateResponse>,
+      ResourcesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates a resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
@@ -158,7 +170,12 @@ export interface Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesUpdateResponse>,
+      ResourcesUpdateResponse
+    >
+  >;
   /**
    * Gets a resource.
    * @param resourceGroupName The name of the resource group containing the resource to get. The name is
@@ -204,7 +221,9 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Create a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
@@ -219,7 +238,12 @@ export interface Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesCreateOrUpdateByIdResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesCreateOrUpdateByIdResponse>,
+      ResourcesCreateOrUpdateByIdResponse
+    >
+  >;
   /**
    * Updates a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
@@ -234,7 +258,12 @@ export interface Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesUpdateByIdResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesUpdateByIdResponse>,
+      ResourcesUpdateByIdResponse
+    >
+  >;
   /**
    * Gets a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource

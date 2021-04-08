@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   BackupShortTermRetentionPolicy,
   ShortTermRetentionPolicyName,
@@ -166,7 +167,10 @@ export class BackupShortTermRetentionPoliciesImpl
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>,
+      BackupShortTermRetentionPoliciesCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -214,7 +218,12 @@ export class BackupShortTermRetentionPoliciesImpl
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<BackupShortTermRetentionPoliciesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
+      BackupShortTermRetentionPoliciesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

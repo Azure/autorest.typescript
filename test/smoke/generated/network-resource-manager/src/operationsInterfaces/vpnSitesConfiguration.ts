@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import { GetVpnSitesConfigurationRequest } from "../models";
 
 /** Interface representing a VpnSitesConfiguration. */
@@ -24,5 +25,7 @@ export interface VpnSitesConfiguration {
     virtualWANName: string,
     request: GetVpnSitesConfigurationRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

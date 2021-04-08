@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PacketCaptureResult,
   PacketCapture,
@@ -110,7 +111,12 @@ export class PacketCapturesImpl implements PacketCaptures {
     packetCaptureName: string,
     parameters: PacketCapture,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PacketCapturesCreateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PacketCapturesCreateResponse>,
+      PacketCapturesCreateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -177,7 +183,9 @@ export class PacketCapturesImpl implements PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -218,7 +226,9 @@ export class PacketCapturesImpl implements PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -259,7 +269,12 @@ export class PacketCapturesImpl implements PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PacketCapturesGetStatusResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PacketCapturesGetStatusResponse>,
+      PacketCapturesGetStatusResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,

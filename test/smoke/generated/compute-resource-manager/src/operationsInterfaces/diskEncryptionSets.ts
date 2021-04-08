@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DiskEncryptionSet,
   DiskEncryptionSetsCreateOrUpdateResponse,
@@ -52,7 +53,12 @@ export interface DiskEncryptionSets {
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
+      DiskEncryptionSetsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates (patches) a disk encryption set.
    * @param resourceGroupName The name of the resource group.
@@ -68,7 +74,12 @@ export interface DiskEncryptionSets {
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DiskEncryptionSetsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DiskEncryptionSetsUpdateResponse>,
+      DiskEncryptionSetsUpdateResponse
+    >
+  >;
   /**
    * Gets information about a disk encryption set.
    * @param resourceGroupName The name of the resource group.
@@ -94,5 +105,7 @@ export interface DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

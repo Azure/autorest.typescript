@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
   ManagedShortTermRetentionPolicyName,
@@ -170,7 +171,10 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
+      >,
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
     >
   > {
@@ -221,7 +225,10 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
+      >,
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
     >
   > {

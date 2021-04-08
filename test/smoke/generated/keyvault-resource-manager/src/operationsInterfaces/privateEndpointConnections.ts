@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PrivateEndpointConnectionsGetResponse,
   PrivateEndpointConnection,
@@ -60,5 +61,10 @@ export interface PrivateEndpointConnections {
     vaultName: string,
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PrivateEndpointConnectionsDeleteResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PrivateEndpointConnectionsDeleteResponse>,
+      PrivateEndpointConnectionsDeleteResponse
+    >
+  >;
 }

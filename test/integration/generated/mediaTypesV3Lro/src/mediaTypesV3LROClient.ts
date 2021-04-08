@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "./lro";
+import { PollerLike } from "@azure/core-lro";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {

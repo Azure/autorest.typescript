@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   StorageAccount,
   StorageAccountCheckNameAvailabilityParameters,
@@ -178,7 +179,12 @@ export class StorageAccountsImpl implements StorageAccounts {
     accountName: string,
     parameters: StorageAccountCreateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<StorageAccountsCreateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<StorageAccountsCreateResponse>,
+      StorageAccountsCreateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -455,7 +461,9 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -498,7 +506,12 @@ export class StorageAccountsImpl implements StorageAccounts {
     accountName: string,
     parameters: BlobRestoreParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<StorageAccountsRestoreBlobRangesResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<StorageAccountsRestoreBlobRangesResponse>,
+      StorageAccountsRestoreBlobRangesResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,

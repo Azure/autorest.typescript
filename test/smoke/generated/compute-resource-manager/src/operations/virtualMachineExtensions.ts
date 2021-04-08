@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
   VirtualMachineExtensionsCreateOrUpdateResponse,
@@ -49,7 +50,12 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtension,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineExtensionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
+      VirtualMachineExtensionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -92,7 +98,12 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineExtensionsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineExtensionsUpdateResponse>,
+      VirtualMachineExtensionsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,
@@ -133,7 +144,9 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmName,

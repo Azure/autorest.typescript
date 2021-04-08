@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetVM,
   VirtualMachineScaleSetVMsListNextOptionalParams,
@@ -126,7 +127,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -167,7 +170,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -209,7 +214,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -251,7 +258,12 @@ export class VirtualMachineScaleSetVMsImpl
     instanceId: string,
     parameters: VirtualMachineScaleSetVM,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetVMsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
+      VirtualMachineScaleSetVMsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -292,7 +304,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -406,7 +420,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -446,7 +462,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -486,7 +504,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -527,7 +547,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -567,7 +589,9 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -635,7 +659,12 @@ export class VirtualMachineScaleSetVMsImpl
     instanceId: string,
     parameters: RunCommandInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetVMsRunCommandResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,
+      VirtualMachineScaleSetVMsRunCommandResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,

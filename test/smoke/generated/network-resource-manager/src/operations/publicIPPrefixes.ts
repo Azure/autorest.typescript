@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PublicIPPrefix,
   PublicIPPrefixesGetOptionalParams,
@@ -142,7 +143,9 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
     resourceGroupName: string,
     publicIpPrefixName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpPrefixName,
@@ -204,7 +207,12 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PublicIPPrefixesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PublicIPPrefixesCreateOrUpdateResponse>,
+      PublicIPPrefixesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       publicIpPrefixName,

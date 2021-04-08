@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCircuit,
   ExpressRouteCircuitsGetResponse,
@@ -52,7 +53,9 @@ export interface ExpressRouteCircuits {
     resourceGroupName: string,
     circuitName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets information about the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +79,12 @@ export interface ExpressRouteCircuits {
     circuitName: string,
     parameters: ExpressRouteCircuit,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>,
+      ExpressRouteCircuitsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates an express route circuit tags.
    * @param resourceGroupName The name of the resource group.
@@ -105,7 +113,12 @@ export interface ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListArpTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListArpTableResponse>,
+      ExpressRouteCircuitsListArpTableResponse
+    >
+  >;
   /**
    * Gets the currently advertised routes table associated with the express route circuit in a resource
    * group.
@@ -121,7 +134,12 @@ export interface ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListRoutesTableResponse>,
+      ExpressRouteCircuitsListRoutesTableResponse
+    >
+  >;
   /**
    * Gets the currently advertised routes table summary associated with the express route circuit in a
    * resource group.
@@ -137,7 +155,12 @@ export interface ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>,
+      ExpressRouteCircuitsListRoutesTableSummaryResponse
+    >
+  >;
   /**
    * Gets all the stats from an express route circuit in a resource group.
    * @param resourceGroupName The name of the resource group.

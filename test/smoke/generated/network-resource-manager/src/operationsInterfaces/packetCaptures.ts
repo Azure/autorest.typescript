@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PacketCaptureResult,
   PacketCapture,
@@ -46,7 +47,12 @@ export interface PacketCaptures {
     packetCaptureName: string,
     parameters: PacketCapture,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PacketCapturesCreateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PacketCapturesCreateResponse>,
+      PacketCapturesCreateResponse
+    >
+  >;
   /**
    * Gets a packet capture session by name.
    * @param resourceGroupName The name of the resource group.
@@ -72,7 +78,9 @@ export interface PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Stops a specified packet capture session.
    * @param resourceGroupName The name of the resource group.
@@ -85,7 +93,9 @@ export interface PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Query the status of a running packet capture session.
    * @param resourceGroupName The name of the resource group.
@@ -98,5 +108,10 @@ export interface PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PacketCapturesGetStatusResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PacketCapturesGetStatusResponse>,
+      PacketCapturesGetStatusResponse
+    >
+  >;
 }

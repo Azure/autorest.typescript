@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
   AppServiceCertificateResource,
@@ -92,7 +93,12 @@ export interface AppServiceCertificateOrders {
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceCertificateOrdersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>,
+      AppServiceCertificateOrdersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Description for Delete an existing certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -145,7 +151,12 @@ export interface AppServiceCertificateOrders {
     keyVaultCertificate: AppServiceCertificateResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>
+    PollerLike<
+      LROOperationState<
+        AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
+      >,
+      AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
+    >
   >;
   /**
    * Description for Delete the certificate associated with a certificate order.

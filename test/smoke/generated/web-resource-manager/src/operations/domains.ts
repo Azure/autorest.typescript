@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Domain,
   NameIdentifier,
@@ -394,7 +395,12 @@ export class DomainsImpl implements Domains {
     domainName: string,
     domain: Domain,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DomainsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DomainsCreateOrUpdateResponse>,
+      DomainsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       domainName,

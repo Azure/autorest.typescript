@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
   ManagedShortTermRetentionPolicyName,
@@ -71,7 +72,10 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
+      >,
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
     >
   >;
@@ -93,7 +97,10 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
+      >,
       ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
     >
   >;

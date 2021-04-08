@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkWatcher,
   NetworkWatchersCreateOrUpdateResponse,
@@ -194,7 +195,9 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -319,7 +322,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersVerifyIPFlowResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersVerifyIPFlowResponse>,
+      NetworkWatchersVerifyIPFlowResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -360,7 +368,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: NextHopParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetNextHopResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetNextHopResponse>,
+      NetworkWatchersGetNextHopResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -401,7 +414,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetVMSecurityRulesResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
+      NetworkWatchersGetVMSecurityRulesResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -442,7 +460,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetTroubleshootingResponse>,
+      NetworkWatchersGetTroubleshootingResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -483,7 +506,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResultResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
+      NetworkWatchersGetTroubleshootingResultResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -524,7 +552,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: FlowLogInformation,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersSetFlowLogConfigurationResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
+      NetworkWatchersSetFlowLogConfigurationResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -566,7 +599,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetFlowLogStatusResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetFlowLogStatusResponse>,
+      NetworkWatchersGetFlowLogStatusResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -608,7 +646,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: ConnectivityParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersCheckConnectivityResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersCheckConnectivityResponse>,
+      NetworkWatchersCheckConnectivityResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -650,7 +693,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetAzureReachabilityReportResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
+      NetworkWatchersGetAzureReachabilityReportResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -692,7 +740,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersListAvailableProvidersResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersListAvailableProvidersResponse>,
+      NetworkWatchersListAvailableProvidersResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
@@ -738,7 +791,12 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     parameters: NetworkConfigurationDiagnosticParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>
+    PollerLike<
+      LROOperationState<
+        NetworkWatchersGetNetworkConfigurationDiagnosticResponse
+      >,
+      NetworkWatchersGetNetworkConfigurationDiagnosticResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

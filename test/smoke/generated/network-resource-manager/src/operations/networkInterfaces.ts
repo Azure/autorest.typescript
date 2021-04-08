@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkInterface,
   NetworkInterfaceIPConfiguration,
@@ -397,7 +398,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
@@ -459,7 +462,12 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     networkInterfaceName: string,
     parameters: NetworkInterface,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkInterfacesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkInterfacesCreateOrUpdateResponse>,
+      NetworkInterfacesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
@@ -558,7 +566,12 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkInterfacesGetEffectiveRouteTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
+      NetworkInterfacesGetEffectiveRouteTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       networkInterfaceName,
@@ -597,7 +610,12 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>
+    PollerLike<
+      LROOperationState<
+        NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
+      >,
+      NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

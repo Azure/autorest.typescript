@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   TableGetResults,
   TableResourcesGetTableResponse,
@@ -61,7 +62,12 @@ export interface TableResources {
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<TableResourcesCreateUpdateTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<TableResourcesCreateUpdateTableResponse>,
+      TableResourcesCreateUpdateTableResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB Table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -74,7 +80,9 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the Table under an existing Azure Cosmos DB database account with the
    * provided name.
@@ -104,5 +112,10 @@ export interface TableResources {
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<TableResourcesUpdateTableThroughputResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<TableResourcesUpdateTableThroughputResponse>,
+      TableResourcesUpdateTableThroughputResponse
+    >
+  >;
 }

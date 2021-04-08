@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PrivateDnsZoneGroup,
   PrivateDnsZoneGroupsGetResponse,
@@ -118,7 +119,9 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,
@@ -186,7 +189,12 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     privateDnsZoneGroupName: string,
     parameters: PrivateDnsZoneGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PrivateDnsZoneGroupsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>,
+      PrivateDnsZoneGroupsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       privateEndpointName,

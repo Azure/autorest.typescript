@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
   SqlContainerGetResults,
@@ -137,7 +138,12 @@ export interface SqlResources {
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlDatabaseResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+      SqlResourcesCreateUpdateSqlDatabaseResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB SQL database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -150,7 +156,9 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the SQL database under an existing Azure Cosmos DB database account with
    * the provided name.
@@ -180,7 +188,12 @@ export interface SqlResources {
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesUpdateSqlDatabaseThroughputResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+      SqlResourcesUpdateSqlDatabaseThroughputResponse
+    >
+  >;
   /**
    * Gets the SQL container under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -212,7 +225,12 @@ export interface SqlResources {
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlContainerResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+      SqlResourcesCreateUpdateSqlContainerResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB SQL container.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -227,7 +245,9 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the SQL container under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -260,7 +280,12 @@ export interface SqlResources {
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesUpdateSqlContainerThroughputResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+      SqlResourcesUpdateSqlContainerThroughputResponse
+    >
+  >;
   /**
    * Gets the SQL storedProcedure under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -297,7 +322,12 @@ export interface SqlResources {
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlStoredProcedureResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+      SqlResourcesCreateUpdateSqlStoredProcedureResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB SQL storedProcedure.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -314,7 +344,9 @@ export interface SqlResources {
     containerName: string,
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the SQL userDefinedFunction under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -351,7 +383,12 @@ export interface SqlResources {
     userDefinedFunctionName: string,
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
+      SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB SQL userDefinedFunction.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -368,7 +405,9 @@ export interface SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the SQL trigger under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -404,7 +443,12 @@ export interface SqlResources {
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SqlResourcesCreateUpdateSqlTriggerResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+      SqlResourcesCreateUpdateSqlTriggerResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB SQL trigger.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -421,5 +465,7 @@ export interface SqlResources {
     containerName: string,
     triggerName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

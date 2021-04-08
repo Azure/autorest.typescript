@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
 
 /** Interface representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
@@ -23,6 +24,11 @@ export interface VpnServerConfigurationsAssociatedWithVirtualWan {
     virtualWANName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>
+    PollerLike<
+      LROOperationState<
+        VpnServerConfigurationsAssociatedWithVirtualWanListResponse
+      >,
+      VpnServerConfigurationsAssociatedWithVirtualWanListResponse
+    >
   >;
 }

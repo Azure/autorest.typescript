@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteConnection,
   ExpressRouteConnectionsCreateOrUpdateResponse,
@@ -32,7 +33,12 @@ export interface ExpressRouteConnections {
     connectionName: string,
     putExpressRouteConnectionParameters: ExpressRouteConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteConnectionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>,
+      ExpressRouteConnectionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the specified ExpressRouteConnection.
    * @param resourceGroupName The name of the resource group.
@@ -58,7 +64,9 @@ export interface ExpressRouteConnections {
     expressRouteGatewayName: string,
     connectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Lists ExpressRouteConnections.
    * @param resourceGroupName The name of the resource group.

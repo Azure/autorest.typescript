@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetVM,
   VirtualMachineScaleSetVMsListNextOptionalParams,
@@ -49,7 +50,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
    * operation is only supported for managed disks.
@@ -63,7 +66,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
    * releases the compute resources it uses. You are not billed for the compute resources of this virtual
@@ -78,7 +83,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a virtual machine of a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -93,7 +100,12 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     parameters: VirtualMachineScaleSetVM,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetVMsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
+      VirtualMachineScaleSetVMsUpdateResponse
+    >
+  >;
   /**
    * Deletes a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -106,7 +118,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -147,7 +161,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Restarts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -160,7 +176,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -173,7 +191,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
    * it back on.
@@ -187,7 +207,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Performs maintenance on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -200,7 +222,9 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will
    * occur within 30 minutes of calling the API
@@ -229,5 +253,10 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     parameters: RunCommandInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetVMsRunCommandResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,
+      VirtualMachineScaleSetVMsRunCommandResponse
+    >
+  >;
 }

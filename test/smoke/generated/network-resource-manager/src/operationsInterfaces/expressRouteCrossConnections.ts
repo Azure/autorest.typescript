@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsGetResponse,
@@ -63,7 +64,12 @@ export interface ExpressRouteCrossConnections {
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
+      ExpressRouteCrossConnectionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates an express route cross connection tags.
    * @param resourceGroupName The name of the resource group.
@@ -92,7 +98,12 @@ export interface ExpressRouteCrossConnections {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsListArpTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
+      ExpressRouteCrossConnectionsListArpTableResponse
+    >
+  >;
   /**
    * Gets the route table summary associated with the express route cross connection in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -108,7 +119,12 @@ export interface ExpressRouteCrossConnections {
     devicePath: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>
+    PollerLike<
+      LROOperationState<
+        ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
+      >,
+      ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
+    >
   >;
   /**
    * Gets the currently advertised routes table associated with the express route cross connection in a
@@ -125,5 +141,10 @@ export interface ExpressRouteCrossConnections {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
+      ExpressRouteCrossConnectionsListRoutesTableResponse
+    >
+  >;
 }

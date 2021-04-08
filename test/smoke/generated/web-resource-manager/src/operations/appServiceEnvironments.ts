@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
   StampCapacity,
@@ -1617,7 +1618,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
+      AppServiceEnvironmentsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -1655,7 +1661,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -1763,7 +1771,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     vnetInfo: VirtualNetworkProfile,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsChangeVnetResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsChangeVnetResponse>,
+      AppServiceEnvironmentsChangeVnetResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -1921,7 +1934,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     multiRolePoolEnvelope: WorkerPoolResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>
+    PollerLike<
+      LROOperationState<
+        AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
+      >,
+      AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2152,7 +2170,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsResumeResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsResumeResponse>,
+      AppServiceEnvironmentsResumeResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -2233,7 +2256,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsSuspendResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsSuspendResponse>,
+      AppServiceEnvironmentsSuspendResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -2344,7 +2372,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolEnvelope: WorkerPoolResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>,
+      AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

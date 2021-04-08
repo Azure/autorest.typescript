@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnectionPeering,
   ExpressRouteCrossConnectionPeeringsGetResponse,
@@ -42,7 +43,9 @@ export interface ExpressRouteCrossConnectionPeerings {
     crossConnectionName: string,
     peeringName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified peering for the ExpressRouteCrossConnection.
    * @param resourceGroupName The name of the resource group.
@@ -72,6 +75,11 @@ export interface ExpressRouteCrossConnectionPeerings {
     peeringParameters: ExpressRouteCrossConnectionPeering,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
+      >,
+      ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
+    >
   >;
 }

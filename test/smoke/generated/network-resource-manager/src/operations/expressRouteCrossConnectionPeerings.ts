@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnectionPeering,
   ExpressRouteCrossConnectionPeeringsListResponse,
@@ -141,7 +142,9 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     crossConnectionName: string,
     peeringName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       crossConnectionName,
@@ -211,7 +214,12 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     peeringParameters: ExpressRouteCrossConnectionPeering,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
+      >,
+      ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

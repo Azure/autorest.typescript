@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   JobExecution,
   JobExecutionsListByAgentNextOptionalParams,
@@ -87,7 +88,12 @@ export interface JobExecutions {
     jobAgentName: string,
     jobName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobExecutionsCreateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobExecutionsCreateResponse>,
+      JobExecutionsCreateResponse
+    >
+  >;
   /**
    * Gets a job execution.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -123,5 +129,10 @@ export interface JobExecutions {
     jobName: string,
     jobExecutionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<JobExecutionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<JobExecutionsCreateOrUpdateResponse>,
+      JobExecutionsCreateOrUpdateResponse
+    >
+  >;
 }

@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VpnGateway,
   VpnGatewaysGetResponse,
@@ -169,7 +170,12 @@ export class VpnGatewaysImpl implements VpnGateways {
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnGatewaysCreateOrUpdateResponse>,
+      VpnGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -233,7 +239,9 @@ export class VpnGatewaysImpl implements VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -271,7 +279,12 @@ export class VpnGatewaysImpl implements VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnGatewaysResetResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnGatewaysResetResponse>,
+      VpnGatewaysResetResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,

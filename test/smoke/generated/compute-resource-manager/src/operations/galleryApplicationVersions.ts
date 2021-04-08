@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GalleryApplicationVersion,
   GalleryApplicationVersionsCreateOrUpdateResponse,
@@ -142,7 +143,12 @@ export class GalleryApplicationVersionsImpl
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersion,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationVersionsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>,
+      GalleryApplicationVersionsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -193,7 +199,12 @@ export class GalleryApplicationVersionsImpl
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationVersionsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationVersionsUpdateResponse>,
+      GalleryApplicationVersionsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -269,7 +280,9 @@ export class GalleryApplicationVersionsImpl
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,

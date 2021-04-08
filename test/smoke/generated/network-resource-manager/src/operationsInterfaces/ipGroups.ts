@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   IpGroup,
   IpGroupsGetOptionalParams,
@@ -61,7 +62,12 @@ export interface IpGroups {
     ipGroupsName: string,
     parameters: IpGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<IpGroupsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<IpGroupsCreateOrUpdateResponse>,
+      IpGroupsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates tags of an IpGroups resource.
    * @param resourceGroupName The name of the resource group.
@@ -85,5 +91,7 @@ export interface IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

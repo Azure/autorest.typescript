@@ -228,6 +228,10 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
+      namedImports: ["LROOperationState"],
+      moduleSpecifier: `../lro`
+    });
+    operationGroupFile.addImportDeclaration({
       namedImports: ["PollerLike"],
       moduleSpecifier: "@azure/core-lro"
     });

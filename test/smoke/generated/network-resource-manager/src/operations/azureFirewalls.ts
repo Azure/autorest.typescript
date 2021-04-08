@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AzureFirewall,
   AzureFirewallsGetResponse,
@@ -141,7 +142,9 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       azureFirewallName,
@@ -203,7 +206,12 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     azureFirewallName: string,
     parameters: AzureFirewall,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AzureFirewallsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AzureFirewallsCreateOrUpdateResponse>,
+      AzureFirewallsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       azureFirewallName,
@@ -244,7 +252,12 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     azureFirewallName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AzureFirewallsUpdateTagsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<AzureFirewallsUpdateTagsResponse>,
+      AzureFirewallsUpdateTagsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       azureFirewallName,

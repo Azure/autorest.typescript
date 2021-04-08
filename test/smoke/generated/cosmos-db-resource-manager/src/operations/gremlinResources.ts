@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GremlinDatabaseGetResults,
   GremlinGraphGetResults,
@@ -236,7 +237,12 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinDatabaseResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
+      GremlinResourcesCreateUpdateGremlinDatabaseResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -277,7 +283,9 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -347,7 +355,12 @@ export class GremlinResourcesImpl implements GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        GremlinResourcesUpdateGremlinDatabaseThroughputResponse
+      >,
+      GremlinResourcesUpdateGremlinDatabaseThroughputResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -446,7 +459,12 @@ export class GremlinResourcesImpl implements GremlinResources {
     graphName: string,
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinGraphResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
+      GremlinResourcesCreateUpdateGremlinGraphResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -490,7 +508,9 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -565,7 +585,12 @@ export class GremlinResourcesImpl implements GremlinResources {
     graphName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesUpdateGremlinGraphThroughputResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
+      GremlinResourcesUpdateGremlinGraphThroughputResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,

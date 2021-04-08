@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SyncAgent,
   SyncAgentLinkedDatabase,
@@ -76,7 +77,12 @@ export interface SyncAgents {
     syncAgentName: string,
     parameters: SyncAgent,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SyncAgentsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SyncAgentsCreateOrUpdateResponse>,
+      SyncAgentsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a sync agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -90,7 +96,9 @@ export interface SyncAgents {
     serverName: string,
     syncAgentName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Generates a sync agent key.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
