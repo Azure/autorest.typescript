@@ -42,7 +42,7 @@ export function makeOperation<TResult extends BaseResult>(
 async function update<TResult extends BaseResult>(
   this: LROOperation<TResult>
 ): Promise<LROOperation<TResult>> {
-  const state = { ...this.state };
+  const state = this.state;
 
   const { sendFinalRequest, poll, isTerminal } = state.pollingStrategy;
   const currentResponse = state.lastOperation;
