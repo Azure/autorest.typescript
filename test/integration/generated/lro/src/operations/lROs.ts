@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
@@ -98,7 +99,12 @@ export class LROsImpl implements LROs {
    */
   async put200Succeeded(
     options?: LROsPut200SucceededOptionalParams
-  ): Promise<LROPoller<LROsPut200SucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut200SucceededResponse>,
+      LROsPut200SucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -130,7 +136,12 @@ export class LROsImpl implements LROs {
    */
   async put201Succeeded(
     options?: LROsPut201SucceededOptionalParams
-  ): Promise<LROPoller<LROsPut201SucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut201SucceededResponse>,
+      LROsPut201SucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -162,7 +173,12 @@ export class LROsImpl implements LROs {
    */
   async post202List(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsPost202ListResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPost202ListResponse>,
+      LROsPost202ListResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -194,7 +210,12 @@ export class LROsImpl implements LROs {
    */
   async put200SucceededNoState(
     options?: LROsPut200SucceededNoStateOptionalParams
-  ): Promise<LROPoller<LROsPut200SucceededNoStateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut200SucceededNoStateResponse>,
+      LROsPut200SucceededNoStateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -226,7 +247,12 @@ export class LROsImpl implements LROs {
    */
   async put202Retry200(
     options?: LROsPut202Retry200OptionalParams
-  ): Promise<LROPoller<LROsPut202Retry200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut202Retry200Response>,
+      LROsPut202Retry200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -259,7 +285,12 @@ export class LROsImpl implements LROs {
    */
   async put201CreatingSucceeded200(
     options?: LROsPut201CreatingSucceeded200OptionalParams
-  ): Promise<LROPoller<LROsPut201CreatingSucceeded200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut201CreatingSucceeded200Response>,
+      LROsPut201CreatingSucceeded200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -292,7 +323,12 @@ export class LROsImpl implements LROs {
    */
   async put200UpdatingSucceeded204(
     options?: LROsPut200UpdatingSucceeded204OptionalParams
-  ): Promise<LROPoller<LROsPut200UpdatingSucceeded204Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut200UpdatingSucceeded204Response>,
+      LROsPut200UpdatingSucceeded204Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -325,7 +361,12 @@ export class LROsImpl implements LROs {
    */
   async put201CreatingFailed200(
     options?: LROsPut201CreatingFailed200OptionalParams
-  ): Promise<LROPoller<LROsPut201CreatingFailed200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut201CreatingFailed200Response>,
+      LROsPut201CreatingFailed200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -358,7 +399,12 @@ export class LROsImpl implements LROs {
    */
   async put200Acceptedcanceled200(
     options?: LROsPut200Acceptedcanceled200OptionalParams
-  ): Promise<LROPoller<LROsPut200Acceptedcanceled200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPut200Acceptedcanceled200Response>,
+      LROsPut200Acceptedcanceled200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -390,7 +436,12 @@ export class LROsImpl implements LROs {
    */
   async putNoHeaderInRetry(
     options?: LROsPutNoHeaderInRetryOptionalParams
-  ): Promise<LROPoller<LROsPutNoHeaderInRetryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutNoHeaderInRetryResponse>,
+      LROsPutNoHeaderInRetryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -423,7 +474,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncRetrySucceeded(
     options?: LROsPutAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncRetrySucceededResponse>,
+      LROsPutAsyncRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -456,7 +512,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncNoRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncNoRetrySucceededResponse>,
+      LROsPutAsyncNoRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -489,7 +550,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncRetryFailed(
     options?: LROsPutAsyncRetryFailedOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncRetryFailedResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncRetryFailedResponse>,
+      LROsPutAsyncRetryFailedResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -522,7 +588,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncNoRetrycanceledResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncNoRetrycanceledResponse>,
+      LROsPutAsyncNoRetrycanceledResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -554,7 +625,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncNoHeaderInRetry(
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncNoHeaderInRetryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncNoHeaderInRetryResponse>,
+      LROsPutAsyncNoHeaderInRetryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -585,7 +661,12 @@ export class LROsImpl implements LROs {
    */
   async putNonResource(
     options?: LROsPutNonResourceOptionalParams
-  ): Promise<LROPoller<LROsPutNonResourceResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutNonResourceResponse>,
+      LROsPutNonResourceResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -616,7 +697,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncNonResourceResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncNonResourceResponse>,
+      LROsPutAsyncNonResourceResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -647,7 +733,12 @@ export class LROsImpl implements LROs {
    */
   async putSubResource(
     options?: LROsPutSubResourceOptionalParams
-  ): Promise<LROPoller<LROsPutSubResourceResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutSubResourceResponse>,
+      LROsPutSubResourceResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -678,7 +769,12 @@ export class LROsImpl implements LROs {
    */
   async putAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
-  ): Promise<LROPoller<LROsPutAsyncSubResourceResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPutAsyncSubResourceResponse>,
+      LROsPutAsyncSubResourceResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -711,7 +807,12 @@ export class LROsImpl implements LROs {
    */
   async deleteProvisioning202Accepted200Succeeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteProvisioning202Accepted200SucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
+      LROsDeleteProvisioning202Accepted200SucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -744,7 +845,12 @@ export class LROsImpl implements LROs {
    */
   async deleteProvisioning202DeletingFailed200(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteProvisioning202DeletingFailed200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
+      LROsDeleteProvisioning202DeletingFailed200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -777,7 +883,12 @@ export class LROsImpl implements LROs {
    */
   async deleteProvisioning202Deletingcanceled200(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteProvisioning202Deletingcanceled200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
+      LROsDeleteProvisioning202Deletingcanceled200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -808,7 +919,9 @@ export class LROsImpl implements LROs {
    */
   async delete204Succeeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -840,7 +953,12 @@ export class LROsImpl implements LROs {
    */
   async delete202Retry200(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDelete202Retry200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDelete202Retry200Response>,
+      LROsDelete202Retry200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -872,7 +990,12 @@ export class LROsImpl implements LROs {
    */
   async delete202NoRetry204(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDelete202NoRetry204Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDelete202NoRetry204Response>,
+      LROsDelete202NoRetry204Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -904,7 +1027,12 @@ export class LROsImpl implements LROs {
    */
   async deleteNoHeaderInRetry(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteNoHeaderInRetryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteNoHeaderInRetryResponse>,
+      LROsDeleteNoHeaderInRetryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -936,7 +1064,12 @@ export class LROsImpl implements LROs {
    */
   async deleteAsyncNoHeaderInRetry(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteAsyncNoHeaderInRetryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
+      LROsDeleteAsyncNoHeaderInRetryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -968,7 +1101,12 @@ export class LROsImpl implements LROs {
    */
   async deleteAsyncRetrySucceeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteAsyncRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteAsyncRetrySucceededResponse>,
+      LROsDeleteAsyncRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1000,7 +1138,12 @@ export class LROsImpl implements LROs {
    */
   async deleteAsyncNoRetrySucceeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteAsyncNoRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
+      LROsDeleteAsyncNoRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1032,7 +1175,12 @@ export class LROsImpl implements LROs {
    */
   async deleteAsyncRetryFailed(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteAsyncRetryFailedResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteAsyncRetryFailedResponse>,
+      LROsDeleteAsyncRetryFailedResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1064,7 +1212,12 @@ export class LROsImpl implements LROs {
    */
   async deleteAsyncRetrycanceled(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsDeleteAsyncRetrycanceledResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsDeleteAsyncRetrycanceledResponse>,
+      LROsDeleteAsyncRetrycanceledResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1096,7 +1249,12 @@ export class LROsImpl implements LROs {
    */
   async post200WithPayload(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsPost200WithPayloadResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPost200WithPayloadResponse>,
+      LROsPost200WithPayloadResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1128,7 +1286,12 @@ export class LROsImpl implements LROs {
    */
   async post202Retry200(
     options?: LROsPost202Retry200OptionalParams
-  ): Promise<LROPoller<LROsPost202Retry200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPost202Retry200Response>,
+      LROsPost202Retry200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1160,7 +1323,12 @@ export class LROsImpl implements LROs {
    */
   async post202NoRetry204(
     options?: LROsPost202NoRetry204OptionalParams
-  ): Promise<LROPoller<LROsPost202NoRetry204Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPost202NoRetry204Response>,
+      LROsPost202NoRetry204Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1192,7 +1360,12 @@ export class LROsImpl implements LROs {
    */
   async postDoubleHeadersFinalLocationGet(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsPostDoubleHeadersFinalLocationGetResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
+      LROsPostDoubleHeadersFinalLocationGetResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "location")
     };
@@ -1226,7 +1399,12 @@ export class LROsImpl implements LROs {
    */
   async postDoubleHeadersFinalAzureHeaderGet(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
+      LROsPostDoubleHeadersFinalAzureHeaderGetResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "azure-async-operation")
     };
@@ -1261,7 +1439,12 @@ export class LROsImpl implements LROs {
   async postDoubleHeadersFinalAzureHeaderGetDefault(
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>
+    PollerLike<
+      LROOperationState<
+        LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+      >,
+      LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
@@ -1295,7 +1478,12 @@ export class LROsImpl implements LROs {
    */
   async postAsyncRetrySucceeded(
     options?: LROsPostAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsPostAsyncRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostAsyncRetrySucceededResponse>,
+      LROsPostAsyncRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1328,7 +1516,12 @@ export class LROsImpl implements LROs {
    */
   async postAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsPostAsyncNoRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostAsyncNoRetrySucceededResponse>,
+      LROsPostAsyncNoRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1361,7 +1554,12 @@ export class LROsImpl implements LROs {
    */
   async postAsyncRetryFailed(
     options?: LROsPostAsyncRetryFailedOptionalParams
-  ): Promise<LROPoller<LROsPostAsyncRetryFailedResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostAsyncRetryFailedResponse>,
+      LROsPostAsyncRetryFailedResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -1394,7 +1592,12 @@ export class LROsImpl implements LROs {
    */
   async postAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
-  ): Promise<LROPoller<LROsPostAsyncRetrycanceledResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsPostAsyncRetrycanceledResponse>,
+      LROsPostAsyncRetrycanceledResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };

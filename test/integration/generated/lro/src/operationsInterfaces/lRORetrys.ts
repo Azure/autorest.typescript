@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -32,7 +32,12 @@ export interface LRORetrys {
    */
   put201CreatingSucceeded200(
     options?: LRORetrysPut201CreatingSucceeded200OptionalParams
-  ): Promise<LROPoller<LRORetrysPut201CreatingSucceeded200Response>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysPut201CreatingSucceeded200Response>,
+      LRORetrysPut201CreatingSucceeded200Response
+    >
+  >;
   /**
    * Long running put request, service returns a 500, then a 200 to the initial request, with an entity
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -41,7 +46,12 @@ export interface LRORetrys {
    */
   putAsyncRelativeRetrySucceeded(
     options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LROPoller<LRORetrysPutAsyncRelativeRetrySucceededResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
+      LRORetrysPutAsyncRelativeRetrySucceededResponse
+    >
+  >;
   /**
    * Long running delete request, service returns a 500, then a  202 to the initial request, with an
    * entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
@@ -51,7 +61,12 @@ export interface LRORetrys {
   deleteProvisioning202Accepted200Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<LRORetrysDeleteProvisioning202Accepted200SucceededResponse>
+    PollerLike<
+      LROOperationState<
+        LRORetrysDeleteProvisioning202Accepted200SucceededResponse
+      >,
+      LRORetrysDeleteProvisioning202Accepted200SucceededResponse
+    >
   >;
   /**
    * Long running delete request, service returns a 500, then a 202 to the initial request. Polls return
@@ -60,7 +75,12 @@ export interface LRORetrys {
    */
   delete202Retry200(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LRORetrysDelete202Retry200Response>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysDelete202Retry200Response>,
+      LRORetrysDelete202Retry200Response
+    >
+  >;
   /**
    * Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
@@ -68,7 +88,12 @@ export interface LRORetrys {
    */
   deleteAsyncRelativeRetrySucceeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
+      LRORetrysDeleteAsyncRelativeRetrySucceededResponse
+    >
+  >;
   /**
    * Long running post request, service returns a 500, then a 202 to the initial request, with 'Location'
    * and 'Retry-After' headers, Polls return a 200 with a response body after success
@@ -76,7 +101,12 @@ export interface LRORetrys {
    */
   post202Retry200(
     options?: LRORetrysPost202Retry200OptionalParams
-  ): Promise<LROPoller<LRORetrysPost202Retry200Response>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysPost202Retry200Response>,
+      LRORetrysPost202Retry200Response
+    >
+  >;
   /**
    * Long running post request, service returns a 500, then a 202 to the initial request, with an entity
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -85,5 +115,10 @@ export interface LRORetrys {
    */
   postAsyncRelativeRetrySucceeded(
     options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LROPoller<LRORetrysPostAsyncRelativeRetrySucceededResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
+      LRORetrysPostAsyncRelativeRetrySucceededResponse
+    >
+  >;
 }

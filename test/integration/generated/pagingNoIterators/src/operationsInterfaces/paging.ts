@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
@@ -188,7 +188,12 @@ export interface Paging {
    */
   getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
-  ): Promise<LROPoller<PagingGetMultiplePagesLROResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PagingGetMultiplePagesLROResponse>,
+      PagingGetMultiplePagesLROResponse
+    >
+  >;
   /**
    * A paging operation that doesn't return a full URL, just a fragment
    * @param apiVersion Sets the api version to use.

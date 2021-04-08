@@ -46,7 +46,10 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+      >,
       LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
     >
   > {
