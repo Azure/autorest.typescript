@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -33,7 +32,7 @@ export interface LROsCustomHeader {
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+      PollOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
       LROsCustomHeaderPutAsyncRetrySucceededResponse
     >
   >;
@@ -48,7 +47,7 @@ export interface LROsCustomHeader {
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+      PollOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
       LROsCustomHeaderPut201CreatingSucceeded200Response
     >
   >;
@@ -62,7 +61,7 @@ export interface LROsCustomHeader {
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPost202Retry200Response>,
+      PollOperationState<LROsCustomHeaderPost202Retry200Response>,
       LROsCustomHeaderPost202Retry200Response
     >
   >;
@@ -77,7 +76,7 @@ export interface LROsCustomHeader {
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+      PollOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
       LROsCustomHeaderPostAsyncRetrySucceededResponse
     >
   >;

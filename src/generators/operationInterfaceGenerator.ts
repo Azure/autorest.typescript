@@ -105,7 +105,7 @@ function getReturnType(
   );
 
   return operation.isLRO
-    ? `Promise<PollerLike<LROOperationState<${responseName}>,${responseName}>>`
+    ? `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
     : `Promise<${responseName}>`;
 }
 
@@ -228,11 +228,7 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROOperationState"],
-      moduleSpecifier: `../lro`
-    });
-    operationGroupFile.addImportDeclaration({
-      namedImports: ["PollerLike"],
+      namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
   }

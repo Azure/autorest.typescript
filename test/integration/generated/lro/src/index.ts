@@ -10,4 +10,3 @@ export * from "./models";
 export { LROClient } from "./lROClient";
 export { LROClientContext } from "./lROClientContext";
 export * from "./operationsInterfaces";
-export { LROOperationState } from "./lro";
