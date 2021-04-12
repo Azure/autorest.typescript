@@ -10,7 +10,7 @@ import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { Poller } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
 
@@ -390,8 +390,8 @@ export interface ContainerServicePrincipalProfile {
 
 // @public
 export interface ContainerServices {
-    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: coreHttp.OperationOptions): Promise<LROPoller<ContainerServicesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<ContainerServicesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
@@ -637,11 +637,11 @@ export interface DedicatedHostListResult {
 
 // @public
 export interface DedicatedHosts {
-    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: coreHttp.OperationOptions): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<DedicatedHostsGetResponse>;
     listByHostGroup(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHost>;
-    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DedicatedHostsUpdateResponse>>;
+    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
 }
 
 // @public
@@ -773,12 +773,12 @@ export type DiskEncryptionSetParameters = SubResource & {};
 
 // @public
 export interface DiskEncryptionSets {
-    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: coreHttp.OperationOptions): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<DiskEncryptionSetsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
-    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DiskEncryptionSetsUpdateResponse>>;
+    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
 }
 
 // @public
@@ -874,14 +874,14 @@ export interface DiskList {
 
 // @public
 export interface Disks {
-    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<DisksGetResponse>;
-    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksGrantAccessResponse>>;
+    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
-    revokeAccess(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<DisksUpdateResponse>>;
+    revokeAccess(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
 }
 
 // @public
@@ -1020,12 +1020,12 @@ export type Enum31 = number;
 
 // @public
 export interface Galleries {
-    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleriesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<GalleriesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
-    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleriesUpdateResponse>>;
+    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
 }
 
 // @public
@@ -1111,11 +1111,11 @@ export interface GalleryApplicationList {
 
 // @public
 export interface GalleryApplications {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<GalleryApplicationsGetResponse>;
     listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplication>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationsUpdateResponse>>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
 }
 
 // @public
@@ -1195,11 +1195,11 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
 
 // @public
 export interface GalleryApplicationVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsGetOptionalParams): Promise<GalleryApplicationVersionsGetResponse>;
     listByGalleryApplication(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplicationVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryApplicationVersionsUpdateResponse>>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
 }
 
 // @public
@@ -1328,11 +1328,11 @@ export type GalleryImagePropertiesProvisioningState = string;
 
 // @public
 export interface GalleryImages {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<GalleryImagesGetResponse>;
     listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImage>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImagesUpdateResponse>>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
 }
 
 // @public
@@ -1416,11 +1416,11 @@ export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProf
 
 // @public
 export interface GalleryImageVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImageVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsGetOptionalParams): Promise<GalleryImageVersionsGetResponse>;
     listByGalleryImage(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImageVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<GalleryImageVersionsUpdateResponse>>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
 }
 
 // @public
@@ -1590,12 +1590,12 @@ export type ImageReference = SubResource & {
 
 // @public
 export interface Images {
-    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: coreHttp.OperationOptions): Promise<LROPoller<ImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, imageName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, imageName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
-    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<ImagesUpdateResponse>>;
+    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
 }
 
 // @public
@@ -2478,8 +2478,8 @@ export interface ListUsagesResult {
 
 // @public
 export interface LogAnalytics {
-    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: coreHttp.OperationOptions): Promise<LROPoller<LogAnalyticsExportRequestRateByIntervalResponse>>;
-    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: coreHttp.OperationOptions): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>>;
+    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<LogAnalyticsExportRequestRateByIntervalResponse>, LogAnalyticsExportRequestRateByIntervalResponse>>;
+    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<LogAnalyticsExportThrottledRequestsResponse>, LogAnalyticsExportThrottledRequestsResponse>>;
 }
 
 // @public
@@ -2521,14 +2521,24 @@ export interface LogAnalyticsOutput {
 }
 
 // Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
-    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
-    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
-    delay(): Promise<void>;
-    }
+export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
+    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    finalStateVia?: FinalStateVia;
+    // (undocumented)
+    initialOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    lastOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    pollingStrategy: LROStrategy<TResult>;
+}
 
 // @public
 export type MaintenanceOperationResultCodeTypes = "None" | "RetryLater" | "MaintenanceAborted" | "MaintenanceCompleted";
@@ -3061,14 +3071,14 @@ export interface SnapshotList {
 
 // @public
 export interface Snapshots {
-    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<SnapshotsGetResponse>;
-    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsGrantAccessResponse>>;
+    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
-    revokeAccess(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<SnapshotsUpdateResponse>>;
+    revokeAccess(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
 }
 
 // @public
@@ -3566,11 +3576,11 @@ export interface VirtualMachineExtensionInstanceView {
 
 // @public
 export interface VirtualMachineExtensions {
-    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsGetOptionalParams): Promise<VirtualMachineExtensionsGetResponse>;
     list(resourceGroupName: string, vmName: string, options?: VirtualMachineExtensionsListOptionalParams): Promise<VirtualMachineExtensionsListResponse>;
-    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineExtensionsUpdateResponse>>;
+    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -3787,11 +3797,11 @@ export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
 
 // @public
 export interface VirtualMachines {
-    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesCaptureResponse>>;
-    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesCreateOrUpdateResponse>>;
-    deallocate(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
+    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
+    deallocate(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     generalize(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesGetResponse>;
     instanceView(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesInstanceViewResponse>;
@@ -3799,16 +3809,16 @@ export interface VirtualMachines {
     listAll(options?: VirtualMachinesListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
     listAvailableSizes(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
     listByLocation(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachine>;
-    performMaintenance(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    reapply(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesRunCommandResponse>>;
+    performMaintenance(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reapply(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
     simulateEviction(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachinesUpdateResponse>>;
+    start(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
 }
 
 // @public
@@ -3873,11 +3883,11 @@ export interface VirtualMachineScaleSetExtensionProfile {
 
 // @public
 export interface VirtualMachineScaleSetExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetExtensionsGetResponse>;
     list(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
-    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -4083,10 +4093,10 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 
 // @public
 export interface VirtualMachineScaleSetRollingUpgrades {
-    cancel(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    cancel(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getLatest(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
-    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -4100,10 +4110,10 @@ export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgr
 // @public
 export interface VirtualMachineScaleSets {
     convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetsCreateOrUpdateResponse>>;
-    deallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
+    deallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
@@ -4111,16 +4121,16 @@ export interface VirtualMachineScaleSets {
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
     listOSUpgradeHistory(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
     listSkus(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
-    performMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    reimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    start(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetsUpdateResponse>>;
-    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    performMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    start(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
+    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -4414,11 +4424,11 @@ export type VirtualMachineScaleSetVM = Resource & {
 
 // @public
 export interface VirtualMachineScaleSetVMExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsGetResponse>;
     list(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMExtensionsListOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsListResponse>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -4532,21 +4542,21 @@ export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimagePar
 
 // @public
 export interface VirtualMachineScaleSetVMs {
-    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
     list(resourceGroupName: string, virtualMachineScaleSetName: string, options?: VirtualMachineScaleSetVMsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetVM>;
-    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<LROPoller<coreHttp.RestResponse>>;
-    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMsRunCommandResponse>>;
+    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    powerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
     simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: coreHttp.OperationOptions): Promise<LROPoller<VirtualMachineScaleSetVMsUpdateResponse>>;
+    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
 }
 
 // @public

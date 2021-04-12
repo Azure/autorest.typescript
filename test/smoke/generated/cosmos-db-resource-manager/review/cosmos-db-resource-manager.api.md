@@ -10,7 +10,7 @@ import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { Poller } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
 
@@ -77,18 +77,18 @@ export interface CassandraPartitionKey {
 
 // @public
 export interface CassandraResources {
-    createUpdateCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>>;
-    createUpdateCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>>;
-    deleteCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createUpdateCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>, CassandraResourcesCreateUpdateCassandraKeyspaceResponse>>;
+    createUpdateCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>, CassandraResourcesCreateUpdateCassandraTableResponse>>;
+    deleteCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraKeyspaceResponse>;
     getCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse>;
     getCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraTableResponse>;
     getCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<CassandraResourcesGetCassandraTableThroughputResponse>;
     listCassandraKeyspaces(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CassandraKeyspaceGetResults>;
     listCassandraTables(resourceGroupName: string, accountName: string, keyspaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<CassandraTableGetResults>;
-    updateCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>>;
-    updateCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<CassandraResourcesUpdateCassandraTableThroughputResponse>>;
+    updateCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>, CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>>;
+    updateCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<CassandraResourcesUpdateCassandraTableThroughputResponse>, CassandraResourcesUpdateCassandraTableThroughputResponse>>;
 }
 
 // @public
@@ -515,9 +515,9 @@ export type DatabaseAccountRegionListMetricsResponse = MetricListResult & {
 // @public
 export interface DatabaseAccounts {
     checkNameExists(accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, accountName: string, createUpdateParameters: DatabaseAccountCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabaseAccountsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    failoverPriorityChange(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, accountName: string, createUpdateParameters: DatabaseAccountCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DatabaseAccountsCreateOrUpdateResponse>, DatabaseAccountsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failoverPriorityChange(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsGetResponse>;
     getReadOnlyKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
@@ -528,10 +528,10 @@ export interface DatabaseAccounts {
     listMetrics(resourceGroupName: string, accountName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
     listReadOnlyKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAccountsListReadOnlyKeysResponse>;
     listUsages(resourceGroupName: string, accountName: string, options?: DatabaseAccountsListUsagesOptionalParams): PagedAsyncIterableIterator<Usage>;
-    offlineRegion(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    onlineRegion(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    regenerateKey(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    update(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<DatabaseAccountsUpdateResponse>>;
+    offlineRegion(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    onlineRegion(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    regenerateKey(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DatabaseAccountsUpdateResponse>, DatabaseAccountsUpdateResponse>>;
 }
 
 // @public
@@ -791,18 +791,18 @@ export interface GremlinGraphResource {
 
 // @public
 export interface GremlinResources {
-    createUpdateGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinDatabaseResponse>>;
-    createUpdateGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinGraphResponse>>;
-    deleteGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createUpdateGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>, GremlinResourcesCreateUpdateGremlinDatabaseResponse>>;
+    createUpdateGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>, GremlinResourcesCreateUpdateGremlinGraphResponse>>;
+    deleteGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinDatabaseResponse>;
     getGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse>;
     getGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinGraphResponse>;
     getGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: coreHttp.OperationOptions): Promise<GremlinResourcesGetGremlinGraphThroughputResponse>;
     listGremlinDatabases(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GremlinDatabaseGetResults>;
     listGremlinGraphs(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GremlinGraphGetResults>;
-    updateGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>>;
-    updateGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<GremlinResourcesUpdateGremlinGraphThroughputResponse>>;
+    updateGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>, GremlinResourcesUpdateGremlinDatabaseThroughputResponse>>;
+    updateGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>, GremlinResourcesUpdateGremlinGraphThroughputResponse>>;
 }
 
 // @public
@@ -1104,14 +1104,24 @@ interface Location_2 {
 export { Location_2 as Location }
 
 // Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
-    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
-    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
-    delay(): Promise<void>;
-    }
+export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
+    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    finalStateVia?: FinalStateVia;
+    // (undocumented)
+    initialOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    lastOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    pollingStrategy: LROStrategy<TResult>;
+}
 
 // @public
 export interface Metric {
@@ -1226,18 +1236,18 @@ export interface MongoDBDatabaseResource {
 
 // @public
 export interface MongoDBResources {
-    createUpdateMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>>;
-    createUpdateMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>>;
-    deleteMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createUpdateMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>, MongoDBResourcesCreateUpdateMongoDBCollectionResponse>>;
+    createUpdateMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>, MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>>;
+    deleteMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBCollectionResponse>;
     getMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse>;
     getMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBDatabaseResponse>;
     getMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse>;
     listMongoDBCollections(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MongoDBCollectionGetResults>;
     listMongoDBDatabases(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MongoDBDatabaseGetResults>;
-    updateMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>>;
-    updateMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>>;
+    updateMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>, MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>>;
+    updateMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>, MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>>;
 }
 
 // @public
@@ -1366,13 +1376,13 @@ export type NotebookWorkspaceName = string;
 
 // @public
 export interface NotebookWorkspaces {
-    createOrUpdate(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NotebookWorkspacesCreateOrUpdateResponse>, NotebookWorkspacesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<NotebookWorkspacesGetResponse>;
     listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NotebookWorkspace>;
     listConnectionInfo(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<NotebookWorkspacesListConnectionInfoResponse>;
-    regenerateAuthToken(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    start(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    regenerateAuthToken(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    start(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -1594,8 +1604,8 @@ export interface PrivateEndpointConnectionListResult {
 
 // @public
 export interface PrivateEndpointConnections {
-    createOrUpdate(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnectionAutoGenerated, options?: coreHttp.OperationOptions): Promise<LROPoller<PrivateEndpointConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnectionAutoGenerated, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>, PrivateEndpointConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
     listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnectionAutoGenerated>;
 }
@@ -1777,16 +1787,16 @@ export interface SqlDatabaseResource {
 
 // @public
 export interface SqlResources {
-    createUpdateSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlContainerResponse>>;
-    createUpdateSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlDatabaseResponse>>;
-    createUpdateSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlStoredProcedureResponse>>;
-    createUpdateSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlTriggerResponse>>;
-    createUpdateSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>>;
-    deleteSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createUpdateSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesCreateUpdateSqlContainerResponse>, SqlResourcesCreateUpdateSqlContainerResponse>>;
+    createUpdateSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>, SqlResourcesCreateUpdateSqlDatabaseResponse>>;
+    createUpdateSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>, SqlResourcesCreateUpdateSqlStoredProcedureResponse>>;
+    createUpdateSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>, SqlResourcesCreateUpdateSqlTriggerResponse>>;
+    createUpdateSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>, SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>>;
+    deleteSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlContainerResponse>;
     getSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlContainerThroughputResponse>;
     getSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<SqlResourcesGetSqlDatabaseResponse>;
@@ -1799,8 +1809,8 @@ export interface SqlResources {
     listSqlStoredProcedures(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlStoredProcedureGetResults>;
     listSqlTriggers(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlTriggerGetResults>;
     listSqlUserDefinedFunctions(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults>;
-    updateSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesUpdateSqlContainerThroughputResponse>>;
-    updateSqlDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<SqlResourcesUpdateSqlDatabaseThroughputResponse>>;
+    updateSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>, SqlResourcesUpdateSqlContainerThroughputResponse>>;
+    updateSqlDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>, SqlResourcesUpdateSqlDatabaseThroughputResponse>>;
 }
 
 // @public
@@ -2069,12 +2079,12 @@ export interface TableResource {
 
 // @public
 export interface TableResources {
-    createUpdateTable(resourceGroupName: string, accountName: string, tableName: string, createUpdateTableParameters: TableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<TableResourcesCreateUpdateTableResponse>>;
-    deleteTable(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createUpdateTable(resourceGroupName: string, accountName: string, tableName: string, createUpdateTableParameters: TableCreateUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<TableResourcesCreateUpdateTableResponse>, TableResourcesCreateUpdateTableResponse>>;
+    deleteTable(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getTable(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<TableResourcesGetTableResponse>;
     getTableThroughput(resourceGroupName: string, accountName: string, tableName: string, options?: coreHttp.OperationOptions): Promise<TableResourcesGetTableThroughputResponse>;
     listTables(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TableGetResults>;
-    updateTableThroughput(resourceGroupName: string, accountName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<LROPoller<TableResourcesUpdateTableThroughputResponse>>;
+    updateTableThroughput(resourceGroupName: string, accountName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<TableResourcesUpdateTableThroughputResponse>, TableResourcesUpdateTableThroughputResponse>>;
 }
 
 // @public

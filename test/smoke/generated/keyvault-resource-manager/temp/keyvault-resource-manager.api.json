@@ -2987,13 +2987,13 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Class",
-          "canonicalReference": "keyvault-resource-manager!LROPoller:class",
+          "kind": "Interface",
+          "canonicalReference": "keyvault-resource-manager!LROOperationState:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare class LROPoller<TResult extends "
+              "text": "export interface LROOperationState<TResult extends "
             },
             {
               "kind": "Reference",
@@ -3006,21 +3006,12 @@
             },
             {
               "kind": "Reference",
-              "text": "Poller",
-              "canonicalReference": "@azure/core-lro!Poller:class"
+              "text": "PollOperationState",
+              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
             },
             {
               "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "LROOperationState",
-              "canonicalReference": "keyvault-resource-manager!LROOperationState:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TResult>, TResult> "
+              "text": "<TResult> "
             }
           ],
           "releaseTag": "Public",
@@ -3037,21 +3028,47 @@
               }
             }
           ],
-          "name": "LROPoller",
+          "name": "LROOperationState",
           "members": [
             {
-              "kind": "Constructor",
-              "canonicalReference": "keyvault-resource-manager!LROPoller:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `LROPoller` class\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "keyvault-resource-manager!LROOperationState#finalStateVia:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: "
+                  "text": "finalStateVia?: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPollerOptions",
-                  "canonicalReference": "keyvault-resource-manager!LROPollerOptions:interface"
+                  "text": "FinalStateVia",
+                  "canonicalReference": "keyvault-resource-manager!FinalStateVia:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "finalStateVia",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "keyvault-resource-manager!LROOperationState#initialOperation:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "initialOperation: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationStep",
+                  "canonicalReference": "keyvault-resource-manager!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
@@ -3059,60 +3076,83 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ");"
+                  "text": ";"
                 }
               ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "{ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                }
-              ]
+              "name": "initialOperation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             },
             {
-              "kind": "Method",
-              "canonicalReference": "keyvault-resource-manager!LROPoller#delay:member(1)",
-              "docComment": "/**\n * The method used by the poller to wait before attempting to update its operation.\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "keyvault-resource-manager!LROOperationState#lastOperation:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delay(): "
+                  "text": "lastOperation: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "LROOperationStep",
+                  "canonicalReference": "keyvault-resource-manager!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": "<void>"
+                  "text": "<TResult>"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
+              "releaseTag": "Public",
+              "name": "lastOperation",
+              "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
-              },
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "keyvault-resource-manager!LROOperationState#pollingStrategy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pollingStrategy: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROStrategy",
+                  "canonicalReference": "keyvault-resource-manager!LROStrategy:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TResult>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "delay"
+              "name": "pollingStrategy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
-          "extendsTokenRange": {
-            "startIndex": 3,
-            "endIndex": 7
-          },
-          "implementsTokenRanges": []
+          "extendsTokenRanges": [
+            {
+              "startIndex": 3,
+              "endIndex": 5
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -4194,12 +4234,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "keyvault-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "keyvault-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PrivateEndpointConnectionsDeleteResponse",
+                  "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionsDeleteResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -4217,7 +4275,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7101,12 +7159,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "keyvault-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "keyvault-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "VaultsCreateOrUpdateResponse",
+                  "canonicalReference": "keyvault-resource-manager!VaultsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -7124,7 +7200,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7736,12 +7812,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "keyvault-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "keyvault-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -7759,7 +7853,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,

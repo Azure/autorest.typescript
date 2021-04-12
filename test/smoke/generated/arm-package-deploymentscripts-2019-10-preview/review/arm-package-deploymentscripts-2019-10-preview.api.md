@@ -10,7 +10,7 @@ import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { Poller } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
 
@@ -115,7 +115,7 @@ export interface DeploymentScriptPropertiesBase {
 
 // @public
 export interface DeploymentScripts {
-    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<LROPoller<DeploymentScriptsCreateResponse>>;
+    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
     delete(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetResponse>;
     getLogs(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetLogsResponse>;
@@ -323,14 +323,24 @@ export const enum KnownScriptType {
 }
 
 // Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
-    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
-    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
-    delay(): Promise<void>;
-    }
+export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
+    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    finalStateVia?: FinalStateVia;
+    // (undocumented)
+    initialOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    lastOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    pollingStrategy: LROStrategy<TResult>;
+}
 
 // @public
 export interface ManagedServiceIdentity {

@@ -702,12 +702,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CassandraResourcesCreateUpdateCassandraKeyspaceResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!CassandraResourcesCreateUpdateCassandraKeyspaceResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -725,7 +743,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -842,12 +860,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CassandraResourcesCreateUpdateCassandraTableResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!CassandraResourcesCreateUpdateCassandraTableResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -865,7 +901,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -972,12 +1008,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -995,7 +1049,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1096,12 +1150,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -1119,7 +1191,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1885,12 +1957,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CassandraResourcesUpdateCassandraKeyspaceThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!CassandraResourcesUpdateCassandraKeyspaceThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -1908,7 +1998,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2025,12 +2115,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CassandraResourcesUpdateCassandraTableThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!CassandraResourcesUpdateCassandraTableThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -2048,7 +2156,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7243,12 +7351,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DatabaseAccountsCreateOrUpdateResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -7266,7 +7392,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7351,12 +7477,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -7374,7 +7518,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7461,12 +7605,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -7484,7 +7646,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8464,12 +8626,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -8487,7 +8667,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8581,12 +8761,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -8604,7 +8802,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8698,12 +8896,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -8721,7 +8937,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8815,12 +9031,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DatabaseAccountsUpdateResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountsUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -8838,7 +9072,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11303,12 +11537,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GremlinResourcesCreateUpdateGremlinDatabaseResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!GremlinResourcesCreateUpdateGremlinDatabaseResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -11326,7 +11578,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11443,12 +11695,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GremlinResourcesCreateUpdateGremlinGraphResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!GremlinResourcesCreateUpdateGremlinGraphResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -11466,7 +11736,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11573,12 +11843,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -11596,7 +11884,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11697,12 +11985,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -11720,7 +12026,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12486,12 +12792,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GremlinResourcesUpdateGremlinDatabaseThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!GremlinResourcesUpdateGremlinDatabaseThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -12509,7 +12833,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12626,12 +12950,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GremlinResourcesUpdateGremlinGraphThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!GremlinResourcesUpdateGremlinGraphThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -12649,7 +12991,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -15200,13 +15542,13 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Class",
-          "canonicalReference": "cosmos-db-resource-manager!LROPoller:class",
+          "kind": "Interface",
+          "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare class LROPoller<TResult extends "
+              "text": "export interface LROOperationState<TResult extends "
             },
             {
               "kind": "Reference",
@@ -15219,21 +15561,12 @@
             },
             {
               "kind": "Reference",
-              "text": "Poller",
-              "canonicalReference": "@azure/core-lro!Poller:class"
+              "text": "PollOperationState",
+              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
             },
             {
               "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "LROOperationState",
-              "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TResult>, TResult> "
+              "text": "<TResult> "
             }
           ],
           "releaseTag": "Public",
@@ -15250,21 +15583,47 @@
               }
             }
           ],
-          "name": "LROPoller",
+          "name": "LROOperationState",
           "members": [
             {
-              "kind": "Constructor",
-              "canonicalReference": "cosmos-db-resource-manager!LROPoller:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `LROPoller` class\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "cosmos-db-resource-manager!LROOperationState#finalStateVia:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: "
+                  "text": "finalStateVia?: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPollerOptions",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPollerOptions:interface"
+                  "text": "FinalStateVia",
+                  "canonicalReference": "cosmos-db-resource-manager!FinalStateVia:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "finalStateVia",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "cosmos-db-resource-manager!LROOperationState#initialOperation:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "initialOperation: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationStep",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
@@ -15272,60 +15631,83 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ");"
+                  "text": ";"
                 }
               ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "{ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                }
-              ]
+              "name": "initialOperation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             },
             {
-              "kind": "Method",
-              "canonicalReference": "cosmos-db-resource-manager!LROPoller#delay:member(1)",
-              "docComment": "/**\n * The method used by the poller to wait before attempting to update its operation.\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "cosmos-db-resource-manager!LROOperationState#lastOperation:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delay(): "
+                  "text": "lastOperation: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "LROOperationStep",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": "<void>"
+                  "text": "<TResult>"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
+              "releaseTag": "Public",
+              "name": "lastOperation",
+              "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
-              },
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "cosmos-db-resource-manager!LROOperationState#pollingStrategy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pollingStrategy: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROStrategy",
+                  "canonicalReference": "cosmos-db-resource-manager!LROStrategy:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TResult>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "delay"
+              "name": "pollingStrategy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
-          "extendsTokenRange": {
-            "startIndex": 3,
-            "endIndex": 7
-          },
-          "implementsTokenRanges": []
+          "extendsTokenRanges": [
+            {
+              "startIndex": 3,
+              "endIndex": 5
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -16688,12 +17070,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MongoDBResourcesCreateUpdateMongoDBCollectionResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!MongoDBResourcesCreateUpdateMongoDBCollectionResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -16711,7 +17111,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -16827,12 +17227,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MongoDBResourcesCreateUpdateMongoDBDatabaseResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!MongoDBResourcesCreateUpdateMongoDBDatabaseResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -16850,7 +17268,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -16958,12 +17376,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -16981,7 +17417,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17081,12 +17517,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -17104,7 +17558,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17871,12 +18325,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MongoDBResourcesUpdateMongoDBCollectionThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!MongoDBResourcesUpdateMongoDBCollectionThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -17894,7 +18366,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -18010,12 +18482,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -18033,7 +18523,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -19083,12 +19573,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NotebookWorkspacesCreateOrUpdateResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!NotebookWorkspacesCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -19106,7 +19614,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -19207,12 +19715,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -19230,7 +19756,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -19632,12 +20158,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -19655,7 +20199,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -19749,12 +20293,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -19772,7 +20334,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -22169,12 +22731,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PrivateEndpointConnectionsCreateOrUpdateResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!PrivateEndpointConnectionsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -22192,7 +22772,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -22292,12 +22872,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -22315,7 +22913,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -24395,12 +24993,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesCreateUpdateSqlContainerResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesCreateUpdateSqlContainerResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -24418,7 +25034,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -24534,12 +25150,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesCreateUpdateSqlDatabaseResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesCreateUpdateSqlDatabaseResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -24557,7 +25191,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -24682,12 +25316,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesCreateUpdateSqlStoredProcedureResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesCreateUpdateSqlStoredProcedureResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -24705,7 +25357,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 16,
-                "endIndex": 22
+                "endIndex": 26
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -24844,12 +25496,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesCreateUpdateSqlTriggerResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesCreateUpdateSqlTriggerResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -24867,7 +25537,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 16,
-                "endIndex": 22
+                "endIndex": 26
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25006,12 +25676,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -25029,7 +25717,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 16,
-                "endIndex": 22
+                "endIndex": 26
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25151,12 +25839,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -25174,7 +25880,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25274,12 +25980,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -25297,7 +26021,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25406,12 +26130,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -25429,7 +26171,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25552,12 +26294,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -25575,7 +26335,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -25698,12 +26458,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -25721,7 +26499,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -27279,12 +28057,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesUpdateSqlContainerThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesUpdateSqlContainerThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -27302,7 +28098,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 14,
-                "endIndex": 20
+                "endIndex": 24
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -27418,12 +28214,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SqlResourcesUpdateSqlDatabaseThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!SqlResourcesUpdateSqlDatabaseThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -27441,7 +28255,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -29622,12 +30436,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TableResourcesCreateUpdateTableResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!TableResourcesCreateUpdateTableResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -29645,7 +30477,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -29745,12 +30577,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -29768,7 +30618,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -30176,12 +31026,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "cosmos-db-resource-manager!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "cosmos-db-resource-manager!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TableResourcesUpdateTableThroughputResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!TableResourcesUpdateTableThroughputResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -30199,7 +31067,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 12,
-                "endIndex": 18
+                "endIndex": 22
               },
               "releaseTag": "Public",
               "overloadIndex": 1,

@@ -25,7 +25,7 @@ export function generatePackageJson(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     dependencies: {
-      ...(hasLRO && { "@azure/core-lro": "^1.0.1" }),
+      ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       "@azure/core-http": "^1.1.4",
       ...(clientDetails.tracing && {

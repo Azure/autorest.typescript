@@ -5160,12 +5160,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -5183,7 +5201,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5277,12 +5295,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtManagementGroupScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtManagementGroupScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -5300,7 +5336,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5394,12 +5430,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -5417,7 +5471,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5503,12 +5557,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtSubscriptionScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtSubscriptionScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -5526,7 +5598,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5605,12 +5677,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtTenantScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtTenantScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -5628,7 +5718,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5706,12 +5796,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -5729,7 +5837,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5807,12 +5915,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -5830,7 +5956,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5908,12 +6034,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -5931,7 +6075,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6001,12 +6145,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -6024,7 +6186,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 6,
-                "endIndex": 12
+                "endIndex": 16
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6087,12 +6249,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -6110,7 +6290,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 6,
-                "endIndex": 12
+                "endIndex": 16
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7895,12 +8075,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -7918,7 +8116,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8004,12 +8202,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfAtSubscriptionScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfAtSubscriptionScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -8027,7 +8243,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11604,13 +11820,13 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Class",
-          "canonicalReference": "arm-package-resources-2019-08!LROPoller:class",
+          "kind": "Interface",
+          "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare class LROPoller<TResult extends "
+              "text": "export interface LROOperationState<TResult extends "
             },
             {
               "kind": "Reference",
@@ -11623,21 +11839,12 @@
             },
             {
               "kind": "Reference",
-              "text": "Poller",
-              "canonicalReference": "@azure/core-lro!Poller:class"
+              "text": "PollOperationState",
+              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
             },
             {
               "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "LROOperationState",
-              "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TResult>, TResult> "
+              "text": "<TResult> "
             }
           ],
           "releaseTag": "Public",
@@ -11654,21 +11861,47 @@
               }
             }
           ],
-          "name": "LROPoller",
+          "name": "LROOperationState",
           "members": [
             {
-              "kind": "Constructor",
-              "canonicalReference": "arm-package-resources-2019-08!LROPoller:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `LROPoller` class\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#finalStateVia:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: "
+                  "text": "finalStateVia?: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPollerOptions",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPollerOptions:interface"
+                  "text": "FinalStateVia",
+                  "canonicalReference": "arm-package-resources-2019-08!FinalStateVia:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "finalStateVia",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#initialOperation:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "initialOperation: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationStep",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
@@ -11676,60 +11909,83 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ");"
+                  "text": ";"
                 }
               ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "{ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                }
-              ]
+              "name": "initialOperation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             },
             {
-              "kind": "Method",
-              "canonicalReference": "arm-package-resources-2019-08!LROPoller#delay:member(1)",
-              "docComment": "/**\n * The method used by the poller to wait before attempting to update its operation.\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#lastOperation:member",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delay(): "
+                  "text": "lastOperation: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
+                  "text": "LROOperationStep",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationStep:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": "<void>"
+                  "text": "<TResult>"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
+              "releaseTag": "Public",
+              "name": "lastOperation",
+              "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
-              },
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#pollingStrategy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pollingStrategy: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROStrategy",
+                  "canonicalReference": "arm-package-resources-2019-08!LROStrategy:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TResult>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "delay"
+              "name": "pollingStrategy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
-          "extendsTokenRange": {
-            "startIndex": 3,
-            "endIndex": 7
-          },
-          "implementsTokenRanges": []
+          "extendsTokenRanges": [
+            {
+              "startIndex": 3,
+              "endIndex": 5
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -15152,12 +15408,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -15175,7 +15449,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 6,
-                "endIndex": 12
+                "endIndex": 16
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -15247,12 +15521,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceGroupsExportTemplateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourceGroupsExportTemplateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -15270,7 +15562,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17176,12 +17468,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -17199,7 +17509,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 18,
-                "endIndex": 24
+                "endIndex": 28
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17321,12 +17631,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateByIdResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -17344,7 +17672,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17461,12 +17789,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -17484,7 +17830,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 16,
-                "endIndex": 22
+                "endIndex": 26
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -17590,12 +17936,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -17613,7 +17977,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -18067,12 +18431,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -18090,7 +18472,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -18209,12 +18591,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -18232,7 +18632,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 18,
-                "endIndex": 24
+                "endIndex": 28
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -18354,12 +18754,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateByIdResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
                 },
                 {
                   "kind": "Reference",
@@ -18377,7 +18795,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 10,
-                "endIndex": 16
+                "endIndex": 20
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -18463,12 +18881,30 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROPoller",
-                  "canonicalReference": "arm-package-resources-2019-08!LROPoller:class"
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LROOperationState",
+                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
                 },
                 {
                   "kind": "Content",
                   "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, coreHttp."
                 },
                 {
                   "kind": "Reference",
@@ -18486,7 +18922,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 8,
-                "endIndex": 14
+                "endIndex": 18
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
